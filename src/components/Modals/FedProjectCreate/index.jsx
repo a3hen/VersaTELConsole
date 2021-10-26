@@ -89,7 +89,7 @@ export default class FedProjectCreateModal extends React.Component {
     const resp = await this.store.checkName({ name: value })
     if (resp.exist) {
       return callback({
-        message: t('The project name exists on the host cluster.'),
+        message: t('PROJECT_NAME_EXISTS_IN_HOST'),
         field: rule.field,
       })
     }
@@ -106,7 +106,9 @@ export default class FedProjectCreateModal extends React.Component {
 
     if (index > -1 && clusters[index]) {
       return callback({
-        message: t('NAME_EXIST_IN_CLUSTER', { cluster: clusters[index].name }),
+        message: t('PROJECT_NAME_EXISTS_IN_CLUSTER', {
+          cluster: clusters[index].name,
+        }),
         field: rule.field,
       })
     }
@@ -148,21 +150,22 @@ export default class FedProjectCreateModal extends React.Component {
   renderClusters() {
     return (
       <Form.Group
-        label={t('Cluster Settings')}
+        label={t('CLUSTER_PL')}
         desc={t('PROJECT_CLUSTER_SETTINGS_DESC')}
       >
         <Form.Item
-          rules={[{ required: true, message: t('Please select a cluster') }]}
+          rules={[{ required: true, message: t('CLUSTER_EMPTY_DESC') }]}
         >
           <ArrayInput
             name="spec.placement.clusters"
-            addText={t('Add Cluster')}
+            addText={t('ADD_CLUSTER')}
             itemType="object"
             onChange={this.handleClusterChange}
           >
             <ObjectInput>
               <Select
                 name="name"
+                placeholder=" "
                 className={styles.cluster}
                 options={this.clusters}
                 valueRenderer={this.valueRenderer}
@@ -193,22 +196,22 @@ export default class FedProjectCreateModal extends React.Component {
         <div className={styles.header}>
           <img src="/assets/project-create.svg" alt="" />
           <div className={styles.title}>
-            <div>{t('Create Multi-cluster Project')}</div>
-            <p>{t('MULTI_CLUSTER_PROJECT_CREATE_DESC')}</p>
+            <div>{t('CREATE_MULTI_CLUSTER_PROJECT')}</div>
+            <p>{t('CREATE_MULTI_CLUSTER_PROJECT_DESC')}</p>
           </div>
         </div>
         <div className={styles.content}>
           <Columns>
             <Column>
               <Form.Item
-                label={t('Name')}
+                label={t('NAME')}
                 desc={t('SERVICE_NAME_DESC')}
                 ref={this.nameRef}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
+                    message: t('INVALID_NAME_DESC', {
                       message: t('SERVICE_NAME_DESC'),
                     }),
                   },
@@ -219,7 +222,7 @@ export default class FedProjectCreateModal extends React.Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+              <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
                 <Input
                   name="metadata.annotations['kubesphere.io/alias-name']"
                   maxLength={63}
@@ -229,7 +232,7 @@ export default class FedProjectCreateModal extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea
                   name="metadata.annotations['kubesphere.io/description']"
                   maxLength={256}

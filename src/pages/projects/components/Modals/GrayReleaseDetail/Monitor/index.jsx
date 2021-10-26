@@ -18,7 +18,7 @@
 
 import React from 'react'
 import isEqual from 'react-fast-compare'
-import { get, has } from 'lodash'
+import { get } from 'lodash'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Columns, Column } from '@kube-design/components'
@@ -89,12 +89,12 @@ export default class Monitor extends React.Component {
 
     const { newMetrics, oldMetrics } = this.state
     const request_count = [
-      get(newMetrics, 'metrics.request_count.matrix[0].values', []),
-      get(oldMetrics, 'metrics.request_count.matrix[0].values', []),
+      get(newMetrics, 'request_count[0].datapoints', []),
+      get(oldMetrics, 'request_count[0].datapoints', []),
     ]
     const request_error_count = [
-      get(newMetrics, 'metrics.request_error_count.matrix[0].values', []),
-      get(oldMetrics, 'metrics.request_error_count.matrix[0].values', []),
+      get(newMetrics, 'request_error_count[0].datapoints', []),
+      get(oldMetrics, 'request_error_count[0].datapoints', []),
     ]
     const request_success_rate = [
       request_count[0].map((item, index) =>
@@ -105,54 +105,38 @@ export default class Monitor extends React.Component {
       ),
     ]
 
-    let request_duration = []
-    if (has(newMetrics, 'histograms.request_duration_millis')) {
-      request_duration = [
-        get(
-          newMetrics,
-          'histograms.request_duration_millis["avg"].matrix[0].values',
-          []
-        ).map(([time, value]) => [time, parseFloat(value) / 1000]),
-        get(
-          oldMetrics,
-          'histograms.request_duration_millis["avg"].matrix[0].values',
-          []
-        ).map(([time, value]) => [time, parseFloat(value) / 1000]),
-      ]
-    } else {
-      request_duration = [
-        get(
-          newMetrics,
-          'histograms.request_duration["avg"].matrix[0].values',
-          []
-        ).map(([time, value]) => [time, parseFloat(value)]),
-        get(
-          oldMetrics,
-          'histograms.request_duration["avg"].matrix[0].values',
-          []
-        ).map(([time, value]) => [time, parseFloat(value)]),
-      ]
-    }
+    const request_duration = [
+      get(
+        newMetrics,
+        'request_duration_millis[0].datapoints',
+        []
+      ).map(([time, value]) => [time, parseFloat(value) / 1000]),
+      get(
+        oldMetrics,
+        'request_duration_millis[0].datapoints',
+        []
+      ).map(([time, value]) => [time, parseFloat(value) / 1000]),
+    ]
 
     return [
       {
         type: 'traffic-in',
-        title: t('Traffic monitor'),
+        title: t('TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_count,
         unit: 'RPS',
-        tip: t('Traffic of last five minutes'),
+        tip: t('TRAFFIC_IN_LAST_FIVE_MINUTES'),
       },
       {
         type: 'request_success_rate',
-        title: t('Request success rate'),
+        title: t('SUCCESSFUL_REQUEST_RATE'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_success_rate,
         unit: '%',
       },
       {
         type: 'request_duration',
-        title: t('Request duration'),
+        title: t('REQUEST_LATENCY'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: request_duration,
         unit: 'ms',
@@ -169,19 +153,19 @@ export default class Monitor extends React.Component {
     const { newMetrics, oldMetrics } = this.state
 
     const received = [
-      get(newMetrics, 'metrics.tcp_received.matrix[0].values', []),
-      get(oldMetrics, 'metrics.tcp_received.matrix[0].values', []),
+      get(newMetrics, 'tcp_received[0].datapoints', []),
+      get(oldMetrics, 'tcp_received[0].datapoints', []),
     ]
 
     const sent = [
-      get(newMetrics, 'metrics.tcp_sent.matrix[0].values', []),
-      get(oldMetrics, 'metrics.tcp_sent.matrix[0].values', []),
+      get(newMetrics, 'tcp_sent[0].datapoints', []),
+      get(oldMetrics, 'tcp_sent[0].datapoints', []),
     ]
 
     return [
       {
         type: 'traffic-in',
-        title: t('TCP - Inbound Traffic'),
+        title: t('TCP_INBOUND_TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: received,
         unit: 'B/s',
@@ -189,7 +173,7 @@ export default class Monitor extends React.Component {
       },
       {
         type: 'traffic-out',
-        title: t('TCP - Outbound Traffic'),
+        title: t('TCP_OUTBOUND_TRAFFIC'),
         legendData: [detail.newVersion, detail.oldVersion],
         data: sent,
         unit: 'B/s',

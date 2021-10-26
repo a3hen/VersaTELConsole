@@ -18,14 +18,22 @@
 
 module.exports = {
   application: '應用',
-  Applications: '應用',
-  'Deployed Applications': '已部署應用',
-  'Deploy New Application': '部署新應用',
+  APP_PL: '應用',
+  DEPLOYED_APPS: '已部署應用',
+  CREATE_APP: '部署新應用',
   'Deploy App': '部署應用',
-  'Create Composing Application': '構建應用',
+  CREATE_COMPOSED_APP: '構建應用',
   'App Template': '應用模板',
-  Deploy: '部署',
-  'Application Type': '應用類型',
+  APP_TEMPLATE: 'App Template',
+  APP_TEMPLATE_PL: 'App Templates',
+  TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
+  NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
+  TEMPLATE_BASED_APP_EMPTY_DESC:
+    'Please create an app from the KubeSphere App Store or an app template.',
+  APP_TEMPLATE_LOW: 'app template',
+  APP_TEMPLATE_EMPTY_DESC: 'Please create an app template.',
+  DEPLOY: '部署',
+  APP_TYPES_Q: '應用類型',
   TOTAL_APPS: '共計 {num} 個應用',
   TOTAL_COLLECTIONS: '共計 {num} 個接收者',
   Upgrade: '升級',
@@ -33,13 +41,14 @@ module.exports = {
 
   'Create Application by Service': '通過服務構建應用',
 
-  'Application Name': '應用名稱',
-  'Application Version(Optional)': '應用版本(可選)',
-  'Application Governance': '應用治理',
-  'Application Components': '應用組件',
+  APP_VERSION: '應用版本(可選)',
+  APPLICATION_GOVERNANCE: '應用治理',
+  APPLICATION_GOVERNANCE_SCAP: 'Application governance',
+  APP_COMPONENT_PL: '應用組件',
   'Application Component': '應用組件',
   'Application Route': '應用路由',
-  'Traffic Management': '流量管理',
+  TRAFFIC_MANAGEMENT: '流量管理',
+  NETWORK_TRAFFIC: 'Network Traffic',
 
   'Application governance is not enabled': '應用治理未啟用',
 
@@ -52,9 +61,10 @@ module.exports = {
   'Sample apps can help you get started with app creation and app governance':
     '示例應用可以幫助您快速入手應用創建, 以及應用治理功能',
 
-  'Add Service': '添加服務',
+  ADD_SERVICE: '添加服務',
+  ADD_ROUTE: 'Add Route',
   'Add Component': '添加組件',
-  'Edit Component': '編輯組件',
+  EDIT_GRAYSCALE_RELEASE_JOB: '編輯組件',
   'Add New Component': '添加新組件',
 
   'Application Icon': '應用圖示',
@@ -62,16 +72,21 @@ module.exports = {
   'Component Version': '組件版本',
 
   'Please input an application name': '請輸入應用名稱',
-
+  APP: '應用',
+  APP_LOW: '應用',
   'Service components should not be empty': '服務組件不能為空',
   'Please finish the sub form first': '請完成子表單的編輯',
 
-  'Service Ports': '服務端口',
+  SERVICE_PORTS: '服務端口',
   'Traffic Entry': '流量入口',
+  'Service Ports': '服務端口',
+  TRAFFIC_ENTRY: '流量入口',
 
-  'App Description': '應用描述',
+  APP_DESCRIPTION: '應用描述',
+  APP_INTRODUCTION: 'App Introduction',
 
-  'Composing Apps': '自制應用',
+  COMPOSED_APP_PL: '自制應用',
+  NO_COMPOSED_APP_FOUND: 'No Composed App Found',
   'Composing App': '自制應用',
 
   'Workload Type': '負載類型',
@@ -83,8 +98,8 @@ module.exports = {
   'Traffic Monitoring': '流量監測',
 
   'Traffic (requests per second)': '流量(每秒請求)',
-  'TCP - Inbound Traffic': 'TCP - 入站流量',
-  'TCP - Outbound Traffic': 'TCP - 出站流量',
+  TCP_INBOUND_TRAFFIC: 'TCP 入站流量',
+  TCP_OUTBOUND_TRAFFIC: 'TCP 出站流量',
 
   'Connection timeout': '連接超時時間',
   'TCP connection timeout.': 'TCP 連接超時時間。',
@@ -102,7 +117,8 @@ module.exports = {
   'Load balance algorithm': '負載平衡算法',
   'Session retention': '會話保持',
 
-  Method: '方式',
+  METHOD: '方式',
+  CREATION_METHOD: 'Creation Method',
   'According to the HTTP header': '根據 HTTP header',
 
   On: '開啟',
@@ -118,12 +134,12 @@ module.exports = {
 
   APPLICATIONS_DESC:
     '應用為用戶提供完整的業務功能，由一個或多個特定功能的組件組成。',
-  APP_DEPLOYMENT_DESC:
+  CREATE_APP_DESC:
     '輕量化、可移植、自包含的軟體封裝技術，使應用可以在幾乎任何地方以相同的方式運行。',
-  APP_GOVERNANCE_DESC:
-    '開啟應用治理後會在每個組件中以 SideCar 的方式注入 Istio-proxy 容器 <a href="https://istio.io/docs/setup/kubernetes/additional-setup/sidecar-injection/" target="_blank">了解更多</a>',
+  APPLICATION_GOVERNANCE_DESC:
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
 
-  COMPONENT_VERSION_DESC: '最長 16 個字元，只能包含小寫字母及數字',
+  VERSION_DESC: '最長 16 個字元，只能包含小寫字母及數字',
 
   APP_ICON_TIP: '點擊上傳應用圖示，尺寸最大為 120px * 120px',
 
@@ -139,19 +155,17 @@ module.exports = {
   LB_LEAST_CONN: '最小連接數(LEAST_CONN)',
   LB_RANDOM: '随機(RANDOM)',
 
-  'Last {num} records': '最近 {num} 條紀錄',
+  LAST_NUM_RECORDS: '最近 {num} 條紀錄',
   'Last {hour} hour': '最近 {hour} 小時',
   'Last {hour} hours': '最近 {hour} 小時',
   'Last {day} days': '最近 {day} 天',
 
   APP_WORKLOAD_TYPE_DESC: '支持無狀態服務(部署)及有狀態服務(有狀態副本集)',
 
-  SERVICE_DEPLOYMENT: '無狀態服務(部署)',
-  SERVICE_STATEFULSET: '有狀態服務(有狀態副本集)',
-
-  'Temporarily unable to use traffic management': '暫時無法使用流量治理',
-  'Temporarily unable to use tracing': '暫時無法使用 Tracing',
-  'The app has not received the request for a long time, please visit the app and try traffic management':
+  TYPE_SERVICE_DEPLOYMENT: '無狀態服務（部署）',
+  TYPE_SERVICE_STATEFULSET: '有狀態服務（有狀態副本集）',
+  TRACING_UNAVAILABLE: '暫時無法使用 Tracing',
+  TRAFFIC_MONITORING_UNAVAILABLE_DESC:
     '應用長時間未收到請求，請訪問應用後嘗試流量治理',
   'Application components combine workloads and services as components in applications':
     '應用組件組合了工作負載和服務作為應用中的組件',
@@ -159,10 +173,14 @@ module.exports = {
     '如果您需要將應用通過應用路由的方式進行訪問，請添加路由規則',
 
   'No result found': '未查詢到結果',
-  'Please try other query conditions': '請嘗試其它查詢條件',
-
+  TRACING_NO_DATA_DESC: '請嘗試其它查詢條件',
+  TRACING: 'Tracing',
+  NUM_SPAN_SI: '{num} span',
+  NUM_SPAN_PL: '{num} spans',
+  NUM_ERROR_SI: '{num} error',
+  NUM_ERROR_PL: '{num} errors',
   'Deploy sample app Bookinfo': '部署示例應用 Bookinfo',
-  'Please save the current form first': '請先保存目前表單',
+  SAVE_FORM_TIP: '請先保存目前表單',
   'Add Component Successfully': '添加組件成功',
 
   'Connection pool management': '連接池管理',
@@ -198,18 +216,18 @@ module.exports = {
     '熔斷機制是應對雪崩效應的一種微服務鏈路保護機制。當扇出鏈路的某個微服務不可用或者響應時間太長時，會進行服務的降級，進而熔斷該節點微服務的調用，快速返回錯誤的響應資訊。當檢測到該節點微服務調用響應正常後，恢復調用鏈路。',
 
   'Please input component version': '請輸入組件版本',
-  'Invalid version': '版本格式不合法',
+  INVALID_VERSION_TIP: '无效版本格式。',
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
 
-  APPLICATION_TYPE_DESC:
+  APP_TYPES_A:
     'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
 
   APPLICATION_SERVICE_DESC:
     '根據應用中服務類型的不同設置不同類型的服務組件，支持無狀態服務和有狀態服務',
-  APPLICATION_BASEINFO_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
+  APP_BASIC_INFORMATION_DESC: 'ˇ對應用的名稱描述資訊等基本的資訊定義',
 
-  HOW_TO_USE_APPLICATION_GOVE_Q: '如何使用應用治理？',
-  HOW_TO_USE_APPLICATION_GOVE_A:
+  HOW_TO_USE_APP_GOVERN_Q: '如何使用應用治理？',
+  HOW_TO_USE_APP_GOVERN_A:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
 
   'App Types': '應用的類型',
@@ -219,28 +237,30 @@ module.exports = {
   TIP_APP_GOVERNANCE:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   'App store deployment': '應用商店部署',
-  'From App Store': '來自應用商店',
-  'From App Templates': '來自應用模板',
+  FROM_APP_STORE: '來自應用商店',
+  FROM_APP_TEMPLATE: '來自應用模板',
   'From third party Helm': '來自第三方 Helm',
   FROM_APP_STORE_DESC:
     '來自KubeSphere官方應用商店，提供高質量應用和簡易的部署方式',
-  FROM_APP_TEMPLATES_DESC:
+  FROM_APP_TEMPLATE_DESC:
     '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方 Helm 應用模板',
-  COMPOSING_APP_DESC: '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
+  COMPOSED_APP_EMPTY_DESC:
+    '通過資源編排的方式發佈服務構建應用(支持應用治理功能)',
   APP_TEMPLATES_MODAL_DESC:
     '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 KubeSphere 中展示並提供部署及管理的功能',
   APP_REPOS_DESC:
     '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
-  SEARCH_TIPS: '您可以根據相關條件進行過濾',
 
-  'From workspace': '來自企業空間',
-  'Add stateful or stateless services': '添加有狀態服務或無狀態服務',
+  CURRENT_WORKSPACE: '來自企業空間',
+  SELECT_APP_REPOSITORY: 'Select app repository',
+  APP_CREATE_SERVICE_DESC: '添加有狀態服務或無狀態服務',
+  CREATE_SERVICE_DESC: 'Select a Service creation method.',
   'Add an Internet access rule for the application': '為應用添加外網訪問規則',
+  ROUTE_SETTINGS: 'Route Settings',
+  ROUTE_SETTINGS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
 
-  INTERNET_ACCESS_DESC: '可以設置應用的外網訪問規則 (Ingress)',
-
-  'Microservice enabled': '微服務已啟用',
-  'Microservice not enabled': '微服務未啟用',
+  APPLICATION_GOVERNANCE_ENABLED: '微服務已啟用',
+  APPLICATION_GOVERNANCE_DISABLED: '微服務未啟用',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     '流量治理依賴於微服務模組，目前集群未啟用微服務模組',

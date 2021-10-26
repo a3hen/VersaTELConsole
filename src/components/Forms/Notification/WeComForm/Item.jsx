@@ -17,34 +17,67 @@
  */
 
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import { isEmpty } from 'lodash'
 
 import { Tag, Icon } from '@kube-design/components'
+import { BoxInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
 export default class Item extends Component {
+  static propTypes = {
+    value: PropTypes.array,
+    onChange: PropTypes.func,
+  }
+
+  static defaultProps = {
+    value: [],
+    onChange() {},
+  }
+
+  handleAdd = newValue => {
+    const { value, onChange } = this.props
+    onChange([...value, newValue])
+  }
+
+  handleDelete = newValue => {
+    const { value, onChange } = this.props
+    const newData = value.filter(item => item !== newValue)
+    onChange(newData)
+  }
+
   render() {
-    const { resources, type, title, onDelete } = this.props
-    if (resources.length <= 0) {
-      return null
-    }
+    const { validate, type, value, className } = this.props
+    const text = type.toUpperCase()
+
     return (
-      <div className={styles.wrapper}>
-        <p>{title}</p>
-        <div className={styles.listWrapper}>
-          {resources.map(item => {
-            return (
-              <Tag className={styles.tag} type="primary" key={item}>
-                {item}
-                <Icon
-                  name="close"
-                  size={12}
-                  clickable
-                  onClick={() => onDelete(type, item)}
-                ></Icon>
-              </Tag>
-            )
-          })}
+      <div className={classnames(styles.wrapper, className)}>
+        <BoxInput
+          placeholder={t(`WECOM_${text.toUpperCase()}_PLACEHOLDER`)}
+          validate={validate}
+          onAdd={this.handleAdd}
+        />
+        <p className="margin-t8">{t(`${type.toUpperCase()}_LIST`)}</p>
+        <div className={classnames(styles.boxWrapper, className)}>
+          {isEmpty(value) ? (
+            <div className={styles.empty}>{t(`EMPTY_${text}_DESC`)}</div>
+          ) : (
+            value.map(item => {
+              return (
+                <Tag className={styles.tag} key={item}>
+                  {item}
+                  <Icon
+                    name="close"
+                    size={12}
+                    clickable
+                    onClick={() => this.handleDelete(item)}
+                  />
+                </Tag>
+              )
+            })
+          )}
         </div>
       </div>
     )

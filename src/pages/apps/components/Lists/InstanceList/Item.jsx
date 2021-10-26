@@ -45,7 +45,7 @@ export default class InstanceItem extends React.PureComponent {
       <div className={styles.content}>
         <dl>
           <dt>{detail.name}</dt>
-          <dd>{t('Instance Name')}</dd>
+          <dd>{t('NAME')}</dd>
         </dl>
         <dl>
           <dt>
@@ -55,21 +55,21 @@ export default class InstanceItem extends React.PureComponent {
               name={t(detail.status)}
             />
           </dt>
-          <dd>{t('Status')}</dd>
+          <dd>{t('STATUS')}</dd>
         </dl>
         {showVersion && (
           <dl>
             <dt>{version.name}</dt>
-            <dd>{t('Version')}</dd>
+            <dd>{t('VERSION')}</dd>
           </dl>
         )}
         <dl>
           <dt>{detail.zone}</dt>
-          <dd>{t('In Project')}</dd>
+          <dd>{t('PROJECT')}</dd>
         </dl>
         <dl>
           <dt>{detail.cluster || detail.runtime_id}</dt>
-          <dd>{t('Cluster')}</dd>
+          <dd>{t('CLUSTER')}</dd>
         </dl>
         <dl>
           <dt>
@@ -77,7 +77,7 @@ export default class InstanceItem extends React.PureComponent {
               'YYYY-MM-DD HH:mm:ss'
             )}
           </dt>
-          <dd>{t('Updated Time')}</dd>
+          <dd>{t('CREATION_TIME')}</dd>
         </dl>
       </div>
     )

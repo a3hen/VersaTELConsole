@@ -47,20 +47,20 @@ export default class Events extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Created Time'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'create_time',
       width: '24%',
       render: create_time =>
         getLocalTime(create_time).format(`YYYY-MM-DD HH:mm:ss`),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '16%',
       render: status => <Status type={status} name={t(status)} />,
     },
     {
-      title: t('Message'),
+      title: t('MESSAGE'),
       dataIndex: 'result',
       render: result => result || '-',
     },

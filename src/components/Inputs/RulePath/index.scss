@@ -7,3 +7,13 @@
     }
   }
 }
+
+.autocomplete {
+  width: 100% !important;
+
+  :global {
+    .popper {
+      z-index: 1000;
+    }
+  }
+}

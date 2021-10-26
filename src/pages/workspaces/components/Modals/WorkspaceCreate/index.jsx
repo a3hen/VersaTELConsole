@@ -23,8 +23,6 @@ import { Button, Icon } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import RouterStore from 'stores/router'
-
 import Steps from './Steps'
 import BaseInfo from './BaseInfo'
 import ClusterSettings from './ClusterSettings'
@@ -55,15 +53,13 @@ export default class WorkspaceCreateModal extends React.Component {
     }
 
     this.formRef = React.createRef()
-
-    this.routerStore = new RouterStore()
   }
 
   get steps() {
     if (!globals.app.isMultiCluster) {
       return [
         {
-          title: 'Basic Info',
+          title: 'BASIC_INFORMATION',
           component: BaseInfo,
           required: true,
           isForm: true,
@@ -73,13 +69,13 @@ export default class WorkspaceCreateModal extends React.Component {
 
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BaseInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'Cluster Settings',
+        title: 'CLUSTER_SETTINGS',
         component: ClusterSettings,
         required: true,
       },
@@ -144,7 +140,7 @@ export default class WorkspaceCreateModal extends React.Component {
           <Icon name="close" size={20} clickable onClick={onCancel} />
           <span />
           <Icon name="enterprise" size={20} />
-          <span>{t('Create Workspace')}</span>
+          <span>{t('CREATE_WORKSPACE')}</span>
         </div>
         <div className={styles.wrapper}>
           {this.steps.length > 1 && (
@@ -165,15 +161,15 @@ export default class WorkspaceCreateModal extends React.Component {
       <div className={styles.footer}>
         <div className={styles.wrapper}>
           <div className="text-right">
-            <Button onClick={onCancel}>{t('Cancel')}</Button>
+            <Button onClick={onCancel}>{t('CANCEL')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
-                {t('Previous')}
+                {t('PREVIOUS')}
               </Button>
             )}
             {currentStep < total ? (
               <Button type="control" onClick={this.handleNext}>
-                {t('Next')}
+                {t('NEXT')}
               </Button>
             ) : (
               <Button
@@ -181,7 +177,7 @@ export default class WorkspaceCreateModal extends React.Component {
                 onClick={this.handleOk}
                 loading={isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             )}
           </div>

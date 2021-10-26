@@ -32,7 +32,7 @@ import Banner from './Banner'
 @withProjectList({
   store: new CRDAppStore(),
   module: 'applications',
-  name: 'Application',
+  name: 'APP',
 })
 export default class CRDApps extends React.Component {
   type = 'composing'
@@ -64,7 +64,7 @@ export default class CRDApps extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -79,20 +79,20 @@ export default class CRDApps extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '20%',
         render: status => <Status name={t(status)} type={status} flicker />,
       },
       {
-        title: t('Version'),
+        title: t('VERSION'),
         dataIndex: 'version',
         isHideable: true,
         width: '20%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -120,7 +120,7 @@ export default class CRDApps extends React.Component {
           {
             key: 'create',
             type: 'control',
-            text: t('Create Composing Application'),
+            text: t('CREATE'),
             onClick: this.showCreate,
           },
         ]
@@ -132,8 +132,8 @@ export default class CRDApps extends React.Component {
         onCreate: null,
       },
       emptyProps: {
-        title: t('Composing Apps'),
-        desc: t('COMPOSING_APP_DESC'),
+        title: t('NO_COMPOSED_APP_FOUND'),
+        desc: t('COMPOSED_APP_EMPTY_DESC'),
       },
       searchType: 'name',
     }

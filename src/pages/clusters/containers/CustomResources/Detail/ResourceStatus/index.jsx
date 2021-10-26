@@ -67,7 +67,7 @@ export default class ResourceStatus extends React.Component {
         ? {
             key: 'editYaml',
             icon: 'pen',
-            text: t('Edit YAML'),
+            text: t('EDIT_YAML'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.yaml.edit', {
@@ -79,7 +79,7 @@ export default class ResourceStatus extends React.Component {
         : {
             key: 'viewYaml',
             icon: 'eye',
-            text: t('View YAML'),
+            text: t('VIEW_YAML'),
             action: 'view',
             onClick: item =>
               this.trigger('resource.yaml.edit', {
@@ -91,11 +91,11 @@ export default class ResourceStatus extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           this.trigger('resource.delete', {
-            type: t(item.kind),
+            type: 'CUSTOM_RESOURCE',
             detail: item,
             success: this.getData,
           }),
@@ -107,7 +107,7 @@ export default class ResourceStatus extends React.Component {
     const { scope } = this.props.detailStore.detail
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -126,7 +126,7 @@ export default class ResourceStatus extends React.Component {
           ]
         : []),
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
       },
@@ -140,7 +140,7 @@ export default class ResourceStatus extends React.Component {
 
     return (
       <div>
-        <div className={styles.title}>{t('Resource List')}</div>
+        <div className={styles.title}>{t('CUSTOM_RESOURCE_PL')}</div>
         <Table
           data={toJS(data)}
           columns={this.columns}

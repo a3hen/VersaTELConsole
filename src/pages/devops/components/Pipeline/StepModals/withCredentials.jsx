@@ -207,8 +207,8 @@ export default class WithCredentials extends React.Component {
       >
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
-            label={t('Credential ID')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('CREDENTIAL_ID')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}
@@ -216,7 +216,7 @@ export default class WithCredentials extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }

@@ -25,7 +25,8 @@ import { Loading } from '@kube-design/components'
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
+import IngressStore from 'stores/ingress'
 
 import IngressCard from './IngressCard'
 
@@ -34,7 +35,13 @@ import styles from './index.scss'
 @inject('projectStore')
 @observer
 export default class Components extends Component {
-  routerStore = new RouterStore()
+  gatewayStore = new GatewayStore()
+
+  ingressStore = new IngressStore()
+
+  state = {
+    gateway: {},
+  }
 
   get prefix() {
     const { workspace, namespace } = this.props
@@ -45,7 +52,7 @@ export default class Components extends Component {
     this.getData()
   }
 
-  getData() {
+  async getData() {
     const { cluster, namespace, detail } = this.props
     const { selector } = detail
     if (selector) {
@@ -55,12 +62,19 @@ export default class Components extends Component {
         labelSelector: joinSelector(selector),
       }
 
-      this.routerStore.fetchListByK8s(params)
+      this.ingressStore.fetchListByK8s(params)
     }
-    this.routerStore.getGateway({
-      cluster,
-      ...detail,
-    })
+    await this.getGateway()
+  }
+
+  async getGateway() {
+    const { cluster, namespace } = this.props
+
+    const datalist = await Promise.all([
+      this.gatewayStore.getGateway({ cluster }),
+      this.gatewayStore.getGateway({ cluster, namespace }),
+    ])
+    this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
   getNodePorts(gateway) {
@@ -68,7 +82,9 @@ export default class Components extends Component {
       return '-'
     }
 
-    return gateway.ports.map(port => `${port.name}:${port.nodePort}`).join('; ')
+    return gateway.ports
+      .map(port => `${port.name.toUpperCase()}: ${port.nodePort}`)
+      .join('/')
   }
 
   getExternalIP(gateway) {
@@ -85,8 +101,8 @@ export default class Components extends Component {
 
   render() {
     const { cluster } = this.props
-    const { data, isLoading } = this.routerStore.list
-    const gateway = this.routerStore.gateway.data
+    const { data, isLoading } = this.ingressStore.list
+    const { gateway } = this.state
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
 
     return (
@@ -102,23 +118,23 @@ export default class Components extends Component {
           <Text
             icon="eip-pool"
             title={gateway.type}
-            description={t('Gateway Type')}
+            description={t('GATEWAY_ACCESS_MODE')}
           />
           {gateway.type === 'NodePort' ? (
             <>
               <Text
                 title={gateway.loadBalancerIngress || '-'}
-                description={t('Gateway IP')}
+                description={t('GATEWAY_IP_ADDRESS')}
               />
               <Text
                 title={this.getNodePorts(gateway)}
-                description={t('Node Port')}
+                description={t('NODE_PORTS_SCAP')}
               />
             </>
           ) : (
             <Text
               title={this.getExternalIP(gateway)}
-              description={t('External Address')}
+              description={t('LOAD_BALANCER_SCAP')}
             />
           )}
         </div>

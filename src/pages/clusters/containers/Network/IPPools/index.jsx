@@ -31,7 +31,7 @@ import IPPoolStore from 'stores/network/ippool'
 @withList({
   store: new IPPoolStore(),
   module: 'ippools',
-  name: 'Pod IP Pool',
+  name: 'POD_IP_POOL',
 })
 export default class IPPools extends React.Component {
   get tips() {
@@ -49,7 +49,7 @@ export default class IPPools extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -59,7 +59,7 @@ export default class IPPools extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -70,7 +70,7 @@ export default class IPPools extends React.Component {
       {
         key: 'modify',
         icon: 'enterprise',
-        text: t('Assign Workspace'),
+        text: t('ASSIGN_WORKSPACE'),
         action: 'edit',
         onClick: item =>
           trigger('network.ipool.assignworkspace', {
@@ -81,11 +81,11 @@ export default class IPPools extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -96,7 +96,7 @@ export default class IPPools extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -112,11 +112,11 @@ export default class IPPools extends React.Component {
         ),
       },
       {
-        title: t('IP/Mask Bit'),
+        title: t('NETWORK_SEGMENT'),
         dataIndex: 'cidr',
       },
       {
-        title: t('Used IP'),
+        title: t('USED_IP_ADDRESSES'),
         dataIndex: 'status',
         render: status => {
           const capacity = get(status, 'capacity', 0)
@@ -125,16 +125,16 @@ export default class IPPools extends React.Component {
           return (
             <Text
               title={capacity - unallocated}
-              description={`${t('Total')}: ${capacity}`}
+              description={t('TOTAL_VALUE', { value: capacity })}
             />
           )
         },
       },
       {
-        title: t('Workspace'),
+        title: t('WORKSPACE'),
         dataIndex: 'workspace',
         render: (workspace, record) =>
-          record.isDefault ? t('All') : workspace || t('Not Assigned'),
+          record.isDefault ? t('ALL') : workspace || t('NOT_ASSIGNED'),
       },
     ]
   }

@@ -62,14 +62,14 @@ export default class SecretSettings extends React.Component {
   }
 
   getTypeOptions = () => [
-    { label: t('Default'), value: 'Opaque' },
-    { label: t('TLS'), value: 'kubernetes.io/tls' },
+    { label: t('DEFAULT'), value: 'Opaque' },
+    { label: t('TLS_INFORMATION'), value: 'kubernetes.io/tls' },
     {
-      label: t('Image Registry Secret'),
+      label: t('IMAGE_REGISTRY_INFORMATION'),
       value: 'kubernetes.io/dockerconfigjson',
     },
     {
-      label: t('Account Password Secret'),
+      label: t('USERNAME_PASSWORD'),
       value: 'kubernetes.io/basic-auth',
     },
   ]
@@ -146,9 +146,9 @@ export default class SecretSettings extends React.Component {
   renderDefault() {
     return (
       <Form.Item
-        label={t('Data')}
+        label={t('DATA')}
         rules={[
-          { required: true, message: t('Please input data') },
+          { required: true, message: t('ENTER_DATA_DESC') },
           { validator: this.dataValidator },
         ]}
       >
@@ -165,9 +165,9 @@ export default class SecretSettings extends React.Component {
     return (
       <div key="tls" className="margin-t8">
         <Form.Item
-          label={t('Credential')}
+          label={t('CREDENTIAL_SI')}
           rules={[
-            { required: true, message: t('Please input credential') },
+            { required: true, message: t('ENTER_CREDENTIAL_TIP') },
             { validator: this.dataValidator },
           ]}
         >
@@ -176,9 +176,9 @@ export default class SecretSettings extends React.Component {
           </Base64Wrapper>
         </Form.Item>
         <Form.Item
-          label={t('Private Key')}
+          label={t('PRIVATE_KEY_TCAP')}
           rules={[
-            { required: true, message: t('Please input private key') },
+            { required: true, message: t('ENTER_PRIVATE_KEY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -191,11 +191,21 @@ export default class SecretSettings extends React.Component {
   }
 
   renderImage() {
+    const { cluster, isFederated } = this.props
+    const { name, namespace } = get(this.formTemplate, 'metadata')
+
     return (
       <div key="image" className="margin-t8">
         <Form.Item rules={[{ validator: this.imageValidator }]}>
           <Base64Wrapper name="data['.dockerconfigjson']">
-            <ImagerRegistry ref={this.imageRegistryRef} />
+            <ImagerRegistry
+              fedFormTemplate={this.fedFormTemplate}
+              cluster={cluster}
+              namespace={namespace}
+              isFederated={isFederated}
+              screatName={name}
+              ref={this.imageRegistryRef}
+            />
           </Base64Wrapper>
         </Form.Item>
       </div>
@@ -206,9 +216,9 @@ export default class SecretSettings extends React.Component {
     return (
       <div key="basic" className="margin-t8">
         <Form.Item
-          label={t('User Name')}
+          label={t('USERNAME')}
           rules={[
-            { required: true, message: t('Please input user name') },
+            { required: true, message: t('USERNAME_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -217,9 +227,9 @@ export default class SecretSettings extends React.Component {
           </Base64Wrapper>
         </Form.Item>
         <Form.Item
-          label={t('Password')}
+          label={t('PASSWORD')}
           rules={[
-            { required: true, message: t('Please input password') },
+            { required: true, message: t('PASSWORD_EMPTY_DESC') },
             { validator: this.dataValidator },
           ]}
         >
@@ -255,10 +265,8 @@ export default class SecretSettings extends React.Component {
     return content
   }
 
-  valueRenderer = option => `${option.value} (${option.label})`
-
   render() {
-    const { formRef } = this.props
+    const { formRef, disableSelect } = this.props
     const { state } = this.state
 
     if (state === 'data') {
@@ -267,14 +275,16 @@ export default class SecretSettings extends React.Component {
 
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
-        <Form.Item label={t('Type')} desc={t('SECRET_TYPE_DESC')}>
+        <Form.Item
+          label={t('TYPE')}
+          desc={disableSelect ? '' : t('SECRET_TYPE_DESC')}
+        >
           <Select
             name="type"
             options={this.getTypeOptions()}
-            valueRenderer={this.valueRenderer}
-            optionRenderer={this.valueRenderer}
             onChange={this.handleTypeChange}
-            placeholder={t('Please Select')}
+            placeholder=" "
+            disabled={disableSelect}
             searchable
           />
         </Form.Item>

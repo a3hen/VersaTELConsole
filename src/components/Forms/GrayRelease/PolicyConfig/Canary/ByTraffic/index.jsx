@@ -18,7 +18,7 @@
 
 import { get, set, isUndefined } from 'lodash'
 import React from 'react'
-import { Form } from '@kube-design/components'
+import { Alert, Form } from '@kube-design/components'
 import { TrafficSlider } from 'components/Inputs'
 
 import styles from './index.scss'
@@ -76,17 +76,23 @@ export default class ByTraffic extends React.Component {
     const newVersion = get(this.newRoute, 'destination.subset')
     const oldVersion = get(this.oldRoute, 'destination.subset')
 
-    const leftContent = `${newVersion} ${t('traffic')}`
-    const rightContent = `${oldVersion} ${t('traffic')}`
+    const leftContent = `${newVersion} ${t('TRAFFIC_LOW')}`
+    const rightContent = `${oldVersion} ${t('TRAFFIC_LOW')}`
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Rule Description')}</div>
-          <p>{t('CANARY_BY_TRAFFIC_DESC', { ratio, component, newVersion })}</p>
+          <Alert
+            type="info"
+            message={t.html('CANARY_BY_TRAFFIC_DESC', {
+              ratio,
+              component,
+              newVersion,
+            })}
+          />
         </div>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Traffic Ratio')}</div>
+          <div className={styles.title}>{t('TRAFFIC_DISTRIBUTION')}</div>
           <Form ref={formRef} data={this.formTemplate} {...rest}>
             <Form.Item>
               <TrafficSlider

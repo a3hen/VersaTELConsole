@@ -17,59 +17,93 @@
  */
 
 module.exports = {
-  'Allow Volume Expansion': 'Allow Volume Expansion',
-  'Available Capacity': 'Available Capacity',
-  'Create Snapshot': 'Create Snapshot',
+  VOLUME_EXPANSION: 'Volume Expansion',
+  AVAILABLE_CAPACITY: 'Available capacity',
+  CREATE_SNAPSHOT: 'Create Snapshot',
   'Create Storage Class': 'Create Storage Class',
   'Create Volume': 'Create Volume',
   CREATE_VOLUME_WITH_SNAPSHOT: 'Create volume based on snapshots',
   'Custom Provisioner': 'Custom Provisioner',
-  Default: 'Default',
+  DEFAULT: 'Default',
   'Default Storage Class': 'Default Storage Class',
   'Default Volume': 'Default Volume',
   'Delete Volume': 'Delete Volume',
   'Disable Volume Snapshot': 'Disable Volume Snapshot',
   'Apply immediately': 'Apply immediately',
   Expand: 'Expand',
-  'Expand Volume': 'Expand Volume',
-  Idle: 'Idle',
-  'In Use': 'In Use',
-  'Mount Info': 'Mount Info',
+  EXPAND_VOLUME: 'Expand Volume',
+  EXPAND: 'Expand',
+  AVAILABLE: 'Available',
+  IN_USER: 'In use',
+  MOUNT_INFORMATION: 'Mount Information',
   'Mount Options': 'Mount Options',
-  'Mount Status': 'Mount Status',
-  Mounted: 'Mounted',
-  'Mounted Pods': 'Mounted Pods',
-  'Not Mounted': 'Not Mounted',
+  // Volumes List Page
+  MOUNT_STATUS: 'Mount Status',
+  MOUNTED: 'Mounted',
+  MOUNTED_PODS: 'Mounted Pods',
+  NOT_MOUNTED: 'Not mounted',
   Parameters: 'Parameters',
   'Parameters (key-value pairs)': 'Parameters (key-value pairs)',
-  PersistentVolumeClaim: 'PersistentVolumeClaim',
+  PersistentVolumeClaim: 'Volume',
   PersistentVolumes: 'PersistentVolumes',
-  'Reclaim Policy': 'Reclaim Policy',
+  RECLAIM_POLICY: 'Reclaim Policy',
+  CREATE: 'Create',
+  UPDATE: 'Update',
   Scalable: 'Scalable',
-  'Set as default storage class': 'Set as default storage class',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
   'Snapshot Message': 'Snapshot Message',
   'Snapshots Message': 'Snapshot Message',
+  'Set as default storage class': 'Set as default storage class',
+  SNAPSHOT_PL: 'Snapshots',
   'Storage Class': 'Storage Class',
+  STORAGE_CLASS: 'Storage Class',
+  STORAGE_CLASS_PL: 'Storage Classes',
+  STORAGE_CLASS_LOW: 'storage class',
+  STORAGE_CLASS_EMPTY_DESC: 'Please create a storage class.',
+  STORAGE_CLASS_VALUE: 'Storage class: {value}',
   'Storage Class Name': 'Storage Class Name',
-  'Storage Class Settings': 'Storage Class Settings',
+  STORAGE_CLASS_SETTINGS: 'Storage Class Settings',
   'storage classes': 'storage classes',
-  'Storage System': 'Storage System',
+  STORAGE_SYSTEM: 'Storage System',
   STORAGE_CLASS_CREATE_DESC:
     'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
   StorageClasses: 'StorageClasses',
   storageclasses: 'storageclasses',
-  'Support Volume Snapshot': 'Support Volume Snapshot',
-  'Supported Access Mode': 'Supported Access Mode',
+  ALLOW_VOLUME_SNAPSHOT: 'Volume Snapshot Allowed',
+  ALLOW_VOLUME_CLONE: 'Volume Clone Allowed',
+  ALLOW_VOLUME_EXPANSION: 'Volume Expansion Allowed',
+  PV: 'Volume Backend',
+  VOLUME_BACKEND_TCAP: 'Volume Instance',
+  PV_STATUS_AVAILABLE: 'Available',
+  PV_STATUS_BOUND: 'Bound',
+  PV_STATUS_RELEASED: 'Terminating',
+  PV_STATUS_FAILED: 'Failed',
+  'Bound Volume': 'Storage volume bound',
+  RECYCLING_STRATEGY: 'Recycling Strategy',
+  ACCESS_MODE: 'Access Mode',
+  ACCESS_MODE_SCAP: 'Access mode',
   'Used Capacity': 'Used Capacity',
-  'Clone Volume': 'Clone Volume',
-  'Volume Count': 'Volume Count',
+  CLONE_VOLUME: 'Clone Volume',
+  CLONE: 'Clone',
+  VOLUME: 'Volume',
+  BACKEND_IDENTIFIER: 'Backend Identifier',
+  VOLUMES: 'Volume',
+  VOLUME_PL: 'Volumes',
+  NUMBER_OF_VOLUMES: 'Number of volumes',
+  VOLUME_LOW: 'volume',
+  VOLUME_INSTANCE: 'Volume Instance',
+  VOLUME_INSTANCE_PL: 'Volume Instances',
+  VOLUME_INSTANCE_LOW: 'volume instance',
+  VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
   'The volume name exists': 'The volume name exists',
+  VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
+  VOLUME_NAME_EXIST: 'The volume name already exists.',
   'The volume size must be greater than zero':
     'The volume size must be greater than zero',
-  'Volume Template Settings': 'Volume Template Settings',
+  VOLUME_TEMPLATE_SETTINGS: 'Volume Template Settings',
   'Volume Usage': 'Volume Usage',
   VOLUME_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   VOLUME_SNAPSHOT_STATUS_CREATING: 'Creating',
   VOLUME_SNAPSHOT_STATUS_FAILED: 'Creation failed',
   VOLUME_SNAPSHOT_STATUS_READY: 'Created successfully',
@@ -91,16 +125,18 @@ module.exports = {
 
   VOLUMES_BASEINFO_DESC:
     'The volume can persist data, and its lifecycle is independent of the workload. Make sure the storage class is created before you create a volume.',
-  VOLUME_CREATE_DESC:
-    'A volume is used for workloads created by users. It represents a resource object for the persistent storage of workloads.',
+  VOLUME_EMPTY_DESC: 'Please create a volume.',
   VOLUME_SETTINGS_DESC:
     'Fill in the capacity of the volume as needed, and the volume size and access mode must be compatible with the storage class and storage server capabilities. The access mode is usually selected as RWO.',
   VOLUME_STORAGE_CLASS_DESC:
-    'The cluster administrator configures the storage server parameters and provides storage for the user by type.',
+    'Select a storage class to create a volume of a specific type.',
 
   PROVISIONER_DESC: 'Provide backend storage',
 
-  ACCESS_MODES_DESC: 'Select the access mode supported by the storage class.',
+  // Volume Pages
+  ACCESS_MODE_TCAP: 'Access Mode',
+
+  ACCESS_MODES_DESC: 'Select an access mode supported by the storage class.',
 
   DELETE_STORAGE_TIP:
     'If the storage volume is being mounted, delete it when the workload is deleted.',
@@ -108,7 +144,7 @@ module.exports = {
     'ReadWriteOnce: Single node read and write.<br/>ReadOnlyMany: Multi-node read-only.<br/>ReadWriteMany: Multi-node read and write.<br/>Only one mode can be used when mounting.',
 
   STORAGE_CLASS_DESC:
-    'A StorageClass provides a way for administrators to configure the "classes" of storage they offer.',
+    'Storage classes support dynamic volume provisioning, allowing administrators to create new storage volumes on demand.',
 
   'STORAGE-CLASSES_BASEINFO_DESC':
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
@@ -116,7 +152,7 @@ module.exports = {
     'The storage type records the configuration information of a certain type of storage provided by the administrator. Before creating a specific type of storage volume, the corresponding storage type must be configured.',
 
   STORAGE_CLASS_SET_DEFAULT_DESC:
-    'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a Kubernetes cluster.',
+    'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
 
   STORAGECLASSES_BASEINFO_DESC:
     'A StorageClass provides a way for administrators to configure the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. You need to create a StorageClass before users can create volume (i.e., PVC) based on the StorageClass.',
@@ -125,82 +161,116 @@ module.exports = {
   VOLUME_BASEINFO_TIP:
     'The volume is provisioned through dynamic volume provisioning which allows storage volumes to be created on-demand. The volume is used for persisting data, and has explict lifecycle independent of any individual pod that uses it. At lease one StorageClass must be configured by adminstrators before creating a volume.',
 
-  WHAT_IS_STORAGE_CLASS_Q: 'What is a Storage Class?',
+  WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
   WHAT_IS_STORAGE_CLASS_A:
-    'The Storage Class is configured by the cluster administrator to configure storage server parameters and provide storage for cluster users by class.',
+    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
 
-  WHAT_IS_LOCAL_VOLUME_Q: 'What is a Local Volume?',
+  WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
   WHAT_IS_LOCAL_VOLUME_A:
-    'A local volume is a mounted local storage device, such as a disk, partition, or directory.',
-  CHOOSE_STORAGE_SYSTEM_TIP: 'Choose the Storage System You Need',
+    'A local volume is a volume created in the local file system of the cluster.',
+  CHOOSE_STORAGE_SYSTEM_TIP: 'Select Storage System',
   PROVISIONER_DEPENDENCE_DESC:
-    'You need to deploy the corresponding storage plugin for a storage system first so that it can provide services.',
+    'You need to deploy a plugin in your storage system before it provides services.',
 
   VOLUME_EXPAND_TIPS:
     'The current PVC has been mounted to the work load, so the expansion will lead to the workload restart, and a new version. Business may be a brief interruption. ',
 
   QINGCLOUD_CSI_DESC:
-    'The QingCloud CSI plugin implements the Container Storage Interface (CSI) of Kubernetes, enabling the container orchestrator (CO) to use QingCloud storage. Currently, the QingCloud CSI plugin supports block storage services on QingCloud Platform. For detailed information, refer to <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">features</a>.',
+    'Use QingCloud CSI as the underlying storage plugin. <a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md#feature-matrix">Learn More</a>',
+
+  MAXSIZE: 'Maximum Size',
+  MINSIZE: 'Minimum Size',
+  STEPSIZE: 'Step Size',
+  FSTYPE: 'File System Type',
+  TAGS: 'Tag',
 
   QINGCLOUD_CSI_TYPE_DESC:
-    'On QingCloud Public Cloud Platform, 0 represents high performance volume. 2 represents high capacity volume. 3 represents super high performance volume. 5 represents Enterprise Server SAN. 100 represents standard volume.',
-  CREATE_VOLUME_MAX_SIZE: 'Volume size upper limit',
-  CREATE_VOLUME_STEP_SIZE: 'Volume size increment',
-  CREATE_VOLUME_MIN_SIZE: 'Volume size lower limit',
-  VOLUME_FS_TYPE: 'ext3, ext4, xfs',
+    'On QingCloud Public Cloud Platform, 0 means high performance volume; 2 high capacity volume; 3 ultra-high performance volume; 5 enterprise server SAN (NeonSAN); 100 standard volume; 200 enterprise SSD.',
+  CREATE_VOLUME_MAX_SIZE: 'Maximum size of the volume.',
+  CREATE_VOLUME_STEP_SIZE: 'Step size of the volume.',
+  CREATE_VOLUME_MIN_SIZE: 'Minimum size of the volume.',
+  VOLUME_FS_TYPE: 'Supports ext3, ext4, and XFS. The default type is ext4.',
 
   GLUSTERFS_RESTURL_DESC:
-    'Heketi service url which provisions gluster volumes on demand. ',
-  GLUSTERFS_ID_DESC: 'Gluster ID',
-  GLUSTERFS_RESTAUTHENABLED_DESC: 'Enable authentication to the REST server.',
+    'Heketi REST URL that provisions volumes, for example, <Heketi Service cluster IP Address>:<Heketi Service port number>.',
+  GLUSTERFS_ID_DESC: 'Gluster cluster ID.',
+  GLUSTERFS_RESTAUTHENABLED_DESC:
+    'Gluster enables authentication to the REST server.',
   GLUSTERFS_RESTUSER_DESC:
-    'The Gluster REST service/Heketi user who has access to creating volumes in the Gluster Trusted Pool.',
-  GLUSTERFS_SECRET_NAMESPACE_DESC:
-    'Identification of Secret instance that contains user password to use when talking to Gluster REST service.',
-  GLUSTERFS_SECRET_NAME_DESC:
-    'These parameters are optional; an empty password will be used when both secretNamespace and secretName are omitted.',
-  GLUSTERFS_GID_MIN_DESC:
-    'The minimum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
-  GLUSTERFS_GID_MAX_DESC:
-    'The maximum value of GID range for the storage class. A unique value (GID) in this range (gidMin-gidMax) will be used for dynamically provisioned volumes. These are optional values.',
+    'Username of Gluster REST service or Heketi service.',
+  GLUSTERFS_SECRET_NAMESPACE_DESC: 'Namespace of the Heketi user secret.',
+  GLUSTERFS_SECRET_NAME_DESC: 'Name of the Heketi user secret.',
+  GLUSTERFS_GID_MIN_DESC: 'Minimum GID of the volume.',
+  GLUSTERFS_GID_MAX_DESC: 'Maximum GID of the volume.',
   GLUSTERFS_VOLUME_TYPE_DESC:
-    'The volume type and its parameters can be configured with this optional value.',
+    'Type of volume. The value can be none, replicate:<Replicate count>, or disperse:<Data>:<Redundancy count>. If the volume type is not set, the default volume type is replicate:3.',
   QINGCLOUD_VOLUME_TAGS_DESC:
-    'Tags will be associated automatically when a hard drive is created. Please separate multiple tags with commas.',
+    'Add tags to the storage volume. Use commas to separate multiple tags.',
 
-  CEPHRBD_MONITORS_DESC:
-    'Ceph monitors, comma delimited. This parameter is required.',
+  CEPHRBD_MONITORS_DESC: 'IP address of Ceph monitors.',
   CEPHRBD_ADMIN_ID_DESC:
     'Ceph client ID that is capable of creating images in the pool.',
-  CEPHRBD_ADMIN_SECRET_NAME_DESC:
-    'The provided secret must have type “kubernetes.io/rbd”.',
-  CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'The namespace for adminSecretName',
-  CEPHRBD_POOL_DESC: 'Ceph RBD pool',
+  CEPHRBD_ADMIN_SECRET_NAME_DESC: 'Secret name of adminid.',
+  CEPHRBD_ADMIN_SECRET_NAMESPACE_DESC: 'The namespace for adminSecretName.',
+  CEPHRBD_POOL_DESC: 'Name of the Ceph RBD pool.',
   CEPHRBD_USERID_DESC:
     'Ceph client ID that is used to map the RBD image. Default is the same as adminId.',
   CEPHRBD_USER_SECRET_NAME_DESC:
-    'The name of Ceph Secret for userId to map RBD image',
+    'The name of Ceph Secret for userId to map RBD image.',
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'The namespace for userSecretName',
-  CEPHRBD_FS_TYPE_DESC: 'fsType that is supported by kubernetes.',
-  CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph RBD image format, “1” or “2”',
+  CEPHRBD_FS_TYPE_DESC: 'File system type of the storage volume.',
+  CEPHRBD_IMAGE_FORMAT_DESC:
+    'Option of the Ceph volume. The value can be "1" or "2". imageFeatures needs to be filled when you set imageFormat to "2".',
   CEPHRBD_IMAGE_FEATURES_DESC:
-    'This parameter is optional and should only be used if you set imageFormat to “2”.',
+    'Additional function of the Ceph cluster. The value should only be set when you set imageFormat to "2".',
 
   DEPENDENT_STORAGE_CLASS_DELETE_TIPS:
-    'Please check if the storage class is being used by other resources. If there is any resource dependent on the storage class, you need to disable the resource first.',
+    'Make sure if there are resources dependent on the storage class. If there are, you need to disable the resources before it the resource functions are affected.',
 
-  CREATE_VOLUME_BY_STORAGECLASS: 'Create a volume by StorageClass',
-  CREATE_VOLUME_BY_SNAPSHOT: 'Create a volume by VolumeSnapshot',
+  CREATE_VOLUME_BY_STORAGE_CLASS: 'From Storage Class',
+  CREATE_VOLUME_BY_SNAPSHOT: 'From Volume Snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Select a snapshot to create a volume.',
-  VOLUMESNAPSHOT_DESC:
-    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
-  VOLUMESNAPSHOT_CREATE_DESC:
-    'A volume snapshot refers to a snapshot of a volume at a particular time point. It can be used to create new volumes (preset the snapshot data) or restore an existing volume to its previous status (displayed in snapshots).',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME:
+    'Select a storage class to create a volume.',
+  VOLUME_SNAPSHOT_DESC:
+    'A volume snapshot is the copy of a volume at a specific point in time. It can be used to provision a new volume with data pre-populated by the snapshot or restore a volume to its previous state that is captured by the snapshot.',
+  VOLUME_SNAPSHOT_EMPTY_DESC:
+    'Please go to the details page of a volume and create a volume snapshot',
   WHAT_IS_VOLUME_SNAPSHOTS: 'What are volume snapshots?',
 
   CLUSTER_VOLUME_DIFF_DESC:
-    'You can specify different storage classes for different clusters.',
+    'Use different storage settings in different clusters.',
 
   VOLUME_MONITORING_TIP:
-    'Kubernetes collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+    'Currently, only usage data of mounted volumes can be collected. Usage data of path-based volumes such as OpenEBS, Local PV, and NFS volumes may be inaccurate. <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">Learn More</a>',
+
+  VOLUME_FUNCTION_MANAGEMENT_TIP:
+    '存储卷功能管理只是控制是否在ks console中启用这项功能，并不表示存储系统支持这项功能，设置前需要和管理员确认。',
+  // Storage Classes
+  RESTURL: 'REST URL',
+  CLUSTER_ID: 'Cluster ID',
+  REST_AUTH_ENABLED: 'REST Authentication',
+  REST_USER: 'REST User',
+  VOLUME_TYPE: 'Volume Type',
+  SECRET_NAME: 'Secret Name',
+  REST_AUTH_TRUE: 'True',
+  CEPH_MONITOR_IP: 'IP address and port number',
+  SECRET_NAMESPACE: 'Secret Namespace',
+  GID_MIN: 'Minimum GID',
+  GID_MAX: 'Maximum GID',
+  CUSTOM: 'Custom',
+  PARAMETERS: 'Parameters',
+  VOLUME_SNAPSHOT_CLASS: 'Volume Snapshot Class',
+  SNAPSHOT_EMPTY_TIP: 'Please select a volume snapshot class.',
+  VOLUME_BINDING_MODE: 'Volume Binding Mode',
+  IMMEDIATE_BINDING: 'Immediate binding',
+  BINDING_WAIT: 'Delayed binding',
+  DEFAULT_STORAGE_CLASS: 'Default Storage Class',
+
+  // Storage Class > Detail
+  STORAGE_CLASS_SCAP: 'Storage class',
+  CREATE_VOLUME: 'Create Volume',
+  VOLUME_MANAGEMENT: 'Volume Management',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
+  VOLUME_COUNT: 'Volumes',
 }

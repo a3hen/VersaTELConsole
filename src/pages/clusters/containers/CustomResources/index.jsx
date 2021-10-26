@@ -30,7 +30,7 @@ import CrdStore from 'stores/crd'
 @withList({
   store: new CrdStore(),
   module: 'customresourcedefinitions',
-  name: 'Custom Resource Definition',
+  name: 'CRD',
 })
 export default class CustomResources extends React.Component {
   getColumns = () => {
@@ -38,7 +38,7 @@ export default class CustomResources extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Kind'),
+        title: t('KIND_TCAP'),
         dataIndex: 'kind',
         render: (kind, record) => (
           <Avatar
@@ -49,17 +49,17 @@ export default class CustomResources extends React.Component {
         ),
       },
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
       },
       {
-        title: t('Scope'),
+        title: t('SCOPE_TCAP'),
         key: 'scope',
         dataIndex: 'scope',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

@@ -39,7 +39,7 @@ import MessageStore from 'stores/alerting/message'
 @withList({
   store: new MessageStore(),
   module: 'alerts',
-  name: 'Alerting Message',
+  name: 'ALERTING_MESSAGE',
 })
 export default class AlertingPolicy extends React.Component {
   state = {
@@ -58,12 +58,12 @@ export default class AlertingPolicy extends React.Component {
       options: [
         {
           value: 'custom',
-          label: t('Custom Policies'),
+          label: t('CUSTOM_POLICIES'),
           count: this.props.store.ruleCount,
         },
         {
           value: 'builtin',
-          label: t('Built-In Policies'),
+          label: t('BUILT_IN_POLICIES'),
           count: this.props.store.builtinRuleCount,
         },
       ],
@@ -115,7 +115,7 @@ export default class AlertingPolicy extends React.Component {
         selectActions: [],
       },
       emptyProps: {
-        desc: t('ALERT_MESSAGE_DESC'),
+        desc: t('ALERTING_MESSAGE_EMPTY_DESC'),
       },
     }
   }
@@ -143,18 +143,21 @@ export default class AlertingPolicy extends React.Component {
     const { getFilteredValue } = this.props
     return [
       {
-        title: t('Alerting Message'),
+        title: t('ALERTING_MESSAGE'),
         dataIndex: 'value',
         render: (value, record) => (
           <Text
             icon="loudspeaker"
             title={get(record, 'annotations.summary')}
-            description={get(record, 'annotations.message', '-')}
+            description={
+              get(record, 'annotations.message') ||
+              get(record, 'annotations.description', '-')
+            }
           />
         ),
       },
       {
-        title: t('Alerting Status'),
+        title: t('ALERTING_STATUS'),
         dataIndex: 'state',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('state'),
@@ -171,7 +174,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Type'),
+        title: t('SEVERITY'),
         dataIndex: 'labels.severity',
         filters: this.getAlertingTypes(),
         filteredValue: getFilteredValue('labels.severity'),
@@ -187,7 +190,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Alerting Policy'),
+        title: t('ALERTING_POLICY'),
         dataIndex: 'ruleName',
         isHideable: true,
         width: '12%',
@@ -204,7 +207,7 @@ export default class AlertingPolicy extends React.Component {
         ),
       },
       {
-        title: t('Alerting Resource'),
+        title: t('MONITORING_TARGET'),
         dataIndex: 'labels',
         isHideable: true,
         width: '16%',
@@ -214,6 +217,13 @@ export default class AlertingPolicy extends React.Component {
             return '-'
           }
 
+          if (module === 'hpas') {
+            return (
+              <span>
+                {t(MODULE_KIND_MAP[module])}: {name}
+              </span>
+            )
+          }
           return (
             <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
               {t(MODULE_KIND_MAP[module])}: {name}
@@ -222,7 +232,7 @@ export default class AlertingPolicy extends React.Component {
         },
       },
       {
-        title: t('Alert Active Time'),
+        title: t('ACTIVATION_TIME'),
         dataIndex: 'activeAt',
         isHideable: true,
         width: 200,
@@ -241,7 +251,7 @@ export default class AlertingPolicy extends React.Component {
           tips={this.tips}
           tabs={namespace ? {} : this.tabs}
           icon="loudspeaker"
-          title={t('Alerting Messages')}
+          title={t('ALERTING_MESSAGE_PL')}
           description={t('ALERT_MESSAGE_DESC')}
         />
         <Table

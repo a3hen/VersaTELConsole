@@ -46,7 +46,7 @@ export default class SecretDetail extends React.Component {
   }
 
   get name() {
-    return 'Secret'
+    return 'SECRET'
   }
 
   get routing() {
@@ -79,11 +79,11 @@ export default class SecretDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -91,7 +91,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -102,7 +102,7 @@ export default class SecretDetail extends React.Component {
     {
       key: 'editSecret',
       icon: 'pen',
-      text: t('Edit Secret'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('secret.edit', {
@@ -113,12 +113,12 @@ export default class SecretDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -128,30 +128,29 @@ export default class SecretDetail extends React.Component {
   getAttrs = () => {
     const detail = toJS(this.store.detail)
     const { cluster, namespace } = this.props.match.params
-
     if (isEmpty(detail)) {
       return
     }
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: t(SECRET_TYPES[detail.type] || detail.type),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -172,7 +171,7 @@ export default class SecretDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Secrets'),
+          label: t('SECRET_PL'),
           url: this.listUrl,
         },
       ],

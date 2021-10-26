@@ -56,8 +56,8 @@ export default class HeaderMatch extends React.Component {
 
   get matchTypes() {
     return [
-      { label: t('Exact Match'), value: 'exact' },
-      { label: t('Regex Match'), value: 'regex' },
+      { label: t('EXACT_MATCH'), value: 'exact' },
+      { label: t('REGEX_MATCH'), value: 'regex' },
     ]
   }
 
@@ -96,10 +96,14 @@ export default class HeaderMatch extends React.Component {
           options={this.matchTypes}
           onChange={this.handleMatchChange}
         />
-        <Input value={key} placeholder="key" onChange={this.handleKeyChange} />
+        <Input
+          value={key}
+          placeholder={t('KEY')}
+          onChange={this.handleKeyChange}
+        />
         <Input
           value={value}
-          placeholder="value"
+          placeholder={t('VALUE')}
           onChange={this.handleValueChange}
         />
       </div>

@@ -18,18 +18,18 @@
 
 module.exports = {
   'Submit for Review': '提交审核',
-  'Cancel Review': '撤消审核',
+  CANCEL_REVIEW: '撤消审核',
   'Release to Store': '发布到商店',
   'View in Store': '在商店查看',
-  'Suspend Version': '下架版本',
-  'Activate Version': '上架版本',
+  SUSPEND_VERSION: '下架版本',
+  ACTIVATE_VERSION: '上架版本',
   'Delete Version': '删除版本',
-  'Suspend App': '下架应用',
-  'Activate App': '上架应用',
+  SUSPEND_APP: '下架应用',
+  ACTIVATE_APP: '上架应用',
 
   VERSION_DELETE_TIP: '确定要删除版本 <strong>{name}</strong> 吗? ',
-  VERSION_SUBMIT_TIP: '确定要提交版本 <strong>{name}</strong> 去审核?',
-  VERSION_CANCEL_TIP: '确定要撤消版本 <strong>{name}</strong>的审核吗 ?',
+  VERSION_SUBMIT_TIP: '确定要提交版本 <strong>{name}</strong> 进行审核?',
+  VERSION_CANCEL_TIP: '确定要撤消版本 <strong>{name}</strong> 的审核吗 ?',
   VERSION_SUSPEND_TIP:
     '版本 <strong>{name}</strong> 下架后，关联的应用将不显示该版本，你确定要下架吗？',
   VERSION_RECOVER_TIP:
@@ -37,9 +37,9 @@ module.exports = {
   VERSION_RELEASE_TIP:
     '版本 <strong>{name}</strong> 发布到商店后，用户可以查看并部署该应用版本，你确定要发布吗？',
   APP_SUSPEND_TIP:
-    '应用<strong>{name}</strong>下架后，用户无法从商店中购买到此应用，你确定要下架该应用吗？',
+    '应用 <strong>{name}</strong> 下架后，用户无法从商店中部署此应用，你确定要下架该应用吗？',
   APP_RECOVER_TIP:
-    '应用<strong>{name}</strong>上架后，相关的下架版本都将变成上架，你确定要上架该应用吗？',
+    '应用 <strong>{name}</strong> 上架后，相关的下架版本都将变成上架，你确定要上架该应用吗？',
 
   'Version Management': '版本管理',
   'App Information': '应用信息',
@@ -51,20 +51,19 @@ module.exports = {
   PACKAGE_FILE_DESC:
     'Package.json文件，用于描述应用或版本的基本信息，包括名称版本号等',
   CONFIG_FILE_DESC: '应用的默认值配置文件',
-  LICENSE_FILE_DESC: '文本格式的协议',
+  LICENSE_FILE_DESC: '文本格式的许可协议。',
   LOCALE_EN__FILE_DESC: '应用配置的国际化英文翻译',
   LOCALE_ZH_FILE_DESC: '应用配置的国际化中文翻译',
-  CHART_FILE_DESC: 'Yaml文件，用于描述 Chart 的基本信息，包括名称版本等',
-  README_FILE_DESC: '应用介绍、使用说明',
-  REQUIREMENTS_FILE_DESC: '用于存放当前 Chart 依赖的其它 Chart 的说明文件',
-  VALUES_FILE_DESC: 'Chart 的默认值配置文件',
-  CHARTS_FILE_DESC: '该目录中放置当前 Chart 依赖的其它 Chart',
-  TEMPLATES_FILE_DESC:
-    '部署文件模板目录，模板填入 values.yaml 中相应值，生成最终的 Kubernetes 配置文件',
-  NOTES_FILE_DESC: '使用指南',
+  CHART_FILE_DESC: 'YAML 文件，用于描述 chart 的基本信息，例如名称和版本。',
+  README_FILE_DESC: '应用介绍和使用说明。',
+  REQUIREMENTS_FILE_DESC: 'Chart 依赖关系描述文件。',
+  VALUES_FILE_DESC: 'Chart 的默认值配置文件。',
+  CHARTS_FILE_DESC: '存放 Chart 依赖项的目录。',
+  TEMPLATES_FILE_DESC: '存放部署模板文件的目录。',
+  NOTES_FILE_DESC: '使用指南。',
 
   'Version Update Info': '版本更新说明',
-  'No version information': '暂无更新说明',
+  NO_VERSION_INFO_DESC: '没有找到版本信息。',
 
   developer: '开发者',
   isv: '应用服务商',
@@ -73,7 +72,7 @@ module.exports = {
   global_admin: '超级管理员',
   admin: '管理员',
 
-  'Download Successfully': '下载成功',
+  DOWNLOAD_SUCCESSFUL: '下载成功。',
 
   Passed: '已通过',
   Rejected: '已拒绝',
@@ -114,4 +113,15 @@ module.exports = {
   UPDATE_LOG_DESC: '用于详细描述此次更新的具体内容',
 
   'Wrong version number format': '版本号的格式错误',
+
+  // App Templates > Details
+  APP_INSTANCES: '应用实例',
+  UPLOAD_NEW_VERSION: '上传新版本',
+  UPLOAD_NEW_VERSION_DESC: '上传该应用的新版本。',
+  APP_VERSION_LOW: '应用版本',
+  UPDATE_TIME_LOW: '更新时间',
+  TEST_INSTALLATION: '测试安装',
+  SUBMIT_FOR_REVIEW: '提交审核',
+  VERSION_INFO: '版本信息',
+  INSTALL: '安装',
 }

@@ -66,7 +66,7 @@ export default class IPPoolWorkspaceModal extends Component {
 
   getWorkspaces() {
     return [
-      { label: t('All'), value: ALL_WORKSPACE },
+      { label: t('ALL'), value: ALL_WORKSPACE },
       ...this.workspaceStore.list.data.map(item => ({
         label: item.name,
         value: item.name,
@@ -135,7 +135,7 @@ export default class IPPoolWorkspaceModal extends Component {
     const workspace = detail.workspace
     return (
       <Modal.Form
-        title={t('Assign Workspace')}
+        title={t('ASSIGN_WORKSPACE')}
         icon="enterprise"
         width={691}
         data={this.formTemplate}
@@ -156,8 +156,8 @@ export default class IPPoolWorkspaceModal extends Component {
           />
         )}
         <Form.Item
-          label={t('Target Workspace')}
-          desc={t('Choose a workspace')}
+          label={t('WORKSPACE')}
+          desc={t('SELECT_WORKSPACE_DESC')}
           rules={[{ validator: this.workspaceValidator }]}
         >
           <Select
@@ -172,6 +172,7 @@ export default class IPPoolWorkspaceModal extends Component {
             onFetch={this.fetchWorkspaces}
             searchable
             clearable
+            placeholder=" "
           />
         </Form.Item>
       </Modal.Form>

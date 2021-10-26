@@ -32,7 +32,7 @@ import ServiceStore from 'stores/service'
 @withProjectList({
   store: new FederatedStore(new ServiceStore()),
   module: 'services',
-  name: 'Service',
+  name: 'SERVICE',
 })
 export default class Services extends React.Component {
   get tips() {
@@ -54,7 +54,7 @@ export default class Services extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -64,7 +64,7 @@ export default class Services extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -72,13 +72,31 @@ export default class Services extends React.Component {
           }),
       },
       {
+        key: 'editConfigTemplate',
+        icon: 'storage',
+        text: t('EDIT_SETTINGS'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('federated.workload.template.edit', {
+            detail,
+            projectDetail: this.props.projectStore.detail,
+            module: 'service',
+            ...this.props.match.params,
+            name: item.name,
+            isFederated: true,
+            withService: true,
+          })
+        },
+      },
+      {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('service.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             isFederated: true,
           }),
@@ -94,11 +112,11 @@ export default class Services extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('service.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
               isFederated: true,
             }),
@@ -108,11 +126,13 @@ export default class Services extends React.Component {
   }
 
   getColumns = () => {
-    const { module } = this.props
+    const { module, getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -125,13 +145,13 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Service Type'),
+        title: t('SERVICE_TYPE_TCAP'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         render: (serviceType, record) => (
@@ -139,20 +159,20 @@ export default class Services extends React.Component {
             title={
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_SERVICE')
             }
-            description={record.type || '-'}
+            description={t(record.type) || '-'}
           />
         ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

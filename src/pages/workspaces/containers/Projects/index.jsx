@@ -40,7 +40,7 @@ const MetricTypes = {
 
 @withList({
   store: new ProjectStore(),
-  name: 'Project',
+  name: 'PROJECT',
   module: 'projects',
   injectStores: ['rootStore', 'workspaceStore'],
 })
@@ -61,11 +61,11 @@ export default class Projects extends React.Component {
       options: [
         {
           value: 'projects',
-          label: t('Projects'),
+          label: t('PROJECT_PL'),
         },
         {
           value: 'federatedprojects',
-          label: t('Multi-cluster Projects'),
+          label: t('MULTI_CLUSTER_PROJECT_PL'),
         },
       ],
     }
@@ -135,29 +135,29 @@ export default class Projects extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
         key: 'quotaEdit',
         icon: 'pen',
-        text: t('Edit Quota'),
+        text: t('EDIT_QUOTAS'),
         action: 'edit',
         onClick: item =>
           trigger('project.quota.edit', {
-            type: t('Project'),
+            type: t('PROJECT'),
             detail: item,
           }),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -182,7 +182,7 @@ export default class Projects extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -201,13 +201,13 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('CPU Usage'),
+        title: t('CPU_USAGE'),
         key: 'namespace_cpu_usage',
         isHideable: true,
         render: record =>
@@ -218,7 +218,7 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('Memory Usage'),
+        title: t('MEMORY_USAGE'),
         key: 'namespace_memory_usage_wo_cache',
         isHideable: true,
         render: record =>
@@ -229,13 +229,13 @@ export default class Projects extends React.Component {
           ),
       },
       {
-        title: t('Pod Count'),
+        title: t('POD_COUNT'),
         key: 'namespace_pod_count',
         isHideable: true,
         render: record => this.getLastValue(record, MetricTypes.pod),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

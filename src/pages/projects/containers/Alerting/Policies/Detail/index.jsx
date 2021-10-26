@@ -50,7 +50,7 @@ export default class AlertPolicyDetail extends React.Component {
   }
 
   get name() {
-    return 'alerting policy'
+    return 'ALERTING_POLICY'
   }
 
   get type() {
@@ -88,7 +88,7 @@ export default class AlertPolicyDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit'),
+      text: t('EDIT'),
       type: 'control',
       action: 'edit',
       onClick: () =>
@@ -96,19 +96,19 @@ export default class AlertPolicyDetail extends React.Component {
           detail: toJS(this.store.detail),
           module: this.store.module,
           cluster: this.props.match.params.cluster,
-          title: `${t('Edit ')}${t('alerting policy')}`,
+          title: t('EDIT_ALERTING_POLICY'),
           success: this.fetchData,
         }),
     },
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -128,7 +128,7 @@ export default class AlertPolicyDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <Status
             type={detail.state}
@@ -139,7 +139,7 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Alerting Type'),
+        name: t('SEVERITY'),
         value: level ? (
           <Tag type={level.type}>{t(level.label)}</Tag>
         ) : (
@@ -147,15 +147,15 @@ export default class AlertPolicyDetail extends React.Component {
         ),
       },
       {
-        name: t('Health Status'),
+        name: t('HEALTH_STATUS'),
         value: <Health detail={detail} />,
       },
       {
-        name: t('Alerting Duration'),
+        name: t('THRESHOLD_DURATION'),
         value: detail.duration,
       },
       {
-        name: t('Alert Active Time'),
+        name: t('ACTIVATION_TIME'),
         value: time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
       },
     ]
@@ -176,7 +176,7 @@ export default class AlertPolicyDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Alerting Policies'),
+          label: t('ALERTING_POLICY_PL'),
           url: this.listUrl,
         },
       ],

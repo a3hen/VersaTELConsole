@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
     const { avatar_url, globalrole, username, lastLoginTime } =
       globals.user || {}
 
-    const loginTime = `${t('Last login time')}: ${getLocalTime(
+    const loginTime = `${t('LAST_LOGIN_TIME')}${getLocalTime(
       lastLoginTime
     ).format(`YYYY-MM-DD HH:mm:ss`)}`
 

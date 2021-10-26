@@ -44,7 +44,7 @@ import { getWorkloadUpdateTime, getJobUpdateTime } from 'utils/workload'
 import { getServiceType } from 'utils/service'
 import { getNodeRoles } from 'utils/node'
 import { getPodStatusAndRestartCount } from 'utils/status'
-import { FED_ACTIVE_STATUS } from 'utils/constants'
+import { FED_ACTIVE_STATUS, SERVICE_TYPES } from 'utils/constants'
 import moment from 'moment-mini'
 
 const getOriginData = item =>
@@ -81,7 +81,7 @@ const getBaseInfo = item => ({
   creator: getResourceCreator(item),
   description: getDescription(item),
   aliasName: getAliasName(item),
-  createTime: get(item, 'metadata.creationTimestamp'),
+  createTime: get(item, 'metadata.creationTimestamp', ''),
   resourceVersion: get(item, 'metadata.resourceVersion'),
   isFedManaged: get(item, 'metadata.labels["kubefed.io/managed"]') === 'true',
 })
@@ -402,6 +402,10 @@ const PodsMapper = item => ({
   node: get(item, 'spec.nodeName', ''),
   nodeIp: get(item, 'status.hostIP', 'none'),
   podIp: get(item, 'status.podIP'),
+  networksStatus: safeParseJSON(
+    get(item, 'metadata.annotations["k8s.v1.cni.cncf.io/networks-status"]', ''),
+    []
+  ),
   app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
   containers: getContainers(
     get(item, 'spec.containers', []),
@@ -428,10 +432,17 @@ const EventsMapper = item => {
 
   const age =
     item.count > 1
-      ? `${moment(item.lastTimestamp).to(now, true)} (x${
-          item.count
-        } over ${moment(item.firstTimestamp).to(now, true)})`
-      : moment(item.firstTimestamp).to(now, true)
+      ? item.count === 2
+        ? t.html('EVENT_AGE_DATA_TWICE', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+        : t.html('EVENT_AGE_DATA', {
+            lastTime: moment(item.lastTimestamp).fromNow(),
+            count: item.count,
+            duration: moment(item.firstTimestamp).to(now, true),
+          })
+      : moment(item.firstTimestamp).fromNow()
 
   return {
     ...getBaseInfo(item),
@@ -483,6 +494,41 @@ const VolumeMapper = item => {
     ),
     inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
     type: 'pvc',
+    _originData: getOriginData(item),
+  }
+}
+
+const PVMapper = item => {
+  const creationTime = get(item, 'metadata.creationTimestamp')
+
+  return {
+    creationTime,
+    phase: getVolumePhase(item),
+    ...getBaseInfo(item),
+    storageProvisioner: get(
+      item,
+      'metadata.annotations["pv.kubernetes.io/provisioned-by"]'
+    ),
+    status: get(item, 'status', {}),
+    resourceVersion: get(item, 'metadata.resourceVersion'),
+    annotations: get(item, 'metadata.annotations'),
+    labels: get(item, 'metadata.labels'),
+    accessMode: get(item, 'spec.accessModes[0]'),
+    accessModes: get(item, 'spec.accessModes'),
+    storageClassName: get(item, 'spec.storageClassName'),
+    capacity: get(
+      item,
+      'spec.capacity.storage',
+      get(item, 'spec.resources.requests.storage')
+    ),
+    volumeHandle: get(item, 'spec.csi.volumeHandle'),
+    inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
+    type: 'pvc',
+    persistentVolumeReclaimPolicy: get(
+      item,
+      'spec.persistentVolumeReclaimPolicy'
+    ),
+    volumeMode: get(item, 'spec.volumeMode'),
     _originData: getOriginData(item),
   }
 }
@@ -542,7 +588,9 @@ const ServiceMapper = item => {
     loadBalancerIngress: get(item, 'status.loadBalancer.ingress', []).map(
       lb => lb.ip || lb.hostname
     ),
-    app: get(item, 'metadata.labels["app.kubernetes.io/name"]'),
+    app:
+      get(item, 'metadata.labels["app.kubernetes.io/name"]') ||
+      get(item, 'metadata.labels.app'),
     _originData: getOriginData(item),
   }
 }
@@ -657,27 +705,40 @@ const IngressMapper = item => ({
 })
 
 const GatewayMapper = item => {
+  item.apiVersion = 'gateway.kubesphere.io/v1alpha1'
+  item.kind = 'Gateway'
+
   const loadBalancerIngress = get(item, 'status.loadBalancer.ingress', [])
+  const lbSupport = get(
+    item,
+    "metadata.annotations['kubesphere.io/annotations']",
+    ''
+  )
+
   return {
-    uid: get(item, 'metadata.uid'),
-    namespace: get(item, 'metadata.labels.project'), // it's not metadata.namespace
+    ...getBaseInfo(item),
+    namespace: get(item, 'metadata.namespace'), // it's not metadata.namespace
     annotations: omit(
-      get(item, 'metadata.annotations', {}),
+      get(item, 'spec.service.annotations', {}),
       'servicemesh.kubesphere.io/enabled'
     ),
-    createTime: get(item, 'metadata.creationTimestamp', {}),
-    type: get(item, 'spec.type'),
     externalIPs: get(item, 'spec.externalIPs', []),
-    ports: get(item, 'spec.ports', []),
+    ports: get(item, 'status.service', []),
     loadBalancerIngress: loadBalancerIngress.map(lb => lb.ip || lb.hostname),
     defaultIngress:
       get(loadBalancerIngress, '[0].ip') ||
       get(loadBalancerIngress, '[0].hostname'),
     isHostName: !!get(loadBalancerIngress, '[0].hostname'),
     serviceMeshEnable:
-      get(item, 'metadata.annotations["servicemesh.kubesphere.io/enabled"]') ===
-      'true',
-    _originData: getOriginData(item),
+      get(
+        item,
+        'spec.deployment.annotations["servicemesh.kubesphere.io/enabled"]'
+      ) === 'true',
+    replicas: get(item, 'spec.deployment.replicas'),
+    type: get(item, 'spec.service.type'),
+    config: get(item, 'spec.controller.config', {}),
+    lb: lbSupport,
+    _originData: item,
   }
 }
 
@@ -937,11 +998,9 @@ const ImageDetailMapper = detail => {
     message: get(detail, 'message', ''),
     registry: get(detail, 'registry', ''),
     layers: layers.length,
-    createTime: get(detail, 'imageBlob.created', ''),
+    createTime: get(detail, 'created', ''),
     size,
-    exposedPorts: Object.keys(
-      get(detail, 'imageBlob.container_config.ExposedPorts', {})
-    ),
+    exposedPorts: Object.keys(get(detail, 'config.ExposedPorts', {})),
     status: get(detail, 'status', ''),
     slug: get(detail, 'slug', ''),
   }
@@ -1029,6 +1088,11 @@ const FederatedMapper = resourceMapper => item => {
     }
   })
 
+  const type =
+    get(template, 'spec.clusterIP') === 'None'
+      ? SERVICE_TYPES.Headless
+      : SERVICE_TYPES.VirtualIP
+
   const resourceInfo = omitBy(
     resourceMapper(merge(template, { metadata: item.metadata })),
     isUndefined
@@ -1041,6 +1105,7 @@ const FederatedMapper = resourceMapper => item => {
     template,
     clusters,
     clusterTemplates,
+    type,
     isFedManaged: true,
     namespace: get(item, 'metadata.namespace'),
     labels: get(item, 'metadata.labels', {}),
@@ -1068,9 +1133,42 @@ const DevOpsMapper = item => {
   }
 }
 
-const PipelinesMapper = item => ({
-  ...getBaseInfo(item),
-})
+const PipelinesMapper = item => {
+  const jenkinsKey =
+    'metadata.annotations["pipeline.devops.kubesphere.io/jenkins-metadata"]'
+
+  const pipelineObject = safeParseJSON(get(item, jenkinsKey), {})
+  const ns = get(item, 'metadata.namespace')
+  const name = get(item, 'metadata.name')
+
+  return {
+    ...getBaseInfo(item),
+    annotations: omit(get(item, 'metadata.annotations'), jenkinsKey),
+    displayName: get(item, 'metadata.name'),
+    fullDisplayName: `${ns}/${name}`,
+    fullName: `${ns}/${name}`,
+    status: get(
+      item,
+      'metadata.annotations["pipeline.devops.kubesphere.io/syncstatus"]'
+    ),
+    name,
+    isMultiBranch: get(item, 'spec.type', '') === 'multi-branch-pipeline',
+    numberOfPipelines: 0,
+    numberOfFolders: 0,
+    pipelineFolderNames: [],
+    totalNumberOfBranches: 0,
+    numberOfFailingBranches: 0,
+    numberOfSuccessfulBranches: 0,
+    numberOfFailingPullRequests: 0,
+    numberOfSuccessfulPullRequests: 0,
+    branchNames: [],
+    parameters: [],
+    disabled: false,
+    weatherScore: 100,
+    ...pipelineObject,
+    _originData: getOriginData(item),
+  }
+}
 
 const CRDMapper = item => {
   const versions = get(item, 'spec.versions', [])
@@ -1182,6 +1280,7 @@ export default {
   events: EventsMapper,
   volumes: VolumeMapper,
   persistentvolumeclaims: VolumeMapper,
+  persistentvolumes: PVMapper,
   storageclasses: StorageClassMapper,
   services: ServiceMapper,
   endpoints: EndpointMapper,

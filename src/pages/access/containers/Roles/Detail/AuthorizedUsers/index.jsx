@@ -52,12 +52,12 @@ export default class AuthorizedUsers extends React.Component {
 
   getColumns = () => [
     {
-      title: t('User Name'),
+      title: t('USERNAME'),
       dataIndex: 'username',
       width: '33%',
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '33%',
       render: status => (
@@ -65,14 +65,14 @@ export default class AuthorizedUsers extends React.Component {
       ),
     },
     {
-      title: t('Last Login Time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       width: '33%',
       render: login_time => (
         <p>
           {login_time
             ? getLocalTime(login_time).format('YYYY-MM-DD HH:mm:ss')
-            : t('Not logged in yet')}
+            : t('NOT_LOGIN_YET')}
         </p>
       ),
     },
@@ -81,8 +81,8 @@ export default class AuthorizedUsers extends React.Component {
   get emptyProps() {
     return {
       icon: 'human',
-      name: 'Users',
-      desc: t('NO_AUTHORIZED_USERS'),
+      name: 'USER',
+      desc: t('NO_AUTHORIZED_USER_DESC'),
       className: styles.table,
     }
   }
@@ -93,7 +93,7 @@ export default class AuthorizedUsers extends React.Component {
     const pagination = { total, page, limit }
 
     return (
-      <Panel title={t('Authorized Users')}>
+      <Panel title={t('AUTHORIZED_USER_PL')}>
         <Table
           className={styles.table}
           data={data}

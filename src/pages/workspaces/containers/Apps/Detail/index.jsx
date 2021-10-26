@@ -61,7 +61,7 @@ export default class RoleDetail extends React.Component {
   }
 
   get name() {
-    return 'Apps'
+    return 'APP'
   }
 
   get workspace() {
@@ -86,12 +86,12 @@ export default class RoleDetail extends React.Component {
       {
         key: 'editApp',
         type: 'control',
-        text: t('Edit Info'),
+        text: t('EDIT'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.edit', {
             detail,
-            title: t('Edit App Information'),
+            title: t('EDIT_INFO'),
             description: t('EDIT_APP_DESC'),
             icon: 'pen',
             success: () => this.fetchData(),
@@ -100,7 +100,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'appDeploy',
         icon: 'snapshot',
-        text: t('Deploy'),
+        text: t('DEPLOY'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.deploy', {
@@ -111,12 +111,12 @@ export default class RoleDetail extends React.Component {
       {
         key: 'addVersion',
         icon: 'tag',
-        text: t('New Version'),
+        text: t('UPLOAD_NEW_VERSION'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.addVersion', {
-            title: t('UPLOAD_HELM_TITLE'),
-            description: t('New Version'),
+            title: t('UPLOAD_NEW_VERSION'),
+            description: t('UPLOAD_NEW_VERSION_DESC'),
             icon: 'templet',
             appId: detail.app_id,
             type: 'ADD_VERSION',
@@ -128,7 +128,7 @@ export default class RoleDetail extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'manage',
         onClick: () =>
           this.trigger('openpitrix.template.delete', {
@@ -146,27 +146,27 @@ export default class RoleDetail extends React.Component {
 
     return [
       {
-        name: t('App Number'),
+        name: t('APP_ID'),
         value: detail.app_id,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(capitalize(transferAppStatus(detail.status))),
       },
       {
-        name: t('Category'),
+        name: t('CATEGORY'),
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
-        name: t('App Version Types'),
+        name: t('TYPE'),
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: get(detail, 'isv', '-'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -203,7 +203,7 @@ export default class RoleDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Templates'),
+          label: t('APP_TEMPLATE_PL'),
           url: this.listUrl,
         },
       ],

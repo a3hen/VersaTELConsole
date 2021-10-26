@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withProjectList({
   store: new RoleStore(),
   module: 'roles',
-  name: 'Project Role',
+  name: 'PROJECT_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -47,7 +47,7 @@ export default class Roles extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -59,7 +59,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -72,13 +72,13 @@ export default class Roles extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             cluster: this.props.match.params.cluster,
             namespace: this.props.match.params.namespace,
             success: routing.query,
@@ -97,14 +97,14 @@ export default class Roles extends React.Component {
   }
 
   get emptyProps() {
-    return { desc: t('PROJECT_ROLE_DESC') }
+    return { desc: t('PROJECT_ROLE_EMPTY_DESC') }
   }
 
   getColumns = () => {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -118,14 +118,14 @@ export default class Roles extends React.Component {
         ),
       },
       {
-        title: t('Description'),
+        title: t('DESCRIPTION'),
         key: 'description',
         dataIndex: 'description',
         isHideable: true,
         width: '40%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

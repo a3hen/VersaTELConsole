@@ -108,7 +108,7 @@ export const getSuitableValue = (
 }
 
 export const getValueByUnit = (num, unit, precision = 2) => {
-  let value = parseFloat(num)
+  let value = num === 'NAN' ? 0 : parseFloat(num)
 
   switch (unit) {
     default:
@@ -247,6 +247,7 @@ export const getAreaChartOps = ({
 }) => {
   const seriesData = isArray(data) ? data : []
   const valuesData = seriesData.map(result => get(result, 'values') || [])
+
   const unit = unitType
     ? getSuitableUnit(flatten(valuesData), unitType)
     : rest.unit

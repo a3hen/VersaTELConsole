@@ -142,8 +142,8 @@ export default class LogSearchModal extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('No Available Cluster')}
-          desc={t('No cluster with logging module enabled')}
+          title={t('NO_AVAILABLE_CLUSTER')}
+          desc={t('LOGGING_NOT_ENABLED_DESC')}
         />
       )
     }

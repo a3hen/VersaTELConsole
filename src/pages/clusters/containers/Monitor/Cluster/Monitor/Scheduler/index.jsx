@@ -67,9 +67,9 @@ class SchedulerMonitorings extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'area',
-      title: 'Attempt Frequency',
+      title: 'SCHEDULE_ATTEMPTS',
       unit: '',
-      legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
+      legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [
         this.getSpecificData('schedule_attempts_count', 'result', 'scheduled'),
         this.getSpecificData('schedule_attempts_count', 'result', 'error'),
@@ -83,9 +83,9 @@ class SchedulerMonitorings extends React.Component {
     },
     {
       type: 'area',
-      title: 'Attempt Rate',
+      title: 'SCHEDULING_RATE',
       unit: 'times/s',
-      legend: ['SCHEDULED_SUCCESS', 'SCHEDULED_ERROR', 'SCHEDULED_FAIL'],
+      legend: ['SUCCESS', 'ERROR', 'FAILURE'],
       data: [
         this.getSpecificData('schedule_attempt_rate', 'result', 'scheduled'),
         this.getSpecificData('schedule_attempt_rate', 'result', 'error'),
@@ -99,7 +99,7 @@ class SchedulerMonitorings extends React.Component {
     },
     {
       type: 'grade',
-      title: 'Scheduling Latency',
+      title: 'SCHEDULING_LATENCY',
       unit: 'ms',
       legend: ['99th', '90th', '50th', 'AVERAGE'],
       data: [
@@ -146,7 +146,7 @@ class SchedulerMonitorings extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Scheduler Monitoring')}
+        title={t('SCHEDULER_MONITORING')}
         step="2m"
         times={50}
         onFetch={this.fetchData}

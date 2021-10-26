@@ -116,7 +116,7 @@ class Monitorings extends React.Component {
       type: 'utilisation',
       title: 'inode Utilization',
       unit: '%',
-      legend: ['UTILIZATION'],
+      legend: ['USAGE'],
       data: get(
         this.metrics,
         `${MetricTypes.disk_inode_utilisation}.data.result`
@@ -124,7 +124,7 @@ class Monitorings extends React.Component {
       renderTooltip: () => {
         const usageData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,
@@ -135,7 +135,7 @@ class Monitorings extends React.Component {
         })
         const totalData = getChartData({
           unit: '',
-          legend: ['UTILIZATION'],
+          legend: ['USAGE'],
           valuesData: [
             get(
               this.metrics,
@@ -151,7 +151,7 @@ class Monitorings extends React.Component {
     {
       type: 'iops',
       title: 'IOPS',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(this.metrics, `${MetricTypes.disk_read_iops}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.disk_write_iops}.data.result[0]`, {}),
@@ -161,7 +161,7 @@ class Monitorings extends React.Component {
       type: 'throughput',
       title: 'Disk Throughput',
       unitType: 'throughput',
-      legend: ['Read', 'Write'],
+      legend: ['READ', 'WRITE'],
       data: [
         get(
           this.metrics,
@@ -179,7 +179,7 @@ class Monitorings extends React.Component {
       type: 'bandwidth',
       title: 'Network Bandwidth',
       unitType: 'bandwidth',
-      legend: ['Out', 'In'],
+      legend: ['OUT', 'IN'],
       data: [
         get(this.metrics, `${MetricTypes.net_transmitted}.data.result[0]`, {}),
         get(this.metrics, `${MetricTypes.net_received}.data.result[0]`, {}),

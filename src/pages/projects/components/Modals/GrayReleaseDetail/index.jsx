@@ -50,9 +50,9 @@ import EditModal from './Edit'
 import styles from './index.scss'
 
 const MATCH_TYPES = {
-  exact: 'Exact Match',
-  prefix: 'Prefix Match',
-  regex: 'Regex Match',
+  exact: 'EXACT_MATCH',
+  prefix: 'PREFIX_MATCH',
+  regex: 'REGEX_MATCH',
 }
 
 const CANARY_CONTENT = keyBy(GRAY_RELEASE_CANARY_CONTENT, 'value')
@@ -160,9 +160,10 @@ export default class GatewaySettingModal extends React.Component {
     if (governor) {
       this.setState({
         tipType: 'info',
-        tipInfo: t('JOB_OFFLINE_INFO', {
-          version: governor === oldVersion ? newVersion : oldVersion,
-        }),
+        tipInfo:
+          governor === oldVersion
+            ? t.html('OLD_VERSION_TAKEOVER_DESC', { newVersion, oldVersion })
+            : t.html('NEW_VERSION_TAKEOVER_DESC', { newVersion, oldVersion }),
       })
     } else {
       this.setState({ tipInfo: '' })
@@ -391,7 +392,10 @@ export default class GatewaySettingModal extends React.Component {
       return
     }
 
-    this.setState({ tipType: 'warning', tipInfo: t('JOB_OFFLINE_WARNING') })
+    this.setState({
+      tipType: 'warning',
+      tipInfo: t('DELETE_GRAYSCALE_RELEASE_JOB_DESC'),
+    })
   }
 
   handleTakeover = type => {
@@ -430,10 +434,10 @@ export default class GatewaySettingModal extends React.Component {
         <div className={styles.text}>
           <div className="h4">{detail.name}</div>
           <p>
-            {t('Grayscale Release Strategy')}: <strong>{t(cate.title)}</strong>
+            {t('RELEASE_MODE')}: <strong>{t(`${cate.title}_LOW`)}</strong>
           </p>
         </div>
-        <Button onClick={this.handleOffline}>{t('Job offline')}</Button>
+        <Button onClick={this.handleOffline}>{t('DELETE')}</Button>
       </div>
     )
   }
@@ -447,8 +451,8 @@ export default class GatewaySettingModal extends React.Component {
       return (
         <div>
           <div className={styles.sectionTitle}>
-            <div>{t('Grayscale Release Components')}</div>
-            <p>{t('CANARY_RELEASES_DESC')}</p>
+            <div>{t('VERSIONS')}</div>
+            <p>{t('GRAY_COMPONENT_DESC')}</p>
           </div>
           <Loading spinning={isLoading} className={styles.loading} />
         </div>
@@ -475,8 +479,8 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <div>
         <div className={styles.sectionTitle}>
-          <div>{t('Grayscale Release Components')}</div>
-          <p>{t('CANARY_RELEASES_DESC')}</p>
+          <div>{t('VERSIONS')}</div>
+          <p>{t('GRAY_COMPONENT_DESC')}</p>
         </div>
         <Columns>
           <Column>
@@ -506,39 +510,34 @@ export default class GatewaySettingModal extends React.Component {
     const detail = toJS(this.store.detail)
     const { ratio } = this.state
 
-    const leftContent = `${detail.newVersion} ${t('traffic')}`
-    const rightContent = `${detail.oldVersion} ${t('traffic')}`
-
     const originRatio = get(detail, 'newRoute.weight')
 
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('Real-time traffic distribution')}</div>
-          <p>
-            {t(
-              'Allocate all traffic proportionally to grayscale release components'
-            )}
-          </p>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
+          <p>{t('ALLOCATE_TRAFFIC_DESC')}</p>
         </div>
         <TrafficSlider
           min={0}
           max={100}
           value={ratio}
-          leftContent={leftContent}
-          rightContent={rightContent}
+          leftContent={detail.newVersion}
+          rightContent={detail.oldVersion}
           onChange={this.handleRatioChange}
         />
         <NotifyConfirm
           visible={ratio !== originRatio}
           width={400}
-          title={t('REPLICAS_SCALE_NOTIFY_TITLE')}
-          content={t.html('RATIO_MODIFY_NOTIFY_CONTENT', {
-            version: detail.newVersion,
-            ratio,
+          title={t('ADJUST_TRAFFIC_DISTRIBUTION')}
+          content={t.html('ADJUST_TRAFFIC_DISTRIBUTION_DESC', {
+            newVersion: detail.newVersion,
+            oldVersion: detail.oldVersion,
+            ratioNew: ratio,
+            ratioOld: 100 - ratio,
           })}
-          cancelText={t('Reset')}
-          confirmText={t('Save')}
+          cancelText={t('CANCEL')}
+          confirmText={t('OK')}
           isSubmitting={this.store.isSubmitting}
           onCancel={this.handleResetRatio}
           onConfirm={this.handleConfirmSaveRatio}
@@ -557,12 +556,15 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('Real-time traffic distribution')}</div>
-          <p>{t('Real-time traffic ratio')}</p>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
+          <p>{t('BLUE_GREEN_TRAFFIC_DISTRI_DESC')}</p>
         </div>
         <div className={styles.barWrapper}>
           <div className={styles.bar}>
-            {`${selectVersion} ${t('traffic')} 100%`}
+            {t('VERSION_TRAFFIC_PERCENT', {
+              version: selectVersion,
+              percent: '100',
+            })}
           </div>
         </div>
       </>
@@ -579,8 +581,8 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('Real-time traffic distribution')}</div>
-          <p>{t('Real-time traffic ratio')}</p>
+          <div>{t('TRAFFIC_DISTRIBUTION')}</div>
+          <p>{t('TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC')}</p>
         </div>
         <div className={styles.mirror}>
           <div className={styles.barWrapper}>
@@ -589,7 +591,10 @@ export default class GatewaySettingModal extends React.Component {
                 [styles.mirrorBar]: selectVersion !== detail.newVersion,
               })}
             >
-              {`${detail.newVersion} ${t('traffic')} 100%`}
+              {t('VERSION_TRAFFIC_PERCENT', {
+                version: detail.newVersion,
+                percent: '100',
+              })}
             </div>
           </div>
           <div
@@ -605,7 +610,10 @@ export default class GatewaySettingModal extends React.Component {
                 [styles.mirrorBar]: selectVersion !== detail.oldVersion,
               })}
             >
-              {`${detail.oldVersion} ${t('traffic')} 100%`}
+              {t('VERSION_TRAFFIC_PERCENT', {
+                version: detail.oldVersion,
+                percent: '100',
+              })}
             </div>
           </div>
         </div>
@@ -622,12 +630,8 @@ export default class GatewaySettingModal extends React.Component {
       return (
         <div>
           <div className={styles.sectionTitle}>
-            <div>{t('Traffic Control')}</div>
-            <p>
-              {t(
-                'Introduce traffic that meets the following rules into grayscale version'
-              )}
-            </p>
+            <div>{t('REQUEST_PARAMETERS')}</div>
+            <p>{t('SPECIFY_REQUEST_PARAMETERS_DESC')}</p>
           </div>
           <Loading spinning={isLoading} className={styles.loading} />
         </div>
@@ -673,12 +677,8 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <>
         <div className={styles.sectionTitle}>
-          <div>{t('Traffic Control')}</div>
-          <p>
-            {t(
-              'Introduce traffic that meets the following rules into grayscale version'
-            )}
-          </p>
+          <div>{t('REQUEST_PARAMETERS')}</div>
+          <p>{t('SPECIFY_REQUEST_PARAMETERS_DESC')}</p>
         </div>
         <div className={styles.matchWrapper}>
           {detail.governor && (
@@ -688,14 +688,12 @@ export default class GatewaySettingModal extends React.Component {
                   <Icon name="appcenter" size={40} />
                 </div>
                 <div>
-                  <span className="ks-tag">{detail.governor}</span>
+                  {t.html('SERVICE_VERSION_RECEIVE_ALL_TRAFFIC', {
+                    version: detail.governor,
+                  })}
                 </div>
                 <div>
-                  <strong>{detail.hosts}</strong>
-                </div>
-                <p>{t('Has taken over all traffic')}</p>
-                <div>
-                  <Button onClick={this.handleRecover}>{t('Recover')}</Button>
+                  <Button onClick={this.handleRecover}>{t('RESTORE')}</Button>
                 </div>
               </div>
             </div>
@@ -705,32 +703,34 @@ export default class GatewaySettingModal extends React.Component {
               <ul>
                 <li>
                   <Icon name="earth" size={24} />
-                  <strong>{`${t('Cookie Content')}${
-                    cookieMatchType
-                      ? `(${t(MATCH_TYPES[cookieMatchType])})`
-                      : ''
-                  }`}</strong>
+                  <strong>
+                    {cookieMatchType
+                      ? t(`COOKIE_${MATCH_TYPES[cookieMatchType]}`)
+                      : t('COOKIE')}
+                  </strong>
                   {cookieMatchValue}
                 </li>
                 <li>
                   <Icon name="image" size={24} />
-                  <strong>{t('Operating System')}</strong>
+                  <strong>{t('OS')}</strong>
                   {osMatchValue}
                 </li>
                 <li>
                   <Icon name="pen" size={24} />
-                  <strong>{`${t('Custom Header')}${
-                    customHeaderMatchType
-                      ? `(${t(MATCH_TYPES[customHeaderMatchType])})`
-                      : ''
-                  }`}</strong>
+                  <strong>
+                    {customHeaderMatchType
+                      ? t(`HEADER_${MATCH_TYPES[customHeaderMatchType]}`)
+                      : t(`HEADER`)}
+                  </strong>
                   {customKey ? `${customKey}: ${customHeaderMatchValue}` : ''}
                 </li>
                 <li>
                   <Icon name="ip" size={24} />
-                  <strong>{`${t('URI')}${
-                    uriMatchType ? `(${t(MATCH_TYPES[uriMatchType])})` : ''
-                  }`}</strong>
+                  <strong>
+                    {uriMatchType
+                      ? t(`URL_${MATCH_TYPES[uriMatchType]}`)
+                      : t('URL')}
+                  </strong>
                   {uriMatchValue}
                 </li>
               </ul>
@@ -753,7 +753,7 @@ export default class GatewaySettingModal extends React.Component {
                     <strong>{detail.hosts}</strong>
                   </div>
                   <p>
-                    {t('Replicas')}: <strong>{newData.available}</strong>/
+                    {t('REPLICA_COUNT')}: <strong>{newData.available}</strong>/
                     {newData.desire}
                   </p>
                 </div>
@@ -800,8 +800,8 @@ export default class GatewaySettingModal extends React.Component {
         className={styles.modal}
         bodyClassName={styles.body}
         headerClassName={styles.header}
-        title={t('Job Status')}
-        cancelText={t('Close')}
+        title={t('JOB_STATUS')}
+        cancelText={t('CLOSE')}
         onCancel={onCancel}
         visible={visible}
         fullScreen

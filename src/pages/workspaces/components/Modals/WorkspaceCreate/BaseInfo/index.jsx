@@ -87,34 +87,34 @@ export default class BaseInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.step}>
-          <div>{t('Basic Info')}</div>
+          <div>{t('BASIC_INFORMATION')}</div>
           <p>{t('WORKSPACE_CREATE_DESC')}</p>
         </div>
         <Form data={formTemplate} ref={formRef}>
           <Form.Item
-            label={t('Workspace Name')}
+            label={t('NAME')}
             desc={t('NAME_DESC')}
             rules={[
               {
                 required: true,
-                message: t('Please input workspace name'),
+                message: t('WORKSPACE_NAME_EMPTY_DESC'),
               },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}
           >
             <Input name="metadata.name" autoFocus={true} maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+          <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
             <Input
               name="metadata.annotations['kubesphere.io/alias-name']"
               maxLength={63}
             />
           </Form.Item>
-          <Form.Item label={t('Workspace Manager')}>
+          <Form.Item label={t('ADMINISTRATOR')}>
             <Select
               name="spec.template.spec.manager"
               options={this.users}
@@ -126,7 +126,7 @@ export default class BaseInfo extends React.Component {
               searchable
             />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               maxLength={256}

@@ -41,9 +41,9 @@ export const S2IJOBS_STATUS = [
 ]
 
 export const S2I_STATUS_DESC = {
-  Failed: 'Build image failed',
-  Running: 'Is building image',
-  Successful: 'Build image successfully',
+  Failed: 'IMAGE_BUILDING_FAILED',
+  Running: 'BUILDING_IMAGE',
+  Successful: 'IMAGE_BUILDING_SUCCESSFUL',
 }
 
 export const CRONJOB_STATUS = [
@@ -55,6 +55,13 @@ export const VOLUME_STATUS = [
   { text: 'VOLUME_STATUS_BOUND', value: 'bound' },
   { text: 'VOLUME_STATUS_LOST', value: 'lost' },
   { text: 'VOLUME_STATUS_PENDING', value: 'pending' },
+]
+
+export const PV_STATUS = [
+  { text: 'PV_STATUS_AVAILABLE', value: 'available' },
+  { text: 'PV_STATUS_BOUND', value: 'bound' },
+  { text: 'PV_STATUS_RELEASED', value: 'released' },
+  { text: 'PV_STATUS_FAILED', value: 'failed' },
 ]
 
 export const NODE_STATUS = [
@@ -70,10 +77,15 @@ export const ACCESS_MODES = {
 }
 
 export const SERVICE_TYPES = {
-  VirtualIP: 'Virtual IP',
-  Headless: 'Headless',
-  ExternalName: 'ExternalName',
-  Unknown: 'Unknown',
+  VirtualIP: 'VIRTUAL_IP',
+  Headless: 'HEADLESS',
+  ExternalName: 'EXTERNALNAME',
+  Unknown: 'UNKNOWN',
+}
+
+export const SERVICE_TYPES_VALUE = {
+  VIRTUAL_IP: 'virtualIP',
+  HEADLESS: 'headlessSelector',
 }
 
 export const VOLUME_SNAPSHOT_STATUS = [
@@ -229,6 +241,8 @@ export const ICON_TYPES = {
   pipelines: 'blockchain',
   ippools: 'eip-group',
   cluster: 'cluster',
+  notification: 'loudspeaker',
+  notificationhistory: 'record',
 }
 
 export const MODULE_KIND_MAP = {
@@ -241,6 +255,7 @@ export const MODULE_KIND_MAP = {
   services: 'Service',
   ingresses: 'Ingress',
   persistentvolumeclaims: 'PersistentVolumeClaim',
+  persistentvolumes: 'PersistentVolumes',
   storageclasses: 'StorageClass',
   'alert-policies': 'AlertingPolicy',
   configmaps: 'ConfigMap',
@@ -248,7 +263,7 @@ export const MODULE_KIND_MAP = {
   secrets: 'Secret',
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
-  volumesnapshots: 'Volume Snapshot',
+  volumesnapshots: 'VolumeSnapshot',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
   clusters: 'Cluster',
@@ -261,6 +276,7 @@ export const MODULE_KIND_MAP = {
   ippools: 'IPPool',
   groups: 'Group',
   volumes: 'Volumes',
+  hpas: 'HPA',
 }
 
 export const QUOTAS_MAP = {
@@ -399,35 +415,39 @@ export const TIMETRIGGERINTERVALS = [
 ]
 
 export const SECRET_TYPES = {
-  Opaque: 'Default',
-  'kubernetes.io/tls': 'TLS',
-  'kubernetes.io/dockerconfigjson': 'Image Repository Secret',
-  'kubernetes.io/basic-auth': 'Account Password Secret',
+  Opaque: 'DEFAULT',
+  'kubernetes.io/tls': 'TLS_INFORMATION',
+  'kubernetes.io/dockerconfigjson': 'IMAGE_REGISTRY_INFORMATION',
+  'kubernetes.io/basic-auth': 'USERNAME_AND_PASSWORD',
 }
 
 export const STRATEGIES = {
   deployments: [
-    { label: 'Recreate', value: 'Recreate', description: 'RECREATE_ALERT_TIP' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'SIMULTANEOUS_UPDATE',
+      value: 'Recreate',
+      description: 'SIMULTANEOUS_UPDATE_DESC',
+    },
+    {
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
   daemonsets: [
-    { label: 'OnDelete', value: 'OnDelete', description: 'ONDELETE_ALERT_TIP' },
+    { label: 'ONDELETE', value: 'OnDelete', description: 'ONDELETE_DESC' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
   statefulsets: [
-    { label: 'OnDelete', value: 'OnDelete', description: 'ONDELETE_ALERT_TIP' },
+    { label: 'ONDELETE', value: 'OnDelete', description: 'ONDELETE_DESC' },
     {
-      label: 'RollingUpdate (Recommended)',
+      label: 'ROLLING_UPDATE_RECOMMENDED',
       value: 'RollingUpdate',
-      description: 'ROLLINGUPDATE_ALERT_TIP',
+      description: 'ROLLINGUPDATE_DESC',
     },
   ],
 }
@@ -459,25 +479,26 @@ export const GRAY_RELEASE_CATEGORIES = [
   {
     icon: 'blue-green-deployment',
     type: 'Bluegreen',
-    title: 'Blue-green Deployment',
+    title: 'BLUE_GREEN_DEPLOYMENT',
     desc: 'BLUE_GREEN_DEPLOYMENT_DESC',
   },
   {
     icon: 'bird',
     type: 'Canary',
-    title: 'Canary Release',
-    desc: 'CANARY_RELEASES_DESC',
+    title: 'CANARY_RELEASE',
+    desc: 'CANARY_RELEASE_DESC',
   },
   {
     icon: 'mirroring',
     type: 'Mirror',
-    title: 'Traffic Mirroring',
-    desc: 'TRAFFIC_MIRROR_DESC',
+    title: 'TRAFFIC_MIRRORING',
+    desc: 'TRAFFIC_MIRRORING_DESC',
   },
 ]
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
+export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/
 export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_SERVICE_VERSION = /^[a-z0-9]*$/
 export const PATTERN_LABEL = /(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/
@@ -486,7 +507,7 @@ export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
 export const PATTERN_PIPELINE_NAME = /[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/
-export const PATTERN_HOST = /^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
+export const PATTERN_HOST = /^(?=^.{3,255}$)[*a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$/
 
 export const PATTERN_URL = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/
 export const PATTERN_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
@@ -551,7 +572,7 @@ export const GRAY_RELEASE_CANARY_CONTENT = [
     value: '(Windows NT ([\\d.])+)',
   },
   { label: 'Linux', icon: 'ubuntu', value: '(Linux )' },
-  { label: 'Mac OS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
+  { label: 'macOS', icon: 'windows', value: '( Mac OS X ([\\d.])+)' },
   { label: 'Android', icon: 'windows', value: '(Android)' },
   { label: 'iOS', icon: 'windows', value: '(OS [\\d.]+)' },
 ]
@@ -639,33 +660,33 @@ export const PROVISIONERS = [
     access_modes: ['ReadWriteOnce'],
     params: [
       {
-        key: 'type',
+        key: 'TYPE',
         type: 'input',
         desc: 'QINGCLOUD_CSI_TYPE_DESC',
       },
       {
-        key: 'maxSize',
+        key: 'MAXSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_MAX_SIZE',
       },
       {
-        key: 'stepSize',
+        key: 'STEPSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_STEP_SIZE',
       },
       {
-        key: 'minSize',
+        key: 'MINSIZE',
         type: 'input',
         desc: 'CREATE_VOLUME_MIN_SIZE',
       },
       {
-        key: 'fsType',
+        key: 'FSTYPE',
         type: 'input',
         defaultValue: 'ext4',
         desc: 'VOLUME_FS_TYPE',
       },
       {
-        key: 'tags',
+        key: 'TAGS',
         type: 'input',
         desc: 'QINGCLOUD_VOLUME_TAGS_DESC',
       },
@@ -673,62 +694,61 @@ export const PROVISIONERS = [
     description: 'QINGCLOUD_CSI_DESC',
   },
   {
-    label: 'Glusterfs',
+    label: 'GlusterFS',
     value: 'kubernetes.io/glusterfs',
     icon: 'glusterfs',
     access_modes: ['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany'],
     params: [
       {
-        key: 'resturl',
+        key: 'RESTURL',
         type: 'input',
-        placeholder: 'IPaddress:Port',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {
-        key: 'clusterid',
+        key: 'CLUSTER_ID',
         type: 'input',
         desc: 'GLUSTERFS_ID_DESC',
       },
       {
-        key: 'restauthenabled',
+        key: 'REST_AUTH_ENABLED',
         type: 'select',
         defaultValue: 'true',
         options: [
-          { label: 'True', value: 'true' },
-          { label: 'False', value: 'false' },
+          { label: 'TRUE', value: 'true' },
+          { label: 'FALSE', value: 'false' },
         ],
         desc: 'GLUSTERFS_RESTAUTHENABLED_DESC',
       },
       {
-        key: 'restuser',
+        key: 'REST_USER',
         type: 'input',
         placeholder: 'rbd',
         desc: 'GLUSTERFS_RESTUSER_DESC',
       },
       {
-        key: 'secretNamespace',
+        key: 'SECRET_NAMESPACE',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAMESPACE_DESC',
       },
       {
-        key: 'secretName',
+        key: 'SECRET_NAME',
         type: 'input',
         desc: 'GLUSTERFS_SECRET_NAME_DESC',
       },
       {
-        key: 'gidMin',
+        key: 'GID_MIN',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MIN_DESC',
       },
       {
-        key: 'gidMax',
+        key: 'GID_MAX',
         type: 'input',
         placeholder: '2000-2147483647',
         desc: 'GLUSTERFS_GID_MAX_DESC',
       },
       {
-        key: 'volumetype',
+        key: 'VOLUME_TYPE',
         type: 'input',
         desc: 'GLUSTERFS_VOLUME_TYPE_DESC',
       },
@@ -743,7 +763,7 @@ export const PROVISIONERS = [
       {
         key: 'monitors',
         type: 'input',
-        placeholder: '<host>:><port>',
+        placeholder: 'CEPH_MONITOR_IP',
         desc: 'CEPHRBD_MONITORS_DESC',
       },
       {
@@ -849,7 +869,8 @@ export const API_VERSIONS = {
   resourcequotas: 'api/v1',
   limitranges: 'api/v1',
   persistentvolumeclaims: 'api/v1',
-  ingresses: 'apis/extensions/v1beta1',
+  ingresses: 'apis/networking.k8s.io/v1',
+  persistentvolumes: 'api/v1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',
   roles: 'apis/rbac.authorization.k8s.io/v1',
@@ -858,7 +879,7 @@ export const API_VERSIONS = {
   strategies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   servicepolicies: 'apis/servicemesh.kubesphere.io/v1alpha2',
   horizontalpodautoscalers: 'apis/autoscaling/v2beta2',
-  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1beta1',
+  customresourcedefinitions: 'apis/apiextensions.k8s.io/v1',
   clusters: 'apis/cluster.kubesphere.io/v1alpha1',
   workspaces: 'apis/tenant.kubesphere.io/v1alpha2',
   users: 'apis/iam.kubesphere.io/v1alpha2',
@@ -866,13 +887,14 @@ export const API_VERSIONS = {
   devops: 'kapis/devops.kubesphere.io/v1alpha3',
   pipelines: 'kapis/devops.kubesphere.io/v1alpha3',
   workspaceroles: 'apis/iam.kubesphere.io/v1alpha2',
-  dashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
-  clusterdashboards: 'apis/monitoring.kubesphere.io/v1alpha1',
+  dashboards: 'apis/monitoring.kubesphere.io/v1alpha2',
+  clusterdashboards: 'apis/monitoring.kubesphere.io/v1alpha2',
   namespacenetworkpolicies: 'apis/network.kubesphere.io/v1alpha1',
   networkpolicies: 'apis/networking.k8s.io/v1',
   ippools: 'apis/network.kubesphere.io/v1alpha1',
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
+  gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [
@@ -938,7 +960,7 @@ export const COMPONENT_ICON_MAP = {
 
 export const CLUSTER_PROVIDER_ICON = {
   'Aliyun ACK': 'aliyun',
-  'Aure Kubernetes Service': 'windows',
+  'Azure Kubernetes Service': 'windows',
   'Huawei Cloud CCE': 'kubernetes',
   'Amazon EKS': 'aws',
   'Google Kubernetes Engine': 'google-plus',
@@ -949,12 +971,12 @@ export const CLUSTER_PROVIDER_ICON = {
 
 export const CLUSTER_PROVIDERS = [
   {
-    label: 'Aliyun ACK',
+    label: 'Alibaba Cloud ACK',
     value: 'Aliyun ACK',
     icon: 'aliyun',
   },
   {
-    label: 'Aure Kubernetes Service',
+    label: 'Azure Kubernetes Service',
     value: 'Aure Kubernetes Service',
     icon: 'windows',
   },
@@ -1028,7 +1050,7 @@ export const DEFAULT_CLUSTER = {
     labels: {
       'cluster.kubesphere.io/visibility': 'public',
     },
-    name: 'default',
+    name: globals?.config?.defaultClusterName || 'default',
   },
 }
 

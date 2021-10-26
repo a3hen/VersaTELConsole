@@ -87,7 +87,7 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['workspaces']}
-                desc={t('Workspaces')}
+                desc={t('WORKSPACES')}
                 title={metrics.cluster_workspace_count}
                 url={this.getLink('workspaces')}
                 size="large"
@@ -96,7 +96,7 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['accounts']}
-                desc={t('Accounts')}
+                desc={t('ACCOUNTS')}
                 title={metrics.cluster_account_count}
                 url={this.getLink('accounts')}
                 size="large"
@@ -105,7 +105,7 @@ export default class ResourceStatistics extends React.Component {
             <Column>
               <Info
                 icon={ICON_TYPES['projects']}
-                desc={t('Projects')}
+                desc={t('PROJECT_PL')}
                 title={metrics.cluster_namespace_count}
                 url={this.getLink('projects')}
                 size="large"
@@ -115,7 +115,7 @@ export default class ResourceStatistics extends React.Component {
               <Column>
                 <Info
                   icon={ICON_TYPES['devops']}
-                  desc={t('DevOps Projects')}
+                  desc={t('DEVOPS_PROJECT_PL')}
                   title={metrics.cluster_devops_project_count}
                   size="large"
                 />

@@ -56,8 +56,8 @@ export default class AdvancedSettings extends React.Component {
           )}
         {module !== 'daemonsets' && (
           <Form.Group
-            label={t('Set Node Scheduling Policy')}
-            desc={t('You can allow Pod replicas to run on specified nodes.')}
+            label={t('SELECT_NODES')}
+            desc={t('SELECT_NODES_DESC')}
             checkable
           >
             <NodeSchedule
@@ -69,10 +69,8 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('Add Metadata')}
-          desc={t(
-            'Additional metadata settings for resources such as Labels and Annotations.'
-          )}
+          label={t('ADD_METADATA')}
+          desc={t('ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

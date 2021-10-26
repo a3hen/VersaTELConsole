@@ -50,14 +50,18 @@ export default class ContainerItem extends React.Component {
   }
 
   get canViewTerminal() {
-    const { cluster } = this.props
+    const { cluster, hideterminal } = this.props
     const { namespace } = this.props.detail
-    return globals.app.hasPermission({
-      module: 'pods',
-      project: namespace,
-      action: 'edit',
-      cluster,
-    })
+
+    return (
+      !hideterminal &&
+      globals.app.hasPermission({
+        module: 'pods',
+        project: namespace,
+        action: 'edit',
+        cluster,
+      })
+    )
   }
 
   getLink = name => `${this.props.prefix}/containers/${name}`
@@ -96,17 +100,17 @@ export default class ContainerItem extends React.Component {
       <div className={styles.probe}>
         {this.renderProbeRecord({
           probe: readinessProbe,
-          title: t('Readiness Probe'),
+          title: t('READINESS_PROBE'),
           tagType: 'primary',
         })}
         {this.renderProbeRecord({
           probe: livenessProbe,
-          title: t('Liveness Probe'),
+          title: t('LIVENESS_PROBE'),
           tagType: 'warning',
         })}
         {this.renderProbeRecord({
           probe: startupProbe,
-          title: t('Startup Probe'),
+          title: t('STARTUP_PROBE'),
           tagType: 'info',
         })}
       </div>
@@ -123,14 +127,14 @@ export default class ContainerItem extends React.Component {
 
     if ('httpGet' in probe) {
       const { path, port, scheme } = probe.httpGet
-      probeType = 'HTTP Request Check'
+      probeType = 'HTTP_REQUEST'
       probeDetail = `GET ${path} on port ${port} (${scheme})`
     } else if ('tcpSocket' in probe) {
-      probeType = 'TCP Port Check'
+      probeType = 'TCP_PORT'
       probeDetail = `Open socket on port ${probe.tcpSocket.port} (TCP)`
     } else {
       const { command = [] } = probe.exec
-      probeType = 'Exec Command Check'
+      probeType = 'COMMAND'
       probeDetail = command.join(' ')
     }
 
@@ -139,9 +143,9 @@ export default class ContainerItem extends React.Component {
         <div>
           <Tag type={tagType}>{title}</Tag>
           <span className={styles.probeType}>{t(probeType)}</span>
+          <br />
           <span className={styles.probeTime}>
-            {t('Initial Delay')}: {delay}s &nbsp;&nbsp;
-            {t('Timeout')}: {timeout}s
+            {t('INITIAL_DELAY_TIMEOUT_VALUE', { delay, timeout })}
           </span>
         </div>
         <p>{probeDetail}</p>
@@ -184,7 +188,7 @@ export default class ContainerItem extends React.Component {
               <span className={styles.noLink}>{detail.name}</span>
             )}
             {prefix && !isCreating && (
-              <Tooltip content={t('Container Logs')}>
+              <Tooltip content={t('CONTAINER_LOGS')}>
                 <Icon
                   className="margin-l8"
                   name="log"
@@ -195,7 +199,7 @@ export default class ContainerItem extends React.Component {
               </Tooltip>
             )}
             {status === 'running' && prefix && this.canViewTerminal && (
-              <Tooltip content={t('Terminal')}>
+              <Tooltip content={t('TERMINAL')}>
                 <Icon
                   className="margin-l8"
                   name="terminal"
@@ -207,32 +211,34 @@ export default class ContainerItem extends React.Component {
             )}
             {isInit && (
               <Tag className="margin-l8" type="warning">
-                {t('Init Container')}
+                {t('INIT_CONTAINER')}
               </Tag>
             )}
             {hasProbe && (
               <Tooltip content={this.renderProbe()}>
-                <Tag className="margin-l8">{t('Probe')}</Tag>
+                <Tag className="margin-l8">{t('PROBE_PL')}</Tag>
               </Tooltip>
             )}
           </div>
           {reason ? (
             <p>{t(reason)}</p>
           ) : (
-            <p>
-              {t('Image')}:{detail.image}
-            </p>
+            <p>{t('IMAGE_VALUE', { value: detail.image })}</p>
           )}
         </div>
         <div className={styles.text}>
           <div>{isUndefined(status) ? '-' : t(status)}</div>
-          <p>{t('Status')}</p>
+          <p>{t('STATUS')}</p>
         </div>
         <div className={styles.text}>
           <div>
             {isUndefined(detail.restartCount) ? '-' : detail.restartCount}
           </div>
-          <p>{t('Restart Count')}</p>
+          <p>
+            {!isUndefined(detail.restartCount) && detail.restartCount === 1
+              ? t('RESTART')
+              : t('RESTART_PL')}
+          </p>
         </div>
         <div className={styles.text}>
           <div>
@@ -242,7 +248,11 @@ export default class ContainerItem extends React.Component {
                   .map(port => `${port.containerPort}/${port.protocol}`)
                   .join(', ')}
           </div>
-          <p>{t('Ports')}</p>
+          <p>
+            {!isEmpty(detail.ports) && detail.ports.length === 1
+              ? t('PORT')
+              : t('PORT_PL')}
+          </p>
         </div>
         <ContainerLogModal
           visible={showContainerLog}

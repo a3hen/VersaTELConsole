@@ -48,6 +48,36 @@ const getDeploymentTemplate = ({ namespace }) => ({
   },
 })
 
+const getScheduleDeploymentTemplate = ({ data, includeClusters }) => {
+  const namespace = get(data, 'metadata.namespace')
+  const template = cloneDeep(data)
+
+  unset(template, 'apiVersion')
+  unset(template, 'kind')
+  unset(template, 'metadata.name')
+  unset(template, 'metadata.annotations')
+
+  const clusterS = {}
+
+  includeClusters.forEach(cluster => {
+    clusterS[cluster] = {
+      weight: 1,
+    }
+  })
+
+  return {
+    apiVersion: 'scheduling.kubefed.io/v1alpha1',
+    kind: 'ReplicaSchedulingPreference',
+    metadata: { namespace },
+    spec: {
+      rebalance: true,
+      targetKind: 'FederatedDeployment',
+      totalReplicas: '',
+      clusters: clusterS,
+    },
+  }
+}
+
 const getFederatedTemplate = ({ data, clusters, kind }) => {
   const namespace = get(data, 'metadata.namespace')
 
@@ -191,7 +221,7 @@ const getServiceTemplate = ({ namespace, selector = {} }) => ({
 })
 
 const getIngressTemplate = ({ namespace }) => ({
-  apiVersion: 'extensions/v1beta1',
+  apiVersion: 'networking.k8s.io/v1',
   kind: 'Ingress',
   metadata: {
     namespace,
@@ -199,6 +229,32 @@ const getIngressTemplate = ({ namespace }) => ({
   },
   spec: {
     rules: [],
+  },
+})
+
+const getGatewayTemplate = () => ({
+  apiVersion: 'gateway.kubesphere.io/v1alpha1',
+  kind: 'Gateway',
+  metadata: {
+    annotations: {
+      'kubesphere.io/annotations': '',
+    },
+  },
+  spec: {
+    controller: {
+      replicas: 1,
+      annotations: {},
+      config: {},
+      scope: { enabled: false, namespace: '' },
+    },
+    deployment: {
+      annotations: {},
+      replicas: 1,
+    },
+    service: {
+      annotations: {},
+      type: 'NodePort',
+    },
   },
 })
 
@@ -295,6 +351,7 @@ const getStorageClassTemplate = () => ({
   metadata: {
     name: '',
     annotations: {},
+    VolumeBindingMode: 'WaitForFirstConsumer',
   },
   parameters: {},
   reclaimPolicy: 'Delete',
@@ -506,7 +563,7 @@ const getNameSpaceNetworkPoliciesTemplate = ({ namespace }) => ({
 })
 
 const getDashboardTemplate = ({ namespace }) => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'Dashboard',
   metadata: {
     namespace,
@@ -515,7 +572,7 @@ const getDashboardTemplate = ({ namespace }) => ({
 })
 
 const getClusterDashboardTemplate = () => ({
-  apiVersion: 'monitoring.kubesphere.io/v1alpha1',
+  apiVersion: 'monitoring.kubesphere.io/v1alpha2',
   kind: 'ClusterDashboard',
   metadata: {},
   spec: {},
@@ -594,8 +651,38 @@ const getNotificationReceiverTemplate = ({ name, type }) => ({
   },
 })
 
+const getNotificationVerifyTemplate = ({ user }) => ({
+  config: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Config',
+    metadata: {
+      name: 'test-user-config',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'default',
+        user,
+      },
+    },
+    spec: {},
+  },
+  receiver: {
+    apiVersion: 'notification.kubesphere.io/v2beta2',
+    kind: 'Receiver',
+    metadata: {
+      name: 'test-user-receiver',
+      labels: {
+        app: 'notification-manager',
+        type: user ? 'tenant' : 'global',
+        user,
+      },
+    },
+    spec: {},
+  },
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
+  deploymentsSchedule: getScheduleDeploymentTemplate,
   daemonsets: getDaemonSetTemplate,
   statefulsets: getStatefulSetTemplate,
   jobs: getJobTemplate,
@@ -633,6 +720,8 @@ const FORM_TEMPLATES = {
   globalsecret: getGlobalSecretTemplate,
   notificationconfigs: getNotificationConfigTemplate,
   notificationreceivers: getNotificationReceiverTemplate,
+  gateways: getGatewayTemplate,
+  notificationVerify: getNotificationVerifyTemplate,
 }
 
 export default FORM_TEMPLATES

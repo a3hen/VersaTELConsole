@@ -58,7 +58,7 @@ export default class BasicInfo extends React.Component {
     <span style={{ display: 'flex', alignItem: 'center' }}>
       {label}&nbsp;&nbsp;
       {value === this.latestVersion && (
-        <Tag type="warning">{t('Latest Version')}</Tag>
+        <Tag type="warning">{t('LATEST_VERSION_SCAP')}</Tag>
       )}
     </span>
   )
@@ -81,9 +81,9 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.placementWrapper}>
         <div className={styles.placementContent}>
-          <Text title={workspace} description={t('Workspace')} />
+          <Text title={workspace} description={t('WORKSPACE')} />
           <Text title={cluster} description={t('Cluster')} />
-          <Text icon="project" title={namespace} description={t('Project')} />
+          <Text icon="project" title={namespace} description={t('PROJECT')} />
         </div>
       </div>
     )
@@ -94,17 +94,17 @@ export default class BasicInfo extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Form data={formData} ref={formRef}>
-          <div className={styles.title}>{t('Basic Info')}</div>
+          <div className={styles.title}>{t('BASIC_INFORMATION')}</div>
           <Columns>
             <Column>
               <Form.Item
-                label={t('Application Name')}
+                label={t('NAME')}
                 desc={t('CLUSTER_NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_SERVICE_NAME,
-                    message: t('Invalid name', {
+                    message: t('INVALID_NAME_DESC', {
                       message: t('CLUSTER_NAME_DESC'),
                     }),
                   },
@@ -115,15 +115,13 @@ export default class BasicInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Application Version')}
-                rules={[
-                  { required: true, message: t('Please select version') },
-                ]}
+                label={t('VERSION')}
+                rules={[{ required: true, message: t('VERSION_EMPTY_DESC') }]}
               >
                 <Select
                   name="version_id"
                   options={this.sortedVersions}
-                  placeholder={t('Please select version')}
+                  placeholder=" "
                   pagination={pick(versionStore.list, [
                     'page',
                     'limit',
@@ -140,21 +138,21 @@ export default class BasicInfo extends React.Component {
           </Columns>
           <Columns>
             <Column>
-              <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+              <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
                 <TextArea name="description" maxLength={256} />
               </Form.Item>
             </Column>
             <Column />
           </Columns>
           <br />
-          <div className={styles.title}>{t('Deployment Location')}</div>
+          <div className={styles.title}>{t('LOCATION')}</div>
           <div className={styles.placement}>
             {!namespace ? (
               <Form.Item
                 rules={[
                   {
                     required: true,
-                    message: t('Please select a project to deploy'),
+                    message: t('PROJECT_NOT_SELECT_DESC'),
                   },
                 ]}
               >

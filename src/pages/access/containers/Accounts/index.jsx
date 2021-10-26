@@ -30,7 +30,7 @@ import { getLocalTime } from 'utils'
 @withList({
   store: new UserStore(),
   module: 'users',
-  name: 'User',
+  name: 'USER',
 })
 export default class Accounts extends React.Component {
   showAction(record) {
@@ -46,7 +46,7 @@ export default class Accounts extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -58,12 +58,12 @@ export default class Accounts extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             resource: item.username,
             detail: item,
             success: routing.query,
@@ -86,7 +86,7 @@ export default class Accounts extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'username',
       render: (name, record) => (
         <Avatar
@@ -98,7 +98,7 @@ export default class Accounts extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '20%',
@@ -107,21 +107,21 @@ export default class Accounts extends React.Component {
       ),
     },
     {
-      title: t('Account Role'),
+      title: t('PLATFORM_ROLE'),
       dataIndex: 'globalrole',
       isHideable: true,
       width: '20%',
       render: role => role || '-',
     },
     {
-      title: t('Last login time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       isHideable: true,
       width: '20%',
       render: time =>
         time
           ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss')
-          : t('Not logged in yet'),
+          : t('NOT_LOGIN_YET'),
     },
   ]
 
@@ -134,7 +134,7 @@ export default class Accounts extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props}>
-        <Banner {...bannerProps} tabs={this.tabs} title={t('NAV_ACCOUNTS')} />
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

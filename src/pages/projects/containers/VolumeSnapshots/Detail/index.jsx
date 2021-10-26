@@ -43,7 +43,7 @@ export default class VolumeSnapshotDetail extends React.Component {
   }
 
   get name() {
-    return 'Volume Snapshot'
+    return 'VOLUME_SNAPSHOT'
   }
 
   get module() {
@@ -76,7 +76,7 @@ export default class VolumeSnapshotDetail extends React.Component {
     {
       key: 'apply',
       icon: 'storage',
-      text: t('Apply'),
+      text: t('CREATE_VOLUME'),
       show: this.showApply() && this.store.detail.backupStatus === 'success',
       onClick: () => {
         const { cluster, namespace } = this.props.match.params
@@ -108,12 +108,12 @@ export default class VolumeSnapshotDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -134,7 +134,7 @@ export default class VolumeSnapshotDetail extends React.Component {
 
     return [
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <div>
             <Status
@@ -150,19 +150,19 @@ export default class VolumeSnapshotDetail extends React.Component {
         ),
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: restoreSize,
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: creator,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Create Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -187,7 +187,7 @@ export default class VolumeSnapshotDetail extends React.Component {
       icon: 'snapshot',
       breadcrumbs: [
         {
-          label: t('Volume Snapshot'),
+          label: t('VOLUME_SNAPSHOT_PL'),
           url: this.listUrl,
         },
       ],

@@ -34,7 +34,7 @@ import styles from './index.scss'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Application',
+  name: 'APP',
   rowKey: 'app_id',
 })
 export default class AppCategories extends React.Component {
@@ -80,7 +80,7 @@ export default class AppCategories extends React.Component {
         {
           key: 'adjust',
           type: 'primary',
-          text: t('Change Category'),
+          text: t('CHANGE_CATEGORY'),
           onClick: () =>
             trigger('openpitrix.category.ajust', {
               categoryId: this.state.selectCategoryId,
@@ -100,13 +100,13 @@ export default class AppCategories extends React.Component {
 
   get emptyProps() {
     return {
-      desc: t('APP_CATEGORIES_CREATE_DESC'),
+      desc: t('APP_CATEGORY_EMPTY_DESC'),
     }
   }
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'app_id',
       width: '50%',
       render: (app_id, app) => (
@@ -122,13 +122,13 @@ export default class AppCategories extends React.Component {
       ),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'isv',
       isHideable: true,
       width: '25%',
     },
     {
-      title: t('Latest Version'),
+      title: t('LATEST_VERSION'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
       width: '25%',
@@ -143,7 +143,7 @@ export default class AppCategories extends React.Component {
         <Banner
           {...bannerProps}
           icon="tag"
-          title={t('App Categories')}
+          title={t('APP_CATEGORY_PL')}
           description={t('APP_CATEGORIES_DESC')}
         />
         <Columns className={styles.main}>

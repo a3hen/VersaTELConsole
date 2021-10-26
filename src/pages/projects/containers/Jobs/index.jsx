@@ -34,7 +34,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('jobs'),
   module: 'jobs',
-  name: 'Job',
+  name: 'JOB',
 })
 export default class Jobs extends React.Component {
   get prefix() {
@@ -53,11 +53,11 @@ export default class Jobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('Jobs'),
+          label: t('JOB_PL'),
         },
         {
           value: 'cronjobs',
-          label: t('CronJobs'),
+          label: t('CRONJOB_PL'),
         },
       ],
     }
@@ -69,7 +69,7 @@ export default class Jobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -79,19 +79,19 @@ export default class Jobs extends React.Component {
       {
         key: 'rerun',
         icon: 'refresh',
-        text: t('Rerun'),
+        text: t('RERUN'),
         action: 'edit',
         onClick: item => store.rerun(item),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         type: 'danger',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -120,7 +120,7 @@ export default class Jobs extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -137,7 +137,7 @@ export default class Jobs extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -147,7 +147,7 @@ export default class Jobs extends React.Component {
         render: (status, record) => <JobStatus data={record} module={module} />,
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
@@ -165,6 +165,7 @@ export default class Jobs extends React.Component {
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      supportGpuSelect: true,
     })
   }
 

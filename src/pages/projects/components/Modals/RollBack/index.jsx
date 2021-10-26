@@ -146,31 +146,31 @@ export default class RollBackModal extends React.Component {
         formRef={this.form}
         data={formData}
         width={691}
-        title={t('Revision Rollback')}
+        title={t('ROLL_BACK')}
         icon="timed-task"
         onOk={this.handleOk}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Resource Name')}>
+        <Form.Item label={t('RESOURCE_NAME')}>
           <Input name="name" disabled />
         </Form.Item>
-        <Form.Item label={t('Current Revision')}>
+        <Form.Item label={t('CURRENT_REVISION_RECORD')}>
           <Input name="currentRevision" disabled />
         </Form.Item>
         <Form.Item
-          label={t('Rollback Revisions')}
+          label={t('TARGET_REVISION_RECORD')}
           rules={[
             {
               required: true,
-              message: t('Please select rollback revision'),
+              message: t('TARGET_REVISION_EMPTY_DESC'),
             },
           ]}
         >
           <Select
             name="revision"
-            placeholder={t('REVISION_ROLLBACK_SELECT')}
+            placeholder=" "
             options={this.getRevisionOps()}
           />
         </Form.Item>

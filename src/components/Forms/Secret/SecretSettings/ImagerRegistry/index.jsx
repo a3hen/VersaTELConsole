@@ -89,10 +89,17 @@ export default class ImageRegistry extends Component {
   }
 
   handleValidate = async () => {
+    const { cluster, isFederated, namespace, screatName } = this.props
+
     if (this.validate()) {
       this.setState({ isValidating: true })
       const result =
-        (await this.store.validateImageRegistrySecret(this.state)) || {}
+        (await this.store.validateImageRegistrySecret({
+          fedFormTemplate: this.props.fedFormTemplate,
+          name: screatName,
+          namespace,
+          cluster: isFederated ? 'host' : cluster,
+        })) || {}
 
       this.setState({
         validate: result.validate || false,
@@ -130,7 +137,7 @@ export default class ImageRegistry extends Component {
         <Alert
           type="info"
           icon="success"
-          message={t('Registry verification succeeded')}
+          message={t('REGISTRY_SECRET_VER_SUC')}
         />
       )
     }
@@ -139,7 +146,7 @@ export default class ImageRegistry extends Component {
       return (
         <Alert
           type="error"
-          title={t('Registry verification failed')}
+          title={t('REGISTRY_SECRET_VER_ERR')}
           message={reason}
         />
       )
@@ -162,15 +169,15 @@ export default class ImageRegistry extends Component {
         <Columns>
           <Column>
             <Wrapper
-              label={t('Registry Address')}
-              desc={t('Example: docker.io')}
+              label={t('REGISTRY_ADDRESS_TCAP')}
+              desc={t('REGISTRY_ADDRESS_TIP')}
               required
             >
               <SchemeInput value={url} onChange={this.handleUrlChange} />
             </Wrapper>
           </Column>
           <Column>
-            <Wrapper label={t('User Name')} required>
+            <Wrapper label={t('USERNAME')} required>
               <Input
                 value={username}
                 onChange={this.handleUserNameChange}
@@ -181,12 +188,12 @@ export default class ImageRegistry extends Component {
         </Columns>
         <Columns>
           <Column>
-            <Wrapper label={t('Email')}>
+            <Wrapper label={t('EMAIL')}>
               <Input value={email} onChange={this.handleEmailChange} />
             </Wrapper>
           </Column>
           <Column>
-            <Wrapper label={t('Password')} required>
+            <Wrapper label={t('PASSWORD')} required>
               <div className={styles.password}>
                 <InputPassword
                   type="password"
@@ -195,7 +202,7 @@ export default class ImageRegistry extends Component {
                   autoComplete="new-password"
                 />
                 <Button onClick={this.handleValidate} loading={isValidating}>
-                  {t('Validate')}
+                  {t('VALIDATE')}
                 </Button>
               </div>
             </Wrapper>

@@ -18,7 +18,7 @@
 
 module.exports = {
   'Launch kubectl': '啟動 kubectl',
-  'Copy Successfully': '複製成功',
+  COPIED_SUCCESSFUL: '複製成功',
   Copy: '複製',
   Disconnect: '斷開連接',
   connected: '已連接',
@@ -32,6 +32,8 @@ module.exports = {
     <h2><a id="KubeConfig__0"></a>kubeconfig 配置方法</h2>
     <p>查閱更多命令請參照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">官方文件</a></p>
   `,
+
+  VIEW_KUBE_CONFIG: 'kubeConfig 配置的相關操作包含查看和下載',
 
   KUBECTL_TIP: `
     <h2><a id="KubeCtl__0"></a>kubectl 常用命令</h2>
@@ -50,7 +52,7 @@ module.exports = {
     <ul>
     <li>根據 yaml 配置檔案一次性創建 service 和 rc</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml -f my-rc.yaml</code></p>
+    <p><code>kubectl create -f my-service.yaml</code></p>
     <ul>
     <li>對目錄下所有 .yaml、.yml、.json 檔案進行創建操作</li>
     </ul>
@@ -63,7 +65,7 @@ module.exports = {
     <ul>
     <li>查看 rc 和 service 列表</li>
     </ul>
-    <p><code>kubectl get rc,service</code></p>
+    <p><code>kubectl get services</code></p>
     <h4><a id="3__35"></a>3. 查看資源詳情</h4>
     <ul>
     <li>顯示 Node 的詳細資訊</li>

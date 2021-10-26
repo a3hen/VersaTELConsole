@@ -34,6 +34,7 @@ import AppReviewModal from 'apps/components/Modals/AppReview'
 import RejectModal from 'apps/components/Modals/ReviewReject'
 import CategoryCreateModal from 'apps/components/Modals/CategoryCreate'
 import AdjustCategoryModal from 'apps/components/Modals/CategoryAdjust'
+import AppAgreementModal from 'apps/components/Modals/AppAgreement'
 
 import { HANDLE_TYPE_TO_SHOW } from 'configs/openpitrix/version'
 
@@ -58,7 +59,7 @@ export default {
         onOk: data => {
           store.patch(detail, data).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -75,7 +76,7 @@ export default {
         onOk: data => {
           store.upgrade(data, detail).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },
@@ -139,14 +140,14 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           await store.create({ ...data, workspace })
-          Notify.success({ content: `${t('Upload successfully')}` })
+          Notify.success({ content: t('UPLOAD_SUCCESS') })
           Modal.close(modal)
           success && success()
         },
         store,
         modal: TemplateUploadModal,
         title: t('UPLOAD_HELM_TITLE'),
-        description: t('UPLOAD_HELM_DESC'),
+        description: t('UPLOAD_HELM_CHART_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
         workspace,
@@ -160,7 +161,7 @@ export default {
         onOk: async params => {
           await store.update(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Modify Successfully')}` })
+          Notify.success({ content: t('MODIFY_SUCCESSFUL') })
           success && success()
         },
         store,
@@ -175,14 +176,14 @@ export default {
       const modal = Modal.open({
         onOk: async params => {
           await versionStore.create(params)
-          Notify.success({ content: `${t('Add Version Successfully')}` })
+          Notify.success({ content: t('ADD_VERSION_SUCCESSFUL') })
           Modal.close(modal)
           success && success()
         },
         store,
         modal: TemplateUploadModal,
         title: t('UPLOAD_HELM_TITLE'),
-        description: t('UPLOAD_HELM_DESC'),
+        description: t('UPLOAD_HELM_CHART_DESC'),
         icon: 'templet',
         type: 'CREATE_APP',
         workspace,
@@ -197,7 +198,7 @@ export default {
           const { namespace, cluster, workspace, ...rest } = params
           await store.deploy(rest, { workspace, namespace, cluster })
           Modal.close(modal)
-          Notify.success({ content: `${t('Deploy Successfully')}` })
+          Notify.success({ content: `${t('INSTALLED_SUCCESSFULLY')}` })
           success && success()
         },
         store,
@@ -210,7 +211,7 @@ export default {
     on({ store, detail, versions, success, ...props }) {
       const type = t('App Templates')
       const resource = detail.name
-      let desc = t.html('DELETE_CONFIRM_TIP', { type, resource })
+      let desc = t.html('DELETE_RESOURCE_TYPE_DESC', { type, resource })
       if (versions.length) {
         desc = (
           <span>
@@ -223,7 +224,7 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           success && success()
         },
         store,
@@ -263,7 +264,7 @@ export default {
           const { app_id, version_id } = detail
           await store.handle({ app_id, version_id, action: 'pass' })
           Modal.close(modal)
-          Notify.success(t('Pass Successfully'))
+          Notify.success(t('PASS_SUCCESSFUL'))
           success && success()
         },
         onReject: () => {
@@ -271,7 +272,7 @@ export default {
           onReject()
         },
         icon: 'safe-notice',
-        title: t('Review Content'),
+        title: t('REVIEW_CONTENT'),
         description: t('REVIEW_CONTENT_DESC'),
         canHandle: type === 'unprocessed',
         modal: AppReviewModal,
@@ -293,11 +294,11 @@ export default {
             ...params,
           })
           Modal.close(modal)
-          Notify.success(t('Reject Successfully'))
+          Notify.success(t('REJECT_SUCCESSFUL'))
           success && success()
         },
         icon: 'safe-notice',
-        title: t('Reject Reason'),
+        title: t('REJECTION_REASON'),
         description: t('REJECT_REASON_DESC'),
         canHandle: type === 'unprocessed',
         versionId: detail.version_id || '',
@@ -314,16 +315,16 @@ export default {
           let content
           if (detail.category_id) {
             await store.update(params)
-            content = `${t('Modify Successfully')}`
+            content = `${t('MODIFY_SUCCESSFUL')}`
           } else {
             await store.create(params)
-            content = `${t('Created Successfully')}`
+            content = `${t('CREATE_SUCCESSFUL')}`
           }
           Modal.close(modal)
           Notify.success({ content })
           success && success()
         },
-        title: t('Category'),
+        title: t('CATEGORY'),
         icon: 'tag',
         detail,
         categoryNames: names,
@@ -339,10 +340,10 @@ export default {
         onOk: async () => {
           await store.delete(detail)
           Modal.close(modal)
-          Notify.success({ content: `${t('Delete Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           success && success()
         },
-        desc: t('DELETE_CATEGORY_DESC', { name: detail.name }),
+        desc: t.html('DELETE_CATEGORY_DESC', { name: detail.name }),
         modal: DeleteModal,
         store,
         ...props,
@@ -355,13 +356,25 @@ export default {
         onOk: async params => {
           await store.adjustCategory(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Adjust Successfully')}` })
+          Notify.success({ content: `${t('CHANGED_SUCCESSFULLY')}` })
           success && success()
         },
-        title: t('Adjust App Category'),
+        title: t('CHANGE_CATEGORY'),
         icon: 'tag',
         modal: AdjustCategoryModal,
         store,
+        ...props,
+      })
+    },
+  },
+  'openpitrix.app.agreement': {
+    on({ success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          Modal.close(modal)
+          success && success()
+        },
+        modal: AppAgreementModal,
         ...props,
       })
     },

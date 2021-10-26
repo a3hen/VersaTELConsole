@@ -32,7 +32,7 @@ import AppStore from 'stores/openpitrix/store'
 @withList({
   store: new AppStore(),
   module: 'apps',
-  name: 'Apps',
+  name: 'APP',
   rowKey: 'app_id',
 })
 export default class Store extends React.Component {
@@ -51,7 +51,7 @@ export default class Store extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '30%',
       render: (name, app) => (
@@ -66,7 +66,7 @@ export default class Store extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '10%',
@@ -75,26 +75,26 @@ export default class Store extends React.Component {
       ),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'isv',
       isHideable: true,
       width: '10%',
     },
     {
-      title: t('Latest Version'),
+      title: t('LATEST_VERSION'),
       dataIndex: 'latest_app_version.name',
       isHideable: true,
       width: '16%',
     },
     {
-      title: t('App Category'),
+      title: t('APP_CATEGORY'),
       dataIndex: 'category_set',
       isHideable: true,
       width: '17%',
       render: categories => getAppCategoryNames(categories),
     },
     {
-      title: t('Release / Suspended Time'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '17%',
@@ -108,7 +108,7 @@ export default class Store extends React.Component {
       <ListPage {...this.props} noWatch>
         <Banner
           {...bannerProps}
-          title={t('App Store')}
+          title={t('APP_STORE')}
           description={t('APP_STORE_DESC')}
         />
         <Table

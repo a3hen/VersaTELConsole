@@ -17,6 +17,7 @@
  */
 
 import React from 'react'
+import { get } from 'lodash'
 import { Link } from 'react-router-dom'
 
 import { Avatar } from 'components/Base'
@@ -35,7 +36,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('deployments'),
   module: 'deployments',
-  name: 'Workload',
+  name: 'WORKLOAD',
   rowKey: 'uid',
 })
 export default class Deployments extends React.Component {
@@ -51,15 +52,15 @@ export default class Deployments extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
         {
           value: 'daemonsets',
-          label: t('DaemonSets'),
+          label: t('DAEMONSETS'),
         },
       ],
     }
@@ -67,13 +68,30 @@ export default class Deployments extends React.Component {
 
   showAction = record => !record.isFedManaged
 
+  get selectActions() {
+    const { tableProps, trigger, name, rootStore } = this.props
+    return [
+      ...get(tableProps, 'tableActions.selectActions', {}),
+      {
+        key: 'stop',
+        text: t('STOP'),
+        onClick: () =>
+          trigger('resource.batch.stop', {
+            type: name,
+            rowKey: 'uid',
+            success: rootStore.routing.query(),
+          }),
+      },
+    ]
+  }
+
   get itemActions() {
     const { module, name, trigger } = this.props
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -84,7 +102,7 @@ export default class Deployments extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -95,7 +113,7 @@ export default class Deployments extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('Redeploy'),
+        text: t('RECREATE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -107,12 +125,12 @@ export default class Deployments extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -148,7 +166,7 @@ export default class Deployments extends React.Component {
 
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -165,7 +183,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -177,7 +195,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '22%',
@@ -188,7 +206,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
@@ -205,6 +223,7 @@ export default class Deployments extends React.Component {
       module,
       namespace: query.namespace,
       cluster: match.params.cluster,
+      supportGpuSelect: true,
     })
   }
 
@@ -216,6 +235,7 @@ export default class Deployments extends React.Component {
         <ResourceTable
           {...tableProps}
           itemActions={this.itemActions}
+          selectActions={this.selectActions}
           columns={this.getColumns()}
           onCreate={this.showCreate}
           cluster={match.params.cluster}

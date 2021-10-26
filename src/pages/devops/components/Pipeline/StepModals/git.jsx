@@ -129,12 +129,12 @@ export default class Git extends React.Component {
         <Form data={this.state.formData} ref={this.formRef}>
           <Form.Item
             label={t('Url')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Input name="url" />
           </Form.Item>
           <Form.Item
-            label={t('Credential ID')}
+            label={t('CREDENTIAL_ID')}
             desc={
               <p>
                 {t('ADD_NEW_CREDENTIAL_DESC')}
@@ -142,7 +142,7 @@ export default class Git extends React.Component {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -159,7 +159,7 @@ export default class Git extends React.Component {
               clearable
             />
           </Form.Item>
-          <Form.Item label={t('Branch')}>
+          <Form.Item label={t('BRANCH_SI')}>
             <Input name="branch" />
           </Form.Item>
         </Form>

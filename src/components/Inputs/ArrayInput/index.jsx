@@ -41,7 +41,7 @@ export default class ArrayInput extends React.Component {
     name: '',
     value: [''],
     onChange() {},
-    addText: 'Add',
+    addText: t('ADD'),
     itemType: 'string',
   }
 
@@ -103,7 +103,7 @@ export default class ArrayInput extends React.Component {
     }
 
     if (!value.role) {
-      return callback({ message: t('Please add role') })
+      return callback({ message: t('SELECT_ROLE_TIP') })
     }
     callback()
   }
@@ -148,21 +148,18 @@ export default class ArrayInput extends React.Component {
     return (
       <div className={classnames(styles.wrapper, className)}>
         {this.renderItems()}
-        <p
-          className={styles.desc}
-          dangerouslySetInnerHTML={{
-            __html: desc,
-          }}
-        />
-        <div className="text-right">
-          <Button
-            className={styles.add}
-            onClick={this.handleAdd}
-            disabled={!this.isAddEnable()}
-          >
-            {addText}
-          </Button>
-          {extraAdd}
+        <div className={styles.footer}>
+          <div className={styles.desc}>{desc}</div>
+          <div className="text-right">
+            <Button
+              className={styles.add}
+              onClick={this.handleAdd}
+              disabled={!this.isAddEnable()}
+            >
+              {addText}
+            </Button>
+            {extraAdd}
+          </div>
         </div>
       </div>
     )

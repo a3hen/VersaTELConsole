@@ -42,11 +42,19 @@ export default class ContainerStore {
 
   module = 'containers'
 
-  getDetailUrl = ({ cluster, namespace, podName }) => {
+  getDetailUrl = ({ cluster, namespace, podName, gateways }) => {
     let path = `api/v1`
 
     if (cluster) {
       path += `/klusters/${cluster}`
+    }
+
+    if (gateways) {
+      const ns =
+        namespace === 'kubesphere-controls-system' || !namespace
+          ? 'kubesphere-system'
+          : namespace
+      return `kapis/gateway.kubesphere.io/v1alpha1/namespaces/${ns}/gateways/${gateways}/pods/${podName}`
     }
 
     return `${path}/namespaces/${namespace}/pods/${podName}`
@@ -86,7 +94,7 @@ export default class ContainerStore {
 
   @action
   async watchLogs(
-    { cluster, namespace, podName, silent, ...params },
+    { cluster, namespace, podName, gateways, silent, ...params },
     callback
   ) {
     if (!silent) {
@@ -95,7 +103,7 @@ export default class ContainerStore {
 
     if (params.follow) {
       this.watchHandler = request.watch(
-        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName, gateways })}/log`,
         params,
         data => {
           this.logs = {
@@ -107,7 +115,7 @@ export default class ContainerStore {
       )
     } else {
       const result = await request.get(
-        `${this.getDetailUrl({ cluster, namespace, podName })}/log`,
+        `${this.getDetailUrl({ cluster, namespace, podName, gateways })}/log`,
         params
       )
 
@@ -158,11 +166,23 @@ export default class ContainerStore {
     )
 
   @action
-  getImageDetail = async ({ cluster, ...params }) => {
+  getHarborImagesLists = async (params, url) =>
+    await request.get(`harbor/${url}/api/v2.0/search`, params, () => {})
+
+  @action
+  getHarborImageTag = async (url, projectName, repositoryName, params) =>
+    await request.get(
+      `harbor/${url}/api/v2.0/projects/${projectName}/repositories/${repositoryName}/artifacts`,
+      params,
+      () => {}
+    )
+
+  @action
+  getImageDetail = async ({ cluster, namespace, ...params }) => {
     const result = await request.get(
-      `kapis/resources.kubesphere.io/v1alpha2${this.getPath({
+      `kapis/resources.kubesphere.io/v1alpha3${this.getPath({
         cluster,
-      })}/registry/blob`,
+      })}/namespaces/${namespace}/imageconfig`,
       params,
       null,
       (e, data) => data

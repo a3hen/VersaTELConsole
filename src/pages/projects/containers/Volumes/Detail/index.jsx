@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isEmpty, get } from 'lodash'
+import { isEmpty, get, isUndefined } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
@@ -27,7 +27,6 @@ import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import Volume from 'stores/volume'
 import StorageClass from 'stores/storageClass'
-import StorageClassCapability from 'stores/storageclasscapabilities'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -41,14 +40,12 @@ export default class VolumeDetail extends React.Component {
 
   storageclass = new StorageClass()
 
-  storageclasscapabilities = new StorageClassCapability()
-
   componentDidMount() {
     this.fetchData()
   }
 
   get name() {
-    return 'Volume'
+    return 'VOLUME'
   }
 
   get module() {
@@ -77,6 +74,28 @@ export default class VolumeDetail extends React.Component {
     return this.store.detail.isFedManaged
   }
 
+  get allowClone() {
+    try {
+      const clone = toJS(this.storageclass).detail.annotations[
+        'storageclass.kubesphere.io/allow-clone'
+      ]
+      return isUndefined(clone) ? true : !JSON.parse(clone)
+    } catch (err) {
+      return true
+    }
+  }
+
+  get allowSnapshot() {
+    try {
+      const snapShot = toJS(this.storageclass).detail.annotations[
+        'storageclass.kubesphere.io/allow-snapshot'
+      ]
+      return isUndefined(snapShot) ? true : !JSON.parse(snapShot)
+    } catch (err) {
+      return true
+    }
+  }
+
   fetchData = async () => {
     const { cluster } = this.props.match.params
     await this.store.fetchDetail(this.props.match.params)
@@ -86,22 +105,18 @@ export default class VolumeDetail extends React.Component {
       cluster,
       name: storageClassName,
     })
-
-    await this.storageclasscapabilities.fetchDetail({
-      cluster,
-      name: storageClassName,
-    })
+    await this.store.getSnapshotType()
   }
 
   getOperations = () => [
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -109,7 +124,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -120,14 +135,10 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'clone',
       type: 'control',
-      text: t('Clone Volume'),
+      text: t('CLONE'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.volumeFeature.clone',
-        false
-      ),
+      disabled: this.allowClone,
       onClick: () => {
         this.trigger('volume.clone', {})
       },
@@ -135,28 +146,22 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'snapshot',
       type: 'control',
-      text: t('Create Snapshot'),
+      text: t('CREATE_SNAPSHOT'),
       icon: 'copy',
       action: 'create',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.snapshotFeature.create',
-        false
-      ),
+      disabled: this.allowSnapshot,
       onClick: () => {
-        this.trigger('volume.create.snapshot', {})
+        this.trigger('volume.create.snapshot', {
+          detail: this.store.detail,
+        })
       },
     },
     {
       key: 'expand',
-      text: t('Expand Volume'),
+      text: t('EXPAND'),
       icon: 'scaling',
       action: 'edit',
-      disabled: !get(
-        this.storageclasscapabilities,
-        'detail.supportExpandVolume',
-        false
-      ),
+      disabled: !get(this.storageclass.detail, 'allowVolumeExpansion', false),
       onClick: () => {
         const { detail, isSubmitting } = this.store
         const originData = toJS(detail._originData)
@@ -175,12 +180,12 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -205,11 +210,11 @@ export default class VolumeDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: (
           <div>
             <Status
@@ -220,19 +225,19 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: capacity,
       },
       {
-        name: t('Access Mode'),
+        name: t('ACCESS_MODE_TCAP'),
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value: storageClassName,
       },
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: get(
           detail,
           "annotations['volume.beta.kubernetes.io/storage-provisioner']",
@@ -240,11 +245,15 @@ export default class VolumeDetail extends React.Component {
         ),
       },
       {
-        name: t('Create Time'),
+        name: t('VOLUME_INSTANCE'),
+        value: get(detail, '_originData.spec.volumeName', ''),
+      },
+      {
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: creator,
       },
     ]
@@ -267,11 +276,11 @@ export default class VolumeDetail extends React.Component {
       name: getDisplayName(this.store.detail),
       desc: this.store.detail.description,
       attrs: this.getAttrs(),
-      operations: this.isFedManaged ? [] : this.getOperations(),
+      operations: this.getOperations(),
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('Volumes'),
+          label: t('VOLUME_PL'),
           url: this.listUrl,
         },
       ],

@@ -27,31 +27,31 @@ import ContainerSettings from 'components/Forms/Job/ContainerSettings'
 
 export default [
   {
-    title: 'Basic Info',
+    title: 'BASIC_INFORMATION',
     icon: 'cdn',
     component: withProps(BaseInfo, { maxNameLength: 63 }),
     required: true,
   },
   {
-    title: 'Job Settings',
+    title: 'STRATEGY_SETTINGS',
     icon: 'job',
     component: JobSettings,
     required: true,
   },
   {
-    title: 'Container Image',
+    title: 'POD_SETTINGS',
     icon: 'docker',
     component: ContainerSettings,
     required: true,
   },
   {
-    title: 'Mount Volumes',
+    title: 'VOLUME_SETTINGS',
     icon: 'storage',
     component: VolumeSettings,
     required: true,
   },
   {
-    title: 'Advanced Settings',
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,

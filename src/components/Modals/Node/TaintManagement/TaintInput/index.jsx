@@ -94,7 +94,7 @@ export default class TaintInput extends React.Component {
     // some key is empty, throw error
     const emptyKeyIndex = value.findIndex(item => isEmpty(item.key))
     if (emptyKeyIndex !== -1) {
-      this.showKeyError({ index: emptyKeyIndex, message: t('Empty keys') })
+      this.showKeyError({ index: emptyKeyIndex, message: t('EMPTY_KEY') })
       return false
     }
 
@@ -107,7 +107,7 @@ export default class TaintInput extends React.Component {
       return cur
     })
     if (existed) {
-      this.showKeyError({ index, message: t('Duplicate keys') })
+      this.showKeyError({ index, message: t('DUPLICATE_KEYS') })
       return false
     }
 
@@ -176,7 +176,7 @@ export default class TaintInput extends React.Component {
             onClick={this.handleAdd}
             disabled={!this.isAddEnable()}
           >
-            {t('Add Taint')}
+            {t('ADD_TAINT')}
           </Button>
         </div>
       </div>

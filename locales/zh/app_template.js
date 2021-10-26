@@ -17,9 +17,10 @@
  */
 
 module.exports = {
-  'Deploy Successfully': '部署成功',
-  'Update Successfully': '更新成功',
+  INSTALLED_SUCCESSFULLY: '安装成功。',
   'Configuration Files': '配置文件',
+  'Deploy Successfully': '部署成功',
+  CONFIG_FILES: '配置文件',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: '应用一键部署',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:
@@ -27,9 +28,11 @@ module.exports = {
 
   'App README': '应用介绍',
 
-  'The app has no documentation.': '该应用没有说明文档',
-  'The version has no documentation.': '该版本没有说明文档',
-  'The app has no chart file.': '该应用没有配置文件',
+  NO_DOCUMENT_DESC: '没有找到说明文档。',
+  VERSION_INTRO_EMPTY_DESC: '没有找到该版本的介绍。',
+  NO_CHART_FILE_FOUND: '没有找到配置文件。',
+  NO_APP_DESC_FOUND: '没有找到应用描述信息。',
+  NO_APP_CHART_FILE_FOUND: '没有找到该应用的 Chart 文件。',
 
   TOTAL_APP_REPOS: '共计 {num} 个应用仓库',
 

@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import WeComForm from 'components/Forms/Notification/WeComForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ConfigStore from 'stores/notification/config'
 import ReceiverStore from 'stores/notification/receiver'
@@ -50,7 +51,7 @@ export default class WeCom extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
+    isLoading: false,
   }
 
   formData = {
@@ -79,6 +80,7 @@ export default class WeCom extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'wechat' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -104,9 +106,20 @@ export default class WeCom extends React.Component {
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+    this.setState({ isLoading: false })
+  }
+
+  getVerifyFormTemplate = data => {
+    const { config, receiver, secret } = cloneDeep(data)
+    set(
+      config,
+      'spec.wechat.wechatApiSecret.value',
+      get(secret, 'data.appsecret')
+    )
+    unset(receiver, 'spec.wechat.alertSelector')
+    return { config, receiver, secret }
   }
 
   handleSubmit = async data => {
@@ -128,7 +141,7 @@ export default class WeCom extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
@@ -136,77 +149,35 @@ export default class WeCom extends React.Component {
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('Update Successfully')
+      message = t('UPDATED_SUCCESS_DESC')
     }
 
     this.fetchData()
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
-  onAddReceiver = (type, value) => {
-    const { formData } = this.state
-    const data = get(formData, `receiver.spec.wechat.${type}`, [])
-
-    set(formData, `receiver.spec.wechat.${type}`, [...data, value])
-    this.setState({ formData, showTip: true })
-  }
-
-  onDeleteReceiver = (type, value) => {
-    const { formData } = this.state
-    const data = get(formData, `receiver.spec.wechat.${type}`, [])
-    set(
-      formData,
-      `receiver.spec.wechat.${type}`,
-      data.filter(item => item !== value)
-    )
-    this.setState({ formData, showTip: true })
-  }
-
   render() {
+    const { formData, isLoading } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('WeCom')}
-          desc={t('WECOM_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="wecom" />
+        <Panel loading={isLoading}>
+          <WeComForm
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.receiverStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.configStore.list.isLoading}>
-        <WeComForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          onAddReceiver={this.onAddReceiver}
-          onDeleteReceiver={this.onDeleteReceiver}
-          isSubmitting={this.configStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

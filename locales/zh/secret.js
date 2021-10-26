@@ -17,46 +17,56 @@
  */
 
 module.exports = {
-  secrets: '密钥',
-  Secrets: '密钥',
-  Secret: '密钥',
-  'Secret Name': '密钥名称',
-  'Config Number': '配置项数量',
-  'Edit Secret': '编辑密钥',
-  'Secret Settings': '密钥设置',
-  'Private Key': '私钥',
-  'Image Registry Secret': '镜像仓库密钥',
-  'Please input credential': '请输入凭证',
-  'Please input private key': '请输入私钥',
-  'Please input data': '请输入数据',
-  Unverified: '镜像仓库密钥验证失败',
-  SECRET_TYPE_DESC: '可以选择也可以自定义一个密钥类型',
+  secrets: '保密字典',
+  Secrets: '保密字典',
+  Secret: '保密字典',
+  SECRET: '保密字典',
+  CODE_REPOSITORY_KEY: '代码仓库密钥',
+  SECRET_PL: '保密字典',
+  SECRET_LOW: '保密字典',
+  SECRET_FIELD_COUNT: '字段数量',
+  EDIT_SECRET: '编辑保密字典',
+  DATA_SETTINGS: '数据设置',
+  KUBECONFIG_SETTINGS: 'kubeconfig 设置',
+  PRIVATE_KEY_TCAP: '私钥',
+  IMAGE_REGISTRY_INFORMATION: '镜像仓库信息',
+  TLS_INFORMATION: 'TLS 信息',
+  IMAGE_REGISTRY_SECRET_TCAP: '镜像仓库保密字典',
+  ENTER_CREDENTIAL_TIP: '请输入凭证 ID。',
+  ENTER_PRIVATE_KEY_DESC: '请输入私钥。',
+  ENTER_DATA_DESC: '请添加数据。',
+  Unverified: '镜像仓库保密字典验证失败。',
+  SECRET_TYPE_DESC: '选择一个保密字典类型。',
 
   SECRET_DESC:
-    '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
-  SECRET_CREATE_DESC:
-    '密钥 (Secret) 是一种包含少量敏感信息的资源对象，例如密码、token、秘钥等，以键/值对形式保存并且可以在容器组中使用。',
+    '保密字典（Secret）是一种包含少量敏感信息的资源对象，例如密码、令牌、保密字典等，以键值对形式保存并且可以在容器组中使用。',
+  SECRET_EMPTY_DESC: '请创建一个保密字典。',
 
-  SECRET_NO_CHINESE_CODE_DESC: '密钥中不能包含中文字符',
+  SECRET_NO_CHINESE_CODE_DESC:
+    '保密字典的键必须由字母数字字符、连字符（-）、下划线（_）或句点（.）组成。',
 
-  'Registry Address': '仓库地址',
-  'Registry verification failed': '镜像仓库校验失败',
-  'Registry verification succeeded': '镜像仓库校验通过',
-  'Account Password Secret': '帐户密码密钥',
+  REGISTRY_ADDRESS_TCAP: '仓库地址',
+  REGISTRY_SECRET_VER_ERR: '镜像仓库验证失败。',
+  REGISTRY_SECRET_VER_SUC: '镜像仓库验证通过。',
+  USERNAME_PASSWORD: '用户名和密码',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帐户密码保密字典',
 
-  Data: '数据',
-  'Add Data': '添加数据',
-  'Edit Data': '编辑数据',
-  'Add key / value pair data': '添加键/值对形式数据',
+  DATA: '数据',
+  ADD_DATA_TCAP: '添加数据',
+  EDIT_DATA_TCAP: '编辑数据',
+  ADD_DATA_DESC: '添加键值对数据。',
 
-  'DATA-KEY': '键(Key)',
-  'DATA-VALUE': '值(Value)',
-  'Example: docker.io': '例：docker.io',
+  DATA_KEY: '键',
+  DATA_VALUE: '值',
+  REGISTRY_ADDRESS_TIP: '设置镜像仓库地址，例如 docker.io。',
 
-  IMAGE_REGISTRY_REQUIRED_DESC:
-    '镜像仓库密钥需要至少包含仓库地址、用户名和密码信息',
+  IMAGE_REGISTRY_REQUIRED_DESC: '请设置仓库地址、用户名和密码信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库密钥前, 请先验证密钥是否可用',
+  IMAGE_REGISTRY_VALIDATE_TIP: '创建镜像仓库保密字典前, 请先验证用户名和密码。',
 
-  'Please input the registry address': '请输入镜像仓库地址',
+  'Please input the registry address': '请输入镜像仓库地址。',
+
+  // Secret Type Drop-down List
+  SECRET_VALUE_LABEL: '{value}（{label}）',
+  CREATE_SECRET: '新建保密字典',
 }

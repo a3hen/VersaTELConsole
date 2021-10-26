@@ -33,7 +33,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new FederatedStore(new WorkloadStore('deployments')),
   module: 'deployments',
-  name: 'Workload',
+  name: 'WORKLOAD',
 })
 export default class Deployments extends React.Component {
   get prefix() {
@@ -52,11 +52,11 @@ export default class Deployments extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
       ],
     }
@@ -68,7 +68,7 @@ export default class Deployments extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -78,7 +78,7 @@ export default class Deployments extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -88,11 +88,11 @@ export default class Deployments extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             isFederated: true,
           }),
@@ -108,11 +108,11 @@ export default class Deployments extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
               isFederated: true,
             }),
@@ -125,7 +125,7 @@ export default class Deployments extends React.Component {
     const { module, projectStore } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -139,7 +139,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '22%',
@@ -155,13 +155,13 @@ export default class Deployments extends React.Component {
           ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         isHideable: true,
         width: 150,
@@ -177,6 +177,8 @@ export default class Deployments extends React.Component {
       isFederated: true,
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
+      renderScheduleTab: true,
+      supportGpuSelect: true,
     })
   }
 

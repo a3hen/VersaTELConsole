@@ -83,18 +83,21 @@ export default class AlertHistory extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Alerting Message'),
+      title: t('ALERTING_MESSAGE'),
       dataIndex: 'value',
       render: (value, record) => (
         <Text
           icon="loudspeaker"
           title={get(record, 'annotations.summary')}
-          description={get(record, 'annotations.message', '-')}
+          description={
+            get(record, 'annotations.message') ||
+            get(record, 'annotations.description', '-')
+          }
         />
       ),
     },
     {
-      title: t('Level'),
+      title: t('SEVERITY'),
       dataIndex: 'labels.severity',
       width: '15%',
       render: severity => {
@@ -106,7 +109,7 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
-      title: t('Alerting Resource'),
+      title: t('MONITORING_TARGET'),
       dataIndex: 'labels',
       isHideable: true,
       width: '20%',
@@ -116,6 +119,13 @@ export default class AlertHistory extends React.Component {
           return '-'
         }
 
+        if (module === 'hpas') {
+          return (
+            <span>
+              {t(MODULE_KIND_MAP[module])}: {name}
+            </span>
+          )
+        }
         return (
           <Link to={`${this.getPrefix({ namespace })}/${module}/${name}`}>
             {t(MODULE_KIND_MAP[module])}: {name}
@@ -124,7 +134,7 @@ export default class AlertHistory extends React.Component {
       },
     },
     {
-      title: t('Time'),
+      title: t('ACTIVATION_TIME'),
       dataIndex: 'activeAt',
       isHideable: true,
       width: 200,
@@ -136,9 +146,9 @@ export default class AlertHistory extends React.Component {
     const { data, isLoading, filters } = this.store.list
 
     return (
-      <Panel title={t('Alerting History')} loading={isLoading}>
+      <Panel title={t('ALERTING_HISTORY')} loading={isLoading}>
         {isEmpty(data) ? (
-          <div>{t('No Data')}</div>
+          <div>{t('NO_DATA_DESC')}</div>
         ) : (
           <BaseTable
             className={styles.table}

@@ -47,11 +47,11 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
           description={
             <div className={styles.description}>
               <span>
-                {t('Protocol')}: {protocol}
+                {t('PROTOCOL_VALUE', { value: protocol.toUpperCase() })}
               </span>
               {protocol === 'https' && (
                 <span>
-                  {t('Certificate')}: {tlsItem.secretName}
+                  {t('CERTIFICATE_VALUE', { value: tlsItem.secretName })}
                 </span>
               )}
             </div>
@@ -65,25 +65,30 @@ const Item = ({ index, rule, tls = [], projectDetail, onDelete, onEdit }) => {
                 clustersDetail={projectDetail.clusters}
               />
             }
-            description={t('Deployment Location')}
+            description={t('CLUSTER')}
           />
         )}
       </div>
       <div className={styles.paths}>
-        {rule.http.paths.map(path => (
-          <div key={path.path} className={styles.path}>
+        {rule.http.paths.map((path, i) => (
+          <div key={`${path.path}-${i}`} className={styles.path}>
             <Columns>
               <Column>
-                <span>{t('path')}:</span>
-                <span>{path.path}</span>
+                <span>{t('PATH_VALUE', { value: path.path })}</span>
               </Column>
               <Column>
-                <span>{t('Service')}:</span>
-                <span>{get(path, 'backend.serviceName')}</span>
+                <span>
+                  {t('SERVICE_VALUE', {
+                    value: get(path, 'backend.service.name'),
+                  })}
+                </span>
               </Column>
               <Column>
-                <span>{t('Port')}:</span>
-                <span>{get(path, 'backend.servicePort')}</span>
+                <span>
+                  {t('PORT_VALUE', {
+                    value: get(path, 'backend.service.port.number'),
+                  })}
+                </span>
               </Column>
             </Columns>
           </div>

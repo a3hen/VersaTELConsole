@@ -101,7 +101,7 @@ export default class ResourceQuota extends React.Component {
         </div>
         {canEdit && (
           <div className={styles.actions}>
-            <Button onClick={this.showEdit}>{t('Edit Quota')}</Button>
+            <Button onClick={this.showEdit}>{t('EDIT_QUOTAS')}</Button>
           </div>
         )}
         <div className={classNames(styles.content, { [styles.fold]: isFold })}>
@@ -115,7 +115,7 @@ export default class ResourceQuota extends React.Component {
               icon={isFold ? 'chevron-down' : 'chevron-up'}
               onClick={this.toggleFold}
             >
-              {isFold ? t('Unfold') : t('Fold')}
+              {isFold ? t('UNFOLD') : t('FOLD')}
             </Button>
           </div>
         )}

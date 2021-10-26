@@ -35,16 +35,31 @@ export default {
             return
           }
 
-          store
-            .create(data, {
-              cluster,
-              namespace: namespace || get(data, 'metadata.namespace'),
-            })
-            .then(() => {
-              Modal.close(modal)
-              Notify.success({ content: `${t('Created Successfully')}` })
-              success && success()
-            })
+          if (data.type === 'grafana') {
+            delete data.type
+
+            store
+              .createGrafana(data, {
+                cluster,
+                namespace: namespace || get(data, 'metadata.namespace'),
+              })
+              .then(() => {
+                Modal.close(modal)
+                Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+                success && success()
+              })
+          } else {
+            store
+              .create(data, {
+                cluster,
+                namespace: namespace || get(data, 'metadata.namespace'),
+              })
+              .then(() => {
+                Modal.close(modal)
+                Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+                success && success()
+              })
+          }
         },
         module,
         cluster,
@@ -62,7 +77,7 @@ export default {
         onOk: data => {
           set(data, 'metadata.resourceVersion', detail.resourceVersion)
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             success && success()
           })
         },

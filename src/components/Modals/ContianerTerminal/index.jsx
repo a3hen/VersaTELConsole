@@ -118,7 +118,7 @@ export default class ContainerTerminalModal extends React.Component {
     const defaultContainers = [
       {
         name: selectContainer.name,
-        image: `${t('Loading')}`,
+        image: t('LOADING'),
       },
     ]
 
@@ -133,7 +133,7 @@ export default class ContainerTerminalModal extends React.Component {
       value: container,
       uid: container.name,
       icon: 'docker',
-      description: `${t('Image')}: ${container.image}`,
+      description: t('IMAGE_VALUE', { value: container.image }),
     }))
 
     const command = selectContainer.command
@@ -146,19 +146,19 @@ export default class ContainerTerminalModal extends React.Component {
             options={containerOpts}
             onChange={this.handleContainerChange}
           />
-          <h6>{t('Basic Information')}</h6>
+          <h6>{t('BASIC_INFORMATION')}</h6>
           <dl>
-            <dt>{t('Status')}</dt>
+            <dt>{t('STATUS')}</dt>
             <dd>{selectContainer.ready ? t('Running') : t('Updating')}</dd>
-            <dt>{t('Image')}</dt>
+            <dt>{t('IMAGE')}</dt>
             <dd>{selectContainer.image}</dd>
-            <dt>{t('Command')}</dt>
+            <dt>{t('COMMAND')}</dt>
             <dd>{isEmpty(command) ? '-' : command.join(' ')}</dd>
-            <dt>{t('Resource Requests')}</dt>
+            <dt>{t('RESOURCE_REQUESTS')}</dt>
             <dd>{this.getResourceInfo('requests')}</dd>
-            <dt>{t('Resource Limits')}</dt>
+            <dt>{t('RESOURCE_LIMITS')}</dt>
             <dd>{this.getResourceInfo('limits')}</dd>
-            <dt>{t('Restart Count')}</dt>
+            <dt>{t('RESTART_PL')}</dt>
             <dd>{selectContainer.restartCount}</dd>
           </dl>
         </div>

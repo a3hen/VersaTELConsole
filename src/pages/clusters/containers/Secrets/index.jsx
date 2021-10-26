@@ -32,7 +32,7 @@ import SecretStore from 'stores/secret'
 @withClusterList({
   store: new SecretStore(),
   module: 'secrets',
-  name: 'Secret',
+  name: 'SECRET',
   rowKey: 'uid',
 })
 export default class Secrets extends React.Component {
@@ -44,7 +44,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -55,7 +55,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,7 +66,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editSecret',
         icon: 'pen',
-        text: t('Edit Secret'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -78,12 +78,12 @@ export default class Secrets extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -100,7 +100,7 @@ export default class Secrets extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -116,7 +116,7 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '16%',
@@ -127,21 +127,21 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '20%',
         render: type => (SECRET_TYPES[type] ? t(SECRET_TYPES[type]) : type),
       },
       {
-        title: t('Config Number'),
+        title: t('SECRET_FIELD_COUNT'),
         dataIndex: 'data',
         isHideable: true,
         width: '16%',
         render: data => Object.keys(data).length,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

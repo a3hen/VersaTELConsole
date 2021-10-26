@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withList({
   store: new ReviewStore(),
   module: 'apps',
-  name: 'App Reviews',
+  name: 'APP_REVIEW',
   rowKey: 'version_id',
 })
 export default class Reviews extends React.Component {
@@ -51,15 +51,15 @@ export default class Reviews extends React.Component {
       options: [
         {
           value: 'unprocessed',
-          label: t('Unprocessed'),
+          label: t('PENDING_REVIEW'),
         },
         {
           value: 'processed',
-          label: t('Processed'),
+          label: t('COMPLETE_REVIEW'),
         },
         {
           value: 'all',
-          label: t('All'),
+          label: t('ALL'),
         },
       ],
     }
@@ -83,7 +83,7 @@ export default class Reviews extends React.Component {
       {
         key: 'handle',
         icon: 'eye',
-        text: t(this.type === 'unprocessed' ? 'Review' : 'View'),
+        text: t(this.type === 'unprocessed' ? 'REVIEW' : 'REVIEW_CONTENT'),
         onClick: this.showReview,
       },
     ]
@@ -119,7 +119,7 @@ export default class Reviews extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Review Object'),
+      title: t('NAME'),
       dataIndex: 'review_id',
       width: '30%',
       render: (review_id, item) => (
@@ -135,27 +135,27 @@ export default class Reviews extends React.Component {
       ),
     },
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       isHideable: true,
       width: '15%',
-      render: () => t('Request for Approval'),
+      render: () => t('APP_PUBLISHING'),
     },
     {
-      title: t('Workspace'),
+      title: t('WORKSPACE'),
       dataIndex: 'app_id',
       isHideable: true,
       width: '10%',
       render: appId => this.getAppISV(appId),
     },
     {
-      title: t('Operator'),
+      title: t('OPERATOR'),
       dataIndex: 'reviewer',
       isHideable: true,
       width: '10%',
     },
     {
-      title: t('Review Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
@@ -171,7 +171,7 @@ export default class Reviews extends React.Component {
       },
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'status_time',
       isHideable: true,
       width: '15%',
@@ -196,7 +196,7 @@ export default class Reviews extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="safe-notice"
-          title={t('App Reviews')}
+          title={t('APP_REVIEW')}
           description={t('APP_REVIEW_DESC')}
         />
         <Table

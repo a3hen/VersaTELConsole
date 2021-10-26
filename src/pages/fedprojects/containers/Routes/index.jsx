@@ -26,12 +26,12 @@ import { getLocalTime, getDisplayName, getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import FederatedStore from 'stores/federated'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withProjectList({
-  store: new FederatedStore(new RouterStore()),
+  store: new FederatedStore(new IngressStore()),
   module: 'ingresses',
-  name: 'Route',
+  name: 'ROUTE',
 })
 export default class Routers extends React.Component {
   get tips() {
@@ -54,17 +54,18 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
-        onClick: item =>
+        onClick: item => {
           trigger('resource.baseinfo.edit', {
             detail: item,
-          }),
+          })
+        },
       },
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -72,13 +73,39 @@ export default class Routers extends React.Component {
           }),
       },
       {
+        key: 'editRules',
+        icon: 'firewall',
+        text: t('EDIT_ROUTING_RULES'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('fedproject.router.rules.edit', {
+            isFederated: true,
+            detail,
+            projectDetail: this.props.projectStore.detail,
+          })
+        },
+      },
+      {
+        key: 'editAnnotations',
+        icon: 'firewall',
+        text: t('EDIT_ANNOTATIONS'),
+        action: 'edit',
+        onClick: async item => {
+          const detail = await this.props.store.fetchDetail(item)
+          trigger('router.annotations.edit', {
+            detail,
+          })
+        },
+      },
+      {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -86,11 +113,13 @@ export default class Routers extends React.Component {
   }
 
   getColumns = () => {
-    const { module } = this.props
+    const { module, getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
+        sorter: true,
+        sortOrder: getSortOrder('name'),
         render: (name, record) => (
           <Avatar
             icon={ICON_TYPES[module]}
@@ -103,20 +132,20 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '22%',
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         width: '22%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

@@ -29,6 +29,7 @@ import {
   Columns,
   Column,
 } from '@kube-design/components'
+import { omit, isEmpty } from 'lodash'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -38,14 +39,26 @@ import styles from './index.scss'
 export default class ContainerSetting extends Base {
   get defaultResourceLimit() {
     const { limitRanges = {} } = this.props
+    const gpu = {
+      type: '',
+      value: '',
+    }
 
     if (!limitRanges.limits && !limitRanges.requests) {
       return undefined
     }
 
+    const gpuInfo = omit(limitRanges.requests, ['cpu', 'memory'])
+
+    if (!isEmpty(gpuInfo)) {
+      gpu.type = Object.keys(gpuInfo)[0]
+      gpu.value = Object.values(gpuInfo)[0]
+    }
+
     return {
       requests: limitRanges.requests || {},
       limits: limitRanges.limits || {},
+      gpu,
     }
   }
 
@@ -59,13 +72,15 @@ export default class ContainerSetting extends Base {
           <Columns className={styles.columns}>
             <Column>
               <Form.Item
-                label={t('Container Name')}
+                label={t('CONTAINER_NAME')}
                 desc={t('NAME_DESC')}
                 rules={[
-                  { required: true, message: t('Please input name') },
+                  { required: true, message: t('NAME_EMPTY_DESC') },
                   {
                     pattern: PATTERN_NAME,
-                    message: t('Invalid name', { message: t('NAME_DESC') }),
+                    message: t('INVALID_NAME_DESC', {
+                      message: t('NAME_DESC'),
+                    }),
                   },
                 ]}
               >
@@ -77,7 +92,7 @@ export default class ContainerSetting extends Base {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Container Type')}>
+              <Form.Item label={t('CONTAINER_TYPE')}>
                 <Select
                   name="type"
                   defaultValue={defaultContainerType}
@@ -90,7 +105,7 @@ export default class ContainerSetting extends Base {
           </Columns>
           <Alert
             className="margin-b12"
-            type="warning"
+            type="info"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
           <Form.Item
@@ -101,6 +116,7 @@ export default class ContainerSetting extends Base {
               defaultValue={defaultResourceLimit}
               onError={this.handleError}
               isEdit={isEdit}
+              supportGpuSelect={true}
             />
           </Form.Item>
         </>

@@ -294,7 +294,7 @@ export default class ApplicationStore extends Base {
       if (isServiceMeshEnable) {
         const serviceName = get(
           ingress,
-          'spec.rules[0].http.paths[0].backend.serviceName'
+          'spec.rules[0].http.paths[0].backend.service.name'
         )
         if (serviceName) {
           set(
@@ -306,7 +306,7 @@ export default class ApplicationStore extends Base {
       }
 
       requests.push({
-        url: `apis/extensions/v1beta1${this.getPath(params)}/ingresses`,
+        url: `apis/networking.k8s.io/v1${this.getPath(params)}/ingresses`,
         data: ingress,
       })
     }

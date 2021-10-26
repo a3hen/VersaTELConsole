@@ -29,14 +29,6 @@ import { NumberInput } from 'components/Inputs'
 
 import styles from './index.scss'
 
-const getStrategy = (props = {}) =>
-  get(
-    props.data,
-    `${props.isFederated && props.isEdit ? 'spec.template.' : ''}${
-      STRATEGIES_PREFIX[props.module]
-    }.type`
-  )
-
 @observer
 export default class UpdateStrategyForm extends React.Component {
   static propTypes = {
@@ -55,12 +47,15 @@ export default class UpdateStrategyForm extends React.Component {
     onChange() {},
   }
 
-  state = {
-    strategy: getStrategy(this.props),
+  constructor(props) {
+    super(props)
+    this.state = {
+      strategy: this.getStrategy(props),
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const strategy = getStrategy(this.props)
+    const strategy = this.getStrategy(this.props)
     if (strategy !== prevState.strategy) {
       this.setState({ strategy })
     }
@@ -70,11 +65,19 @@ export default class UpdateStrategyForm extends React.Component {
     return this.state.strategy === 'RollingUpdate'
   }
 
-  get rollingUpdatePrefix() {
-    const { isFederated, isEdit } = this.props
+  get prefix() {
+    const { isFederated, module, isEdit } = this.props
     return `${isFederated && isEdit ? 'spec.template.' : ''}${
-      STRATEGIES_PREFIX[this.props.module]
-    }.rollingUpdate`
+      STRATEGIES_PREFIX[module]
+    }`
+  }
+
+  get rollingUpdatePrefix() {
+    return `${this.prefix}.rollingUpdate`
+  }
+
+  getStrategy = props => {
+    return get(props.data, `${this.prefix}.type`)
   }
 
   get strategyOptions() {
@@ -119,6 +122,18 @@ export default class UpdateStrategyForm extends React.Component {
     })
   }
 
+  valueValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+    const number = /^[0-9]*$/
+    const percentage = /^[0-9]+%$/
+    if (!number.test(value) && !percentage.test(value)) {
+      return callback({ message: t('ENTER_INTEGER_OR_PERCENTAGE') })
+    }
+    callback()
+  }
+
   renderRollingUpdateParams() {
     const { module } = this.props
     if (module === 'statefulsets') {
@@ -126,13 +141,14 @@ export default class UpdateStrategyForm extends React.Component {
         <Columns className={styles.wrapper}>
           <Column>
             <Form.Item
-              label={t('Partition')}
-              desc={t('STATEFULSET_PARTITION_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              label={t('PARTITION_ORDINAL')}
+              desc={t('PARTITION_ORDINAL_DESC')}
+              rules={[
+                { required: true, message: t('PARTITION_ORDINAL_EMPTY') },
+              ]}
             >
               <NumberInput
                 name={`${this.rollingUpdatePrefix}.partition`}
-                placeholder={t('STATEFULSET_PARTITION_PLACEHOLDER')}
                 defaultValue={0}
                 min={0}
                 integer
@@ -148,9 +164,9 @@ export default class UpdateStrategyForm extends React.Component {
         <Columns className={styles.wrapper}>
           <Column>
             <Form.Item
-              label={t('MAX_UNAVAILABLE_POD_LABEL')}
-              desc={t('MAX_DAEMON_UNAVAILABLE_POD_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              label={t('MAX_UNAVAILABLE_PODS')}
+              desc={t('MAX_UNAVAILABLE_PODS_DESC')}
+              rules={[{ required: true, message: t('MAX_UNAVAILABLE_EMPTY') }]}
             >
               <Input
                 name={`${this.rollingUpdatePrefix}.maxUnavailable`}
@@ -160,9 +176,11 @@ export default class UpdateStrategyForm extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('MinReadySeconds')}
+              label={t('MIN_READY_SECONDS')}
               desc={t('MIN_READY_SECONDS_DESC')}
-              rules={[{ required: true, message: t('Please input value') }]}
+              rules={[
+                { required: true, message: t('MIN_READY_SECONDS_EMPTY') },
+              ]}
             >
               <NumberInput
                 name="spec.minReadySeconds"
@@ -180,9 +198,12 @@ export default class UpdateStrategyForm extends React.Component {
       <Columns className={styles.wrapper}>
         <Column>
           <Form.Item
-            label={t('MAX_UNAVAILABLE_POD_LABEL')}
-            desc={t('MAX_DEPLOY_UNAVAILABLE_POD_DESC')}
-            rules={[{ required: true, message: t('Please input value') }]}
+            label={t('MAX_UNAVAILABLE_PODS')}
+            desc={t('MAX_UNAVAILABLE_PODS_DESC')}
+            rules={[
+              { required: true, message: t('MAX_UNAVAILABLE_EMPTY') },
+              { validator: this.valueValidator },
+            ]}
           >
             <Input
               name={`${this.rollingUpdatePrefix}.maxUnavailable`}
@@ -192,9 +213,12 @@ export default class UpdateStrategyForm extends React.Component {
         </Column>
         <Column>
           <Form.Item
-            label={t('MAX_SURGE_POD_LABEL')}
-            desc={t('MAX_SURGE_POD_DESC')}
-            rules={[{ required: true, message: t('Please input value') }]}
+            label={t('MAX_EXTRA_PODS')}
+            desc={t('MAX_EXTRA_PODS_DESC')}
+            rules={[
+              { required: true, message: t('MAX_EXTRA_EMPTY') },
+              { validator: this.valueValidator },
+            ]}
           >
             <Input
               name={`${this.rollingUpdatePrefix}.maxSurge`}
@@ -206,20 +230,46 @@ export default class UpdateStrategyForm extends React.Component {
     )
   }
 
-  render() {
-    const { module } = this.props
+  static getDerivedStateFromProps(props, state) {
+    const { data } = props
+    const number = /^[0-9]*$/
+    const rollingUpdate = 'spec.strategy.rollingUpdate'
+    if (state.strategy === 'RollingUpdate') {
+      if (number.test(get(data, `${rollingUpdate}.maxSurge`))) {
+        set(
+          data,
+          `${rollingUpdate}.maxSurge`,
+          Number(get(data, `${rollingUpdate}.maxSurge`))
+        )
+      }
+      if (number.test(get(data, `${rollingUpdate}.maxUnavailable`))) {
+        set(
+          data,
+          `${rollingUpdate}.maxUnavailable`,
+          Number(get(data, `${rollingUpdate}.maxUnavailable`))
+        )
+      }
+    }
 
+    return null
+  }
+
+  render() {
     return (
       <>
-        <Form.Item label={t('Update Strategy')}>
+        <Form.Item label={t('UPDATE_STRATEGY')}>
           <TypeSelect
-            name={`${STRATEGIES_PREFIX[module]}.type`}
+            name={`${this.prefix}.type`}
             onChange={this.handleStrategyChange}
             defaultValue="RollingUpdate"
             options={this.strategyOptions}
           />
         </Form.Item>
-        <Form.Group label={t('POD_SETTING_TIP')} checkable keepDataWhenUnCheck>
+        <Form.Group
+          label={t('ROLLING_UPDATE_SETTINGS')}
+          checkable
+          keepDataWhenUnCheck
+        >
           {this.isRollingUpdate && this.renderRollingUpdateParams()}
         </Form.Group>
       </>

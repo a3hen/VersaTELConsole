@@ -23,6 +23,7 @@ import { Modal } from 'components/Base'
 import { toJS } from 'mobx'
 import CreateModal from 'components/Modals/Create'
 import NameModal from 'projects/components/Modals/ResourceNamed'
+import SnapshotModal from 'projects/components/Modals/ResourceSnapshot'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 import EditConfigTemplateModal from 'fedprojects/components/VolumeSetting'
@@ -69,7 +70,7 @@ export default {
 
       if (isFederated) {
         steps.push({
-          title: 'Diff Settings',
+          title: 'CLUSTER_DIFF',
           icon: 'blue-green-deployment',
           component: ClusterDiffSettings,
         })
@@ -86,7 +87,7 @@ export default {
           params.namespace = params.namespace || get(data, 'metadata.namespace')
           await store.create(data, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
           formPersist.delete(`${module}_create_form`)
         },
@@ -109,9 +110,9 @@ export default {
         onOk: async params => {
           await store.cloneVolume(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
-        title: t('Clone Volume'),
+        title: t('CLONE_VOLUME'),
         modal: NameModal,
         store,
         ...props,
@@ -119,16 +120,31 @@ export default {
     },
   },
   'volume.create.snapshot': {
-    on({ store, ...props }) {
+    on({ store, detail, ...props }) {
+      const provisioner = get(
+        detail,
+        "annotations['volume.beta.kubernetes.io/storage-provisioner']",
+        '-'
+      )
+      const options = []
+      store.snapshotType.items.forEach(item => {
+        if (item.driver === provisioner) {
+          options.push({
+            label: item.metadata.name,
+            value: item.metadata.name,
+          })
+        }
+      })
       const modal = Modal.open({
         onOk: async params => {
           await store.createSnapshot(params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
         },
-        title: t('Create Snapshot'),
-        modal: NameModal,
+        title: t('CREATE_SNAPSHOT'),
+        modal: SnapshotModal,
         store,
+        options,
         ...props,
       })
     },
@@ -139,7 +155,7 @@ export default {
         onOk: async params => {
           await store.patch(store.detail, params)
           Modal.close(modal)
-          Notify.success({ content: `${t('Updated Successfully')}` })
+          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         },
         modal: ExpandModal,
         store,

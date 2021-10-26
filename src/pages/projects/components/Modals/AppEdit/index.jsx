@@ -51,18 +51,18 @@ export default class AppEditModal extends React.Component {
       <Modal.Form
         data={detail}
         width={691}
-        title={t('Edit Info')}
+        title={t('EDIT_INFORMATION')}
         icon="pen"
         onOk={this.handleOk}
-        okText={t('Update')}
+        okText={t('OK')}
         onCancel={onCancel}
         visible={visible}
         isSubmitting={isSubmitting}
       >
-        <Form.Item label={t('Name')} desc={t('LONG_NAME_DESC')}>
+        <Form.Item label={t('NAME')} desc={t('LONG_NAME_DESC')}>
           <Input name="name" disabled />
         </Form.Item>
-        <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+        <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
           <TextArea maxLength={256} name="description" />
         </Form.Item>
       </Modal.Form>

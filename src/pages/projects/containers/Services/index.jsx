@@ -34,7 +34,7 @@ import Topology from './Topology'
 @withProjectList({
   store: new ServiceStore(),
   module: 'services',
-  name: 'Service',
+  name: 'SERVICE',
 })
 export default class Services extends React.Component {
   state = {
@@ -57,11 +57,11 @@ export default class Services extends React.Component {
       options: [
         {
           value: 'list',
-          label: t('List'),
+          label: t('SERVICE_LIST'),
         },
         {
           value: 'topology',
-          label: t('Topology'),
+          label: t('SERVICE_TOPOLOGY'),
         },
       ],
     }
@@ -86,7 +86,7 @@ export default class Services extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -96,7 +96,7 @@ export default class Services extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -106,7 +106,7 @@ export default class Services extends React.Component {
       {
         key: 'editService',
         icon: 'network-router',
-        text: t('Edit Service'),
+        text: t('EDIT_SERVICE'),
         action: 'edit',
         onClick: item =>
           trigger('service.edit', {
@@ -116,7 +116,7 @@ export default class Services extends React.Component {
       {
         key: 'editGateway',
         icon: 'ip',
-        text: t('Edit Internet Access'),
+        text: t('EDIT_EXTERNAL_ACCESS'),
         action: 'edit',
         show: record => record.type === SERVICE_TYPES.VirtualIP,
         onClick: item =>
@@ -127,11 +127,11 @@ export default class Services extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('service.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -146,11 +146,11 @@ export default class Services extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('service.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey,
             }),
         },
@@ -162,7 +162,7 @@ export default class Services extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -179,7 +179,7 @@ export default class Services extends React.Component {
         ),
       },
       {
-        title: t('Service Type'),
+        title: t('SERVICE_TYPE_TCAP'),
         dataIndex: 'annotations["kubesphere.io/serviceType"]',
         isHideable: true,
         width: '16%',
@@ -188,28 +188,28 @@ export default class Services extends React.Component {
             title={
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_SERVICE')
             }
-            description={record.type || '-'}
+            description={t(record.type) || '-'}
           />
         ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '22%',
       },
       {
-        title: t('Internet Access'),
+        title: t('EXTERNAL_ACCESS'),
         dataIndex: 'specType',
         isHideable: true,
         width: '20%',
         render: (_, record) => <ServiceAccess data={record} />,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

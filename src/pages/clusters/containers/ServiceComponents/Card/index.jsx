@@ -28,7 +28,9 @@ import styles from './index.scss'
 const Card = ({ cluster, component = {} }) => {
   const { name, namespace } = component
   const status = getComponentStatus(component)
-  const descKey = `${String(name).toUpperCase()}_DESC`
+  const descKey = `${String(name)
+    .replace(/[- ]/g, '_')
+    .toUpperCase()}_DESC`
   const descText = t(descKey)
 
   return (
@@ -48,13 +50,13 @@ const Card = ({ cluster, component = {} }) => {
         <Column className="is-2">
           <Text
             title={<Status type={status} name={t(status)} />}
-            description={t('Status')}
+            description={t('STATUS')}
           />
         </Column>
         <Column className="is-2">
           <Text
-            title={`${component.healthyBackends} / ${component.totalBackends}`}
-            description={t('Replicas Number')}
+            title={`${component.healthyBackends}/${component.totalBackends}`}
+            description={t('REPLICA_COUNT')}
           />
         </Column>
         <Column className="is-2">
@@ -64,7 +66,7 @@ const Card = ({ cluster, component = {} }) => {
                 ? moment(component.startedAt).toNow(true)
                 : '-'
             }
-            description={t('Running Time')}
+            description={t('RUNNING_TIME')}
           />
         </Column>
       </Columns>

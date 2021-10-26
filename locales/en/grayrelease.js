@@ -18,118 +18,133 @@
 
 module.exports = {
   'A/B Testing': 'A/B Testing',
-  'Allocate all traffic proportionally to grayscale release components':
-    'Allocate all traffic proportionally to grayscale release components',
-  'Blue-green Deployment': 'Blue-green Deployment',
-  'Canary Release': 'Canary Release',
-  'Cookie Content': 'Cookie Content',
-  'Create Grayscale Release Job': 'Create Grayscale Release Job',
-  'Create Job': 'Create Job',
-  'Custom Header': 'Custom Header',
+  ALLOCATE_TRAFFIC_DESC:
+    'Move the slider to set the proportion of traffic sent to the new version and that sent to the old version.',
+  BLUE_GREEN_DEPLOYMENT: 'Blue-Green Deployment',
+  CREATE_BLUE_GREEN_DEPLOYMENT_JOB: 'Create Blue-Green Deployment Job',
+  CREATE_CANARY_RELEASE_JOB: 'Create Canary Release Job',
+  CREATE_TRAFFIC_MIRRORING_JOB: 'Create Traffic Mirroring Job',
+  CANARY_RELEASE: 'Canary Release',
+  BLUE_GREEN_DEPLOYMENT_LOW: 'blue-green deployment',
+  CANARY_RELEASE_LOW: 'canary release',
+  TRAFFIC_MIRRORING_LOW: 'traffic mirroring',
+  COOKIE_EXACT_MATCH: 'Cookie (exact match)',
+  COOKIE_REGEX_MATCH: 'Cookie (regex match)',
+  HEADER_EXACT_MATCH: 'Header (exact match)',
+  HEADER_REGEX_MATCH: 'Header (regex match)',
+  URL_PREFIX_MATCH: 'URL (prefix match)',
+  URL_EXACT_MATCH: 'URL (regex match)',
+  CREATE_GRAYSCALE_RELEASE_JOB: 'Create Grayscale Release Job',
+  HEADER: 'Header',
   'Deploy sample application': 'Deploy sample application',
-  'Deploy Sample App': 'Deploy Sample App',
+  DEPLOY_SAMPLE_APP: 'Deploy Sample App',
   'Edit Grayscale Release Job': 'Edit Grayscale Release Job',
-  'Exact Match': 'Exact Match',
-  'Forward by request content': 'Forward by request content',
-  'Forward by traffic ratio': 'Forward by traffic ratio',
-  'Grayscale Release': 'Grayscale Release',
-  'Grayscale Release Component': 'Grayscale Release Component',
-  'Grayscale Release Components': 'Grayscale Release Components',
-  'Grayscale Release Strategy': 'Grayscale Release Strategy',
-  'Grayscale Release Version': 'Grayscale Release Version',
-  'Grayscale release version access rule':
-    'Grayscale release version access rule',
-  'Grayscale Release Version Number': 'Grayscale Release Version Number',
-  'Has taken over all traffic': 'Has taken over all traffic',
-  'Introduce traffic that meets the following rules into grayscale version':
-    'Introduce traffic that meets the following rules into grayscale version',
-  'Job offline': 'Job offline',
-  'Job offline Successfully': 'Job offline Successfully',
-  'Job Status': 'Job Status',
-  'Mirrored traffic': 'Mirrored traffic',
+  EXACT_MATCH: 'Exact match',
+  SPECIFY_REQUEST_PARAMETERS: 'Specify Request Parameters',
+  SPECIFY_TRAFFIC_DISTRIBUTION: 'Specify Traffic Distribution',
+  GRAYSCALE_RELEASE_COMPONENT: 'Grayscale Release Component',
+  GRAYSCALE_RELEASE_COMPONENT_PL: 'Grayscale Release Components',
+  NEW_VERSION_SETTINGS: 'New Version Settings',
+  NEW_VERSION_NUMBER: 'New Version Number',
+  GRAYSCALE_RELEASE_VERSION_TCAP: 'Grayscale Release Version',
+  REQUEST_PARAMETERS: 'Request Parameters',
+  GRAYSCALE_RELEASE_VERSION_NUMBER: 'Grayscale Release Version Number',
+  SERVICE_VERSION_RECEIVE_ALL_TRAFFIC:
+    'The version <b>{version}</b> has taken over all traffic.',
+  DELETE_JOB: 'Delete Job',
+  JOB_OFFLINE_SUCCESSFULLY: 'Job offline successfully.',
+  JOB_STATUS: 'Job Status',
+  RELEASE_JOBS: 'Release Jobs',
+  MIRRORED_TRAFFIC: 'Mirrored traffic',
   'Mirrored traffic is only receiving traffic, no service':
     'Mirrored traffic is only receiving traffic, no service',
-  'No workload found': 'No workload found',
+  NO_WORKLOAD_FOUND_TIP: 'No workload found',
   'Not online': 'Not online',
-  'Version offline': 'Version offline',
+  TAKE_OFFLINE: 'Take Offline',
+  TAKE_OVER: 'Take Over',
   'Operating System': 'Operating System',
-  'Please input grayscale release version':
-    'Please input grayscale release version',
-  'Please select a grayscale release component':
-    'Please select a grayscale release component',
-  'Policy Config': 'Policy Config',
+  NEW_VERSION_NUMBER_EMPTY_DESC: 'Please enter a new version number.',
+  SELECT_GRAY_COMPONENT_TIP: 'Please select a Service.',
+  STRATEGY_CONFIGURATIONS_TCAP: 'Strategy Configurations',
   POLICY_REQUEST_CONTENT_TIP:
-    'Port protocol is not HTTP, HTTP2 or gRPC, cannot publish policy by request content',
-  'Prefix Match': 'Prefix Match',
-  'Real-time traffic distribution': 'Real-time traffic distribution',
-  'Real-time traffic ratio': 'Real-time traffic ratio',
-  Recover: 'Recover',
-  'Regex Match': 'Regex Match',
-  'Release Job Name': 'Release Job Name',
-  'Request duration': 'Request duration',
-  'Request success rate': 'Request success rate',
-  'Rule Description': 'Rule Description',
+    'The Specify Request Parameters function supports only HTTP, HTTPS, and gRPG requests.',
+  PREFIX_MATCH: 'Prefix match',
+  REAL_TIME_TRAFFIC_DIST_TCAP: 'Real-Time Traffic Distribution',
+  TRAFFIC_MIRRORING_TRAFFIC_DISTRI_DESC:
+    'A copy of traffic is sent to the new version for testing.',
+  BLUE_GREEN_TRAFFIC_DISTRI_DESC:
+    'The new version or old version receives all traffic.',
+  RESTORE: 'Restore',
+  REGEX_MATCH: 'Regex match',
+  GRAY_RELEASE_JOB_NAME: 'Grayscale Release Job Name',
+  SUCCESSFUL_REQUEST_RATE: 'Successful Request Rate',
+  RULE_DESCRIPTION: 'Rule Description',
   'Take Over': 'Take Over',
-  'Take over all traffic': 'Take over all traffic',
+  TAKE_ONLINE: 'Take Online',
   'The current version is not online, you can let this version take over all traffic and bring it online.':
     'The current version is not online, you can let this version take over all traffic and bring it online.',
   traffic: 'traffic',
-  'Traffic comes from the following operating systems':
-    'Traffic comes from the following operating systems',
-  'Traffic Control': 'Traffic Control',
-  'Traffic Mirroring': 'Traffic Mirroring',
-  'Traffic monitor': 'Traffic monitoring',
-  'Traffic of last five minutes': 'Traffic of last five minutes',
-  'Traffic Ratio': 'Traffic Ratio',
-  'Traffic Rules': 'Traffic Rules',
-  'Two Versions': 'Two Versions',
-  'Unfinished grayscale release jobs exist':
-    'Unfinished grayscale release jobs exist',
-  'Unsupported workload type': 'Unsupported workload type',
-  'Version Comparison': 'Version Comparison',
-  'version number is invalid': 'version number is invalid',
+  CLIENT_OS: 'Client OS',
+  OS: 'OS',
+  TRAFFIC_CONTROL: 'Traffic Control',
+  TRAFFIC_MIRRORING: 'Traffic Mirroring',
+  TRAFFIC_IN_LAST_FIVE_MINUTES: 'Traffic in last five minutes.',
+  TRAFFIC_MONITORING: 'Traffic Monitoring',
+  TRAFFIC: 'Traffic',
+  TRAFFIC_DISTRIBUTION: 'Traffic Distribution',
+  SELECT_VERSION: 'Select Version',
+  BLUE_GREEN_STRATEGY_DESC:
+    'Select a version to take over all service traffic.',
+  UNFINISHED_GRAY_JOB: 'Grayscale release in progress',
+  UNSUPPORTED_WORKLOAD_TYPE: 'Workload type not supported',
+  VERSION_COMPARISON: 'Version Comparison',
+  'version number is invalid': 'version number is invalid.',
   'Version Off': 'Version Off',
 
-  GRAY_RELEASE_CATEGORIES: 'Categories',
+  GRAY_RELEASE_CATEGORIES: 'Strategies',
+  RELEASE_MODE_PL: 'Release Modes',
+  RELEASE_MODE: 'Release mode',
+  GRAY_RELEASE_STRATEGY_SI: 'Grayscale Release Strategy',
 
   BLUE_GREEN_DEPLOYMENT_DESC:
-    'The blue-green release provides a zero downtime deployment, which means the new version can be deployed with the old one preserved. At any time, only one of the versions is active serving all the traffic, while the other one remains idle. If there is a problem with running, you can quickly roll back to the old version.',
-  CANARY_RELEASES_DESC:
-    'This method brings part of the actual traffic into a new version to test its performance and reliability. It can help detect potential problems in the actual environment while not affecting the overall system stability.',
-  TRAFFIC_MIRROR_DESC:
-    'Traffic mirroring provides a more accurate way to test new versions as problems can be detected in advance while not affecting the production environment. Therefore, it serves as a more secure and reliable method for version releases.',
+    'Send service traffic to the new version for testing. If the new version does not function properly, you can immediately switch service traffic to the old version.',
+  CANARY_RELEASE_DESC:
+    'Allocate service traffic among the new version and old version to both test the new version and ensure service continuity.',
+  TRAFFIC_MIRRORING_DESC:
+    'Send a copy of service traffic to the new version for testing without actually exposing the new version.',
   AB_TESTING_DESC:
     'This method is very helpful to understand whether product updates or improvements have met expectations. It can be used when new needs arise and it will not affect the business stability.',
 
   NO_SERVICE_MESH_TIP:
-    'Applications that are not enabled for application governance cannot be published in grayscale.',
+    'Application governance is disabled for the app and grayscale release is unavailable.',
 
-  NO_GRAY_RELEASE_JOBS_TIP: 'There is no running grayscale release job.',
-  NO_GRAY_RELEASE_JOBS_TIP_2:
-    'You can bind grayscale release strategies for publishing grayscale release jobs.',
-  TOTAL_GRAY_RELEASE_JOBS: 'Total {num} grayscale release jobs',
+  NO_GRAYSCALE_RELEASE_JOB_FOUND: 'No Grayscale Release Job Found',
+  NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC:
+    'Please create a grayscale release job.',
+  TOTAL_GRAY_RELEASE_JOB: '{num} grayscale release job in total',
+  TOTAL_GRAY_RELEASE_JOBS: '{num} grayscale release jobs in total',
 
-  GRAY_RELEASE_VERSION_FORMAT_DESC:
-    'It can only contain lowercase letters and numbers with a maximum of 16 characters.',
+  NEW_VERSION_NUMBER_DESC:
+    'The new version number can contain only lowercase letters and numbers. The maximum length is 16 characters.',
+  NEW_VERSION_NUMBER_INVALID_DESC:
+    'Invalid new version number. The new version number can contain only lowercase letters and numbers. The maximum length is 16 characters.',
   GRAY_RELEASE_VERSION_DESC:
     'Introduce the new version into the existing application service mesh',
   POLICY_CONFIG_DESC:
     'Release based on traffic ratio: According to the traffic ratio configuration rule, the specified proportion of traffic will be split from the original version to the grayscale version.',
 
-  GRAY_RELEASE_DESC:
-    'Grayscale release represents an important means of software product update in the production environment. It provides a release method for the smooth transition of software applications as they are updated and deployed.',
   GRAYSCALE_RELEASE_DESC:
-    'Grayscale release represents an important means of software product update in the production environment. It provides a release method for the smooth transition of software applications as they are updated and deployed.',
-  GRAY_RELEASE_BY_CONTENT_TIP:
-    'Release based on request content: According to the request content configuration rule, only traffic that meets certain conditions in the requested content will be split into grayscale versions. This policy is only valid for direct access to the portal service.',
+    'Grayscale release represents an important method of application iteration in the production environment. You can choose different release methods for the smooth transition as you upgrade your applications to a new version.',
+  SPECIFY_REQUEST_PARAMETERS_DESC:
+    'Requests that meet the following conditions are sent to the new version.',
 
   MIRROR_POLICY_DESC:
-    'Microservices allow us to deliver applications faster while not affecting business stability. In this connection, traffic mirroring reduces the risk of changes in the production environment. </br>With Traffic mirroring, the network traffic in the production environment can be copied into a grayscale version, which serves as an effective way to test the new version before it runs in the actual environment (with real-time user traffic).',
+    'A copy of service traffic is sent to the new version for testing. Only the old version is exposed and the new version is not exposed.',
 
-  RATIO_MODIFY_NOTIFY_CONTENT:
-    'You have adjusted the target traffic ratio of the version {version} to {ratio}%, and you can continue to adjust the target traffic ratio or make it take effect immediately.',
+  ADJUST_TRAFFIC_DISTRIBUTION_DESC:
+    'Are you sure you want to send {ratioNew}% of traffic to the new version <b>{newVersion}</b> and {ratioOld}% to the old version <b>{oldVersion}</b>?',
   CANARY_BY_TRAFFIC_DESC:
-    'According to the traffic proportional rule, {ratio}% of the requested traffic to component {component} is forwarded to the grayscale version {newVersion}.',
+    '{ratio}% of traffic bound for the Service <b>{component}</b> is sent to the new version <b>{newVersion}</b>.',
 
   DEPLOY_APP_CONFIRM: 'Sure to deploy sample application?',
   DEPLOY_APP_TIP: 'You are going to deploy the sample app {name}.',
@@ -137,12 +152,44 @@ module.exports = {
   DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
     'The gateway for application governance is not found in the current project, so you cannot deploy the sample app. Please contact your project administrator to turn it on in [Advanced Settings].',
 
-  PREREQUEST_FOR_USE_GRAYRELEASE_Q: 'Prerequisites for using grayscale release',
+  PREREQUEST_FOR_USE_GRAYRELEASE_Q:
+    'What are the prerequisites for implementing grayscale release?',
   PREREQUEST_FOR_USE_GRAYRELEASE_A:
-    'You need to create a composing app before you adopt grayscale release and enable the service governance feature for the service that will use grayscale release.',
+    'Before implementing grayscale release, you need to create a composed app and enable application governance for the app.',
 
-  JOB_OFFLINE_WARNING:
-    'Before you take a task offline, you need to select an available version first, which is to make sure the service can run smoothly during the whole process. You need to select a version and take it offline. After that, the system will automatically transfer all the traffic to another available version.',
-  JOB_OFFLINE_INFO:
-    'Now you can take the task offline and the version {version} will be removed.',
+  DELETE_GRAYSCALE_RELEASE_JOB_DESC:
+    'Please select a version to take over all traffic before deleting the grayscale release job.',
+  NEW_VERSION_TAKEOVER_DESC:
+    'The new version <b>{newVersion}</b> is receiving all traffic. If you delete the current grayscale release job, the old version <b>{oldVersion}</b> will be also be deleted.',
+  OLD_VERSION_TAKEOVER_DESC:
+    'The old version <b>{oldVersion}</b> is receiving all traffic. If you delete the current grayscale release job, the new version <b>{newVersion}</b> will be also be deleted.',
+  // Grayscale release detail page
+  GRAY_COMPONENT_DESC:
+    'Information about the new version being tested and the old version.',
+  TRAFFIC_LOW: 'traffic',
+  VERSION_TRAFFIC_PERCENT: '{version} traffic {percent}%',
+
+  // Grayscale release components tab
+  GRAY_APP_NAME: 'App: {name}',
+  GRAY_WORKLOAD_TYPE: 'Workload Type: ',
+
+  // Grayscale release version tab
+  NEW_VERSION_NUMBER_EXIST_DESC:
+    'The workload {name} already exists. Please enter another version number.',
+  INIT_CONTAINER: 'Init container',
+  INIT_CONTAINER_VALUE: 'Init Container: {value}',
+  CONTAINER_VALUE: 'Container: {value}',
+  GRAYSCALE_IMAGE: 'Image: {image}',
+
+  // Grayscale strategy configurations tab
+  GRAYSCALE_VERSION: 'Version: {version}',
+  GRAYSCALE_REPLICA_SI: 'Replica: {count}',
+  GRAYSCALE_REPLICA_PL: 'Replicas: {count}',
+
+  // Canary Strategy Tab
+  COOKIE: 'Cookie',
+
+  // Grayscale Release Job List
+  GRAYSCALE_JOB_STRATEGY: 'Grayscale release strategy',
+  GRAYSCALE_JOB_COMPONENT: 'Grayscale release component',
 }

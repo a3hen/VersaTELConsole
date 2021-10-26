@@ -17,7 +17,40 @@
  */
 
 import Base from 'stores/base'
+import { action } from 'mobx'
+import { getGpuFromRes } from 'utils'
 
 export default class LimitRangeStore extends Base {
   module = 'limitranges'
+
+  @action
+  async fetchListByK8s({ cluster, namespace, module, ...rest } = {}) {
+    this.list.isLoading = true
+
+    if (module) {
+      this.module = module
+    }
+
+    const params = rest
+
+    const result = await request.get(
+      this.getListUrl({ cluster, namespace, module }),
+      params
+    )
+    const data = result.items.map(item => ({
+      cluster,
+      module: module || this.module,
+      ...this.mapper(item),
+    }))
+
+    getGpuFromRes(data)
+
+    this.list.update({
+      data,
+      total: result.items.length,
+      isLoading: false,
+    })
+
+    return data
+  }
 }

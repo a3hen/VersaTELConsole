@@ -21,90 +21,111 @@ module.exports = {
   routes: '应用路由',
   Ports: '端口',
   selector: '选择器',
-  Selector: '选择器',
-  'External Address': '外部地址',
+  EXTERNAL_IP_ADDRESS: '外部 IP 地址',
+  EXTERNAL_IP_ADDRESS_SCAP: '外部 IP 地址',
   'LoadBalancer IP': '负载均衡 IP',
-  'Create Service': '创建服务',
+  CREATE_SERVICE: '创建服务',
   'Delete Service': '删除服务',
-  'Access Method': '访问方式',
   'Target Port': '目标端口',
-  'Container Port': '容器端口',
-  'Service Port': '服务端口',
+  CONTAINER_PORT: '容器端口',
+  CONTAINER_PORT_SCAP: '容器端口',
+  SERVICE_PORT_SCAP: '服务端口',
+  CONTAINER_PORT_VALUE: '容器端口：{value}',
+  SERVICE_PORT: '服务端口',
+  SERVICE_PORT_VALUE: '服务端口：{value}',
   'Node Port': '节点端口',
   'Node Port(s)': '节点端口',
-  'Edit Service': '编辑服务',
-  'Edit Internet Access': '编辑外网访问',
+  EDIT_SERVICE: '编辑服务',
+  EDIT_EXTERNAL_ACCESS: '编辑外部访问',
+  EDIT_MONITORING_EXPORTER: '编辑监控导出器',
   'Please select Service': '请选择 Service',
   'Path is Required': '请填写 Path',
-  'Virtual IP': '虚拟 IP',
+  VIRTUAL_IP: 'VirtualIP',
+  VIRTUAL_IP_ADDRESS: '虚拟 IP 地址',
 
-  'Service Type': '服务类型',
-  'Service Access': '服务访问',
-  'Stateless Service': '无状态服务',
-  'Stateful Service': '有状态服务',
-  'External Service': '外部服务',
+  SERVICE_TYPE_TCAP: '服务类型',
+  SERVICE_TYPE_DESC: '选择一个服务类型。',
+  SELECT_SERVICE_TYPE_DESC:
+    '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
+  APP_SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务。',
+  ACCESS_INFORMATION: '访问信息',
+  STATELESS_SERVICE: '无状态服务',
+  STATEFUL_SERVICE: '有状态服务',
+  EXTERNAL_SERVICE: '外部服务',
   'Simple Service': '简单服务',
   'Associated Application': '关联应用',
   'Service Mesh': '服务治理',
 
   'Internal access': '内部访问',
-  'Access Type': '访问类型',
+  ACCESS_TYPE: '访问类型',
+  INTERNAL_ACCESS_MODE: '内部访问模式',
 
   'Service Name': '服务名称',
   'Please input service name': '请输入服务名称',
-  'Please input ExternalName': '请输入 ExternalName',
-  'Specify Workload': '指定工作负载',
-  'Specify Node': '指定节点',
+  EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC: '请输入外部服务的域名。',
+  SPECIFY_WORKLOAD: '指定工作负载',
+  SPECIFY_WORKLOAD_TO_CREATE_SERVICE: '指定工作负载创建服务',
+  EDIT_YAML_TO_CREATE_SERVICE: '编辑配置文件创建服务',
+  CREATE_EXTERNAL_SERVICE: '创建外部服务',
   'Add Selector': '添加选择器',
 
-  'Invalid port': '无效端口',
+  INVALID_PORT_DESC: '请输入有效端口号。',
+  'Please input ExternalName': '请输入 ExternalName',
+  'Specify Workload': '指定工作负载',
+
+  SPECIFY_NODE: '指定节点',
+
+  INVALID_PORT: '端口无效。',
   'Not Associate': '不关联',
 
-  Auto: '自动',
+  AUTO_REFRESH: '自动更新',
 
-  'Custom Creation': '自定义创建',
-  'Specify Workloads': '指定工作负载',
+  CUSTOM_SERVICE: '自定义服务',
+  CUSTOMIZE_SERVICE: '自定义服务',
   'Create service by specifying workloads': '指定工作负载创建服务',
   'Create service by Yaml': '通过 Yaml 创建服务',
 
   'Sure to delete the service(s)?': '确认删除服务',
-  'No related resources found with current service(s)':
-    '当前服务下没有关联的资源',
+  NO_SERVICE_RELATED_RESOURCE_DESC: '当前服务没有关联的资源。',
+  NO_WORKLOAD_RELATED_RESOURCE_DESC: '当前工作负载没有关联的资源。',
 
   'Automatically assign Service IP': '自动分配服务 IP',
   'Do not assign Service IP': '不分配服务 IP',
   'Map Services outside the cluster': '映射集群外部的服务',
-  'Please input ports': '请输入端口',
+  ENTER_PORT_NUMBER: '请输入端口号。',
+  PORT_EMPTY: '请设置端口。',
   'Please select a workload': '请选择一个工作负载',
-  'Please input valid Selector': '请输入有效的选择器',
-  TOTAL_WORKLOAD: '共 {count} 个工作负载',
+  ENTER_SELECTOR_TIP: '请设置工作负载选择器。',
+  TOTAL_WORKLOADS_VALUE: '工作负载总数：{count}',
 
-  'Enable Sticky Session': '开启会话保持',
-  'Maximum Session Sticky Time (s)': '最大会话保持时间(秒)',
-  'The maximum session sticky time is 10800s (3 hours).':
-    '会话保持时间默认是 10800 秒(即 3 小时)',
+  STICKY_SESSION: '会话保持',
+  MAXIMUM_STICKINESS_DURATION: '最长会话保持时间（s）',
+  STICKY_SESSION_DESC:
+    '设置系统在指定的时间内将同一个会话中来自同一个客户端的请求全部转发给同一个容器组。',
 
   SERVICE_NAME_DESC:
-    '最长 63 个字符，只能包含小写字母、数字及分隔符("-")，且必须以小写字母开头, 字母或数字结尾',
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
 
   SERVICE_DESC:
-    '服务 (Service) 是定义了一类容器组的逻辑集合和一个用于访问它们的策略。',
-  SERVICE_CREATE_DESC:
-    '服务是定义了一类 Pod 的逻辑集合和一个用于访问它们的策略。您可选择服务的类型或者创建服务的方式。<br/>KubeSphere 支持无状态服务和有状态服务，并支持通过代码或者制品构建服务。',
+    '服务（Service）提供一种抽象的方法，将运行在容器组（Pod）上的应用程序公开为网络服务。',
+  SERVICE_EMPTY_DESC: '请创建一个服务。',
 
   SERVICES_BASEINFO_DESC:
     '创建服务需要提供服务的名称和描述，服务名称不能和同一项目下已有的服务名称相同。',
   SERVICES_SETTINGS_DESC: '服务设置定义了如何来访问已有的工作负载。',
 
-  SERVICE_EXTERNAL_NAME_DESC:
-    '通过返回 CNAME 和它的值，可以将服务映射到 externalName 字段的内容',
+  CREATE_EXTERNAL_SERVICE_DESC: '创建一个服务并将其映射到一个外部服务。',
 
-  ACCESS_NONE_TIP: '不提供外网访问',
-  ACCESS_NODEPORT_TIP: '通过访问集群节点的对应端口来访问服务（NodePort）',
-  ACCESS_LOADBALANCER_TIP:
-    '通过云服务商提供的负载均衡器来访问服务 (LoadBalancer)',
+  ACCESS_NONE_TIP: '不提供外网访问，只能在集群内访问服务。',
+  ACCESS_NODEPORT_TIP: '通过集群节点的端口访问服务。',
+  ACCESS_LOADBALANCER_TIP: '通过负载均衡器访问服务。',
 
   'The current selector': '当前设置的选择器',
+  NO_WORKLOAD_MATCH_SELECTOR: '没有工作负载匹配当前选择器。',
+  WORKLOADS_MATCH_SELECTOR_SI:
+    '当前选择器（{selector}）与 {count} 个工作负载匹配。',
+  WORKLOADS_MATCH_SELECTOR_PL:
+    '当前选择器（{selector}）与 {count} 个工作负载匹配。',
   'Commonly included tags in the current workloads':
     '当前的工作负载中共同包含的标签',
   SERVICE_SELECTOR_AFFECT_2: '共影响到 {count} 个工作负载',
@@ -114,61 +135,80 @@ module.exports = {
   Creating: '正在创建',
   'Creation failed, please delete and try again': '创建失败，请删除后重试',
 
-  'Add Route Rule': '添加路由规则',
+  ADD_ROUTING_RULE: '添加路由规则',
 
-  VIRTUAL_IP_TITLE: '通过集群内部IP来访问服务 Virtual IP',
+  VIRTUAL_IP_TITLE: '虚拟 IP 地址',
   VIRTUAL_IP_DESC:
-    '以集群为服务生成的集群内唯一的 IP 为基础，集群内部可以通过此 IP 来访问服务。',
-  HEADLESS_SELECTOR_TITLE:
-    '集群内部通过服务的后端 Endpoint IP 直接访问服务 Headless (selector)',
-  HEADLESS_SELECTOR_DESC:
-    '集群不为服务生成 IP，集群内部通过服务的后端 Endpoint IP 直接访问服务。此类型适合后端异构的服务，比如需要区分主从的服务。',
+    '为服务分配虚拟 IP 地址，可通过虚拟 IP 地址在集群内部访问服务。',
+  INTERNAL_DOMAIN_NAME: '内部域名',
+  INTERNAL_DOMAIN_NAME_DESC:
+    '不为服务分配 IP 地址，可通过集群的 DNS 机制在集群内部访问服务。',
   HEADLESS_EXTERNAL_NAME_TITLE:
     '映射集群外部的地址来访 Headless (externalname)',
   HEADLESS_EXTERNAL_NAME_DESC: '将集群或者项目外部服务映射到集群或项目内。',
 
-  SERVICES_INTERNET_ACCESS_DESC: '将服务暴露给外网',
+  SERVICE_EXTERNAL_ACCESS_DESC: '设置从集群外访问服务的方式。',
 
   SERVICE_NODE_PORT_DESC:
-    '如果您当前的网络与集群节点在同一网络内，那么您可以通集群IP地址+节点端口号进行访问，或者通过节点 IP+节点端口进行访问',
+    '如果您的客户机与集群在同一网段，您可以使用<节点 IP 地址>:<节点端口>访问服务。',
 
-  SERVICE_TYPE: '您可以自定义创建 无状态服务 或者 有状态服务',
+  SERVICE_TYPE: '服务类型',
+  SELECT_SERVICE_TYPE: '选择服务类型',
 
-  SPECIFY_WORKLOAD_DESC:
-    '指定工作负载可以将工作负载所创建的容器组副本的 Label 作为预填充内容',
+  SELECT_WORKLOAD_DESC: '使用工作负载的标签作为选择器。',
 
-  SPECIFY_NODE_DESC: '指定节点可以将节点的 Label 作为预填充内容',
+  SPECIFY_NODE_DESC: '将节点的标签作为预填充内容',
 
-  SERVICE_TYPES_Q: '服务的类型',
+  SERVICE_TYPES_Q: 'KubeSphere 支持哪些服务类型？',
   SERVICE_TYPES_A:
-    '服务分为无状态服务 (Virtual Service + Depolyment) 及有状态服务 (Headless Service +Statefulset), 无状态服务中多个副本可以共享一个存储卷、有状态服务需要拥有自己独立的存储卷',
+    'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个存储卷，有状态服务中的每个容器组副本都拥有独立的存储卷。',
 
-  SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务的使用场景?',
+  SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
   SCENARIOS_FOR_SERVICES_A:
-    '无状态服务适用于不需要数据持久化的场景，并且多个实例对统一请求的响应式相同的场景(例如 Nginx、Tomcat 等)；有状态服务适用于需要数据存储功能的服务、或者指多线程类型的服务，队列等 (mysql 数据库、kafka、zookeeper 等)。',
-  STATEFUL_SERVICE_DESC:
-    '有状态服务用来管理有状态应用，可以保证部署和扩容缩容的顺序，提供了稳定的持久化存储和网络标识，有序伸缩等',
-  STATELESS_SERVICE_DESC:
-    '容器服务中最常用的一种服务，通过定义容器组模板来控制容器组状态，包括滚动升级和回滚',
-  SERVICE_FROM_CODE: '通过代码构建新的服务',
-  SERVICE_FROM_ARTIFACTS: '通过制品构建新的服务',
-  SERVICE_FROM_CODE_DESC:
-    '您可以将已有的代码通过  Source to Image 的方式构建成镜像并部署',
-  SERVICE_FROM_ARTIFACTS_DESC: '您可以将已有制品构建成新的镜像并完成部署',
-  'Language Type': '语言类型',
-  SERVISE_SIMPLE_DESC: '通过已有的容器组来创建服务',
-  DELETE_SERVICE_DESC:
-    '您即将删除服务 {resource}，请您进行确认是否删除关联资源?',
+    '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
+  STATEFUL_SERVICE_DESC: '创建一个服务和一个有状态副本集。',
+  STATELESS_SERVICE_DESC: '创建一个服务和一个部署。',
+  SERVICE_FROM_CODE: '通过代码创建服务',
+  SERVICE_FROM_ARTIFACT: '通过制品创建服务',
+  SERVICE_FROM_CODE_DESC: '将现有的代码构建成镜像并部署。',
+  SERVICE_FROM_ARTIFACT_DESC: '将现有的制品构建成镜像并部署。',
+  JAVA: 'Java',
+  NODEJS: 'Node.js',
+  PYTHON: 'Python',
+  BINARY: '二进制',
+  LANGUAGE_TYPE_VALUE: '语言类型：{value}',
+  ARTIFACT_TYPE_VALUE: '制品类型：{value}',
+  SPECIFY_WORKLOAD_DESC: '使用一个或多个现有的工作负载创建来创建服务。',
+  DELETE_SERVICE_DESC_PL:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源。',
+  DELETE_SERVICE_DESC_SI:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源。',
 
-  SERVICE_CUSTOM_CREATE: '您可以通过指定工作负载或者编辑配置 (Yaml) 来创建服务',
+  CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
 
   SERVICE_TYPE_STATEFULSERVICE: '有状态服务',
   SERVICE_TYPE_STATELESSSERVICE: '无状态服务',
-  SERVICE_TYPE_EXTERNALSERVICE: '映射外部服务',
+  SERVICE_TYPE_EXTERNALSERVICE: '外部服务',
+  SERVICE_TYPE_STATEFULSERVICE_SCAP: '有状态服务',
+  SERVICE_TYPE_STATELESSSERVICE_SCAP: '无状态服务',
+  SERVICE_TYPE_EXTERNALSERVICE_SCAP: '外部服务',
 
-  SERVICE_PORTS_DESC: '设置容器镜像暴露的端口以及服务端口',
+  SERVICE_PORTS_DESC: '设置容器端口和服务端口。',
 
-  EIP_POOL_DESC: '集群内部访问方式(DNS)',
+  INTERNAL_DOMAIN_NAME_SCAP: '内部域名',
 
-  SERVICE_SESSION_STICKY_DESC: '最小为 0，最大为 86400',
+  MAXIMUM_STICKINESS_DURATION_DESC:
+    '设置最大会话保持时间。取值范围为 0 到 86400，默认值 10800。',
+
+  // Services
+  WORKLOAD_SELECTOR: '工作负载选择器',
+  UNKNOWN_SERVICE_TYPE: '未知服务类型',
+  HEADLESS: 'Headless',
+  EXTERNALNAME: 'ExternalName',
+  EXTERNAL_SERVICE_ADDRESS: '外部服务地址',
+  EXTERNAL_SERVICE_ADDRESS_DESC: '输入外部服务的域名。',
+  UNKNOWN: '未知',
+  EXTERNALNAME_EXAMPLE: '例如：',
+  PORT_PL: '端口',
+  ENDPOINT: '端点',
 }

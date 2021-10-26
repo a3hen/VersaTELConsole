@@ -34,7 +34,7 @@ import Banner from './Banner'
 @withProjectList({
   store: new OpAppStore(),
   module: 'applications',
-  name: 'Application',
+  name: 'APP',
 })
 export default class OPApps extends React.Component {
   type = 'template'
@@ -63,7 +63,7 @@ export default class OPApps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('openpitrix.app.edit', {
@@ -73,11 +73,11 @@ export default class OPApps extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -88,7 +88,7 @@ export default class OPApps extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -103,14 +103,14 @@ export default class OPApps extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '16%',
         render: this.renderStatus,
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app.name',
         isHideable: true,
         width: '16%',
@@ -119,13 +119,13 @@ export default class OPApps extends React.Component {
         ),
       },
       {
-        title: t('Version'),
+        title: t('VERSION'),
         dataIndex: 'version.name',
         isHideable: true,
         width: '16%',
       },
       {
-        title: t('Last Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'status_time',
         sorter: true,
         sortOrder: getSortOrder('status_time'),
@@ -170,7 +170,7 @@ export default class OPApps extends React.Component {
           {
             key: 'deploy',
             type: 'control',
-            text: t('Deploy New Application'),
+            text: t('CREATE'),
             onClick: this.showDeploy,
           },
         ]
@@ -183,7 +183,8 @@ export default class OPApps extends React.Component {
         onCreate: null,
       },
       emptyProps: {
-        desc: t('APP_DEPLOYMENT_DESC'),
+        title: t('NO_TEMPLATE_BASED_APP_FOUND'),
+        desc: t('TEMPLATE_BASED_APP_EMPTY_DESC'),
       },
       searchType: 'keyword',
     }

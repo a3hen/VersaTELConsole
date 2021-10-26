@@ -141,8 +141,8 @@ export default class TemplateSelect extends React.PureComponent {
 
     return (
       <Form.Item
-        rules={[{ required: true, message: t('This param is required') }]}
-        label={t('Build Environment')}
+        rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
+        label={t('BUILD_ENVIRONMENT')}
         className={styles.form}
       >
         <TypeSelect

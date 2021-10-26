@@ -49,7 +49,7 @@ export default class AccountDetail extends React.Component {
   }
 
   get name() {
-    return 'Account'
+    return 'USER'
   }
 
   get listUrl() {
@@ -80,7 +80,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -92,7 +92,7 @@ export default class AccountDetail extends React.Component {
     {
       key: 'modifyPassword',
       icon: 'pen',
-      text: t('Change Password'),
+      text: t('CHANGE_PASSWORD'),
       action: 'edit',
       show: this.showEdit,
       onClick: () =>
@@ -103,13 +103,13 @@ export default class AccountDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       show: this.showEdit,
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.props.name),
+          type: 'USER',
           resource: this.store.detail.username,
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
@@ -126,18 +126,18 @@ export default class AccountDetail extends React.Component {
 
     return [
       {
-        name: t('Account Role'),
+        name: t('PLATFORM_ROLE'),
         value: detail.globalrole,
       },
       {
-        name: t('Email'),
+        name: t('EMAIL'),
         value: detail.email,
       },
       {
-        name: t('Last Login Time'),
+        name: t('LAST_LOGIN'),
         value: detail.lastLoginTime
           ? getLocalTime(detail.lastLoginTime).format(`YYYY-MM-DD HH:mm:ss`)
-          : t('Not logged in yet'),
+          : t('NOT_LOGIN_YET'),
       },
     ]
   }
@@ -158,7 +158,7 @@ export default class AccountDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('NAV_ACCOUNTS'),
+          label: t('USER_PL'),
           url: this.listUrl,
         },
       ],

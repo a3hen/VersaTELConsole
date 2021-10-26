@@ -71,7 +71,7 @@ export default class BaseInfo extends React.Component {
 
     this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
-        return callback({ message: t('Name exists'), field: rule.field })
+        return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
       }
       callback()
     })
@@ -125,20 +125,20 @@ export default class BaseInfo extends React.Component {
         <Form data={formTemplate} ref={formRef}>
           <SubTitle title={t('Cluster Basic Info')} />
           <Form.Item
-            label={t('Cluster Name')}
+            label={t('CLUSTER_NAME')}
             desc={t('NAME_DESC')}
             rules={[
               { required: true, message: t('Please input cluster name') },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}
           >
             <Input name="metadata.name" maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('CLUSTER_TAG')} desc={t('CLUSTER_TAG_DESC')}>
+          <Form.Item label={t('TAG')} desc={t('CLUSTER_TAG_DESC')}>
             <Select
               name="metadata.labels['cluster.kubesphere.io/group']"
               options={CLUSTER_PRESET_GROUPS}
@@ -147,7 +147,7 @@ export default class BaseInfo extends React.Component {
               searchable
             />
           </Form.Item>
-          <Form.Item label={t('Provider')} desc={t('CLUSTER_PROVIDER_DESC')}>
+          <Form.Item label={t('PROVIDER')} desc={t('CLUSTER_PROVIDER_DESC')}>
             <Select
               name="spec.provider"
               options={CLUSTER_PROVIDERS}
@@ -156,7 +156,7 @@ export default class BaseInfo extends React.Component {
               searchable
             />
           </Form.Item>
-          <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+          <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
             <TextArea
               name="metadata.annotations['kubesphere.io/description']"
               maxLength={256}

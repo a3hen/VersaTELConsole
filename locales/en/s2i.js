@@ -22,7 +22,7 @@ module.exports = {
   'Authentication required': 'Authentication required',
   b2i: 'b2i',
   binary: 'binary',
-  'Build Environment': 'Build Environment',
+  BUILD_ENVIRONMENT: 'Build Environment',
   'Build Times': 'Build Times',
   Builder: 'Builder',
   'builder name': 'builder name',
@@ -34,44 +34,58 @@ module.exports = {
   'Building Image': 'Building Image',
   'Building Log': 'Building Log',
   'building logs': 'building logs',
-  'Choose a Language': 'Choose a Language',
-  'Click to upload an artifact': 'Click to upload an artifact',
+  BUILD_MODE: 'Build Mode',
+  CLICK_UPLOAD_ARTIFACT: 'Click to Upload an Artifact',
   'Code Resource': 'Code Resource',
-  'Code URL': 'Code URL',
-  'Container Settings': 'Container Settings',
+  CODE_URL: 'Code URL',
+  DOWNLOAD_ARTIFACT: 'Download Artifact',
+  UPLOAD_ARTIFACT_FILE: 'Upload Artifact File',
+  CODE_REPOSITORY_URL: 'Code Repository URL',
+  CONTAINER_SETTINGS: 'Container Settings',
   creationTimestamp: 'creationTimestamp',
-  'Currently only supports git repo': 'Currently only supports git repo',
+  'Currently only supports git repo':
+    'Only Git repositories are supported currently.',
   'Download Artifact': 'Download Artifact',
   'Environment Params': 'Environment Params',
   'exec: "git": executable file not found in $PATH':
     'exec: "git": executable file not found in $PATH',
-  'File Size': 'File Size',
-  'File Uploaded Successfully': 'File Uploaded Successfully',
-  'Image Artifacts': 'Image Artifacts',
+  FILE_SIZE_VALUE: 'File size: {value}',
+  FILE_UPLOADED_TIP: 'File uploaded successfully.',
+  IMAGE_ARTIFACTS: 'Image Artifacts',
   'Image Builder': 'Image Builder',
-  'Image Builders': 'Image Builder',
+  IMAGE_BUILDER: 'Image Builder',
+  IMAGE_BUILDER_PL: 'Image Builders',
+  IMAGE_BUILDER_LOW: 'image builder',
+  BUILDER_IMAGE: 'Builder Image',
+  BUILDER_IMAGE_SCAP: 'Builder image',
+  PULL_POLICY: 'Pull Policy',
+  SOURCE_URL: 'Source URL',
+  REMOTE_TRIGGER: 'Remote Trigger',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
   'Image building succeeded': 'Image building succeeded',
-  'Image Size': 'Image Size',
-  imageName: 'imageName',
+  IMAGE_SIZE_SCAP: 'Image size',
+  IMAGE_NAME: 'Image Name',
+  IMAGE_NAME_SCAP: 'Image name',
+  IMAGE_NAME_EMPTY_DESC: 'Please enter an image name.',
+  IMAGE_TAG_EMPTY_DESC: 'Please enter an image tag.',
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: 'Please set a target image registry.',
+  IMAGE_TAG: 'Image Tag',
   ImageName: 'ImageName',
   'is Failed': 'is Failed',
-  'Job Records': 'Job Records',
-  'Last build environment': 'Last build environment',
-  'Last Message': 'Last Message',
-  'The logging module is not installed.':
-    'The logging module is not installed.',
-  'Log is loading...': 'Log is loading...',
+  JOB_RECORDS: 'Job Records',
+  LAST_BUILD_ENVIRONMENT: 'Last Build Environment',
+  LOG_MODULE_NOT_INSTALLED: 'The logging module is not installed.',
+  LOADING_DOTS: 'Loading...',
   'New Image Tag': 'New Image Tag',
   'New Tag': 'New Tag',
   'No Log Records': 'No Log Records',
-  'Please set the access policy for the container.':
-    'Please set the access policy for the container.',
-  'Please set the container name and computing resources.':
-    'Please set the container name and computing resources.',
+  PORT_SETTINGS_DESC: 'Set the ports used for accessing the container.',
+  CONTAINER_SETTINGS_DESC:
+    'Set the image, name, type, and computing resources of the container.',
   'Published Time': 'Published Time',
-  'Pull Command': 'Pull Command',
+  PULL_COMMAND: 'Pull Command',
+  PULL_COMMAND_SCAP: 'Pull command',
   'Rebuild Image': 'Rebuild Image',
   'Rebuilt successfully; the image status will be refreshed soon.':
     'Rebuilt successfully; the image status will be refreshed soon.',
@@ -87,38 +101,43 @@ module.exports = {
   'Source to image jobs': 'Source to image jobs',
   sourceUrl: 'sourceUrl',
   SourceUrl: 'SourceUrl',
-  'Specify a relative directory inside the application. (Default value /)':
+  S2I_RELATIVE_PATH_TIP:
     'Specify a relative directory inside the application. (Default value /)',
-  'Start Command': 'Start Command',
   StartTime: 'StartTime',
-  'Target Image Repository': 'Target Image Repository',
-  'The current code repository does not require a key.':
+  TARGET_IMAGE_REPOSITORY: 'Target Image Registry',
+  S2I_NO_SECRET: 'The current code repository does not require a secret.',
+  UPLOAD_ARTIFACT_TIP: 'Please upload an artifact.',
+  HEALTH_CHECKER_DESC:
+    'Add probes to check the container health status regularly.',
+  UPLOAD_ARTIFACT: 'Upload Artifact',
+  UPLOAD_FAILED: 'Upload failed.',
+  CODE_RELATIVE_PATH_DESC:
+    'Set the relative path of the code in the code repository. The default path is /.',
+  STARTUP_COMMAND: 'Start Command',
+  CODE_REPOSITORY_KEY_NOT_REQUIRED:
     'The current code repository does not require a key.',
-  'The file has not been uploaded.': 'The file has not been uploaded.',
-  'The health of the container will be checked regularly according to user needs.':
-    'The health of the container will be checked regularly according to user needs.',
-  'Upload Artifact': 'Upload Artifact',
+  ARTIFACT_FILE_EMPTY_DESC: 'Please upload an artifact file.',
+  ARTIFACT_FILE: 'Artifact File',
   'Upload file failed': 'Upload file failed',
   'Upload Percent': 'Upload Percent',
 
   SORT_BY: 'sort by { name }',
-  S2I_Building: 'building',
-  S2I_Failed: 'building failed',
-  S2I_Successful: 'building successful',
+  IMAGE_NAME_BUILDING: 'Image: {name}/Building',
+  IMAGE_NAME_FAILED: 'Image: {name}/Failed',
+  IMAGE_NAME_SUCCESSFUL: 'Image: {name}/Successful',
   NEW_TAG_DESC: 'enter tag of the new image',
   S2I_RELATIVE_PATH_DESC:
     'Source code repository address (currently supports git) and can assign code branches and relative paths in source code terminals',
-  START_COMMAND_DESC:
-    'By default, the container runs the default image command. You can change the container command from here.',
-  RUN_COMMAND_DESC:
-    'The start command of the container. By default, the start command for packaging will be used. Please use commas to separate multiple commands.',
-  CONTAINER_PARAMS_DESC:
-    'The start command parameters of the container. Please use commas to separate multiple ones.',
-  CONTAINER_ENVIROMENT_DESC: "Please add the container's environment variable.",
+  STARTUP_COMMAND_DESC:
+    'Customize the command run by the container upon startup. By default, the container runs the default image command.',
+  CONTAINER_COMMAND_DESC: 'Startup command of the container.',
+  CONTAINER_ARGUMENT_DESC:
+    'Parameters of the startup command. Use commas to separate multiple parameters.',
+  CONTAINER_ENVIRONMENT_DESC: 'Add environment variables to the container.',
   IMAGE_PULL_POLICY_DESC:
     'By default, the image is pulled only if it is not already present locally.',
-  S2I_ENVIROMENT_DESC:
-    'App developers can use the following environment variables to configure the runtime behavior of the image. For more information, see <a href={link} target="_blank">S2I Templates</a>.',
+  S2I_ENVIRONMENT_DESC:
+    'Set environment variables to control the runtime behavior of the image. <a href={link} target="_blank">Learn More</a>',
   S2I_UPDATE_WORKLOAD: 'Update workload after building is successful',
   S2I_UPDATA_WORKLOAD_DESC:
     'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
@@ -128,36 +147,55 @@ module.exports = {
   IMAGE_FROM_EXSIT_DESC:
     'Pull an image from a public or private image repository',
   S2I_SECRET_DESC:
-    'If it is a private code repository, choose the code repository key.',
+    'Select a secret if the code repository is a private repository.',
   S2I_IMAGE_REPONSITRY_DESC:
-    'The source code repository address (currently supports git). You can specify the code branch and relative path in the source code terminal.',
-  S2I_RELATIVE_PATH: 'Code Relative Path (optional):',
+    'The source code repository address (currently supports Git). You can specify the code branch and relative path in the source code terminal.',
+  S2I_RELATIVE_PATH: 'Code Relative Path (Optional)',
   S2I_IMAGENAME_DESC:
     'Image name and tag, which defaults to the project name of the code repository.',
-  S2I_TARGET_IMAGE_REPONSTRY_DESC:
-    'You need to select an image repository with push permissions to store the image. If it is not available, you need to <a href={link} target="_blank">create a new image repository Secret</a>.',
+  IMAGE_BUILDER_DESC:
+    'Image Builder is a tool that builds container images from source code or artifacts. You can build container images from source code or artifacts through simple configurations.',
+  BUILD_IMAGE_FOR_SERVICE: 'Build image for Service {service}.',
+  S2I_DESC: 'Select a source code language.',
+  IMAGE_FROM_S2I: 'Build Image from Source Code',
+  IMAGE_FROM_B2I: 'Build Image from Artifact',
+  B2I_DESC: 'Select an artifact file type.',
+  CODE_REPOSITORY_KEY_DESC:
+    'Select the Secret that contains the code repository key if a private code repository is used.',
+  CODE_REPOSITORY_URL_DESC:
+    'Enter the address of the source code repository. Currently, only Git repositories are supported.',
+  CODE_RELATIVE_PATH: 'Code Relative Path',
+  S2I_IMAGE_NAME_DESC:
+    'The name can contain only lowercase letters, numbers, hyphens (-), dots (.), slashes (/), and colons (:), and must start and end with a lowercase letter or number.',
+  S2I_TARGET_IMAGE_REPOSITORY_DESC:
+    'Select an image registry for storing the image to be created. If no image registry is available, you need to create an image registry Secret. <br/><a href={link} target="_blank">Learn More</a>',
   S2I_BUILDERNAME_DESC:
     'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
-  IMAGE_BUILDER_DESC:
-    'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
   'Build image for service x': 'Build image for service {service}',
-  S2I_DESC: 'Please choose your source code language',
-  IMAGE_FROM_S2I: 'Build a new image from source code',
-  IMAGE_FROM_B2I: 'Build a new image from the artifact',
-  B2I_DESC: 'Please choose your artifact to build a container image',
-  B2I_DEFAULT_DESC: 'Please choose your artifact to build a container image',
-  JAR_DESC:
-    'A JAR file is a package file format that is commonly used to aggregate a large number of Java class files, related metadata and resources (text, images, etc.) files into a file.',
-  WAR_DESC:
-    'WAR file is a file used to distribute a collection of JAR-files, JavaServer Pages, Java Servlets, Java classes, XML files, tag libraries, static web pages (HTML and related files) and other resources that together constitute a web application.',
+  B2I_DEFAULT_DESC: 'Upload an artifact file.',
+  JAR_DESC: 'Upload an artifact file in JAR format.',
+  WAR_DESC: 'Upload an artifact file in WAR format.',
   BINARY_DESC: '',
-  IMAGE_BUILDER_CREATE_DESC:
-    'Image Builder is a tool that makes it easy to write container images that take application source code or artifacts as an input and produce a new image that runs the assembled application as output. It includes Source to Image, a.k.a S2I which takes source code as input, and Binary to Image, a.k.a. B2I which takes application artifacts as input.',
+  IMAGE_BUILDER_EMPTY_DESC: 'Please create an image builder.',
   WRONG_FILE_EXTENSION_NAME:
-    'The selected file type does not match, please select the {type} type',
-  PROBE_COMMAND_DESC: 'Please use commas to separate multiple commands.',
-  'Secret Code': 'Secret Code',
+    'The selected file type does not match. Please select the {type} type.',
+  PROBE_COMMAND_DESC: 'Use commas to separate multiple commands.',
+  SECRET_CODE: 'Secret Code',
   SECRET_CODE_RULE_DESC:
-    'It can only contain upper and lower case letters, numbers.',
+    'It can only contain upper and lower case letters and numbers.',
+  TRIGGER_TOKEN: 'Trigger Token',
+  TRIGGER_TOKEN_DESC:
+    'Set a token used to authenticate a client against KubeSphere. You can set a client to automatically trigger image building on KubeSphere over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
+  S2I_ACCESS_TOKEN_DESC: 'Set the ',
+  INVALID_TRIGGER_TOKEN_DESC:
+    'Invalid token. The token can contain only uppercase letters, lowercase letters, and numbers.',
   'Remote Trigger Link': 'Remote Trigger Link',
+
+  // Image Builder List Page
+
+  // Creation Page
+  UPLOAD_PERCENT: 'Uploaded: {percent}%',
+  UPLOAD_FULLY: 'Uploaded: 100%',
+  FILE_SIZE: 'File size: {size}',
+  S2I_SECRET: 'Secret',
 }

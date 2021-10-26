@@ -44,7 +44,7 @@ export default class PodDetail extends React.Component {
   }
 
   get name() {
-    return 'Pod'
+    return 'POD'
   }
 
   get routing() {
@@ -79,7 +79,7 @@ export default class PodDetail extends React.Component {
     {
       key: 'viewYaml',
       icon: 'eye',
-      text: t('View YAML'),
+      text: t('VIEW_YAML'),
       action: 'view',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -90,12 +90,12 @@ export default class PodDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -113,43 +113,43 @@ export default class PodDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(status),
       },
       {
-        name: t('Pod IP'),
+        name: t('POD_IP_ADDRESS'),
         value: detail.podIp,
       },
       {
-        name: t('Node Name'),
+        name: t('NODE_NAME'),
         value: detail.node,
       },
       {
-        name: t('Node IP'),
+        name: t('NODE_IP_ADDRESS'),
         value: detail.nodeIp,
       },
       {
-        name: `${t('Restart Count')}(${t('Total')})`,
+        name: t('RESTART_PL'),
         value: restarts,
       },
       {
-        name: t('QoS Class'),
+        name: t('QOS_CLASS'),
         value: get(detail, 'status.qosClass'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -170,7 +170,7 @@ export default class PodDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Pods'),
+          label: t('POD_PL'),
           url: this.listUrl,
         },
       ],

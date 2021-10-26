@@ -17,18 +17,12 @@
  */
 
 import React from 'react'
-import { get, omit, debounce, isArray, isUndefined, isEmpty } from 'lodash'
+import { get, omit, debounce, isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
 import { toJS } from 'mobx'
 import { parse } from 'qs'
 import { observer, inject } from 'mobx-react'
-import {
-  Button,
-  Notify,
-  Level,
-  LevelLeft,
-  LevelRight,
-} from '@kube-design/components'
+import { Button, Notify } from '@kube-design/components'
 
 import { getLocalTime, formatUsedTime } from 'utils'
 
@@ -40,8 +34,6 @@ import { trigger } from 'utils/action'
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
 
-import styles from './index.scss'
-
 @inject('rootStore', 'detailStore')
 @observer
 @trigger
@@ -50,7 +42,7 @@ export default class Activity extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get enabledActions() {
     const { devops, cluster } = this.props.match.params
@@ -71,6 +63,10 @@ export default class Activity extends React.Component {
 
   get isAtBranchDetailPage() {
     return this.props.match.params.branch
+  }
+
+  get isMultiBranch() {
+    return !isEmpty(toJS(this.store.detail.branchNames))
   }
 
   get prefix() {
@@ -120,6 +116,7 @@ export default class Activity extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {
@@ -131,10 +128,10 @@ export default class Activity extends React.Component {
   handleRunning = debounce(async () => {
     const { detail } = this.store
     const { params } = this.props.match
-    const isMultibranch = detail.branchNames
-    const hasParameters = detail.parameters && detail.parameters.length
+    const hasParameters = !isEmpty(toJS(detail.parameters))
+    const hasBranches = !isEmpty(toJS(detail.branchNames))
 
-    if (isMultibranch || hasParameters) {
+    if (hasBranches || hasParameters) {
       this.trigger('pipeline.params', {
         devops: params.devops,
         cluster: params.cluster,
@@ -160,13 +157,9 @@ export default class Activity extends React.Component {
   handleReplay = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.devops}/pipelines/${
-      params.name
-    }${this.getActivityDetailLinks(record)}`
-
     await this.props.detailStore.handleActivityReplay({
-      url,
-      cluster: params.cluster,
+      ...params,
+      url: this.getActivityDetailLinks(record),
     })
 
     Notify.success({ content: `${t('Run Start')}` })
@@ -195,13 +188,9 @@ export default class Activity extends React.Component {
   handleStop = record => async () => {
     const { params } = this.props.match
 
-    const url = `devops/${params.devops}/pipelines/${
-      params.name
-    }${this.getActivityDetailLinks(record)}`
-
     await this.props.detailStore.handleActivityStop({
-      url,
-      cluster: params.cluster,
+      url: this.getActivityDetailLinks(record),
+      ...params,
     })
 
     Notify.success({
@@ -212,47 +201,52 @@ export default class Activity extends React.Component {
   }
 
   getActivityDetailLinks = record => {
-    const matchArray = get(record, '_links.self.href', '').match(
-      /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-    )
-    if (isArray(matchArray)) {
-      return `/branches/${encodeURIComponent(record.pipeline)}/runs/${
-        record.id
-      }`
+    const branchName = get(record, '_originData.spec.scm.refName')
+
+    if (branchName) {
+      // multi-branch
+      return `branches/${encodeURIComponent(branchName)}/runs/${record.id}`
     }
-    return `/runs/${record.id}`
+    return `runs/${record.id}`
   }
 
   getRunhref = record => {
-    const matchArray = get(record, '_links.self.href', '').match(
-      /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-    )
-    if (isArray(matchArray) && !this.isAtBranchDetailPage) {
-      return `${this.prefix}/branch/${record.pipeline}/run/${record.id}`
+    const branchName = get(record, '_originData.spec.scm.refName')
+    const runName = get(record, '_originData.metadata.name')
+
+    if (branchName && !this.isAtBranchDetailPage) {
+      return `${this.prefix}/branch/${record.pipeline}/run/${runName}`
     }
-    return `${this.prefix}/run/${record.id}`
+
+    return `${this.prefix}/run/${runName}`
   }
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       width: '15%',
       key: 'status',
-      render: record => (
-        <Link className="item-name" to={this.getRunhref(record)}>
+      render: record =>
+        record.result === 'ABORTED' || !record.result ? (
           <Status {...getPipelineStatus(record)} />
-        </Link>
-      ),
+        ) : (
+          <Link className="item-name" to={this.getRunhref(record)}>
+            <Status {...getPipelineStatus(record)} />
+          </Link>
+        ),
     },
     {
-      title: t('Run'),
+      title: t('RUN'),
       width: '10%',
       key: 'run',
-      render: record => (
-        <Link className="item-name" to={this.getRunhref(record)}>
-          {record.id}
-        </Link>
-      ),
+      render: record =>
+        record.result === 'ABORTED' || !record.result ? (
+          <span>{record.id}</span>
+        ) : (
+          <Link className="item-name" to={this.getRunhref(record)}>
+            {record.id}
+          </Link>
+        ),
     },
     {
       title: t('Commit'),
@@ -260,25 +254,26 @@ export default class Activity extends React.Component {
       width: '10%',
       render: commitId => (commitId && commitId.slice(0, 6)) || '-',
     },
-    ...(this.props.match.params.branch
+    // when it's in branch detail page, the branch column should be hidden
+    // when it's a non-multi-branch Pipeline, the branch column should be hidden
+    ...(this.isAtBranchDetailPage || !this.isMultiBranch
       ? []
       : [
           {
-            title: t('Branch'),
+            title: t('BRANCH_SI'),
             width: '15%',
             key: 'branch',
             render: record => {
-              const matchArray = get(record, '_links.self.href', '').match(
-                /\/pipelines\/\S*?(?=\/)\/branches\/(\S*?(?=\/)?)\//
-              )
-              if (isArray(matchArray)) {
+              const branchName = get(record, '_originData.spec.scm.refName', '')
+
+              if (branchName) {
                 return (
                   <Link
                     className="item-name"
-                    to={`${this.prefix}/branch/${record.pipeline}/activity`}
+                    to={`${this.prefix}/branch/${branchName}/activity`}
                   >
                     <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
-                    {decodeURIComponent(record.pipeline)}
+                    {decodeURIComponent(branchName)}
                   </Link>
                 )
               }
@@ -287,7 +282,7 @@ export default class Activity extends React.Component {
           },
         ]),
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       dataIndex: 'causes',
       width: '25%',
       render: causes => get(causes, '[0].shortDescription', ''),
@@ -300,7 +295,7 @@ export default class Activity extends React.Component {
         durationInMillis ? formatUsedTime(durationInMillis) : '-',
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'startTime',
       width: '20%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -339,38 +334,11 @@ export default class Activity extends React.Component {
           {
             type: 'control',
             key: 'run',
-            text: t('Run'),
+            text: t('RUN'),
             action: 'edit',
             onClick: this.handleRunning,
           },
         ]
-
-  renderFooter = () => {
-    const { detail, activityList } = this.store
-    const { total, limit } = activityList
-    const isMultibranch = detail.branchNames
-
-    if (!isMultibranch || this.isAtBranchDetailPage) {
-      return null
-    }
-
-    if (total < limit) {
-      return null
-    }
-
-    return () => (
-      <Level>
-        {!isUndefined(total) && (
-          <LevelLeft>{t('TOTAL_ITEMS', { num: total })}</LevelLeft>
-        )}
-        <LevelRight>
-          <Link className={styles.clickable} to="./branch">
-            {t('PIPELINES_FOOTER_SEE_MORE')}
-          </Link>
-        </LevelRight>
-      </Level>
-    )
-  }
 
   render() {
     const { activityList } = this.store
@@ -382,7 +350,7 @@ export default class Activity extends React.Component {
     if (isEmptyList) {
       const { detail } = this.store
       const runnable = this.enabledActions.includes('edit')
-      const isMultibranch = detail.branchNames
+      const isMultibranch = !isEmpty(toJS(detail.branchNames))
       const isBranchInRoute = get(this.props, 'match.params.branch')
 
       if (isMultibranch && !isEmpty(isMultibranch) && !isBranchInRoute) {
@@ -407,19 +375,16 @@ export default class Activity extends React.Component {
       )
     }
 
-    const rowKey = get(data[0], 'time') ? 'time' : 'endTime'
-
     return (
       <Table
         data={toJS(data)}
         columns={this.getColumns()}
-        rowKey={rowKey}
+        rowKey="uid"
         filters={omitFilters}
         pagination={pagination}
         isLoading={isLoading}
         onFetch={this.handleFetch}
         actions={this.getActions()}
-        footer={this.renderFooter()}
         hideSearch
         enabledActions={this.enabledActions}
       />

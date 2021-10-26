@@ -55,13 +55,13 @@ const CustomToolTip = (props = {}) => {
                 totalData.find(_item => _item.time === timeStr),
                 name
               ) || 0
-            ratio = <span>{` (${usage}/${total})`}</span>
+            ratio = ` (${usage}/${total})`
           }
 
           return (
             <div key={dataKey} className={styles.item}>
               <i style={{ background: color }} />
-              {t(name)}:{value}
+              {t(name)}: {value}
               {unitText}
               {ratio}
             </div>

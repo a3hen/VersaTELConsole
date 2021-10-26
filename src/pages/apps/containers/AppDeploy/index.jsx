@@ -69,13 +69,13 @@ export default class App extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BasicInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'App Config',
+        title: 'APP_SETTINGS',
         component: AppConfig,
         required: true,
       },
@@ -199,7 +199,7 @@ export default class App extends React.Component {
       <div className={styles.control}>
         {currentStep < total ? (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         ) : (
           <Button
@@ -207,7 +207,7 @@ export default class App extends React.Component {
             onClick={this.handleOk}
             loading={this.appStore.isSubmitting}
           >
-            {t('Deploy')}
+            {t('DEPLOY')}
           </Button>
         )}
       </div>

@@ -31,7 +31,7 @@ import ConfigMapStore from 'stores/configmap'
 @withProjectList({
   store: new ConfigMapStore(),
   module: 'configmaps',
-  name: 'ConfigMap',
+  name: 'CONFIGMAP',
 })
 export default class ConfigMaps extends React.Component {
   get itemActions() {
@@ -40,7 +40,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -50,7 +50,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -60,7 +60,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('Modify Config'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         onClick: item =>
           trigger('configmap.edit', {
@@ -70,11 +70,11 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -85,7 +85,7 @@ export default class ConfigMaps extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -101,14 +101,14 @@ export default class ConfigMaps extends React.Component {
         ),
       },
       {
-        title: t('Config Field'),
+        title: t('FIELDS'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',
         render: data => Object.keys(data).join(','),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

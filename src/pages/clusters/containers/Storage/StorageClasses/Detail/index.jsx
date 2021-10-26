@@ -50,7 +50,7 @@ export default class StorageClassDetail extends React.Component {
   }
 
   get name() {
-    return 'Storage Class'
+    return 'STORAGE_CLASS'
   }
 
   get module() {
@@ -69,20 +69,21 @@ export default class StorageClassDetail extends React.Component {
 
   getOperations = () => [
     {
-      key: 'viewYaml',
+      key: 'editYaml',
       type: 'default',
-      text: t('View YAML'),
-      action: 'view',
+      text: t('EDIT_YAML'),
+      action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
           detail: toJS(this.store.detail),
-          readOnly: true,
+          readOnly: false,
+          success: this.fetchData,
         }),
     },
     {
       key: 'setDefault',
       icon: 'pen',
-      text: t('Set as default storage class'),
+      text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
       action: 'edit',
       onClick: () =>
         this.trigger('storageclass.set.default', {
@@ -92,14 +93,26 @@ export default class StorageClassDetail extends React.Component {
         }),
     },
     {
+      key: 'funcManage',
+      icon: 'slider',
+      text: t('STORAGE_MANAGEMENT'),
+      action: 'edit',
+      onClick: () =>
+        this.trigger('storageclass.volume.function.update', {
+          detail: toJS(this.store.detail),
+          StorageClassStore: this.store,
+          success: this.fetchData,
+        }),
+    },
+    {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -113,24 +126,24 @@ export default class StorageClassDetail extends React.Component {
 
     return [
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value: detail.provisioner,
       },
       {
-        name: t('Default Storage Class'),
-        value: detail.default ? t('True') : t('False'),
+        name: t('DEFAULT_STORAGE_CLASS'),
+        value: detail.default ? t('YES') : '-',
       },
       {
-        name: t('Scalable'),
-        value: detail.allowVolumeExpansion ? t('True') : t('False'),
+        name: t('ALLOW_VOLUME_EXPANSION'),
+        value: detail.allowVolumeExpansion ? t('TRUE') : t('FALSE'),
       },
       {
-        name: t('Reclaim Policy'),
+        name: t('RECLAIM_POLICY'),
         value: detail.reclaimPolicy,
       },
       {
-        name: t('Support Volume Snapshot'),
-        value: detail.supportSnapshot ? t('True') : t('False'),
+        name: t('ALLOW_VOLUME_SNAPSHOT'),
+        value: detail.supportSnapshot ? t('TRUE') : t('FALSE'),
       },
     ]
   }
@@ -154,7 +167,7 @@ export default class StorageClassDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Storage Classes'),
+          label: t('STORAGE_CLASS_PL'),
           url: this.listUrl,
         },
       ],

@@ -31,7 +31,7 @@ import FederatedStore from 'stores/federated'
 @withProjectList({
   store: new FederatedStore({ module: 'secrets' }),
   module: 'secrets',
-  name: 'Secret',
+  name: 'SECRET',
 })
 export default class Secrets extends React.Component {
   get itemActions() {
@@ -40,7 +40,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -50,7 +50,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -60,7 +60,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editSecret',
         icon: 'pen',
-        text: t('Edit Secret'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         onClick: item =>
           trigger('secret.edit', {
@@ -71,11 +71,11 @@ export default class Secrets extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -86,7 +86,7 @@ export default class Secrets extends React.Component {
     const { module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -100,28 +100,28 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '12%',
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '12%',
         render: type => t(SECRET_TYPES[type] || type),
       },
       {
-        title: t('Config Number'),
+        title: t('SECRET_FIELD_COUNT'),
         dataIndex: 'data',
         isHideable: true,
         width: '12%',
         render: data => Object.keys(data).length,
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

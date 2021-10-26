@@ -46,7 +46,7 @@ export default class AppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -68,11 +68,11 @@ export default class AppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -94,12 +94,12 @@ export default class AppDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -118,27 +118,27 @@ export default class AppDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: appName,
       },
       {
-        name: t('Version'),
+        name: t('VERSION'),
         value: detail.version,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -159,7 +159,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Applications'),
+          label: t('APP_PL'),
           url: this.listUrl,
         },
       ],

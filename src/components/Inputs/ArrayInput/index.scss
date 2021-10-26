@@ -22,13 +22,13 @@
   @include vertical-center;
 }
 
-.add {
-  margin-top: 12px;
+.desc {
+  color: $second-text-color;
 }
 
-.desc {
-  position: absolute;
-  left: 0;
-  bottom: 14px;
-  color: $second-text-color;
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
 }

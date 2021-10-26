@@ -49,7 +49,7 @@ export default class OPAppDetail extends React.Component {
   }
 
   get name() {
-    return 'Application'
+    return 'APP'
   }
 
   get listUrl() {
@@ -71,11 +71,11 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -83,7 +83,7 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'editTemplate',
       icon: 'pen',
-      text: t('EDIT_TEMPLATE'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.app.template.edit', {
@@ -95,12 +95,12 @@ export default class OPAppDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -117,39 +117,39 @@ export default class OPAppDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: this.renderStatus(),
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: get(detail, 'app.name', '-'),
       },
       {
-        name: t('Version'),
+        name: t('VERSION'),
         value: get(detail, 'version.name', '-'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(get(detail, 'create_time')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(get(detail, 'status_time')).format(
           'YYYY-MM-DD HH:mm:ss'
         ),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.owner,
       },
     ]
@@ -198,7 +198,7 @@ export default class OPAppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Applications'),
+          label: t('APP_PL'),
           url: this.listUrl,
         },
       ],

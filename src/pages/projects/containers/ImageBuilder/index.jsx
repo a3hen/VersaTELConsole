@@ -34,7 +34,7 @@ import S2IBuilderStore from 'stores/s2i/builder'
 @withProjectList({
   store: new S2IBuilderStore('s2ibuilders'),
   module: 's2ibuilders',
-  name: 'Image Builder',
+  name: 'IMAGE_BUILDER',
 })
 export default class ImageBuilders extends React.Component {
   get store() {
@@ -68,7 +68,7 @@ export default class ImageBuilders extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -78,11 +78,11 @@ export default class ImageBuilders extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -93,7 +93,7 @@ export default class ImageBuilders extends React.Component {
     const { prefix, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -102,7 +102,7 @@ export default class ImageBuilders extends React.Component {
             title={getDisplayName(record)}
             desc={
               record.serviceName
-                ? t('Build image for service x', {
+                ? t('BUILD_IMAGE_FOR_SERVICE', {
                     service: record.serviceName,
                   })
                 : '-'
@@ -112,7 +112,7 @@ export default class ImageBuilders extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         width: '15%',
@@ -121,7 +121,7 @@ export default class ImageBuilders extends React.Component {
           _status = _status === 'Running' ? 'Building' : _status
           return (
             <Status
-              name={t(_status || 'Not running yet')}
+              name={t(_status || 'NOT_RUNNING_YET')}
               type={_status || 'Unknown'}
               flicker
             />
@@ -129,14 +129,14 @@ export default class ImageBuilders extends React.Component {
         },
       },
       {
-        title: t('type'),
+        title: t('TYPE'),
         dataIndex: 'type',
         isHideable: true,
         width: '15%',
         render: type => t(type),
       },
       {
-        title: t('Service'),
+        title: t('SERVICE'),
         dataIndex: 'serviceName',
         isHideable: true,
         width: '15%',
@@ -148,7 +148,7 @@ export default class ImageBuilders extends React.Component {
         },
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         width: 150,

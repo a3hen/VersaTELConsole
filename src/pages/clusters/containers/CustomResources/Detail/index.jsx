@@ -45,7 +45,7 @@ export default class CustomResourceDetail extends React.Component {
   }
 
   get name() {
-    return 'Custom Resource Definition'
+    return 'CRD'
   }
 
   get listUrl() {
@@ -68,19 +68,19 @@ export default class CustomResourceDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: this.props.match.params.cluster,
       },
       {
-        name: t('Scope'),
+        name: t('SCOPE_TCAP'),
         value: detail.scope,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator || '-',
       },
     ]
@@ -101,7 +101,7 @@ export default class CustomResourceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

@@ -19,7 +19,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import { Panel, Text } from 'components/Base'
 import ClusterTitle from 'components/Clusters/ClusterTitle'
@@ -33,7 +33,11 @@ import styles from './index.scss'
 @inject('rootStore')
 @observer
 export default class ClusterService extends Component {
-  routerStore = new RouterStore()
+  gatewayStore = new GatewayStore()
+
+  state = {
+    gateway: {},
+  }
 
   get cluster() {
     return this.props.cluster.name
@@ -49,15 +53,35 @@ export default class ClusterService extends Component {
   }
 
   componentDidMount() {
+    this.getInitGateway()
+  }
+
+  getHostGateway = () => {
+    return this.gatewayStore.getGateway({ cluster: this.cluster })
+  }
+
+  getProjectGateway = () => {
     const { namespace } = this.props.detail
-    this.routerStore.getGateway({ cluster: this.cluster, namespace })
+    return this.gatewayStore.getGateway({
+      namespace,
+      cluster: this.cluster,
+    })
+  }
+
+  getInitGateway = async detail => {
+    const dataList = await Promise.all([
+      this.getHostGateway(detail),
+      this.getProjectGateway(detail),
+    ])
+    const gateway = dataList[1] || dataList[0]
+    this.setState({ gateway })
   }
 
   getOperations = () => [
     {
       key: 'editGateway',
       icon: 'ip',
-      text: t('Edit Internet Access'),
+      text: t('EDIT_EXTERNAL_ACCESS'),
       action: 'edit',
       onClick: () => this.props.updateService(this.cluster),
     },
@@ -72,7 +96,7 @@ export default class ClusterService extends Component {
 
   renderPorts() {
     const { detail } = this.props
-    const gateway = this.routerStore.gateway.data
+    const gateway = this.state.gateway
     return <Ports gateway={gateway} detail={detail} />
   }
 
@@ -92,9 +116,12 @@ export default class ClusterService extends Component {
           <Text
             icon="eip-pool"
             title={`${detail.name}.${detail.namespace}.svc`}
-            description={t('EIP_POOL_DESC')}
+            description={t('INTERNAL_DOMAIN_NAME_SCAP')}
           />
-          <Text title={detail.clusterIP} description={t('Virtual IP')} />
+          <Text
+            title={detail.clusterIP}
+            description={t('VIRTUAL_IP_ADDRESS')}
+          />
           <MoreActions
             className={styles.more}
             options={this.getEnabledOperations()}

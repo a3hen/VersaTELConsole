@@ -132,7 +132,7 @@ export default class UploadInfo extends Component {
       packageName,
     }
     this.fileStore.downloadPackage(data).then(() => {
-      Notify.success({ content: `${t('Download Successfully')}` })
+      Notify.success({ content: t('DOWNLOAD_SUCCESSFUL') })
     })
   }
 
@@ -169,7 +169,7 @@ export default class UploadInfo extends Component {
         </div>
         <div className={styles.description}>
           {t(uploadStatusWord[status], { file: missFile })}
-          {status === 'error' && <label>, {t('please upload again')}</label>}
+          {status === 'error' && <label>, {t('UPLOAD_AGAIN_TIP')}</label>}
         </div>
       </div>
     )
@@ -191,12 +191,12 @@ export default class UploadInfo extends Component {
             )}
           </div>
           <div className={styles.description}>
-            {t('Updated Time')}:&nbsp;
+            {t('UPDATED_AT_SCAP')}
             {getLocalTime(updateTime).format('YYYY-MM-DD HH:mm:ss')}
           </div>
         </div>
         <Button onClick={this.downloadPackage} type="default">
-          {t('Download')}
+          {t('DOWNLOAD')}
         </Button>
         <Upload
           ref={node => {

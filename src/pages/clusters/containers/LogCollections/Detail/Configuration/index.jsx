@@ -38,19 +38,19 @@ export default class Configuration extends React.Component {
           {type === 'kafka' && (
             <Attributes.Item
               className={styles.item}
-              name={t('topic')}
+              name={t('TOPIC')}
               value={config.topics}
             />
           )}
           <Attributes.Item
             className={styles.item}
-            name={t('Address')}
+            name={t('ADDRESS')}
             value={address}
           />
           {type === 'es' && (
             <Attributes.Item
               className={styles.item}
-              name={t('Index Prefix')}
+              name={t('INDEX_PREFIX')}
               value={config.logstashPrefix}
             />
           )}

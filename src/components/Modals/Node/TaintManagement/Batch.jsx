@@ -205,7 +205,7 @@ export default class TaintManagementModal extends React.Component {
 
     return (
       <div className={styles.node}>
-        <div className={styles.subTitle}>{t('Common Taints')}</div>
+        <div className={styles.subTitle}>{t('COMMON_TAINTS')}</div>
         <TaintInput value={commonTaints} onChange={this.handleChangeAll} />
       </div>
     )
@@ -221,7 +221,7 @@ export default class TaintManagementModal extends React.Component {
 
       return (
         <div key={node.name} className={styles.node}>
-          <div className={styles.subTitle}>{`${t('Node')}: ${node.name}`}</div>
+          <div className={styles.subTitle}>{node.name}</div>
           <TaintInput
             common={commonTaints}
             value={taints}
@@ -240,15 +240,15 @@ export default class TaintManagementModal extends React.Component {
       <Modal.Form
         width={1162}
         bodyClassName={styles.body}
-        title={t('Taint Management')}
+        title={t('EDIT_TAINTS')}
         icon="wrench"
-        okText={t('Save')}
+        okText={t('SAVE')}
         onOk={this.handleSubmit}
         {...rest}
       >
         <div className={styles.wrapper}>
-          <div className={styles.title}>{t('Taint')}</div>
-          <Alert type="info" message={t('TAINTS_MSG')} />
+          <div className={styles.title}>{t('TAINTS')}</div>
+          <Alert type="info" message={t('TAINTS_DESC')} />
           <div className={styles.content}>
             {this.renderCommonTaints()}
             {this.renderNodeTaints()}

@@ -89,15 +89,15 @@ export default class PVCSnapshots extends Component {
         </div>
         <div className={styles.itemAttrs}>
           <h3>{status}</h3>
-          <p>{t('Status')}</p>
+          <p>{t('STATUS')}</p>
         </div>
         <div className={styles.itemAttrs}>
           <h3>{restoreSize || '-'}</h3>
-          <p>{t('Capacity')}</p>
+          <p>{t('CAPACITY')}</p>
         </div>
         <div className={styles.itemAttrs}>
           <h3>{moment(createTime).format('YYYY-MM-DD HH:mm:ss')}</h3>
-          <p>{t('Create Time')}</p>
+          <p>{t('CREATION_TIME_TCAP')}</p>
         </div>
       </div>
     )
@@ -107,10 +107,10 @@ export default class PVCSnapshots extends Component {
     const { total, page, limit, data } = this.store.list
 
     return (
-      <Card title={t('Snapshot Message')}>
+      <Card title={t('SNAPSHOT_PL')}>
         <div className={styles.snapshotList}>
           {total === 0 ? (
-            <div>{t('NO_RESOURCE', { resource: t('Volume Snapshot') })}</div>
+            <div>{t('EMPTY_WRAPPER', { resource: t('VOLUME_SNAPSHOT') })}</div>
           ) : (
             data.map(this.renderSnapshot, this)
           )}

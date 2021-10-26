@@ -33,7 +33,7 @@ import ClusterStore from 'stores/cluster'
 @withList({
   store: new WorkspaceStore(),
   module: 'workspaces',
-  name: 'Workspace',
+  name: 'WORKSPACE',
 })
 export default class Workspaces extends React.Component {
   clusterStore = new ClusterStore()
@@ -57,7 +57,7 @@ export default class Workspaces extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -69,12 +69,12 @@ export default class Workspaces extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('workspace.delete', {
-            type: t(name),
+            type: name,
             resource: item.name,
             detail: item,
             success: routing.query,
@@ -91,11 +91,11 @@ export default class Workspaces extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('workspace.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey: 'name',
             }),
         },
@@ -112,7 +112,7 @@ export default class Workspaces extends React.Component {
 
     const columns = [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -121,13 +121,13 @@ export default class Workspaces extends React.Component {
             icon="enterprise"
             iconSize={40}
             title={getDisplayName(record)}
-            desc={record.description || 'Workspaces'}
+            desc={record.description || '-'}
             to={`/workspaces/${name}`}
           />
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -139,7 +139,7 @@ export default class Workspaces extends React.Component {
 
     if (globals.app.isMultiCluster) {
       columns.splice(1, 0, {
-        title: t('Cluster Info'),
+        title: t('CLUSTER_PL'),
         dataIndex: 'clusters',
         width: '30%',
         render: clusters => (

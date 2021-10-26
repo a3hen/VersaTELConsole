@@ -49,7 +49,7 @@ export default class RepoDetail extends React.Component {
   }
 
   get name() {
-    return 'App Repo'
+    return 'APP_REPOSITORY'
   }
 
   get listUrl() {
@@ -81,7 +81,7 @@ export default class RepoDetail extends React.Component {
       key: 'edit',
       icon: 'pen',
       type: 'control',
-      text: t('Edit'),
+      text: t('EDIT'),
       action: 'edit',
       onClick: () =>
         this.trigger('openpitrix.repo.edit', {
@@ -94,11 +94,11 @@ export default class RepoDetail extends React.Component {
       key: 'delete',
       icon: 'trash',
       type: 'danger',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: () => this.routing.push(this.listUrl),
         }),
@@ -114,11 +114,11 @@ export default class RepoDetail extends React.Component {
 
     return [
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -140,7 +140,7 @@ export default class RepoDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Repos'),
+          label: t('APP_REPOSITORY_PL'),
           url: this.listUrl,
         },
       ],

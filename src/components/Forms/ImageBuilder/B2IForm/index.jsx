@@ -26,6 +26,7 @@ import BuilderStore from 'stores/s2i/builder'
 import S2IEnviroment from 'components/Inputs/S2iEnviroment'
 import TemplateSelect from 'components/Forms/ImageBuilder/S2IForm/TemplateSelect'
 import ToggleView from 'components/ToggleView'
+import { PATTERN_IMAGE_NAME } from 'utils/constants'
 
 import Uploader from './BinaryFileUploader'
 import styles from './index.scss'
@@ -144,11 +145,12 @@ export default class S2IForm extends React.Component {
     return (
       <React.Fragment>
         <Form.Item
-          label={t('Secret Code')}
+          label={t('TRIGGER_TOKEN')}
+          desc={t('TRIGGER_TOKEN_DESC')}
           rules={[
             {
               pattern: /^[a-zA-Z0-9]+$/,
-              message: `${t('SECRET_CODE_RULE_DESC')}`,
+              message: `${t('INVALID_TRIGGER_TOKEN_DESC')}`,
             },
           ]}
         >
@@ -160,7 +162,7 @@ export default class S2IForm extends React.Component {
 
         <Alert
           className={styles.environment_info}
-          message={t.html('S2I_ENVIROMENT_DESC', {
+          message={t.html('S2I_ENVIRONMENT_DESC', {
             link: this.state.docUrl || getDocsUrl('s2i_template'),
           })}
           type="info"
@@ -180,10 +182,8 @@ export default class S2IForm extends React.Component {
     return (
       <Form ref={formRef} data={formTemplate}>
         <Form.Item
-          label={t('Upload Artifact')}
-          rules={[
-            { required: true, message: t('The file has not been uploaded.') },
-          ]}
+          label={t('ARTIFACT_FILE')}
+          rules={[{ required: true, message: t('ARTIFACT_FILE_EMPTY_DESC') }]}
         >
           <Uploader
             name={`${this.prefix}spec.config.sourceUrl`}
@@ -205,17 +205,25 @@ export default class S2IForm extends React.Component {
         >
           <div className={styles.column}>
             <Form.Item
-              label={t('imageName')}
-              desc={t('S2I_IMAGENAME_DESC')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              label={t('IMAGE_NAME')}
+              desc={t('S2I_IMAGE_NAME_DESC')}
+              rules={[
+                { required: true, message: t('IMAGE_NAME_EMPTY_DESC') },
+                {
+                  pattern: PATTERN_IMAGE_NAME,
+                  message: t('INVALID_NAME_DESC', {
+                    message: t('S2I_IMAGE_NAME_DESC'),
+                  }),
+                },
+              ]}
             >
               <Input name={`${this.prefix}spec.config.imageName`} />
             </Form.Item>
           </div>
           <div className="is-2">
             <Form.Item
-              label={t('tag')}
-              rules={[{ required: true, message: t('This param is required') }]}
+              label={t('IMAGE_TAG')}
+              rules={[{ required: true, message: t('IMAGE_TAG_EMPTY_DESC') }]}
             >
               <Input
                 name={`${this.prefix}spec.config.tag`}
@@ -225,16 +233,22 @@ export default class S2IForm extends React.Component {
           </div>
           <div className="is-half">
             <Form.Item
-              label={t('Target Image Repository')}
-              desc={t.html('S2I_TARGET_IMAGE_REPONSTRY_DESC', {
+              label={t('TARGET_IMAGE_REPOSITORY')}
+              desc={t.html('S2I_TARGET_IMAGE_REPOSITORY_DESC', {
                 link: getDocsUrl('secrets'),
               })}
-              rules={[{ required: true, message: t('This param is required') }]}
+              rules={[
+                {
+                  required: true,
+                  message: t('TARGET_IMAGE_REPOSITORY_EMPTY_DESC'),
+                },
+              ]}
             >
               <Select
                 name={`${this.prefix}spec.config.pushAuthentication.secretRef.name`}
                 options={this.state.imageSecretOptions}
                 onChange={this.handleImageSecretChange}
+                placeholder=" "
               />
             </Form.Item>
           </div>

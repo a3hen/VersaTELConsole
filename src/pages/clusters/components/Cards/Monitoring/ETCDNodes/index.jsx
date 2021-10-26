@@ -35,6 +35,7 @@ const MetricTypes = {
   etcd_has_leader: 'etcd_server_has_leader',
   etcd_leader_changes: 'etcd_server_leader_changes',
   etcd_server_list: 'etcd_server_list',
+  etcd_server_is_leader: 'etcd_server_is_leader',
 }
 
 @inject('rootStore')
@@ -57,6 +58,7 @@ export default class ETCDNodes extends React.Component {
 
   get list() {
     const leader = this.getReulst(MetricTypes.etcd_has_leader)
+    const isLeaderList = this.getReulst(MetricTypes.etcd_server_is_leader)
     const changes = this.getReulst(MetricTypes.etcd_leader_changes)
     const nodes = this.getReulst(MetricTypes.etcd_server_list)
 
@@ -68,6 +70,11 @@ export default class ETCDNodes extends React.Component {
           leader.find(item => get(item, 'metric.node_ip') === ip),
           'value[1]'
         ) === '1'
+      const isLeader =
+        get(
+          isLeaderList.find(item => get(item, 'metric.node_ip') === ip),
+          'value[1]'
+        ) === '1'
       const leaderChanges =
         get(
           changes.find(item => get(item, 'metric.node_ip') === ip),
@@ -77,6 +84,7 @@ export default class ETCDNodes extends React.Component {
       return {
         ...node.metric,
         hasLeader,
+        isLeader,
         leaderChanges,
         isOnline,
       }
@@ -101,7 +109,7 @@ export default class ETCDNodes extends React.Component {
 
     return (
       <div className={classnames(styles.wrapper, this.props.className)}>
-        <div className={styles.title}>{t('ETCD Nodes')}</div>
+        <div className={styles.title}>{t('SERVICE_STATUS')}</div>
         <Loading spinning={this.store.isLoading}>
           <div className={styles.list}>
             {isEmpty(data) ? (

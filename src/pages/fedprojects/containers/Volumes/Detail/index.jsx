@@ -45,7 +45,7 @@ export default class VolumeDetail extends React.Component {
   }
 
   get name() {
-    return 'Volume'
+    return 'VOLUME'
   }
 
   get module() {
@@ -78,11 +78,11 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -90,7 +90,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('volume.template.edit', {
@@ -105,7 +105,7 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -116,12 +116,12 @@ export default class VolumeDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.returnTolist,
         }),
@@ -145,34 +145,34 @@ export default class VolumeDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Capacity'),
+        name: t('CAPACITY'),
         value: capacity,
       },
       {
-        name: t('Access Mode'),
+        name: t('ACCESS_MODE_TCAP'),
         value: accessMode,
       },
       {
-        name: t('Storage Class'),
+        name: t('STORAGE_CLASS'),
         value:
           storageClassName ||
           annotations['volume.beta.kubernetes.io/storage-class'],
       },
       {
-        name: t('Provisioner'),
+        name: t('PROVISIONER'),
         value:
           annotations['volume.beta.kubernetes.io/storage-provisioner'] || '-',
       },
       {
-        name: t('Create Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: creator,
       },
     ]
@@ -199,7 +199,7 @@ export default class VolumeDetail extends React.Component {
       icon: 'storage',
       breadcrumbs: [
         {
-          label: t('Volumes'),
+          label: t('VOLUME_PL'),
           url: this.listUrl,
         },
       ],

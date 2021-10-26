@@ -122,17 +122,17 @@ export default class ContainerSetting extends React.Component {
       <div className={styles.message}>
         {t('Remaining Quota')}:&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Request')}:
         CPU{' '}
-        {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
+        {cpuRequestLeft ? `${cpuFormat(cpuRequestLeft)} Core` : t('NO_LIMIT')},{' '}
+        {t('MEMORY')}{' '}
         {memoryRequestLeft
           ? `${memoryFormat(memoryRequestLeft)} Mi`
-          : t('No Limit')}
+          : t('NO_LIMIT')}
         ]&nbsp;&nbsp;&nbsp;&nbsp;[{t('Resource Limit')}: CPU{' '}
-        {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('No Limit')},{' '}
-        {t('Memory')}{' '}
+        {cpuLimitLeft ? `${cpuFormat(cpuLimitLeft)} Core` : t('NO_LIMIT')},{' '}
+        {t('MEMORY')}{' '}
         {memoryLimitLeft
           ? `${memoryFormat(memoryLimitLeft)} Mi`
-          : t('No Limit')}
+          : t('NO_LIMIT')}
         ]
       </div>
     )
@@ -144,7 +144,7 @@ export default class ContainerSetting extends React.Component {
         <>
           <Alert
             className="margin-b12"
-            type="warning"
+            type="info"
             message={t('CONTAINER_RESOURCE_LIMIT_TIP')}
           />
           <Form.Item>
@@ -162,19 +162,19 @@ export default class ContainerSetting extends React.Component {
   render() {
     return (
       <Form.Group
-        label={t('Container Settings')}
-        desc={t('Please set the container name and computing resources.')}
+        label={t('CONTAINER_SETTINGS')}
+        desc={t('CONTAINER_SETTINGS_DESC')}
         noWrapper
       >
         <Form.Item
           className="margin-t12"
-          label={t('Container Name')}
+          label={t('CONTAINER_NAME')}
           desc={t('NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input name') },
+            { required: true, message: t('NAME_EMPTY_DESC') },
             {
               pattern: PATTERN_NAME,
-              message: t('Invalid name', { message: t('NAME_DESC') }),
+              message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
             },
           ]}
         >

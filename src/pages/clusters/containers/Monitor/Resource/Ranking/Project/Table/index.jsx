@@ -48,7 +48,7 @@ export default class ProjectUsageRank extends React.Component {
   columns = [
     {
       dataIndex: 'namespace',
-      title: t('Project'),
+      title: t('PROJECT'),
       render: namespace => (
         <Avatar
           icon="project"
@@ -62,13 +62,18 @@ export default class ProjectUsageRank extends React.Component {
       sort_metric: 'namespace_cpu_usage',
       key: 'cpu',
       width: this.rankTdWidth,
-      title: <div>{t('CPU Usage')}</div>,
+      title: <div>{t('CPU_USAGE')}</div>,
       render: node => (
         <div>
           <h3>{getSuitableValue(node.namespace_cpu_usage, 'cpu', '-')}</h3>
           <div>
-            {t('Quota')}:{' '}
-            {getSuitableValue(node.namespace_cpu_limit_hard, 'cpu', '-')}
+            {t('QUOTA_VALUE', {
+              value: getSuitableValue(
+                node.namespace_cpu_limit_hard,
+                'cpu',
+                '-'
+              ),
+            })}
           </div>
         </div>
       ),
@@ -76,7 +81,7 @@ export default class ProjectUsageRank extends React.Component {
     {
       sort_metric: 'namespace_memory_usage_wo_cache',
       width: this.rankTdWidth,
-      title: <div>{t('Memory Usage')}</div>,
+      title: <div>{t('MEMORY_USAGE')}</div>,
       key: 'memory',
       render: node => (
         <div>
@@ -88,29 +93,34 @@ export default class ProjectUsageRank extends React.Component {
             )}
           </h3>
           <div>
-            {t('Quota')}:
-            {getSuitableValue(node.namespace_memory_limit_hard, 'memory', '-')}
+            {t('QUOTA_VALUE', {
+              value: getSuitableValue(
+                node.namespace_memory_limit_hard,
+                'memory',
+                '-'
+              ),
+            })}
           </div>
         </div>
       ),
     },
     {
       sort_metric: 'namespace_pod_count',
-      title: t('Pod Count'),
+      title: t('POD_COUNT'),
       key: 'pod',
       width: this.rankTdWidth,
       render: node => (
         <div>
           <h3>{node.namespace_pod_count || '-'}</h3>
           <div>
-            {t('Quota')}: {node.namespace_pod_count_hard || '-'}
+            {t('QUOTA_VALUE', { value: node.namespace_pod_count_hard || '-' })}
           </div>
         </div>
       ),
     },
     {
       sort_metric: 'namespace_net_bytes_transmitted',
-      title: t('Outbound Traffic'),
+      title: t('OUTBOUND_TRAFFIC'),
       key: 'namespace_net_bytes_transmitted',
       width: this.rankTdWidth,
       render: node => (
@@ -127,7 +137,7 @@ export default class ProjectUsageRank extends React.Component {
     },
     {
       sort_metric: 'namespace_net_bytes_received',
-      title: t('Inbound Traffic'),
+      title: t('INBOUND_TRAFFIC'),
       key: 'namespace_net_bytes_received',
       width: this.rankTdWidth,
       render: node => (

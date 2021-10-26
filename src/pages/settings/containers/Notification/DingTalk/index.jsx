@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isArray, isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import DingTalkForm from 'components/Forms/Notification/DingTalkForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ConfigStore from 'stores/notification/config'
 import ReceiverStore from 'stores/notification/receiver'
@@ -50,7 +51,7 @@ export default class DingTalk extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
+    isLoading: false,
   }
 
   formData = {
@@ -79,6 +80,7 @@ export default class DingTalk extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.configStore.fetchList({ type: 'dingtalk' })
     const config = results.find(
       item => get(item, 'metadata.name') === CONFIG_NAME
@@ -94,21 +96,134 @@ export default class DingTalk extends React.Component {
 
       this.formData = {
         config,
-        receiver: set(this.receiverFormTemplate, 'spec', receivers[0].spec),
+        receiver: set(
+          this.receiverFormTemplate,
+          'spec',
+          get(receivers, '[0].spec', {})
+        ),
         secret: set(this.secretTemplate, 'data', get(secrets, '[0].data', {})),
       }
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+    this.setState({ isLoading: false })
+  }
+
+  getVerifyFormTemplate = data => {
+    const template = {}
+    const { receiver, secret } = cloneDeep(data)
+    const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
+    const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
+    const { appkey, appsecret, webhook, chatbotsecret } = get(
+      secret,
+      'data',
+      {}
+    )
+
+    if (appkey) {
+      set(template, 'config.spec.dingtalk.conversation.appkey.value', appkey)
+    }
+    if (appsecret) {
+      set(
+        template,
+        'config.spec.dingtalk.conversation.appsecret.value',
+        appsecret
+      )
+    }
+    if (!isEmpty(chatids)) {
+      set(template, 'receiver.spec.dingtalk.conversation.chatids', chatids)
+    }
+    if (webhook) {
+      set(template, 'receiver.spec.dingtalk.chatbot.webhook.value', webhook)
+    }
+    if (chatbotsecret) {
+      set(
+        template,
+        'receiver.spec.dingtalk.chatbot.secret.value',
+        chatbotsecret
+      )
+    }
+    if (!isEmpty(keywords)) {
+      set(template, 'receiver.spec.dingtalk.chatbot.keywords', keywords)
+    }
+
+    return template
+  }
+
+  handleVerify = ({ receiver, secret }) => {
+    const keywords = get(receiver, 'spec.dingtalk.chatbot.keywords')
+    const chatids = get(receiver, 'spec.dingtalk.conversation.chatids')
+    const { appkey, appsecret, webhook, chatbotsecret } = get(
+      secret,
+      'data',
+      {}
+    )
+
+    if (
+      [
+        appkey,
+        appsecret,
+        chatids,
+        webhook,
+        chatbotsecret,
+        keywords,
+      ].every(item => (isArray(item) ? isEmpty(item) : !item))
+    ) {
+      Notify.error({
+        content: t('DINGTALK_SETTING_TIP'),
+      })
+      return false
+    }
+
+    if (appkey || appsecret || !isEmpty(chatids)) {
+      if (!appkey) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppKey') }),
+        })
+        return false
+      }
+      if (!appsecret) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('AppSecret') }),
+        })
+        return false
+      }
+      if (isEmpty(chatids)) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', {
+            value: t('CONVERSATION_ID'),
+          }),
+        })
+        return false
+      }
+    }
+
+    if (webhook || chatbotsecret || !isEmpty(keywords)) {
+      if (!webhook) {
+        Notify.error({
+          content: t('PLEASE_ENTER_VALUE_CUSTOM', { value: t('Webhook URL') }),
+        })
+        return false
+      }
+      if (!chatbotsecret && isEmpty(keywords)) {
+        Notify.error({ content: t('DINGTALK_CHATBOT_SECURITY_TIP') })
+        return false
+      }
+    }
+
+    return true
   }
 
   handleSubmit = async data => {
     const { config, receiver, secret } = cloneDeep(data)
     const { formStatus } = this.state
     let message
+
+    if (!this.handleVerify(data)) {
+      return
+    }
 
     const secretData = get(secret, 'data', {})
     Object.keys(secretData).forEach(key => {
@@ -125,90 +240,77 @@ export default class DingTalk extends React.Component {
     set(receiver, 'spec.dingtalk.chatbot.secret.key', 'chatbotsecret')
     set(receiver, 'spec.dingtalk.chatbot.secret.name', SECRET_NAME)
 
+    if (!secretData.appkey) {
+      unset(config, 'spec.dingtalk.conversation.appkey')
+    }
+
+    if (!secretData.appsecret) {
+      unset(config, 'spec.dingtalk.conversation.appsecret')
+    }
+
+    if (!secretData.webhook) {
+      unset(receiver, 'spec.dingtalk.chatbot.webhook')
+    }
+    if (!secretData.chatbotsecret) {
+      unset(receiver, 'spec.dingtalk.chatbot.secret')
+    }
+
+    if (isEmpty(get(receiver, 'spec.dingtalk.conversation.chatids'))) {
+      unset(receiver, 'spec.dingtalk.conversation')
+    }
+
+    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot.keywords'))) {
+      unset(receiver, 'spec.dingtalk.chatbot.keywords')
+    }
+
+    if (isEmpty(get(receiver, 'spec.dingtalk.chatbot'))) {
+      unset(receiver, 'spec.dingtalk.chatbot')
+    }
+
     if (formStatus === 'create') {
       await this.configStore.create(config)
       await this.secretStore.create(
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('CREATE_SUCCESSFUL')
     } else {
+      await this.configStore.update({ name: CONFIG_NAME }, config)
       await this.secretStore.update(
         { name: SECRET_NAME },
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('Update Successfully')
+      message = t('UPDATED_SUCCESS_DESC')
     }
 
     this.fetchData()
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onAdd = (value, key) => {
-    const { formData } = this.state
-    const data = get(formData, key, [])
-
-    set(formData, key, [...data, value])
-    this.setState({ formData, showTip: true })
-  }
-
-  onDelete = (value, key) => {
-    const { formData } = this.state
-    const data = get(formData, key, [])
-    set(
-      formData,
-      key,
-      data.filter(item => item !== value)
-    )
-    this.setState({ formData, showTip: true })
-  }
-
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
   render() {
+    const { formData, isLoading } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('DingTalk')}
-          desc={t('DINGTALK_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="dingtalk" />
+        <Panel loading={isLoading}>
+          <DingTalkForm
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            onVerify={this.handleVerify}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.receiverStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.configStore.list.isLoading}>
-        <DingTalkForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          onAdd={this.onAdd}
-          onDelete={this.onDelete}
-          isSubmitting={this.configStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

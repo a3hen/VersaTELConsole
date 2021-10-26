@@ -59,10 +59,25 @@ export default function ResourceItem(props) {
         title={`${Math.round((used * 100) / total)}%`}
         description={title}
       />
-      <Text title={unit ? `${used} ${unit}` : used} description={t('Used')} />
       <Text
-        title={unit ? `${total} ${unit}` : total}
-        description={t('Total')}
+        title={
+          unit
+            ? used !== 1 && unit === 'core'
+              ? `${used} cores`
+              : `${used} ${unit}`
+            : used
+        }
+        description={t('USED')}
+      />
+      <Text
+        title={
+          unit
+            ? total !== 1 && unit === 'core'
+              ? `${total} cores`
+              : `${total} ${unit}`
+            : total
+        }
+        description={t('TOTAL')}
       />
     </div>
   )

@@ -45,7 +45,7 @@ export default class JobDetail extends React.Component {
   }
 
   get name() {
-    return 'CronJob'
+    return 'CRONJOB'
   }
 
   get routing() {
@@ -68,11 +68,11 @@ export default class JobDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -80,7 +80,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'start',
       icon: 'start',
-      text: t('Start'),
+      text: t('START'),
       action: 'edit',
       onClick: this.handleSwitch(true),
       show: this.store.detail.suspend,
@@ -88,7 +88,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'pause',
       icon: 'stop',
-      text: t('Pause'),
+      text: t('PAUSE'),
       action: 'edit',
       onClick: this.handleSwitch(false),
       show: !this.store.detail.suspend,
@@ -96,7 +96,7 @@ export default class JobDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -107,12 +107,12 @@ export default class JobDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -138,43 +138,48 @@ export default class JobDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: status,
       },
       {
-        name: t('Schedule'),
+        name: t('SCHEDULE'),
         value: spec.schedule,
       },
       {
-        name: t('startingDeadlineSeconds'),
+        name: t('MAXIMUM_DELAY'),
         value: spec.startingDeadlineSeconds,
       },
       {
-        name: t('successfulJobsHistoryLimit'),
+        name: t('SUCCESSFUL_JOBS_RETAINED'),
         value: spec.successfulJobsHistoryLimit,
       },
       {
-        name: t('failedJobsHistoryLimit'),
+        name: t('FAILED_JOBS_RETAINED'),
         value: spec.failedJobsHistoryLimit,
       },
       {
-        name: t('concurrencyPolicy'),
-        value: spec.concurrencyPolicy,
+        name: t('CONCURRENCY_POLICY'),
+        value:
+          spec.concurrencyPolicy === 'Allow'
+            ? t('RUN_JOBS_CONCURRENTLY')
+            : spec.concurrencyPolicy === 'Forbid'
+            ? t('SKIP_NEW_JOB')
+            : t('SKIP_OLD_JOB'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -195,7 +200,7 @@ export default class JobDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

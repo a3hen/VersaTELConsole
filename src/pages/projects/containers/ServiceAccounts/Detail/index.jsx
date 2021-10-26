@@ -47,7 +47,7 @@ export default class ServiceAccountDetail extends React.Component {
   }
 
   get name() {
-    return 'ServiceAccount'
+    return 'SERVICE_ACCOUNT'
   }
 
   get routing() {
@@ -80,11 +80,11 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
           ...this.props.match.params,
@@ -93,7 +93,7 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -104,7 +104,7 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'modifyServiceAccountRole',
       icon: 'pen',
-      text: t('Modify Service Account Role'),
+      text: t('CHANGE_ROLE'),
       action: 'edit',
       onClick: () =>
         this.trigger('serviceaccount.role.edit', {
@@ -116,12 +116,12 @@ export default class ServiceAccountDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -138,23 +138,23 @@ export default class ServiceAccountDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Role'),
+        name: t('ROLE'),
         value: detail.role,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -175,7 +175,7 @@ export default class ServiceAccountDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ServiceAccounts'),
+          label: t('SERVICE_ACCOUNT_PL'),
           url: this.listUrl,
         },
       ],

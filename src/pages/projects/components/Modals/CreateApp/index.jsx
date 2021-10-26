@@ -25,7 +25,7 @@ import { Modal, Switch } from 'components/Base'
 import { mergeLabels, updateFederatedAnnotations } from 'utils'
 import FORM_TEMPLATES from 'utils/form.templates'
 
-import RouterStore from 'stores/router'
+import GatewayStore from 'stores/gateway'
 
 import Steps from './Steps'
 import BaseInfo from './BaseInfo'
@@ -70,7 +70,7 @@ export default class ServiceDeployAppModal extends React.Component {
     this.formRef = React.createRef()
     this.codeRef = React.createRef()
 
-    this.routerStore = new RouterStore()
+    this.gatewayStore = new GatewayStore()
   }
 
   componentDidMount() {
@@ -115,18 +115,18 @@ export default class ServiceDeployAppModal extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BaseInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'Service Components',
+        title: 'SERVICE_SETTINGS',
         component: Services,
         required: true,
       },
       {
-        title: 'Internet Access',
+        title: 'ROUTE_SETTINGS',
         component: Routes,
         required: true,
       },
@@ -184,15 +184,29 @@ export default class ServiceDeployAppModal extends React.Component {
 
   async fetchData() {
     const { cluster, namespace } = this.props
-    await this.routerStore.getGateway({ cluster, namespace })
-    const gateway = toJS(this.routerStore.gateway.data)
+
+    const getHostGateway = () => {
+      return this.gatewayStore.getGateway({ cluster })
+    }
+
+    const getProjectGateway = () => {
+      return this.gatewayStore.getGateway({
+        namespace,
+        cluster,
+      })
+    }
+
+    const dataList = await Promise.all([getHostGateway(), getProjectGateway()])
+    const gateway = dataList[1] || dataList[0]
     const isGovernance = !!(this.serviceMeshEnable && gateway.serviceMeshEnable)
+
     set(
       this.state.formData.application,
       'metadata.annotations["servicemesh.kubesphere.io/enabled"]',
       String(isGovernance)
     )
-    this.setState({ gateway, isGovernance })
+
+    this.setState({ gateway: toJS(gateway), isGovernance })
   }
 
   handleOk = () => {
@@ -247,7 +261,7 @@ export default class ServiceDeployAppModal extends React.Component {
         isFunction(get(this, 'resourcesFormRef.current.hasSubRoute')) &&
         this.resourcesFormRef.current.hasSubRoute()
       ) {
-        return Notify.warning(t('Please save the current form first'))
+        return Notify.warning(t('SAVE_FORM_TIP'))
       }
 
       if (isCodeMode && isFunction(get(this, 'codeRef.current.getData'))) {
@@ -303,7 +317,7 @@ export default class ServiceDeployAppModal extends React.Component {
           <Icon name="close" size={20} clickable onClick={onCancel} />
           <span />
           <Icon name="appcenter" size={20} />
-          <span>{t('Create Application by Service')}</span>
+          <span>{t('CREATE_COMPOSED_APP')}</span>
         </div>
         {!isCodeMode && (
           <div className={styles.steps}>
@@ -313,7 +327,7 @@ export default class ServiceDeployAppModal extends React.Component {
         )}
         <Switch
           className={styles.switch}
-          text={t('Edit Mode')}
+          text={t('EDIT_YAML')}
           onChange={this.handleModeChange}
           checked={isCodeMode}
         />
@@ -373,13 +387,13 @@ export default class ServiceDeployAppModal extends React.Component {
         <div className={styles.footer}>
           <div className={styles.wrapper}>
             <div className="text-right">
-              <Button onClick={onCancel}>{t('Cancel')}</Button>
+              <Button onClick={onCancel}>{t('CANCEL')}</Button>
               <Button
                 type="control"
                 onClick={this.handleOk}
                 loading={store.isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             </div>
           </div>
@@ -392,15 +406,15 @@ export default class ServiceDeployAppModal extends React.Component {
       <div className={styles.footer}>
         <div className={styles.wrapper}>
           <div className="text-right">
-            <Button onClick={onCancel}>{t('Cancel')}</Button>
+            <Button onClick={onCancel}>{t('CANCEL')}</Button>
             {currentStep > 0 && (
               <Button type="control" onClick={this.handlePrev}>
-                {t('Previous')}
+                {t('PREVIOUS')}
               </Button>
             )}
             {currentStep < total ? (
               <Button type="control" onClick={this.handleNext}>
-                {t('Next')}
+                {t('NEXT')}
               </Button>
             ) : (
               <Button
@@ -408,7 +422,7 @@ export default class ServiceDeployAppModal extends React.Component {
                 onClick={this.handleOk}
                 loading={store.isSubmitting}
               >
-                {t('Create')}
+                {t('CREATE')}
               </Button>
             )}
           </div>

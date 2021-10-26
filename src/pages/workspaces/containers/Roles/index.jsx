@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new RoleStore('workspaceroles'),
   module: 'workspaceroles',
   authKey: 'roles',
-  name: 'Workspace Role',
+  name: 'WORKSPACE_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -55,7 +55,7 @@ export default class Roles extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -67,7 +67,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -81,13 +81,13 @@ export default class Roles extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
@@ -109,7 +109,7 @@ export default class Roles extends React.Component {
     const { workspace } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         width: '25%',
         render: name => (
@@ -121,14 +121,14 @@ export default class Roles extends React.Component {
         ),
       },
       {
-        title: t('Description'),
+        title: t('DESCRIPTION'),
         key: 'description',
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -142,7 +142,7 @@ export default class Roles extends React.Component {
   showCreate = () => {
     const { match, store, trigger, getData } = this.props
     return trigger('role.create', {
-      title: t('Create Workspace Role'),
+      title: t('CREATE_WORKSPACE_ROLE'),
       roleTemplates: toJS(store.roleTemplates.data),
       workspace: match.params.workspace,
       success: getData,
@@ -151,7 +151,7 @@ export default class Roles extends React.Component {
 
   get emptyProps() {
     return {
-      desc: t('WORKSPACE_ROLE_DESC'),
+      desc: t('WORKSPACE_ROLE_EMPTY_DESC'),
     }
   }
 
@@ -162,7 +162,7 @@ export default class Roles extends React.Component {
         <Banner
           {...bannerProps}
           tabs={this.tabs}
-          title={t('Workspace Roles')}
+          title={t('WORKSPACE_ROLE_PL')}
         />
         <Table
           {...tableProps}

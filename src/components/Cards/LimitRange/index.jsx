@@ -56,16 +56,16 @@ export default class DefaultResource extends React.Component {
     )
 
     return (
-      <Panel title={t('Container Resource Default Request')}>
+      <Panel title={t('DEFAULT_CONTAINER_QUOTA_PL')}>
         <div className={styles.content}>
           <div className={styles.contentItem}>
             <Icon name="cpu" size={40} />
             <div className={styles.item}>
-              <div>{cpuRequest ? `${cpuRequest} Core` : t('No Request')}</div>
+              <div>{cpuRequest ? `${cpuRequest} Core` : t('NO_REQUEST')}</div>
               <p>{t('Resource Request')}</p>
             </div>
             <div className={styles.item}>
-              <div>{cpuLimit ? `${cpuLimit} Core` : t('No Limit')}</div>
+              <div>{cpuLimit ? `${cpuLimit} Core` : t('NO_LIMIT')}</div>
               <p>{t('Resource Limit')}</p>
             </div>
           </div>
@@ -73,12 +73,12 @@ export default class DefaultResource extends React.Component {
             <Icon name="memory" size={40} />
             <div className={styles.item}>
               <div>
-                {memoryRequest ? `${memoryRequest} Mi` : t('No Request')}
+                {memoryRequest ? `${memoryRequest} Mi` : t('NO_REQUEST')}
               </div>
               <p>{t('Resource Request')}</p>
             </div>
             <div className={styles.item}>
-              <div>{memoryLimit ? `${memoryLimit} Mi` : t('No Limit')}</div>
+              <div>{memoryLimit ? `${memoryLimit} Mi` : t('NO_LIMIT')}</div>
               <p>{t('Resource Limit')}</p>
             </div>
           </div>

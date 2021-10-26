@@ -42,10 +42,10 @@ export default class BaseInfo extends React.Component {
 
   getCronOptions() {
     return [
-      { label: `0 * * * * (${t('Every Hour')})`, value: '0 * * * *' },
-      { label: `0 0 * * * (${t('Every Day')})`, value: '0 0 * * *' },
-      { label: `0 0 * * 0 (${t('Every Week')})`, value: '0 0 * * 0' },
-      { label: `0 0 1 * * (${t('Every Month')})`, value: '0 0 1 * *' },
+      { label: t('EVERY_HOUR'), value: '0 * * * *' },
+      { label: t('EVERY_DAY'), value: '0 0 * * *' },
+      { label: t('EVERY_WEEK'), value: '0 0 * * 0' },
+      { label: t('EVERY_MONTH'), value: '0 0 1 * *' },
     ]
   }
 
@@ -69,16 +69,16 @@ export default class BaseInfo extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Name exists'), field: rule.field })
+          return callback({ message: t('NAME_EXIST_DESC'), field: rule.field })
         }
         callback()
       })
   }
 
   getConcurrencyPolicyOptions = () => [
-    { label: 'Allow', value: 'Allow' },
-    { label: 'Forbid', value: 'Forbid' },
-    { label: 'Replace', value: 'Replace' },
+    { label: t('RUN_JOBS_CONCURRENTLY'), value: 'Allow' },
+    { label: t('SKIP_NEW_JOB'), value: 'Forbid' },
+    { label: t('SKIP_OLD_JOB'), value: 'Replace' },
   ]
 
   render() {
@@ -89,14 +89,14 @@ export default class BaseInfo extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('Name')}
-              desc={t('CRONJOB_NAME_DESC')}
+              label={t('NAME')}
+              desc={t('NAME_DESC')}
               rules={[
-                { required: true, message: t('Please input name') },
+                { required: true, message: t('NAME_EMPTY_DESC') },
                 {
                   pattern: PATTERN_NAME,
-                  message: t('Invalid name', {
-                    message: t('CRONJOB_NAME_DESC'),
+                  message: t('INVALID_NAME_DESC', {
+                    message: t('NAME_DESC'),
                   }),
                 },
                 { validator: this.nameValidator },
@@ -111,7 +111,7 @@ export default class BaseInfo extends React.Component {
             </Form.Item>
           </Column>
           <Column>
-            <Form.Item label={t('Alias')} desc={t('ALIAS_DESC')}>
+            <Form.Item label={t('ALIAS')} desc={t('ALIAS_DESC')}>
               <Input
                 name="metadata.annotations['kubesphere.io/alias-name']"
                 maxLength={63}
@@ -123,10 +123,10 @@ export default class BaseInfo extends React.Component {
           {!this.props.namespace && (
             <Column className="is-6">
               <Form.Item
-                label={t('Project')}
+                label={t('PROJECT')}
                 desc={t('PROJECT_DESC')}
                 rules={[
-                  { required: true, message: t('Please select a project') },
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
                 ]}
               >
                 <ProjectSelect
@@ -139,21 +139,20 @@ export default class BaseInfo extends React.Component {
           )}
           <Column className="is-6">
             <Form.Item
-              label={t('Schedule')}
+              label={t('SCHEDULE')}
               desc={t.html('CRONJOB_CRON_DESC')}
-              rules={[
-                { required: true, message: t('Please input a schedule.') },
-              ]}
+              rules={[{ required: true, message: t('ENTER_SCHEDULE_TIP') }]}
             >
               <Select
                 name="spec.schedule"
                 options={this.getCronOptions()}
                 searchable
+                placeholder=" "
               />
             </Form.Item>
           </Column>
           <Column className="is-6">
-            <Form.Item label={t('Description')} desc={t('DESCRIPTION_DESC')}>
+            <Form.Item label={t('DESCRIPTION')} desc={t('DESCRIPTION_DESC')}>
               <TextArea
                 name="metadata.annotations['kubesphere.io/description']"
                 maxLength={256}
@@ -166,8 +165,8 @@ export default class BaseInfo extends React.Component {
           <Columns className="margin-t8">
             <Column>
               <Form.Item
-                label={t('startingDeadlineSeconds(s)')}
-                desc={t('START_DEADLINE_SECONDS_DESC')}
+                label={t('MAXIMUM_DELAY')}
+                desc={t('MAXIMUM_DELAY_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -176,8 +175,8 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('failedJobsHistoryLimit')}
-                desc={t('The number of failed jobs allowed to be retained.')}
+                label={t('FAILED_JOBS_RETAINED')}
+                desc={t('FAILED_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -188,10 +187,8 @@ export default class BaseInfo extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('successfulJobsHistoryLimit')}
-                desc={t(
-                  'The number of successful jobs allowed to be retained.'
-                )}
+                label={t('SUCCESSFUL_JOBS_RETAINED')}
+                desc={t('SUCCESSFUL_JOBS_RETAINED_DESC')}
               >
                 <NumberInput
                   min={0}
@@ -200,8 +197,8 @@ export default class BaseInfo extends React.Component {
                 />
               </Form.Item>
               <Form.Item
-                label={t('concurrencyPolicy')}
-                desc={t('The concurrency policy setting.')}
+                label={t('CONCURRENCY_POLICY')}
+                desc={t('CONCURRENCY_POLICY_DESC')}
               >
                 <Select
                   name="spec.concurrencyPolicy"

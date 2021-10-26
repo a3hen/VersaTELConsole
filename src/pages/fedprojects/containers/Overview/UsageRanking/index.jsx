@@ -66,7 +66,7 @@ class UsageRanking extends React.Component {
   get options() {
     return this.store.sort_metric_options.map(option => ({
       value: option,
-      label: t(`Sort By ${option}`),
+      label: t(`SORT_BY_${option.toUpperCase()}`),
     }))
   }
 
@@ -90,7 +90,7 @@ class UsageRanking extends React.Component {
     return LINK_MAP[owner_kind]
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.value}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.value })
 
   renderHeader() {
     const { cluster, clusters, onClusterChange } = this.props
@@ -117,7 +117,7 @@ class UsageRanking extends React.Component {
     return (
       <div className={styles.empty}>
         <Icon name="backup" size={32} />
-        <div>{t('No Relevant Data')}</div>
+        <div>{t('NO_DATA')}</div>
       </div>
     )
   }
@@ -195,10 +195,7 @@ class UsageRanking extends React.Component {
 
   render() {
     return (
-      <Panel
-        className={styles.wrapper}
-        title={`${t('Resources Usage Ranking')} (Top5)`}
-      >
+      <Panel className={styles.wrapper} title={t('TOP_5_FOR_RESOURCE_USAGE')}>
         {this.renderHeader()}
         {this.renderContent()}
       </Panel>

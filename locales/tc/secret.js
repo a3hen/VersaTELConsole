@@ -20,43 +20,53 @@ module.exports = {
   secrets: '密鑰',
   Secrets: '密鑰',
   Secret: '密鑰',
-  'Secret Name': '密鑰名稱',
-  'Config Number': '配置項數量',
-  'Edit Secret': '編輯密鑰',
-  'Secret Settings': '密鑰設置',
-  'Private Key': '私鑰',
-  'Image Registry Secret': '鏡像倉庫密鑰',
-  'Please input credential': '請輸入憑證',
-  'Please input private key': '請輸入私鑰',
-  'Please input data': '請輸入數據',
-  Unverified: '鏡像倉庫密鑰驗證失敗',
-  SECRET_TYPE_DESC: '可以選擇也可以自定義一個密鑰類型',
+  SECRET: '保密字典',
+  CODE_REPOSITORY_KEY: '代碼倉庫密鑰',
+  SECRET_PL: '保密字典',
+  SECRET_LOW: '保密字典',
+  SECRET_FIELD_COUNT: '字段數量',
+  EDIT_SECRET: '編輯保密字典',
+  DATA_SETTINGS: 'Data Settings',
+  KUBECONFIG_SETTINGS: 'kubeconfig Settings',
+  PRIVATE_KEY_TCAP: '私鑰',
+  IMAGE_REGISTRY_INFORMATION: '鏡像倉庫保密字典',
+  TLS_INFORMATION: 'TLS information',
+  IMAGE_REGISTRY_SECRET_TCAP: '鏡像倉庫保密字典',
+  ENTER_CREDENTIAL_TIP: '請輸入憑證 ID。',
+  ENTER_PRIVATE_KEY_DESC: '請輸入私鑰。',
+  ENTER_DATA_DESC: '請添加數據。',
+  Unverified: '鏡像倉庫密鑰驗證失敗。',
+  SECRET_TYPE_DESC: '選擇一個保密字典類型',
 
   SECRET_DESC:
-    '密鑰 (Secret) 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
-  SECRET_CREATE_DESC:
-    '密鑰 (Secret) 是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
+    '保密字典（Secret）是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵值對形式保存並且可以在容器組中使用。',
+  SECRET_EMPTY_DESC:
+    '保密字典是一種包含少量敏感資訊的資源對象，例如密碼、token、秘鑰等，以鍵/值對形式保存並且可以在容器組中使用。',
 
-  SECRET_NO_CHINESE_CODE_DESC: '密鑰中不能包含中文字元',
+  SECRET_NO_CHINESE_CODE_DESC:
+    '保密字典的鍵必須由字母數字字符、連字符（-）、下劃線（_）或句點（.）組成。',
 
-  'Registry Address': '倉庫地址',
-  'Registry verification failed': '鏡像倉庫校驗失敗',
-  'Registry verification succeeded': '鏡像倉庫校驗通過',
-  'Account Password Secret': '帳號密碼密鑰',
+  REGISTRY_ADDRESS_TCAP: '倉庫地址',
+  REGISTRY_SECRET_VER_ERR: '鏡像倉庫驗證失敗。',
+  REGISTRY_SECRET_VER_SUC: '鏡像倉庫驗證通過。',
+  USERNAME_PASSWORD: '帳號密碼保密字典',
+  ACCOUNT_PASSWORD_SECRET_TCAP: '帳號密碼保密字典',
 
-  Data: '數據',
-  'Add Data': '添加數據',
-  'Edit Data': '編輯數據',
-  'Add key / value pair data': '添加鍵/值對形式數據',
+  DATA: '數據',
+  ADD_DATA_TCAP: '添加數據',
+  EDIT_DATA_TCAP: '編輯數據',
+  ADD_DATA_DESC: '添加鍵值對數據。',
 
-  'DATA-KEY': '鍵(Key)',
-  'DATA-VALUE': '值(Value)',
-  'Example: docker.io': '例：docker.io',
+  DATA_KEY: '鍵（Key）',
+  DATA_VALUE: '值(Value)',
+  REGISTRY_ADDRESS_TIP: '設置鏡像倉庫地址，例如 docker.io。',
 
-  IMAGE_REGISTRY_REQUIRED_DESC:
-    '鏡像倉庫密鑰需要至少包含倉庫地址、用戶名稱和密碼資訊',
+  IMAGE_REGISTRY_REQUIRED_DESC: '請設置倉庫地址、用戶名和密碼信息。',
 
-  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證密鑰是否可用',
+  IMAGE_REGISTRY_VALIDATE_TIP: '創建鏡像倉庫密鑰前, 請先驗證用戶名和密碼。',
 
-  'Please input the registry address': '請輸入鏡像倉庫地址',
+  'Please input the registry address': '請輸入鏡像倉庫地址。',
+  // Secret Type Drop-down List
+  SECRET_VALUE_LABEL: '{value}（{label}）',
+  CREATE_SECRET: '新建保密字典',
 }

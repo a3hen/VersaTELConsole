@@ -17,16 +17,24 @@
  */
 
 module.exports = {
-  ServiceAccounts: 'ServiceAccounts',
+  ServiceAccounts: 'Service Accounts',
   ServiceAccount: 'Service Account',
+  SERVICE_ACCOUNT: 'Service Account',
+  SERVICE_ACCOUNT_PL: 'Service Accounts',
+  SERVICE_ACCOUNT_LOW: 'service account',
   'Edit Service Account': 'Edit Service Account',
-  'Modify Service Account Role': 'Modify Service Account Role',
-  'Secret Detail': 'Secret Detail',
-  SERVICEACCOUNT_DESC:
-    'A Service Account provides an identity for processes that run in a Pod that can be used to access the API server.',
+  CHANGE_ROLE: 'Change Role',
+  SECRET_DETAILS: 'Secret Details',
+  SERVICE_ACCOUNT_DESC:
+    'A Service Account provides the processes that run in a Pod with an identity that can be used to access the API server.',
+  SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
+  INVALID_YAML_FILE_FORMAT: 'Invalid YAML file format.',
 
-  'Invalid configuration file format': 'Invalid configuration file format',
+  SELECT_PROJECT_ROLE_DESC: 'Select a project role to specify permissions.',
 
   SERVICEACCOUNT_KUBECONFIG_DESC:
-    'KubeConfig configuration method please refer to <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">official documents</a> After downloading, please modify the service address to the external address of the Kubernetes API',
+    'Download the kubeconfig.yaml file to provide other apps with a account that can access the current project. If the apps to use the kubeconfig.yaml file are deployed outside the current cluster, you need to change the value of clusters:cluster:server to the Kubernetes API server address exposed to the outside. <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_black">Learn More</a>',
+
+  // Service Account Detail Page
+  SECRET_VALUE: 'Secret: {value}',
 }

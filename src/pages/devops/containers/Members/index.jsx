@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new UserStore(),
   module: 'users',
-  name: 'DevOps Member',
+  name: 'DEVOPS_PROJECT_MEMBER',
   rowKey: 'username',
   injectStores: ['rootStore', 'devopsStore'],
 })
@@ -103,7 +103,7 @@ export default class Members extends React.Component {
       {
         key: 'modify',
         icon: 'pen',
-        text: t('Modify Member Role'),
+        text: t('CHANGE_MEMBER_ROLE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -119,7 +119,7 @@ export default class Members extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Remove Member'),
+        text: t('REMOVE_MEMBER'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
@@ -142,7 +142,7 @@ export default class Members extends React.Component {
         {
           key: 'invite',
           type: 'control',
-          text: t('Invite Member'),
+          text: t('INVITE'),
           action: 'create',
           onClick: () =>
             trigger('member.invite', {
@@ -151,9 +151,9 @@ export default class Members extends React.Component {
               cluster: this.cluster,
               roles: toJS(this.roleStore.list.data),
               roleModule: this.roleStore.module,
-              title: t('Invite Members to the Project'),
-              desc: t('INVITE_MEMBER_DESC'),
-              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHODLER'),
+              title: t('INVITE_DEVOPS_MEMBER'),
+              desc: t('INVITE_MEMBER_DESC_DEVOPS'),
+              searchPlaceholder: t('INVITE_MEMBER_SEARCH_PLACEHOLDER'),
               success: this.getData,
             }),
         },
@@ -162,7 +162,7 @@ export default class Members extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Remove Members'),
+          text: t('REMOVE_MEMBER'),
           action: 'delete',
           onClick: () =>
             trigger('member.remove.batch', {
@@ -184,7 +184,7 @@ export default class Members extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Member Name'),
+      title: t('NAME'),
       dataIndex: 'username',
       sorter: true,
       render: (name, record) => (
@@ -197,7 +197,7 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '19%',
@@ -209,13 +209,13 @@ export default class Members extends React.Component {
       ),
     },
     {
-      title: t('Role'),
+      title: t('ROLE'),
       dataIndex: 'role',
       isHideable: true,
       width: '19%',
     },
     {
-      title: t('Last Login Time'),
+      title: t('LAST_LOGIN'),
       dataIndex: 'lastLoginTime',
       isHideable: true,
       width: 150,
@@ -223,7 +223,7 @@ export default class Members extends React.Component {
         <p>
           {login_time
             ? getLocalTime(login_time).format('YYYY-MM-DD HH:mm:ss')
-            : t('Not logged in yet')}
+            : t('NOT_LOGIN_YET')}
         </p>
       ),
     },

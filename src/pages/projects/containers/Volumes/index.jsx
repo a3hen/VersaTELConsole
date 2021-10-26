@@ -37,7 +37,7 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'Volume',
+  name: 'VOLUME',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
@@ -61,7 +61,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -71,7 +71,7 @@ export default class Volumes extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -81,11 +81,11 @@ export default class Volumes extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -115,7 +115,7 @@ export default class Volumes extends React.Component {
 
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sortOrder: getSortOrder('name'),
         search: true,
@@ -131,13 +131,13 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         search: true,
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
-        width: '14%',
+        width: '10.6%',
         render: (_, { phase }) => (
           <Status
             type={phase}
@@ -148,30 +148,40 @@ export default class Volumes extends React.Component {
         ),
       },
       {
-        title: t('Access Mode'),
+        title: t('VOLUME_BACKEND_TCAP'),
+        dataIndex: '_originData',
+        isHideable: true,
+        search: false,
+        width: '28.5%',
+        render: _ => _.spec.volumeName,
+      },
+      {
+        title: t('ACCESS_MODE_TCAP'),
         dataIndex: 'capacity',
         isHideable: true,
-        width: '16%',
-        render: (capacity, { accessMode }) => (
+        width: '12.3%',
+        render: (capacity, { accessModes }) => (
           <div className={styles.capacity}>
-            <p>{accessMode}</p>
+            {accessModes.map(mode => (
+              <p> {mode} </p>
+            ))}
           </div>
         ),
       },
       {
-        title: t('Mount'),
+        title: t('MOUNT_STATUS'),
         dataIndex: 'inUse',
         isHideable: true,
-        width: '14%',
-        render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
+        width: '7.7%',
+        render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
         isHideable: true,
-        width: 150,
+        width: 140,
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
       },
     ]

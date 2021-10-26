@@ -58,8 +58,8 @@ export default class AppInfo extends React.PureComponent {
       <table className={styles.versions}>
         <thead>
           <tr>
-            <th>{t('Version Number')}</th>
-            <th>{t('Change Log')}</th>
+            <th>{t('VERSION_NUMBER')}</th>
+            <th>{t('UPDATE_LOG')}</th>
           </tr>
         </thead>
 
@@ -82,6 +82,21 @@ export default class AppInfo extends React.PureComponent {
     )
   }
 
+  renderAppDeployAgreement() {
+    const { isCheck, onChange } = this.props
+    return (
+      <div className={styles.agree}>
+        <p>{t('APP_DEPLOY_AGREEMENT_1')}</p>
+        <p>{t.html('APP_DEPLOY_AGREEMENT_2')}</p>
+        <div className="margin-t12">
+          <Checkbox checked={isCheck} onChange={onChange}>
+            {t('APP_DEPLOY_AGREEMENT_CHEKC')}
+          </Checkbox>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { className, app } = this.props
     const { abstraction, screenshots } = app
@@ -89,17 +104,15 @@ export default class AppInfo extends React.PureComponent {
     return (
       <div className={classnames(styles.appInfo, className)}>
         <div>
-          <h3 className={styles.title}>{t('Introduction')}</h3>
-          <Markdown source={abstraction || t('None')} />
+          <h3 className={styles.title}>{t('APP_INTRODUCTION')}</h3>
+          <Markdown source={abstraction || t('NONE')} />
         </div>
         <div>
-          <h3 className={styles.title}>{t('Screenshots')}</h3>
+          <h3 className={styles.title}>{t('APP_SCREENSHOTS')}</h3>
           <ImageSlider images={this.filterImages(screenshots)} />
         </div>
         <div>
-          <h3 className={styles.title}>
-            {t('Versions')} ({t('VERSION_LIST_DES')})
-          </h3>
+          <h3 className={styles.title}>{t('APP_VERSIONS_TITLE')}</h3>
           {this.renderVersionTable()}
         </div>
       </div>

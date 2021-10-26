@@ -85,13 +85,13 @@ export default class AppDeploy extends React.Component {
   get steps() {
     return [
       {
-        title: 'Basic Info',
+        title: 'BASIC_INFORMATION',
         component: BasicInfo,
         required: true,
         isForm: true,
       },
       {
-        title: 'App Config',
+        title: 'APP_SETTINGS',
         component: AppConfig,
         required: true,
       },
@@ -195,12 +195,12 @@ export default class AppDeploy extends React.Component {
       <div className={styles.footer}>
         {currentStep > 0 && (
           <Button type="control" onClick={this.handlePrev}>
-            {t('Previous')}
+            {t('PREVIOUS')}
           </Button>
         )}
         {currentStep < total ? (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         ) : (
           <Button
@@ -208,7 +208,7 @@ export default class AppDeploy extends React.Component {
             onClick={this.handleOk}
             loading={this.props.store.isSubmitting}
           >
-            {t('Deploy')}
+            {t('INSTALL')}
           </Button>
         )}
       </div>

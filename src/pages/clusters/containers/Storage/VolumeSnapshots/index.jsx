@@ -35,7 +35,7 @@ import styles from './index.scss'
 @withClusterList({
   store: new SnapshotStore(),
   module: 'volume-snapshots',
-  name: 'VolumeSnapshot',
+  name: 'VOLUME_SNAPSHOT',
   authKey: 'volumes',
 })
 export default class VolumeSnapshot extends React.Component {
@@ -53,11 +53,11 @@ export default class VolumeSnapshot extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: routing.query,
           }),
@@ -71,7 +71,7 @@ export default class VolumeSnapshot extends React.Component {
 
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sortOrder: getSortOrder('name'),
         search: true,
@@ -87,7 +87,7 @@ export default class VolumeSnapshot extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         filters: this.getStatus(),
@@ -112,20 +112,20 @@ export default class VolumeSnapshot extends React.Component {
         },
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         render: namespace => <div>{namespace}</div>,
       },
       {
-        title: t('Capacity'),
+        title: t('CAPACITY'),
         dataIndex: 'restoreSize',
         isHideable: true,
         width: '20%',
         render: restoreSize => restoreSize || '-',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,

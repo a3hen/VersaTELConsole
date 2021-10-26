@@ -36,17 +36,17 @@ const Card = ({ volume, match, isMultiProject }) => {
   let icon = 'storage'
   let description
   let details
-  if (volume.hostPath) {
-    description = `${t('Type')}: ${t('HostPath')}`
+  if (volume.HostPath) {
+    description = t('TYPE_HOSTPATH')
     details = [
-      { title: get(volume, 'hostPath.path', '-'), description: t('Host Path') },
+      { title: get(volume, 'HostPath.path', '-'), description: t('HostPath') },
     ]
   } else if (volume.emptyDir) {
-    description = `${t('Type')}: ${t('EmptyDir')}`
+    description = t('TYPE_EMPTYDIR')
     details = []
   } else if (volume.configMap) {
     icon = 'hammer'
-    description = `${t('Type')}: ${t('ConfigMap')}`
+    description = t('TYPE_CONFIGMAP')
     const configmap = get(volume, 'configMap.name', '-')
     details = [
       {
@@ -55,12 +55,12 @@ const Card = ({ volume, match, isMultiProject }) => {
         ) : (
           <Link to={`${prefix}/configmaps/${configmap}`}>{configmap}</Link>
         ),
-        description: t('ConfigMap'),
+        description: t('CONFIGMAP'),
       },
     ]
   } else if (volume.secret) {
     icon = 'key'
-    description = `${t('Type')}: ${t('Secret')}`
+    description = t('TYPE_SECRET')
     const secret = get(volume, 'secret.secretName', '-')
     details = [
       {
@@ -69,15 +69,13 @@ const Card = ({ volume, match, isMultiProject }) => {
         ) : (
           <Link to={`${prefix}/secrets/${secret}`}>{secret}</Link>
         ),
-        description: t('Secret'),
+        description: t('SECRET'),
       },
     ]
   } else {
-    description = `${t('Storage Classs')}: ${get(
-      volume,
-      'storageClassName',
-      '-'
-    )}`
+    description = t('STORAGE_CLASS_VALUE', {
+      value: get(volume, 'storageClassName', '-'),
+    })
     const volumeName = get(volume, 'persistentVolumeClaim.claimName', '-')
     details = [
       {
@@ -86,15 +84,15 @@ const Card = ({ volume, match, isMultiProject }) => {
         ) : (
           <Link to={`${prefix}/volumes/${volumeName}`}>{volumeName}</Link>
         ),
-        description: t('Volume'),
+        description: t('VOLUME'),
       },
       {
         title: get(volume, 'capacity', '-'),
-        description: t('Capacity'),
+        description: t('CAPACITY'),
       },
       {
         title: get(volume, 'accessMode', '-'),
-        description: t('Access Mode'),
+        description: t('ACCESS_MODE_SCAP'),
       },
     ]
   }
@@ -113,7 +111,8 @@ const Card = ({ volume, match, isMultiProject }) => {
                 <Icon name="mgmt-node" size={20} />
                 <span>{mountPath}</span>
                 <span className="text-secondary">
-                  &nbsp;({readOnly ? t('ReadOnly') : t('ReadAndWrite')})
+                  &nbsp;(
+                  {readOnly ? t('READ_ONLY_LOW') : t('READ_AND_WRITE_LOW')})
                 </span>
               </div>
               {subPath && (

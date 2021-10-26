@@ -32,7 +32,7 @@ import ProjectStore from 'stores/project'
 
 @withList({
   store: new FederatedStore({ module: 'namespaces' }),
-  name: 'Multi-cluster Project',
+  name: 'MULTI_CLUSTER_PROJECT',
   module: 'projects',
   injectStores: ['rootStore', 'workspaceStore'],
 })
@@ -56,11 +56,11 @@ export default class Projects extends React.Component {
       options: [
         {
           value: 'projects',
-          label: t('Projects'),
+          label: t('PROJECT_PL'),
         },
         {
           value: 'federatedprojects',
-          label: t('Multi-cluster Projects'),
+          label: t('MULTI_CLUSTER_PROJECT_PL'),
         },
       ],
     }
@@ -71,19 +71,33 @@ export default class Projects extends React.Component {
   }
 
   get itemActions() {
-    const { trigger } = this.props
+    const { trigger, store } = this.props
+
     return [
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item => trigger('resource.baseinfo.edit', { detail: item }),
       },
       {
+        key: 'add',
+        icon: 'add',
+        text: t('ADD_CLUSTER'),
+        action: 'edit',
+        onClick: item =>
+          trigger('federated.project.add.cluster', {
+            detail: item,
+            store,
+            clusters: this.clusters,
+            success: () => this.props.getData(),
+          }),
+      },
+      {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('federated.project.delete', {
@@ -101,10 +115,10 @@ export default class Projects extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           onClick: () =>
             trigger('federated.project.delete.batch', {
-              type: t(name),
+              type: name,
               success: getData,
               rowKey: 'name',
               ...this.props.match.params,
@@ -121,7 +135,7 @@ export default class Projects extends React.Component {
   getColumns = () => {
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         render: (name, record) => (
           <Avatar
@@ -139,13 +153,13 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         isHideable: true,
         render: status => <Status type={status} name={t(status)} flicker />,
       },
       {
-        title: t('Deployment Location'),
+        title: t('CLUSTER'),
         dataIndex: 'clusters',
         isHideable: true,
         render: clusters => (
@@ -153,7 +167,7 @@ export default class Projects extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         isHideable: true,
         sorter: true,
@@ -180,7 +194,7 @@ export default class Projects extends React.Component {
           {...bannerProps}
           tabs={this.tabs}
           icon="project"
-          title={t('Projects')}
+          title={t('PROJECT_PL')}
           description={t('PROJECT_DESC')}
         />
         <Table

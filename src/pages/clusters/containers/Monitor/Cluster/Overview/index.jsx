@@ -138,13 +138,13 @@ class Overview extends React.Component {
     const { health = 0, total = 0 } = counts.node || {}
 
     return (
-      <Card className={styles.node} title={t('Cluster Node Status')}>
+      <Card className={styles.node} title={t('CLUSTER_NODE_STATUS')}>
         <Loading spinning={isLoading}>
           <StatusCircle
             theme="light"
             className={styles.nodeStatus}
-            name={t('Node Online Status')}
-            legend={['Online Nodes', 'All Nodes']}
+            name={t('NODE_ONLINE_STATUS')}
+            legend={['ONLINE_NODES', 'ALL_NODES']}
             used={health}
             total={total}
             onClick={this.handleNodeClick}
@@ -180,6 +180,11 @@ class Overview extends React.Component {
         icon: '/assets/logging.svg',
         disabled: !globals.app.hasClusterModule(this.cluster, 'logging'),
       },
+      {
+        type: 'devops',
+        icon: '/assets/dev-ops.svg',
+        disabled: !globals.app.hasClusterModule(this.cluster, 'devops'),
+      },
     ]
 
     return (
@@ -201,7 +206,7 @@ class Overview extends React.Component {
                 <span>/{get(counts, `[${item.type}].total`, 0)}</span>
               </p>
             ) : (
-              <span>{t('Not Enabled')}</span>
+              <span>{t('NOT_ENABLED')}</span>
             )}
           </div>
         ))}
@@ -218,15 +223,11 @@ class Overview extends React.Component {
       },
       {
         type: 'controller-manager',
-        name: t('Controller Manager'),
+        name: t('CONTROLLER_MANAGER'),
       },
       {
         type: 'scheduler',
-        name: t('K8s Scheduler'),
-      },
-      {
-        type: 'node',
-        name: t('Node'),
+        name: t('KUBERNETES_SCHEDULER'),
       },
     ]
 
@@ -260,7 +261,7 @@ class Overview extends React.Component {
     const { isLoading = false } = this.componentMonitoringStore.health
 
     return (
-      <Card className={styles.components} title={t('Component Status')}>
+      <Card className={styles.components} title={t('COMPONENT_STATUS')}>
         <Loading spinning={isLoading}>
           <div className={styles.wrapper}>
             {this.renderServiceComponents()}

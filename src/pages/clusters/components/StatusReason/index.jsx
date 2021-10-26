@@ -49,16 +49,16 @@ export default function StatusReason({ data, noTip }) {
                 })}
               </span>
             </div>
-            {cd.status && <p>{`${t('Status')}: ${cd.status}`}</p>}
+            {cd.status && <p>{`${t('STATUS')}: ${cd.status}`}</p>}
             {cd.reason && (
-              <p>{`${t('Reason')}: ${t(
+              <p>{`${t('REASON')}: ${t(
                 `CLUSTER_REASON_${cd.reason.toUpperCase()}`,
                 {
                   defaultValue: cd.reason,
                 }
               )}`}</p>
             )}
-            {cd.message && <p>{`${t('Message')}: ${cd.message}`}</p>}
+            {cd.message && <p>{`${t('MESSAGE')}: ${cd.message}`}</p>}
           </div>
         ))}
       </div>

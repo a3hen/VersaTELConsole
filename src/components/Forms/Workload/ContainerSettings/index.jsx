@@ -18,11 +18,10 @@
 
 import { concat, get, set, unset, isEmpty, omit, omitBy, has } from 'lodash'
 import React from 'react'
-import { generateId } from 'utils'
+import { generateId, getContainerGpu } from 'utils'
 import { MODULE_KIND_MAP } from 'utils/constants'
 import { getLeftQuota } from 'utils/workload'
 
-import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import LimitRangeStore from 'stores/limitrange'
 import FederatedStore from 'stores/federated'
@@ -30,7 +29,7 @@ import QuotaStore from 'stores/quota'
 import WorkspaceQuotaStore from 'stores/workspace.quota'
 import ProjectStore from 'stores/project'
 
-import { Form } from '@kube-design/components'
+import { Form, Tooltip, Icon } from '@kube-design/components'
 import AffinityForm from 'components/Forms/Workload/ContainerSettings/Affinity'
 import ReplicasControl from './ReplicasControl'
 import ClusterReplicasControl from './ClusterReplicasControl'
@@ -39,6 +38,9 @@ import ContainerList from './ContainerList'
 import ContainerForm from './ContainerForm'
 import PodSecurityContext from './PodSecurityContext'
 
+import Metadata from './Metadata'
+import styles from './index.scss'
+
 export default class ContainerSetting extends React.Component {
   constructor(props) {
     super(props)
@@ -46,8 +48,6 @@ export default class ContainerSetting extends React.Component {
     this.state = {
       showContainer: false,
       selectContainer: {},
-      configMaps: [],
-      secrets: [],
       limitRange: {},
       imageRegistries: [],
       replicas: this.getReplicas(),
@@ -56,8 +56,6 @@ export default class ContainerSetting extends React.Component {
 
     this.module = props.module
 
-    this.configMapStore = new ConfigMapStore()
-    this.secretStore = new SecretStore()
     this.limitRangeStore = new LimitRangeStore()
     this.imageRegistryStore = new SecretStore()
     this.quotaStore = new QuotaStore()
@@ -65,12 +63,6 @@ export default class ContainerSetting extends React.Component {
     this.projectStore = new ProjectStore()
 
     if (props.isFederated) {
-      this.configMapStore = new FederatedStore({
-        module: this.configMapStore.module,
-      })
-      this.secretStore = new FederatedStore({
-        module: this.secretStore.module,
-      })
       this.limitRangeStore = new FederatedStore({
         module: this.limitRangeStore.module,
       })
@@ -83,10 +75,14 @@ export default class ContainerSetting extends React.Component {
   }
 
   componentDidMount() {
+    const { store } = this.props
     this.fetchData()
     this.fetchQuota()
     if (this.props.withService) {
       this.initService(this.formTemplate)
+    }
+    if (store.renderScheduleTab) {
+      this.props.store.setMetadata(this.formTemplate.metadata)
     }
   }
 
@@ -100,13 +96,19 @@ export default class ContainerSetting extends React.Component {
 
   get formTemplate() {
     const { formTemplate, module } = this.props
-    return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+    const template = get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
+    template.totalReplicas = ''
+    return template
   }
 
   get fedFormTemplate() {
     return this.props.isFederated
       ? get(this.formTemplate, 'spec.template')
       : this.formTemplate
+  }
+
+  get workspaceQuota() {
+    return get(this.state.leftQuota, 'namespace', {})
   }
 
   initService() {
@@ -146,8 +148,6 @@ export default class ContainerSetting extends React.Component {
     }
 
     Promise.all([
-      this.configMapStore.fetchListByK8s(params),
-      this.secretStore.fetchListByK8s(params),
       this.limitRangeStore.fetchListByK8s(params),
       isFederated
         ? this.imageRegistryStore.fetchList({
@@ -159,10 +159,8 @@ export default class ContainerSetting extends React.Component {
             ...params,
             fieldSelector: `type=kubernetes.io/dockerconfigjson`,
           }),
-    ]).then(([configMaps, secrets, limitRanges, imageRegistries]) => {
+    ]).then(([limitRanges, imageRegistries]) => {
       this.setState({
-        configMaps,
-        secrets,
         limitRange: get(limitRanges, '[0].limit'),
         imageRegistries,
       })
@@ -235,7 +233,10 @@ export default class ContainerSetting extends React.Component {
     } else {
       volumes = volumes.filter(
         volume =>
-          !(volume.name === 'host-time' && volume.hostPath === '/etc/localtime')
+          !(
+            volume.name === 'host-time' &&
+            volume?.hostPath?.path === '/etc/localtime'
+          )
       )
     }
 
@@ -381,6 +382,15 @@ export default class ContainerSetting extends React.Component {
         _initContainers.push(item)
       }
     })
+
+    _initContainers.forEach(item => {
+      getContainerGpu(item)
+    })
+
+    _containers.forEach(item => {
+      getContainerGpu(item)
+    })
+
     set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
     set(
       this.fedFormTemplate,
@@ -405,17 +415,26 @@ export default class ContainerSetting extends React.Component {
 
   containersValidator = (rule, value, callback) => {
     if (isEmpty(value)) {
-      return callback({ message: t('Please add at least one container.') })
+      return callback({ message: t('CONTAINER_EMPTY_DESC') })
     }
 
     callback()
   }
 
   renderContainerForm(data) {
-    const { withService, isFederated } = this.props
-    const { configMaps, secrets, limitRange, imageRegistries } = this.state
+    const {
+      withService,
+      isFederated,
+      cluster,
+      supportGpuSelect,
+      projectDetail,
+    } = this.props
+    const { limitRange, imageRegistries } = this.state
     const type = !data.image ? 'Add' : 'Edit'
-    const params = { configMaps, secrets, limitRange, imageRegistries }
+    const params = {
+      limitRange,
+      imageRegistries,
+    }
 
     return (
       <ContainerForm
@@ -423,10 +442,14 @@ export default class ContainerSetting extends React.Component {
         module={this.module}
         namespace={this.namespace}
         data={data}
+        projectDetail={projectDetail}
         onSave={this.handleContainer}
         onCancel={this.hideContainer}
         withService={withService}
         isFederated={isFederated}
+        workspaceQuota={this.workspaceQuota}
+        cluster={cluster}
+        supportGpuSelect={supportGpuSelect}
         {...params}
       />
     )
@@ -434,9 +457,57 @@ export default class ContainerSetting extends React.Component {
 
   renderDeployPlacementTip() {
     return (
-      <div>
-        <div className="tooltip-title">{t('DEPLOY_PLACEMENT_TIP_TITLE')}</div>
-        <p>{t('DEPLOY_PLACEMENT_TIP_VALUE')}</p>
+      <div className={styles.tipBox}>
+        <div className={styles.tipTitle}>{t('SPECIFY_REPLICAS')}</div>
+        <p>{t('SPECIFY_REPLICAS_DESC')}</p>
+        <br />
+        <div className={styles.tipTitle}>{t('SPECIFY_WEIGHTS')}</div>
+        <p>{t('SPECIFY_WEIGHTS_DESC')}</p>
+      </div>
+    )
+  }
+
+  renderDeployPlace() {
+    const { projectDetail } = this.props
+
+    return (
+      <Form.Item
+        className="margin-b12"
+        label={t('POD_REPLICAS')}
+        tip={this.renderDeployPlacementTip()}
+      >
+        <ClusterReplicasControl
+          module={this.module}
+          template={this.formTemplate}
+          clusters={projectDetail.clusters}
+          onClusterUpdate={this.handleClusterUpdate}
+        />
+      </Form.Item>
+    )
+  }
+
+  renderDeployMode() {
+    const { projectDetail } = this.props
+
+    return (
+      <div className="margin-b12">
+        <div className={styles.formTip}>
+          <span className={styles.tipLabel}>
+            {t('REPLICA_SCHEDULING_MODE')}
+          </span>
+          <Tooltip placement="right" content={this.renderDeployPlacementTip()}>
+            <Icon name="question" size="20"></Icon>
+          </Tooltip>
+        </div>
+        <Form.Item>
+          <ClusterReplicasControl
+            module={this.module}
+            template={this.formTemplate}
+            clusters={projectDetail.clusters}
+            onClusterUpdate={this.handleClusterUpdate}
+            store={this.props.store}
+          />
+        </Form.Item>
       </div>
     )
   }
@@ -446,23 +517,12 @@ export default class ContainerSetting extends React.Component {
       return null
     }
 
-    const { projectDetail, isFederated } = this.props
+    const { isFederated, store } = this.props
 
     if (isFederated) {
-      return (
-        <Form.Item
-          className="margin-b12"
-          label={t('Deployment Location')}
-          tip={this.renderDeployPlacementTip()}
-        >
-          <ClusterReplicasControl
-            module={this.module}
-            template={this.formTemplate}
-            clusters={projectDetail.clusters}
-            onClusterUpdate={this.handleClusterUpdate}
-          />
-        </Form.Item>
-      )
+      return store.renderScheduleTab
+        ? this.renderDeployMode()
+        : this.renderDeployPlace()
     }
 
     return (
@@ -482,7 +542,7 @@ export default class ContainerSetting extends React.Component {
 
     return (
       <Form.Item
-        label={t('Container Image')}
+        label={t('CONTAINERS')}
         rules={[{ validator: this.containersValidator }]}
       >
         <ContainerList
@@ -532,6 +592,21 @@ export default class ContainerSetting extends React.Component {
     )
   }
 
+  renderMetadata() {
+    return (
+      <div className="margin-b12">
+        <Form.Group
+          label={t('ADD_METADATA')}
+          desc={t('POD_ADD_METADATA_DESC')}
+          keepDataWhenUnCheck
+          checkable
+        >
+          <Metadata />
+        </Form.Group>
+      </div>
+    )
+  }
+
   render() {
     const { formRef } = this.props
     const { showContainer, selectContainer } = this.state
@@ -547,6 +622,7 @@ export default class ContainerSetting extends React.Component {
         {this.renderUpdateStrategy()}
         {this.renderPodSecurityContext()}
         {this.renderPodAffinity()}
+        {this.renderMetadata()}
       </Form>
     )
   }

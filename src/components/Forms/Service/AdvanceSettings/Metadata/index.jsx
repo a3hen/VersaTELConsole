@@ -53,7 +53,7 @@ export default class Metadata extends React.Component {
       return callback()
     }
     if (isEmpty(value)) {
-      return callback({ message: t('Labels cannot be empty') })
+      return callback({ message: t('EMPTY_LABEL_DESC') })
     }
 
     if (!isValidLabel(value)) {
@@ -68,7 +68,7 @@ export default class Metadata extends React.Component {
       })
       .then(resp => {
         if (resp.exist) {
-          return callback({ message: t('Labels exists'), field: rule.field })
+          return callback({ message: t('DUPLICATE_LABELS'), field: rule.field })
         }
         callback()
       })
@@ -79,25 +79,23 @@ export default class Metadata extends React.Component {
     return (
       <>
         <Form.Item
-          label={t('Labels')}
+          label={t('LABEL_PL')}
           rules={[
-            { required: true, message: t('Labels cannot be empty') },
+            { required: true, message: t('EMPTY_LABEL_DESC') },
             { validator: this.labelsValidator },
           ]}
         >
           <PropertiesInput
             name={`${kind}.${this.fedPrefix}metadata.labels`}
-            addText={t('Add Label')}
+            addText={t('ADD')}
             onChange={this.handleLabelsChange}
           />
         </Form.Item>
         {!noWorkload && (
-          <Form.Item
-            label={`${t('Annotations')} (${t('Applied to the workload')})`}
-          >
+          <Form.Item label={t('WORKLOAD_ANNOTATIONS')}>
             <PropertiesInput
               name={`${kind}.metadata.annotations`}
-              addText={t('Add Annotation')}
+              addText={t('ADD')}
               hiddenKeys={globals.config.preservedAnnotations}
             />
           </Form.Item>

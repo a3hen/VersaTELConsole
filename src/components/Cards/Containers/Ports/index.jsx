@@ -44,16 +44,15 @@ export default class ContainerPorts extends React.Component {
     const { ports, isFederated } = this.props
 
     if (isEmpty(ports)) return null
-
     return (
       <div className={styles.content}>
         <table className={styles.table}>
           <thead>
             <tr>
-              {isFederated && <th>{t('Cluster')}</th>}
-              <th>{t('Name')}</th>
-              <th>{t('Protocol')}</th>
-              <th>{t('Port')}</th>
+              {isFederated && <th>{t('CLUSTER')}</th>}
+              <th>{t('NAME')}</th>
+              <th>{t('PROTOCOL')}</th>
+              <th>{t('PORT')}</th>
             </tr>
           </thead>
           <tbody>
@@ -83,7 +82,7 @@ export default class ContainerPorts extends React.Component {
 
   render() {
     const { className, loading, ...rest } = this.props
-    const title = this.props.title || t('Ports')
+    const title = this.props.title || t('PORT_PL')
 
     return (
       <Panel

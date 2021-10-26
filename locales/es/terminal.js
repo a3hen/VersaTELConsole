@@ -18,8 +18,8 @@
 
 module.exports = {
   connected: 'conectado',
-  Copy: 'Copiar',
-  'Copy Successfully': 'Copia con éxito',
+  COPY: 'Copiar',
+  COPIED_SUCCESSFUL: 'Copia con éxito',
   Disconnect: 'Desconectar',
   disconnected: 'desconectado',
   'Download File': 'Descargar archivo',
@@ -32,6 +32,10 @@ module.exports = {
     <h2><a id="KubeConfig_Configuration_Method_0"></a>Método de configuración KubeConfig</h2>
     <p>Por favor, consultar la <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">documentación oficial</a> para más comandos.</p>
   `,
+
+  VIEW_KUBE_CONFIG:
+    'Related operations of kubeConfig configuration include viewing and downloading',
+
   KUBECTL_TIP: `
     <h2><a id="KubeCtl_Common_Instructions_0"></a>Instrucciones comunes de KubeCtl</h2>
     <p>Por favor, consultar la <a href="https://kubernetes.io/docs/reference/kubectl/overview/" target="_blank">documentación oficial</a> para más comandos.</p>
@@ -49,7 +53,7 @@ module.exports = {
     <ul>
     <li>Crea servicio y rc una vez según la configuración del archivo yaml</li>
     </ul>
-    <p><code>kubectl create -f my-service.yaml -f my-rc.yaml</code></p>
+    <p><code>kubectl create -f my-service.yaml</code></p>
     <ul>
     <li>Crea todos los archivos .yaml, .yml, .json en el directorio</li>
     </ul>
@@ -62,7 +66,7 @@ module.exports = {
     <ul>
     <li>Ver lista de rc y servicios</li>
     </ul>
-    <p><code>kubectl get rc,service</code></p>
+    <p><code>kubectl get services</code></p>
     <h4><a id="3_View_resource_details_36"></a>3. Ver detalles del recurso</h4>
     <ul>
     <li>Mostrar detalles del nodo</li>

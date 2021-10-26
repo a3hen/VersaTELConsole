@@ -40,7 +40,7 @@ import ProjectStore from 'stores/project'
 import styles from './index.scss'
 
 @observer
-export default class Placment extends Component {
+export default class Placement extends Component {
   state = {
     showForm: false,
     initializing: true,
@@ -185,9 +185,9 @@ export default class Placment extends Component {
     const { namespace, workspace, cluster } = formData
     return (
       <div className={styles.placement}>
-        <Text title={workspace} description={t('Workspace')} />
-        <Text title={cluster} description={t('Cluster')} />
-        <Text icon="project" title={namespace} description={t('Project')} />
+        <Text title={workspace} description={t('WORKSPACE')} />
+        <Text title={cluster} description={t('CLUSTER')} />
+        <Text icon="project" title={namespace} description={t('PROJECT')} />
         <Icon className={styles.icon} name="chevron-down" size={20} />
       </div>
     )
@@ -227,10 +227,10 @@ export default class Placment extends Component {
         <Form ref={this.formRef} type="inner" data={this.state.formData}>
           <Columns>
             <Column>
-              <Form.Item label={t('Workspace')}>
+              <Form.Item label={t('WORKSPACE')}>
                 <Select
                   name="workspace"
-                  placeholder={t('Please select a workspace')}
+                  placeholder={t('WORKSPACE_EMPTY_DESC')}
                   options={this.workspaces}
                   onChange={this.handleWorkspaceChange}
                   prefixIcon={<Icon name="enterprise" size={16} />}
@@ -239,10 +239,10 @@ export default class Placment extends Component {
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Cluster')}>
+              <Form.Item label={t('CLUSTER')}>
                 <Select
                   name="cluster"
-                  placeholder={t('Please select a cluster')}
+                  placeholder=" "
                   options={this.clusters}
                   onChange={this.handleClusterChange}
                   optionRenderer={this.clusterOptionRenderer}
@@ -252,14 +252,14 @@ export default class Placment extends Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('Project')}
+                label={t('PROJECT')}
                 rules={[
-                  { required: true, message: t('Please select a project') },
+                  { required: true, message: t('PROJECT_NOT_SELECT_DESC') },
                 ]}
               >
                 <Select
                   name="namespace"
-                  placeholder={t('Please select a project')}
+                  placeholder=" "
                   options={this.namespaces}
                   pagination={pick(this.projectStore.list, [
                     'page',
@@ -304,7 +304,7 @@ export default class Placment extends Component {
             {initializing ? (
               <Loading className="text-center" />
             ) : (
-              t('Please select a project to deploy')
+              t('PROJECT_NOT_SELECT_DESC')
             )}
           </div>
         ) : (

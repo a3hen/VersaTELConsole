@@ -67,8 +67,8 @@ export default class RuleList extends React.Component {
           ))}
         <div className={styles.add} onClick={onShow}>
           <Text
-            title={t('Add Route Rule')}
-            description={t('Please add at least one routing rule.')}
+            title={t('ADD_ROUTING_RULE')}
+            description={t('ADD_ROUTING_RULE_DESC')}
           />
         </div>
       </ul>

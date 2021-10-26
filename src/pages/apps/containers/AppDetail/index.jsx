@@ -40,12 +40,15 @@ import AppInfo from 'apps/components/AppInfo'
 import AppPreview from 'apps/components/AppPreview'
 import AppBase from 'apps/components/AppBase'
 
+import { trigger } from 'utils/action'
+
 import styles from './index.scss'
 
 const { TabPanel } = Tabs
 
 @inject('rootStore')
 @observer
+@trigger
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -129,7 +132,25 @@ export default class App extends React.Component {
   }
 
   handleDeploy = () => {
+    const {
+      detail: { isv },
+    } = this.appStore
+
+    if (
+      isv !== 'system-workspace' ||
+      localStorage.getItem(`${globals.user.username}-app-agreement`) === 'true'
+    ) {
+      this.handleLink()
+      return
+    }
+    this.trigger('openpitrix.app.agreement', {
+      success: this.handleLink,
+    })
+  }
+
+  handleLink = () => {
     const link = `${this.props.match.url}/deploy${location.search}`
+
     if (!globals.user) {
       location.href = `/login?referer=${link}`
     } else {
@@ -153,10 +174,10 @@ export default class App extends React.Component {
 
     return (
       <div className={styles.keywords}>
-        <div className="h6 margin-b12">{t('Keywords')}</div>
+        <div className="h6 margin-b12">{t('KEYWORDS')}</div>
         <div>
           {keywords.length === 0
-            ? t('None')
+            ? t('NONE')
             : keywords.map((v, idx) => (
                 <Tag key={idx} type="secondary">
                   {v}
@@ -171,7 +192,7 @@ export default class App extends React.Component {
     return (
       <div className={styles.deployButton}>
         <Button onClick={this.handleDeploy} type="control">
-          {t('Deploy')}
+          {t('DEPLOY')}
         </Button>
       </div>
     )
@@ -192,7 +213,7 @@ export default class App extends React.Component {
         activeName={tab}
         onChange={this.handleTabChange}
       >
-        <TabPanel label={t('App Info')} name="appInfo">
+        <TabPanel label={t('APP_INFORMATION')} name="appInfo">
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">
@@ -203,12 +224,12 @@ export default class App extends React.Component {
             </Column>
           </Columns>
         </TabPanel>
-        <TabPanel label={t('App Details')} name="appDetails">
+        <TabPanel label={t('APP_DETAILS')} name="appDetails">
           {this.renderDeployButton()}
           <Columns>
             <Column className="is-8">{this.renderAppFilePreview()}</Column>
             <Column>
-              <div className="h6 margin-b12">{t('Versions')}</div>
+              <div className="h6 margin-b12">{t('VERSIONS')}</div>
               <TypeSelect
                 value={this.state.selectAppVersion}
                 options={this.versionOptions}

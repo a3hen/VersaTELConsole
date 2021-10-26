@@ -55,7 +55,7 @@ export default class MemberDetail extends React.Component {
   }
 
   get name() {
-    return 'Workspace Member'
+    return 'WORKSPACE_MEMBER'
   }
 
   get listUrl() {
@@ -74,7 +74,7 @@ export default class MemberDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Remove from Workspace'),
+      text: t('REMOVE_MEMBER'),
       action: 'delete',
       type: 'danger',
       show: this.store.detail.name !== globals.user.username,
@@ -96,15 +96,15 @@ export default class MemberDetail extends React.Component {
 
     return [
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: this.workspace,
       },
       {
-        name: t('Workspace Role'),
+        name: t('WORKSPACE_ROLE'),
         value: detail.workspacerole,
       },
       {
-        name: t('Email'),
+        name: t('EMAIL'),
         value: detail.email,
       },
     ]
@@ -129,7 +129,7 @@ export default class MemberDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Workspace Members'),
+          label: t('WORKSPACE_MEMBER_PL'),
           url: this.listUrl,
         },
       ],

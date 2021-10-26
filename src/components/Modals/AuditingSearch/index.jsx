@@ -112,8 +112,8 @@ export default class AuditingOperating extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('No Available Cluster')}
-          desc={t('No cluster with auditing module enabled')}
+          title={t('NO_AVAILABLE_CLUSTER')}
+          desc={t.html('AUDITING_NOT_ENABLED_DESC')}
         />
       )
     }

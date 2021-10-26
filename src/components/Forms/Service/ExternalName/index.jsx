@@ -39,19 +39,16 @@ export default class ServiceSettings extends React.Component {
     return (
       <Form data={this.formTemplate} ref={formRef}>
         <Form.Item
-          label={t('ExternalName')}
-          desc={t('SERVICE_EXTERNAL_NAME_DESC')}
+          label={t('EXTERNAL_SERVICE_ADDRESS')}
+          desc={t('EXTERNAL_SERVICE_ADDRESS_DESC')}
           rules={[
             {
               required: true,
-              message: t('Please input ExternalName'),
+              message: t('EXTERNAL_SERVICE_ADDRESS_EMPTY_DESC'),
             },
           ]}
         >
-          <Input
-            name="spec.externalName"
-            placeholder={`${t('Example')}：foo.bar.example.com`}
-          />
+          <Input name="spec.externalName" placeholder={'foo.bar.example.com'} />
         </Form.Item>
       </Form>
     )

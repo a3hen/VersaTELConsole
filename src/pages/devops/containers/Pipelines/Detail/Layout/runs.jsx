@@ -76,29 +76,35 @@ export default class RunDetailLayout extends React.Component {
     this.store.getRunDetail(params)
   }
 
+  getRunName = async () => {
+    const { params } = this.props.match
+    await this.store.getRunName(params)
+  }
+
   componentDidUpdate(prevProps) {
     const { runDetail } = this.store
     const {
       devops,
-      runId,
+      runName,
       branch,
       workspace,
       cluster,
     } = this.props.match.params
     const { params: lastParams } = prevProps.match
 
-    if (runId !== lastParams.runId) {
+    if (runName !== lastParams.runName) {
       clearInterval(this.refreshTimer)
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
 
-    if (runDetail.id && runDetail.id !== runId) {
+    if (runDetail.name && runDetail.name !== runName) {
       this.routing.push(
         `/${workspace}/clusters/${cluster}devops/${devops}/pipelines/${name}${
           branch ? `/branch/${branch}` : ''
-        }/run/${runDetail.id}`
+        }/run/${runDetail.name}`
       )
     }
+
     if (!this.refreshTimer && this.hasRuning) {
       this.refreshTimer = setInterval(this.refreshHandler, 4000)
     }
@@ -120,6 +126,7 @@ export default class RunDetailLayout extends React.Component {
     const { params } = this.props.match
 
     const result = await this.store.replay(params)
+
     this.routing.push(
       `/${params.workspace}/clusters/${params.cluster}/devops/${
         params.devops
@@ -170,9 +177,9 @@ export default class RunDetailLayout extends React.Component {
     {
       key: 'rerun',
       type: 'control',
-      text: t('Rerun'),
+      text: t('RERUN'),
       action: 'edit',
-      onClick: this.rePlay,
+      onClick: () => this.rePlay(),
     },
   ]
 
@@ -181,15 +188,15 @@ export default class RunDetailLayout extends React.Component {
 
     return [
       {
-        name: t('Activity'),
+        name: t('ACTIVITY'),
         value: runDetail.id,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status {...getPipelineStatus(runDetail)} />,
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.updateTime,
       },
     ]
@@ -219,7 +226,11 @@ export default class RunDetailLayout extends React.Component {
       module: this.module,
       breadcrumbs: [
         {
-          label: branch ? (runId ? t('Activity') : t('Branch')) : t('Activity'),
+          label: branch
+            ? runId
+              ? t('ACTIVITY')
+              : t('BRANCH_SI')
+            : t('ACTIVITY'),
           url: branch
             ? `${this.listUrl}/${name}/branch/${branch}/activity`
             : `${this.listUrl}/${name}/activity`,

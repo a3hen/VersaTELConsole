@@ -65,44 +65,43 @@ export default class Volumes extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
-      width: '18%',
       render: (name, record) => (
         <Avatar icon="storage" title={getDisplayName(record)} noLink />
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'phase',
-      width: '16%',
+      width: '13%',
       render: phase => (
         <Status type={phase} name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)} />
       ),
     },
     {
-      title: t('Capacity'),
+      title: t('CAPACITY'),
       dataIndex: 'capacity',
-      width: '16%',
+      width: '13%',
       render: capacity => capacity || '-',
     },
     {
-      title: t('Mount Status'),
+      title: t('MOUNT_STATUS'),
       dataIndex: 'inUse',
-      width: '16%',
-      render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
+      width: '13%',
+      render: inUse => (inUse ? t('MOUNTED') : t('NOT_MOUNTED')),
     },
     {
-      title: t('Project'),
+      title: t('PROJECT'),
       dataIndex: 'namespace',
       key: 'namespace',
-      width: '18%',
+      width: '13%',
       customizable: true,
     },
     {
-      title: t('Created Time'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
-      width: '16%',
+      width: '21%',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
   ]
@@ -120,9 +119,9 @@ export default class Volumes extends React.Component {
 
     return (
       <Card
-        title={t('Volumes')}
+        title={t('VOLUME_PL')}
         loading={isLoading}
-        empty={t('NOT_AVAILABLE', { resource: t('volumes') })}
+        empty={t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('VOLUME') })}
       >
         <BaseTable
           className={styles.table}
@@ -131,7 +130,7 @@ export default class Volumes extends React.Component {
           searchType="name"
           keyword={filters.name}
           filters={filters}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}

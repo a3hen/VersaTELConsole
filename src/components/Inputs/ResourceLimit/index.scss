@@ -114,6 +114,12 @@
     }
   }
 
+  img {
+    position: absolute;
+    top: 0;
+    left: 8px;
+  }
+
   .input {
     position: relative;
     display: flex;
@@ -127,9 +133,16 @@
     }
 
     .label {
-      flex: 0.5;
+      width: 60px;
+      height: 32px;
       margin-right: 8px;
+      display: flex;
+      align-items: center;
       @include TypographyParagraph();
+    }
+
+    .inputBox {
+      flex: 1;
     }
 
     .unit {
@@ -143,10 +156,24 @@
     }
 
     :global {
-      .input {
-        width: auto;
-        flex: 1;
+      input.input {
+        width: 100%;
+      }
+
+      .select {
+        width: 100%;
+
+        .icon {
+          align-self: center;
+          position: relative;
+        }
       }
     }
+  }
+}
+
+.message {
+  span + span {
+    margin-left: 8px;
   }
 }

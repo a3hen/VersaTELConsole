@@ -39,16 +39,17 @@ export default class CheckItem extends Component {
         newTemplates = newTemplates.filter(item => item !== data.name)
       } else {
         Notify.warning(
-          t(
-            relateTemplates.length === 1
-              ? 'RULE_RELATED_WITH'
-              : 'RULE_RELATED_WITH_PLURAL',
-            {
-              resource: relateTemplates
-                .map(rt => t(get(roleTemplatesMap, `[${rt}].aliasName`)))
-                .join(', '),
-            }
-          )
+          t('DESELECT_RESOURCE_FIRST', {
+            resource: relateTemplates
+              .map(rt =>
+                t(
+                  get(roleTemplatesMap, `[${rt}].aliasName`)
+                    .replace(/\s+/g, '_')
+                    .toUpperCase()
+                )
+              )
+              .join('/'),
+          })
         )
       }
     } else {
@@ -94,7 +95,7 @@ export default class CheckItem extends Component {
           onClick={this.handleCheck}
         />
         <Text
-          title={t(data.aliasName)}
+          title={t(data.aliasName.replace(/\s+/g, '_').toUpperCase())}
           onClick={this.handleCheck}
           description={t(
             `${data.aliasName.toUpperCase().replace(/\s+/g, '_')}_DESC`
@@ -102,10 +103,14 @@ export default class CheckItem extends Component {
         />
         {data.dependencies.length > 0 && (
           <div className={styles.extra}>
-            {t('Depend on')}:{' '}
+            {t('DEPENDS_ON')}
             {data.dependencies.map(item => (
               <Tag className={styles.tag} type="info" key={item}>
-                {t(get(roleTemplatesMap, `[${item}].aliasName`))}
+                {t(
+                  get(roleTemplatesMap, `[${item}].aliasName`)
+                    .replace(/\s+/g, '_')
+                    .toUpperCase()
+                )}
               </Tag>
             ))}
           </div>

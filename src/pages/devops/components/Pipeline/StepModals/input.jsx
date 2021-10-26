@@ -170,9 +170,9 @@ export default class InputStep extends React.Component {
 
         <Form data={this.formData} ref={this.formRef}>
           <Form.Item
-            label={t('Message')}
+            label={t('MESSAGE')}
             desc={t('INPUT_MESSAGE_DESC')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <MentionsInput
               className="mention-input"

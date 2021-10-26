@@ -29,27 +29,27 @@ const PATH =
 export default [
   {
     path: `${PATH}/components`,
-    title: 'Application Components',
+    title: 'RESOURCE_STATUS',
     component: Components,
     exact: true,
   },
   {
     path: `${PATH}/traffic`,
-    title: 'Traffic Management',
+    title: 'TRAFFIC_MONITORING',
     component: TrafficManangement,
     clusterModule: 'servicemesh',
     exact: true,
   },
   {
     path: `${PATH}/grayrelease`,
-    title: 'Grayscale Release',
+    title: 'GRAYSCALE_RELEASE',
     component: GrayRelease,
     clusterModule: 'servicemesh',
     exact: true,
   },
   {
     path: `${PATH}/tracing`,
-    title: 'Tracing',
+    title: 'TRACING',
     component: Tracing,
     clusterModule: 'servicemesh',
     exact: true,

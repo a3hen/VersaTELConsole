@@ -19,12 +19,30 @@
 import React, { Component } from 'react'
 
 import { Panel } from 'components/Base'
-
+import Icon from '@kube-design/components/lib/components/Icon'
+import { set, get } from 'lodash'
+import { toJS } from 'mobx'
 import Cluster from './Cluster'
-
+import ScheduleCluster from './ScheduleCluster'
+import ReplicasInput from './ReplicasInput'
 import styles from './index.scss'
 
 export default class ClusterWorkloadStatus extends Component {
+  getWeight = name => {
+    const { store } = this.props
+    const weight = get(
+      store.deployedScheduleTemplate,
+      `spec.clusters.${name}.weight`,
+      0
+    )
+    return weight
+  }
+
+  get getTotalReplicas() {
+    const { store } = this.props
+    return get(store.deployedScheduleTemplate, 'spec.totalReplicas', 0)
+  }
+
   handleReplicasChange = async (cluster, replicas) => {
     const { detail, store } = this.props
     const { overrides = [] } = detail
@@ -61,21 +79,106 @@ export default class ClusterWorkloadStatus extends Component {
     )
   }
 
+  updateSchedule = async () => {
+    const { store, detail, projectStore, clustersDetail } = this.props
+    const clusters = Object.keys(toJS(clustersDetail))
+    const params = {
+      name: detail.name,
+      namespace: projectStore.detail.namespace,
+      workspace: projectStore.detail.workspace,
+    }
+    await store.updateScheduleYaml(detail, store.deployedScheduleTemplate)
+    await store.fetchResources({ clusters, ...params })
+  }
+
+  handleWeightChange = async (cluster, weight) => {
+    const { store } = this.props
+
+    set(
+      store.deployedScheduleTemplate,
+      `spec.clusters.${cluster}.weight`,
+      weight
+    )
+    await this.updateSchedule()
+  }
+
+  renderTittleText() {
+    const { store } = this.props
+
+    const params = store.isScheduleProject
+      ? {
+          Icon: 'stretch',
+          title: t('WEIGHTS'),
+          des: t('SPECIFY_WEIGHTS_DESC'),
+        }
+      : {
+          Icon: 'backup',
+          title: t('REPLICA_COUNT'),
+          des: t('SPECIFY_REPLICAS_DESC'),
+        }
+
+    return (
+      <div className={styles.titleBox}>
+        <div className={styles.IconBox}>
+          <Icon name={params.Icon} size="40"></Icon>
+        </div>
+        <div className={styles.right}>
+          <span className={styles.title}>{params.title}</span>
+          <span className={styles.des}>{params.des}</span>
+        </div>
+      </div>
+    )
+  }
+
+  totalChange = async value => {
+    const { store } = this.props
+    set(store.deployedScheduleTemplate, `spec.totalReplicas`, Number(value))
+    await this.updateSchedule()
+  }
+
   render() {
-    const { store, resources, clusters, clustersDetail, canEdit } = this.props
+    const {
+      store,
+      resources,
+      clusters,
+      clustersDetail,
+      canEdit,
+      projectStore,
+    } = this.props
 
     if (!clusters) {
       return null
     }
 
     return (
-      <Panel title={t('Instance Status')}>
+      <Panel title={t('POD_REPLICAS')}>
+        {this.renderTittleText()}
         <div className={styles.wrapper}>
+          {store.isScheduleProject && (
+            <div className={styles.totalBox}>
+              <Icon name="pod" size="40"></Icon>
+              <div className={styles.total}>{t('TOTAL_REPLICAS')}</div>
+              <ReplicasInput
+                desire={this.getTotalReplicas}
+                onChange={this.totalChange}
+              ></ReplicasInput>
+            </div>
+          )}
           {clusters.map(cluster => {
             if (!clustersDetail[cluster.name]) {
               return null
             }
-            return (
+            return store.isScheduleProject ? (
+              <ScheduleCluster
+                key={cluster.name}
+                cluster={clustersDetail[cluster.name]}
+                workload={resources[cluster.name]}
+                store={store}
+                projectStore={projectStore}
+                onWeightChange={this.handleWeightChange}
+                onReplicasChange={canEdit ? this.handleReplicasChange : null}
+              />
+            ) : (
               <Cluster
                 key={cluster.name}
                 cluster={clustersDetail[cluster.name]}

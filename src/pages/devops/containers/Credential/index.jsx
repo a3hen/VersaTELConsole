@@ -100,7 +100,7 @@ class Credential extends React.Component {
   }
 
   get name() {
-    return 'Credentials'
+    return 'DEVOPS_CREDENTIAL'
   }
 
   handleCreate = () => {
@@ -116,7 +116,7 @@ class Credential extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '35%',
       render: id => {
@@ -125,19 +125,19 @@ class Credential extends React.Component {
       },
     },
     {
-      title: t('Type'),
+      title: t('TYPE'),
       dataIndex: 'type',
       width: '25%',
       render: type => t(type),
     },
     {
-      title: t('Description'),
+      title: t('DESCRIPTION'),
       dataIndex: 'description',
       render: description => description,
       width: '25%',
     },
     {
-      title: t('Created Time'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       width: '20%',
       render: createTime =>
@@ -177,9 +177,9 @@ class Credential extends React.Component {
     return (
       <div className={styles.wrapper}>
         <Banner
-          title={t('DevOps Credentials')}
+          title={t('CREDENTIAL_PL')}
           icon="key"
-          description={t('DEVOPS_PROJECT_CREDENTIALS_DESC')}
+          description={t('DEVOPS_CREDENTIALS_DESC')}
           module={this.module}
         />
         {this.renderContent()}

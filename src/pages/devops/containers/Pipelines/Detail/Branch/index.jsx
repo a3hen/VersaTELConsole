@@ -21,7 +21,8 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { parse } from 'qs'
-import { Link } from 'react-router-dom'
+import Link from 'components/Layout/Nav/Link'
+
 import { Button, Notify } from '@kube-design/components'
 import Status from 'devops/components/Status'
 import Health from 'devops/components/Health'
@@ -32,6 +33,9 @@ import { ReactComponent as ForkIcon } from 'assets/fork.svg'
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
 
+import classNames from 'classnames'
+import styles from './index.scss'
+
 @inject('rootStore', 'detailStore')
 @observer
 export default class Branch extends React.Component {
@@ -39,7 +43,7 @@ export default class Branch extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getData(), 4000)
 
   get enabledActions() {
     const { cluster, devops } = this.props.match.params
@@ -75,6 +79,7 @@ export default class Branch extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {
@@ -135,7 +140,7 @@ export default class Branch extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '20%',
       render: (status, record) => (
@@ -143,34 +148,47 @@ export default class Branch extends React.Component {
       ),
     },
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '20%',
-      render: name => (
-        <Link className="item-name" to={`${this.prefix}/${name}/activity`}>
-          <ForkIcon style={{ width: '20px', height: '20px' }} />{' '}
+      render: (name, record) => (
+        <Link
+          className={classNames('item-name', {
+            [styles.itemNameDisabled]: record.disabled,
+          })}
+          to={`${this.prefix}/${name}/activity`}
+          disabled={record.disabled}
+        >
+          <ForkIcon style={{ width: '20px', height: '20px' }} />
           {decodeURIComponent(name)}
         </Link>
       ),
     },
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH'),
       dataIndex: 'weatherScore',
       width: '20%',
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       dataIndex: 'latestRun',
       width: '20%',
-      render: latestRun => result(latestRun, 'causes[0].shortDescription', ''),
+      render: latestRun => result(latestRun, 'causes[0].shortDescription', '-'),
     },
     {
-      title: t('Updated Time'),
+      title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'updateTime',
       width: '20%',
-      render: (updateTime, record) =>
-        getLocalTime(record.latestRun.startTime).format('YYYY-MM-DD HH:mm:ss'),
+      render: (updateTime, record) => {
+        // TOOD Change startTime field to durationInMillis
+        if (record?.latestRun?.startTime) {
+          return getLocalTime(record.latestRun.startTime).format(
+            'YYYY-MM-DD HH:mm:ss'
+          )
+        }
+        return '-'
+      },
     },
   ]
 

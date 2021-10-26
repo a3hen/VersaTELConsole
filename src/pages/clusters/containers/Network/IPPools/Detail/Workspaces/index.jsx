@@ -64,7 +64,7 @@ export default class Workspaces extends React.Component {
     const workspaces = this.workspaces
 
     return (
-      <Panel title={t('Workspaces')}>
+      <Panel title={t('WORKSPACES')}>
         <div className={styles.wrapper}>
           {isEmpty(workspacesStatus) && (
             <div className={styles.empty}>
@@ -78,13 +78,13 @@ export default class Workspaces extends React.Component {
                 <Text
                   icon="enterprise"
                   title={item}
-                  description={workspace.description || t('Workspace')}
+                  description={workspace.description || t('WORKSPACE')}
                 />
                 <Text
                   title={workspacesStatus[item].allocations}
-                  description={t('Used IP')}
+                  description={t('USED_IP_ADDRESSES')}
                 />
-                <Text title={workspace.manager} description={t('Manager')} />
+                <Text title={workspace.manager} description={t('MANAGER')} />
               </div>
             )
           })}

@@ -99,14 +99,14 @@ export default class ProjectSelectModal extends React.Component {
   get types() {
     const types = [
       {
-        label: t('Projects'),
+        label: t('PROJECT_PL'),
         value: 'projects',
       },
     ]
 
     if (globals.app.isMultiCluster) {
       types.push({
-        label: t('Multi-cluster Projects'),
+        label: t('MULTI_CLUSTER_PROJECT_PL'),
         value: 'federatedprojects',
       })
     }
@@ -180,7 +180,7 @@ export default class ProjectSelectModal extends React.Component {
     }
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.label })
 
   showCreate = () => {
     const { workspace, rootStore } = this.props
@@ -226,7 +226,7 @@ export default class ProjectSelectModal extends React.Component {
         width={960}
         icon="enterprise"
         title={<a onClick={this.handleEnterWorkspace}>{workspace}</a>}
-        description={get(detail, 'description') || t('Workspace')}
+        description={get(detail, 'description') || t('WORKSPACE')}
         hideFooter
       >
         <div className={styles.bar}>
@@ -254,7 +254,7 @@ export default class ProjectSelectModal extends React.Component {
                     [styles.withSelect]: showClusterSelect,
                   })}
                   value={this.state.search}
-                  placeholder={t('Search by name')}
+                  placeholder={t('SEARCH_BY_NAME')}
                   onSearch={this.handleSearch}
                 />
               </div>
@@ -268,7 +268,7 @@ export default class ProjectSelectModal extends React.Component {
                 />
                 {this.canCreate && (
                   <Button type="control" onClick={this.showCreate}>
-                    {t('Create Project')}
+                    {t('CREATE_PROJECT')}
                   </Button>
                 )}
               </div>

@@ -30,7 +30,7 @@ import DevOpsStore from 'stores/devops'
 
 @withList({
   store: new DevOpsStore(),
-  name: 'DevOps Project',
+  name: 'DEVOPS_PROJECT',
   module: 'devops',
   rowKey: 'namespace',
   injectStores: ['rootStore', 'workspaceStore'],
@@ -44,18 +44,18 @@ export default class DevOps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item => trigger('devops.edit', { detail: item }),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item => {
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             resource: item.name,
             detail: item,
           })
@@ -108,11 +108,11 @@ export default class DevOps extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () => {
             trigger('devops.batch.delete', {
-              type: t(tableProps.name),
+              type: tableProps.name,
               rowKey: tableProps.rowKey,
             })
           },
@@ -143,7 +143,7 @@ export default class DevOps extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       render: (name, record) => {
         const isTerminating = record.status === 'Terminating'
@@ -170,19 +170,19 @@ export default class DevOps extends React.Component {
       isHideable: true,
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       render: status => <Status type={status} name={t(status)} flicker />,
     },
     {
-      title: t('Creator'),
+      title: t('CREATOR'),
       dataIndex: 'creator',
       isHideable: true,
       render: creator => creator || '-',
     },
     {
-      title: t('Created Time'),
+      title: t('CREATION_TIME_TCAP'),
       dataIndex: 'createTime',
       isHideable: true,
       sorter: true,

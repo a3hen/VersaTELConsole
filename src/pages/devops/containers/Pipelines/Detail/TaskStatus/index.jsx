@@ -212,7 +212,7 @@ export default class TaskStatus extends React.Component {
             ) : null}
             <div className={style.pipelineCard__btnGroup}>
               <Button onClick={this.handleDownloadLogs}>
-                {t('Download Logs')}
+                {t('DOWNLOAD_LOGS')}
               </Button>
             </div>
           </div>
@@ -248,11 +248,12 @@ export default class TaskStatus extends React.Component {
           title={t('Pipeline Run Logs')}
           visible={showLog}
           closable={false}
-          cancelText={t('Close')}
+          cancelText={t('CLOSE')}
         >
           <PipelineLog
             handleDownloadLogs={this.handleDownloadLogs}
             params={this.props.match.params}
+            runId={this.store.runDetail.id}
             nodes={nodesStatus}
           />
         </Modal>

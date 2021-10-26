@@ -34,7 +34,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('deployments'),
   module: 'deployments',
-  name: 'Workload',
+  name: 'WORKLOAD',
 })
 export default class Deployments extends React.Component {
   get prefix() {
@@ -53,15 +53,15 @@ export default class Deployments extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
         {
           value: 'daemonsets',
-          label: t('DaemonSets'),
+          label: t('DAEMONSETS'),
         },
       ],
     }
@@ -73,7 +73,7 @@ export default class Deployments extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -83,7 +83,7 @@ export default class Deployments extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -93,7 +93,7 @@ export default class Deployments extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('Redeploy'),
+        text: t('RECREATE'),
         action: 'edit',
         onClick: item =>
           trigger('workload.redeploy', {
@@ -104,11 +104,11 @@ export default class Deployments extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('workload.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -123,11 +123,11 @@ export default class Deployments extends React.Component {
         {
           key: 'delete',
           type: 'danger',
-          text: t('Delete'),
+          text: t('DELETE'),
           action: 'delete',
           onClick: () =>
             trigger('workload.batch.delete', {
-              type: t(name),
+              type: name,
               rowKey,
             }),
         },
@@ -157,7 +157,7 @@ export default class Deployments extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -174,7 +174,7 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -186,14 +186,14 @@ export default class Deployments extends React.Component {
         ),
       },
       {
-        title: t('Application'),
+        title: t('APP'),
         dataIndex: 'app',
         isHideable: true,
         search: true,
         width: '22%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'updateTime',
         sorter: true,
         sortOrder: getSortOrder('updateTime'),
@@ -211,6 +211,7 @@ export default class Deployments extends React.Component {
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      supportGpuSelect: true,
     })
   }
 

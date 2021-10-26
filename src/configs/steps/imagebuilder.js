@@ -21,11 +21,11 @@ import S2IForm from 'components/Forms/ImageBuilder/S2IForm'
 
 export default [
   {
-    title: 'Choose a Language',
+    title: 'BUILD_MODE',
     component: LanguageSelect,
   },
   {
-    title: 'Build Settings',
+    title: 'BUILD_SETTINGS',
     component: S2IForm,
     required: true,
   },

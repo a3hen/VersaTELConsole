@@ -35,7 +35,7 @@ import WorkloadStore from 'stores/workload'
 @withClusterList({
   store: new WorkloadStore('statefulsets'),
   module: 'statefulsets',
-  name: 'Workload',
+  name: 'WORKLOAD',
   rowKey: 'uid',
 })
 export default class StatefulSets extends React.Component {
@@ -51,15 +51,15 @@ export default class StatefulSets extends React.Component {
       options: [
         {
           value: 'deployments',
-          label: t('Deployments'),
+          label: t('DEPLOYMENTS'),
         },
         {
           value: 'statefulsets',
-          label: t('StatefulSets'),
+          label: t('STATEFULSETS'),
         },
         {
           value: 'daemonsets',
-          label: t('DaemonSets'),
+          label: t('DAEMONSETS'),
         },
       ],
     }
@@ -73,7 +73,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -84,7 +84,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -95,7 +95,7 @@ export default class StatefulSets extends React.Component {
       {
         key: 'redeploy',
         icon: 'restart',
-        text: t('Redeploy'),
+        text: t('RECREATE'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -107,12 +107,12 @@ export default class StatefulSets extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -147,7 +147,7 @@ export default class StatefulSets extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -164,7 +164,7 @@ export default class StatefulSets extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -176,7 +176,7 @@ export default class StatefulSets extends React.Component {
         ),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '22%',
@@ -187,7 +187,7 @@ export default class StatefulSets extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

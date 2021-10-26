@@ -18,7 +18,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { throttle, isEmpty } from 'lodash'
+import { throttle, isEmpty, isArray } from 'lodash'
 import { action, observable, computed, toJS, reaction } from 'mobx'
 import { observer } from 'mobx-react'
 import { Button } from '@kube-design/components'
@@ -29,22 +29,27 @@ import RunStore from 'stores/devops/run'
 
 import LogItem from './logItem'
 import styles from './index.scss'
+import FullLogs from './FullLogs'
 
 @observer
 export default class PipelineLog extends React.Component {
   constructor(props) {
     super(props)
     this.store = new RunStore()
+
     this.reaction = reaction(
       () => this.isEmptySteps,
       () => {
         clearInterval(this.getIndexLogInterval)
-        if (this.isEmptySteps) {
-          this.getIndexLogInterval = setInterval(this.getRunStatusLogs, 4000)
+        if (this.isEmptySteps && Array.isArray(this.activeStage.steps)) {
+          this.getIndexLogInterval = setInterval(this.getPipelineIndexLog, 4000)
         }
       }
     )
   }
+
+  @observable
+  isShowLog = false
 
   async componentDidMount() {
     await this.getPipelineIndexLog()
@@ -54,9 +59,9 @@ export default class PipelineLog extends React.Component {
   @computed
   get activeStage() {
     const { nodes } = this.props
+    const activeStageTemp = toJS(nodes[this.activeNodeIndex[0]])
 
-    const activeStageTemp = nodes[this.activeNodeIndex[0]]
-    return activeStageTemp.length !== undefined
+    return isArray(activeStageTemp) && !isEmpty(activeStageTemp)
       ? activeStageTemp[this.activeNodeIndex[1]]
       : activeStageTemp
   }
@@ -66,11 +71,18 @@ export default class PipelineLog extends React.Component {
     return isEmpty(this.activeStage.steps)
   }
 
+  get params() {
+    const { params, runId } = this.props
+    return { ...params, runId }
+  }
+
   @observable
   activeNodeIndex = [0, 0] // lineindex, columnIndex
 
   @observable
   refreshFlag = true
+
+  logRefresh = null
 
   @action
   updateActiveTabs = (lineindex, columnIndex) => () => {
@@ -79,8 +91,7 @@ export default class PipelineLog extends React.Component {
 
   @action
   async getPipelineIndexLog() {
-    const { params } = this.props
-    await this.store.getRunStatusLogs(params)
+    await this.store.getRunStatusLogs(this.params)
   }
 
   handleDownloadLogs = () => {
@@ -89,15 +100,24 @@ export default class PipelineLog extends React.Component {
 
   handleExpandErrorStep = () => {
     const nodes = toJS(this.props.nodes)
-    const errorNodeIdex = nodes.findIndex(item => item.result !== 'SUCCESS')
+    const errorNodeIdex = [0]
 
-    if (errorNodeIdex > -1) {
-      const subStepIdex = nodes[errorNodeIdex].steps.findIndex(
-        item => item.result !== 'SUCCESS'
-      )
-
-      this.activeNodeIndex = [errorNodeIdex, subStepIdex]
+    if (isArray(nodes)) {
+      nodes.forEach((item, index) => {
+        if (isArray(item)) {
+          const a = item.findIndex(_item => _item.result !== 'SUCCESS')
+          errorNodeIdex[0] = index
+          errorNodeIdex[1] = a > -1 ? a : 0
+          return false
+        }
+        if (item.result !== 'SUCCESS') {
+          errorNodeIdex[0] = index
+          return false
+        }
+      })
     }
+
+    this.activeNodeIndex = [...errorNodeIdex]
   }
 
   handleRefresh = throttle(() => {
@@ -107,7 +127,7 @@ export default class PipelineLog extends React.Component {
   renderLeftTab(stage, index) {
     if (Array.isArray(stage)) {
       return (
-        <div key={stage.id} className={styles.stageContainer}>
+        <div key={stage.id} key={index} className={styles.stageContainer}>
           <div className={styles.cutTitle}>{t('Stage')}</div>
           {stage.map((_stage, _index) => (
             <div
@@ -142,8 +162,11 @@ export default class PipelineLog extends React.Component {
     )
   }
 
+  handleVisableLog = () => {
+    this.isShowLog = !this.isShowLog
+  }
+
   renderLogContent() {
-    const { params } = this.props
     const { runDetailLogs } = this.store
 
     if (this.isEmptySteps) {
@@ -157,7 +180,7 @@ export default class PipelineLog extends React.Component {
         key={step.id}
         step={step}
         nodeId={this.activeStage.id}
-        params={params}
+        params={this.params}
         refreshFlag={this.refreshFlag}
       />
     ))
@@ -167,6 +190,19 @@ export default class PipelineLog extends React.Component {
     const { nodes } = this.props
     const _nodes = toJS(nodes)
 
+    if (this.isShowLog) {
+      return (
+        <FullLogs
+          store={this.store}
+          isShowLog={this.isShowLog}
+          params={this.params}
+          handleVisableLog={this.handleVisableLog}
+        />
+      )
+    }
+
+    const time = this.activeStage?.durationInMillis ?? ''
+
     return (
       <div className={styles.container}>
         <div className={styles.left}>
@@ -174,12 +210,13 @@ export default class PipelineLog extends React.Component {
         </div>
         <div className={styles.right}>
           <div className={styles.header}>
-            <span>{`${t('Time Used')} ${formatUsedTime(
-              this.activeStage.durationInMillis
-            )}`}</span>
+            <span>{`${t('Time Used')} ${
+              time ? formatUsedTime(time) : '-'
+            }`}</span>
             <Button onClick={this.handleDownloadLogs}>
-              {t('Download Logs')}
+              {t('DOWNLOAD_LOGS')}
             </Button>
+            <Button onClick={this.handleVisableLog}>{t('Show Logs')}</Button>
             <Button onClick={this.handleRefresh}>{t('Refresh')}</Button>
           </div>
           <div className={styles.logContainer}>{this.renderLogContent()}</div>

@@ -47,8 +47,7 @@ export default class Pipeline extends React.Component {
 
   get isMultibranch() {
     const { detailStore } = this.props
-    const scmSource = toJS(detailStore.detail.scmSource)
-    return !isEmpty(scmSource)
+    return toJS(detailStore.detail.isMultiBranch)
   }
 
   handlePipelineModal = () => {
@@ -106,8 +105,8 @@ export default class Pipeline extends React.Component {
 
   handleRunning = debounce(() => {
     const { detail } = this.store
-    const isMultibranch = detail.branchNames
-    const hasParameters = detail.parameters && detail.parameters.length
+    const isMultibranch = !isEmpty(toJS(detail.branchNames))
+    const hasParameters = !isEmpty(toJS(detail.parameters))
     const { params } = this.props.match
 
     if (isMultibranch || hasParameters) {
@@ -151,12 +150,12 @@ export default class Pipeline extends React.Component {
         )}
         {editable && (
           <Button onClick={this.handlePipelineModal}>
-            {t('Edit Pipeline')}
+            {t('EDIT_PIPELINE')}
           </Button>
         )}
         {editable && (
           <Button type="control" onClick={this.handleRunning}>
-            {t('Run')}
+            {t('RUN')}
           </Button>
         )}
       </div>
@@ -181,7 +180,7 @@ export default class Pipeline extends React.Component {
         <EmptyCard desc={t('PIPELINE_NO_CONFIG')}>
           {editable && (
             <Button type="control" onClick={this.handlePipelineModal}>
-              {t('Edit Pipeline')}
+              {t('EDIT_PIPELINE')}
             </Button>
           )}
           {editable && (
@@ -203,7 +202,7 @@ export default class Pipeline extends React.Component {
           )}
           {editable && (
             <Button type="control" onClick={this.handleRunning}>
-              {t('Run')}
+              {t('RUN')}
             </Button>
           )}
         </EmptyCard>

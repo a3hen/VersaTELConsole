@@ -85,16 +85,16 @@ export default class TaintManagementModal extends React.Component {
       <Modal.Form
         width={1162}
         bodyClassName={styles.body}
-        title={t('Taint Management')}
+        title={t('EDIT_TAINTS')}
         icon="wrench"
-        okText={t('Save')}
+        okText={t('SAVE')}
         data={this.state.formData}
         onOk={this.handleSubmit}
         {...rest}
       >
         <div className={styles.wrapper}>
-          <div className={styles.title}>{t('Taint')}</div>
-          <Alert type="info" message={t('TAINTS_MSG')} />
+          <div className={styles.title}>{t('TAINTS')}</div>
+          <Alert type="info" message={t('TAINTS_DESC')} />
           <div className={styles.content}>
             <Form.Item>
               <TaintInput name="spec.taints" />

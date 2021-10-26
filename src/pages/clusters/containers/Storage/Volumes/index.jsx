@@ -18,29 +18,20 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
-import { withClusterList, ListPage } from 'components/HOCs/withList'
-import ResourceTable from 'clusters/components/ResourceTable'
-import VolumeStore from 'stores/volume'
-import { getLocalTime, getDisplayName } from 'utils'
-import { getVolumeStatus } from 'utils/status'
-import { VOLUME_STATUS } from 'utils/constants'
-import StatusReason from 'projects/components/StatusReason'
-
-import { Avatar, Status } from 'components/Base'
-
+import { observer, inject } from 'mobx-react'
 import Banner from 'components/Cards/Banner'
+import { renderRoutes } from 'utils/router.config'
+import PVStore from 'stores/pv'
+import routes from './routes'
 
-import styles from './index.scss'
-
-@withClusterList({
-  store: new VolumeStore(),
-  module: 'persistentvolumeclaims',
-  authKey: 'volumes',
-  name: 'Volume',
-  rowKey: 'uid',
-})
+@inject('rootStore')
+@observer
 export default class Volumes extends React.Component {
+  constructor(props) {
+    super(props)
+    this.pv = new PVStore()
+  }
+
   get tips() {
     return [
       {
@@ -54,165 +45,43 @@ export default class Volumes extends React.Component {
     ]
   }
 
-  showAction = record => !record.isFedManaged
-
-  get itemActions() {
-    const { trigger, name } = this.props
-
-    return [
-      {
-        key: 'edit',
-        icon: 'pen',
-        text: t('Edit'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.baseinfo.edit', {
-            detail: item,
-          }),
-      },
-      {
-        key: 'editYaml',
-        icon: 'pen',
-        text: t('Edit YAML'),
-        action: 'edit',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.yaml.edit', {
-            detail: item,
-          }),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        show: this.showAction,
-        onClick: item =>
-          trigger('resource.delete', {
-            type: t(name),
-            detail: item,
-          }),
-      },
-    ]
+  get bannerProps() {
+    return {
+      className: 'margin-b12',
+      description: t('VOLUME_DESC'),
+      module: 'persistentvolumeclaims',
+      title: t('VOLUME_PL'),
+    }
   }
 
-  getItemDesc = record => {
-    const status = getVolumeStatus(record)
-    const desc = !isEmpty(status) ? (
-      <StatusReason reason={status} data={record} type={'volume'} />
-    ) : (
-      record.storageClassName || '-'
-    )
-
-    return desc
+  get routes() {
+    return routes
+      .filter(item => !!item.title)
+      .map(item => ({
+        ...item,
+        name: item.path.split('/').pop(),
+      }))
   }
 
-  getCheckboxProps = record => ({
-    disabled: record.isFedManaged,
-    name: record.name,
-  })
-
-  getStatus() {
-    return VOLUME_STATUS.map(status => ({
-      text: t(status.text),
-      value: status.value,
-    }))
+  componentDidMount() {
+    this.pv.checkSupportPv(this.props.match.params)
   }
 
-  getColumns() {
-    const { getSortOrder, getFilteredValue } = this.props
-    const { cluster } = this.props.match.params
-
-    return [
-      {
-        title: t('Name'),
-        dataIndex: 'name',
-        sortOrder: getSortOrder('name'),
-        search: true,
-        sorter: true,
-        render: (name, record) => (
-          <Avatar
-            icon={'storage'}
-            iconSize={40}
-            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
-            isMultiCluster={record.isFedManaged}
-            desc={this.getItemDesc(record)}
-            title={getDisplayName(record)}
-          />
-        ),
-      },
-      {
-        title: t('Status'),
-        dataIndex: 'status',
-        isHideable: true,
-        search: true,
-        filters: this.getStatus(),
-        filteredValue: getFilteredValue('status'),
-        width: '14%',
-        render: (_, { phase }) => (
-          <Status
-            type={phase}
-            className={styles.status}
-            name={t(`VOLUME_STATUS_${phase.toUpperCase()}`)}
-            flicker
-          />
-        ),
-      },
-      {
-        title: t('Access Mode'),
-        dataIndex: 'capacity',
-        isHideable: true,
-        width: '16%',
-        render: (capacity, { accessMode }) => (
-          <div className={styles.capacity}>
-            <p>{accessMode}</p>
-          </div>
-        ),
-      },
-      {
-        title: t('Mount'),
-        dataIndex: 'inUse',
-        isHideable: true,
-        width: '14%',
-        render: inUse => (inUse ? t('Mounted') : t('Not Mounted')),
-      },
-      {
-        title: t('Created Time'),
-        dataIndex: 'createTime',
-        sorter: true,
-        sortOrder: getSortOrder('createTime'),
-        isHideable: true,
-        width: 150,
-        render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm'),
-      },
-    ]
-  }
-
-  showCreate = () => {
-    const { store, match, module } = this.props
-
-    return this.props.trigger('volume.create', {
-      store,
-      module,
-      cluster: match.params.cluster,
-    })
+  renderBanner() {
+    if (this.pv.supportPv) {
+      return (
+        <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
+      )
+    }
+    return <Banner {...this.bannerProps} tips={this.tips} />
   }
 
   render() {
-    const { match, bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
-        <Banner {...bannerProps} tips={this.tips} />
-        <ResourceTable
-          {...tableProps}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          onCreate={this.showCreate}
-          cluster={match.params.cluster}
-          getCheckboxProps={this.getCheckboxProps}
-        />
-      </ListPage>
+      <>
+        {this.renderBanner()}
+        {renderRoutes(routes)}
+      </>
     )
   }
 }

@@ -25,7 +25,7 @@ import { Loading } from '@kube-design/components'
 import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import FederatedStore from 'stores/federated'
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -35,7 +35,7 @@ import getRoutes from './routes'
 @observer
 @trigger
 export default class RouteDetail extends React.Component {
-  store = new FederatedStore(new RouterStore())
+  store = new FederatedStore(new IngressStore())
 
   componentDidMount() {
     this.fetchData()
@@ -46,7 +46,7 @@ export default class RouteDetail extends React.Component {
   }
 
   get name() {
-    return 'Route'
+    return 'ROUTE'
   }
 
   get routing() {
@@ -79,11 +79,11 @@ export default class RouteDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -91,7 +91,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -102,7 +102,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editRules',
       icon: 'firewall',
-      text: t('Edit Rules'),
+      text: t('EDIT_ROUTING_RULES'),
       action: 'edit',
       onClick: () =>
         this.trigger('fedproject.router.rules.edit', {
@@ -115,7 +115,7 @@ export default class RouteDetail extends React.Component {
     {
       key: 'editAnnotations',
       icon: 'firewall',
-      text: t('Edit Annotations'),
+      text: t('EDIT_ANNOTATIONS'),
       action: 'edit',
       onClick: () =>
         this.trigger('router.annotations.edit', {
@@ -126,12 +126,12 @@ export default class RouteDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -148,19 +148,19 @@ export default class RouteDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -181,7 +181,7 @@ export default class RouteDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

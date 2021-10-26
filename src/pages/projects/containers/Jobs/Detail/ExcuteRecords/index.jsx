@@ -77,12 +77,12 @@ class ExcuteRecords extends React.Component {
 
   getColumns = () => [
     {
-      title: t('No.'),
+      title: t('SN_NO'),
       dataIndex: 'id',
       width: '7%',
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '19%',
       render: (status, record) => (
@@ -95,17 +95,17 @@ class ExcuteRecords extends React.Component {
       ),
     },
     {
-      title: t('Message'),
+      title: t('MESSAGE'),
       dataIndex: 'messages[0]',
       render: msg => msg || '-',
     },
     {
-      title: t('Start Time'),
+      title: t('START_TIME'),
       dataIndex: 'start-time',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: t('End Time'),
+      title: t('END_TIME'),
       dataIndex: 'completion-time',
       render: time =>
         !time || /^0001-01-01/.test(time)
@@ -132,7 +132,7 @@ class ExcuteRecords extends React.Component {
         <Column>
           <InputSearch
             name="search"
-            placeholder={t('Filter by keyword')}
+            placeholder={t('SEARCH')}
             onSearch={this.handleSearch}
           />
         </Column>
@@ -163,6 +163,7 @@ class ExcuteRecords extends React.Component {
 
     return (
       <Table
+        rowKey="uid"
         className={styles.table}
         dataSource={data}
         columns={this.getColumns()}
@@ -175,7 +176,7 @@ class ExcuteRecords extends React.Component {
     return (
       <Card
         className={styles.main}
-        title={t('Execution Records')}
+        title={t('JOB_RECORDS')}
         operations={
           <Button icon="refresh" type="flat" onClick={this.handleRefresh} />
         }

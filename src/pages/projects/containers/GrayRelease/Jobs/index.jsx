@@ -24,7 +24,6 @@ import { observer, inject } from 'mobx-react'
 import EmptyList from 'components/Cards/EmptyList'
 import GrayReleaseDetail from 'projects/components/Modals/GrayReleaseDetail'
 import GrayReleaseStore from 'stores/grayrelease'
-import RouterStore from 'stores/router'
 
 import Item from './Item'
 
@@ -40,12 +39,10 @@ class Jobs extends React.Component {
     }
 
     this.store = new GrayReleaseStore()
-    this.routerStore = new RouterStore()
   }
 
   componentDidMount() {
     this.getData()
-    this.routerStore.getGateway(this.props.match.params)
   }
 
   get namespace() {
@@ -70,10 +67,7 @@ class Jobs extends React.Component {
   }
 
   get serviceMeshEnable() {
-    return (
-      globals.app.hasClusterModule(this.cluster, 'servicemesh') &&
-      this.routerStore.gateway.data.serviceMeshEnable
-    )
+    return globals.app.hasClusterModule(this.cluster, 'servicemesh')
   }
 
   getData() {
@@ -95,7 +89,7 @@ class Jobs extends React.Component {
 
   handleDelete = () => {
     this.store.delete(this.state.selectItem).then(() => {
-      Notify.success({ content: `${t('Job offline Successfully')}` })
+      Notify.success({ content: `${t('JOB_OFFLINE_SUCCESSFULLY')}` })
       this.hideDetail()
     })
   }
@@ -116,12 +110,12 @@ class Jobs extends React.Component {
     return (
       <EmptyList
         icon="istio"
-        title={t('NO_GRAY_RELEASE_JOBS_TIP')}
-        desc={t('NO_GRAY_RELEASE_JOBS_TIP_2')}
+        title={t('NO_GRAYSCALE_RELEASE_JOB_FOUND')}
+        desc={t('NO_GRAYSCALE_RELEASE_TASK_FOUND_DESC')}
         actions={
           this.canCreate ? (
             <Button type="control" onClick={this.showCreateGrayReleaseJob}>
-              {t('Create Grayscale Release Job')}
+              {t('CREATE')}
             </Button>
           ) : null
         }
@@ -158,7 +152,7 @@ class Jobs extends React.Component {
     const { total } = this.store.list
     return (
       <div className={styles.footer}>
-        <p>{t('TOTAL_GRAY_RELEASE_JOBS', { num: total })}</p>
+        <p>{t('TOTAL_ITEMS', { num: total })}</p>
       </div>
     )
   }

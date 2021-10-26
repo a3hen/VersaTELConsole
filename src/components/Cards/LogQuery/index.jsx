@@ -239,7 +239,7 @@ class LogCollectionDetailContainers extends Component {
       log_query: this.store.log_query,
     })
     return (
-      <Tooltip content={t('LOG_EXPORT')}>
+      <Tooltip content={t('EXPORT_LOGS')}>
         <a href={link} download>
           <span className={classnames(styles.filterButton, styles.exportBtn)}>
             <Icon name={'export'} />
@@ -284,7 +284,7 @@ class LogCollectionDetailContainers extends Component {
   renderRecentOpts() {
     return (
       <div className={styles.recentOpts}>
-        <h3>{t('Select Time Range')}</h3>
+        <h3>{t('SELECT_TIME_RANGE')}</h3>
         <ul>
           {this.recentOpts.map(recent => (
             <li

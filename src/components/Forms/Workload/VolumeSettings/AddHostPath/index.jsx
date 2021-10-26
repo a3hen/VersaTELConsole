@@ -70,7 +70,7 @@ export default class AddHostPath extends React.Component {
       } else if (item.mountPath) {
         if (this.getMountPaths(item).includes(item.mountPath)) {
           return callback({
-            message: t('Mount path is already in use'),
+            message: t('MOUNT_PATH_IN_USE'),
             field: rule.field,
           })
         }
@@ -89,7 +89,7 @@ export default class AddHostPath extends React.Component {
     const { currentName, checkVolumeNameExist } = this.props
 
     if (checkVolumeNameExist(value) && currentName !== value) {
-      callback({ message: t('The volume name exists'), field: rule.field })
+      callback({ message: t('VOLUME_NAME_EXIST'), field: rule.field })
     } else {
       callback()
     }
@@ -100,27 +100,23 @@ export default class AddHostPath extends React.Component {
 
     return (
       <div className={styles.wrapper}>
-        <Alert
-          className="margin-b12"
-          type="warning"
-          message={t('HOST_PATH_WARNING')}
-        />
+        <Alert className="margin-b12" type="info" message={t('HOSTPATH_TIP')} />
         <Form data={formData} ref={formRef}>
           <Form.Item
-            label={t('Volume Name')}
+            label={t('VOLUME_NAME')}
             desc={t('NAME_DESC')}
             rules={[
-              { required: true, message: t('Please input volume name') },
+              { required: true, message: t('VOLUME_NAME_EMPTY') },
               {
                 pattern: PATTERN_NAME,
-                message: t('Invalid name', { message: t('NAME_DESC') }),
+                message: t('INVALID_NAME_DESC', { message: t('NAME_DESC') }),
               },
               { validator: this.nameValidator },
             ]}
           >
             <Input name="name" autoFocus={true} maxLength={63} />
           </Form.Item>
-          <Form.Item label={t('HostPath')}>
+          <Form.Item label={t('HOST_PATH')}>
             <Input name="hostPath.path" />
           </Form.Item>
           <Form.Item rules={[{ validator: this.mountValidator }]}>

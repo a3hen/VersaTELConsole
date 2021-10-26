@@ -113,7 +113,7 @@ export default class Secret extends React.Component {
 
   handleCopy = () => {
     copyToClipboard(getValue(this.kubeconfig))
-    Notify.success({ content: t('Copy successful') })
+    Notify.success({ content: t('COPY_SUCCESSFUL') })
   }
 
   handleDownload = () => {
@@ -132,7 +132,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.secretWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('Secret Detail')}</div>
+          <div className="h6">{t('DATA_SETTINGS')}</div>
           {this.renderOperations()}
         </div>
         <div className={styles.defaultWrapper}>
@@ -168,7 +168,7 @@ export default class Secret extends React.Component {
     return (
       <div className={styles.configWrapper}>
         <div className={styles.title}>
-          <div className="h6">{t('KubeConfig')}</div>
+          <div className="h6">{t('KUBECONFIG_SETTINGS')}</div>
           <p className="text-desc">
             {t.html('SERVICEACCOUNT_KUBECONFIG_DESC')}
           </p>
@@ -199,7 +199,7 @@ export default class Secret extends React.Component {
 
   render() {
     return (
-      <Panel title={`${t('Secret')}: ${this.secret}`}>
+      <Panel title={t('SECRET_VALUE', { value: this.secret })}>
         {this.renderSecretContent()}
         {this.renderConfigContent()}
       </Panel>

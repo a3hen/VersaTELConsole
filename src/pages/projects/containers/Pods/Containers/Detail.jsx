@@ -40,7 +40,7 @@ export default class ContainerDetail extends React.Component {
   }
 
   get name() {
-    return 'Container'
+    return 'CONTAINER'
   }
 
   get authKey() {
@@ -62,7 +62,7 @@ export default class ContainerDetail extends React.Component {
     {
       key: 'terminal',
       type: 'control',
-      text: t('Terminal'),
+      text: t('TERMINAL'),
       action: 'edit',
       onClick: this.handleOpenTerminal,
     },
@@ -94,8 +94,10 @@ export default class ContainerDetail extends React.Component {
     return (
       resourceType &&
       Object.keys(resourceType)
-        .map(key => `${t(key)}: ${resourceType[key]}`)
-        .join(' / ')
+        .map(key =>
+          t(`${key.toUpperCase()}_VALUE`, { value: resourceType[key] })
+        )
+        .join('/')
     )
   }
 
@@ -110,51 +112,51 @@ export default class ContainerDetail extends React.Component {
 
     return [
       {
-        name: t('Cluster'),
+        name: t('CLUSTER'),
         value: cluster,
       },
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Application'),
+        name: t('APPLICATION'),
         value: detail.app,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(status),
       },
       {
-        name: t('Image'),
+        name: t('IMAGE'),
         value: detail.image,
       },
       {
-        name: t('Image ID'),
+        name: t('IMAGE_ID'),
         value: detail.imageID,
       },
       {
-        name: t('Port'),
+        name: t('PORT'),
         value: this.ports,
       },
       {
-        name: t('Command'),
+        name: t('COMMAND'),
         value: this.command,
       },
       {
-        name: t('Resource Requests'),
+        name: t('RESOURCE_REQUESTS'),
         value: this.getResourceInfo('requests'),
       },
       {
-        name: t('Resource Limits'),
+        name: t('RESOURCE_LIMITS'),
         value: this.getResourceInfo('limits'),
       },
       {
-        name: t('Image Pull Policy'),
+        name: t('IMAGE_PULL_POLICY'),
         value: detail.imagePullPolicy,
       },
       {
-        name: `${t('Restart Count')}(${t('Total')})`,
+        name: `${t('RESTART_PL')}(${t('Total')})`,
         value: detail.restartCount,
       },
     ]
@@ -192,12 +194,12 @@ export default class ContainerDetail extends React.Component {
       module: this.module,
       authKey: this.authKey,
       name: getDisplayName(this.store.detail),
-      desc: t('Container'),
+      desc: t('CONTAINER_DETAILS_PAGE_SCAP'),
       operations: this.getOperations(),
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Container'),
+          label: t('CONTAINER_PL'),
           url: this.listUrl,
         },
       ],

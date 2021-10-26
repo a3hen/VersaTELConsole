@@ -35,7 +35,7 @@ export default class ProjectInfo extends React.Component {
       <Menu onClick={onMenuClick}>
         {actions.map(action => (
           <Menu.MenuItem key={action.key}>
-            <Icon name={action.icon} /> {action.text}
+            <Icon name={action.icon} type="light" /> {action.text}
           </Menu.MenuItem>
         ))}
       </Menu>
@@ -45,28 +45,28 @@ export default class ProjectInfo extends React.Component {
   render() {
     const { detail, workspace, actions } = this.props
     return (
-      <Panel className={styles.wrapper} title={t('Project Info')}>
+      <Panel className={styles.wrapper} title={t('PROJECT_INFO')}>
         <div className={styles.header}>
           <Icon name="project" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('Project Name')}</p>
+            <p>{t('PROJECT_NAME')}</p>
           </div>
           <div className={styles.item}>
             <div>
               <Link to={`/workspaces/${workspace}`}>{workspace}</Link>
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.item}>
             <div>{get(detail, 'creator') || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
           <div className={styles.item}>
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATION_TIME')}</p>
           </div>
           {!isEmpty(actions) && (
             <div className={classNames(styles.item, 'text-right')}>
@@ -76,7 +76,7 @@ export default class ProjectInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('Manage Project')}</Button>
+                <Button>{t('MANAGE_PROJECT')}</Button>
               </Dropdown>
             </div>
           )}

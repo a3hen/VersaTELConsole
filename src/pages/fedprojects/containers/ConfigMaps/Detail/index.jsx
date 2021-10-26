@@ -45,7 +45,7 @@ export default class ConfigMapDetail extends React.Component {
   }
 
   get name() {
-    return 'ConfigMap'
+    return 'CONFIGMAP'
   }
 
   get routing() {
@@ -70,11 +70,11 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: toJS(this.store.detail),
           success: this.fetchData,
         }),
@@ -82,7 +82,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -93,7 +93,7 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'editConfigMap',
       icon: 'pen',
-      text: t('Modify Config'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('configmap.edit', {
@@ -105,12 +105,12 @@ export default class ConfigMapDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       type: 'danger',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -127,15 +127,15 @@ export default class ConfigMapDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -156,7 +156,7 @@ export default class ConfigMapDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('ConfigMaps'),
+          label: t('CONFIGMAP_PL'),
           url: this.listUrl,
         },
       ],

@@ -112,8 +112,8 @@ export default class EventSearch extends React.Component {
         <EmptyList
           className="no-shadow"
           icon="cluster"
-          title={t('No Available Cluster')}
-          desc={t('No cluster with event query enabled')}
+          title={t('NO_AVAILABLE_CLUSTER')}
+          desc={t('EVENT_NOT_ENABLED_DESC')}
         />
       )
     }

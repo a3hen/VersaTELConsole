@@ -19,12 +19,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
-import { get, set } from 'lodash'
+import { get, set, isEmpty, omit, pick } from 'lodash'
 import { Form, Input } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import { ResourceLimit } from 'components/Inputs'
 
 import QuotaStore from 'stores/quota'
+import WorkSpaceStore from 'stores/workspace.quota'
+import { getLeftQuota } from 'utils/workload'
+import { gpuTypeArr } from 'utils'
 
 import Quotas from './Quotas'
 
@@ -54,14 +57,18 @@ export default class QuotaEditModal extends React.Component {
 
     this.store = new QuotaStore()
 
+    this.workspaceQuotaStore = new WorkSpaceStore()
+
     this.state = {
       formTemplate: {},
       error: '',
+      leftQuota: {},
     }
   }
 
   componentDidMount() {
     if (this.props.detail && this.props.detail.name) {
+      this.fetchQuota()
       this.fetchData(this.props.detail)
     }
   }
@@ -88,13 +95,46 @@ export default class QuotaEditModal extends React.Component {
       })
     }
 
+    const storeDetail = toJS(this.store.detail)
+
     this.setState({
-      formTemplate: toJS(this.store.detail),
+      formTemplate: this.cancelGpuSetting(storeDetail),
     })
+  }
+
+  fetchQuota() {
+    const { detail } = this.props
+    const { workspace, name, cluster } = detail || {}
+
+    if (workspace && name) {
+      Promise.all([
+        this.store.fetch({
+          cluster,
+          namespace: name,
+        }),
+        this.workspaceQuotaStore.fetchDetail({
+          workspace,
+          name: workspace,
+          cluster,
+        }),
+      ]).then(() => {
+        this.setState({
+          leftQuota: getLeftQuota(
+            get(this.workspaceQuotaStore.detail, 'status.total'),
+            this.store.data
+          ),
+        })
+      })
+    }
+  }
+
+  get workspaceQuota() {
+    return get(this.state.leftQuota, 'workspace', {})
   }
 
   get resourceLimitProps() {
     const { formTemplate } = this.state
+    const workspaceStore = this.workspaceQuota
 
     const memoryFormatter = value => {
       if (value > 0 && value < 1) {
@@ -106,10 +146,24 @@ export default class QuotaEditModal extends React.Component {
       return value
     }
 
+    const workspaceLimitProps = !isEmpty(workspaceStore)
+      ? {
+          limits: {
+            cpu: get(workspaceStore, 'limits.cpu'),
+            memory: get(workspaceStore, 'limits.memory'),
+          },
+          requests: {
+            cpu: get(workspaceStore, 'requests.cpu'),
+            memory: get(workspaceStore, 'requests.memory'),
+          },
+          limitType: 'workspace',
+        }
+      : {}
+
     return {
       cpuProps: {
         marks: [
-          { value: 0, label: t('No Request'), weight: 4 },
+          { value: 0, label: t('NO_REQUEST'), weight: 4 },
           { value: 1, label: 1, weight: 4 },
           { value: 2, label: 2, weight: 2 },
           { value: 3, label: 3, weight: 2 },
@@ -118,12 +172,12 @@ export default class QuotaEditModal extends React.Component {
           { value: 6, label: 6 },
           { value: 7, label: 7 },
           { value: 8, label: 8 },
-          { value: Infinity, label: t('No Limit') },
+          { value: Infinity, label: t('NO_LIMIT') },
         ],
       },
       memoryProps: {
         marks: [
-          { value: 0, label: t('No Request'), weight: 4 },
+          { value: 0, label: t('NO_REQUEST'), weight: 4 },
           { value: 2, label: 2, weight: 4 },
           { value: 4, label: 4, weight: 2 },
           { value: 6, label: 6, weight: 2 },
@@ -132,7 +186,7 @@ export default class QuotaEditModal extends React.Component {
           { value: 12, label: 12 },
           { value: 14, label: 14 },
           { value: 16, label: 16 },
-          { value: Infinity, label: t('No Limit') },
+          { value: Infinity, label: t('NO_LIMIT') },
         ],
         unit: 'Gi',
         valueFormatter: memoryFormatter,
@@ -146,7 +200,9 @@ export default class QuotaEditModal extends React.Component {
           cpu: get(formTemplate, 'spec.hard["requests.cpu"]'),
           memory: get(formTemplate, 'spec.hard["requests.memory"]'),
         },
+        gpu: get(formTemplate, 'spec.gpu'),
       },
+      workspaceLimitProps,
       onChange: value => {
         set(
           formTemplate,
@@ -168,11 +224,36 @@ export default class QuotaEditModal extends React.Component {
           'spec.hard["requests.memory"]',
           get(value, 'requests.memory', null)
         )
+        set(formTemplate, `spec.gpu`, get(value, 'gpu'))
       },
       onError: error => {
         this.setState({ error })
       },
+      supportGpuSelect: this.props.supportGpuSelect,
     }
+  }
+
+  cancelGpuSetting = formTemplate => {
+    const hard = get(formTemplate, 'spec.hard', {})
+    set(formTemplate, 'spec.hard', omit(hard, gpuTypeArr))
+    // omit gpu params in spec.hard
+    // gpu just one type now,if it's type more in feature,gpuTypeArr need change
+    if (!isEmpty(hard)) {
+      const gpu = pick(hard, gpuTypeArr)
+      if (!isEmpty(gpu)) {
+        const type = Object.keys(gpu)[0].split('.')
+        set(formTemplate, 'spec.gpu', {
+          type: type.slice(1).join('.'),
+          value: Object.values(gpu)[0],
+        })
+      }
+    } else {
+      set(formTemplate, 'spec.gpu', {
+        type: '',
+        value: '',
+      })
+    }
+    return formTemplate
   }
 
   render() {
@@ -190,7 +271,7 @@ export default class QuotaEditModal extends React.Component {
     return (
       <Modal.Form
         width={960}
-        title={t('Project Quota')}
+        title={t('EDIT_PROJECT_QUOTAS')}
         icon="pen"
         data={this.state.formTemplate}
         onOk={onOk}
@@ -200,13 +281,13 @@ export default class QuotaEditModal extends React.Component {
         disableOk={!!error}
       >
         <div className={styles.body}>
-          <Form.Item label={t('Project Name')}>
+          <Form.Item label={t('NAME')}>
             <Input name="name" defaultValue={detail.name} disabled />
           </Form.Item>
           <Form.Item>
             <ResourceLimit {...this.resourceLimitProps} />
           </Form.Item>
-          <div className={styles.label}>{t('Resource Quota')}</div>
+          <div className={styles.label}>{t('PROJECT_RESOURCE_QUOTAS')}</div>
           <Quotas data={this.state.formTemplate} isFederated={isFederated} />
         </div>
       </Modal.Form>

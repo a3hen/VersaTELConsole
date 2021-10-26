@@ -63,10 +63,10 @@ export default class ProjectCard extends React.Component {
     desc = isTerminating ? t(data.status) : desc
 
     const details = [
-      { title: admin || '-', description: t('Creator') },
+      { title: admin || '-', description: t('CREATOR') },
       {
         title: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
-        description: t('Created Time'),
+        description: t('CREATION_TIME'),
       },
     ]
 

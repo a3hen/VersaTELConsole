@@ -17,42 +17,42 @@
  */
 
 module.exports = {
-  'Add Cluster': 'Agregar clúster',
+  ADD_CLUSTER: 'Agregar clúster',
   'Add New Cluster': 'Agregar nuevo clúster',
-  'All Projects': 'Todos los proyectos',
+  ALL_PROJECTS: 'Todos los proyectos',
   'Authorize the cluster to workspace':
     'Autorizar el clúster en el espacio de trabajo',
-  Authorized: 'Autorizado',
-  'Available Clusters': 'Clusters Disponibles',
+  AUTHORIZED: 'Autorizado',
+  AVAILABLE_CLUSTERS: 'Clusters Disponibles',
   'Choose a provider': 'Elige un proveedor',
   'Click to Copy': 'Haga clic para copiar',
-  'Cluster Info': 'Información del clúster',
+  CLUSTER_INFORMATION: 'Información del clúster',
   'Cluster initialization failed': 'La inicialización del clúster ha fallado',
   'Cluster List': 'Lista de clústeres',
   'Cluster Management': 'Gestión de clúster',
   'Cluster Member': 'Miembro del grupo',
   'Cluster Members': 'Miembros del grupo',
-  'Cluster Name': 'Nombre del clúster',
+  CLUSTER_NAME: 'Nombre del clúster',
   'Cluster Roles': 'Roles de clúster',
-  'Cluster Settings': 'Configuraciones de clúster',
-  'Cluster Visibility': 'Visibilidad de clúster',
+  CLUSTER_SETTINGS: 'Configuraciones de clúster',
+  CLUSTER_VISIBILITY_SCAP: 'Visibilidad de clúster',
+  CLUSTER_VISIBILITY_TCAP: 'Visibilidad de clúster',
   'Connection Method': 'Método de conexión',
   'Copy successfully': 'Copia realizada con éxito',
   'Custom Resources': 'CRDs',
-  'Edit cluster basic information': 'Editar información básica del clúster',
-  'Edit Cluster Info': 'Editar información del clúster',
-  'Edit Visibility': 'Editar visibilidad',
+  EDIT_VISIBILITY: 'Editar visibilidad',
   'Enter the project': 'Entrar al proyecto',
   'Go back': 'Atrás',
   'Host Cluster': 'Clúster de host',
+  HOST_CLUSTER: 'Clúster de host',
   'Host Clusters': 'Clústers de host',
   Import: 'Importar',
   'Import Kubernetes Cluster': 'Importar clúster de Kubernetes',
   'Invite members to the cluster': 'Invitar miembros al clúster',
   'Kubernetes Settings': 'Configuraciones de Kubernetes',
-  'Kubernetes Status': 'Estado de Kubernetes',
-  'Kubernetes Version': 'Versión de Kubernetes',
-  'KubeSphere Version': 'Versión de KubeSphere',
+  KUBERNETES_STATUS: 'Estado de Kubernetes',
+  KUBERNETES_VERSION: 'Versión de Kubernetes',
+  KUBESPHERE_VERSION: 'Versión de KubeSphere',
   'Member Cluster': 'Mimbro del clúster',
   'Member Clusters': 'Miembor de los clústers',
   'Network Management': 'Network',
@@ -68,22 +68,23 @@ module.exports = {
     'Por favor selecciona o introduce un proveedor',
   'Please select or input a tag':
     'Por favor selecciona o introduce una etiqueta',
-  'Scheduler Scheduling Times': 'Horarios de programación',
-  'Scheduling Failed Pods': 'Programar pods fallidos',
-  'Select Clusters': 'Seleccionar clústeres',
-  'Set as public cluster': 'Establecer como clúster público',
-  Snapshots: 'Snapshots',
-  'Storage Management': 'Storage',
-  'System Projects': 'Proyectos de Sistema',
+  SCHEDULING_OPERATIONS: 'Horarios de programación',
+  SCHEDULING_OPERATION: 'Scheduling operation',
+  SCHEDULING_FAILURES: 'Programar pods fallidos',
+  SCHEDULING_FAILURE: 'Scheduling failure',
+  SELECT_CLUSTERS: 'Seleccionar clústeres',
+  SET_PUBLIC_CLUSTER: 'Set as Public Cluster',
+  STORAGE: 'Storage',
+  SYSTEM_PROJECTS: 'Proyectos de Sistema',
   'The current cluster is public': 'El clúster actual es público.',
   Tools: 'Herramientas',
   Unauthorized: 'No autorizado',
-  Unbind: 'Desvincular',
-  'Unbind Cluster': 'Desvincular clúster',
-  'User Projects': 'Proyectos de usuario',
+  UNBIND: 'Desvincular',
+  UNBIND_CLUSTER: 'Desvincular clúster',
+  USER_PROJECTS: 'Proyectos de usuario',
   Validating: 'Validar',
   'Validation failed': 'Validación fallida',
-  'Waiting for the cluster to join': 'Esperando a que el clúster se añada',
+  WAIT_FOR_CLUSTER: 'Esperando a que el clúster se añada',
   'How to Add': 'How to Add',
   'New Cluster': 'New Cluster',
   'Import Cluster': 'Import Cluster',
@@ -91,15 +92,16 @@ module.exports = {
   'Node Settings': 'Node Settings',
   'Please add at least one cluster node':
     'Please add at least one cluster node',
-  "Please specify the node's roles": "Please specify the node's roles",
-  'Please input the IP address': 'Please input the IP address',
+  NODE_ROLE_EMPTY_DESC: "Please specify the node's roles",
   'Add node to the cluster': 'Add node to the cluster',
-  'Node Internal IP Address': 'Node Internal IP Address',
-  'SSH Port': 'SSH Port',
-  'SSH IP Address': 'SSH IP Address',
-  'Username & Password': 'Username & Password',
-  'SSH Secret': 'SSH Secret',
-  'SSH Authentication Mode': 'SSH Authentication Mode',
+  INTERNAL_IP_ADDRESS: 'Node Internal IP Address',
+  PORT: 'Port',
+  PORT_VALUE: 'Port: {value}',
+  EXTERNAL_IP: 'External IP Address',
+  USERNAME_AND_PASSWORD: 'Username and password',
+  SSH_KEY_TCAP: 'SSH Key',
+  SSH_KEY_SCAP: 'SSH key',
+  SSH_AUTH_MODE: 'SSH Authentication Mode',
   'Kubernetes Cluster Settings': 'Kubernetes Cluster Settings',
   'Network Plugin': 'Network Plugin',
   'Max Pods': 'Max Pods',
@@ -112,45 +114,44 @@ module.exports = {
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
-  'Invalid IP address': 'Invalid IP address',
+  INVALID_IP_DESC: 'Invalid IP address format.',
+  CLUSTER_BASIC_INFO: 'Basic information',
+  CLUSTER_INFO_TCAP: 'Cluster Information',
+
   NO_CLUSTER_TIP: 'Agregue al menos un clúster.',
+  CLUSTER_CREATION_PROGRESS: 'Cluster Creation Progress',
   NO_CLUSTER_TIP_DESC:
     'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',
   ADD_NEW_CLUSTER_DESC: 'Agregar un nuevo clúster de Kubernetes',
   CHOOSE_PROVIDER_DESC:
     'KubeSphere proporciona una solución para implementar rápidamente los clústeres de Kubernetes entre los principales proveedores de servicios.',
-  VISIBILITY_PART: 'Parcialmente visible',
+  VISIBILITY_PARTIAL: 'Parcialmente visible',
   VISIBILITY_PUBLIC: 'Público',
   MULTI_CLUSTER: 'Multi-Clústers',
   IMPORT_CLUSTER_DESC: 'Importar un clúster de Kubernetes existente',
   SELECT_CLUSTERS_DESC:
     'Selecciona el clúster disponible en el espacio de trabajo.',
   CLUSTER_SETTINGS_DESC: 'Definir información de configuración del clúster',
-  CLUSTER_TAG: 'Etiqueta',
-  CLUSTER_TAG_DESC:
-    'Para indicar para qué se utiliza el clúster, como un entorno de producción, un entorno de prueba o un entorno de demostración',
-  CLUSTER_PROVIDER_DESC: 'El proveedor de infraestructura de clúster',
+  TAG: 'Etiqueta',
+  CLUSTER_TAG_DESC: 'Select a tag to identify the purpose of the cluster.',
+  CLUSTER_PROVIDER_DESC: 'Select the provider of the cluster infrastructure.',
   CLUSTER_CONNECT_METHOD_DESC:
     'Conéctese directamente al clúster o use un agente',
   CONNTECT_DIRECT: 'Conexión directa al clúster de Kubernetes',
   CONNTECT_PROXY: 'Agente de conexión de clúster',
-  CLUSTER_WAITING_JOIN_DESC:
+  WAIT_FOR_CLUSTER_DESC:
     'Actualmente no hay nodos disponibles. Puedes agregar el siguiente archivo de configuración para habilitar el clúster.',
   CLUSTER_AGENT_TIP_1:
-    'Cree un archivo llamado agent.yaml en el clúster de destino a través de SSH',
-  CLUSTER_AGENT_TIP_1_DESC:
-    'Por ejemplo, <span class="code">agent.yaml</span> .',
+    '1. Cree un archivo llamado agent.yaml en el clúster de destino a través de SSH',
   CLUSTER_AGENT_TIP_2:
-    'Copie el siguiente archivo de configuración en agent.yaml',
-  CLUSTER_AGENT_TIP_2_DESC:
-    'El archivo del agente puedes conectar el clúster de destino a la plataforma.',
+    '2. Copie el siguiente archivo de configuración en agent.yaml',
   CLUSTER_AGENT_TIP_3:
-    'Ejecutar en la línea de comando <span class="code">kubectl create -f agent.yaml</span>',
+    '3. Ejecutar en la línea de comando <span class="code">kubectl create -f agent.yaml</span>',
   CLUSTER_AGENT_TIP_3_DESC:
     'Después de ejecutar el comando, espere la actualización del estado del clúster.',
   CLUSTER_CONDITIONS: 'Condiciones de clúster',
   CLUSTER_BASE_INFO_DESC:
-    'Este módulo resume la información básica del clúster actual.',
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   INVITE_CLUSTER_MEMBER_DESC:
     'Puedes invitar a nuevos miembros a este clúster.',
   CLUSTER_API_SERVER_TITLE: 'Servidor API Kubesphere para agregar al clúster',
@@ -168,27 +169,26 @@ module.exports = {
   HOW_TO_GET_KUBECONFIG: '¿Cómo obtener KubeConfig?',
   UNBIND_CLUSTER_DESC:
     'Una vez que el clúster no está vinculado, KubeSphere no podrá administrar el clúster y los recursos de Kubernetes dentro del clúster no se eliminarán.',
-  SURE_TO_UNBIND_CLUSTER: 'Sí, confirmo que quiero desvincular el clúster.',
+  SURE_TO_UNBIND_CLUSTER: 'I understand the risks of this operation.',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:
     'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
   CLUSTER_AUTHORIZATION_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
-  CLUSTER_VISIBILITY_Q1:
-    '¿Cómo autorizar clústeres a espacios de trabajo específicos?',
+  CLUSTER_VISIBILITY_Q1: 'How do I authorize a cluster to specific workspaces?',
   CLUSTER_VISIBILITY_A1:
-    'Puedes autorizar el clúster a diferentes espacios de trabajo haciendo clic en Editar visibilidad.',
+    'You can assign a cluster to specific workspaces by clicking Edit Visibility.',
   CLUSTER_VISIBILITY_Q2: '¿Qué es un clúster público?',
   CLUSTER_VISIBILITY_A2:
     'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
   SELECT_HOST_CLUSTER_WARNING:
-    'Por favor, intenta no crear recursos en el clúster huésped (host) para evitar cargas excesivas, lo que podría llevar a disminuir la estabilidad en todos los clústers.',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. It is not recommended to create resources on the host cluster.',
   HOST_CLUSTER_VISIBILITY_WARNING:
-    'Por favor, ten cuidado al autorizar el clúster huésped (host) en el espcaio de trabajo. Si la carga del clúster es demasiado alta, la estabilidad disminuirá en todos los clústers.',
-  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Are you sure to remove authorization?',
+    'The visibility of the multi-cluster environment will decrease if the host cluster is overloaded. Exercise caution when assigning the host cluster to workspaces.',
+  REMOVE_WORKSPACE_CONFIRM_TITLE: 'Remove Authorization',
   REMOVE_WORKSPACE_CONFIRM_DESC:
-    'Are you sure to remove the authorization to the workspace(s) {resource}? Once the authorization for the workspace to use the cluster is removed, all resources of the workspace in the current cluster will be deleted.',
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 
   SELECT_ADD_CLUSTER_METHOD: 'Choose how to add a cluster',
   SELECT_ADD_CLUSTER_METHOD_DESC:
@@ -196,16 +196,23 @@ module.exports = {
 
   NEW_CLUSTER_DESC: 'add a new Kubernetes cluster',
   CLUSTER_NODE_SETTINGS_DESC: 'add the nodes for the cluster',
-  CLUSTER_NODE_INTERNAL_IP_DESC:
+  NODE_INTERNAL_IP_DESC:
     'The internal IP address for the connection between cluster nodes.',
+  EDGENODE_INTERNAL_IP_DESC:
+    'The internal IP address for the connection between cluster nodes.',
+  NODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the IP address of the node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC:
+    'Please set the IP address of the edge node in the KubeSphere cluster.',
   NODE_ROLE_DESC:
     'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
-  SSH_IP_ADDRESS_DESC:
-    'Please fill in the IP address that the current Host cluster can access.',
-  SSH_AUTH_MODE_DESC: 'Support username password and SSH key',
-  SSH_ACCOUNT_DESC: 'Log in as root user by default',
-  SSH_PASSWORD_DESC: 'Password required to log in to the node',
-  SSH_SECRET_PLACEHOLDER: 'Paste the key here',
+  NODE_EXTERNAL_IP_DESC:
+    'Enter the node IP address and port number used for SSH login.',
+  NODE_EXTERNAL_IP_EMPTY_DESC:
+    'Please enter the node IP address and port number used for SSH login.',
+  SSH_AUTH_MODE_DESC: 'Select an SSH authentication mode.',
+  NODE_USERNAME_DESC: 'Set the username used for SSH login.',
+  NODE_PASSWORD_DESC: 'Set the password used for SSH login.',
 
   K8S_CLUSTER_SETTINGS_DESC: 'Initially configure the new Kubernetes cluster.',
 
@@ -241,17 +248,19 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: 'How many backup replicas to keep.',
   CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for KubeSphere',
 
-  CLUSTER_CREATING: 'Cluster is being created',
-  CLUSTER_CREATING_TIP:
+  CREATING_CLUSTER: 'Cluster is being created',
+  CREATING_CLUSTER_DESC:
     'The current cluster is being created, and there are no nodes available for the time being.',
-
-  CLUSTER_INIT_NODES: 'Init Nodes',
-  CLUSTER_PULL_IMAGES: 'Pull Images',
-  CLUSTER_INIT_ETCD_CLUSTER: 'Init etcd Cluster',
-  CLUSTER_INIT_CONTROL_PLANE: 'Init Control Plane',
-  CLUSTER_JOIN_NODES: 'Join Nodes',
-  CLUSTER_INSTALL_ADDONS: 'Install Addons',
+  COPY_SUCCESSFUL: 'Copied successfully.',
+  CLUSTER_INIT_FAILED: 'Cluster initialization failed.',
+  INIT_NODES: 'Init Nodes',
+  PULL_IMAGES: 'Pull Images',
+  INIT_ETCD_CLUSTER: 'Init etcd Cluster',
+  INIT_CONTROL_PLANE: 'Init Control Plane',
+  JOIN_NODES: 'Join Nodes',
+  INSTALL_ADDONS: 'Install Addons',
   FETCHING_LOGS: `Fetching logs...`,
+  CURRENT_STEP: 'Current step: {step}',
 
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
@@ -260,7 +269,26 @@ module.exports = {
     'According to the size of the created cluster and the difference in network connection, it takes about 30 to 60 minutes to create the entire cluster. ',
 
   CLUSTER_UPGRADE_REQUIRED:
-    'Esta función no está disponible en la versión actual del clúster. Actualice a {versión} o superior.',
+    'The cluster version does not support this function. Please upgrade the cluster to {version} or later.',
   MEMBER_CLUSTER_UPGRADE_TIP:
-    'Los clústeres de miembros de una versión anterior a la {version} no pueden utilizar esta función. Actualice el clúster de miembros a la versión {version} o superior.',
+    'Member clusters with versions earlier than {version} do not support this function. Please upgrade the member clusters to {version} or later.',
+
+  // Unbind Cluster
+  UNBIND_CLUSTER_Q: 'Unbind Cluster',
+
+  // Cluster Visibility
+  NODE: 'Node',
+  ADMINISTRATOR: 'Administrator',
+  CLUSTER_VISIBILITY: 'Cluster Visibility',
+  CLUSTER_VISIBILITY_DESC:
+    'Cluster visibility controls the cluster authorization to workspaces. After a cluster is authorized to workspaces, you can view and manage the cluster resources in the workspaces.',
+  EDIT_VISIBILITY_DESC: 'Edit the cluster visibility in workspaces.',
+  CLUSTER_VISIBILITY_REMOVE_WARNING:
+    'After the authorization for a workspace to use the cluster is removed, all resources of the workspace on the cluster will be deleted.',
+  UNAUTHORIZED: 'Unauthorized',
+  AUDITING: 'Auditing',
+  REMOVE_WORKSPACE_CONFIRM_SI:
+    'Enter the workspace name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  REMOVE_WORKSPACE_CONFIRM_PL:
+    'Enter the workspace names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
 }

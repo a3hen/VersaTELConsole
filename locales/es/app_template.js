@@ -19,11 +19,15 @@
 module.exports = {
   'App README': 'LEEME (README) de Aplicación',
   'Configuration Files': 'Ficheros de Configuración',
+  INSTALLED_SUCCESSFULLY: 'Installed successfully.',
+  CONFIG_FILES: 'Ficheros de Configuración',
   'Deploy Successfully': 'Desplegado Satisfactoriamente',
   'Edit by YAML': 'Editar YAML',
-  'The app has no chart file.': 'La aplicación no tiene un fichero Chart',
-  'The app has no documentation.': 'La aplicación no tiene documentación.',
-  'The version has no documentation.': 'La versión no tiene documentación.',
+  NO_CHART_FILE_FOUND: 'No chart file is found.',
+  NO_DOCUMENT_DESC: 'No documentation is found.',
+  NO_APP_CHART_FILE_FOUND: 'La aplicación no tiene un fichero Chart',
+  NO_APP_DESC_FOUND: 'La aplicación no tiene documentación.',
+  VERSION_INTRO_EMPTY_DESC: 'La versión no tiene documentación.',
   'Update Successfully': 'Subida Satisfactoriamente',
 
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Implementar aplicaciones empaquetadas',

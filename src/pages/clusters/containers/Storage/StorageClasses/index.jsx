@@ -32,7 +32,7 @@ import StorageClassStore from 'stores/storageClass'
 
 @withList({
   store: new StorageClassStore(),
-  name: 'Storage Class',
+  name: 'STORAGE_CLASS',
   module: 'storageclasses',
 })
 export default class StorageClasses extends React.Component {
@@ -57,7 +57,7 @@ export default class StorageClasses extends React.Component {
     const { getSortOrder, prefix } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         key: 'name',
         dataIndex: 'name',
         sorter: true,
@@ -73,26 +73,47 @@ export default class StorageClasses extends React.Component {
         ),
       },
       {
-        title: t('Volume Count'),
+        title: t('VOLUME_COUNT'),
         dataIndex: 'volumeCount',
         isHideable: true,
         render: (count, record) =>
           get(record, 'annotations["kubesphere.io/pvc-count"]') || 0,
       },
       {
-        title: t('Default'),
+        title: t('DEFAULT_STORAGE_CLASS'),
         dataIndex: 'default',
         isHideable: true,
-        render: value => (value ? t('Yes') : '-'),
+        render: value => (value ? t('YES') : '-'),
       },
       {
-        title: t('Support Volume Snapshot'),
-        dataIndex: 'supportSnapshot',
+        title: t('ALLOW_VOLUME_CLONE'),
+        dataIndex: 'annotations',
         isHideable: true,
-        render: supportSnapshot => (supportSnapshot ? t('True') : t('False')),
+        render: annotations =>
+          annotations['storageclass.kubesphere.io/allow-clone'] === 'true'
+            ? t('TRUE')
+            : t('FALSE'),
       },
       {
-        title: t('Provisioner'),
+        title: t('ALLOW_VOLUME_SNAPSHOT'),
+        dataIndex: '_originData',
+        isHideable: true,
+        render: _originData =>
+          _originData.metadata.annotations[
+            'storageclass.kubesphere.io/allow-snapshot'
+          ] === 'true'
+            ? t('TRUE')
+            : t('FALSE'),
+      },
+      {
+        title: t('ALLOW_VOLUME_EXPANSION'),
+        dataIndex: 'allowVolumeExpansion',
+        isHideable: true,
+        render: allowVolumeExpansion =>
+          allowVolumeExpansion ? t('TRUE') : t('FALSE'),
+      },
+      {
+        title: t('PROVISIONER'),
         dataIndex: 'provisioner',
         isHideable: true,
       },

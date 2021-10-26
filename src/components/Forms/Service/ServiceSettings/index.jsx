@@ -54,8 +54,8 @@ export default class ServiceSettings extends React.Component {
       },
       {
         icon: 'blockchain',
-        label: t('HEADLESS_SELECTOR_TITLE'),
-        description: t('HEADLESS_SELECTOR_DESC'),
+        label: t('INTERNAL_DOMAIN_NAME'),
+        description: t('INTERNAL_DOMAIN_NAME_DESC'),
         value: 'headlessSelector',
       },
     ]
@@ -80,7 +80,7 @@ export default class ServiceSettings extends React.Component {
       const names = []
       value.forEach(item => {
         if (!item.name || !item.port) {
-          return callback({ message: t('Invalid port') })
+          return callback({ message: t('INVALID_PORT') })
         }
 
         if (names.includes(item.name)) {
@@ -107,7 +107,7 @@ export default class ServiceSettings extends React.Component {
     }
 
     if (isEmpty(value)) {
-      return callback({ message: t('Please input valid Selector') })
+      return callback({ message: t('ENTER_SELECTOR_TIP') })
     }
 
     if (!isValidLabel(value)) {
@@ -119,7 +119,7 @@ export default class ServiceSettings extends React.Component {
 
   renderTypeSelect() {
     return (
-      <Form.Item label={t('Access Type')}>
+      <Form.Item label={t('INTERNAL_ACCESS_MODE')}>
         <TypeSelect
           className="margin-b12"
           value={this.state.serviceType}
@@ -133,9 +133,9 @@ export default class ServiceSettings extends React.Component {
   renderLabelSelector() {
     return (
       <Form.Item
-        label={t('LabelSelector')}
+        label={t('WORKLOAD_SELECTOR')}
         rules={[
-          { required: true, message: t('Please input valid Selector') },
+          { required: true, message: t('ENTER_SELECTOR_TIP') },
           { validator: this.labelsValidator },
         ]}
       >
@@ -143,7 +143,7 @@ export default class ServiceSettings extends React.Component {
           name="spec.selector"
           cluster={this.props.cluster}
           namespace={this.namespace}
-          addText={`${t('Add')} LabelSelector`}
+          addText={t('ADD')}
         />
       </Form.Item>
     )
@@ -151,18 +151,14 @@ export default class ServiceSettings extends React.Component {
 
   renderPorts() {
     return (
-      <Form.Group label={t('Ports')} desc={t('SERVICE_PORTS_DESC')}>
+      <Form.Group label={t('PORT_PL')} desc={t('SERVICE_PORTS_DESC')}>
         <Form.Item
           rules={[
-            { required: true, message: t('Please input ports') },
+            { required: true, message: t('PORT_EMPTY') },
             { validator: this.portsValidator, checkOnSubmit: true },
           ]}
         >
-          <ArrayInput
-            name="spec.ports"
-            itemType="object"
-            addText={t('Add Port')}
-          >
+          <ArrayInput name="spec.ports" itemType="object" addText={t('ADD')}>
             <ServicePort />
           </ArrayInput>
         </Form.Item>

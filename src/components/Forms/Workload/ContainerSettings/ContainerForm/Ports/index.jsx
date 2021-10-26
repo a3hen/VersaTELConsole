@@ -50,7 +50,7 @@ export default class Ports extends React.Component {
           !item.containerPort ||
           (this.props.withService && !item.servicePort)
         ) {
-          return callback({ message: t('Invalid port') })
+          return callback({ message: t('INVALID_PORT') })
         }
 
         if (names.includes(item.name)) {
@@ -84,19 +84,19 @@ export default class Ports extends React.Component {
     return (
       <Form.Group
         className={className}
-        label={withService ? t('Service Settings') : t('Port Settings')}
-        desc={t('Please set the access policy for the container.')}
+        label={t('PORT_SETTINGS')}
+        desc={t('PORT_SETTINGS_DESC')}
       >
         <Form.Item
           rules={[
-            { required: withService, message: t('Please input ports') },
+            { required: withService, message: t('PORT_EMPTY') },
             { validator: this.portsValidator, checkOnSubmit: true },
           ]}
         >
           <ArrayInput
             name={`${this.prefix}ports`}
             itemType="object"
-            addText={t('Add Port')}
+            addText={t('ADD_PORT')}
             checkItemValid={this.checkContainerPortValid}
           >
             {withService ? <ContainerServicePort /> : <ContainerPort />}

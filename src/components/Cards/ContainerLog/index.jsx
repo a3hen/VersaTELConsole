@@ -68,7 +68,14 @@ export default class ContainerLog extends React.Component {
   }
 
   async getData(params, callback) {
-    const { cluster, namespace, podName, containerName } = this.props
+    const {
+      cluster,
+      namespace,
+      podName,
+      containerName,
+      gatewayName,
+      gatewayNamespace,
+    } = this.props
 
     this.store.stopWatchLogs()
 
@@ -82,12 +89,13 @@ export default class ContainerLog extends React.Component {
       this.store.watchLogs(
         {
           cluster,
-          namespace,
+          namespace: gatewayName ? gatewayNamespace : namespace,
           podName,
           container: containerName,
           tailLines: this.tailLines,
           timestamps: true,
           follow: this.state.isRealtime,
+          gateways: gatewayName,
           ...params,
         },
         callback
@@ -147,7 +155,7 @@ export default class ContainerLog extends React.Component {
 
     if (!result) {
       Notify.info({
-        content: `${t('NO_RESOURCE', { resource: t('Log Data') })}`,
+        content: `${t('NO_RESOURCE', { resource: t('LOG_DATA_LOW') })}`,
       })
       return
     }
@@ -161,7 +169,11 @@ export default class ContainerLog extends React.Component {
     return (
       <div className={styles.operations}>
         <Tooltip
-          content={t(isRealtime ? 'STOP_REAL_TIME_LOG' : 'START_REAL_TIME_LOG')}
+          content={t(
+            isRealtime
+              ? 'STOP_REAL_TIME_CONTAINER_LOG'
+              : 'START_REAL_TIME_CONTAINER_LOG'
+          )}
         >
           <Icon
             name={isRealtime ? 'stop' : 'start'}
@@ -173,7 +185,7 @@ export default class ContainerLog extends React.Component {
           />
         </Tooltip>
         <span className={styles.split}>|</span>
-        <Tooltip content={t('Refresh')}>
+        <Tooltip content={t('REFRESH')}>
           <Icon
             name="refresh"
             color={{ primary: '#fff', secondary: '#fff' }}
@@ -185,7 +197,7 @@ export default class ContainerLog extends React.Component {
           />
         </Tooltip>
         <span className={styles.split}>|</span>
-        <Tooltip content={t('Download')}>
+        <Tooltip content={t('DOWNLOAD')}>
           {isDownloading ? (
             <Loading size={16} />
           ) : (
@@ -209,7 +221,7 @@ export default class ContainerLog extends React.Component {
     const { loadingPrev, loadingNext } = this.state
 
     if (isEmpty(data)) {
-      return <Empty desc={'No Data'} />
+      return <Empty desc={'NO_DATA'} />
     }
 
     const items = String(data)
@@ -227,7 +239,7 @@ export default class ContainerLog extends React.Component {
               <Loading spinning={loadingPrev} size="small" />
             ) : (
               <div className={styles.more} onClick={this.handlePrev}>
-                {t('View More')}
+                {t('VIEW_MORE')}
               </div>
             )}
           </div>

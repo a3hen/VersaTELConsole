@@ -33,7 +33,7 @@ import RoleStore from 'stores/role'
   store: new RoleStore('globalroles'),
   module: 'globalroles',
   authKey: 'roles',
-  name: 'Account Role',
+  name: 'PLATFORM_ROLE',
 })
 export default class Roles extends React.Component {
   componentDidMount() {
@@ -48,7 +48,7 @@ export default class Roles extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -60,7 +60,7 @@ export default class Roles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -74,13 +74,13 @@ export default class Roles extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
           }),
       },
@@ -100,7 +100,7 @@ export default class Roles extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         width: '25%',
         render: (name, record) => (
@@ -113,14 +113,14 @@ export default class Roles extends React.Component {
         ),
       },
       {
-        title: t('Description'),
+        title: t('DESCRIPTION'),
         key: 'description',
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -134,7 +134,7 @@ export default class Roles extends React.Component {
   showCreate = () => {
     const { store, trigger, getData } = this.props
     return trigger('role.create', {
-      title: t('Create Account Role'),
+      title: t('CREATE_PLATFORM_ROLE'),
       roleTemplates: toJS(store.roleTemplates.data),
       success: getData,
     })
@@ -144,7 +144,7 @@ export default class Roles extends React.Component {
     const { bannerProps, tableProps } = this.props
     return (
       <ListPage {...this.props} noWatch>
-        <Banner {...bannerProps} tabs={this.tabs} title={t('Account Roles')} />
+        <Banner {...bannerProps} tabs={this.tabs} />
         <Table
           {...tableProps}
           tableActions={this.tableActions}

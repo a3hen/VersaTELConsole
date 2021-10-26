@@ -97,21 +97,22 @@ export default class InternetAccess extends React.Component {
 
     return (
       <>
-        <Form.Item label={t('Access Method')}>
+        <Form.Item label={t('ACCESS_MODE')}>
           <Select
             name={`Service.${this.fedPreifx}spec.type`}
             options={this.accessModes}
             onChange={this.handleAccessModeChange}
             optionRenderer={this.optionRenderer}
+            placeholder=" "
           />
         </Form.Item>
         {mode === 'LoadBalancer' && (
-          <Form.Item label={t('Annotations')}>
+          <Form.Item label={t('ANNOTATION_PL')}>
             <PropertiesInput
               name="Service.metadata.annotations"
               hiddenKeys={globals.config.preservedAnnotations}
               onChange={this.handleAnnotationsChange}
-              addText={t('Add Annotation')}
+              addText={t('ADD')}
             />
           </Form.Item>
         )}

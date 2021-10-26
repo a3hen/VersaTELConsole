@@ -18,7 +18,7 @@
 
 import { get, isEmpty, unset } from 'lodash'
 import React from 'react'
-import { Form } from '@kube-design/components'
+import { Alert, Form } from '@kube-design/components'
 
 import { GRAY_RELEASE_CANARY_CONTENT } from 'utils/constants'
 import CookieMatch from '../CookieMatch'
@@ -72,39 +72,34 @@ export default class ByContent extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.item}>
-          <div className={styles.title}>{t('Rule Description')}</div>
-          <p>{t('GRAY_RELEASE_BY_CONTENT_TIP')}</p>
+          <Alert type="info" message={t('SPECIFY_REQUEST_PARAMETERS_DESC')} />
         </div>
         <div className={styles.item}>
-          <div className={styles.title}>
-            {t('Grayscale release version access rule')}
-          </div>
+          <div className={styles.title}>{t('REQUEST_PARAMETERS')}</div>
           <Form
             ref={formRef}
             data={this.formTemplate}
             onChange={this.handleFormChange}
             {...rest}
           >
-            <Form.Item label={t('Cookie')}>
+            <Form.Item label={t('COOKIE')}>
               <CookieMatch
                 name={`${this.prefix}.match[0].headers.cookie`}
                 onChange={this.handleCookieChange}
-                placeholder="key=value"
+                placeholder={t('KEY_EQ_VALUE')}
               />
             </Form.Item>
-            <Form.Item label={t('Custom Header')}>
+            <Form.Item label={t('HEADER')}>
               <HeaderMatch name={`${this.prefix}.match[0].headers`} />
             </Form.Item>
-            <Form.Item label={t('URI')}>
+            <Form.Item label="URL">
               <CookieMatch
                 name={`${this.prefix}.match[0].uri`}
-                placeholder="URI"
+                placeholder="URL"
                 matchTypes={['prefix', 'regex']}
               />
             </Form.Item>
-            <Form.Item
-              label={t('Traffic comes from the following operating systems')}
-            >
+            <Form.Item label={t('CLIENT_OS')}>
               <OSSelect
                 name={`${this.prefix}.match[0].headers['User-Agent'].regex`}
                 options={GRAY_RELEASE_CANARY_CONTENT}

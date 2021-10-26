@@ -98,8 +98,8 @@ export default class AdvancedSettings extends React.Component {
           )}
         {(noWorkload || module !== 'statefulsets') && (
           <Form.Group
-            label={t('Internet Access')}
-            desc={t('SERVICES_INTERNET_ACCESS_DESC')}
+            label={t('EXTERNAL_ACCESS')}
+            desc={t('SERVICE_EXTERNAL_ACCESS_DESC')}
             checkable
           >
             <InternetAccess
@@ -109,14 +109,14 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('Enable Sticky Session')}
-          desc={t('The maximum session sticky time is 10800s (3 hours).')}
+          label={t('STICKY_SESSION')}
+          desc={t('STICKY_SESSION_DESC')}
           onChange={this.handleSessionAffinityChange}
           checkable
         >
           <Form.Item
-            label={t('Maximum Session Sticky Time (s)')}
-            desc={t('SERVICE_SESSION_STICKY_DESC')}
+            label={t('MAXIMUM_STICKINESS_DURATION')}
+            desc={t('MAXIMUM_STICKINESS_DURATION_DESC')}
           >
             <NumberInput
               name={`Service.${this.fedPrefix}spec.sessionAffinityConfig.clientIP.timeoutSeconds`}
@@ -127,8 +127,8 @@ export default class AdvancedSettings extends React.Component {
         </Form.Group>
         {!noWorkload && (
           <Form.Group
-            label={t('Set Node Scheduling Policy')}
-            desc={t('You can allow Pod replicas to run on specified nodes.')}
+            label={t('SELECT_NODES')}
+            desc={t('SELECT_NODES_DESC')}
             checkable
           >
             <NodeSchedule
@@ -141,10 +141,8 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
         )}
         <Form.Group
-          label={t('Add Metadata')}
-          desc={t(
-            'Additional metadata settings for resources such as Labels and Annotations.'
-          )}
+          label={t('ADD_METADATA')}
+          desc={t('SERVICE_ADD_METADATA_DESC')}
           keepDataWhenUnCheck
           checkable
         >

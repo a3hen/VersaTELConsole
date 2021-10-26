@@ -50,7 +50,7 @@ export default class Graph extends Component {
     const { supportMetrics, labelsets, onLabelSearch } = this.props
     return (
       <div className={styles.wrapper}>
-        <FormGroupCard label={t('Basic Info')}>
+        <FormGroupCard label={t('BASIC_INFORMATION')}>
           <Form.Item>
             <Columns>
               <Column>
@@ -68,7 +68,7 @@ export default class Graph extends Component {
                 <Form.Item>
                   <FormItemContainer name={'description'}>
                     {({ onChange, value }) => (
-                      <Field label={t('Description')}>
+                      <Field label={t('DESCRIPTION')}>
                         <Input value={value} onChange={onChange} />
                       </Field>
                     )}
@@ -79,7 +79,7 @@ export default class Graph extends Component {
           </Form.Item>
         </FormGroupCard>
 
-        <FormGroupCard label={t('Data')}>
+        <FormGroupCard label={t('DATA')}>
           <Form.Item>
             <CustomArrayInput
               name="targets"
@@ -101,7 +101,7 @@ export default class Graph extends Component {
                         })
                       }
                     >
-                      {t('Add')}
+                      {t('ADD')}
                     </Button>
                   }
                 />

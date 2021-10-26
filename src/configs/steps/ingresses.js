@@ -21,10 +21,20 @@ import RouteRules from 'components/Forms/Route/RouteRules'
 import AdvanceSettings from 'components/Forms/Route/AdvanceSettings'
 
 export default [
-  { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
-  { title: 'Route Rules', icon: 'cdn', component: RouteRules, required: true },
   {
-    title: 'Advanced Settings',
+    title: 'BASIC_INFORMATION',
+    icon: 'cdn',
+    component: BaseInfo,
+    required: true,
+  },
+  {
+    title: 'ROUTING_RULES',
+    icon: 'cdn',
+    component: RouteRules,
+    required: true,
+  },
+  {
+    title: 'ADVANCED_SETTINGS',
     icon: 'slider',
     component: AdvanceSettings,
     required: true,

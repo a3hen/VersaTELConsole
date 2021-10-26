@@ -50,9 +50,9 @@ export default class CookieMatch extends React.Component {
   get matchTypes() {
     const { matchTypes } = this.props
     return [
-      { label: t('Exact Match'), value: 'exact' },
-      { label: t('Prefix Match'), value: 'prefix' },
-      { label: t('Regex Match'), value: 'regex' },
+      { label: t('EXACT_MATCH'), value: 'exact' },
+      { label: t('PREFIX_MATCH'), value: 'prefix' },
+      { label: t('REGEX_MATCH'), value: 'regex' },
     ].filter(({ value }) => matchTypes.includes(value))
   }
 
@@ -89,7 +89,7 @@ export default class CookieMatch extends React.Component {
         />
         <Input
           value={value}
-          placeholder={this.props.placeholder || 'key=value'}
+          placeholder={this.props.placeholder || t('KEY_EQ_VALUE')}
           onChange={this.handleValueChange}
         />
       </div>

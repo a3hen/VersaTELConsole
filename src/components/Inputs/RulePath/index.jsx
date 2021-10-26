@@ -18,7 +18,7 @@
 
 import { get, set, isNumber } from 'lodash'
 import React from 'react'
-import { Input, Select } from '@kube-design/components'
+import { Input, Select, AutoComplete } from '@kube-design/components'
 import { ObjectInput } from 'components/Inputs'
 
 import styles from './index.scss'
@@ -32,7 +32,7 @@ export default class RulePath extends React.Component {
   constructor(props) {
     super(props)
 
-    const defaultService = get(this.props, 'value.backend.serviceName')
+    const defaultService = get(this.props, 'value.backend.service.name')
     this.state = {
       service: defaultService,
       defaultService,
@@ -40,7 +40,7 @@ export default class RulePath extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const service = get(props, 'value.backend.serviceName')
+    const service = get(props, 'value.backend.service.name')
     if (service && service !== state.defaultService) {
       return { service, defaultService: service }
     }
@@ -69,10 +69,12 @@ export default class RulePath extends React.Component {
   handleChange = value => {
     const { onChange } = this.props
 
-    const servicePort = get(value, 'backend.servicePort')
+    const servicePort = get(value, 'backend.service.port.number')
     if (isNumber(servicePort)) {
-      set(value, 'backend.servicePort', Number(servicePort))
+      set(value, 'backend.service.port.number', Number(servicePort))
     }
+
+    set(value, 'pathType', 'ImplementationSpecific')
 
     onChange && onChange(value)
   }
@@ -82,20 +84,21 @@ export default class RulePath extends React.Component {
   }
 
   render() {
+    const options = this.services.map(item => item.value)
     return (
       <ObjectInput {...this.props} onChange={this.handleChange}>
-        <Input name="path" placeholder={t('Path')} defaultValue="/" />
-        <Select
-          className="margin-r12"
-          name="backend.serviceName"
-          placeholder={t('Please select a service')}
-          options={this.services}
+        <Input name="path" placeholder={t('PATH')} defaultValue="/" />
+        <AutoComplete
+          className={styles.autocomplete}
+          name="backend.service.name"
+          placeholder={t('PATH_SERVICE_TIP')}
           onChange={this.handleServiceChange}
+          options={options}
         />
         <Select
           className={styles.input}
-          name="backend.servicePort"
-          placeholder={t('port')}
+          name="backend.service.port.number"
+          placeholder={t('PORT')}
           options={this.ports}
           searchable
         />

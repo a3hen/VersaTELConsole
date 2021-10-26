@@ -33,7 +33,7 @@ import WorkloadStore from 'stores/workload'
 @withProjectList({
   store: new WorkloadStore('cronjobs'),
   module: 'cronjobs',
-  name: 'CronJob',
+  name: 'CRONJOB',
 })
 export default class CronJobs extends React.Component {
   get prefix() {
@@ -52,11 +52,11 @@ export default class CronJobs extends React.Component {
       options: [
         {
           value: 'jobs',
-          label: t('Jobs'),
+          label: t('JOB_PL'),
         },
         {
           value: 'cronjobs',
-          label: t('CronJobs'),
+          label: t('CRONJOB_PL'),
         },
       ],
     }
@@ -68,7 +68,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -78,7 +78,7 @@ export default class CronJobs extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -89,7 +89,7 @@ export default class CronJobs extends React.Component {
         show: record => record.suspend,
         key: 'start',
         icon: 'start',
-        text: t('Start'),
+        text: t('START'),
         action: 'edit',
         onClick: this.handleSwitch(true),
       },
@@ -97,18 +97,18 @@ export default class CronJobs extends React.Component {
         show: record => !record.suspend,
         key: 'pause',
         icon: 'stop',
-        text: t('Pause'),
+        text: t('PAUSE'),
         action: 'edit',
         onClick: this.handleSwitch(false),
       },
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -143,7 +143,7 @@ export default class CronJobs extends React.Component {
     const { getSortOrder, getFilteredValue, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -159,7 +159,7 @@ export default class CronJobs extends React.Component {
         ),
       },
       {
-        title: t('Status'),
+        title: t('STATUS'),
         dataIndex: 'status',
         filters: this.getStatus(),
         filteredValue: getFilteredValue('status'),
@@ -172,13 +172,13 @@ export default class CronJobs extends React.Component {
         },
       },
       {
-        title: t('Schedule'),
+        title: t('SCHEDULE'),
         dataIndex: 'spec.schedule',
         isHideable: true,
         width: '15%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -196,6 +196,7 @@ export default class CronJobs extends React.Component {
       projectDetail: projectStore.detail,
       namespace: match.params.namespace,
       cluster: match.params.cluster,
+      supportGpuSelect: true,
     })
   }
 

@@ -27,12 +27,12 @@ import ResourceTable from 'clusters/components/ResourceTable'
 import { getLocalTime, getDisplayName } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
-import RouterStore from 'stores/router'
+import IngressStore from 'stores/ingress'
 
 @withClusterList({
-  store: new RouterStore(),
+  store: new IngressStore(),
   module: 'ingresses',
-  name: 'Route',
+  name: 'ROUTE',
   rowKey: 'uid',
 })
 export default class Routers extends React.Component {
@@ -44,7 +44,7 @@ export default class Routers extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -55,7 +55,7 @@ export default class Routers extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,18 +66,19 @@ export default class Routers extends React.Component {
       {
         key: 'editRules',
         icon: 'firewall',
-        text: t('Edit Rules'),
+        text: t('EDIT_ROUTING_RULES'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
           trigger('router.rules.edit', {
             detail: item,
+            namespace: item.namespace,
           }),
       },
       {
         key: 'editAnnotations',
         icon: 'firewall',
-        text: t('Edit Annotations'),
+        text: t('EDIT_ANNOTATIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -88,12 +89,12 @@ export default class Routers extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -110,7 +111,7 @@ export default class Routers extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -126,14 +127,14 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Gateway Address'),
+        title: t('GATEWAY_ADDRESS_TCAP'),
         dataIndex: 'loadBalancerIngress',
         isHideable: true,
         width: '22%',
         render: loadBalancerIngress => loadBalancerIngress.join('; '),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '18%',
@@ -144,7 +145,7 @@ export default class Routers extends React.Component {
         ),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

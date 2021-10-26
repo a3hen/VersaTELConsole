@@ -116,13 +116,13 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Info'),
+        text: t('EDIT_INFORMATION'),
       },
       {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('Delete DevOps Project'),
+        text: t('DELETE_DEVOPS_PROJECT'),
       },
     ]
   }
@@ -148,7 +148,7 @@ class BaseInfo extends React.Component {
       )
       .then(() => {
         this.hideEdit()
-        Notify.success({ content: `${t('Updated Successfully')}` })
+        Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
         this.store.fetchDetail({
           workspace: this.workspace,
           ...this.props.match.params,
@@ -205,28 +205,28 @@ class BaseInfo extends React.Component {
     const memberCount = this.memberStore.list.total
 
     return (
-      <Panel className={styles.wrapper} title={t('Basic Info')}>
+      <Panel className={styles.wrapper} title={t('BASIC_INFORMATION')}>
         <div className={styles.header}>
           <Icon name="strategy-group" size={40} />
           <div className={styles.item}>
             <div>{getDisplayName(detail)}</div>
-            <p>{t('DevOps Project')}</p>
+            <p>{t('DEVOPS_PROJECT')}</p>
           </div>
           <div className={styles.item}>
             <div>
               <Link to={`/workspaces/${this.workspace}`}>{this.workspace}</Link>
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.item}>
             <div>{detail.creator || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
           <div className={styles.item}>
             <div>
               {getLocalTime(detail.createTime).format(`YYYY-MM-DD HH:mm:ss`)}
             </div>
-            <p>{t('Created Time')}</p>
+            <p>{t('CREATION_TIME_TCAP')}</p>
           </div>
           {!isEmpty(this.enabledItemActions) && (
             <div className={classNames(styles.item, 'text-right')}>
@@ -236,7 +236,7 @@ class BaseInfo extends React.Component {
                 trigger="click"
                 placement="bottomRight"
               >
-                <Button>{t('DEVOPS_PROJECT_MANAGEMENT')}</Button>
+                <Button>{t('MANAGE_DEVOPS_PROJECT')}</Button>
               </Dropdown>
             </div>
           )}
@@ -247,14 +247,14 @@ class BaseInfo extends React.Component {
               <Icon name="role" size={40} />
               <div className={styles.item}>
                 <div>{roleCount}</div>
-                <p>{t('DEVOPS_PROJECT_ROLES')}</p>
+                <p>{t('DEVOPS_PROJECT_ROLE_PL')}</p>
               </div>
             </div>
             <div className={styles.contentItem}>
               <Icon name="group" size={40} />
               <div className={styles.item}>
                 <div>{memberCount}</div>
-                <p>{t('DEVOPS_PROJECT_MEMBERS')}</p>
+                <p>{t('DEVOPS_PROJECT_MEMBER_PL')}</p>
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@ class BaseInfo extends React.Component {
     return (
       <div>
         <Banner
-          title={t('DevOps Basic Info')}
+          title={t('BASIC_INFORMATION')}
           icon="cdn"
           description={t('DEVOPS_DESCRIPTION')}
           module={this.module}

@@ -36,7 +36,7 @@ import styles from './index.scss'
 @withClusterList({
   store: new PodStore(),
   module: 'pods',
-  name: 'Pod',
+  name: 'POD',
   rowKey: 'uid',
 })
 export default class Pods extends React.Component {
@@ -50,7 +50,7 @@ export default class Pods extends React.Component {
       {
         key: 'viewYaml',
         icon: 'eye',
-        text: t('View YAML'),
+        text: t('VIEW_YAML'),
         action: 'view',
         onClick: item =>
           trigger('resource.yaml.edit', {
@@ -61,11 +61,11 @@ export default class Pods extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
             success: getData,
           }),
@@ -91,7 +91,7 @@ export default class Pods extends React.Component {
           type="pod"
         />
       ) : (
-        t(type)
+        t(type.toUpperCase())
       )
 
     return desc
@@ -101,7 +101,7 @@ export default class Pods extends React.Component {
     const { getSortOrder } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -109,20 +109,20 @@ export default class Pods extends React.Component {
         render: this.renderAvatar,
       },
       {
-        title: t('Node'),
+        title: t('NODE_SI'),
         dataIndex: 'node',
         isHideable: true,
         width: '18%',
         render: this.renderNode,
       },
       {
-        title: t('Pod IP'),
+        title: t('POD_IP_ADDRESS'),
         dataIndex: 'podIp',
         isHideable: true,
         width: '15%',
       },
       {
-        title: t('Updated Time'),
+        title: t('UPDATE_TIME_TCAP'),
         dataIndex: 'startTime',
         sorter: true,
         sortOrder: getSortOrder('startTime'),
@@ -166,7 +166,7 @@ export default class Pods extends React.Component {
 
     if (!node) return '-'
 
-    const text = `${node}(${nodeIp})`
+    const text = t('NODE_IP', { node, ip: nodeIp })
 
     return <Link to={`/clusters/${cluster}/nodes/${node}`}>{text}</Link>
   }

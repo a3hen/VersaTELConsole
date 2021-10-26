@@ -32,7 +32,7 @@ import ConfigMapStore from 'stores/configmap'
 @withClusterList({
   store: new ConfigMapStore(),
   module: 'configmaps',
-  name: 'ConfigMap',
+  name: 'CONFIGMAP',
   rowKey: 'uid',
 })
 export default class ConfigMaps extends React.Component {
@@ -44,7 +44,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -55,7 +55,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editYaml',
         icon: 'pen',
-        text: t('Edit YAML'),
+        text: t('EDIT_YAML'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -66,7 +66,7 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'editConfigMap',
         icon: 'pen',
-        text: t('Modify Config'),
+        text: t('EDIT_SETTINGS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -77,12 +77,12 @@ export default class ConfigMaps extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('resource.delete', {
-            type: t(name),
+            type: name,
             detail: item,
           }),
       },
@@ -99,7 +99,7 @@ export default class ConfigMaps extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -116,7 +116,7 @@ export default class ConfigMaps extends React.Component {
         ),
       },
       {
-        title: t('Project'),
+        title: t('PROJECT'),
         dataIndex: 'namespace',
         isHideable: true,
         width: '22%',
@@ -127,14 +127,14 @@ export default class ConfigMaps extends React.Component {
         ),
       },
       {
-        title: t('Config Field'),
+        title: t('FIELDS'),
         dataIndex: 'data',
         isHideable: true,
         width: '33%',
         render: data => Object.keys(data).join(','),
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

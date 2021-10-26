@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { isUndefined } from 'lodash'
+import { get, isUndefined } from 'lodash'
 import { Icon } from '@kube-design/components'
 import { Bar } from 'components/Base'
 
@@ -27,6 +27,22 @@ import { ICON_TYPES } from 'utils/constants'
 import styles from './index.scss'
 
 const RESERVED_KEYS = ['limits.cpu', 'limits.memory', 'pods']
+const Unit = {
+  Ti: 1024 ** 4,
+  Gi: 1024 ** 3,
+  Mi: 1024 ** 2,
+  Ki: 1024,
+  TB: 1000 ** 4,
+  GB: 1000 ** 3,
+  MB: 1000 ** 2,
+  KB: 1000,
+  T: 1000 ** 4,
+  G: 1000 ** 3,
+  M: 1000 ** 2,
+  K: 1000,
+  Bytes: 1,
+  B: 1,
+}
 
 const QuotaItem = ({ name, total, used }) => {
   if (!total && !Number(used) && RESERVED_KEYS.indexOf(name) === -1) {
@@ -34,6 +50,43 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   let ratio = 0
+  let usedUnit = ''
+  let totalUnit = ''
+
+  const getNumberUnit = value => {
+    const matchUnit = /[0-9]+([a-zA-Z]+)/
+    const unitsMaps = Object.keys(Unit)
+    let _unit = get(value.match(matchUnit), '1', '')
+
+    unitsMaps.forEach(unit => {
+      if (_unit.indexOf(unit) > -1) {
+        _unit = unit
+        return false
+      }
+    })
+    return _unit
+  }
+
+  const getNumberValue = (unit, value) =>
+    unit
+      ? [
+          unit,
+          parseFloat(value) *
+            (ICON_TYPES[name] || !Unit[unit] ? 1 : Unit[unit]),
+        ]
+      : ['', parseFloat(value)]
+
+  const handleNumberValue = value => getNumberValue(getNumberUnit(value), value)
+
+  const handleUsedValue = usedValue => {
+    if (totalUnit && !usedUnit) {
+      const unitValue =
+        ICON_TYPES[name] || !Unit[totalUnit] ? 1 : Unit[totalUnit]
+      return `${usedValue / unitValue}${usedValue > 0 ? totalUnit : ''}`
+    }
+
+    return usedValue
+  }
 
   if (name === 'limits.cpu' || name === 'requests.cpu') {
     if (total) {
@@ -48,33 +101,41 @@ const QuotaItem = ({ name, total, used }) => {
       total = `${memoryFormat(total, 'Gi')} Gi`
     }
   } else if (total) {
-    ratio = Number(used) / Number(total)
+    const [_usedUnit, _used] = handleNumberValue(used)
+    const [_totalUnit, _total] = handleNumberValue(total)
+
+    usedUnit = _usedUnit
+    totalUnit = _totalUnit
+
+    ratio = _used / _total
   }
 
   ratio = Math.min(Math.max(ratio, 0), 1)
 
   return (
     <div className={styles.quota}>
-      <Icon name={ICON_TYPES[name]} size={40} />
+      <Icon name={ICON_TYPES[name] || 'resource'} size={40} />
       <div className={styles.item}>
-        <div>{t(name)}</div>
-        <p>{t('Resource Type')}</p>
+        <div>{t(name.replace(/[. ]/g, '_').toUpperCase())}</div>
+        <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>
-        <div>{used}</div>
-        <p>{t('Used')}</p>
+        <div>{handleUsedValue(used)}</div>
+        <p>{t('USED')}</p>
       </div>
       <div className={styles.item}>
-        <div>{isUndefined(total) ? t('No Limit') : total}</div>
-        <p>{t('Resource Limit')}</p>
+        <div>{isUndefined(total) ? t('NO_LIMIT_TCAP') : total}</div>
+        <p>{t('QUOTA')}</p>
       </div>
       <div className={styles.item} style={{ flex: 3 }}>
-        <div>{t('Usage')}</div>
+        <div>{t('USAGE')}</div>
         <Bar
           value={Math.min(ratio, 1)}
           className={styles.bar}
-          rightText={!total ? t('No Limit') : ''}
-          text={`${t('Used')} ${Number((ratio * 100).toFixed(2))}%`}
+          rightText={!total ? t('NO_LIMIT') : ''}
+          text={t('USED_PERCENT', {
+            percent: Number((ratio * 100).toFixed(2)),
+          })}
         />
       </div>
     </div>

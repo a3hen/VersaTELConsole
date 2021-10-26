@@ -18,11 +18,12 @@
 
 import React from 'react'
 import { observer } from 'mobx-react'
-import { isEmpty, get, set, cloneDeep } from 'lodash'
+import { isEmpty, get, set, unset, cloneDeep } from 'lodash'
 
 import { Notify } from '@kube-design/components'
-import { Banner, Panel } from 'components/Base'
+import { Panel } from 'components/Base'
 import WebhookForm from 'components/Forms/Notification/WebhookForm'
+import BaseBanner from 'settings/components/Cards/Banner'
 
 import ReceiverStore from 'stores/notification/receiver'
 import SecretStore from 'stores/notification/secret'
@@ -45,7 +46,7 @@ export default class Webhook extends React.Component {
       secret: this.secretTemplate,
     },
     formStatus: 'create',
-    showTip: false,
+    isLoading: false,
   }
 
   formData = {
@@ -69,6 +70,7 @@ export default class Webhook extends React.Component {
   }
 
   fetchData = async () => {
+    this.setState({ isLoading: true })
     const results = await this.receiverStore.fetchList({ type: 'webhook' })
     const receivers = results.find(
       item => get(item, 'metadata.name') === RECEIVER_NAME
@@ -86,9 +88,38 @@ export default class Webhook extends React.Component {
       this.setState({
         formData: cloneDeep(this.formData),
         formStatus: 'update',
-        showTip: false,
       })
     }
+    this.setState({ isLoading: false })
+  }
+
+  getVerifyFormTemplate = data => {
+    const { receiver, secret } = cloneDeep(data)
+    const type = get(
+      receiver,
+      'metadata.annotations["kubesphere.io/verify-type"]'
+    )
+    const username = get(receiver, 'spec.webhook.httpConfig.basicAuth.username')
+    const { password, token } = get(secret, 'data', {})
+
+    unset(receiver, 'spec.webhook.httpConfig.bearerToken')
+    unset(receiver, 'spec.webhook.httpConfig.basicAuth')
+
+    if (type === 'basic' && password) {
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.value',
+        password
+      )
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
+    }
+    if (type === 'token' && token) {
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.value', token)
+    }
+
+    unset(receiver, 'spec.webhook.alertSelector')
+
+    return { receiver }
   }
 
   handleSubmit = async data => {
@@ -98,89 +129,78 @@ export default class Webhook extends React.Component {
       receiver,
       'metadata.annotations["kubesphere.io/verify-type"]'
     )
+    const username = get(receiver, 'spec.webhook.httpConfig.basicAuth.username')
     const password = safeBtoa(get(secret, 'data.password'))
     const token = safeBtoa(get(secret, 'data.token'))
     const secretData = {}
     let message
 
+    unset(receiver, 'spec.webhook.httpConfig.bearerToken')
+    unset(receiver, 'spec.webhook.httpConfig.basicAuth')
+
     if (type === 'basic') {
       set(secretData, 'password', password)
-    }
-    if (type === 'token') {
-      set(secretData, 'token', token)
+
+      set(receiver, 'spec.webhook.httpConfig.basicAuth.username', username)
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.key',
+        'password'
+      )
+      set(
+        receiver,
+        'spec.webhook.httpConfig.basicAuth.password.name',
+        SECRET_NAME
+      )
     }
 
-    set(receiver, 'spec.webhook.httpConfig.basicAuth.password.key', 'password')
-    set(
-      receiver,
-      'spec.webhook.httpConfig.basicAuth.password.name',
-      SECRET_NAME
-    )
-    set(receiver, 'spec.webhook.httpConfig.bearerToken.key', 'token')
-    set(receiver, 'spec.webhook.httpConfig.bearerToken.name', SECRET_NAME)
+    if (type === 'token') {
+      set(secretData, 'token', token)
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.key', 'token')
+      set(receiver, 'spec.webhook.httpConfig.bearerToken.name', SECRET_NAME)
+    }
 
     if (formStatus === 'create') {
       await this.secretStore.create(
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.create(receiver)
-      message = t('Added Successfully')
+      message = t('ADDED_SUCCESS_DESC')
     } else {
       await this.secretStore.update(
         { name: SECRET_NAME },
         set(this.secretTemplate, 'data', secretData)
       )
       await this.receiverStore.update({ name: RECEIVER_NAME }, receiver)
-      message = t('Update Successfully')
+      message = t('UPDATED_SUCCESS_DESC')
     }
 
     this.fetchData()
     Notify.success({ content: message, duration: 1000 })
   }
 
-  onFormDataChange = () => {
-    this.setState({
-      showTip: true,
-    })
-  }
-
   onFormClose = () => {
     this.setState({
-      showTip: false,
       formData: cloneDeep(this.formData),
     })
   }
 
   render() {
+    const { formData, isLoading } = this.state
+
     return (
       <div>
-        <Banner
-          icon="file"
-          type="white"
-          name={t('Webhook')}
-          desc={t('WEBHOOK_SETTING_DESC')}
-        />
-        {this.renderConfigForm()}
+        <BaseBanner type="webhook" />
+        <Panel loading={isLoading}>
+          <WebhookForm
+            data={formData}
+            onCancel={this.onFormClose}
+            onSubmit={this.handleSubmit}
+            getVerifyFormTemplate={this.getVerifyFormTemplate}
+            isSubmitting={this.receiverStore.isSubmitting}
+          />
+        </Panel>
       </div>
-    )
-  }
-
-  renderConfigForm() {
-    const { formData, formStatus, showTip } = this.state
-
-    return (
-      <Panel loading={this.receiverStore.list.isLoading}>
-        <WebhookForm
-          showTip={showTip}
-          formStatus={formStatus}
-          data={formData}
-          onCancel={this.onFormClose}
-          onSubmit={this.handleSubmit}
-          onChange={this.onFormDataChange}
-          isSubmitting={this.receiverStore.isSubmitting}
-          disableSubmit={!showTip && formStatus === 'update'}
-        />
-      </Panel>
     )
   }
 }

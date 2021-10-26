@@ -60,8 +60,8 @@ export default class ResourceStatus extends React.Component {
     const detail = toJS(this.store.detail)
 
     return (
-      <Panel title={t('External Service')}>
-        <Text title={detail.externalName} description={t('ExternalName')} />
+      <Panel title={t('EXTERNAL_SERVICE')}>
+        <Text title={detail.externalName} description={t('EXTERNALNAME')} />
       </Panel>
     )
   }
@@ -85,7 +85,7 @@ export default class ResourceStatus extends React.Component {
     const detail = toJS(this.store.detail)
 
     return (
-      <Panel title={t('Service Ports')}>
+      <Panel title={t('PORT_PL')}>
         <Ports detail={detail} />
       </Panel>
     )

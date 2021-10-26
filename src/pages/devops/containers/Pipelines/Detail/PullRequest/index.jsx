@@ -17,7 +17,6 @@
  */
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { get, omit, isEmpty } from 'lodash'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
@@ -26,9 +25,12 @@ import { getLocalTime } from 'utils'
 import Status from 'devops/components/Status'
 import { getPipelineStatus } from 'utils/status'
 import Health from 'devops/components/Health'
+import classNames from 'classnames'
+import Link from 'components/Layout/Nav/Link'
 
 import Table from 'components/Tables/List'
 import EmptyCard from 'devops/components/Cards/EmptyCard'
+import styles from './index.scss'
 
 @inject('rootStore', 'detailStore')
 @observer
@@ -37,7 +39,7 @@ export default class Pullrequest extends React.Component {
 
   store = this.props.detailStore || {}
 
-  refreshTimer = setInterval(() => this.refreshHandler(), 4000)
+  refreshTimer = setInterval(() => this.getDate(), 4000)
 
   get isRuning() {
     const data = get(toJS(this.store), 'pullRequestList.data', [])
@@ -63,6 +65,7 @@ export default class Pullrequest extends React.Component {
   }
 
   refreshHandler = () => {
+    // The data of the current list is asynchronous, so there is no need to state as a judgment condition
     if (this.isRuning) {
       this.getData()
     } else {
@@ -109,33 +112,36 @@ export default class Pullrequest extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Status'),
+      title: t('STATUS'),
       width: '15%',
       render: record => (
         <Status {...getPipelineStatus(get(record, 'latestRun', {}))} />
       ),
     },
     {
-      title: t('Name'),
-      dataIndex: 'displayName',
+      title: t('NAME'),
+      dataIndex: 'name',
       width: '15%',
-      render: displayName => (
+      render: (name, record) => (
         <Link
-          className="item-name"
-          to={`${this.prefix}/branch/${displayName}/`}
+          className={classNames('item-name', {
+            [styles.itemNameDisabled]: record.disabled,
+          })}
+          to={`${this.prefix}/branch/${name}/`}
+          disabled={record.disabled}
         >
-          {displayName}
+          {name}
         </Link>
       ),
     },
     {
-      title: t('WeatherScore'),
+      title: t('HEALTH'),
       dataIndex: 'weatherScore',
       width: '15%',
       render: weatherScore => <Health score={weatherScore} />,
     },
     {
-      title: t('Last Message'),
+      title: t('LAST_MESSAGE'),
       width: '20%',
       render: record => get(record, 'pullRequest.title', ''),
     },
@@ -145,7 +151,7 @@ export default class Pullrequest extends React.Component {
       render: record => get(record, 'pullRequest.author', ''),
     },
     {
-      title: t('Time'),
+      title: t('TIME'),
       dataIndex: 'latestRun',
       width: '20%',
       render: latestRun =>

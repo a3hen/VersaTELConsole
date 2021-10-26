@@ -71,12 +71,12 @@ export default class KubeTools extends React.Component {
   get toolList() {
     return [
       {
-        group: 'Analysis Tools',
+        group: 'ANALYSIS_TOOLS',
         data: [
           {
             icon: 'file',
-            title: t('Log Search'),
-            description: t('LOG_SEARCH_DESC'),
+            title: t('CONTAINER_LOG_SEARCH'),
+            description: t('CONTAINER_LOG_SEARCH_DESC'),
             link: '/logquery',
             hidden:
               !globals.app.isMultiCluster &&
@@ -85,8 +85,8 @@ export default class KubeTools extends React.Component {
           },
           {
             icon: 'thunder',
-            title: t('Event Search'),
-            description: t('EVENT_SEARCH_DESC'),
+            title: t('RESOURCE_EVENT_SEARCH'),
+            description: t('RESOURCE_EVENT_SEARCH_DESC'),
             link: '/eventsearch',
             hidden:
               !globals.app.isMultiCluster && !globals.app.hasKSModule('events'),
@@ -94,8 +94,8 @@ export default class KubeTools extends React.Component {
           },
           {
             icon: 'login-servers',
-            title: t('Auditing Operating'),
-            description: t('AUDITING_OPERATING_DESC'),
+            title: t('AUDIT_LOG_SEARCH'),
+            description: t('AUDIT_LOG_DESC'),
             link: '/auditingsearch',
             hidden:
               !globals.app.isMultiCluster &&
@@ -104,22 +104,30 @@ export default class KubeTools extends React.Component {
           },
           {
             icon: 'wallet',
-            title: t('Bill'),
-            description: t('BILLING_OPERATING_DESC'),
+            title: t('RESOURCE_CONSUMPTION_STATISTICS'),
+            description: t('METERING_AND_BILLING_DESC'),
             link: '/bill',
             hidden: !this.isHideMeterModal,
             action: 'toolbox.bill',
           },
+          {
+            icon: 'documentation',
+            description: t('VIEW_KUBE_CONFIG'),
+            title: 'kubeconfig',
+            link: '/kubeConfig',
+            hidden: !globals.config.enableKubeConfig,
+            action: 'toolbox.kubeconfig',
+          },
         ],
       },
       {
-        group: 'Control Tools',
+        group: 'CONTROL_TOOL',
         data: [
           {
             icon: 'terminal',
             link: '/terminal/kubectl',
-            title: 'Kubectl',
-            description: t('TOOLBOX_KUBECTL_DESC'),
+            title: 'kubectl',
+            description: t('KUBECTL_DESC'),
             hidden: !globals.app.isPlatformAdmin,
             action: 'toolbox.kubectl',
           },
@@ -190,7 +198,7 @@ export default class KubeTools extends React.Component {
             <Text
               className={styles.toolsTitle}
               icon="hammer"
-              title={t('Toolbox')}
+              title={t('TOOLBOX')}
               description={t('TOOLBOX_DESC')}
             />
           </div>
@@ -218,7 +226,7 @@ export default class KubeTools extends React.Component {
             {!isEmpty(this.thirdPartyToolList) && (
               <div className={styles.toolsGroup}>
                 <div className={styles.groupTitle}>
-                  {t('Third-party Tools')}
+                  {t('THIRD_PARTY_TOOLS')}
                 </div>
                 <div className={styles.groupContent}>
                   {this.thirdPartyToolList.map(item => (

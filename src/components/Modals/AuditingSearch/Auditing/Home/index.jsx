@@ -83,7 +83,7 @@ export default class Home extends React.Component {
         <div className={styles.tips}>
           <div className={styles.pane}>
             {this.renderSearchBar()}
-            <h3 className={styles.rule}>{t('Search Rule')}:</h3>
+            <h3 className={styles.rule}>{t('QUERYING_RULES')}</h3>
             {this.renderRecentLogs()}
             {this.renderQueryItems()}
           </div>
@@ -111,12 +111,12 @@ export default class Home extends React.Component {
                     auditing: events,
                     className: styles.count,
                   })
-                : t('NO_AUDITING_TODAY')}
+                : t('NO_AUDIT_LOG_TODAY')}
             </h3>
             {events ? (
               <p>
                 <Icon name="clock" />
-                {t('Current Statistics Start Time')}:
+                {t('START_TIME_COLON')}
                 {moment(new Date()).format(`${t('EVENT_DATE')}`)}
               </p>
             ) : null}
@@ -126,7 +126,7 @@ export default class Home extends React.Component {
     )
   }
 
-  clusterRenderer = option => `${t('Cluster')}: ${option.label}`
+  clusterRenderer = option => t('CLUSTER_VALUE', { value: option.label })
 
   renderSearchBar() {
     const { searchInputState, clustersOpts } = this.props
@@ -169,7 +169,7 @@ export default class Home extends React.Component {
             <TimeBar
               xKey={'time'}
               data={toJS(histogramData.buckets || [])}
-              legend={[['count', t('Auditing statistics')]]}
+              legend={[['count', t('AUDIT_LOG_COUNT')]]}
               interval={interval || '30m'}
               onBarClick={this.selectedDurationParameter}
             />

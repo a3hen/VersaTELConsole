@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, isUndefined, isEmpty } from 'lodash'
+import { concat, get, set, unset, isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer } from 'mobx-react'
@@ -214,12 +214,20 @@ class VolumeSettings extends React.Component {
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
-    )
+    ).map(c => ({ ...c, type: 'worker' }))
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    ).map(c => ({ ...c, type: 'init' }))
 
+    const mergedContainers = concat(containers, initContainers)
     const volumes = get(this.fedFormTemplate, `${this.prefix}spec.volumes`, [])
 
     newVolumeMounts.forEach(({ containerName, volume, ...rest }) => {
-      const container = containers.find(item => item.name === containerName)
+      const container = mergedContainers.find(
+        item => item.name === containerName
+      )
       const existVolume = findVolume(volumes, volume)
 
       if (existVolume && container) {
@@ -248,7 +256,23 @@ class VolumeSettings extends React.Component {
       }
     })
 
-    set(this.fedFormTemplate, `${this.prefix}spec.containers`, containers)
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
+    set(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      _initContainers
+    )
   }
 
   checkMaxUnavalable = volumes => {
@@ -329,10 +353,19 @@ class VolumeSettings extends React.Component {
       this.fedFormTemplate,
       `${this.prefix}spec.containers`,
       []
-    )
+    ).map(c => ({ ...c, type: 'work' }))
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    ).map(c => ({ ...c, type: 'init' }))
+
+    const mergedContainers = concat(containers, initContainers)
 
     newVolumeMounts.forEach(({ containerName, ...rest }) => {
-      const container = containers.find(item => item.name === containerName)
+      const container = mergedContainers.find(
+        item => item.name === containerName
+      )
 
       if (container) {
         container.volumeMounts = container.volumeMounts || []
@@ -359,8 +392,23 @@ class VolumeSettings extends React.Component {
           }))
       }
     })
-
-    set(this.fedFormTemplate, `${this.prefix}spec.containers`, containers)
+    const _containers = []
+    const _initContainers = []
+    mergedContainers.forEach(item => {
+      if (item.type === 'worker') {
+        delete item.type
+        _containers.push(item)
+      } else {
+        delete item.type
+        _initContainers.push(item)
+      }
+    })
+    set(this.fedFormTemplate, `${this.prefix}spec.containers`, _containers)
+    set(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      _initContainers
+    )
   }
 
   handleVolume(newVolume = {}, newVolumeMounts = []) {
@@ -413,6 +461,13 @@ class VolumeSettings extends React.Component {
       `${this.prefix}spec.containers`,
       []
     )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
+    const mergedContainers = concat(containers, initContainers)
 
     return (
       <AddVolume
@@ -420,7 +475,7 @@ class VolumeSettings extends React.Component {
         volume={this.selectVolume}
         namespace={this.namespace}
         module={this.props.module}
-        containers={containers}
+        containers={mergedContainers}
         onSave={this.handleVolume}
         onCancel={this.resetState}
         isLoading={isLoading}
@@ -437,14 +492,21 @@ class VolumeSettings extends React.Component {
       `${this.prefix}spec.containers`,
       []
     )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
+    const mergedContainers = concat(containers, initContainers)
 
     return (
       <MountConfig
         volume={this.selectVolume}
-        containers={containers}
+        containers={mergedContainers}
         cluster={this.cluster}
         namespace={this.namespace}
-        containers={containers}
+        containers={mergedContainers}
         onSave={this.handleVolume}
         onCancel={this.resetState}
         isFederated={isFederated}
@@ -462,12 +524,19 @@ class VolumeSettings extends React.Component {
       `${this.prefix}spec.containers`,
       []
     )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
+
+    const mergedContainers = concat(containers, initContainers)
     const namespace = get(this.formTemplate, 'metadata.namespace', '')
 
     return (
       <AddVolumeTemplate
         volume={this.selectVolume}
-        containers={containers}
+        containers={mergedContainers}
         cluster={cluster}
         namespace={namespace}
         onSave={this.handleVolumeTemplate}
@@ -500,8 +569,7 @@ class VolumeSettings extends React.Component {
   renderToolTipContent() {
     return (
       <div>
-        <div className="tooltip-title">{t('What is Disk Log Collection?')}</div>
-        <p>{t('COLLECT_FILE_LOG_TIP')}</p>
+        <p>{t('COLLECT_LOGS_ON_VOLUMES_DESC')}</p>
       </div>
     )
   }
@@ -523,11 +591,11 @@ class VolumeSettings extends React.Component {
   renderTitle() {
     return (
       <div className="font-bold margin-b8 relative">
-        <span>{t('Mount Volumes')}</span>
+        <span>{t('VOLUME_SETTINGS')}</span>
         {globals.app.hasClusterModule(this.cluster, 'logging') && (
           <div className={styles.toggle}>
             {!this.projectEnableCollectingFileLog ? (
-              <Tooltip content={t('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
+              <Tooltip content={t.html('PROJECT_COLLECT_SAVED_DISABLED_DESC')}>
                 {this.renderToggle(true)}
               </Tooltip>
             ) : (
@@ -535,7 +603,7 @@ class VolumeSettings extends React.Component {
             )}
             <span className="text-secondary align-middle">
               {' '}
-              {t('Disk Log Collection')}{' '}
+              {t('COLLECT_LOGS_ON_VOLUMES')}{' '}
             </span>
             <Tooltip content={this.renderToolTipContent()}>
               <Icon name="question" />
@@ -558,7 +626,13 @@ class VolumeSettings extends React.Component {
       `${this.prefix}spec.containers`,
       []
     )
+    const initContainers = get(
+      this.fedFormTemplate,
+      `${this.prefix}spec.initContainers`,
+      []
+    )
 
+    const mergedContainers = concat(containers, initContainers)
     const showTip =
       get(this.fedFormTemplate, `${this.prefix}spec.volumes`, []).length ===
         0 &&
@@ -578,21 +652,17 @@ class VolumeSettings extends React.Component {
             className="margin-b12"
             icon="information"
             type="warning"
-            title={t(
-              isSTS
-                ? 'Please add at least one volume or volume template'
-                : 'Please add at least one volume'
-            )}
-            message={t('COLLECT_SAVED_LOG_DESC')}
+            title={t(isSTS ? 'MOUNT_VOLUME_OR_TEMPLATE' : 'MOUNT_VOLUME')}
+            message={t(isSTS ? 'VOLUME_OR_TEMPLATE_EMPTY' : 'VOLUME_EMPTY')}
           />
         )}
         <div className={styles.volumes}>
           {isSTS && (
-            <Form.Item label={t('Volume Templates')}>
+            <Form.Item label={t('VOLUME_TEMPLATES')}>
               <VolumeTemplateList
                 prefix={this.prefix}
                 name="spec.volumeClaimTemplates"
-                containers={containers}
+                containers={mergedContainers}
                 onShowAddVolume={this.showVolumeTemplate}
                 onShowEdit={this.showEditVolumeTemplate}
                 collectSavedLog={collectSavedLog}
@@ -600,12 +670,12 @@ class VolumeSettings extends React.Component {
               />
             </Form.Item>
           )}
-          <Form.Item label={t('Volumes')}>
+          <Form.Item label={t('VOLUME_PL')}>
             <VolumeList
               prefix={this.prefix}
               name={`${this.prefix}spec.volumes`}
               volumes={volumes}
-              containers={containers}
+              containers={mergedContainers}
               loading={isLoading}
               onShowVolume={this.showVolume}
               onShowConfig={this.showConfig}

@@ -32,7 +32,7 @@ import AppRepoStore from 'stores/openpitrix/repo'
   store: new AppRepoStore(),
   module: 'repos',
   authKey: 'app-repos',
-  name: 'App Repository',
+  name: 'APP_REPOSITORY',
   rowKey: 'repo_id',
 })
 export default class AppRepos extends React.Component {
@@ -40,7 +40,7 @@ export default class AppRepos extends React.Component {
     return [
       {
         title: t('HOW_TO_USE_APP_REPO_Q'),
-        description: t('HOW_TO_USE_APP_REPO_A'),
+        description: t.html('HOW_TO_USE_APP_REPO_A'),
       },
     ]
   }
@@ -55,7 +55,7 @@ export default class AppRepos extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT'),
         action: 'edit',
         onClick: item =>
           trigger('openpitrix.repo.edit', {
@@ -67,12 +67,12 @@ export default class AppRepos extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: item =>
           trigger('resource.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
           }),
       },
@@ -88,7 +88,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'create',
           type: 'control',
-          text: t('Add Repository'),
+          text: t('ADD'),
           action: 'manage',
           onClick: () =>
             trigger('openpitrix.repo.add', {
@@ -101,7 +101,7 @@ export default class AppRepos extends React.Component {
         {
           key: 'index',
           type: 'primary',
-          text: t('Index Repo'),
+          text: t('INDEX_REPO'),
           action: 'manage',
           onClick: this.handleIndex,
         },
@@ -119,7 +119,7 @@ export default class AppRepos extends React.Component {
         const { message } = resp
 
         if (message === 'success') {
-          Notify.success(t('Index Successfully'))
+          Notify.success(t('INDEX_SUCCESS_TIP'))
         }
       })
     )
@@ -128,7 +128,7 @@ export default class AppRepos extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Name'),
+      title: t('NAME'),
       dataIndex: 'name',
       width: '25%',
       render: (name, record) => (
@@ -142,7 +142,7 @@ export default class AppRepos extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       isHideable: true,
       width: '15%',
@@ -178,7 +178,7 @@ export default class AppRepos extends React.Component {
         <Banner
           {...bannerProps}
           tips={this.tips}
-          title={t('App Repositories')}
+          title={t('APP_REPO')}
           description={t('APP_REPO_DESC')}
         />
         <Table

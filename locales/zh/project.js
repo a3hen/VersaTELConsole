@@ -17,62 +17,75 @@
  */
 
 module.exports = {
+  CLUSTER: '集群',
+  CLUSTER_PL: '集群',
+  CLUSTER_VALUE: '集群：{value}',
   Deployment: '部署',
   StatefulSet: '有状态副本集',
   DaemonSet: '守护进程集',
-  Service: '服务',
   LoadBalancer: '负载均衡',
   Volume: '存储卷',
   Terminating: '删除中',
   Deleting: '删除中',
-  'Create Project': '创建项目',
-  'Create Multi-cluster Project': '创建多集群项目',
-  'Edit Project': '编辑项目',
+  CREATE_PROJECT: '创建项目',
+  CREATE_MULTI_CLUSTER_PROJECT: '创建多集群项目',
+  EDIT_PROJECT: '编辑项目',
   Details: '详情',
   Members: '成员',
-  'Project Roles': '项目角色',
+  PROJECT_ROLE_PL: '项目角色',
   'Project Role': '项目角色',
+  // Create ServiceAccount Page
+  PROJECT_ROLE_SI: '项目角色',
   projects: '项目',
   Projects: '项目',
   'Project Overview': '项目预览',
   'Members Management': '成员管理',
-  'Project Manager': '项目管理员',
-  'Manage Project': '项目管理',
-  'Resource Quota': '资源配额',
-  'Project Name': '项目名称',
+  PROJECT_ADMINISTRATOR: '项目管理员',
+  MANAGE_PROJECT: '管理项目',
+  RESOURCE_QUOTA_PL: '资源配额',
+  PROJECT_NAME: '项目名称',
+  PROJECT_MEMBER_PL: '项目成员',
+  PROJECT_RESOURCE_QUOTAS: '项目资源配额',
   'Project Members': '项目成员',
   'project members': '项目成员',
   'Member Name': '成员名称',
   'Modify Member Role': '修改成员角色',
   'Modify Members Role': '修改成员角色',
   'Remove Members': '移除成员',
-  'Remove Member': '移除成员',
+  REMOVE_MEMBER: '移除成员',
   'Invite Member': '邀请成员',
-  'Gateway Info': '网关信息',
-  'Set Gateway': '设置网关',
-  'Edit Gateway': '编辑网关',
+  GATEWAY: '网关',
+  SET_GATEWAY: '设置网关',
 
-  'Gateway Not Set': '网关未设置',
+  GATEWAY_NOT_SET: '网关未设置',
 
-  'Delete Project': '删除项目',
-  'Project Info': '项目信息',
-  'Project Quota': '项目配额',
+  PROJECT_INFO: '项目信息',
+  PROJECT_QUOTA: '项目配额',
+  EDIT_PROJECT_QUOTAS: '编辑项目配额',
   'Quota Management': '配额管理',
+  WORKSPACE_QUOTA_PL: '企业空间配额',
+  PROJECT_QUOTA_PL: '项目配额',
 
-  'Project Quota Not Set': '项目配额未设置',
-  'Resource Default Request Not Set': '容器资源默认请求未设置',
+  PROJECT_QUOTAS_NOT_SET: '未设置项目配额',
+  DEFAULT_CONTAINER_QUOTAS_NOT_SET: '默认容器配额未设置',
 
   'Project Placement': '项目位置',
 
   'Multi-cluster Project': '多集群项目',
+  MULTI_CLUSTER_PROJECT: '多集群项目',
+  MULTI_CLUSTER_PROJECT_LOW: '多集群项目',
+  MULTI_CLUSTER_PROJECT_SCAP: '多集群项目',
+  MULTI_CLUSTER_PROJECT_PL: '多集群项目',
   'Multi-cluster Projects': '多集群项目',
 
   Opened: '已开启',
   Closed: '已关闭',
 
-  PROJECT_CREATE_DESC:
-    'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
-  PROJECT_NAME_DESC: '项目名只能包含小写字母、数字及分隔符("-")',
+  CREATE_PROJECT_DESC: '创建项目以对资源进行分组并控制不同用户的权限。',
+  PROJECT_NAME_DESC:
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
+  PROJECT_NAME_INVALID_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 63 个字符。',
   'Please input project name': '请输入项目名',
   'Invalid project name': '项目名格式不合法',
   'Project name exists': '项目名已存在',
@@ -80,14 +93,11 @@ module.exports = {
   DELETE_MEMBER_TIP:
     '确定移除成员 <strong>{name}</strong> ? 移除后该成员将无法访问本项目。',
 
-  'DevOps Project': 'DevOps 工程',
-  'DevOps Projects': 'DevOps 工程',
+  'DevOps Projects': 'DevOps 项目',
   'Select Project Type': '选择项目类型',
 
   'Edit Project Quota': '编辑项目配额',
-  'Add Quota Item': '添加配额项',
-
-  'Network Isolation': '网络隔离',
+  ADD_QUOTA: '添加配额',
 
   deployments: '部署',
   statefulsets: '有状态副本集',
@@ -96,50 +106,57 @@ module.exports = {
   cronjobs: '定时任务',
   pods: '容器组',
 
-  'requests.cpu': 'CPU 需求',
-  'limits.cpu': 'CPU 限额',
-  'requests.memory': '内存需求',
-  'limits.memory': '内存限额',
+  REQUESTS_CPU: 'CPU 预留',
+  LIMITS_CPU: 'CPU 限制',
+  REQUESTS_MEMORY: '内存预留',
+  LIMITS_MEMORY: '内存限制',
 
-  'Container Resource Default Request': '容器资源默认请求',
+  DEFAULT_CONTAINER_QUOTA_PL: '默认容器配额',
+  EDIT_DEFAULT_CONTAINER_QUOTA: '编辑默认容器配额',
+  EDIT_DEFAULT_CONTAINER_QUOTAS: '编辑默认容器配额',
   'Edit Resource Default Request': '编辑资源默认请求',
+  EDIT_PROJECT_QUOTA: '编辑项目配额',
 
-  'Resource Type': '资源类型',
+  RESOURCE_TYPE: '资源类型',
+  RESOURCE_TYPE_SCAP: '资源类型',
 
   'Help Information': '帮助信息',
 
   'Enter Project': '进入项目',
-  'Enter DevOps Project': '进入工程',
-  Project_Admin: '工程管理员',
+  'Enter DevOps Project': '进入项目',
+  Project_Admin: '项目管理员',
   'No Platform Manage Authorization': '无平台管理权限',
 
   'Default limit resource': '默认最大使用资源',
   'Default request resource': '默认最小使用资源',
 
-  'Assign Workspace': '分配企业空间',
+  ASSIGN_WORKSPACE: '分配企业空间',
   'Target Workspace': '目标企业空间',
-  'Choose a workspace': '选择一个企业空间',
+  SELECT_WORKSPACE_DESC: '选择一个企业空间。',
   'Not Assigned': '未分配',
-  'Select a user of the workspace as the manager of the project.':
-    '选择企业空间的用户作为管理员。',
+  PROJECT_ADMINISTRATOR_DESC: '选择企业空间中的用户作为项目管理员。',
 
-  'Disk Log Collection': '落盘日志收集',
+  DISK_LOG_COLLECTION: '落盘日志收集',
+  COLLECT_LOGS_ON_VOLUMES: '收集存储卷上的日志',
+  LOG_COLLECTION_ENABLED_DESC:
+    '开启或停用此功能后，您需要重启容器组副本才能使修改生效。',
 
-  'Are you sure to disable it?': '确认关闭？',
-  'Disk Log Collection of the project is about to be disabled.':
-    '项目的落盘日志收集即将关闭.',
+  DISABLE_LOG_COLLECTION: '停用日志收集',
 
-  'Select the cluster to create the project.': '选择要创建项目的集群.',
+  SELECT_CLUSTER_DESC: '选择要创建项目的集群。',
+  CLUSTER_EMPTY_DESC: '请选择一个集群。',
 
   'Project Member': '项目成员',
 
   'Number of volumes': '存储卷（数量）',
 
-  CLOSE_FILE_LOG_TIP:
-    '落盘日志收集即将关闭。 关闭后，已开启落盘日志收集的服务在容器组副本重启前将继续进行落盘日志的收集，重启后，将不再收集。</br>如果需要再次收集，请开启落盘日志收集，并重起容器组副本。',
+  FEDPROJECT_CANNOT_ADD_CLUSTER: '没有可添加的集群。',
+
+  DISABLE_LOG_COLLECTION_TIP:
+    '您确定停用日志收集吗？您需要重启容器组副本才能使修改生效。',
 
   Usage: '使用情况',
-
+  USAGE: '用量',
   PROJECTS_DESC:
     'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
   PROJECT_BASEINFO_DESC: '项目基础信息设置',
@@ -148,24 +165,26 @@ module.exports = {
   PROJECT_TYPES_PROJECT_TITLE: '创建资源型项目',
   PROJECT_TYPES_PROJECT_DESC:
     'KubeSphere 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
-  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 工程',
+  PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 项目',
   PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
 
-  PROJECT_ASSIGN_DESC: '项目一旦被分配到企业空间后将不允许修改企业空间',
+  PROJECT_ASSIGN_DESC: '项目被分配到企业空间后不允许变更项目所属的企业空间。',
 
   'Invite Members to the Project': '邀请成员到该项目',
-  'Invite Members to the DevOps Project': '邀请成员到该工程',
-  INVITE_MEMBER_DESC: '您可以邀请新的成员来协助您的项目',
-  INVITE_MEMBER_DESC_DEVOPS: '您可以邀请新的成员来协助您的工程',
-  INVITE_MEMBER_SEARCH_PLACEHODLER: '输入用户名邀请项目成员',
-  INVITE_MEMBER_CHOOSE_ROLE_TIP: '请选择一个角色赋予该成员',
+  INVITE_DEVOPS_MEMBER: '邀请成员到该 DevOps 项目',
+  INVITE_MEMBER_DESC: '邀请当前企业空间的成员到当前项目。',
+  PROJECT_MEMBER_EMPTY_DESC: '请邀请当前企业空间的成员到当前项目。',
+  INVITE_MEMBER_DESC_DEVOPS: '邀请当前企业空间的成员到当前 DevOps 项目。',
+  INVITE_MEMBER_SEARCH_PLACEHOLDER: '输入用户名邀请项目成员',
+  ASSIGN_ROLE: '分配角色',
   PROJECT_ADMIN_DESC: '可以指定项目内一个成员为管理员',
 
-  PROJECT_INTERNET_ACCESS_DESC:
-    '在创建应用路由之前，需要先启用外网访问入口，即网关。这一步是创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务。',
+  SET_GATEWAY_DESC:
+    '设置网关控制器以根据应用路由中配置的域名和路径将流量转发给不同的服务。',
 
-  DELETE_INTERNET_ACCESS_TITLE: '确定删除外网访问设置?',
-  DELETE_INTERNET_ACCESS_DESC: '删除后可重新绑定',
+  DELETE_INTERNET_ACCESS_TITLE: '删除外网访问设置',
+  DELETE_INTERNET_ACCESS_DESC:
+    '您确定删除外网访问设置吗？删除设置后，您可以重新设置外网访问。',
 
   NO_RELATE_PROJECTS_TITLE: '没有找到与您相关联的项目',
   NO_RELATE_PROJECTS_DESC:
@@ -180,12 +199,13 @@ module.exports = {
     '最低保证可以使用的内存不应大于限制使用的内存',
 
   'Empty value means no limit, CPU 1 Core = 1000m':
-    '值为空表示无限制, CPU 1核 = 1000m',
+    '值为空表示不限制, CPU 1核 = 1000m',
 
-  'The project name exists on the host cluster.': '项目名在 Host 集群上已存在',
+  PROJECT_NAME_EXISTS_IN_HOST:
+    '项目名称在主集群中已经存在，请输入其他项目名称。',
 
   MULTI_CLUSTER_PROJECT_DELETE_TIP:
-    '删除多集群项目同时也会删除依赖于 Host 集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+    '删除多集群项目同时也会删除依赖于主集群上的同名项目,</br>请输入{type}名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
 
   DEFAULT_RESOURCE_UNIT_DESC: 'CPU无单位时为核数, 1核 = 1000m',
   DEFAULT_RESOURCE_ALERT:
@@ -193,60 +213,110 @@ module.exports = {
 
   QUOTA_EDIT_TIP: '值为空时将不限制配额',
 
-  PROJECT_BASIC_INFO_DESC: '项目的基本信息涵盖了项目名称及项目的配额状态',
-  PROJECT_QUOTA_MANAGE_DESC: '管理项目的配额',
+  PROJECT_BASIC_INFO_DESC:
+    '基本信息提供项目的信息概览，您可以查看项目的信息以及默认容器配额。',
   PROJECT_ADVANCED_SETTINGS_DESC:
-    '对项目中的外网访问网关以及服务治理和落盘日志收集等配置进行设置',
+    '高级设置用于配置项目的外网访问、应用治理以及日志收集功能。',
   PROJECT_MEMBERS_DESC: '对项目内的成员进行管理及角色分配',
-  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限',
+  PROJECT_ROLE_DESC: '项目角色定义了在当前项目下用户所拥有的权限。',
+  SERVICE_ACCOUNT_PROJECT_ROLE_DESC: '选择服务帐户在当前项目中的角色。',
+  PROJECT_ROLE_EMPTY_DESC: '请创建一个项目角色。',
   COLLECTING_FILE_LOG_DESC:
     '对容器内的落盘日志进行收集，并转发到标准输出，然后由日志收集系统统一采集。',
 
-  HOW_TO_USE_QUOTA_Q: '如何使用配额?',
+  HOW_TO_USE_QUOTA_Q: '如何使用资源配额?',
   HOW_TO_USE_QUOTA_A:
-    '资源配额 (ResourceQuota) 是用来限制用户资源用量的一种机制，可以对 CPU、内存、容器组数量等进行配额限制。',
+    '资源配额是用来限制资源用量的一种机制，您可以通过<b>编辑项目</b>来编辑项目资源配额和默认容器配额。',
+  PROJECT_QUOTAS_DESC:
+    '项目配额用于指定项目中可用的 CPU 和内存资源数量和容器组、部署、服务等应用资源的最大数量。',
+  DEFAULT_CONTAINER_QUOTAS_DESC:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
 
-  WHAT_IS_LIMIT_RANGE_Q: '什么是容器资源默认请求?',
-  WHAT_IS_LIMIT_RANGE_A:
-    '容器资源默认请求 (LimitRange) 基于项目的资源管理，包括容器组和容器的保留资源、最大限额等。',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: '什么是默认容器配额?',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    '默认容器配额用于指定项目中创建的容器的默认 CPU 预留、CPU 限制、内存预留和内存限制。',
 
   WHAT_IS_INTERNET_GATEWAY: '什么是外网访问网关?',
-  WHAT_IS_COLLECT_FILE_LOG_A:
-    '容器所挂载的存储卷中的日志路径以 glob 方式给出，可在工作负载中配置日志路径以收集这些日志。需要管理员预先开启落盘日志收集。',
+  COLLECT_LOGS_ON_VOLUMES_A:
+    '如需收集存储卷上的日志，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
 
-  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员？',
+  HOW_TO_INVITE_MEMBER_Q: '如何邀请成员到项目？',
   HOW_TO_INVITE_MEMBER_A:
-    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目',
+    '项目管理员或者拥有成员邀请权限的用户可以邀请当前企业空间内的成员加入项目。',
 
-  'How do I invite other members to the current project?':
-    '邀请其他成员到当前项目中?',
-  'How do I set the project gateway?': '如何设置项目网关？',
-  'You can limit the number of resources. Blank means no limit.':
-    '您可以对资源的数量进行限制, 不填即不限制',
+  HOW_TO_INVITE_USERS: '如何邀请用户到当前项目中？',
+  HOW_TO_SET_PROJECT_GATEWAY: '如何设置项目网关？',
+  RESOURCE_QUANTITY_LIMIT: '资源数量限制',
 
   PROJECT_TYPES_Q: '项目中的服务如何通过外网访问？',
   PROJECT_TYPES_A:
     '项目网关负责创建对应的应用路由控制器，用来负责将请求转发到对应的后端服务；开启项目网关后可以将服务通过 Ingress 暴露给外网访问。',
 
   PROJECT_CLUSTER_SETTINGS_DESC:
-    '选择要创建项目的集群. 当选择了多个集群时, 将创建多集群项目, 并会在 Host 集群上创建同名项目',
+    '为项目选择至少一个集群。如果选择多个集群，主集群上将创建同名项目。',
   NETWORK_ISOLATED_DESC: '设置网络隔离策略',
 
-  NAME_EXIST_IN_CLUSTER: '项目名在集群 {cluster} 中已存在',
+  PROJECT_NAME_EXISTS_IN_CLUSTER:
+    '项目名称在在 {cluster} 集群中已存在，请输入其他项目名称。',
 
   MULTI_CLUSER_PROJECT_TIP:
-    '当前项目为多集群项目，项目将分布在不同集群中共同来构成多集群项目，您可以切换到不同集群查看项目在该集群中的设置。',
+    '当前项目跨多个集群部署。您可以点击一个集群以查看项目在该集群中的设置。',
 
-  MULTI_CLUSER_RESOURCE_TIP:
-    '当前资源为多集群资源，资源将分布在不同集群中共同来构成多集群资源，您可以切换到不同集群查看资源在该集群中的设置。',
+  MULTI_CLUSTER_RESOURCE_TIP:
+    '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
 
   FEDPROJECT_RESOURCE_TIP:
     '无法在集群管理内创建多集群项目的资源, 请到多集群项目页面内进行操作。',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目里部署应用。',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中部署应用。',
 
-  FED_HOST_NAMESPACE_TIP:
-    '该项目为多集群项目的相关资源, 请勿在此项目下操作资源',
+  FED_HOST_NAMESPACE_TIP: '该项目与多集群项目关联, 请勿修改此项目中的资源。',
 
-  MULTI_CLUSTER_PROJECT_CREATE_DESC:
+  CREATE_MULTI_CLUSTER_PROJECT_DESC:
     '您可以创建多集群项目，让项目运行在多个集群中，为应用提供快速迭代开发的容器环境并实现高可用。',
+
+  // Jobs
+  running: '运行中',
+
+  // Custom Monotoring
+  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板',
+
+  // Basic Information
+  PROJECT_NAME_SCAP: '项目名称',
+  PROJECT_ROLE_LOW: '项目角色',
+  PROJECT_ROLE_LOW_PL: '项目角色',
+  PROJECT_MEMBER_LOW: '项目成员',
+  PROJECT_MEMBER_LOW_PL: '项目成员',
+  CPU_REQUEST_LOW: 'CPU 预留',
+  CPU_LIMIT_LOW: 'CPU 限制',
+  MEMORY_REQUEST_LOW: '内存预留',
+  MEMORY_LIMIT_LOW: '内存限制',
+  CPU_REQUEST_CORE: '{value} 核',
+  CPU_LIMIT_CORE: '{value} 核',
+  MEMORY_REQUEST_MIB: '{value} Mi',
+  MEMORY_LIMIT_MIB: '{value} Mi',
+  WS_RESOURCE_REQUESTS: '资源预留：',
+  WS_RESOURCE_LIMITS: '资源限制：',
+  SELECT_RESOURCE_TIP: '请选择资源或输入资源名称',
+  NUMBER_OF_ROUTES: '应用路由数量',
+  NUMBER_OF_SECRETS: '保密字典数量',
+  NUMBER_OF_CONFIGMAPS: '配置字典数量',
+
+  // Project Members
+  PROJECT_MEMBER: '项目成员',
+  PROJECT_MEMBER_DESC:
+    '项目成员可以查看或管理项目资源。项目管理员可以邀请企业空间成员至该项目并对项目成员进行管理。',
+
+  // Advanced Settings
+  REMOVE: '删除',
+  DISABLED: '未开启',
+  ENABLE: '开启',
+  DISABLE: '关闭',
+  SET_GATEWAY_TIP: '要使用网关，请在集群或项目中配置网关',
+
+  // Network Isolation
+  INGRESS: '入站',
+  INTERNAL_TRAFFIC_DIRECTION_DESC:
+    '出站表示从当前项目到其他项目的方向。入站表示从其他项目到当前项目的方向。',
+  NETWORK_SEGMENT_EXAMPLE: '例如：10.0.0.0',
+  PORT_EXAMPLE: '例如：80',
 }

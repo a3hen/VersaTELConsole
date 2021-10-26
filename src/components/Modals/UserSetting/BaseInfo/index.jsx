@@ -66,7 +66,7 @@ export default class BaseInfo extends React.Component {
     const { formRef } = this.props
     return (
       <div className={styles.wrapper}>
-        <div className="h4">{t('Basic Info')}</div>
+        <div className="h4">{t('BASIC_INFORMATION')}</div>
         <Form
           ref={formRef}
           data={this.state.formData}
@@ -74,10 +74,10 @@ export default class BaseInfo extends React.Component {
         >
           <Columns>
             <Column>
-              <Form.Item label={t('User Name')}>
+              <Form.Item label={t('USERNAME')}>
                 <Input name="metadata.name" placeholder="username" disabled />
               </Form.Item>
-              <Form.Item label={t('Email')} desc={t('USER_SETTING_EMAIL_DESC')}>
+              <Form.Item label={t('EMAIL')} desc={t('USER_SETTING_EMAIL_DESC')}>
                 <Input name="spec.email" placeholder="User@example.com" />
               </Form.Item>
               {globals.config.supportLangs && (

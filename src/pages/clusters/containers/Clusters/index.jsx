@@ -127,7 +127,7 @@ class Clusters extends React.Component {
           actions={
             this.enabledActions.includes('create') ? (
               <Button type="control" onClick={this.showAddCluster}>
-                {t('Add Cluster')}
+                {t('ADD_CLUSTER')}
               </Button>
             ) : null
           }
@@ -152,7 +152,7 @@ class Clusters extends React.Component {
           </div>
           <div className={styles.noData}>
             <img src="/assets/empty-card.svg" alt="" />
-            <p>{t('RESOURCE_NOT_FOUND')}</p>
+            <p>{t('NO_RESOURCE_FOUND')}</p>
           </div>
         </>
       )
@@ -207,7 +207,7 @@ class Clusters extends React.Component {
         <InputSearch
           className={styles.search}
           onSearch={this.handleSearch}
-          placeholder={t('Search by name')}
+          placeholder={t('SEARCH_BY_NAME')}
         />
         <Button
           type="flat"
@@ -221,7 +221,7 @@ class Clusters extends React.Component {
             onClick={this.showAddCluster}
             data-test="cluster-create"
           >
-            {t('Add Cluster')}
+            {t('ADD_CLUSTER')}
           </Button>
         )}
       </div>

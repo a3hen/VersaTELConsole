@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isUndefined } from 'lodash'
+import { isUndefined, isEmpty } from 'lodash'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { toJS } from 'mobx'
@@ -74,7 +74,12 @@ export default class YamlEditModal extends React.Component {
 
     if (detail && detail.name) {
       store.fetchDetail(detail).then(data => {
-        this.setState({ value: data._originData })
+        const scheduleTemplate = store.deployedScheduleTemplate
+        if (!isEmpty(scheduleTemplate)) {
+          this.setState({ value: [data._originData, scheduleTemplate] })
+        } else {
+          this.setState({ value: data._originData })
+        }
       })
     }
   }
@@ -99,7 +104,7 @@ export default class YamlEditModal extends React.Component {
 
   render() {
     const { readOnly, visible, onCancel, isSubmitting } = this.props
-    const title = readOnly ? t('View YAML') : t('Edit YAML')
+    const title = readOnly ? t('VIEW_YAML') : t('EDIT_YAML')
     const icon = readOnly ? 'eye' : 'pen'
 
     return (
@@ -111,7 +116,7 @@ export default class YamlEditModal extends React.Component {
         })}
         onOk={this.handleOk}
         onCancel={onCancel}
-        okText={t('Update')}
+        okText={t('OK')}
         visible={visible}
         closable={readOnly}
         hideFooter={readOnly}

@@ -41,9 +41,9 @@ export default class BaseInfo extends React.Component {
         <div className={styles.content}>
           <Text
             title={<Link to={`/workspaces/${workspace}`}>{workspace}</Link>}
-            description={t('Workspace')}
+            description={t('WORKSPACE')}
           />
-          <Text title={detail.creator || '-'} description={t('Creator')} />
+          <Text title={detail.creator || '-'} description={t('CREATOR')} />
         </div>
         <img className={styles.background} src="/assets/project-overview.svg" />
       </div>

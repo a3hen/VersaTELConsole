@@ -78,8 +78,8 @@ export default class AddByYamlModal extends React.Component {
     return (
       <Modal
         icon="firewall"
-        title={t('Create Network Policy')}
-        description={t('NETWORK_POLICY_CREATE_DESC')}
+        title={t('CREATE_NETWORK_POLICY_TCAP')}
+        description={t('CREATE_NETWORK_POLICY_DESC')}
         onOk={this.handleOk}
         onCancel={onCancel}
         okText={t('OK')}

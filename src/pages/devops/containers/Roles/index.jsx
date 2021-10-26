@@ -31,7 +31,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore(),
   module: 'roles',
-  name: 'DevOps Role',
+  name: 'DEVOPS_PROJECT_ROLE',
   injectStores: ['rootStore', 'devopsStore'],
 })
 export default class Secrets extends React.Component {
@@ -67,7 +67,7 @@ export default class Secrets extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -79,7 +79,7 @@ export default class Secrets extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -93,16 +93,15 @@ export default class Secrets extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             namespace: this.devops,
             cluster: this.cluster,
-            workspace: this.props.match.params.workspace,
             success: routing.query,
           }),
       },
@@ -130,7 +129,7 @@ export default class Secrets extends React.Component {
     const { getSortOrder, module } = this.props
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         sorter: true,
         sortOrder: getSortOrder('name'),
@@ -143,14 +142,14 @@ export default class Secrets extends React.Component {
         ),
       },
       {
-        title: t('Description'),
+        title: t('DESCRIPTION'),
         key: 'description',
         dataIndex: 'description',
         isHideable: true,
         width: '40%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),
@@ -172,7 +171,7 @@ export default class Secrets extends React.Component {
     })
 
   get emptyProps() {
-    return { desc: t('DEVOPS_PROJECT_ROLES_DESC') }
+    return { desc: t('DEVOPS_PROJECT_ROLE_EMPTY_DESC') }
   }
 
   render() {

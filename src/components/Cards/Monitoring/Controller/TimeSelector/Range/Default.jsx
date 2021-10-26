@@ -87,7 +87,7 @@ export default class DefaultRange extends React.Component {
 
     return (
       <div className={styles.default}>
-        <div className={styles.title}>{t('Select Time Range')}</div>
+        <div className={styles.title}>{t('SELECT_TIME_RANGE')}</div>
         <ul onClick={this.handleClick}>
           {options.map(({ label, value }) => (
             <li
@@ -97,7 +97,7 @@ export default class DefaultRange extends React.Component {
                 [styles.cur]: value === lastTimeStr,
               })}
             >
-              {`${t('Last')} ${label}`}
+              {t('LAST_TIME', { value: label })}
             </li>
           ))}
         </ul>

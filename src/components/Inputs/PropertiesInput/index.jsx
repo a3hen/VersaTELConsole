@@ -147,12 +147,12 @@ export default class PropertiesInput extends React.Component {
     // some key is empty, throw error
     const hasEmptyKey = Object.keys(value).some(key => isEmpty(key))
     if (hasEmptyKey) {
-      this.props.onError({ message: t('Empty keys') })
+      this.props.onError({ message: t('EMPTY_KEY') })
     }
 
     // has duplicate keys, throw error
     if (existedKey) {
-      this.props.onError({ message: t('Duplicate keys') })
+      this.props.onError({ message: t('DUPLICATE_KEYS') })
     } else {
       this.props.onError()
     }

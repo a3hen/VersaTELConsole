@@ -17,101 +17,114 @@
  */
 
 import React from 'react'
-import { cloneDeep, get, unset } from 'lodash'
+import {
+  forOwn,
+  get,
+  isEmpty,
+  set,
+  omit,
+  isUndefined,
+  merge,
+  pick,
+} from 'lodash'
+import { Form } from '@kube-design/components'
 
-import { Button, Form } from '@kube-design/components'
+import { ArrayInput } from 'components/Inputs'
+
 import { QUOTAS_MAP } from 'utils/constants'
-
+import { resourceLimitKey } from 'utils'
 import QuotaItem from './Item'
 
-import { RESERVED_MODULES, QUOTAS_KEY_MODULE_MAP } from './constants'
+import { QUOTAS_KEY_MODULE_MAP } from './constants'
 
 import styles from './index.scss'
 
+const omitKey = [
+  'limits.cpu',
+  'limits.memory',
+  'requests.cpu',
+  'requests.memory',
+  'limits.nvidia.com/gpu',
+  'requests.nvidia.com/gpu',
+]
 export default class Quotas extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      items: [{ module: 'pods' }, ...this.getItems(props)],
+      items: [...this.getItems(props)],
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data) {
       this.setState({
-        items: [{ module: 'pods' }, ...this.getItems(this.props)],
+        items: [...this.getItems(this.props)],
       })
     }
   }
 
   getItems(props) {
-    return Object.keys(get(props.data, 'spec.hard', {}))
-      .map(key => ({ module: QUOTAS_KEY_MODULE_MAP[key] }))
-      .filter(
-        ({ module }) => !RESERVED_MODULES.includes(module) && module !== 'pods'
-      )
+    const hardValues = omit(get(props.data, 'spec.hard', {}), omitKey)
+    const items = []
+
+    forOwn(hardValues, (value, key) => {
+      const item = {
+        module: QUOTAS_KEY_MODULE_MAP[key] || key,
+        value,
+      }
+      items.push(item)
+    })
+
+    const isPorts = items.findIndex(({ module }) => module === 'pods')
+
+    if (isPorts > 0) {
+      const temp = items[0]
+      items[0] = items[isPorts]
+      items[isPorts] = temp
+    }
+
+    if (isPorts < 0) {
+      items.unshift({ module: 'pods', value: '' })
+    }
+
+    return items
   }
 
-  handleAddQuotaItem = () => {
-    this.setState(({ items }) => ({
-      items: [...items, { module: '' }],
-    }))
-  }
-
-  handleItemModuleChange = (newModule, index) => {
-    const _item = cloneDeep(this.state.items)
-    const oldModule = _item[index]
-    const oldModuleLabel = get(QUOTAS_MAP, `[${oldModule}].name`, oldModule)
-    _item[index].module = newModule
-
-    this.setState({ items: _item }, () => {
-      unset(this.props.data, `spec.hard[${oldModuleLabel}]`)
+  handleAddQuotaItem = items => {
+    this.setState({ items }, () => {
+      const specHard = get(this.props.data, 'spec.hard')
+      const limits = pick(specHard, [...resourceLimitKey])
+      const template = {}
+      items.forEach(({ module, value }) => {
+        if (!isUndefined(module)) {
+          const keyModule = get(QUOTAS_MAP, `${module}.name`, module)
+          template[`${keyModule}`] = value
+        }
+      })
+      set(this.props.data, 'spec.hard', merge(template, limits))
     })
   }
 
-  handleItemModuleDelete = index => {
-    const { items } = this.state
-    let _items = cloneDeep(items)
-    const module = _items[index].module
-    _items = _items.filter(item => item.module !== module)
-    const oldModuleLabel = get(QUOTAS_MAP, `[${module}].name`, module)
-
-    this.setState({ items: _items }, () => {
-      unset(this.props.data, `spec.hard[${oldModuleLabel}]`)
-    })
+  checkItemValid = value => {
+    return !isEmpty(value) && value.module
   }
 
   render() {
     const { items } = this.state
-    const filterModules = items.map(_item => _item.module)
-    const disableAdd = items.some(item => item.module === '')
-
     return (
       <div className={styles.wrapper}>
-        {items.map((item, index) => {
-          const name = get(QUOTAS_MAP, `[${item.module}].name`, item.module)
-
-          return (
-            <Form.Item key={`${index}-${name}`}>
-              <QuotaItem
-                name={`spec.hard[${name}]`}
-                module={item.module}
-                index={index}
-                onModuleChange={this.handleItemModuleChange}
-                onModuleDelete={this.handleItemModuleDelete}
-                filterModules={filterModules}
-                disableSelect={item.module === 'pods'}
-                isFederated={this.props.isFederated}
-              />
-            </Form.Item>
-          )
-        })}
-        <div className={styles.add}>
-          <Button onClick={this.handleAddQuotaItem} disabled={disableAdd}>
-            {t('Add Quota Item')}
-          </Button>
-        </div>
+        <Form.Item>
+          <ArrayInput
+            value={items}
+            itemType="object"
+            addText={t('ADD')}
+            onChange={this.handleAddQuotaItem}
+            checkItemValid={this.checkItemValid}
+          >
+            <QuotaItem isFederated={this.props.isFederated} />
+          </ArrayInput>
+        </Form.Item>
       </div>
     )
   }

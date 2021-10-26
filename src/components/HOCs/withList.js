@@ -37,7 +37,7 @@ export default function withList(options) {
         this.module = options.module || ''
         this.authKey = options.authKey || options.module
         this.name = options.name || ''
-        this.title = `${options.name}s`
+        this.title = `${options.name}_PL`
         this.rowKey = options.rowKey || 'name'
         this.query = {}
       }
@@ -55,7 +55,7 @@ export default function withList(options) {
           {
             key: 'edit',
             icon: 'pen',
-            text: t('Edit'),
+            text: t('EDIT_INFORMATION'),
             action: 'edit',
             onClick: item =>
               this.trigger('resource.baseinfo.edit', {
@@ -66,11 +66,11 @@ export default function withList(options) {
           {
             key: 'delete',
             icon: 'trash',
-            text: t('Delete'),
+            text: t('DELETE'),
             action: 'delete',
             onClick: item =>
               this.trigger('resource.delete', {
-                type: t(this.name),
+                type: this.name,
                 resource: item.name,
                 detail: item,
                 success: this.routing.query,
@@ -96,11 +96,11 @@ export default function withList(options) {
             {
               key: 'delete',
               type: 'danger',
-              text: t('Delete'),
+              text: t('DELETE'),
               action: 'delete',
               onClick: () =>
                 this.trigger('resource.batch.delete', {
-                  type: t(this.name),
+                  type: this.name,
                   rowKey: this.rowKey,
                   success: this.routing.query,
                 }),

@@ -46,6 +46,19 @@ export default class StorageClassSetting extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
+  get volumeBindingMode() {
+    return [
+      {
+        label: t('IMMEDIATE_BINDING'),
+        value: 'Immediate',
+      },
+      {
+        label: t('BINDING_WAIT'),
+        value: 'WaitForFirstConsumer',
+      },
+    ]
+  }
+
   getAccessModesOptions() {
     const provisioner =
       PROVISIONERS.find(({ value }) => value === this.provisionerValue) || {}
@@ -62,8 +75,8 @@ export default class StorageClassSetting extends React.Component {
 
   renderCustom() {
     return (
-      <Form.Item label={t('Parameters')}>
-        <PropertiesInput name="parameters" addText={t('Add Param')} />
+      <Form.Item label={t('PARAMETERS')}>
+        <PropertiesInput name="parameters" addText={t('ADD')} />
       </Form.Item>
     )
   }
@@ -82,6 +95,12 @@ export default class StorageClassSetting extends React.Component {
     for (let i = 0; i < provisioner.params.length; i += 2) {
       const left = provisioner.params[i] || {}
       const right = provisioner.params[i + 1] || {}
+      const leftOptions = left.options
+        ? left.options.map(option => ({
+            label: t(option.label),
+            value: option.value,
+          }))
+        : []
 
       const LeftComponent = Components[left.type]
       const RightComponent = get(Components, right.type || '')
@@ -89,16 +108,30 @@ export default class StorageClassSetting extends React.Component {
       columns.push(
         <Columns key={i}>
           <Column>
-            <Form.Item label={left.key} desc={t(left.desc)}>
+            <Form.Item
+              label={t(left.key.toUpperCase())}
+              desc={t(left.desc.toUpperCase())}
+            >
               <LeftComponent
                 name={`parameters.${left.key}`}
-                {...omit(left, ['type', 'key', 'desc'])}
+                {...omit(left, [
+                  'type',
+                  'key',
+                  'desc',
+                  'placeholder',
+                  'options',
+                ])}
+                options={leftOptions}
+                placeholder={t(left.placeholder)}
               />
             </Form.Item>
           </Column>
           {right.type && (
             <Column>
-              <Form.Item label={right.key} desc={t(right.desc)}>
+              <Form.Item
+                label={t(right.key.toUpperCase())}
+                desc={t(right.desc.toUpperCase())}
+              >
                 <RightComponent
                   name={`parameters.${right.key}`}
                   {...omit(right, ['type', 'key', 'desc'])}
@@ -124,28 +157,25 @@ export default class StorageClassSetting extends React.Component {
         <Form data={this.formTemplate} ref={formRef}>
           <Columns>
             <Column>
-              <Form.Item label={t('Allow Volume Expansion')}>
+              <Form.Item label={t('VOLUME_EXPANSION')}>
                 <Select
                   name="allowVolumeExpansion"
                   options={[
-                    { label: t('Yes'), value: 'true' },
-                    { label: t('No'), value: 'false' },
+                    { label: t('YES'), value: 'true' },
+                    { label: t('NO'), value: 'false' },
                   ]}
                 />
               </Form.Item>
             </Column>
             <Column>
-              <Form.Item label={t('Reclaim Policy')}>
+              <Form.Item label={t('RECLAIM_POLICY')}>
                 <Input name="reclaimPolicy" disabled />
               </Form.Item>
             </Column>
           </Columns>
           <Columns>
             <Column>
-              <Form.Item
-                label={t('Supported Access Mode')}
-                desc={t('ACCESS_MODES_DESC')}
-              >
+              <Form.Item label={t('ACCESS_MODE')} desc={t('ACCESS_MODES_DESC')}>
                 <Select
                   name="metadata.annotations['storageclass.kubesphere.io/supported-access-modes']"
                   options={accessModesOptions}
@@ -156,12 +186,28 @@ export default class StorageClassSetting extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                rules={[{ required: true, message: t('required') }]}
-                label={t('Storage System')}
+                rules={[
+                  {
+                    required: true,
+                    message: t('PARAMETER_REQUIRED'),
+                  },
+                ]}
+                label={t('STORAGE_SYSTEM')}
               >
                 <Input name={'provisioner'} />
               </Form.Item>
             </Column>
+          </Columns>
+          <Columns>
+            <Column>
+              <Form.Item label={t('VOLUME_BINDING_MODE')}>
+                <Select
+                  name="metadata.VolumeBindingMode"
+                  options={this.volumeBindingMode}
+                ></Select>
+              </Form.Item>
+            </Column>
+            <Column></Column>
           </Columns>
           {this.renderParams()}
         </Form>

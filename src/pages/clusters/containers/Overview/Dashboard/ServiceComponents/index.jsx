@@ -49,12 +49,12 @@ export default class ServiceComponents extends Component {
       },
       {
         type: 'monitoring',
-        title: 'Monitoring',
+        title: t('MONITORING'),
         disabled: !globals.app.hasClusterModule(cluster, 'monitoring'),
       },
       {
         type: 'logging',
-        title: 'Logging',
+        title: t('LOGGING'),
         disabled: !globals.app.hasClusterModule(cluster, 'logging'),
       },
       {
@@ -73,7 +73,7 @@ export default class ServiceComponents extends Component {
   render() {
     const { cluster } = this.props
     return (
-      <Panel title={t('Service Components')}>
+      <Panel title={t('SYSTEM_COMPONENT_PL')}>
         <div className={styles.icons}>
           {this.configs
             .filter(item => !item.disabled)

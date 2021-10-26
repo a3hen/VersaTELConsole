@@ -17,36 +17,43 @@
  */
 
 module.exports = {
+  ALL: 'All',
   'Pod IP Pool': '容器組 IP 地址範圍',
   'Pod IP Pools': '容器組 IP 地址範圍',
 
   'Create Pod IP Pool': '創建容器組 IP 地址範圍',
 
-  'IP/Mask Bit': 'IP / 遮罩位元',
+  IP_MASK_BIT_TCAP: 'IP / 遮罩位元',
+  USED_IP_TCAP: '已用 IP',
+  NETWORK_SEGMENT: 'IP / 遮罩位元',
   'Used IP': '已用 IP',
 
   Mask: '遮罩',
-  'Mask Bit': '遮罩位元',
-  Network: '網路',
+  MASK_BIT_TCAP: '遮罩位元',
+  NETWORK: '網路',
+  NETWORK_RESOURCE_PL: 'Network Resources',
 
-  'First Available': '第一個可用',
-  'Last Available': '最後可用',
-  'Available Number': '可用數量',
+  STARTING_IP_ADDRESS: '起始 IP 地址',
+  ENDING_IP_ADDRESS: '結束 IP 地址',
+  AVAILABLE_ADDRESSES: '可用數量',
 
-  'Pod IP Range': '容器組 IP 地址範圍',
+  POD_IP_POOL: '容器組 IP 地址範圍',
+  POD_IP_POOL_PL: '容器組 IP 池',
+  POD_IP_POOL_LOW: '容器組 IP 池',
+  POD_IP_POOL_EMPTY_DESC: '請創建一個容器組 IP 池。',
 
-  'Number of Creation': '創建數量',
+  NUMBER_OF_CREATION_TCAP: '創建數量',
   'Pod IP Pools to be created': '即將創建的容器組 IP 地址範圍',
   'Set to be globally available': '設為全局可用',
 
-  'Please input the IP address': '請輸入 IP 地址',
-  'Please input the mask bit': '請輸入遮罩位元',
+  'Please input the IP address': '請輸入 IP 地址。',
+  MASK_BIT_TIP: '請輸入遮罩位元。',
   'Please input the IP/mask bit': '請輸入 IP 地址 / 遮罩位元',
 
-  'Please input the number of Pod IP Pools to be created':
-    '請輸入需要創建的容器組 IP 地址範圍數量',
+  IP_POOL_NUM_TIP: '請輸入需要創建的容器組 IP 地址範圍數量。',
 
-  POD_IP_POOL_DESC: '集群内容器組 IP 地址範圍',
+  POD_IP_POOL_DESC:
+    '容器組 IP 池用於規劃集群內 Pod 的網絡地址空間，您可以按需創建容器組 IP 池。',
   IP_POOL_CREATE_COUNT_DESC:
     '可以同時創建多個容器組 IP 地址範圍，數量範圍為 1～10',
   IPPOOL_USAGE_Q: '如何利用 IP 地址範圍規劃容器組網路？',

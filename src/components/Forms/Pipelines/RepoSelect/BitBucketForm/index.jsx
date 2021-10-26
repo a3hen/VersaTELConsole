@@ -132,18 +132,19 @@ export default class BitBucketForm extends GitHubForm {
           <Form.Item
             label="Bitbucket Server"
             error={errorsBody['apiUrl']}
-            rules={[{ required: true, message: t('This param is required') }]}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
           >
             <Select
               name="apiUrl"
               options={this.state.bitbucketList}
+              placeholder=" "
               searchable
             />
           </Form.Item>
 
           <Form.Item
-            label={t('Credential')}
-            rules={[{ required: true, message: t('This param is required') }]}
+            label={t('CREDENTIAL_SI')}
+            rules={[{ required: true, message: t('PARAM_REQUIRED') }]}
             error={errorsBody['username'] || errorsBody['password']}
             desc={
               <p>
@@ -152,7 +153,7 @@ export default class BitBucketForm extends GitHubForm {
                   className={styles.clickable}
                   onClick={this.props.showCredential}
                 >
-                  {t('Create a credential')}
+                  {t('CREATE_A_CREDENTIAL')}
                 </span>
               </p>
             }
@@ -165,6 +166,7 @@ export default class BitBucketForm extends GitHubForm {
               onFetch={this.getCredentialsListData}
               optionRenderer={this.optionRender}
               valueRenderer={this.optionRender}
+              placeholder=" "
               searchable
               clearable
             />
@@ -178,7 +180,7 @@ export default class BitBucketForm extends GitHubForm {
             onClick={this.handlePasswordConfirm}
             loading={this.state.isLoading}
           >
-            {t('Confirm')}
+            {t('OK')}
           </Button>
         </Form>
       </div>

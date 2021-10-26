@@ -76,7 +76,7 @@ class JobRecords extends React.Component {
 
   getColumns = () => [
     {
-      title: t('Job'),
+      title: t('JOB'),
       dataIndex: 'name',
       width: '19%',
       render: name => (
@@ -86,7 +86,7 @@ class JobRecords extends React.Component {
       ),
     },
     {
-      title: t('Status'),
+      title: t('STATUS'),
       dataIndex: 'status',
       width: '19%',
       render: (status, record) => {
@@ -95,12 +95,12 @@ class JobRecords extends React.Component {
       },
     },
     {
-      title: t('Start Time'),
+      title: t('START_TIME'),
       dataIndex: 'status.startTime',
       render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
     },
     {
-      title: t('End Time'),
+      title: t('END_TIME'),
       dataIndex: 'status.completionTime',
       render: (time, record) => {
         const failedTime = get(record, 'status.conditions[0].lastProbeTime')
@@ -141,7 +141,7 @@ class JobRecords extends React.Component {
 
   render() {
     return (
-      <Card className={styles.main} title={t('Job Records')}>
+      <Card className={styles.main} title={t('JOB_RECORDS')}>
         <div className={styles.content}>{this.renderTable()}</div>
       </Card>
     )

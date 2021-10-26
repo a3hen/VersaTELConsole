@@ -100,7 +100,6 @@ export default class CredentialDetail extends React.Component {
     const { params } = this.props.match
     this.store.setParams(params)
     this.store.fetchDetail()
-    this.store.getUsageDetail()
   }
 
   getOperations = () => [
@@ -125,11 +124,11 @@ export default class CredentialDetail extends React.Component {
     {
       key: 'delete',
       type: 'danger',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () => {
         this.trigger('resource.delete', {
-          type: t('Credential'),
+          type: 'CREDENTIAL',
           detail: this.store.detail,
           success: () => {
             const { devops, workspace, cluster } = this.props.match.params
@@ -154,7 +153,7 @@ export default class CredentialDetail extends React.Component {
   }
 
   getAttrs = () => {
-    const { detail, usage } = this.store
+    const { detail } = this.store
     const status = get(
       detail,
       'annotations["credential.devops.kubesphere.io/syncstatus"]'
@@ -162,16 +161,12 @@ export default class CredentialDetail extends React.Component {
 
     return [
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: t(detail.type),
       },
       {
-        name: t('Description'),
+        name: t('DESCRIPTION'),
         value: detail.description,
-      },
-      {
-        name: t('Domain'),
-        value: usage.domain,
       },
       {
         name: t('Sync Status'),
@@ -193,7 +188,7 @@ export default class CredentialDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('Credentials'),
+          label: t('CREDENTIAL_PL'),
           url: this.listUrl,
         },
       ],

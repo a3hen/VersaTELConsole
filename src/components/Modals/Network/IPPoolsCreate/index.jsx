@@ -73,21 +73,21 @@ export default class CreateIPPoolModal extends Component {
   validator = (rule, value, callback) => {
     if (!value) {
       return callback({
-        message: t('Please input the IP/mask bit'),
+        message: t('ENTER_NETWORK_SEGMENT_TIP'),
         field: rule.field,
       })
     }
 
     if (!value.cidr) {
       return callback({
-        message: t('Please input the IP/mask bit'),
+        message: t('ENTER_NETWORK_SEGMENT_TIP'),
         field: rule.field,
       })
     }
 
     if (!value.name) {
       return callback({
-        message: t('Please input name'),
+        message: t('NAME_EMPTY_DESC'),
         field: rule.field,
       })
     }
@@ -100,26 +100,26 @@ export default class CreateIPPoolModal extends Component {
     const { ...rest } = this.props
     return (
       <Modal.Form
-        title={t('Create Pod IP Pool')}
+        title={t('CREATE_POD_IP_POOL')}
         width={960}
         data={formData}
         {...rest}
       >
         <Form.Item
-          label={t('IP Address')}
+          label={t('IP_ADDRESS')}
           rules={[
-            { required: true, message: t('Please input the IP address') },
+            { required: true, message: t('IP_ADDRESS_EMPTY_DESC') },
             {
               pattern: PATTERN_IP,
-              message: t('Invalid IP address'),
+              message: t('INVALID_IP_DESC'),
             },
           ]}
         >
           <Input name="ip" onChange={this.handleIPChange} />
         </Form.Item>
         <Form.Item
-          label={t('Mask Bit')}
-          rules={[{ required: true, message: t('Please input the mask bit') }]}
+          label={t('MASK')}
+          rules={[{ required: true, message: t('MASK_TIP') }]}
         >
           <NumberInput
             name="mask"
@@ -131,14 +131,12 @@ export default class CreateIPPoolModal extends Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('Number of Creation')}
+          label={t('NUMBER_OF_CREATION_TCAP')}
           desc={t('IP_POOL_CREATE_COUNT_DESC')}
           rules={[
             {
               required: true,
-              message: t(
-                'Please input the number of Pod IP Pools to be created'
-              ),
+              message: t('IP_POOL_NUM_TIP'),
             },
           ]}
         >
@@ -153,18 +151,18 @@ export default class CreateIPPoolModal extends Component {
         </Form.Item>
         {cidrs.map((value, index) => (
           <Form.Item
-            label={index === 0 ? t('Pod IP Pools to be created') : ''}
+            label={index === 0 ? t('IP_POOL_CREATE_DESC') : ''}
             key={index}
             rules={[{ validator: this.validator }]}
           >
             <ObjectInput className={styles.item} name={`cidrs[${index}]`}>
-              <Input name="cidr" placeholder={t('IP/Mask Bit')} />
+              <Input name="cidr" placeholder={t('NETWORK_SEGMENT')} />
               <Input
                 name="name"
                 defaultValue={`ippool-${this.random}-${index}`}
-                placeholder={t('Name')}
+                placeholder={t('NAME')}
               />
-              <Input name="desc" placeholder={t('Description')} />
+              <Input name="desc" placeholder={t('DESCRIPTION')} />
             </ObjectInput>
           </Form.Item>
         ))}

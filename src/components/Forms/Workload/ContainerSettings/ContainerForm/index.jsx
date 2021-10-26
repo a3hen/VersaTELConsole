@@ -97,7 +97,7 @@ export default class ContaineForm extends React.Component {
   get title() {
     const { type, titlePrefix } = this.props
 
-    const title = t(`${type} Container`)
+    const title = t(`${type.toUpperCase()}_CONTAINER`)
 
     return `${titlePrefix}${title}`
   }
@@ -163,12 +163,14 @@ export default class ContaineForm extends React.Component {
   render() {
     const {
       className,
-      configMaps,
-      secrets,
+      isFederated,
+      cluster,
       limitRange,
       imageRegistries,
       namespace,
       withService,
+      supportGpuSelect,
+      projectDetail,
     } = this.props
     const { containerType, formData } = this.state
 
@@ -188,12 +190,19 @@ export default class ContaineForm extends React.Component {
             imageRegistries={imageRegistries}
             defaultContainerType={containerType}
             onContainerTypeChange={this.handleContainerTypeChange}
+            workspaceQuota={this.props.workspaceQuota}
+            supportGpuSelect={supportGpuSelect}
           />
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />
           {containerType !== 'init' && <HealthChecker />}
           <Commands />
-          <Environments configMaps={configMaps} secrets={secrets} />
+          <Environments
+            namespace={namespace}
+            isFederated={isFederated}
+            cluster={cluster}
+            projectDetail={projectDetail}
+          />
           <SecurityContext />
           <SyncTimeZone data={formData} />
         </Form>

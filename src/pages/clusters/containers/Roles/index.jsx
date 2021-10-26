@@ -32,7 +32,7 @@ import RoleStore from 'stores/role'
 @withList({
   store: new RoleStore('clusterroles'),
   module: 'clusterroles',
-  name: 'Cluster Role',
+  name: 'CLUSTER_ROLE',
 })
 export default class ClusterRoles extends React.Component {
   componentDidMount() {
@@ -48,7 +48,7 @@ export default class ClusterRoles extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('Edit'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -60,7 +60,7 @@ export default class ClusterRoles extends React.Component {
       {
         key: 'editRole',
         icon: 'pen',
-        text: t('Edit Authorization'),
+        text: t('EDIT_PERMISSIONS'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -74,13 +74,13 @@ export default class ClusterRoles extends React.Component {
       {
         key: 'delete',
         icon: 'trash',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         show: this.showAction,
         onClick: item =>
           trigger('role.delete', {
             detail: item,
-            type: t(name),
+            type: name,
             success: routing.query,
             cluster: this.props.match.params.cluster,
           }),
@@ -102,7 +102,7 @@ export default class ClusterRoles extends React.Component {
     const { cluster } = this.props.match.params
     return [
       {
-        title: t('Name'),
+        title: t('NAME'),
         dataIndex: 'name',
         width: '25%',
         render: name => (
@@ -114,14 +114,14 @@ export default class ClusterRoles extends React.Component {
         ),
       },
       {
-        title: t('Description'),
+        title: t('DESCRIPTION'),
         key: 'description',
         dataIndex: 'description',
         isHideable: true,
         width: '55%',
       },
       {
-        title: t('Created Time'),
+        title: t('CREATION_TIME_TCAP'),
         dataIndex: 'createTime',
         sorter: true,
         sortOrder: getSortOrder('createTime'),

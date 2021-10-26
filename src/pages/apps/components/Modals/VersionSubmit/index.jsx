@@ -150,12 +150,12 @@ export default class CreateModal extends React.Component {
       <div className={styles.footer}>
         {currentStep ? (
           <Button type="default" onClick={this.handlePrev}>
-            {t('Previous')}
+            {t('PREVIOUS')}
           </Button>
         ) : null}
         {showNext && (
           <Button type="control" onClick={this.handleNext}>
-            {t('Next')}
+            {t('NEXT')}
           </Button>
         )}
         {showModify && (
@@ -178,7 +178,7 @@ export default class CreateModal extends React.Component {
     return (
       <Modal
         width={960}
-        title={t('Submit for Review')}
+        title={t('SUBMIT_FOR_REVIEW')}
         description={t('SUBMIT_REVIEW_DESC')}
         icon={'templet'}
         bodyClassName={styles.body}

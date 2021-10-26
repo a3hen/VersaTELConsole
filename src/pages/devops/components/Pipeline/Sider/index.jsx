@@ -175,7 +175,7 @@ export default class Sider extends React.Component {
       <div className={styles.sider}>
         <div className={styles.sheet}>
           <div className={styles.title}>{t('Agent')}</div>
-          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('Type')}>
+          <Form.Item desc={t('AGENT_TYPE_DESC')} label={t('TYPE')}>
             <Select
               options={AgentType}
               value={pipeline.agent.type}
@@ -184,14 +184,14 @@ export default class Sider extends React.Component {
           </Form.Item>
           {this.renderAgentForms()}
           <div className={styles.footer}>
-            <Button onClick={this.handleCancel}>{t('Cancel')}</Button>
+            <Button onClick={this.handleCancel}>{t('CANCEL')}</Button>
             <Button
               disabled={!pipeline || !pipeline.stages.length}
               loading={isSubmitting || this.loading}
               type="control"
               onClick={this.handleConfirm}
             >
-              {t('Save')}
+              {t('SAVE')}
             </Button>
           </div>
         </div>

@@ -116,7 +116,7 @@ export default class ActionsInput extends React.Component {
     const { name, value } = this.props
 
     return (
-      <div className={styles.wrapper}>
+      <div>
         <div className={styles.header}>
           <Dropdown
             theme="dark"
@@ -124,7 +124,7 @@ export default class ActionsInput extends React.Component {
             trigger="click"
             placement="bottomRight"
           >
-            <Button type="control">{t('Add Action')}</Button>
+            <Button type="control">{t('ADD_ACTION')}</Button>
           </Dropdown>
         </div>
         <div className={styles.content}>

@@ -41,7 +41,7 @@ export default class BaseInfo extends React.Component {
           {globals.app.isMultiCluster && (
             <div className={styles.text}>
               <div>{detail.cluster || '-'}</div>
-              <p>{t('Cluster')}</p>
+              <p>{t('CLUSTER')}</p>
             </div>
           )}
           <div className={styles.text}>
@@ -54,11 +54,11 @@ export default class BaseInfo extends React.Component {
                 '-'
               )}
             </div>
-            <p>{t('Workspace')}</p>
+            <p>{t('WORKSPACE')}</p>
           </div>
           <div className={styles.text}>
             <div>{detail.creator || '-'}</div>
-            <p>{t('Creator')}</p>
+            <p>{t('CREATOR')}</p>
           </div>
         </div>
         <img className={styles.background} src="/assets/project-overview.svg" />

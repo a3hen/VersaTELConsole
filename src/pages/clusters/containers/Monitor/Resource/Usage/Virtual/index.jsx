@@ -113,56 +113,56 @@ class VirtualResource extends React.Component {
   getMonitoringCfgs = () => [
     {
       type: 'deployment',
-      title: 'Deployments',
-      legend: ['Deployments'],
+      title: 'DEPLOYMENT',
+      legend: ['DEPLOYMENT_PL'],
       metricType: MetricTypes.deployment_count,
     },
     {
       type: 'statefulset',
-      title: 'StatefulSets',
-      legend: ['StatefulSets'],
+      title: 'STATEFULSET',
+      legend: ['STATEFULSET_PL'],
       metricType: MetricTypes.statefulset_count,
     },
     {
       type: 'daemonset',
-      title: 'DaemonSets',
-      legend: ['DaemonSets'],
+      title: 'DAEMONSET',
+      legend: ['DAEMONSET_PL'],
       metricType: MetricTypes.daemonset_count,
     },
     {
       type: 'job',
-      title: 'Jobs',
-      legend: ['Jobs'],
+      title: 'JOB',
+      legend: ['JOB_PL'],
       metricType: MetricTypes.job_count,
     },
     {
       type: 'cronjob',
-      title: 'CronJobs',
-      legend: ['CronJobs'],
+      title: 'CRONJOB',
+      legend: ['CRONJOB_PL'],
       metricType: MetricTypes.cronjob_count,
     },
     {
       type: 'pvc',
-      title: 'Volumes',
-      legend: ['Volumes'],
+      title: 'VOLUME',
+      legend: ['VOLUME_PL'],
       metricType: MetricTypes.pvc_count,
     },
     {
       type: 'service',
-      title: 'Services',
-      legend: ['Services'],
+      title: 'SERVICE',
+      legend: ['SERVICE_PL'],
       metricType: MetricTypes.service_count,
     },
     {
       type: 'routes',
-      title: 'Routes',
-      legend: ['Routes'],
+      title: 'ROUTE',
+      legend: ['ROUTE_PL'],
       metricType: MetricTypes.route_count,
     },
     {
       type: 'pod',
-      title: 'Pods',
-      legend: ['Running Pods'],
+      title: 'POD',
+      legend: ['RUNNING_PODS'],
       metricType: MetricTypes.pod_running_count,
     },
   ]
@@ -173,7 +173,7 @@ class VirtualResource extends React.Component {
 
     return (
       <MonitoringController
-        title={t('Application Resources Usage')}
+        title={t('APPLICATION_RESOURCE_USAGE')}
         step="1h"
         times={24}
         onFetch={this.fetchData}

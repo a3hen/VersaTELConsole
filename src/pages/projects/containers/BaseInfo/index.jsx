@@ -78,11 +78,11 @@ class BaseInfo extends React.Component {
     return [
       {
         title: t('HOW_TO_USE_QUOTA_Q'),
-        description: t('HOW_TO_USE_QUOTA_A'),
+        description: t.html('HOW_TO_USE_QUOTA_A'),
       },
       {
-        title: t('WHAT_IS_LIMIT_RANGE_Q'),
-        description: t('WHAT_IS_LIMIT_RANGE_A'),
+        title: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q'),
+        description: t('WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A'),
       },
     ]
   }
@@ -126,7 +126,7 @@ class BaseInfo extends React.Component {
         key: 'edit',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Info'),
+        text: t('EDIT_INFORMATION'),
         onClick: () =>
           this.trigger('resource.baseinfo.edit', {
             detail,
@@ -137,12 +137,13 @@ class BaseInfo extends React.Component {
         key: 'edit-default-resource',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Resource Default Request'),
+        text: t('EDIT_DEFAULT_CONTAINER_QUOTAS'),
         onClick: () =>
           this.trigger('project.default.resource', {
             ...this.props.match.params,
             store: this.limitRangeStore,
             detail: limitRanges[0],
+            supportGpuSelect: true,
             success: () => this.limitRangeStore.fetchListByK8s(this.params),
           }),
       },
@@ -150,7 +151,7 @@ class BaseInfo extends React.Component {
         key: 'delete',
         icon: 'trash',
         action: 'delete',
-        text: t('Delete Project'),
+        text: t('DELETE'),
         onClick: () =>
           this.trigger('resource.delete', {
             detail,
@@ -172,7 +173,7 @@ class BaseInfo extends React.Component {
         key: 'edit-quota',
         icon: 'pen',
         action: 'edit',
-        text: t('Edit Quota'),
+        text: t('EDIT_PROJECT_QUOTAS'),
         onClick: () =>
           this.trigger('project.quota.edit', {
             detail,
@@ -210,7 +211,7 @@ class BaseInfo extends React.Component {
       <div>
         <Banner
           icon="cdn"
-          title={t('Basic Info')}
+          title={t('BASIC_INFORMATION')}
           description={t('PROJECT_BASIC_INFO_DESC')}
           module="project_base_info"
           tips={this.tips}

@@ -31,42 +31,52 @@ import S2iContainerSetting from 'components/Forms/Service/ContainerSetting'
 
 export default {
   statelessservice: [
-    { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
     {
-      title: 'Container Image',
+      title: 'BASIC_INFORMATION',
+      icon: 'cdn',
+      component: BaseInfo,
+      required: true,
+    },
+    {
+      title: 'POD_SETTINGS',
       icon: 'docker',
       component: withProps(ContainerSettings, { withService: true }),
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
     },
     {
-      title: 'Advanced Settings',
+      title: 'ADVANCED_SETTINGS',
       icon: 'slider',
       component: AdvanceSettings,
       required: true,
     },
   ],
   statefulservice: [
-    { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
     {
-      title: 'Container Image',
+      title: 'BASIC_INFORMATION',
+      icon: 'cdn',
+      component: BaseInfo,
+      required: true,
+    },
+    {
+      title: 'POD_SETTINGS',
       icon: 'docker',
       component: withProps(ContainerSettings, { withService: true }),
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
     },
     {
-      title: 'Advanced Settings',
+      title: 'ADVANCED_SETTINGS',
       icon: 'slider',
       component: AdvanceSettings,
       required: true,
@@ -74,13 +84,13 @@ export default {
   ],
   externalservice: [
     {
-      title: 'Basic Info',
+      title: 'BASIC_INFORMATION',
       icon: 'cdn',
       component: withProps(BaseInfo, { noWorkload: true }),
       required: true,
     },
     {
-      title: 'External Name',
+      title: 'EXTERNAL_SERVICE',
       icon: 'strategy-group',
       component: ExternalName,
       required: true,
@@ -88,23 +98,28 @@ export default {
   ],
   simpleservice: [
     {
-      title: 'Basic Info',
+      title: 'BASIC_INFORMATION',
       icon: 'cdn',
       component: withProps(BaseInfo, { noWorkload: true }),
       required: true,
     },
-    { title: 'Service Settings', component: ServiceSettings, required: true },
+    { title: 'SERVICE_SETTINGS', component: ServiceSettings, required: true },
     {
-      title: 'Advanced Settings',
+      title: 'ADVANCED_SETTINGS',
       icon: 'slider',
       component: withProps(AdvanceSettings, { noWorkload: true }),
       required: true,
     },
   ],
   b2iservice: [
-    { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
     {
-      title: 'Build Settings',
+      title: 'BASIC_INFORMATION',
+      icon: 'cdn',
+      component: BaseInfo,
+      required: true,
+    },
+    {
+      title: 'BUILD_SETTINGS',
       icon: 'strategy-group',
       component: composeComponent(
         StatefulSetting,
@@ -113,28 +128,33 @@ export default {
       required: true,
     },
     {
-      title: 'Container Settings',
+      title: 'POD_SETTINGS',
       icon: 'docker',
       component: withProps(S2iContainerSetting, { withService: true }),
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
     },
     {
-      title: 'Advanced Settings',
+      title: 'ADVANCED_SETTINGS',
       icon: 'slider',
       component: AdvanceSettings,
       required: true,
     },
   ],
   s2iservice: [
-    { title: 'Basic Info', icon: 'cdn', component: BaseInfo, required: true },
     {
-      title: 'Build Settings',
+      title: 'BASIC_INFORMATION',
+      icon: 'cdn',
+      component: BaseInfo,
+      required: true,
+    },
+    {
+      title: 'BUILD_SETTINGS',
       icon: 'strategy-group',
       component: composeComponent(
         StatefulSetting,
@@ -143,19 +163,19 @@ export default {
       required: true,
     },
     {
-      title: 'Container Settings',
+      title: 'POD_SETTINGS',
       icon: 'docker',
       component: withProps(S2iContainerSetting, { withService: true }),
       required: true,
     },
     {
-      title: 'Mount Volumes',
+      title: 'VOLUME_SETTINGS',
       icon: 'storage',
       component: VolumeSettings,
       required: true,
     },
     {
-      title: 'Advanced Settings',
+      title: 'ADVANCED_SETTINGS',
       icon: 'slider',
       component: AdvanceSettings,
       required: true,

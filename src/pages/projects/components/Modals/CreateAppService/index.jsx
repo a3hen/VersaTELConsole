@@ -41,17 +41,17 @@ export default class ServiceCreateModal extends React.Component {
       workloadModule: 'deployments',
       groups: [
         {
-          name: 'Service Type',
-          description: 'SERVICE_TYPE',
+          name: 'SELECT_SERVICE_TYPE',
+          description: 'APP_SELECT_SERVICE_TYPE_DESC',
           options: [
             {
               icon: 'backup',
-              name: 'Stateless Service',
+              name: 'STATELESS_SERVICE',
               value: 'statelessservice',
             },
             {
               icon: 'stateful-set',
-              name: 'Stateful Service',
+              name: 'STATEFUL_SERVICE',
               value: 'statefulservice',
             },
           ],
@@ -91,8 +91,8 @@ export default class ServiceCreateModal extends React.Component {
   renderHeader() {
     return (
       <div className={styles.header}>
-        <div className="h4 margin-b12">{t('Create Service')}</div>
-        <p>{t.html('SERVICE_CREATE_DESC')}</p>
+        <div className="h4 margin-b12">{t('CREATE_SERVICE')}</div>
+        <p>{t.html('APP_CREATE_SERVICE_DESC')}</p>
         <img src="/assets/create-service.svg" alt="" />
       </div>
     )
@@ -181,7 +181,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'Diff Settings',
+            title: 'CLUSTER_DIFF',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
@@ -192,7 +192,7 @@ export default class ServiceCreateModal extends React.Component {
             width={960}
             module={module}
             store={this.workloadStore}
-            name={t('Stateless Service')}
+            name={t('STATELESS_SERVICE')}
             description={t('STATELESS_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
@@ -205,7 +205,7 @@ export default class ServiceCreateModal extends React.Component {
             onOk={onOk}
             onCancel={onCancel}
             maskClosable={false}
-            okBtnText={!isEmpty(detail) ? t('Update') : t('Add')}
+            okBtnText={!isEmpty(detail) ? t('OK') : t('CREATE')}
           />
         )
         break
@@ -245,7 +245,7 @@ export default class ServiceCreateModal extends React.Component {
 
         if (isFederated) {
           steps.push({
-            title: 'Diff Settings',
+            title: 'CLUSTER_DIFF',
             icon: 'blue-green-deployment',
             component: withProps(ClusterDiffSettings, { withService: true }),
           })
@@ -256,7 +256,7 @@ export default class ServiceCreateModal extends React.Component {
             width={960}
             module={module}
             store={this.workloadStore}
-            name={t('Stateful Service')}
+            name={t('STATEFUL_SERVICE')}
             description={t('STATEFUL_SERVICE_DESC')}
             visible={visible}
             cluster={cluster}
@@ -268,7 +268,7 @@ export default class ServiceCreateModal extends React.Component {
             isSubmitting={isSubmitting}
             onOk={onOk}
             onCancel={onCancel}
-            okBtnText={!isEmpty(detail) ? t('Update') : t('Add')}
+            okBtnText={!isEmpty(detail) ? t('OK') : t('CREATE')}
           />
         )
         break
@@ -294,7 +294,6 @@ export default class ServiceCreateModal extends React.Component {
         visible={visible}
         onCancel={onCancel}
         hideHeader
-        hideFooter
       >
         {this.renderHeader()}
         {this.renderGroups()}

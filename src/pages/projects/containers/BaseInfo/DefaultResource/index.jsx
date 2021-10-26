@@ -36,32 +36,58 @@ class DefaultResource extends React.Component {
     const memoryRequest = memoryFormat(
       get(detail, 'limit.defaultRequest.memory')
     )
+    const gpu = get(detail, 'limit.gpu', {})
 
     return (
-      <Panel title={t('Container Resource Default Request')}>
+      <Panel title={t('DEFAULT_CONTAINER_QUOTA_PL')}>
         <div className={styles.content}>
           <div className={styles.contentItem}>
             <Icon name="cpu" size={40} />
             <div className={styles.item}>
-              <div>{cpuRequest ? `${cpuRequest} Core` : t('No Request')}</div>
-              <p>{t('Resource Request')}</p>
+              <div>
+                {cpuRequest
+                  ? t('CPU_REQUEST_CORE', { value: cpuRequest })
+                  : t('NO_REQUEST_TCAP')}
+              </div>
+              <p>{t('CPU_REQUEST_LOW')}</p>
             </div>
             <div className={styles.item}>
-              <div>{cpuLimit ? `${cpuLimit} Core` : t('No Limit')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>
+                {cpuLimit
+                  ? t('CPU_LIMIT_CORE', { value: cpuLimit })
+                  : t('NO_LIMIT_TCAP')}
+              </div>
+              <p>{t('CPU_LIMIT_LOW')}</p>
             </div>
           </div>
           <div className={styles.contentItem}>
             <Icon name="memory" size={40} />
             <div className={styles.item}>
               <div>
-                {memoryRequest ? `${memoryRequest} Mi` : t('No Request')}
+                {memoryRequest
+                  ? t('MEMORY_REQUEST_MIB', { value: memoryRequest })
+                  : t('NO_REQUEST_TCAP')}
               </div>
-              <p>{t('Resource Request')}</p>
+              <p>{t('MEMORY_REQUEST_LOW')}</p>
             </div>
             <div className={styles.item}>
-              <div>{memoryLimit ? `${memoryLimit} Mi` : t('No Limit')}</div>
-              <p>{t('Resource Limit')}</p>
+              <div>
+                {memoryLimit
+                  ? t('MEMORY_LIMIT_MIB', { value: memoryLimit })
+                  : t('NO_LIMIT_TCAP')}
+              </div>
+              <p>{t('MEMORY_LIMIT_LOW')}</p>
+            </div>
+          </div>
+          <div className={styles.contentItem}>
+            <img src="/assets/GPU.svg" size={48} />
+            <div className={styles.item}>
+              <div>{gpu.type ? gpu.type : t('NONE')}</div>
+              <p>{t('GPU_TYPE_LOW')}</p>
+            </div>
+            <div className={styles.item}>
+              <div>{gpu.value ? gpu.value : t('NO_LIMIT_TCAP')}</div>
+              <p>{t('GPU_LIMIT_LOW')}</p>
             </div>
           </div>
         </div>

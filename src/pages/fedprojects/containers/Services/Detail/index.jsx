@@ -46,7 +46,7 @@ export default class ServiceDetail extends React.Component {
   }
 
   get name() {
-    return 'Service'
+    return 'SERVICE'
   }
 
   get routing() {
@@ -76,11 +76,11 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'edit',
       icon: 'pen',
-      text: t('Edit Info'),
+      text: t('EDIT_INFORMATION'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.baseinfo.edit', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: this.fetchData,
         }),
@@ -88,7 +88,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editConfigTemplate',
       icon: 'storage',
-      text: t('Edit Config Template'),
+      text: t('EDIT_SETTINGS'),
       action: 'edit',
       onClick: () =>
         this.trigger('federated.workload.template.edit', {
@@ -104,7 +104,7 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'editYaml',
       icon: 'pen',
-      text: t('Edit YAML'),
+      text: t('EDIT_YAML'),
       action: 'edit',
       onClick: () =>
         this.trigger('resource.yaml.edit', {
@@ -115,11 +115,11 @@ export default class ServiceDetail extends React.Component {
     {
       key: 'delete',
       icon: 'trash',
-      text: t('Delete'),
+      text: t('DELETE'),
       action: 'delete',
       onClick: () =>
         this.trigger('resource.delete', {
-          type: t(this.name),
+          type: this.name,
           detail: this.store.detail,
           success: () => this.routing.push(this.listUrl),
         }),
@@ -138,36 +138,36 @@ export default class ServiceDetail extends React.Component {
 
     return [
       {
-        name: t('Project'),
+        name: t('PROJECT'),
         value: namespace,
       },
       {
-        name: t('Type'),
+        name: t('TYPE'),
         value: (
           <span>
             {`${
               serviceType
                 ? t(`SERVICE_TYPE_${serviceType.toUpperCase()}`)
-                : t('Custom Creation')
+                : t('CUSTOM_SERVICE')
             }`}
-            <span className="text-desc"> ({detail.type})</span>
+            <span className="text-desc"> ({t(detail.type)})</span>
           </span>
         ),
       },
       {
-        name: t('Application'),
+        name: t('APP'),
         value: detail.app,
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATE_TIME_TCAP'),
         value: getLocalTime(detail.updateTime).format('YYYY-MM-DD HH:mm:ss'),
       },
       {
-        name: t('Creator'),
+        name: t('CREATOR'),
         value: detail.creator,
       },
     ]
@@ -188,7 +188,7 @@ export default class ServiceDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t(`${this.name}s`),
+          label: t(`${this.name}_PL`),
           url: this.listUrl,
         },
       ],

@@ -61,7 +61,7 @@ export default class AppDetail extends React.Component {
   }
 
   get name() {
-    return 'App'
+    return 'APP'
   }
 
   get listUrl() {
@@ -85,7 +85,7 @@ export default class AppDetail extends React.Component {
           key: 'suspend',
           type: 'control',
           icon: 'sort-descending',
-          text: t('Suspend App'),
+          text: t('SUSPEND_APP'),
           onClick: () =>
             this.trigger('openpitrix.template.action', {
               detail,
@@ -101,7 +101,7 @@ export default class AppDetail extends React.Component {
         key: 'recover',
         type: 'control',
         icon: 'sort-ascending',
-        text: t('Activate App'),
+        text: t('ACTIVATE_APP'),
         onClick: () =>
           this.trigger('openpitrix.template.action', {
             detail,
@@ -118,27 +118,27 @@ export default class AppDetail extends React.Component {
 
     return [
       {
-        name: t('App Number'),
+        name: t('APP_ID'),
         value: detail.app_id,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: t(capitalize(transferAppStatus(detail.status))),
       },
       {
-        name: t('Category'),
+        name: t('CATEGORY'),
         value: getAppCategoryNames(get(detail, 'category_set', [])),
       },
       {
-        name: t('App Version Types'),
+        name: t('TYPE'),
         value: getVersionTypesName(get(detail, 'app_version_types', '')),
       },
       {
-        name: t('Workspace'),
+        name: t('WORKSPACE'),
         value: get(detail, 'isv', '-'),
       },
       {
-        name: t('Created Time'),
+        name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
       },
     ]
@@ -169,7 +169,7 @@ export default class AppDetail extends React.Component {
       attrs: this.getAttrs(),
       breadcrumbs: [
         {
-          label: t('App Store'),
+          label: t('APP_STORE'),
           url: this.listUrl,
         },
       ],

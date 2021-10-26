@@ -52,7 +52,7 @@ export default class PipelineDetailLayout extends React.Component {
   }
 
   get name() {
-    return 'pipelines'
+    return 'PIPELINE'
   }
 
   get routing() {
@@ -156,7 +156,7 @@ export default class PipelineDetailLayout extends React.Component {
           })
         },
       },
-      ...(!isEmpty(detail.scmSource)
+      ...(detail.isMultiBranch
         ? [
             {
               key: 'scan',
@@ -179,7 +179,7 @@ export default class PipelineDetailLayout extends React.Component {
         : []),
       {
         key: 'delete',
-        text: t('Delete'),
+        text: t('DELETE'),
         action: 'delete',
         onClick: () => {
           this.trigger('resource.delete', {
@@ -230,11 +230,11 @@ export default class PipelineDetailLayout extends React.Component {
 
     return [
       {
-        name: t('DevOps Project'),
+        name: t('DEVOPS_PROJECT'),
         value: devopsName,
       },
       {
-        name: t('Status'),
+        name: t('STATUS'),
         value: <Status {...getPipelineStatus(this.getCurrentState())} />,
       },
       {
@@ -242,7 +242,7 @@ export default class PipelineDetailLayout extends React.Component {
         value: <Status {...this.getPipelineStatus(syncStatus)} />,
       },
       {
-        name: t('Updated Time'),
+        name: t('UPDATE_TIME_TCAP'),
         value: this.getUpTime(),
       },
     ]
@@ -301,7 +301,7 @@ export default class PipelineDetailLayout extends React.Component {
       labels: this.store.detail.labels,
       breadcrumbs: [
         {
-          label: t('Pipeline List'),
+          label: t('PIPELINE_PL'),
           url: `/${workspace}/clusters/${cluster}/devops/${devops}/pipelines`,
         },
       ],

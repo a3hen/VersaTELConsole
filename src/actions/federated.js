@@ -16,16 +16,17 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, unset, cloneDeep, uniqBy, isEmpty } from 'lodash'
+import { get, set, unset, cloneDeep, uniqBy, isEmpty, omit } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import FedProjectCreateModal from 'components/Modals/FedProjectCreate'
 import EditConfigTemplateModal from 'fedprojects/components/ConfigTemplate'
 import { toJS } from 'mobx'
-
+import FedProjectAddClusterModal from 'workspaces/components/Modals/FedProjectAddCluster'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import FED_TEMPLATES from 'utils/fed.templates'
+import { cancel_Num_Dot } from 'utils'
 
 import FederatedStore from 'stores/federated'
 import ProjectStore from 'stores/project'
@@ -64,7 +65,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Created Successfully')}` })
+          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
           success && success()
         },
         cluster,
@@ -84,14 +85,14 @@ export default {
         onOk: () => {
           projectStore.delete({ name: detail.name }).then(() => {
             Modal.close(modal)
-            Notify.success({ content: `${t('Deleted Successfully')}` })
+            Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
             success && success()
           })
         },
         store,
         modal: DeleteModal,
         resource: detail.name,
-        type: t('Multi-cluster Project'),
+        type: 'MULTI_CLUSTER_PROJECT',
         isLoading: projectStore.isLoading,
         ...props,
       })
@@ -118,7 +119,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('Deleted Successfully')}` })
+          Notify.success({ content: `${t('DELETE_SUCCESS_DESC')}` })
           store.setSelectRowKeys([])
           success && success()
         },
@@ -131,16 +132,47 @@ export default {
     },
   },
   'federated.workload.template.edit': {
-    on({ store, detail, success, module, ...props }) {
+    on({ store, detail, success, module, supportGpuSelect = false, ...props }) {
       const modal = Modal.open({
         onOk: data => {
+          const containers = get(
+            data,
+            'spec.template.spec.template.spec.containers',
+            []
+          )
+          const newContainers = containers.map(item =>
+            omit(item, 'resources.gpu')
+          )
+          set(
+            data,
+            'spec.template.spec.template.spec.containers',
+            newContainers
+          )
+
+          const overrides = get(data, 'spec.overrides', [])
+          overrides.forEach(clusterOverride => {
+            clusterOverride.clusterOverrides.forEach(item => {
+              if (item.path.endsWith('resources')) {
+                const gpu = get(item.value, 'gpu', {})
+                if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
+                  set(item.value, `limits["${gpu.type}"]`, gpu.value)
+                  set(item.value, `requests["${gpu.type}"]`, gpu.value)
+                }
+                item.value = omit(item.value, 'gpu')
+                Object.keys(item.value).forEach(key => {
+                  cancel_Num_Dot(item.value[key], item.value[key])
+                })
+              }
+            })
+          })
+
           const customMode = get(data, 'spec.template.spec.customMode', {})
           if (!isEmpty(customMode)) {
             delete data.spec.template.spec.customMode
           }
 
           store.update(detail, data).then(() => {
-            Notify.success({ content: `${t('Updated Successfully')}` })
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
             Modal.close(modal)
             success && success()
           })
@@ -152,6 +184,24 @@ export default {
         type: detail.type,
         workloadStore: store,
         isEdit: true,
+        supportGpuSelect,
+        ...props,
+      })
+    },
+  },
+  'federated.project.add.cluster': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: data => {
+          store.patch(detail, data).then(() => {
+            Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+            Modal.close(modal)
+            success && success()
+          })
+        },
+        store,
+        formTemplate: toJS(detail._originData),
+        modal: FedProjectAddClusterModal,
         ...props,
       })
     },

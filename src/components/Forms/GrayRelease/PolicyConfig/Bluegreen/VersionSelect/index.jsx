@@ -60,8 +60,12 @@ export default class VersionSelect extends React.Component {
           >
             <Icon name="appcenter" size={40} />
             <div className={styles.text}>
-              <p>{`${t('Version')}: ${option.name}`}</p>
-              <p>{`${t('Replicas')}: ${option.replicas}`}</p>
+              <p>{t('GRAYSCALE_VERSION', { version: option.name })}</p>
+              <p>
+                {option.replicas === 1
+                  ? t('GRAYSCALE_REPLICA_SI', { count: option.replicas })
+                  : t('GRAYSCALE_REPLICA_PL', { count: option.replicas })}
+              </p>
             </div>
             {value !== option.name ? (
               <Button
@@ -70,7 +74,7 @@ export default class VersionSelect extends React.Component {
                 data-version={option.name}
                 onClick={this.handleTakeOver}
               >
-                {t('Take over all traffic')}
+                {t('TAKE_OVER')}
               </Button>
             ) : (
               <Button
@@ -78,7 +82,7 @@ export default class VersionSelect extends React.Component {
                 data-version={option.name}
                 onClick={this.handleOffline}
               >
-                {t('Version offline')}
+                {t('TAKE_OFFLINE')}
               </Button>
             )}
           </li>

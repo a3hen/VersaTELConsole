@@ -108,7 +108,7 @@ export default class AdvancedSettings extends React.Component {
     return (
       <div>
         <Form data={this.formTemplate} ref={formRef} {...formProps}>
-          <Form.Group label={t('Deployment Location')}>
+          <Form.Group label={t('CLUSTER')}>
             <Form.Item>
               <ClusterSelect
                 name="clusters"
@@ -120,8 +120,8 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
           {module === 'service' && isEdit ? null : (
             <Form.Group
-              label={t('Container Image')}
-              desc={t('CLUSTER_CONTAINER_IMAGE_DIFF_DESC')}
+              label={t('CONTAINER_IMAGE')}
+              desc={t('CLUSTER_DIFF_CONTAINER_SETTINGS_DESC')}
               checkable
             >
               <ClustersMapper
@@ -146,7 +146,7 @@ export default class AdvancedSettings extends React.Component {
 
           {this.showVolumeTemplate && (
             <Form.Group
-              label={t('Volume Template Settings')}
+              label={t('VOLUME_TEMPLATE_SETTINGS')}
               desc={t('CLUSTER_VOLUME_DIFF_DESC')}
               checkable
             >
@@ -164,8 +164,8 @@ export default class AdvancedSettings extends React.Component {
             </Form.Group>
           )}
           <Form.Group
-            label={withService ? t('Service Settings') : t('Port Settings')}
-            desc={t('CLUSTER_SERVICE_DIFF_DESC')}
+            label={t('PORT_SETTINGS')}
+            desc={t('CLUSTER_DIFF_PORT_SETTINGS_DESC')}
             checkable
           >
             <ClustersMapper
@@ -201,8 +201,8 @@ export default class AdvancedSettings extends React.Component {
           </Form.Group>
           {module === 'service' && isEdit ? null : (
             <Form.Group
-              label={t('Environment Variables')}
-              desc={t('CLUSTER_ENV_DIFF_DESC')}
+              label={t('ENVIRONMENT_VARIABLE_PL')}
+              desc={t('CLUSTER_DIFF_ENVIRONMENT_VARIABLES_DESC')}
               checkable
             >
               <ClustersMapper

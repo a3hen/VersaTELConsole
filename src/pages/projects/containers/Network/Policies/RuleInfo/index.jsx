@@ -73,10 +73,8 @@ export default class RuleInfo extends React.Component {
         >
           <Icon name="eip-pool" size={40} />
           <div className={styles.disc}>
-            <div className={styles.dictitle}>
-              {t('NETWORK_POLICY_R1_TITLE')}
-            </div>
-            <div>{t('NETWORK_POLICY_R1_DESC')}</div>
+            <div className={styles.dictitle}>{t('INTERNAL_ALLOWLIST')}</div>
+            <div>{t('INTERNAL_ALLOWLIST_DESC')}</div>
           </div>
         </div>
         <div
@@ -89,10 +87,8 @@ export default class RuleInfo extends React.Component {
         >
           <Icon name="eip" size={40} />
           <div className={styles.disc}>
-            <div className={styles.dictitle}>
-              {t('NETWORK_POLICY_R2_TITLE')}
-            </div>
-            <div>{t('NETWORK_POLICY_R2_DESC')}</div>
+            <div className={styles.dictitle}>{t('EXTERNAL_ALLOWLIST')}</div>
+            <div>{t('EXTERNAL_ALLOWLIST_DESC')}</div>
           </div>
         </div>
       </div>
@@ -128,6 +124,8 @@ export default class RuleInfo extends React.Component {
     this.trigger('network.policies.delete', {
       ...this.props,
       ruleName,
+      resource: ruleName,
+      type: 'ALLOWLIST_ENTRY',
       success: this.fetchPolicies,
     })
   }
@@ -174,7 +172,10 @@ export default class RuleInfo extends React.Component {
                 curProjectEl = (
                   <span className={styles.pcell}>
                     <Icon name="project" />
-                    <b>{serviceProjectName}</b>
+                    <b>
+                      {serviceProjectName}
+                      <span>({get(item, 'metadata.name')})</span>
+                    </b>
                     <label>
                       {!isEmpty(projectDescription) &&
                         `(${projectDescription})`}
@@ -185,7 +186,9 @@ export default class RuleInfo extends React.Component {
               return (
                 <span className={styles.cell} key={showName}>
                   <Icon name={iconCls} />
-                  <b>{showName}</b>
+                  <b>
+                    {showName} (<span>{get(item, 'metadata.name')}</span>)
+                  </b>
                   <label>{!isEmpty(description) && `(${description})`}</label>
                   {curProjectEl}
                 </span>
@@ -288,10 +291,10 @@ export default class RuleInfo extends React.Component {
       <>
         <div className={classNames({ hide: curTab === 'outer' })}>
           <div className={styles.rulemenu}>
-            <div>{t('NETWORK_POLICY_R1_DESC1')}</div>
+            <div>{t('INTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addAllowList}>
-                {t('Add Allowlist')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -301,8 +304,8 @@ export default class RuleInfo extends React.Component {
                 hide: innerEgressData.length === 0,
               })}
             >
-              <div className={styles.subtitle}>{t('Egress')}:</div>
-              <div className={styles.disp}>{t('NETWORK_POLICY_R_DESC1')}</div>
+              <div className={styles.subtitle}>{t('EGRESS')}</div>
+              <div className={styles.disp}>{t('INTERNAL_EGRESS_DESC')}</div>
               {this.renderRules(innerEgressData, 'egress')}
             </div>
             <div
@@ -310,18 +313,18 @@ export default class RuleInfo extends React.Component {
                 hide: innerIngressData.length === 0,
               })}
             >
-              <div className={styles.subtitle}>{t('Ingress')}:</div>
-              <div className={styles.disp}>{t('NETWORK_POLICY_R_DESC2')}</div>
+              <div className={styles.subtitle}>{t('INGRESS')}</div>
+              <div className={styles.disp}>{t('INTERNAL_INGRESS_DESC')}</div>
               {this.renderRules(innerIngressData, 'ingress')}
             </div>
           </div>
         </div>
         <div className={classNames({ hide: curTab === 'inner' })}>
           <div className={styles.rulemenu}>
-            <div>{t('NETWORK_POLICY_R2_DESC1')}</div>
+            <div>{t('EXTERNAL_ALLOWLIST_TIP')}</div>
             {canEdit && (
               <Button type="control" onClick={this.addIpBlock}>
-                {t('Add Rule')}
+                {t('ADD_ALLOWLIST_ENTRY')}
               </Button>
             )}
           </div>
@@ -331,8 +334,8 @@ export default class RuleInfo extends React.Component {
                 hide: outerEgressData.length === 0,
               })}
             >
-              <div className={styles.subtitle}>{t('Egress')}:</div>
-              <div className={styles.disp}>{t('NETWORK_POLICY_R_DESC1')}</div>
+              <div className={styles.subtitle}>{t('EGRESS')}</div>
+              <div className={styles.disp}>{t('EXTERNAL_EGRESS_DESC')}</div>
               {this.renderIpRules(outerEgressData, 'egress')}
             </div>
             <div
@@ -340,8 +343,8 @@ export default class RuleInfo extends React.Component {
                 hide: outerIngressData.length === 0,
               })}
             >
-              <div className={styles.subtitle}>{t('Ingress')}:</div>
-              <div className={styles.disp}>{t('NETWORK_POLICY_R_DESC2')}</div>
+              <div className={styles.subtitle}>{t('INGRESS')}</div>
+              <div className={styles.disp}>{t('EXTERNAL_INGRESS_DESC')}</div>
               {this.renderIpRules(outerIngressData, 'ingress')}
             </div>
           </div>

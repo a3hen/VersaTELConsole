@@ -39,10 +39,10 @@ const CREATE_TYPE_OPTIONS = [
     icon: 'database',
     value: false,
     get label() {
-      return t('CREATE_VOLUME_BY_STORAGECLASS')
+      return t('CREATE_VOLUME_BY_STORAGE_CLASS')
     },
     get description() {
-      return t('STORAGE_CLASS_DESC')
+      return t('SELECT_STORAGE_CLASS_CREATE_VOLUME')
     },
   },
 ]
@@ -80,7 +80,7 @@ export default class VolumeSettings extends React.Component {
     return (
       <Form data={this.fedFormTemplate} ref={formRef}>
         {!isFederated && (
-          <Form.Item label={t('Method')}>
+          <Form.Item label={t('CREATION_METHOD')}>
             <TypeSelect
               value={fromSnapshot}
               options={CREATE_TYPE_OPTIONS}

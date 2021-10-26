@@ -55,7 +55,7 @@ export default class GatewaySettingModal extends React.Component {
 
   get accessModes() {
     return [
-      { label: 'None', desc: t('ACCESS_NONE_TIP'), value: 'ClusterIP' },
+      { label: t('NONE'), desc: t('ACCESS_NONE_TIP'), value: 'ClusterIP' },
       {
         label: 'NodePort',
         desc: t('ACCESS_NODEPORT_TIP'),
@@ -126,7 +126,7 @@ export default class GatewaySettingModal extends React.Component {
     return (
       <Modal.Form
         width={1162}
-        title={t('Edit Internet Access')}
+        title={t('EDIT_EXTERNAL_ACCESS')}
         data={formTemplate}
         onOk={this.handleOk}
         onCancel={onCancel}
@@ -135,12 +135,12 @@ export default class GatewaySettingModal extends React.Component {
       >
         <div>
           <Title
-            title={t('Internet Access')}
-            desc={t('SERVICES_INTERNET_ACCESS_DESC')}
+            title={t('EXTERNAL_ACCESS')}
+            desc={t('SERVICE_EXTERNAL_ACCESS_DESC')}
           />
           <div className={styles.wrapper}>
             <div className={styles.contentWrapper}>
-              <Form.Item label={t('Access Method')} className={styles.types}>
+              <Form.Item label={t('ACCESS_MODE')} className={styles.types}>
                 <Select
                   name="spec.type"
                   options={this.accessModes}
@@ -149,11 +149,11 @@ export default class GatewaySettingModal extends React.Component {
                 />
               </Form.Item>
               {type === 'LoadBalancer' && (
-                <Form.Item label={t('Annotations')}>
+                <Form.Item label={t('ANNOTATION_PL')}>
                   <PropertiesInput
                     name="metadata.annotations"
                     hiddenKeys={globals.config.preservedAnnotations}
-                    addText={t('Add Annotation')}
+                    addText={t('ADD')}
                   />
                 </Form.Item>
               )}
