@@ -98,6 +98,13 @@ client:
           icon: dashboard
           skipAuth: true
           showInDisable: true
+        - name: vtel
+          title: VersaSDS
+          icon: database
+          children:
+            - { name: node, title: Node }
+            - { name: storagepool, title: Storagepool }
+            - { name: resource, title: Resource }
         - name: nodes
           title: NODE_PL
           icon: nodes

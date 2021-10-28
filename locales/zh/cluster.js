@@ -31,7 +31,7 @@ module.exports = {
   'Node Types': '节点类型',
   'Network Management': '网络管理',
   'Custom Resources': '自定义资源 CRD',
-  STORAGE: '存储',
+  STORAGE: '容器存储',
   CLUSTER_SETTINGS: '集群设置',
   'Network Policies': '网络策略',
   'Network Topology': '网络拓扑',

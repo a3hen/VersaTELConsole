@@ -60,6 +60,10 @@ import CustomMonitoring from '../containers/CustomMonitoring'
 import detail from './detail'
 import Gateway from '../containers/Gateway'
 
+import Node from '../containers/VersaTEL/Node'
+import Storagepool from '../containers/VersaTEL/Storagepool'
+import Resource from '../containers/VersaTEL/Resource'
+
 const PATH = '/clusters/:cluster'
 
 export default [
@@ -92,6 +96,21 @@ export default [
           {
             path: `${PATH}/overview`,
             component: Overview,
+            exact: true,
+          },
+          {
+            path: `${PATH}/node`,
+            component: Node,
+            exact: true,
+          },
+          {
+            path: `${PATH}/storagepool`,
+            component: Storagepool,
+            exact: true,
+          },
+          {
+            path: `${PATH}/resource`,
+            component: Resource,
             exact: true,
           },
           {

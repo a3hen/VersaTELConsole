@@ -18,7 +18,7 @@
 
 module.exports = {
   NODE_SI: '节点',
-  NODE_PL: '节点',
+  NODE_PL: '容器节点',
   MASTER_NODE_SI: '主节点',
   MASTER_NODE_PL: '主节点',
   WORKER_NODE_SI: '工作节点',

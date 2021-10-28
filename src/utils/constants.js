@@ -243,6 +243,9 @@ export const ICON_TYPES = {
   cluster: 'cluster',
   notification: 'loudspeaker',
   notificationhistory: 'record',
+  linstornodes: 'database',
+  storagepools: 'database',
+  lresources: 'database',
 }
 
 export const MODULE_KIND_MAP = {
@@ -277,6 +280,9 @@ export const MODULE_KIND_MAP = {
   groups: 'Group',
   volumes: 'Volumes',
   hpas: 'HPA',
+  linstornodes: 'LNode',
+  storagepools: 'Storagepool',
+  lresources: 'Resource',
 }
 
 export const QUOTAS_MAP = {
@@ -495,6 +501,9 @@ export const GRAY_RELEASE_CATEGORIES = [
     desc: 'TRAFFIC_MIRRORING_DESC',
   },
 ]
+
+export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_]*$/
+export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
@@ -895,6 +904,9 @@ export const API_VERSIONS = {
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
   gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
+  linstornodes: 'kapis/versatel.kubesphere.io/v1alpha1',
+  storagepools: 'kapis/versatel.kubesphere.io/v1alpha1',
+  lresources: 'kapis/versatel.kubesphere.io/v1alpha1',
 }
 
 export const MONITOR_GRAPH_COLORS = [

@@ -680,6 +680,33 @@ const getNotificationVerifyTemplate = ({ user }) => ({
   },
 })
 
+const getLNodeTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'LINSTOR Node',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
+const getSPTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'Storagepool',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
+const getLResourceTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'Resource',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
   deploymentsSchedule: getScheduleDeploymentTemplate,
@@ -722,6 +749,9 @@ const FORM_TEMPLATES = {
   notificationreceivers: getNotificationReceiverTemplate,
   gateways: getGatewayTemplate,
   notificationVerify: getNotificationVerifyTemplate,
+  linstornodes: getLNodeTemplate,
+  storagepools: getSPTemplate,
+  lresources: getLResourceTemplate,
 }
 
 export default FORM_TEMPLATES

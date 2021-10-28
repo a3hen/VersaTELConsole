@@ -35,4 +35,7 @@ module.exports = {
   VTEL_SIZE_DESC:
     'Please enter the size. If no unit is added, the default unit is K',
   LINSTOR_STORAGEPOOLS: 'Storagepool',
+  LINSTOR_NODES_LOW: 'LINSTOR Node',
+  Storagepool_LOW: 'Storagepool',
+  LResource_LOW: 'Resource',
 }

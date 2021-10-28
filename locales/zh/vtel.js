@@ -22,6 +22,7 @@ module.exports = {
   LINSTOR_NODES_DESC:
     '提供了当前LINSTOR集群下节点的运行状态，以及可以创建删除LINSTOR节点',
   'Node Type': '节点类型',
+  'LVM Type': 'LVM类型',
   'Storagepool Num': '存储池数量',
   'Resource Num': '资源数量',
   LINSTOR_NODES_CREATE_DESC: '创建LINSTOR集群节点',
@@ -78,4 +79,11 @@ module.exports = {
   'Display the message of Diskless Resource': '展示Diskless资源的信息',
   'Display the message of Diskful Resource': '展示Diskful资源的信息',
   'Search by node': '请输入节点名称进行查找',
+  Status: '状态',
+  Snapshots: '存储卷快照',
+  LINSTOR_NODES_LOW: 'LINSTOR节点',
+  Storagepool_LOW: '存储池',
+  LResource_LOW: '资源',
+  Name: '名称',
+  'Invalid IP address': 'IP地址格式错误',
 }
