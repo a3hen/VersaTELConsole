@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Menu, Dropdown } from '@kube-design/components'
+import { Button, Icon, Menu } from '@kube-design/components'
 import { isAppsPage } from 'utils'
 
 import LoginInfo from '../LoginInfo'
@@ -118,11 +118,11 @@ class Header extends React.Component {
           </div>
         )}
         <div className={styles.right}>
-          {this.isLoggedIn && (
+          {/* {this.isLoggedIn && (
             <Dropdown content={this.renderDocumentList()}>
               <Button type="flat" icon="documentation" />
             </Dropdown>
-          )}
+          )} */}
           <LoginInfo className={styles.loginInfo} isAppsPage={isAppsPage()} />
         </div>
       </div>

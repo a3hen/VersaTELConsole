@@ -35,16 +35,23 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: KubeSphere
+  title: VersaTEL
   description: ""
 
   version:
-    kubesphere: 3.1.0
+    # kubesphere: 3.1.0
+    kubesphere: v1.5.2
 
   # kubesphere urls
+  # issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose
+  # reposUrl: https://github.com/kubesphere/kubesphere
+  # slackUrl: https://kubesphere.slack.com
+
+  # versatel urls
   issueUrl: https://github.com/kubesphere/kubesphere/issues/new/choose
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
+
   documents:
     url: https://v3-1.docs.kubesphere.io/docs
     api: https://v3-1.docs.kubesphere.io/docs/reference/api-docs/

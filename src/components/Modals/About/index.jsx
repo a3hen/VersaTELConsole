@@ -50,9 +50,9 @@ export default class AboutModal extends Component {
           <div>
             <img src="/assets/logo.svg" alt="" />
           </div>
-          <p>{t('KS_DESCRIPTION')}</p>
+          <p>{t('VersaTEL_DESCRIPTION')}</p>
           <strong>
-            KubeSphere {t('VERSION')} : {ksVersion}
+            VersaTEL {t('VERSION')} : {ksVersion}
           </strong>
         </div>
 
