@@ -86,4 +86,6 @@ module.exports = {
   LResource_LOW: '资源',
   Name: '名称',
   'Invalid IP address': 'IP地址格式错误',
+  Delete: '删除',
+  存储池_LOW: '存储池',
 }

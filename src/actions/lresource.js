@@ -33,20 +33,17 @@ export default {
             return
           }
 
-          store
-            // .create(data, { cluster, namespace, workspace, devops })
-            .create(data)
-            .then(res => {
-              Modal.close(modal)
-              if (res) {
-                Notify.error({
-                  content: `${t('Created Failed, Reason:')}${res[0].message}`,
-                })
-              } else {
-                Notify.success({ content: `${t('Created Successfully')}` })
-              }
-              success && success()
-            })
+          store.create(data).then(res => {
+            Modal.close(modal)
+            if (res) {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res[0].message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('Created Successfully')}` })
+            }
+            success && success()
+          })
           // Modal.close(modal)
         },
         modal: CreateModal,

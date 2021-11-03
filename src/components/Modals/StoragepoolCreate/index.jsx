@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
@@ -81,28 +81,28 @@ export default class StoragepoolCreateModal extends React.Component {
     this.props.onOk(this.props.formTemplate)
   }
 
-  SPNameValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
+  // SPNameValidator = (rule, value, callback) => {
+  //   if (!value) {
+  //     return callback()
+  //   }
 
-    // const { workspace, cluster, namespace } = this.props
-    const name = get(this.props.formTemplate, 'name')
+  //   // const { workspace, cluster, namespace } = this.props
+  //   const name = get(this.props.formTemplate, 'name')
 
-    if (this.props.edit && name === value) {
-      return callback()
-    }
+  //   if (this.props.edit && name === value) {
+  //     return callback()
+  //   }
 
-    this.props.store.checkName({ name: value }).then(resp => {
-      if (resp.exist) {
-        return callback({
-          message: t('Storagepool name exists'),
-          field: rule.field,
-        })
-      }
-      callback()
-    })
-  }
+  //   this.props.store.checkName({ name: value }).then(resp => {
+  //     if (resp.exist) {
+  //       return callback({
+  //         message: t('Storagepool name exists'),
+  //         field: rule.field,
+  //       })
+  //     }
+  //     callback()
+  //   })
+  // }
 
   render() {
     const {
@@ -152,7 +152,7 @@ export default class StoragepoolCreateModal extends React.Component {
               pattern: PATTERN_VTEL_NAME,
               message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
             },
-            { validator: this.SPNameValidator },
+            // { validator: this.SPNameValidator },
           ]}
         >
           <Input name="name" maxLength={63} placeholder="name" />

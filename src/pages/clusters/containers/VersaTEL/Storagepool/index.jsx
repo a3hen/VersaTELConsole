@@ -40,7 +40,22 @@ export default class Storagepool extends React.Component {
   }
 
   get itemActions() {
-    return []
+    const { name, trigger, routing } = this.props
+    return [
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: this.showAction,
+        onClick: item =>
+          trigger('resource.delete', {
+            detail: item,
+            type: t(name),
+            success: routing.query,
+          }),
+      },
+    ]
   }
 
   get tableActions() {
@@ -48,6 +63,7 @@ export default class Storagepool extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      selectActions: [],
     }
   }
 
