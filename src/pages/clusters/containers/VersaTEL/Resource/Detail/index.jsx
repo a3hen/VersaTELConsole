@@ -36,9 +36,18 @@ export default class ResourceDetail extends React.Component {
   store = new LResourceStore()
 
   componentDidMount() {
-    this.store.fetchList({ limit: -1 })
     this.fetchData()
+    // this.store.fetchList({ limit: -1 })
+    // this.interval = setInterval(() => {
+    //   this.fetchData()
+    // }, 5000)
   }
+
+  // componentWillUnmount() {
+  //   if (this.interval) {
+  //     clearInterval(this.interval)
+  //   }
+  // }
 
   get module() {
     return 'lresources'

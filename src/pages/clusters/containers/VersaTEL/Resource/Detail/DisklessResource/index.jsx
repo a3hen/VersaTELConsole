@@ -24,6 +24,7 @@ import DisklessResourceStore from 'stores/disklessresource'
 
 import { Avatar, Card } from 'components/Base'
 import Table from 'components/Tables/Base'
+import VStatus from 'clusters/components/VtelStatus'
 
 import styles from './index.scss'
 
@@ -47,6 +48,15 @@ export default class DisklessResource extends React.Component {
 
   componentDidMount() {
     this.handleFetch()
+    this.interval = setInterval(() => {
+      this.handleFetch({ page: this.store.list.page })
+    }, 5000)
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
   }
 
   handleFetch = (params = {}) => {
@@ -72,6 +82,24 @@ export default class DisklessResource extends React.Component {
       render: (name, record) => (
         <Avatar icon="database" title={getDisplayName(record)} noLink />
       ),
+    },
+    {
+      title: t('Conns'),
+      dataIndex: 'conns',
+      isHideable: true,
+      render: conns => <VStatus name={conns} />,
+    },
+    {
+      title: t('Status'),
+      dataIndex: 'status',
+      isHideable: true,
+      render: status => <VStatus name={status} />,
+    },
+    {
+      title: t('Usage'),
+      dataIndex: 'usage',
+      isHideable: true,
+      render: usage => usage,
     },
     {
       title: t('Node'),
@@ -103,6 +131,7 @@ export default class DisklessResource extends React.Component {
         title={t('Display the message of Diskless Resource')}
         loading={isLoading}
         empty={t('NOT_AVAILABLE', { resource: t('resource') })}
+        loading={false}
       >
         <Table
           className={styles.table}
@@ -111,12 +140,12 @@ export default class DisklessResource extends React.Component {
           searchType="name"
           keyword={filters.name}
           filters={filters}
-          placeholder={t('Search by name')}
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}
           hideCustom
           hideHeader
+          silentLoading
         />
       </Card>
     )

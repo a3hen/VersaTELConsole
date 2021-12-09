@@ -36,7 +36,16 @@ import StoragepoolStore from 'stores/storagepool'
 })
 export default class Storagepool extends React.Component {
   componentDidMount() {
-    this.props.store.fetchStoragepoolTemplates(this.props.match.params)
+    this.interval = setInterval(() => {
+      // this.props.store.fetchStoragepoolTemplates(this.props.match.params)
+      this.props.getData({ page: this.props.tableProps.pagination.page })
+    }, 5000)
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
   }
 
   get itemActions() {
@@ -148,6 +157,7 @@ export default class Storagepool extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          silentLoading
         />
       </ListPage>
     )

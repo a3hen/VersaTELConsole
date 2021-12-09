@@ -36,7 +36,16 @@ import LResourceStore from 'stores/lresource'
 })
 export default class LResource extends React.Component {
   componentDidMount() {
-    this.props.store.fetchLResourceTemplates(this.props.match.params)
+    this.interval = setInterval(() => {
+      this.props.getData({ page: this.props.tableProps.pagination.page })
+      // this.props.store.fetchList({ page: this.props.tableProps.pagination.page })
+    }, 5000)
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
   }
 
   get itemActions() {
@@ -113,6 +122,7 @@ export default class LResource extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          silentLoading
         />
       </ListPage>
     )

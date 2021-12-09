@@ -88,4 +88,5 @@ module.exports = {
   'Invalid IP address': 'IP地址格式错误',
   Delete: '删除',
   存储池_LOW: '存储池',
+  Conns: '连接状态',
 }

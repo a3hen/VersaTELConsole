@@ -7,12 +7,14 @@ export default class VStatus extends React.Component {
     if (
       this.props.name === 'ONLINE' ||
       this.props.name === 'OK' ||
-      this.props.name === 'UpToDate'
+      this.props.name === 'Healthy' ||
+      this.props.name === 'UpToDate' ||
+      this.props.name === 'Diskless'
     ) {
       return 'Running'
     }
 
-    if (this.props.name === 'Warning') {
+    if (this.props.name === 'Warning' || this.props.name === 'Synching') {
       return 'Update'
     }
 

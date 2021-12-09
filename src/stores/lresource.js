@@ -21,6 +21,7 @@ import { action } from 'mobx'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
+// import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
 export default class LResourceStore extends Base {
   LResourceTemplates = new List()
@@ -112,8 +113,8 @@ export default class LResourceStore extends Base {
       `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
     )
     this.LResourceTemplates.update({
-      // data: get(result, 'data', []).map(this.mapper),
-      data: get(result, 'data', []),
+      data: get(result, 'data', []).map(this.mapper),
+      // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })

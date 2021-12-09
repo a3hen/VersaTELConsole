@@ -111,7 +111,8 @@ export default class LNodeStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    // const data = get(result, 'data', [])
+    const data = get(result, 'data', []).map(this.mapper)
 
     // const data = result.authentication.map(item => ({
     //   cluster,
@@ -164,8 +165,8 @@ export default class LNodeStore extends Base {
       `/kapis/versatel.kubesphere.io/v1alpha1/linstor/node`
     )
     this.LNodeTemplates.update({
-      // data: get(result, 'data', []).map(this.mapper),
-      data: get(result, 'data', []),
+      data: get(result, 'data', []).map(this.mapper),
+      // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })

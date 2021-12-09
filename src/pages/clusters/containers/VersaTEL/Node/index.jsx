@@ -37,7 +37,17 @@ import LNodeStore from 'stores/linstornode'
 })
 export default class Node extends React.Component {
   componentDidMount() {
-    this.props.store.fetchLNodeTemplates(this.props.match.params)
+    this.props.store.fetchLNodeTemplates()
+    this.interval = setInterval(() => {
+      // this.props.store.fetchList(this.props.match.params)
+      this.props.getData({ page: this.props.tableProps.pagination.page })
+    }, 5000)
+  }
+
+  componentWillUnmount() {
+    if (this.interval) {
+      clearInterval(this.interval)
+    }
   }
 
   // showAction = record => {
@@ -164,6 +174,7 @@ export default class Node extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          silentLoading
         />
       </ListPage>
     )

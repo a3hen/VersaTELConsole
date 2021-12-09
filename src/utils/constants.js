@@ -859,6 +859,7 @@ export const LIST_DEFAULT_ORDER = {
   deployments: 'updateTime',
   jobs: 'updateTime',
   pods: 'startTime',
+  lresources: 'name',
 }
 
 export const API_VERSIONS = {
