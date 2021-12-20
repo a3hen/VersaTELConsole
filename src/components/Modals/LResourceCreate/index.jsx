@@ -59,6 +59,11 @@ export default class LResourceCreateModal extends React.Component {
 
     this.fetchNodes()
     this.fetchStoragepools()
+
+    // this.state = {
+    //   unselectedNodes: {},
+    //   selectedNodes: [],
+    // }
   }
 
   fetchNodes = params => {
@@ -103,11 +108,20 @@ export default class LResourceCreateModal extends React.Component {
 
   get storagepools() {
     const storagepools = this.storagepoolStore.list.data.map(storagepool => ({
-      label: storagepool.name,
-      value: storagepool.name,
+      label: storagepool.name.concat(' - ', storagepool.node),
+      value: [storagepool.name, storagepool.node],
     }))
     return storagepools
   }
+
+  // handleStoragepoolChange = value => {
+  //   const { selectedNodes } = this.state
+  //   const selectedNodesList = value.map(value => value[1])
+  //   this.setState({ selectedNodes: selectedNodesList })
+  //   const newNodes = this.nodes.filter(node => selectedNodes.indexOf(node.value) === -1)
+  //   this.setState({ unselectedNodes: newNodes })
+  //   console.log(newNodes)
+  // }
 
   handleCreate = LResourceTemplates => {
     set(
@@ -192,6 +206,8 @@ export default class LResourceCreateModal extends React.Component {
           <Select
             name="storagepool"
             options={this.storagepools}
+            onFetch={this.fetchStoragepools}
+            // onChange={this.handleStoragepoolChange}
             searchable
             clearable
             multi
@@ -202,7 +218,14 @@ export default class LResourceCreateModal extends React.Component {
           desc={t('Select LINSTOR Node to create diskless resource')}
           // rules={[{ required: true, message: t('Please select LINSTOR Node') }]}
         >
-          <Select name="node" options={this.nodes} searchable clearable multi />
+          <Select
+            name="node"
+            options={this.nodes}
+            onFetch={this.fetchNodes}
+            searchable
+            clearable
+            multi
+          />
         </Form.Item>
       </Modal.Form>
     )

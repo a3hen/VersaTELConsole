@@ -23,6 +23,7 @@ import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
+// import isEqual from 'react-fast-compare'
 
 import { ICON_TYPES } from 'utils/constants'
 import VStatus from 'clusters/components/VtelStatus'
@@ -37,7 +38,10 @@ import LResourceStore from 'stores/lresource'
 export default class LResource extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
-      this.props.getData({ page: this.props.tableProps.pagination.page })
+      this.props.getData({
+        page: this.props.tableProps.pagination.page,
+        silent: true,
+      })
       // this.props.store.fetchList({ page: this.props.tableProps.pagination.page })
     }, 5000)
   }
@@ -114,7 +118,7 @@ export default class LResource extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />
         <Table
           {...tableProps}
@@ -122,7 +126,6 @@ export default class LResource extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
-          silentLoading
         />
       </ListPage>
     )

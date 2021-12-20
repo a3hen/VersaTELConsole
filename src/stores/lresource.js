@@ -69,21 +69,29 @@ export default class LResourceStore extends Base {
     //       "mirrorWay": "1",
     //       "disklessNode": ["ubuntu"],
     //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       // "name": "ubuntu",
     //       "name": "res_a",
     //       "node": "ubuntu",
     //       "size": "12 KB",
-    //       "status": "UpToDate"
+    //       "status": "Healthy"
     //     },
-    //     // {
-    //     //   "deviceName": "/dev/drbd1000",
-    //     //   "mirrorWay": "1",
-    //     //   "disklessNode": ["ubuntu"],
-    //     //   "diskfulNode": ["ubuntu1","ubuntu2"],
-    //     //   "name": "local",
-    //     //   "size": "12 KB",
-    //     //   "status": "UpToDate"
-    //     // },
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_c",
+    //       "size": "12 KB",
+    //       "status": "Unhealthy"
+    //     },
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_b",
+    //       "size": "12 KB",
+    //       "status": "Synching"
+    //     },
     //   ],
     // }
 
@@ -134,32 +142,13 @@ export default class LResourceStore extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-
-    // const result = await request.get(
-    //   `${this.getResourceUrl()}/${params.name}`
-    // )
-    const result = await request.get(`${this.getResourceUrl()}`)
-
-    const allData = get(result, 'data', [])
-    const data = allData.filter(node => node.name === params.name)
+    const result = await request.get(this.getResourceUrl(), {
+      name: params.name,
+    })
+    const data = get(result, 'data', [])
     const detail = { ...params, ...data[0], kind: 'Resource' }
     this.detail = detail
     this.isLoading = false
     return detail
   }
-
-  // checkIfIsPresetLNode(name) {
-  //   if (this.module === 'linstornodes') {
-  //     // console.log(globals.config.presetLNodes)
-  //     return (
-  //       isEmpty(globals.config.presetLNodes) &&
-  //       globals.config.presetLNodes.includes(name)
-  //     )
-  //   }
-
-  //   return (
-  //     isEmpty(globals.config.presetClusterLNodes) &&
-  //     globals.config.presetClusterLNodes.includes(name)
-  //   )
-  // }
 }

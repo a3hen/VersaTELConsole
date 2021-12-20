@@ -19,16 +19,19 @@
 module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'LINSTOR集群节点',
-  LINSTOR_NODES_DESC:
+  LNODE: '节点',
+  LNODE_DESC:
     '提供了当前LINSTOR集群下节点的运行状态，以及可以创建删除LINSTOR节点',
   'Node Type': '节点类型',
   'LVM Type': 'LVM类型',
   'Storagepool Num': '存储池数量',
   'Resource Num': '资源数量',
-  LINSTOR_NODES_CREATE_DESC: '创建LINSTOR集群节点',
+  LNODE_CREATE_DESC: '创建LINSTOR集群节点',
+  LNODE_EMPTY_DESC: '请创建一个节点',
   'Create LINSTOR Node': '创建LINSTOR集群节点',
   'Please input LINSTOR Node name': '请输入LINSTOR节点名称',
-  VTEL_NAME_DESC: '仅支持字母数字以及下划线，且以字母开头',
+  VTEL_NAME_DESC:
+    '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
     'VersaTEL是青岛大学存储研究所设计开发的VersaRACK容器云平台的管理系统，它包含了对基于Kubenetes的容器平台的图形化管理、VersaSDS并行存储系统管理、VersaRACK系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
@@ -41,6 +44,7 @@ module.exports = {
   Storagepool: '存储池',
   STORAGEPOOL_DESC:
     '提供了当前LINSTOR集群下存储池的状态，以及可以创建删除存储池',
+  STORAGEPOOL_EMPTY_DESC: '请创建一个存储池',
   Driver: '设备',
   'Pool Name': '资源池名',
   'Free Size': '剩余空间',
@@ -66,7 +70,9 @@ module.exports = {
   'Please input Storagepool name': '请输入存储池名称',
   'Please select LINSTOR Node': '请选择LINSTOR节点',
   LINSTOR_STORAGEPOOLS: '存储池',
+  LRESOURCE_EMPTY_DESC: '请创建一个资源',
   'Select Storagepool': '选择存储池',
+  'Please select Storagepool': '请选择存储池',
   'Select Storagepool to create diskful resource':
     '请选择创建的diskful资源所在的存储池',
   'Select LINSTOR Node to create diskless resource':
@@ -81,7 +87,7 @@ module.exports = {
   'Search by node': '请输入节点名称进行查找',
   Status: '状态',
   Snapshots: '存储卷快照',
-  LINSTOR_NODES_LOW: 'LINSTOR节点',
+  LNode_LOW: 'LINSTOR节点',
   Storagepool_LOW: '存储池',
   LResource_LOW: '资源',
   Name: '名称',
@@ -89,4 +95,6 @@ module.exports = {
   Delete: '删除',
   存储池_LOW: '存储池',
   Conns: '连接状态',
+  STORAGEPOOL: '存储池',
+  LRESOURCE: '资源',
 }

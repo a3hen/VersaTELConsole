@@ -4,21 +4,27 @@ import styles from './index.scss'
 
 export default class VStatus extends React.Component {
   getStatusType() {
+    const { name = '' } = this.props
     if (
-      this.props.name === 'ONLINE' ||
-      this.props.name === 'OK' ||
-      this.props.name === 'Healthy' ||
-      this.props.name === 'UpToDate' ||
-      this.props.name === 'Diskless'
+      name === 'ONLINE' ||
+      name === 'OK' ||
+      name === 'Healthy' ||
+      name === 'UpToDate' ||
+      name === 'Diskless' ||
+      name === 'Inused'
     ) {
       return 'Running'
     }
 
-    if (this.props.name === 'Warning' || this.props.name === 'Synching') {
-      return 'Update'
+    if (name === 'Warning' || name.indexOf('Connecting') !== -1) {
+      return 'Warning'
     }
 
-    // if (this.props.name === 'OFFLINE' || this.props.name === 'ERROR'){
+    if (name === 'Synching' || name.indexOf('SyncTarget') !== -1) {
+      return 'Updating'
+    }
+
+    // if (name === 'OFFLINE' || name === 'ERROR'){
     //   return 'Stopped'
     // }
     return 'Stopped'

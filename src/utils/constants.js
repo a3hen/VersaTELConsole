@@ -282,7 +282,7 @@ export const MODULE_KIND_MAP = {
   hpas: 'HPA',
   linstornodes: 'LNode',
   storagepools: 'Storagepool',
-  lresources: 'Resource',
+  lresources: 'LResource',
 }
 
 export const QUOTAS_MAP = {
@@ -502,7 +502,7 @@ export const GRAY_RELEASE_CATEGORIES = [
   },
 ]
 
-export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_]*$/
+export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_-]$/
 export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/

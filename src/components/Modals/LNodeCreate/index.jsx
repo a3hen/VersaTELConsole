@@ -177,7 +177,6 @@ export default class LNodeCreateModal extends React.Component {
             name="node_type"
             // cluster={this.props.cluster}
             options={nodeType}
-            // searchable
             clearable
             defaultValue="Combined"
           />

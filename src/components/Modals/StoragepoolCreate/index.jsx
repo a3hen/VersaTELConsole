@@ -162,7 +162,13 @@ export default class StoragepoolCreateModal extends React.Component {
           desc={t('Select LINSTOR Node')}
           rules={[{ required: true, message: t('Please select LINSTOR Node') }]}
         >
-          <Select name="node" options={this.nodes} searchable clearable />
+          <Select
+            name="node"
+            options={this.nodes}
+            onFetch={this.fetchNodes}
+            searchable
+            clearable
+          />
         </Form.Item>
         <Form.Item label={t('LVM Type')} desc={t('Select LVM Type')}>
           <Select name="type" options={lvmType} defaultValue="LVM" clearable />

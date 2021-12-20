@@ -682,7 +682,7 @@ const getNotificationVerifyTemplate = ({ user }) => ({
 
 const getLNodeTemplate = ({ namespace }) => ({
   apiVersion: 'versatel.kubesphere.io/v1alpha1',
-  kind: 'LINSTOR Node',
+  kind: 'LNode',
   metadata: {
     namespace,
   },
@@ -700,7 +700,7 @@ const getSPTemplate = ({ namespace }) => ({
 
 const getLResourceTemplate = ({ namespace }) => ({
   apiVersion: 'versatel.kubesphere.io/v1alpha1',
-  kind: 'Resource',
+  kind: 'LResource',
   metadata: {
     namespace,
   },

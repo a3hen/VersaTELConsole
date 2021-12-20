@@ -147,19 +147,4 @@ export default class StoragepoolStore extends Base {
       }
     )
   }
-
-  // checkIfIsPresetLNode(name) {
-  //   if (this.module === 'linstornodes') {
-  //     // console.log(globals.config.presetLNodes)
-  //     return (
-  //       isEmpty(globals.config.presetLNodes) &&
-  //       globals.config.presetLNodes.includes(name)
-  //     )
-  //   }
-
-  //   return (
-  //     isEmpty(globals.config.presetClusterLNodes) &&
-  //     globals.config.presetClusterLNodes.includes(name)
-  //   )
-  // }
 }

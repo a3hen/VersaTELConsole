@@ -20,22 +20,26 @@ module.exports = {
   VersaTEL_DESCRIPTION:
     'VersaTEL is the management system of VersaRACK container cloud platform designed and developed by Institute of Storage Technology Studies,Qingdao University.',
   LINSTOR_NODES: 'LINSTOR Node',
-  LINSTOR_NODES_DESC:
-    'Manages LINSTOR Nodes. You can create or delete Nodes here.',
-  LINSTOR_NODES_CREATE_DESC: 'Create LINSTOR Node',
+  LNODE: 'LINSTOR Node',
+  LNODE_DESC: 'Manages LINSTOR Nodes. You can create or delete Nodes here.',
+  LNODE_CREATE_DESC: 'Create LINSTOR Node',
+  LNODE_EMPTY_DESC: 'Please create a Node',
   VTEL_NAME_DESC:
-    'Only letters, numbers, and underscores are supported and begin with a letter',
+    'Only letters, numbers, dash and underscores are supported. Begin with a letter. Length must be greater than 2',
   STORAGEPOOL_DESC:
     'Manages Storagepools. You can create or delete Storagepools here.',
+  STORAGEPOOL_EMPTY_DESC: 'Please create a Storagepool',
+  STORAGEPOOL: 'Storagepool',
   LVM_VOLUME_NAME_DESC: 'Please input a device name of type LVM',
   LRESOURCE_DESC:
     'Manages LINSTOR Resources. You can create or delete Resources here.',
-  LRESOURCE_CREATE_DESC: 'Create Reaource',
-  LResource: 'Resource',
+  LRESOURCE_CREATE_DESC: 'Create Resource',
   VTEL_SIZE_DESC:
     'Please enter the size. If no unit is added, the default unit is K',
   LINSTOR_STORAGEPOOLS: 'Storagepool',
-  LINSTOR_NODES_LOW: 'LINSTOR Node',
+  LNode_LOW: 'LINSTOR Node',
   Storagepool_LOW: 'Storagepool',
   LResource_LOW: 'Resource',
+  LRESOURCE: 'Resource',
+  LRESOURCE_EMPTY_DESC: 'Please create a Resource',
 }

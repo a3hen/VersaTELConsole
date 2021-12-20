@@ -78,16 +78,16 @@ export default class DisklessResource extends React.Component {
     {
       title: t('Name'),
       dataIndex: 'name',
-      // width: '18%',
+      width: '25%',
       render: (name, record) => (
         <Avatar icon="database" title={getDisplayName(record)} noLink />
       ),
     },
     {
       title: t('Conns'),
-      dataIndex: 'conns',
+      dataIndex: 'conn',
       isHideable: true,
-      render: conns => <VStatus name={conns} />,
+      render: conn => <VStatus name={conn} />,
     },
     {
       title: t('Status'),
@@ -99,7 +99,7 @@ export default class DisklessResource extends React.Component {
       title: t('Usage'),
       dataIndex: 'usage',
       isHideable: true,
-      render: usage => usage,
+      render: usage => <VStatus name={usage} />,
     },
     {
       title: t('Node'),
@@ -129,7 +129,6 @@ export default class DisklessResource extends React.Component {
     return (
       <Card
         title={t('Display the message of Diskless Resource')}
-        loading={isLoading}
         empty={t('NOT_AVAILABLE', { resource: t('resource') })}
         loading={false}
       >

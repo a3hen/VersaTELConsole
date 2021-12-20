@@ -38,7 +38,10 @@ export default class Storagepool extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       // this.props.store.fetchStoragepoolTemplates(this.props.match.params)
-      this.props.getData({ page: this.props.tableProps.pagination.page })
+      this.props.getData({
+        page: this.props.tableProps.pagination.page,
+        silent: true,
+      })
     }, 5000)
   }
 
@@ -149,7 +152,7 @@ export default class Storagepool extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props} noWatch>
+      <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Storagepool')} />
         <Table
           {...tableProps}
@@ -157,7 +160,6 @@ export default class Storagepool extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
-          silentLoading
         />
       </ListPage>
     )

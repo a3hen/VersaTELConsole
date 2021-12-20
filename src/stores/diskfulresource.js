@@ -72,18 +72,35 @@ export default class DiskfulResourceStore extends Base {
     //       "node": "ubuntu",
     //       "storagepool": "pool_a",
     //       "size": "12 KB",
-    //       "status": "UpToDate"
+    //       "status": "UpToDate",
+    //       "conns": "Connecting(hp225)",
+    //       "usage": "Unused"
     //     },
     //     {
     //       "deviceName": "/dev/drbd1000",
     //       "mirrorWay": "1",
     //       "disklessNode": ["ubuntu"],
     //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
+    //       "name": "res_b",
     //       "node": "ubuntu2",
     //       "storagepool": "pool_b",
     //       "size": "12 KB",
-    //       "status": "UpToDate"
+    //       "status": "Diskless",
+    //       "conns": "OK",
+    //       "usage": "Inused"
+    //     },
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_c",
+    //       "node": "ubuntu2",
+    //       "storagepool": "pool_b",
+    //       "size": "12 KB",
+    //       "status": "SyncTarget(1.31%)",
+    //       "conns": "Connecting(hp225)",
+    //       "usage": "Unused"
     //     },
     //   ],
     // }
@@ -120,49 +137,4 @@ export default class DiskfulResourceStore extends Base {
       isLoading: false,
     })
   }
-
-  // @action
-  // checkName(params) {
-  //   return request.get(
-  //     this.getDetailUrl(params),
-  //     {},
-  //     {
-  //       headers: { 'x-check-exist': true },
-  //     }
-  //   )
-  // }
-
-  // @action
-  // async fetchDetail(params) {
-  //   this.isLoading = true
-
-  //   // const result = await request.get(
-  //   //   `${this.getResourceUrl()}/${params.name}`
-  //   // )
-  //   const result = await request.get(
-  //     `${this.getResourceUrl()}`
-  //   )
-
-  //   const allData = get(result, 'data', [])
-  //   const data = allData.filter(node => node.name == params.name)
-  //   const detail = { ...params, ...data[0], kind: 'Resource' }
-  //   this.detail = detail
-  //   this.isLoading = false
-  //   return detail
-  // }
-
-  // checkIfIsPresetLNode(name) {
-  //   if (this.module === 'linstornodes') {
-  //     // console.log(globals.config.presetLNodes)
-  //     return (
-  //       isEmpty(globals.config.presetLNodes) &&
-  //       globals.config.presetLNodes.includes(name)
-  //     )
-  //   }
-
-  //   return (
-  //     isEmpty(globals.config.presetClusterLNodes) &&
-  //     globals.config.presetClusterLNodes.includes(name)
-  //   )
-  // }
 }

@@ -40,7 +40,7 @@ export default {
           // store.create(data)
 
           store.create(data).then(res => {
-            Modal.close(modal)
+            // Modal.close(modal)
             if (res) {
               Notify.error({
                 content: `${t('Created Failed, Reason:')}${res[0].message}`,
@@ -50,7 +50,7 @@ export default {
             }
             success && success()
           })
-          // Modal.close(modal)
+          Modal.close(modal)
         },
         modal: CreateModal,
         store,
