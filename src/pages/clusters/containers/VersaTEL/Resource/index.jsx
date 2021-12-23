@@ -118,7 +118,7 @@ export default class LResource extends React.Component {
   render() {
     const { bannerProps, tableProps } = this.props
     return (
-      <ListPage {...this.props}>
+      <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />
         <Table
           {...tableProps}
