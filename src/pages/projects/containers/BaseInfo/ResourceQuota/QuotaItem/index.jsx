@@ -88,6 +88,9 @@ const QuotaItem = ({ name, total, used }) => {
     return usedValue
   }
 
+  const transformName = (text = '') =>
+    ICON_TYPES[labelName] ? t(text.replace(/[. ]/g, '_').toUpperCase()) : text
+
   if (name === 'limits.cpu' || name === 'requests.cpu') {
     if (total) {
       ratio = Number(cpuFormat(used)) / Number(cpuFormat(total))
@@ -111,12 +114,14 @@ const QuotaItem = ({ name, total, used }) => {
   }
 
   ratio = Math.min(Math.max(ratio, 0), 1)
+  const labelName = name.indexOf('gpu') > -1 ? 'gpu' : name
+  const labelText = labelName === 'gpu' ? `${labelName}.limit` : labelName
 
   return (
     <div className={styles.quota}>
-      <Icon name={ICON_TYPES[name] || 'resource'} size={40} />
+      <Icon name={ICON_TYPES[labelName] || 'resource'} size={40} />
       <div className={styles.item}>
-        <div>{t(name.replace(/[. ]/g, '_').toUpperCase())}</div>
+        <div>{transformName(labelText)}</div>
         <p>{t('RESOURCE_TYPE_SCAP')}</p>
       </div>
       <div className={styles.item}>

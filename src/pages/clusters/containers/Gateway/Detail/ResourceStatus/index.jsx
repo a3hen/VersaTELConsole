@@ -20,15 +20,19 @@ import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
 import { isEmpty } from 'lodash'
+import { Notify } from '@kube-design/components'
 
 import ContainerPortsCard from 'components/Cards/Containers/Ports'
 import ReplicaCard from 'projects/components/Cards/Replica'
 import Placement from 'projects/components/Cards/Placement'
 import PodsCard from 'clusters/containers/Gateway/Components/Pods'
 import PropTypes from 'prop-types'
+import GatewayStore from 'stores/gateway'
 import styles from './index.scss'
 
 class ResourceStatus extends React.Component {
+  gateway = new GatewayStore()
+
   static childContextTypes = {
     gatewayName: PropTypes.string,
     gatewayNs: PropTypes.string,
@@ -60,7 +64,7 @@ class ResourceStatus extends React.Component {
   }
 
   get detail() {
-    return this.store.gateway.data
+    return this.store.gateway.data || {}
   }
 
   get cluster() {
@@ -73,8 +77,7 @@ class ResourceStatus extends React.Component {
   }
 
   get prefix() {
-    const { workspace } = this.props.match.params
-    return `${workspace ? `/${workspace}` : ''}/clusters/${this.cluster}`
+    return `/clusters/${this.cluster}`
   }
 
   getGatewayDetail() {
@@ -107,9 +110,21 @@ class ResourceStatus extends React.Component {
     this.setState({ pods: result.length })
   }
 
+  checkGatewayLatest = async () => {
+    const { namespace } = this.props.match.params
+    await this.gateway.getGateway({ cluster: this.cluster, namespace })
+  }
+
   handleScale = async newReplicas => {
     const { namespace } = this.props.match.params
-    await this.store.scale({ cluster: this.cluster, namespace }, newReplicas)
+    await this.checkGatewayLatest()
+    if (
+      this.gateway.detail.resourceVersion === this.store.detail.resourceVersion
+    ) {
+      await this.store.scale({ cluster: this.cluster, namespace }, newReplicas)
+    } else {
+      Notify.info({ content: t('GATEWAY_UPDATING_TIP') })
+    }
     this.getGatewayDetail()
     this.fetchData()
   }
@@ -158,6 +173,7 @@ class ResourceStatus extends React.Component {
 
   renderPods() {
     const params = { ...this.props.match.params, cluster: this.cluster }
+
     return (
       <PodsCard
         prefix={this.prefix}

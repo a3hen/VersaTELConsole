@@ -16,16 +16,16 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
 import React from 'react'
 import { toJS } from 'mobx'
 import { observer, inject } from 'mobx-react'
-import classNames from 'classnames'
+import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { Button, Dropdown, Menu, Icon, Tooltip } from '@kube-design/components'
 import { Panel } from 'components/Base'
 import { getLocalTime } from 'utils'
+import classNames from 'classnames'
+import { isEmpty, isArray } from 'lodash'
 
-import { ReactComponent as AppGoverIcon } from 'assets/app_gover.svg'
 import { trigger } from 'utils/action'
 import { CLUSTER_PROVIDERS } from 'utils/constants'
 import GatewayEmpty from '../GatewayEmpty'
@@ -53,7 +53,7 @@ class GatewayCard extends React.Component {
   }
 
   get canEdit() {
-    return !this.props.actions.includes('manage')
+    return this.props.actions && !this.props.actions.includes('manage')
   }
 
   get cluster() {
@@ -63,7 +63,8 @@ class GatewayCard extends React.Component {
   }
 
   get itemActions() {
-    return [
+    const updateDisable = this.canEdit || this.gateway.createTime != null
+    const baseOpt = [
       {
         key: 'view',
         icon: 'eye',
@@ -77,18 +78,23 @@ class GatewayCard extends React.Component {
         disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
-        key: 'update',
-        icon: 'update',
-        text: t('UPDATE'),
-        disabled: this.canEdit || this.gateway.createTime != null,
-      },
-      {
         key: 'delete',
         icon: 'trash',
-        text: t('DELETE'),
+        text: t('DISABLE'),
         disabled: this.canEdit,
       },
     ]
+
+    const updateOpt = {
+      key: 'update',
+      icon: 'update',
+      text: t('UPDATE'),
+      disabled: updateDisable,
+    }
+
+    !updateDisable && baseOpt.splice(2, 0, updateOpt)
+
+    return baseOpt
   }
 
   get linkUrl() {
@@ -164,7 +170,7 @@ class GatewayCard extends React.Component {
       ip = gateway.externalIPs.join('; ')
     }
 
-    return ip || '-'
+    return ip
   }
 
   renderMoreMenu() {
@@ -194,8 +200,8 @@ class GatewayCard extends React.Component {
             <Icon
               name="update"
               color={{
-                primary: '#ffc781',
-                secondary: '#f5a623',
+                primary: '#f5a623 ',
+                secondary: '#ffe1be',
               }}
             />
           </Tooltip>
@@ -234,6 +240,12 @@ class GatewayCard extends React.Component {
 
     const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
 
+    const isClusterPermission =
+      globals.app.hasPermission({
+        module: 'clusters',
+        action: 'view',
+      }) && this.props.type === 'cluster'
+
     return [
       [
         {
@@ -256,7 +268,7 @@ class GatewayCard extends React.Component {
           component: renderOperations ? (
             renderOperations({
               url: this.linkUrl,
-              disabled: isEmpty(createTime),
+              disabled: !isClusterPermission || isEmpty(createTime),
             })
           ) : (
             <Dropdown
@@ -265,7 +277,7 @@ class GatewayCard extends React.Component {
               trigger="click"
               placement="bottomRight"
             >
-              <Button>{t('OPERATIONS')}</Button>
+              <Button>{t('MANAGE')}</Button>
             </Dropdown>
           ),
         },
@@ -370,26 +382,29 @@ class GatewayCard extends React.Component {
             )
           })}
 
-          <div
-            className={classNames(styles.annotations, {
-              [styles.bgWhite]: isFederated,
-            })}
-          >
-            <p>{t('ANNOTATION_PL')}</p>
-
-            <ul>
-              {isEmpty(this.gateway.annotations) ? (
-                <li>{t('NO_DATA')}</li>
-              ) : (
-                Object.entries(this.gateway.annotations).map(([key, value]) => (
-                  <li key={key}>
-                    <span className={styles.key}>{key}</span>
-                    <span>{value}</span>
-                  </li>
-                ))
-              )}
-            </ul>
-          </div>
+          {this.gateway.type !== 'NodePort' && (
+            <div
+              className={classNames(styles.annotations, {
+                [styles.bgWhite]: isFederated,
+              })}
+            >
+              <p>{t('ANNOTATION_PL')}</p>
+              <ul>
+                {isEmpty(this.gateway.annotations) ? (
+                  <li>{t('NO_DATA')}</li>
+                ) : (
+                  Object.entries(this.gateway.annotations).map(
+                    ([key, value]) => (
+                      <li key={key}>
+                        <span className={styles.key}>{key}</span>
+                        <span>{value}</span>
+                      </li>
+                    )
+                  )
+                )}
+              </ul>
+            </div>
+          )}
         </Panel>
       </>
     )
@@ -397,12 +412,14 @@ class GatewayCard extends React.Component {
 
   render() {
     const { component, namespace } = this.props.match.params
-    const { type, title } = this.props
-
+    const { type, title, gatewayList } = this.props
+    const hasClusterGateway =
+      isArray(gatewayList) && gatewayList[0] && !gatewayList[1]
     return (
       <div>
         {this.isEmptyData ? (
-          namespace && type === 'cluster' ? null : (
+          (namespace && type === 'cluster') ||
+          (hasClusterGateway && namespace && type === 'project') ? null : (
             <>
               {title}
               <GatewayEmpty

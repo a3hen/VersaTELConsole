@@ -46,20 +46,41 @@ client:
   reposUrl: https://github.com/kubesphere/kubesphere
   slackUrl: https://kubesphere.slack.com
   documents:
-    url: https://v3-1.docs.kubesphere.io/docs
-    api: https://v3-1.docs.kubesphere.io/docs/reference/api-docs/
+    en:
+      url: https://kubesphere.io/docs
+      api: https://kubesphere.io/docs/reference/api-docs/
+    zh:
+      url: https://kubesphere.com.cn/docs
+      api: https://kubesphere.com.cn/docs/reference/api-docs/
 
   # current support lanaguages
   supportLangs:
     - label: "繁體中文"
       value: "tc"
+      recommend: true
     - label: "简体中文"
       value: "zh"
+      recommend: true
     - label: "English"
       value: "en"
+      recommend: true
     - label: "Español"
       value: "es"
+      recommend: true
+    - label: "العربية"
+      value: "ar"
+    - label: "Français"
+      value: 'fr'
+    - label: "हिन्दी"
+      value: 'hi'
+    - label: "Lietuvių"
+      value: 'lt'
+    - label: 'Polski'
+      value: 'pl'
+    - label: 'Türkçe'
+      value: 'tr'
   defaultLang: "en"
+  showAllLangs: true
 
   # platform management navigations
   globalNavs:
@@ -316,9 +337,9 @@ client:
   manageAppNavs:
     - cate: "apps"
       items:
-        - { name: store, title: APP_STORE, icon: appcenter }
+        - { name: store, title: APPS, icon: appcenter }
         - { name: categories, title: APP_CATEGORY_PL, icon: tag }
-        - { name: reviews, title: APP_REVIEW, icon: safe-notice }
+        - { name: reviews, title: APP_RELEASE, icon: safe-notice }
 
   # project page navigations
   projectNavs:
@@ -599,3 +620,7 @@ client:
       max_number_of_toTag: 20
     slack:
       max_number_of_channel: 20
+  
+  # supported Gpu type
+  supportGpuType:
+    - 'nvidia.com/gpu'

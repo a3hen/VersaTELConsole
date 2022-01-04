@@ -138,13 +138,8 @@ export default class AdvanceSettings extends React.Component {
     }
 
     if (result.result === 'ok') {
-      const message = t('CRON_DESC', {
-        lastTime: getLocalTime(result.lastTime).format(
-          `${t('MMMM Do YYYY')} HH:mm:ss`
-        ),
-        nextTime: getLocalTime(result.nextTime).format(
-          `${t('MMMM Do YYYY')} HH:mm:ss`
-        ),
+      const message = t('PIPELINE_CRON_DESC', {
+        nextTime: getLocalTime(result.nextTime).format(`YYYY-MM-DD HH:mm:ss`),
       })
       this.setState({ cronMessage: { message } })
       callback()
@@ -193,8 +188,8 @@ export default class AdvanceSettings extends React.Component {
         </Form.Item>
         <div className="h6">
           <>
-            {t('PARAMETERIZED_BUILD')}
-            {this.renderTip(t('PARAMETERIZED_BUILD_TIP'))}
+            {t('BUILD_PARAMETERS')}
+            {this.renderTip(t('BUILD_PARAMETERS_TIP'))}
           </>
         </div>
         <ParamsInput
@@ -208,8 +203,8 @@ export default class AdvanceSettings extends React.Component {
             checked={enable_timer_trigger}
             onChange={this.handleChange('enable_timer_trigger')}
           >
-            {t('SCHEDULED_BUILD')}
-            {this.renderTip(t('SCHEDULED_BUILD_TIP'))}
+            {t('BUILD_PERIODICALLY')}
+            {this.renderTip(t('BUILD_PERIODICALLY_TIP'))}
           </Checkbox>
         </Form.Item>
         {enable_timer_trigger && (
@@ -217,10 +212,10 @@ export default class AdvanceSettings extends React.Component {
             <Columns>
               <Column>
                 <Form.Item
-                  label={t('Schedule')}
+                  label={t('SCHEDULE')}
                   desc={
                     this.state.cronMessage.message ||
-                    t.html('PIPELINE_CRONJOB_CRON_DESC')
+                    t.html('PIPELINE_SCHEDULE_DESC')
                   }
                   tip={t('tips_timer_trigger')}
                   rules={[{ validator: this.checkCronScript }]}
@@ -241,45 +236,49 @@ export default class AdvanceSettings extends React.Component {
 
   renderGitOptions() {
     const { formTemplate } = this.props
+    const enable_shallow_clone_key = `${this.scmPrefix}.git_clone_option.shallow`
+    const enable_shallow_clone_trigger = get(
+      formTemplate,
+      enable_shallow_clone_key
+    )
 
     return (
       <>
-        <div className="h6">{t('GIT_CLONE_OPTIONS')}</div>
-        <Columns>
-          <Column>
-            <Form.Item label={t('CLONE_DEPTH')}>
-              <NumberInput
-                name={`${this.scmPrefix}.git_clone_option.depth`}
-                defaultValue={1}
-              />
-            </Form.Item>
-          </Column>
-          <Column>
-            <Form.Item label={t('PIPELINE_CLONE_TIMEOUT')}>
-              <NumberInput
-                name={`${this.scmPrefix}.git_clone_option.timeout`}
-                defaultValue={20}
-              />
-            </Form.Item>
-          </Column>
-        </Columns>
+        <div className="h6">{t('CLONE_SETTINGS')}</div>
         <Form.Item>
           <Checkbox
-            checked={get(
-              formTemplate,
-              `${this.scmPrefix}.git_clone_option.shallow`,
-              false
-            )}
-            name={`${this.scmPrefix}.git_clone_option.shallow`}
-            onChange={this.handleChange(
-              `${this.scmPrefix}.git_clone_option.shallow`
-            )}
+            checked={enable_shallow_clone_trigger}
+            name={enable_shallow_clone_key}
+            onChange={this.handleChange(enable_shallow_clone_key)}
           >
             {t('ENABLE_SHALLOW_CLONE')}
           </Checkbox>
         </Form.Item>
-        <div className="h6">{t('WEBHOOK_PUSH')}</div>
-        <Form.Item label={t('WEBHOOK_PUSH_URL')} tip={t('WEBHOOK_PUSH_DESC')}>
+        {enable_shallow_clone_trigger && (
+          <div className={styles.wrapper}>
+            <Columns>
+              <Column>
+                <Form.Item label={t('CLONE_DEPTH')}>
+                  <NumberInput
+                    name={`${this.scmPrefix}.git_clone_option.depth`}
+                    defaultValue={1}
+                  />
+                </Form.Item>
+              </Column>
+              <Column>
+                <Form.Item label={t('CLONE_TIMEOUT_PERIOD')}>
+                  <NumberInput
+                    name={`${this.scmPrefix}.git_clone_option.timeout`}
+                    defaultValue={20}
+                  />
+                </Form.Item>
+              </Column>
+            </Columns>
+          </div>
+        )}
+
+        <div className="h6">Webhook</div>
+        <Form.Item label={t('WEBHOOK_PUSH_URL')} desc={t('WEBHOOK_PUSH_DESC')}>
           <Input value={this.webhookUrl} disabled />
         </Form.Item>
       </>
@@ -292,19 +291,19 @@ export default class AdvanceSettings extends React.Component {
 
     return (
       <>
-        <div className="h6">{t('REG_FILTER_TITLE')}</div>
+        <div className="h6">{t('FILTER_BY_REGEX')}</div>
         <Form.Item>
           <Checkbox
             checked={enable_regex_filter}
             name="enable_regex_filter"
             onChange={this.handleChange('enable_regex_filter')}
           >
-            {t('REG_FILTER_DESC')}
+            {t('FILTER_BY_REGEX_DESC')}
           </Checkbox>
         </Form.Item>
         {enable_regex_filter && (
           <div className={styles.wrapper}>
-            <Form.Item label={t('REGEX_FILTER')}>
+            <Form.Item label={t('REGEX')}>
               <Input
                 name={`${this.scmPrefix}.regex_filter`}
                 defaultValue=".*"
@@ -344,7 +343,7 @@ export default class AdvanceSettings extends React.Component {
       <div>
         {source_type !== 'git' && source_type !== 'svn' ? (
           <React.Fragment>
-            <div className="h6">{t('BEHAVIORAL_STRATEGY')}</div>
+            <div className="h6">{t('STRATEGY_SETTINGS')}</div>
             <div className={styles.wrapper}>
               <Form.Item>
                 <ActionsInput
@@ -363,14 +362,14 @@ export default class AdvanceSettings extends React.Component {
             defaultValue="Jenkinsfile"
           />
         </Form.Item>
-        <div className="h6">{t('REPO_SCAN_TRIGGER')}</div>
+        <div className="h6">{t('SCAN_TRIGGER')}</div>
         <Form.Item>
           <Checkbox
             checked={enable_timer_trigger}
             name="enable_timer_trigger"
             onChange={this.handleChange('enable_timer_trigger')}
           >
-            {t('SCAN_REGULARLY')}
+            {t('SCAN_PERIODICALLY')}
             {this.renderTip(t('TIME_TRIGGER_DESC'))}
           </Checkbox>
         </Form.Item>
@@ -413,7 +412,7 @@ export default class AdvanceSettings extends React.Component {
                     isLoadingAtBottom
                     onMenuScrollToBottom={this.handleScrollToBottom}
                     options={this.pipelineLists}
-                    placeholder={t('SELECT_A_PIPELINE')}
+                    placeholder={t('SELECT_PIPELINE_SCAP')}
                   />
                 </Form.Item>
               </Column>
@@ -428,7 +427,7 @@ export default class AdvanceSettings extends React.Component {
                     isLoadingAtBottom
                     onMenuScrollToBottom={this.handleScrollToBottom}
                     options={this.pipelineLists}
-                    placeholder={t('SELECT_A_PIPELINE')}
+                    placeholder={t('SELECT_PIPELINE_SCAP')}
                   />
                 </Form.Item>
               </Column>
@@ -453,8 +452,8 @@ export default class AdvanceSettings extends React.Component {
           <Columns>
             <Column>
               <Form.Item
-                label={t('DAYS_TO_KEEP_BUILDS')}
-                desc={t('DAYS_TO_KEEP_BUILDS_DESC')}
+                label={t('BUILD_RECORD_RETENTION_PERIOD_DAYS')}
+                desc={t('BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC')}
               >
                 <Input
                   name={`${this.prefix}.discarder.days_to_keep`}
@@ -464,8 +463,8 @@ export default class AdvanceSettings extends React.Component {
             </Column>
             <Column>
               <Form.Item
-                label={t('MAXIMUM_NUMBER_OF_BUILDS_TO_KEEP')}
-                desc={t('MAXIMUM_NUMBER_OF_BUILDS_TO_KEEP_DESC')}
+                label={t('MAXIMUM_BUILD_RECORDS')}
+                desc={t('MAXIMUM_BUILD_RECORDS_DESC')}
               >
                 <Input
                   name={`${this.prefix}.discarder.num_to_keep`}
@@ -482,8 +481,8 @@ export default class AdvanceSettings extends React.Component {
         <Columns>
           <Column>
             <Form.Item
-              label={t('DAYS_TO_KEEP_BRANCHES')}
-              desc={t('DAYS_TO_KEEP_BRANCHES_DESC')}
+              label={t('BRANCH_RETENTION_PERIOD_DAYS')}
+              desc={t('BRANCH_RETENTION_PERIOD_DAYS_DESC')}
             >
               <Input
                 name={`${this.prefix}.discarder.days_to_keep`}
@@ -493,8 +492,8 @@ export default class AdvanceSettings extends React.Component {
           </Column>
           <Column>
             <Form.Item
-              label={t('MAXIMUM_NUMBER_OF_BRANCHES_TO_KEEP')}
-              desc={t('MAXIMUM_NUMBER_OF_BRANCHES_TO_KEEP_DESC')}
+              label={t('MAXIMUM_BRANCHES')}
+              desc={t('MAXIMUM_BRANCHES_DESC')}
             >
               <Input
                 name={`${this.prefix}.discarder.num_to_keep`}
@@ -527,12 +526,12 @@ export default class AdvanceSettings extends React.Component {
               onChange={this.handleChange('enable_discarder')}
             >
               {isEmpty(multi_branch_pipeline)
-                ? t('DISCARD_OLD_BUILDS')
-                : t('DISCARD_OLD_BRANCHES')}
+                ? t('DELETE_OUTDATED_BUILD_RECORDS')
+                : t('DELETE_OUTDATED_BRANCHES')}
               {this.renderTip(
                 isEmpty(multi_branch_pipeline)
-                  ? t('DISABLE_CONCURRENT_TIP')
-                  : t('DISABLE_CONCURRENT_SCM_TIP')
+                  ? t('DELETE_OUTDATED_BUILD_RECORDS_TIP')
+                  : t('DELETE_OUTDATED_BRANCHES_TIP')
               )}
             </Checkbox>
           </Form.Item>

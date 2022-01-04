@@ -1,5 +1,11 @@
 @import '~scss/variables';
 
+.wrapper {
+  & > div:last-child {
+    display: block !important;
+  }
+}
+
 .desc {
   float: left;
   margin-top: 6px;
@@ -12,4 +18,11 @@
 }
 .extraBtn {
   margin-left: 8px;
+}
+
+.formError {
+  border: solid 1px #ca2621 !important;
+}
+.nameTip {
+  margin-bottom: 8px;
 }

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set, omitBy, isEmpty, omit } from 'lodash'
+import { get, set, omitBy, isEmpty } from 'lodash'
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 import QuotaEditModal from 'components/Modals/QuotaEdit'
@@ -43,7 +43,7 @@ export default {
           await store.create(data, params)
 
           Modal.close(modal)
-          Notify.success({ content: `${t('CREATE_SUCCESSFUL')}` })
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
           success && success(selectCluster)
         },
         hideCluster: !globals.app.isMultiCluster || !!cluster,
@@ -62,13 +62,6 @@ export default {
       const modal = Modal.open({
         onOk: async data => {
           const hard = get(data, 'spec.hard', {})
-
-          // set gpu parameters into requests and delete extra gpu parameters
-          const gpu = get(data, 'spec.gpu', {})
-          if (!isEmpty(gpu) && gpu.type !== '') {
-            set(data, `spec.hard["requests.${gpu.type}"]`, gpu.value)
-          }
-          data = omit(data, 'spec.gpu')
 
           const params = {
             name: data.name,
@@ -105,7 +98,7 @@ export default {
           }
 
           Modal.close(modal)
-
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         detail,
@@ -129,19 +122,6 @@ export default {
     }) {
       const modal = Modal.open({
         onOk: async data => {
-          const gpu = get(data, 'gpu', {})
-          data = omit(data, 'gpu')
-          detail = omit(detail, 'limit.gpu')
-
-          // if requests and limits is unsetted, they will be undefined
-          // for set gpu params, it should be an object
-          if (isEmpty(data.default) && isEmpty(data.defaultRequest)) {
-            data = { ...data, default: {}, defaultRequest: {} }
-          }
-          if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
-            set(data, `default["${gpu.type}"]`, Number(gpu.value))
-          }
-
           // deal with the case that input number as 4.
           const { limits, requests } = limits_Request_EndsWith_Dot({
             limits: data.default,
@@ -193,13 +173,16 @@ export default {
           }
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: DefaultResourceEditModal,
         store,
         detail,
         supportGpuSelect: true,
+        namespace,
+        cluster,
+        isFederated,
         ...props,
       })
     },
@@ -227,7 +210,7 @@ export default {
           })
 
           Modal.close(modal)
-          Notify.success({ content: `${t('UPDATED_SUCCESS_DESC')}` })
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
           success && success()
         },
         modal: AssignWorkspaceModal,

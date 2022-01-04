@@ -44,10 +44,11 @@ export default class Item extends React.Component {
   async getGateway() {
     const { cluster, namespace } = this.props
 
-    const datalist = await Promise.all([
-      this.store.getGateway({ cluster: cluster.name }),
-      this.store.getGateway({ cluster: cluster.name, namespace }),
-    ])
+    const datalist = await this.store.getGatewayByProject({
+      cluster: cluster.name,
+      namespace,
+    })
+
     this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
@@ -75,7 +76,7 @@ export default class Item extends React.Component {
 
   renderRules() {
     const { workspace, namespace, detail } = this.props
-    const gateway = toJS(this.state.gateway)
+    const gateway = toJS(this.state.gateway) || {}
 
     if (!detail || isEmpty(detail.rules)) {
       return t('NO_DATA')
