@@ -11,7 +11,7 @@ export default class VStatus extends React.Component {
       name === 'Healthy' ||
       name === 'UpToDate' ||
       name === 'Diskless' ||
-      name === 'Inused'
+      name === 'InUse'
     ) {
       return 'Running'
     }
