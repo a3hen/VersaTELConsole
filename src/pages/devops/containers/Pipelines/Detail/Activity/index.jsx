@@ -139,12 +139,12 @@ export default class Activity extends React.Component {
         branches: toJS(detail.branchNames),
         parameters: toJS(detail.parameters),
         success: () => {
-          Notify.success({ content: `${t('Run Start')}` })
+          Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
           this.handleFetch()
         },
       })
     } else {
-      Notify.success({ content: `${t('Run Start')}` })
+      Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
       await this.props.detailStore.runBranch(params)
       this.handleFetch()
     }
@@ -162,7 +162,7 @@ export default class Activity extends React.Component {
       url: this.getActivityDetailLinks(record),
     })
 
-    Notify.success({ content: `${t('Run Start')}` })
+    Notify.success({ content: `${t('PIPELINE_RUN_START_SI')}` })
     this.handleFetch()
   }
 
@@ -179,7 +179,7 @@ export default class Activity extends React.Component {
     this.store.fetchDetail(params)
 
     Notify.success({
-      content: t('Scan repo success'),
+      content: t('SCAN_REPO_SUCCESSFUL'),
     })
 
     this.handleFetch()
@@ -194,7 +194,7 @@ export default class Activity extends React.Component {
     })
 
     Notify.success({
-      content: t('Stop Job Successfully, Status updated later'),
+      content: t('STOP_PIPELINE_SUCCESSFUL'),
     })
 
     this.handleFetch()
@@ -236,7 +236,7 @@ export default class Activity extends React.Component {
         ),
     },
     {
-      title: t('RUN'),
+      title: t('RUN_ID'),
       width: '10%',
       key: 'run',
       render: record =>
@@ -249,7 +249,7 @@ export default class Activity extends React.Component {
         ),
     },
     {
-      title: t('Commit'),
+      title: t('COMMIT'),
       dataIndex: 'commitId',
       width: '10%',
       render: commitId => (commitId && commitId.slice(0, 6)) || '-',
@@ -288,7 +288,7 @@ export default class Activity extends React.Component {
       render: causes => get(causes, '[0].shortDescription', ''),
     },
     {
-      title: t('Duration'),
+      title: t('DURATION'),
       dataIndex: 'durationInMillis',
       width: '10%',
       render: durationInMillis =>
@@ -298,7 +298,8 @@ export default class Activity extends React.Component {
       title: t('UPDATE_TIME_TCAP'),
       dataIndex: 'startTime',
       width: '20%',
-      render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
+      render: time =>
+        time ? getLocalTime(time).format('YYYY-MM-DD HH:mm:ss') : '-',
     },
     {
       isHideable: false,
@@ -307,7 +308,8 @@ export default class Activity extends React.Component {
       render: record => {
         if (
           (record.branch && !record.commitId) ||
-          !this.enabledActions.includes('edit')
+          !this.enabledActions.includes('edit') ||
+          !record.id
         ) {
           return null
         }
@@ -355,10 +357,10 @@ export default class Activity extends React.Component {
 
       if (isMultibranch && !isEmpty(isMultibranch) && !isBranchInRoute) {
         return (
-          <EmptyCard desc={t('Pipeline config file not found')}>
+          <EmptyCard desc={t('NO_PIPELINE_CONFIG_FILE_TIP')}>
             {runnable && (
               <Button type="control" onClick={this.handleScanRepository}>
-                {t('Scan Repository')}
+                {t('SCAN_REPOSITORY')}
               </Button>
             )}
           </EmptyCard>
@@ -368,7 +370,7 @@ export default class Activity extends React.Component {
         <EmptyCard desc={t('ACTIVITY_EMPTY_TIP')}>
           {runnable && (
             <Button type="control" onClick={this.handleRunning}>
-              {t('Run Pipeline')}
+              {t('RUN')}
             </Button>
           )}
         </EmptyCard>

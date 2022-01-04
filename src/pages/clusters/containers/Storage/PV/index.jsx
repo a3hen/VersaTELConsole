@@ -23,7 +23,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import Table from 'components/Tables/List'
 
 import PvStore from 'stores/pv'
-import { getLocalTime, map_accessModes } from 'utils'
+import { getLocalTime, getDisplayName, map_accessModes } from 'utils'
 import { Icon, Tooltip } from '@kube-design/components'
 import { getVolumeStatus } from 'utils/status'
 import { PV_STATUS } from 'utils/constants'
@@ -53,21 +53,21 @@ export default class PV extends React.Component {
         text: t('EDIT'),
         action: 'edit',
         onClick: item =>
-          trigger('resource.yaml.edit', {
+          trigger('resource.baseinfo.edit', {
             detail: item,
-            success: this.fetchData,
+            success: this.props.getData,
           }),
       },
       {
         key: 'editYaml',
-        icon: 'eye',
-        text: t('VIEW_YAML'),
+        icon: 'pen',
+        text: t('EDIT_YAML'),
         action: 'view',
         show: this.showAction,
         onClick: item =>
           trigger('resource.yaml.edit', {
             detail: item,
-            readOnly: true,
+            success: this.props.getData,
           }),
       },
       {
@@ -81,7 +81,7 @@ export default class PV extends React.Component {
           trigger('pv.delete', {
             ...this.props.tableProps,
             detail: item,
-            success: this.props.getData(),
+            success: this.props.getData,
           }),
       },
     ]
@@ -102,6 +102,7 @@ export default class PV extends React.Component {
           onClick: () =>
             trigger('pv.batch.delete', {
               ...this.props.tableProps,
+              success: this.props.getData,
             }),
         },
       ],
@@ -152,7 +153,7 @@ export default class PV extends React.Component {
               to={`/clusters/${cluster}/pv/${name}`}
               isMultiCluster={record.isFedManaged}
               desc={this.getItemDesc(record)}
-              title={name}
+              title={getDisplayName(record)}
             />
           )
         },
@@ -213,10 +214,10 @@ export default class PV extends React.Component {
   renderAccessTitle = () => {
     const renderModeTip = (
       <div>
-        <div>{t('ACCESS_MODE_TCAP')}:</div>
-        <div>RWO (ReadWriteOnce)：{t('ACCESS_MODE_RWO')}</div>
-        <div>ROX (ReadOnlyMany)：{t('ACCESS_MODE_ROX')}</div>
-        <div>RWX (ReadWriteMany)：{t('ACCESS_MODE_RWX')}</div>
+        <div>{t('ACCESS_MODE_TCAP')}</div>
+        <div>RWO (ReadWriteOnce): {t('ACCESS_MODE_RWO')}</div>
+        <div>ROX (ReadOnlyMany): {t('ACCESS_MODE_ROX')}</div>
+        <div>RWX (ReadWriteMany): {t('ACCESS_MODE_RWX')}</div>
       </div>
     )
     return (

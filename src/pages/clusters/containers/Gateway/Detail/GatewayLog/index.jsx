@@ -190,19 +190,15 @@ export default class GatewayLog extends React.Component {
         .map(({ value }) => value)
 
       const markedResult = this.markMemoizee(queryResult, querys, handler)
-
+      const result = markedResult.map(log =>
+        isString(log)
+          ? log
+          : `<span class="${styles.hightLightMatch}">${log.hightLighted}</span>`
+      )
       return (
         <span
           dangerouslySetInnerHTML={{
-            __html: markedResult.map((log, index) =>
-              isString(log) ? (
-                log
-              ) : (
-                <span key={index} className={styles.hightLightMatch}>
-                  {log.hightLighted}
-                </span>
-              )
-            ),
+            __html: result.join(''),
           }}
         />
       )

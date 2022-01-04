@@ -17,7 +17,7 @@
  */
 
 import React from 'react'
-import { generateId } from 'utils'
+import { generateId, gpuLimitsArr } from 'utils'
 
 import { PATTERN_NAME } from 'utils/constants'
 
@@ -29,7 +29,7 @@ import {
   Columns,
   Column,
 } from '@kube-design/components'
-import { omit, isEmpty } from 'lodash'
+import { omit, isEmpty, get } from 'lodash'
 import { ResourceLimit } from 'components/Inputs'
 import ToggleView from 'components/ToggleView'
 
@@ -60,6 +60,27 @@ export default class ContainerSetting extends Base {
       limits: limitRanges.limits || {},
       gpu,
     }
+  }
+
+  getGpuLimit() {
+    return gpuLimitsArr(this.workspaceQuota)
+  }
+
+  get workspaceLimitProps() {
+    const { workspaceQuota } = this.props
+    return !isEmpty(workspaceQuota)
+      ? {
+          limits: {
+            cpu: get(workspaceQuota, 'limits.cpu'),
+            memory: get(workspaceQuota, 'limits.memory'),
+          },
+          requests: {
+            cpu: get(workspaceQuota, 'requests.cpu'),
+            memory: get(workspaceQuota, 'requests.memory'),
+          },
+          gpuLimit: this.getGpuLimit(),
+        }
+      : {}
   }
 
   renderAdvancedSettings() {
@@ -117,6 +138,7 @@ export default class ContainerSetting extends Base {
               onError={this.handleError}
               isEdit={isEdit}
               supportGpuSelect={true}
+              workspaceLimitProps={this.workspaceLimitProps}
             />
           </Form.Item>
         </>

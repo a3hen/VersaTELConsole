@@ -5,7 +5,7 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@kube-design/components": "^1.2.1",
+    "@kube-design/components": "^1.4.1",
     "ace-builds": "^1.4.7",
     "ansi_up": "^5.0.0",
     "async-validator": "^1.8.5",
@@ -47,7 +47,7 @@
     "node-cache": "^4.1.1",
     "node-fetch": "^2.6.1",
     "path-to-regexp": "^2.2.1",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.6.0",
     "qs": "^6.5.2",
     "react": "^16.6.3",

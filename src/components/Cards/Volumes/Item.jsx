@@ -36,10 +36,10 @@ const Card = ({ volume, match, isMultiProject }) => {
   let icon = 'storage'
   let description
   let details
-  if (volume.HostPath) {
+  if (volume.hostPath) {
     description = t('TYPE_HOSTPATH')
     details = [
-      { title: get(volume, 'HostPath.path', '-'), description: t('HostPath') },
+      { title: get(volume, 'hostPath.path', '-'), description: t('HostPath') },
     ]
   } else if (volume.emptyDir) {
     description = t('TYPE_EMPTYDIR')
@@ -132,10 +132,11 @@ const Card = ({ volume, match, isMultiProject }) => {
     </div>
   )
 
+  const titleName = get(volume, 'mountName', volume.name)
   return (
     <List.Item
       icon={icon}
-      title={volume.name}
+      title={titleName}
       titleClass={styles.title}
       description={description}
       extras={mount}

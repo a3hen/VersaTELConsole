@@ -23,6 +23,7 @@ import GatewaySettingModal from 'projects/components/Modals/GatewaySetting'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 import UpdateGatewayModal from 'projects/components/Modals/UpdateGateway'
+import GatewayStore from 'stores/gateway'
 
 export default {
   'gateways.create': {
@@ -48,6 +49,9 @@ export default {
           })
         },
         modal: GatewaySettingModal,
+        cluster,
+        namespace,
+        name,
         store,
         detail: FORM_TEMPLATES.gateways(),
         ...props,
@@ -55,14 +59,29 @@ export default {
     },
   },
   'gateways.edit': {
-    on({ store, detail, cluster, namespace, success, ...props }) {
+    async on({ store, detail, cluster, namespace, success, ...props }) {
+      const gateWayStore = new GatewayStore()
+      const params = namespace === '' ? { cluster } : { cluster, namespace }
+      const versionData = await gateWayStore.getGateway({
+        ...params,
+      })
+      let version = versionData.resourceVersion
       const modal = Modal.open({
-        onOk: data => {
-          store.editGateway({ cluster, namespace }, data).then(() => {
-            Modal.close(modal)
-            Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
-            success && success()
+        onOk: async data => {
+          const latestData = await gateWayStore.getGateway({
+            ...params,
           })
+          if (latestData.resourceVersion === version) {
+            set(data, 'metadata.resourceVersion', latestData.resourceVersion)
+            store.editGateway({ cluster, namespace }, data).then(() => {
+              Modal.close(modal)
+              Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+              success && success()
+            })
+          } else {
+            version = latestData.resourceVersion
+            Notify.info({ content: t('GATEWAY_UPDATING_TIP') })
+          }
         },
         modal: GatewaySettingModal,
         detail,
@@ -75,6 +94,12 @@ export default {
   },
   'gateways.delete': {
     on({ store, resource, detail, cluster, namespace, success, ...props }) {
+      const desc = resource
+        ? t.html('DELETE_RESOURCE_TYPE_DESC_GW', {
+            resource,
+            type: t('GATEWAY_LOW'),
+          })
+        : t('DISABLE_GATEWAY_TIP')
       const modal = Modal.open({
         onOk: () => {
           store
@@ -85,12 +110,14 @@ export default {
             })
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('DELETE_SUCCESS_DESC') })
+              Notify.success({ content: t('DISABLE_SUCCESSFUL') })
               success && success()
             })
         },
         store,
         modal: DeleteModal,
+        title: t('DISABLE_GATEWAY'),
+        desc,
         type: 'GATEWAY',
         resource,
         cluster,
@@ -110,7 +137,7 @@ export default {
             )
             .then(() => {
               Modal.close(modal)
-              Notify.success({ content: t('UPDATED_SUCCESS_DESC') })
+              Notify.success({ content: t('UPDATE_SUCCESSFUL') })
               success && success()
             })
         },
@@ -156,7 +183,7 @@ export default {
           await Promise.all(reqs)
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_SUCCESS_DESC') })
+          Notify.success({ content: t('DELETE_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },

@@ -343,7 +343,9 @@ export default class DetailModal extends React.Component {
   renderPollingBtn() {
     return (
       <div className={styles.pollingBtn} onClick={this.togglePolling}>
-        <Icon type="light" name={this.state.polling ? 'stop' : 'start'} />
+        <Tooltip content={this.state.polling ? t('STOP') : t('START')}>
+          <Icon type="light" name={this.state.polling ? 'stop' : 'start'} />
+        </Tooltip>
       </div>
     )
   }
@@ -470,9 +472,11 @@ export default class DetailModal extends React.Component {
 
   renderLink(link, children) {
     return link ? (
-      <a href={link} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
+      <Tooltip content={t('VIEW_DETAILS')}>
+        <a href={link} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      </Tooltip>
     ) : (
       children
     )

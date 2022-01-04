@@ -70,10 +70,11 @@ export default class Components extends Component {
   async getGateway() {
     const { cluster, namespace } = this.props
 
-    const datalist = await Promise.all([
-      this.gatewayStore.getGateway({ cluster }),
-      this.gatewayStore.getGateway({ cluster, namespace }),
-    ])
+    const datalist = await this.gatewayStore.getGatewayByProject({
+      cluster,
+      namespace,
+    })
+
     this.setState({ gateway: datalist[1] || datalist[0] })
   }
 
@@ -96,14 +97,14 @@ export default class Components extends Component {
       ip = gateway.externalIPs.join('; ')
     }
 
-    return ip || '-'
+    return ip
   }
 
   render() {
     const { cluster } = this.props
     const { data, isLoading } = this.ingressStore.list
-    const { gateway } = this.state
     const clusters = keyBy(this.props.projectStore.detail.clusters, 'name')
+    const gateway = this.state.gateway || {}
 
     return (
       <Panel>
