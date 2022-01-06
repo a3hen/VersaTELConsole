@@ -40,10 +40,11 @@ export default class Node extends React.Component {
     this.props.store.fetchLNodeTemplates()
     this.interval = setInterval(() => {
       // this.props.store.fetchList(this.props.match.params)
-      this.props.getData({
-        page: this.props.tableProps.pagination.page,
-        silent: true,
-      })
+      // this.props.getData({
+      //   page: this.props.tableProps.pagination.page,
+      //   silent: true,
+      // })
+      this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)
   }
 
@@ -54,7 +55,6 @@ export default class Node extends React.Component {
   }
 
   // showAction = record => {
-  //   // console.log(record),
   //   !globals.config.presetGlobalLNodes.includes(record.name)
   // }
   // showAction = true

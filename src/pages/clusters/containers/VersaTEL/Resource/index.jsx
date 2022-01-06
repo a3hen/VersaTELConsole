@@ -38,11 +38,7 @@ import LResourceStore from 'stores/lresource'
 export default class LResource extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
-      this.props.getData({
-        page: this.props.tableProps.pagination.page,
-        silent: true,
-      })
-      // this.props.store.fetchList({ page: this.props.tableProps.pagination.page })
+      this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)
   }
 

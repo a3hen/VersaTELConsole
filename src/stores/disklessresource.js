@@ -111,7 +111,7 @@ export default class DisklessResourceStore extends Base {
     this.DisklessResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
+      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`
     )
     this.DisklessResourceTemplates.update({
       // data: get(result, 'data', []).map(this.mapper),

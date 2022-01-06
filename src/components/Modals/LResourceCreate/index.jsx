@@ -120,7 +120,6 @@ export default class LResourceCreateModal extends React.Component {
   //   this.setState({ selectedNodes: selectedNodesList })
   //   const newNodes = this.nodes.filter(node => selectedNodes.indexOf(node.value) === -1)
   //   this.setState({ unselectedNodes: newNodes })
-  //   console.log(newNodes)
   // }
 
   handleCreate = LResourceTemplates => {

@@ -30,8 +30,6 @@ export default class StoragepoolStore extends Base {
 
   getListUrl = this.getResourceUrl
 
-  // getDetailUrl = (params = {}) => `${this.getListUrl(params)}/${params.name}`
-
   getDeleteUrl = (params = {}) =>
     `${this.getListUrl()}/${params.name}/${params.node}`
 
@@ -125,8 +123,8 @@ export default class StoragepoolStore extends Base {
       `/kapis/versatel.kubesphere.io/v1alpha1/linstor/storagepool`
     )
     this.StoragepoolTemplates.update({
-      // data: get(result, 'data', []).map(this.mapper),
-      data: get(result, 'data', []),
+      data: get(result, 'data', []).map(this.mapper),
+      // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })
@@ -135,16 +133,5 @@ export default class StoragepoolStore extends Base {
   @action
   delete(params) {
     return this.submitting(request.delete(this.getDeleteUrl(params)))
-  }
-
-  @action
-  checkName(params) {
-    return request.get(
-      this.getDetailUrl(params),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
   }
 }

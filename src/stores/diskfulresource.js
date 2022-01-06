@@ -128,7 +128,7 @@ export default class DiskfulResourceStore extends Base {
     this.DiskfulResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
+      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskful`
     )
     this.DiskfulResourceTemplates.update({
       // data: get(result, 'data', []).map(this.mapper),

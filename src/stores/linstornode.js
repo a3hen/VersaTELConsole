@@ -188,20 +188,8 @@ export default class LNodeStore extends Base {
   //   )
   // }
 
-  @action
-  checkName(params) {
-    return request.get(
-      this.getDetailUrl(params),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
-  }
-
   // checkIfIsPresetLNode(name) {
   //   if (this.module === 'linstornodes') {
-  //     // console.log(globals.config.presetLNodes)
   //     return (
   //       isEmpty(globals.config.presetLNodes) &&
   //       globals.config.presetLNodes.includes(name)

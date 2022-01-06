@@ -129,23 +129,13 @@ export default class LResourceStore extends Base {
   }
 
   @action
-  checkName(params) {
-    return request.get(
-      this.getDetailUrl(params),
-      {},
-      {
-        headers: { 'x-check-exist': true },
-      }
-    )
-  }
-
-  @action
   async fetchDetail(params) {
     this.isLoading = true
     const result = await request.get(this.getResourceUrl(), {
       name: params.name,
     })
-    const data = get(result, 'data', [])
+    const filterData = get(result, 'data', [])
+    const data = filterData.filter(item => item.name === params.name)
     const detail = { ...params, ...data[0], kind: 'Resource' }
     this.detail = detail
     this.isLoading = false

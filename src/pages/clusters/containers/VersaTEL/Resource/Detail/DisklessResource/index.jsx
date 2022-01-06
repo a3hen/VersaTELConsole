@@ -120,10 +120,11 @@ export default class DisklessResource extends React.Component {
       data,
       filters,
       isLoading,
-      total,
       page,
       limit,
     } = this.disklessResourceStore.list
+    const displayData = data.filter(item => item.name === this.name)
+    const total = displayData.length
     const pagination = { total, page, limit }
 
     return (
@@ -134,9 +135,8 @@ export default class DisklessResource extends React.Component {
       >
         <Table
           className={styles.table}
-          data={data}
+          data={displayData}
           columns={this.getColumns()}
-          searchType="name"
           keyword={filters.name}
           filters={filters}
           pagination={pagination}
