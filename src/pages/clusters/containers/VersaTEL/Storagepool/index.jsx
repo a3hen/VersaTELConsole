@@ -157,6 +157,7 @@ export default class Storagepool extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          hideSearch
         />
       </ListPage>
     )

@@ -39,11 +39,6 @@ export default class Node extends React.Component {
   componentDidMount() {
     this.props.store.fetchLNodeTemplates()
     this.interval = setInterval(() => {
-      // this.props.store.fetchList(this.props.match.params)
-      // this.props.getData({
-      //   page: this.props.tableProps.pagination.page,
-      //   silent: true,
-      // })
       this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)
   }
