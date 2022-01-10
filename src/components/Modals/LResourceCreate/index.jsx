@@ -108,7 +108,8 @@ export default class LResourceCreateModal extends React.Component {
 
   get storagepools() {
     const storagepools = this.storagepoolStore.list.data.map(storagepool => ({
-      label: storagepool.name.concat(' - ', storagepool.node),
+      // label: storagepool.name.concat(' - ', storagepool.node),
+      label: storagepool.uniqueID,
       value: [storagepool.name, storagepool.node],
     }))
     return storagepools

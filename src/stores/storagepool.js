@@ -91,7 +91,11 @@ export default class StoragepoolStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    const allData = get(result, 'data', [])
+    const data = allData.map(item => {
+      item.uniqueID = item.name.concat(' - ', item.node)
+      return item
+    })
 
     // const data = result.authentication.map(item => ({
     //   cluster,
