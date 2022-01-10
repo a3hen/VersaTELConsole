@@ -97,4 +97,7 @@ module.exports = {
   Conns: '连接状态',
   STORAGEPOOL: '存储池',
   LRESOURCE: '资源',
+  SEARCH_BY_LNODE: '按节点搜索',
+  SEARCH_BY_STORAGEPOOL: '按存储池搜索',
+  SEARCH_BY_LRESOURCE: '按资源搜索',
 }

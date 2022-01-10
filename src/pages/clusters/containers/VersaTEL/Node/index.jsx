@@ -172,6 +172,7 @@ export default class Node extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          placeholder={t('SEARCH_BY_LNODE')}
         />
       </ListPage>
     )

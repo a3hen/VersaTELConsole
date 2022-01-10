@@ -42,4 +42,7 @@ module.exports = {
   LResource_LOW: 'Resource',
   LRESOURCE: 'Resource',
   LRESOURCE_EMPTY_DESC: 'Please create a Resource',
+  SEARCH_BY_LNODE: 'Search by Node',
+  SEARCH_BY_STORAGEPOOL: 'Search by Storagepool',
+  SEARCH_BY_LRESOURCE: 'Search by Resource',
 }

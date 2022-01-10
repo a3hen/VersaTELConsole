@@ -122,6 +122,7 @@ export default class LResource extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
+          placeholder={t('SEARCH_BY_LRESOURCE')}
         />
       </ListPage>
     )

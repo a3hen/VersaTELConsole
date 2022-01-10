@@ -157,7 +157,9 @@ export default class Storagepool extends React.Component {
           itemActions={this.itemActions}
           columns={this.getColumns()}
           searchType="name"
-          hideSearch
+          placeholder={t('SEARCH_BY_STORAGEPOOL')}
+          // hideSearch
+          rowKey="uniqueID"
         />
       </ListPage>
     )
