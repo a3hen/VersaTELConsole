@@ -105,7 +105,11 @@ export default class DiskfulResourceStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    const allData = get(result, 'data', [])
+    const data = allData.map(item => {
+      item.uniqueID = item.name.concat(' - ', item.node)
+      return item
+    })
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -130,9 +134,14 @@ export default class DiskfulResourceStore extends Base {
     const result = await request.get(
       `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskful`
     )
+    const allData = get(result, 'data', [])
+    const data = allData.map(item => {
+      item.uniqueID = item.name.concat(' - ', item.node)
+      return item
+    })
     this.DiskfulResourceTemplates.update({
       // data: get(result, 'data', []).map(this.mapper),
-      data: get(result, 'data', []),
+      data: data.map(this.mapper),
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })
