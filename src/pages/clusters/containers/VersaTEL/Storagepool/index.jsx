@@ -57,7 +57,7 @@ export default class Storagepool extends React.Component {
         action: 'delete',
         show: this.showAction,
         onClick: item =>
-          trigger('resource.delete', {
+          trigger('storagepools.delete', {
             detail: item,
             type: t(name),
             success: routing.query,

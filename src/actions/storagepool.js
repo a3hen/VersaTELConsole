@@ -21,6 +21,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/StoragepoolCreate'
+import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -54,6 +55,29 @@ export default {
         namespace,
         workspace,
         formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'storagepools.delete': {
+    on({ store, detail, success, ...props }) {
+      const modal = Modal.open({
+        onOk: () => {
+          store.delete(detail).then(res => {
+            Modal.close(modal)
+            if (res) {
+              Notify.error({
+                content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('DELETE_SUCCESSFUL')}` })
+            }
+            success && success()
+          })
+        },
+        store,
+        modal: DeleteModal,
+        resource: detail.name,
         ...props,
       })
     },

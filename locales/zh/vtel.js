@@ -78,6 +78,7 @@ module.exports = {
   'Select LINSTOR Node to create diskless resource':
     '请选择创建的diskless资源所在的节点',
   'Created Failed, Reason:': '创建失败，原因：',
+  'Deleted Failed, Reason:': '删除失败，原因：',
   'Diskful Resource': 'Diskful资源',
   'Diskless Resource': 'Diskless资源',
   'Diskful Resource Detail': 'Diskful资源详情',

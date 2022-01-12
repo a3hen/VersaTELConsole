@@ -57,6 +57,20 @@ export default class LResource extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      // selectActions: [
+      //   {
+      //     key: 'delete',
+      //     type: 'danger',
+      //     text: t('DELETE'),
+      //     action: 'delete',
+      //     onClick: () =>
+      //       this.trigger('lresources.batch.delete', {
+      //         type: this.name,
+      //         rowKey: this.rowKey,
+      //         success: this.routing.query,
+      //       }),
+      //   },
+      // ],
     }
   }
 
@@ -113,6 +127,7 @@ export default class LResource extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />
