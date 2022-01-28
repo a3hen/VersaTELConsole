@@ -101,4 +101,7 @@ module.exports = {
   SEARCH_BY_LNODE: '按节点搜索',
   SEARCH_BY_STORAGEPOOL: '按存储池搜索',
   SEARCH_BY_LRESOURCE: '按资源搜索',
+  AUTOPLACE: '副本数',
+  'INPUT THE NUMBER': '填写副本的数量',
+  'INPUT THE STORAGEPOOL NAME THAT YOU USE': '填写使用的存储池名称',
 }

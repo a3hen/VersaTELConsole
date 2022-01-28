@@ -45,4 +45,5 @@ module.exports = {
   SEARCH_BY_LNODE: 'Search by Node',
   SEARCH_BY_STORAGEPOOL: 'Search by Storagepool',
   SEARCH_BY_LRESOURCE: 'Search by Resource',
+  AUTOPLACE: 'Auto place',
 }

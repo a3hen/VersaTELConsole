@@ -675,6 +675,26 @@ export const MILLISECOND_IN_TIME_UNIT = {
 
 export const PROVISIONERS = [
   {
+    label: 'LINSTOR',
+    value: 'linstor.csi.linbit.com',
+    icon: 'database',
+    access_modes: ['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany'],
+    params: [
+      {
+        key: 'autoPlace',
+        type: 'input',
+        placeholder: 'number',
+        desc: 'Input the number',
+      },
+      {
+        key: 'storagePool',
+        type: 'input',
+        placeholder: 'Storagepool name',
+        desc: 'Input the Storagepool name that you use',
+      },
+    ],
+  },
+  {
     label: 'QingCloud CSI',
     value: 'disk.csi.qingcloud.com',
     icon: 'qingcloud',
