@@ -26,6 +26,10 @@ module.exports = {
   LNODE_EMPTY_DESC: 'Please create a Node',
   VTEL_NAME_DESC:
     'Only letters, numbers, dash and underscores are supported. Begin with a letter. Length must be greater than 2',
+  NODE_NAME_DESC:
+    'Only lowercase letters, numbers, dash and underscores are supported. Begin and end with a lowercase letter. Length must be greater than 2',
+  SP_VOL_NAME_DESC:
+    'According to the specific of the disk to input, eg: vg0, thinpool/thinlv0',
   STORAGEPOOL_DESC:
     'Manages Storagepools. You can create or delete Storagepools here.',
   STORAGEPOOL_EMPTY_DESC: 'Please create a Storagepool',

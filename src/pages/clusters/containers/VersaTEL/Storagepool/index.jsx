@@ -55,7 +55,7 @@ export default class Storagepool extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: this.showAction,
+        show: true,
         onClick: item =>
           trigger('storagepools.delete', {
             detail: item,

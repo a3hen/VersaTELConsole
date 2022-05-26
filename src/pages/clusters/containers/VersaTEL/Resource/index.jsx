@@ -48,6 +48,10 @@ export default class LResource extends React.Component {
     }
   }
 
+  showAction(record) {
+    return record.name.indexOf('pvc-') === 0 || record.name === 'linstordb'
+  }
+
   get itemActions() {
     return []
   }
@@ -57,6 +61,10 @@ export default class LResource extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: this.showAction(record),
+        name: record.name,
+      }),
       // selectActions: [
       //   {
       //     key: 'delete',

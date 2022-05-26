@@ -32,6 +32,9 @@ module.exports = {
   'Please input LINSTOR Node name': '请输入LINSTOR节点名称',
   VTEL_NAME_DESC:
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+  NODE_NAME_DESC:
+    '仅支持小写字母、数字以及中横线，且以小写字母开头和结束，长度必须大于2',
+  SP_VOL_NAME_DESC: '请按照磁盘的具体进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
     'VersaTEL是青岛大学存储研究所设计开发的VersaRACK容器云平台的管理系统，它包含了对基于Kubenetes的容器平台的图形化管理、VersaSDS并行存储系统管理、VersaRACK系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
@@ -104,4 +107,9 @@ module.exports = {
   AUTOPLACE: '副本数',
   'INPUT THE NUMBER': '填写副本的数量',
   'INPUT THE STORAGEPOOL NAME THAT YOU USE': '填写使用的存储池名称',
+  'Resource name cannot start with string "pvc-"': '资源名不能以"pvc-"开头',
+  'Resource name cannot be "linstordb"': '资源名不能为"linstordb"',
+  Size: '大小',
+  'Please input Volume name': '请输入 LVM 设备卷的名称',
+  'Please input the IP address': '请输入 IP 地址',
 }
