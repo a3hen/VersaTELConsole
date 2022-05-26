@@ -144,6 +144,20 @@ export default class LResourceCreateModal extends React.Component {
       return callback()
     }
 
+    if (value.indexOf('pvc-') === 0) {
+      return callback({
+        message: t('Resource name cannot start with string "pvc-"'),
+        field: rule.field,
+      })
+    }
+
+    if (value === 'linstordb') {
+      return callback({
+        message: t('Resource name cannot be "linstordb"'),
+        field: rule.field,
+      })
+    }
+
     this.props.store.checkName({ name: value }).then(resp => {
       if (resp.exist) {
         return callback({

@@ -49,11 +49,9 @@ export default class Node extends React.Component {
     }
   }
 
-  // showAction = record => {
-  //   !globals.config.presetGlobalLNodes.includes(record.name)
-  // }
-  // showAction = true
-  showAction = false
+  showAction(record) {
+    return record.resourceNum !== '0'
+  }
 
   get itemActions() {
     // const { trigger, store, module, routing } = this.props
@@ -94,6 +92,10 @@ export default class Node extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      getCheckboxProps: record => ({
+        disabled: this.showAction(record),
+        name: record.name,
+      }),
       // selectActions: [],
     }
   }

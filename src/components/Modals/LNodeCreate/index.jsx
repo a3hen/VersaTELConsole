@@ -24,7 +24,7 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_IP, PATTERN_VTEL_NAME } from 'utils/constants'
+import { PATTERN_IP, PATTERN_NODE_NAME } from 'utils/constants'
 
 @observer
 export default class LNodeCreateModal extends React.Component {
@@ -135,13 +135,13 @@ export default class LNodeCreateModal extends React.Component {
       >
         <Form.Item
           label={t('Name')}
-          desc={t('VTEL_NAME_DESC')}
+          desc={t('NODE_NAME_DESC')}
           tip={isLINSTORNode ? t('WORKSPACE_ROLE_NAME_TIP') : null}
           rules={[
             { required: true, message: t('Please input LINSTOR Node name') },
             {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
+              pattern: PATTERN_NODE_NAME,
+              message: t('Invalid name', { message: t('NODE_NAME_DESC') }),
             },
             { validator: this.LNodeNameValidator },
           ]}

@@ -35,7 +35,7 @@ export default class VStatus extends React.Component {
       <div className={styles.status}>
         <Status
           type={this.getStatusType(this.props.name)}
-          name={this.props.name}
+          name={this.props.name || 'ERROR'}
         />
       </div>
     )
