@@ -53,6 +53,10 @@ export default class StorageClasses extends React.Component {
     Notify.error({ content: `${t('DEPENDENT_STORAGE_CLASS_DELETE_TIPS')}` })
   }
 
+  showAction(record) {
+    return record.associationPVCCount !== 0
+  }
+
   getColumns = () => {
     const { getSortOrder, prefix } = this.props
     return [
@@ -136,6 +140,10 @@ export default class StorageClasses extends React.Component {
           {...tableProps}
           columns={this.getColumns()}
           onCreate={this.showCreate}
+          getCheckboxProps={record => ({
+            disabled: this.showAction(record),
+            name: record.name,
+          })}
         />
       </ListPage>
     )
