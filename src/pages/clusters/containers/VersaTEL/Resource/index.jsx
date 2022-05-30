@@ -57,7 +57,7 @@ export default class LResource extends React.Component {
   }
 
   get tableActions() {
-    const { tableProps } = this.props
+    const { tableProps, trigger, routing } = this.props
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
@@ -65,20 +65,20 @@ export default class LResource extends React.Component {
         disabled: this.showAction(record),
         name: record.name,
       }),
-      // selectActions: [
-      //   {
-      //     key: 'delete',
-      //     type: 'danger',
-      //     text: t('DELETE'),
-      //     action: 'delete',
-      //     onClick: () =>
-      //       this.trigger('lresources.batch.delete', {
-      //         type: this.name,
-      //         rowKey: this.rowKey,
-      //         success: this.routing.query,
-      //       }),
-      //   },
-      // ],
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('DELETE'),
+          action: 'delete',
+          onClick: () =>
+            trigger('lresources.batch.delete', {
+              type: 'LResource',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 

@@ -50,4 +50,5 @@ module.exports = {
   SEARCH_BY_STORAGEPOOL: 'Search by Storagepool',
   SEARCH_BY_LRESOURCE: 'Search by Resource',
   AUTOPLACE: 'Auto place',
+  DELETE_TIP_SUCCESSFUL: 'Delete operation completed',
 }
