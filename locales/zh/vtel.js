@@ -112,4 +112,5 @@ module.exports = {
   Size: '大小',
   'Please input Volume name': '请输入 LVM 设备卷的名称',
   'Please input the IP address': '请输入 IP 地址',
+  DELETE_TIP_SUCCESSFUL: '删除操作已完成',
 }

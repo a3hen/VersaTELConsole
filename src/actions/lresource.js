@@ -20,6 +20,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/LResourceCreate'
+import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -53,6 +54,56 @@ export default {
         namespace,
         workspace,
         formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+
+  'lresources.batch.delete': {
+    on({ store, success, rowKey, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectValues = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => {
+          return { name: item.name, namespace: item.namespace }
+        })
+
+      const selectNames = selectValues.map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async () => {
+          const reqs = []
+
+          data.forEach(item => {
+            const selectValue = selectValues.find(
+              value =>
+                value.name === item.name && value.namespace === item.namespace
+            )
+
+            if (selectValue) {
+              reqs.push(store.delete(item))
+            }
+          })
+
+          await Promise.all(reqs)
+          reqs.forEach(item =>
+            item.then(res => {
+              if (res) {
+                Notify.error({
+                  content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+                })
+              }
+            })
+          )
+
+          Modal.close(modal)
+          Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        resource: selectNames.join(', '),
+        modal: DeleteModal,
+        store,
         ...props,
       })
     },
