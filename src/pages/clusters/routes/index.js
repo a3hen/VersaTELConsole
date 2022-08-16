@@ -28,6 +28,7 @@ import Clusters from '../containers/Clusters'
 import Overview from '../containers/Overview'
 import StorageClasses from '../containers/Storage/StorageClasses'
 import VolumeSnapshots from '../containers/Storage/VolumeSnapshots'
+import VolumeSnapshotClasses from '../containers/Storage/VolumeSnapshotClasses'
 import Volumes from '../containers/Storage/Volumes'
 import Nodes from '../containers/Nodes'
 import EdgeNodes from '../containers/EdgeNodes/index'
@@ -204,7 +205,10 @@ export default [
           {
             path: `${PATH}/volume-snapshots`,
             component: VolumeSnapshots,
-            exact: true,
+          },
+          {
+            path: `${PATH}/volume-snapshot-classes`,
+            component: VolumeSnapshotClasses,
           },
           {
             path: `${PATH}/monitor-cluster`,

@@ -38,7 +38,7 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'VOLUME',
+  name: 'PERSISTENT_VOLUME_CLAIM',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
@@ -64,7 +64,7 @@ export default class Volumes extends React.Component {
       options: [
         {
           value: `Volume`,
-          label: t('VOLUME'),
+          label: t('PERSISTENT_VOLUME_CLAIM'),
         },
         {
           value: 'PV',
@@ -75,7 +75,7 @@ export default class Volumes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.store.checkSupportPv(this.props.match.params)
+    this.props.store.getKsVersion(this.props.match.params)
   }
 
   handleTabChange = () => {
@@ -92,7 +92,7 @@ export default class Volumes extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT_TCAP'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         show: this.showAction,
         onClick: item =>
@@ -154,7 +154,7 @@ export default class Volumes extends React.Component {
     const { cluster } = this.props.match.params
 
     const pvColumn = {
-      title: t('VOLUME_BACKEND_TCAP'),
+      title: t('PERSISTENT_VOLUME'),
       dataIndex: '_originData',
       isHideable: true,
       search: false,
@@ -189,7 +189,11 @@ export default class Volumes extends React.Component {
           <Avatar
             icon={'storage'}
             iconSize={40}
-            to={`/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`}
+            to={
+              record.phase === 'Terminating'
+                ? ''
+                : `/clusters/${cluster}/projects/${record.namespace}/volumes/${name}`
+            }
             isMultiCluster={record.isFedManaged}
             desc={this.getItemDesc(record)}
             title={getDisplayName(record)}
@@ -215,7 +219,7 @@ export default class Volumes extends React.Component {
       {
         title: this.renderAccessTitle(),
         dataIndex: 'accessModes',
-        isHideable: true,
+        isHideable: false,
         width: '12.32%',
         render: accessModes => this.mapperAccessMode(accessModes),
       },
@@ -237,7 +241,7 @@ export default class Volumes extends React.Component {
       },
     ]
 
-    if (this.props.store.supportPv) {
+    if (this.props.store.ksVersion >= 3.2) {
       allColumns.splice(2, 0, pvColumn)
     }
 

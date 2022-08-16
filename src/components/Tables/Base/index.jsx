@@ -210,6 +210,7 @@ export default class WorkloadTable extends React.Component {
             <Button
               key={action.key}
               type={action.type}
+              disabled={action.disabled}
               className={styles.button}
               onClick={action.onClick}
               data-test={`table-${action.key}`}
@@ -284,7 +285,7 @@ export default class WorkloadTable extends React.Component {
   }
 
   renderActions() {
-    const { onCreate, actions } = this.props
+    const { onCreate, createText, actions } = this.props
 
     if (actions) {
       return actions.map(action => (
@@ -311,7 +312,7 @@ export default class WorkloadTable extends React.Component {
         onClick={onCreate}
         data-test="table-create"
       >
-        {t('Create')}
+        {t(createText || 'Create')}
       </Button>
     )
   }

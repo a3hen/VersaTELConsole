@@ -27,11 +27,14 @@ import SnapshotModal from 'projects/components/Modals/ResourceSnapshot'
 import ExpandModal from 'projects/components/Modals/ExpandVolume'
 import ClusterDiffSettings from 'components/Forms/Volume/ClusterDiffSettings'
 import EditConfigTemplateModal from 'fedprojects/components/VolumeSetting'
+import EditYamlModal from 'components/Modals/EditYaml'
+import EditBasicInfoModal from 'components/Modals/EditBasicInfo'
 
 import { MODULE_KIND_MAP } from 'utils/constants'
 import FORM_TEMPLATES from 'utils/form.templates'
 import formPersist from 'utils/form.persist'
 import FORM_STEPS, { APPLY_SNAPSHOT_FORM_STEPS } from 'configs/steps/volumes'
+import SnapshotClassSteps from 'configs/steps/volume.snapshot.class'
 
 export default {
   'volume.create': {
@@ -95,6 +98,7 @@ export default {
         cluster,
         namespace,
         name: kind,
+        title: t('CREATE_PERSISTENT_VOLUME_CLAIM'),
         formTemplate,
         isFederated,
         steps: fromSnapshot ? APPLY_SNAPSHOT_FORM_STEPS : steps,
@@ -145,6 +149,25 @@ export default {
         modal: SnapshotModal,
         store,
         options,
+        ...props,
+      })
+    },
+  },
+  'create.snapshot': {
+    on({ store, cluster, namespace, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async ({ namespace: ns, ...params }) => {
+          await store.createSnapshot({ ...params, cluster, namespace: ns })
+          Modal.close(modal)
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success()
+        },
+        title: t('CREATE_SNAPSHOT'),
+        modal: SnapshotModal,
+        store,
+        cluster,
+        namespace,
+        volumeSelect: true,
         ...props,
       })
     },
@@ -212,6 +235,67 @@ export default {
         ...props,
         formTemplate,
         isFederated,
+      })
+    },
+  },
+  'volume.snapshot.yaml.edit': {
+    on({ store, detail, success, namespace, cluster, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          await store.update({ namespace, cluster, ...store.detail }, data)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        modal: EditYamlModal,
+        yaml: detail,
+        ...props,
+      })
+    },
+  },
+  'volume.snapshotContent.baseInfo.edit': {
+    on({ store, detail, cluster, namespace, success, ...props }) {
+      const modal = Modal.open({
+        onOk: async data => {
+          await store.patch({ ...detail, cluster, namespace }, data)
+          Notify.success({ content: t('UPDATE_SUCCESSFUL') })
+          Modal.close(modal)
+          success && success()
+        },
+        store,
+        detail,
+        modal: EditBasicInfoModal,
+        ...props,
+      })
+    },
+  },
+  'snapshotClasses.create': {
+    on({ store, module, name, detail, cluster, success, ...props }) {
+      const kind = MODULE_KIND_MAP[module]
+      const steps = [...SnapshotClassSteps]
+      const formTemplate = {
+        [kind]: {
+          ...FORM_TEMPLATES.volumesnapshotclass(),
+        },
+      }
+      const modal = Modal.open({
+        onOk: async object => {
+          const data = object[kind]
+          await store.create(data, { cluster })
+          Modal.close(modal)
+          Notify.success({ content: t('CREATE_SUCCESSFUL') })
+          success && success()
+        },
+        module,
+        name,
+        store,
+        detail,
+        formTemplate,
+        steps,
+        modal: CreateModal,
+        cluster,
+        ...props,
       })
     },
   },

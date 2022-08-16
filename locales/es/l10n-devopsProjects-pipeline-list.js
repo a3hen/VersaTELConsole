@@ -50,7 +50,7 @@ module.exports = {
   RESELECT: 'Seleccionar de nuevo',
   // List > Create > Basic Information > Code Repository > GitHub
   CREDENTIAL_SI: 'Autentificación',
-  CREDENTIAL: 'Credential',
+  CREDENTIAL: 'Autentificación',
   PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
   SELECT_CREDENTIAL_DESC:
     'La obtención del código del repositorio puedes requerir credenciales. Selecciona una credencial existente o agregue una nueva.',
@@ -188,4 +188,9 @@ module.exports = {
     'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: 'Valor por defecto',
   PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
-}
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
+};

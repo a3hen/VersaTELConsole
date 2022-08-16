@@ -124,15 +124,11 @@ export default class NodeDetail extends React.Component {
         value: address,
       },
       {
-        name: t('SCHEDULABLE'),
-        value: detail.unschedulable ? t('NO') : t('YES'),
-      },
-      {
         name: t('ROLE'),
         value:
-          getNodeRoles(detail.labels)
-            .map(role => t(role.replace(/[- ]/g, '_').toUpperCase()))
-            .join('/') || '-',
+          getNodeRoles(detail.labels).indexOf('master') === -1
+            ? t('WORKER')
+            : t('CONTROL_PLANE'),
       },
       {
         name: t('OS_VERSION'),

@@ -20,8 +20,7 @@ module.exports = {
   ROUTE_DESC:
     '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
   PREREQUESTS_FOR_USE_ROUTE_Q: '使用应用路由的前提条件？',
-  PREREQUESTS_FOR_USE_ROUTE_A:
-    '使用应用路由需要由项目管理员对当前项目设置网关。',
+  PREREQUESTS_FOR_USE_ROUTE_A: '如需使用应用路由，您需要联系项目管理员启用项目网关。',
   ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持哪些的访问模式？',
   ACCESS_TYPES_OF_ROUTE_A:
     'KubeSphere 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
@@ -51,6 +50,7 @@ module.exports = {
   PROTOCOL: '协议',
   PORT: '端口',
   PORT_VALUE: '端口：{value}',
+  CERTIFICATE: '证书',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

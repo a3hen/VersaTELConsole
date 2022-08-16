@@ -32,10 +32,15 @@ export default class BaseInfo extends React.Component {
     super(props)
 
     if (isEmpty(this.formTemplate.spec)) {
-      const defaultKey = Object.keys(templateSettings)[0]
-      const defaultValue = cloneDeep(templateSettings[defaultKey].settings)
+      const defaultKey = Object.keys(this.templateSettings)[0]
+      const defaultValue = cloneDeep(this.templateSettings[defaultKey].settings)
+
       set(this.formTemplate, 'spec', defaultValue)
     }
+  }
+
+  get templateSettings() {
+    return cloneDeep(templateSettings)
   }
 
   get formTemplate() {
@@ -43,19 +48,14 @@ export default class BaseInfo extends React.Component {
     return get(formTemplate, MODULE_KIND_MAP[module], formTemplate)
   }
 
-  templateSettingsOpts = Object.entries(templateSettings)
-    .map(([key, configs]) => ({
+  templateSettingsOpts = Object.entries(this.templateSettings).map(
+    ([key, configs]) => ({
       value: key,
       image: configs.logo,
       label: configs.name === 'Custom' ? t('CUSTOM') : configs.name,
       description: configs.description,
-    }))
-    .filter(item => {
-      if (this.props.module === 'dashboards') {
-        return item.label !== 'Grafana'
-      }
-      return true
     })
+  )
 
   nameValidator = (rule, value, callback) => {
     if (!value) {
@@ -77,7 +77,11 @@ export default class BaseInfo extends React.Component {
   }
 
   handleTemplateChange = key => {
-    set(this.formTemplate, 'spec', get(templateSettings, `${key}.settings`, {}))
+    set(
+      this.formTemplate,
+      'spec',
+      get(this.templateSettings, `${key}.settings`, {})
+    )
     this.forceUpdate()
   }
 
@@ -115,7 +119,7 @@ export default class BaseInfo extends React.Component {
         <Form.Item
           label={
             <div className={styles.templateLabel}>
-              <h3>{t('MONITORING_TEMPLATE')}</h3>
+              <h3>{t('TEMPLATE')}</h3>
               <p>{t('CUSTOM_MONITORING_TEMPLATE_DESC')}</p>
             </div>
           }

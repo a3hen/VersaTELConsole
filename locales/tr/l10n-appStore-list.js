@@ -17,14 +17,23 @@
  */
 module.exports = {
   // Head
-  APP_STORE: 'App Store',
+  APP_STORE: 'Uygulama Mağazası',
   // Discover
-  DISCOVER: 'Discover',
-  NEW_APPS: 'New Apps',
+  DISCOVER: 'Keşfet',
+  NEW_APPS: 'Yeni Uygulama',
   // App Categories
+  APP_CATE_ALL: 'Hepsi',
+  APP_CATE_UNCATEGORIZED: 'Kategorisiz',
+  APP_CATE_MESSAGE_QUEUEING: 'Mesaj sıraya alma',
+  APP_CATE_IMAGE_REGISTRY: 'Görüntü Kaydı',
+  APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus sunucu',
+  APP_CATE_WEB_SERVER: 'Web Sunucu',
+  APP_CATE_NETWORKING: 'Ağ',
+  APP_CATE_DATABASE_CACHE: 'Veritabanı ön belleği',
+  APP_CATE_STORAGE: 'Depolama',
   // List
-  MAINTAINER_VALUE: 'Maintainer: {value}',
-  LATEST_VALUE: 'Latest: {value}',
-  TOTAL_CATE_COUNT: 'Total Apps: {total}',
-  SEARCH_BY_NAME: 'Search by name',
-}
+  MAINTAINER_VALUE: 'Geliştirici: {değer}',
+  LATEST_VALUE: 'Son sürüm: {değer}',
+  TOTAL_CATE_COUNT: 'Toplam Uygulama: {toplam}',
+  SEARCH_BY_NAME: 'İsme göre ara'
+};

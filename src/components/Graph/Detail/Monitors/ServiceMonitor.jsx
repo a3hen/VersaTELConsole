@@ -68,12 +68,9 @@ export default class Monitors extends React.Component {
   }
 
   getData() {
-    const { detail, store, protocol } = this.props
+    const { detail, store } = this.props
 
-    const func =
-      protocol === 'tcp'
-        ? this.store.fetchAppMetrics.bind(this.store)
-        : this.store.fetchServiceMetrics.bind(this.store)
+    const func = this.store.fetchServiceMetrics.bind(this.store)
 
     if (detail && detail.name) {
       func(
@@ -123,8 +120,8 @@ export default class Monitors extends React.Component {
     )
 
     return getAreaChartOps({
-      title: 'traffic',
-      legend: ['Success', 'All'],
+      title: 'TRAFFIC',
+      legend: ['SUCCESSFUL', 'ALL'],
       areaColors: ['#329dce', '#d8dee5'],
       data: [{ values: request_success_count }, { values: request_count }],
       unit: 'RPS',
@@ -138,42 +135,16 @@ export default class Monitors extends React.Component {
     }
 
     const { metrics } = this.state
-    const received = get(metrics, 'metrics.tcp_received.matrix[0].values', [])
-    const sent = get(metrics, 'metrics.tcp_sent.matrix[0].values', [])
+    const received = get(metrics, 'tcp_received[0].datapoints', [])
+    const sent = get(metrics, 'tcp_sent[0].datapoints', [])
 
     if (received.length === 0 && sent.length === 0) {
       return {}
     }
 
     return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
-      data: [{ values: sent }, { values: received }],
-      unit: 'B/s',
-    })
-  }
-
-  get tcpOutMetrics() {
-    const { detail } = this.props
-    if (!detail) {
-      return {}
-    }
-
-    const { outMetrics } = this.state
-    const received = get(
-      outMetrics,
-      'metrics.tcp_received.matrix[0].values',
-      []
-    )
-    const sent = get(outMetrics, 'metrics.tcp_sent.matrix[0].values', [])
-
-    if (received.length === 0 && sent.length === 0) {
-      return {}
-    }
-
-    return getAreaChartOps({
-      title: 'bandwith',
-      legend: ['Send', 'Receive'],
+      title: 'BANDWIDTH',
+      legend: ['SENT', 'RECEIVED'],
       data: [{ values: sent }, { values: received }],
       unit: 'B/s',
     })
@@ -206,19 +177,19 @@ export default class Monitors extends React.Component {
 
     return [
       {
-        title: 'Traffic',
+        title: 'TRAFFIC',
         data: request_count.toFixed(2),
         unit: 'RPS',
         icon: 'changing-over',
       },
       {
-        title: 'Success rate',
+        title: 'SUCCESS_RATE',
         data: request_success_rate.toFixed(2),
         icon: 'check',
         unit: '%',
       },
       {
-        title: 'Duration',
+        title: 'DURATION',
         data: request_duration.toFixed(2),
         icon: 'timed-task',
         unit: 'ms',
@@ -229,30 +200,23 @@ export default class Monitors extends React.Component {
   render() {
     const { protocol } = this.props
 
-    if (protocol === 'http') {
-      return (
-        <>
-          <div className={styles.title}>
-            {t('Traffic (requests per second)')}
-          </div>
-          <TrafficCard metrics={this.trafficInMetrics} />
-          <div className="margin-b8" />
-          <Chart {...this.requestInMetrics} height={150} />
-        </>
-      )
-    }
-
     if (protocol === 'tcp') {
       return (
         <>
           <div className={styles.title}>{t('TCP_INBOUND_TRAFFIC')}</div>
           <Chart {...this.tcpInMetrics} height={150} />
-          <div className={styles.title}>{t('TCP_OUTBOUND_TRAFFIC')}</div>
-          <Chart {...this.tcpOutMetrics} height={150} />
         </>
       )
     }
 
-    return null
+    // for http and grpc
+    return (
+      <>
+        <div className={styles.title}>{t('TRAFFIC_RPS')}</div>
+        <TrafficCard metrics={this.trafficInMetrics} />
+        <div className="margin-b8" />
+        <Chart {...this.requestInMetrics} height={150} />
+      </>
+    )
   }
 }

@@ -24,4 +24,5 @@ module.exports = {
   'KubeSphere Terminal': 'KubeSphere 终端',
   'Launch kubectl': '启动 kubectl',
   'Put this into': '把它加入到',
+  OPEN_TERMINAL_DESC: '请确保您代理服务器上的 WebSocket 代理配置无误.',
 }

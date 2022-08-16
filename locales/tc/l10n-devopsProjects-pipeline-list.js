@@ -20,7 +20,7 @@ module.exports = {
   PIPELINE_PL: '流水線',
   // List
   HEALTH: '健康狀態',
-  PULL_REQUEST_COUNT: 'Pull Requests',
+  PULL_REQUEST_COUNT: '拉取請求',
   HEALTHY: '健康',
   SUB_HEALTHY: '亞健康',
   NO_STATUS: '沒有狀態',
@@ -173,4 +173,9 @@ module.exports = {
     'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: '預設值',
   PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
-}
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
+};

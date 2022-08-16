@@ -54,6 +54,7 @@ module.exports = {
   PROTOCOL: 'Protocolo',
   PORT: 'Port',
   PORT_VALUE: 'Port: {value}',
+  CERTIFICATE: 'Certificate',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

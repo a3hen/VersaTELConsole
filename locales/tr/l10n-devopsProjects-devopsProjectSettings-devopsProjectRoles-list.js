@@ -17,40 +17,52 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_PROJECT_ROLE_PL: 'DevOps Project Roles',
-  DEVOPS_PROJECT_ROLES_DESC:
-    'The project roles define the permissions that users have under the current DevOps project.',
+  DEVOPS_PROJECT_ROLE_PL: 'DevOps Proje Rolleri',
+  DEVOPS_PROJECT_ROLES_DESC: 'Proje rolleri, mevcut DevOps projesi kapsamında kullanıcıların sahip olduğu izinleri tanımlar.',
   // List
-  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Please create a DevOps project role.',
-  ROLE_DEVOPS_VIEWER: 'View all resources in the DevOps project.',
-  ROLE_DEVOPS_OPERATOR: 'Create credentials in the DevOps project.',
-  ROLE_DEVOPS_ADMIN: 'Control all resources in the DevOps project.',
+  DEVOPS_PROJECT_ROLE_EMPTY_DESC: 'Lütfen bir DevOps proje rolü oluşturun.',
+  ROLE_DEVOPS_VIEWER: 'DevOps projesindeki tüm kaynakları görüntüleyin.',
+  ROLE_DEVOPS_OPERATOR: 'DevOps projesinde kimlik bilgileri oluşturun.',
+  ROLE_DEVOPS_ADMIN: 'DevOps projesindeki tüm kaynakları kontrol edin.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Create
-  EDIT_PERMISSIONS: 'Edit Permissions',
-  CREATE_ROLE: 'Create Role',
+  EDIT_PERMISSIONS: 'İzinleri Düzenle',
+  CREATE_ROLE: 'Rol Oluştur',
   // List > Create > Edit Permissions
-  MODULES: 'Modules',
+  CATEGORIES: 'Kategoriler',
   // List > Create > Edit Permissions > Pipeline Management
-  DEPENDS_ON: 'Depends on: ',
-  PIPELINES_MANAGEMENT: 'Pipeline Management',
-  PIPELINES_VIEW: 'Pipeline Viewing',
-  PIPELINERUNS_MANAGEMENT: 'Pipeline Run Record Management',
-  PIPELINERUNS_VIEW: 'Pipeline Run Record Viewing',
-  PIPELINERUNS_VIEW_DESC: 'View pipeline run records in the DevOps project.',
-  PIPELINES_MANAGEMENT_DESC:
-    'Create, edit, and delete DevOps project pipelines.',
-  PIPELINES_VIEW_DESC: 'View DevOps project pipelines and download artifacts.',
+  DEPENDS_ON: 'Bağlı olarak: ',
+  PERMIGROUP_PIPELINES_MANAGEMENT: 'İş hatları',
+  PERMISSION_PIPELINES_VIEW: 'Boru Hattı izleme',
+  PERMISSION_PIPELINES_VIEW_DESC: 'DevOps proje işlem hatlarını görüntüleyin ve yapıtları indirin.',
+  PERMISSION_PIPELINES_MANAGEMENT: 'Boru Hattı Yönetimi',
+  PERMISSION_PIPELINES_MANAGEMENT_DESC: 'DevOps proje işlem hatları oluşturun, düzenleyin ve silin.',
+  PERMISSION_PIPELINERUNS_VIEW: 'Boru hattı çalışması kayıt izleme',
+  PERMISSION_PIPELINERUNS_VIEW_DESC: 'DevOps projesinde işlem hattı çalıştırma kayıtlarını görüntüleyin.',
+  PERMISSION_PIPELINERUNS_MANAGEMENT: 'Boru hattı çalışması kayıt yönetimi',
+  PERMISSION_PIPELINERUNS_MANAGEMENT_DESC: 'DevOps projesinde işlem hattı çalıştırma kayıtlarını görüntüleyin.',
   // List > Create > Edit Permissions > Credential Management
-  CREDENTIALS_MANAGEMENT: 'Credential Management',
-  CREDENTIALS_MANAGEMENT_DESC: 'Create, edit, and delete DevOps credentials.',
-  CREDENTIALS_VIEW_DESC: 'View and use DevOps credentials.',
-  CREDENTIALS_VIEW: 'Credential Viewing',
+  PERMIGROUP_CREDENTIALS_MANAGEMENT: 'Kimlik Bilgileri',
+  PERMISSION_CREDENTIALS_VIEW: 'Kimlik Bilgileri Görüntüleme',
+  PERMISSION_CREDENTIALS_VIEW_DESC: 'DevOps kimlik bilgilerini görüntüleyin ve kullanın.',
+  PERMISSION_CREDENTIALS_MANAGEMENT: 'Kimlik Bilgileri Yönetimi',
+  PERMISSION_CREDENTIALS_MANAGEMENT_DESC: 'DevOps kimlik bilgilerini oluşturun, düzenleyin ve silin.',
   // List > Create > Edit Permissions > Access Control
-  ROLES_MANAGEMENT: 'Role Management',
-  ROLES_VIEW: 'Role Viewing',
-  // List > Create > Edit Permissions > DevOps Settings
-  DEVOPS_SETTINGS: 'DevOps Settings',
-  DEVOPS_SETTINGS_DESC: 'Manage DevOps project settings.',
-}
+  // List > Create > Edit Permissions > Project Settings
+  PERMIGROUP_DEVOPS_SETTINGS: 'Proje Ayarları',
+  PERMISSION_DEVOPS_SETTINGS: 'Çalışma alanı Ayarları Yönetimi',
+  PERMISSION_DEVOPS_SETTINGS_DESC: 'DevOps Proje Ayarlarını Yönetin.',
+  // List > Create > Edit Permissions > Continuous Deployment Management
+  PERMIGROUP_CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Sürekli Dağıtım',
+  PERMISSION_CONTINUOUS_DEPLOYMENTS_VIEW: 'Sürekli Dağıtım İzleme',
+  PERMISSION_CONTINUOUS_DEPLOYMENTS_VIEW_DESC: 'DevOps projesinde sürekli dağıtımları görüntüleyin.',
+  PERMISSION_CONTINUOUS_DEPLOYMENTS_MANAGEMENT: 'Sürekli Dağıtım Yönetimi',
+  PERMISSION_CONTINUOUS_DEPLOYMENTS_MANAGEMENT_DESC: 'DevOps projesinde sürekli dağıtımları yönetin.',
+  // List > Create > Edit Permissions > Code Repository Management
+  PERMIGROUP_CODE_REPOSITORIES_MANAGEMENT: 'Kod Deposu',
+  PERMISSION_CODE_REPOSITORIES_VIEW: 'Uygulama Deposu Görüntüleme',
+  PERMISSION_CODE_REPOSITORIES_VIEW_DESC: 'DevOps projesinde kod depolarını görüntüleyin.',
+  PERMISSION_CODE_REPOSITORIES_MANAGEMENT: 'Uygulama Depo Yönetimi',
+  PERMISSION_CODE_REPOSITORIES_MANAGEMENT_DESC: 'DevOps projesinde kod depolarını görüntüleyin.'
+};

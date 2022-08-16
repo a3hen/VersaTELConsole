@@ -26,10 +26,12 @@ import { getNodeStatus } from 'utils/node'
 import { getValueByUnit } from 'utils/monitoring'
 import NodeStore from 'stores/node'
 import NodeMonitoringStore from 'stores/monitoring/node'
+import KubeCtlModal from 'components/Modals/KubeCtl'
 
 import { withClusterList, ListPage } from 'components/HOCs/withList'
 
-import { Avatar, Status, Panel, Text } from 'components/Base'
+import { Avatar, Status, Panel, Text, Modal } from 'components/Base'
+
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 
@@ -98,6 +100,14 @@ export default class Nodes extends React.Component {
         show: item =>
           item.importStatus === 'success' && !this.getUnschedulable(item),
         onClick: item => store.cordon(item).then(routing.query),
+      },
+      {
+        key: 'terminal',
+        icon: 'terminal',
+        text: t('OPEN_TERMINAL'),
+        action: 'edit',
+        show: item => item.importStatus === 'success' && this.getReady(item),
+        onClick: item => this.handleOpenTerminal(item),
       },
       {
         key: 'logs',
@@ -178,6 +188,27 @@ export default class Nodes extends React.Component {
     return taints.some(
       taint => taint.key === 'node.kubernetes.io/unschedulable'
     )
+  }
+
+  getReady = record => {
+    const conditions = record.conditions
+
+    return conditions.some(
+      condition => condition.type === 'Ready' && condition.status === 'True'
+    )
+  }
+
+  handleOpenTerminal = record => {
+    const modal = Modal.open({
+      onOk: () => {
+        Modal.close(modal)
+      },
+      modal: KubeCtlModal,
+      cluster: this.cluster,
+      title: record.name,
+      nodename: record.name,
+      isEdgeNode: true,
+    })
   }
 
   getLastValue = (node, type, unit) => {
@@ -267,7 +298,7 @@ export default class Nodes extends React.Component {
         isHideable: true,
         search: true,
         render: roles =>
-          roles.map(role => t(role.replace('-', '_').toUpperCase())).join('/'),
+          roles.indexOf('master') === -1 ? t('WORKER') : t('CONTROL_PLANE'),
       },
       {
         title: t('CPU_USAGE'),
@@ -480,7 +511,7 @@ export default class Nodes extends React.Component {
   }
 
   renderOverview() {
-    const { masterCount, masterWorkerCount, list } = this.store
+    const { masterNum, masterCount, masterWorkerCount, list } = this.store
     const totalCount = list.total
     const workerCount = Math.max(
       Number(totalCount) - Number(masterCount) + Number(masterWorkerCount),
@@ -496,9 +527,9 @@ export default class Nodes extends React.Component {
             description={totalCount === 1 ? t(`NODE_SI`) : t(`NODE_PL`)}
           />
           <Text
-            title={masterCount}
+            title={masterNum}
             description={
-              masterCount === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
+              masterNum === 1 ? t('MASTER_NODE_SI') : t('MASTER_NODE_PL')
             }
           />
           <Text

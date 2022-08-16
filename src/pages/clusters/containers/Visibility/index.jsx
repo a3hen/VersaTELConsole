@@ -25,6 +25,7 @@ import Table from 'components/Tables/Base'
 import Banner from 'components/Cards/Banner'
 import { getLocalTime, getDisplayName } from 'utils'
 import { trigger } from 'utils/action'
+import { get } from 'lodash'
 
 import WorkspaceStore from 'stores/workspace'
 
@@ -64,6 +65,10 @@ export default class Overview extends React.Component {
     ]
   }
 
+  get clusterRules() {
+    return get(globals, 'user.globalRules.clusters', [])
+  }
+
   getData = params => {
     this.workspaceStore.fetchList({
       ...this.props.match.params,
@@ -99,7 +104,7 @@ export default class Overview extends React.Component {
         dataIndex: 'manager',
       },
       {
-        title: t('CREATION_TIME_TCAP'),
+        title: t('AUTHORIZATION_TIME_TCAP'),
         dataIndex: 'createTime',
         width: '20%',
         render: time => getLocalTime(time).format('YYYY-MM-DD HH:mm:ss'),
@@ -171,7 +176,7 @@ export default class Overview extends React.Component {
               description={t('CLUSTER_VISIBILITY_SCAP')}
             />
             {globals.app.isMultiCluster &&
-              this.enabledActions.includes('edit') && (
+              this.clusterRules.includes('manage') && (
                 <Button onClick={this.editVisibility}>
                   {t('EDIT_VISIBILITY')}
                 </Button>

@@ -18,7 +18,6 @@
 module.exports = {
   abortPipeline: 'abortPipeline',
   'Absolute duration': 'Duración total',
-  ADD_ACTION: 'Agregar acción',
   'Add another credential': 'Agregar otra credencial',
   'Add conditions': 'Agregar condiciones',
   'Add nesting conditions': 'Agregar condiciones anidadas',
@@ -183,7 +182,6 @@ module.exports = {
   'This name has been used.': 'Este nombre ha sido usado.',
   'Time Used': 'Tiempo utilizado',
   Timeout: 'Se acabó el tiempo',
-  TIMEOUT_VALUE: 'Se acabó el tiempo: {value}',
   timeout: 'se acabó el tiempo',
   'Timeout after no activity in logs for this block':
     'Tiempo de espera agotado tras inactividad en los logs deregistro de este bloque',

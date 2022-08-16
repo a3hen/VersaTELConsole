@@ -18,8 +18,7 @@
 module.exports = {
   // Title
   // Navigation Pane > Cluster
-  METERING_NOT_ENABLED_DESC:
-    '当前模块尚未开启。<a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
+  METERING_NOT_ENABLED_DESC: '当前模块尚未启用。<a href="{docUrl}/toolbox/metering-and-billing/enable-billing/">了解更多</a>',
   NO_METER_DATA: '未发现资源消费数据。',
   // Navigation Pane > Cluster Node
   // Navigation Pane > Cluster Node > Pod
@@ -30,7 +29,7 @@ module.exports = {
   PRICE_CONFIG_DESC: '尚未配置价格信息。',
   METER_CPU_USAGE: 'CPU 用量',
   METER_MEMORY_USAGE: '内存用量',
-  METER_VOLUME_USAGE: '存储卷用量',
+  METER_VOLUME_USAGE: '卷用量',
   METER_NET_RECEIVED_USAGE: '入站流量用量',
   METER_NET_TRANSMITTED_USAGE: '出站流量用量',
   NET_RECEIVED: '入站流量',

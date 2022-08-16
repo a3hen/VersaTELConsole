@@ -75,6 +75,7 @@ module.exports = {
   S2I_NO_SECRET: 'El repositorio de código actual no requiere clave.',
   UPLOAD_ARTIFACT_TIP: 'Please upload an artifact.',
   UPLOAD_ARTIFACT: 'Subir artefactos',
+
   'Upload file failed': 'Error al cargar el archivo',
   'Upload Percent': 'Porcentaje de subida',
   SORT_BY: 'ordenado por { name }',

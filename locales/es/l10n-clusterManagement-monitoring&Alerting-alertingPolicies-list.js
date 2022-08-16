@@ -24,11 +24,10 @@ module.exports = {
   REQUESTS_FOR_TRIGGER_AN_ALARM_A:
     'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
-  ALERTING_STATUS: 'Estado de Alerta',
-  ALERTING_POLICY_EMPTY_DESC:
-    'You can notice if a resource is abnormal in real time by creating an alerting policy.',
+  ALERTING_STATUS: 'Alerting Status',
+  ALERTING_POLICY_EMPTY_DESC: 'You can notice if a resource is abnormal in real time by creating an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
-  ALERT_RULE_PENDING: 'Pending',
+  ALERT_RULE_PENDING: 'Pendiente',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
@@ -50,6 +49,7 @@ module.exports = {
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'ratio de uso de CPU',
   DISK_READ_IOPS: 'iops de lectura de disco',
   DISK_READ_THROUGHPUT: 'rendimiento de lectura de disco',
@@ -62,7 +62,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
   DATA_RECEIVE_RATE: 'ratio de datos de red recibidos',
   DATA_SEND_RATE: 'Network data sending rate',
-  SET_RULE_DESC: 'Please set an alerting rule.',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: 'Relación anormal pod',
   POD_USAGE_SCAP: 'ratio de utilización de pod',
   THRESHOLD: 'Umbral',

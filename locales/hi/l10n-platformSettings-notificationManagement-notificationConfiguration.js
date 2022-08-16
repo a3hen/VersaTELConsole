@@ -19,11 +19,10 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Notification Management',
   NOTIFICATION_CONFIGURATION: 'Notification Configuration',
-  NOTIFICATION_CONFIGURATION_DESC:
-    'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
-  NOTIFICATION_EMAIL: 'Email',
+  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_EMAIL: 'ईमेल',
   // Email
-  MAIL_TITLE: 'Email',
+  MAIL_TITLE: 'ईमेल',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
   ENTER_PORT_NUMBER: 'Please enter a port number.',
   ALERTING_NAME: 'Alert name',
@@ -45,10 +44,9 @@ module.exports = {
   EXISTS: 'Exists',
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
-  PATTERN_TAG_INVALID_TIP:
-    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
-  INVALID_NOTIFICATION_CONDITION:
-    'Please enter a correct notification condition.',
+  PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
+  INVALID_NOTIFICATION_CONDITION: 'Please enter a correct notification condition.',
   SEND_TEST_MESSAGE: 'Send Test Message',
   SEND_TEST_MESSAGE_DESC:
     'After the configurations are complete, you can send a test message for verification.',
@@ -162,4 +160,7 @@ module.exports = {
   NO_AUTH: 'No authentication',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-}
+  WEBHOOK_USERNAME_EMPTY_DESC: 'कृपया उपयोगकर्तानाम डालें।',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
+};

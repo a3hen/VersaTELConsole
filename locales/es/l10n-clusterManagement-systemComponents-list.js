@@ -21,6 +21,7 @@ module.exports = {
   SERVICE_COMPONENTS_DESC:
     'Este módulo monitorea el estado de varios componentes del servicio en KubeSphere, Kubernetes, OpenPitrix, etc. Muestra el estado de mantenimiento y el tiempo de ejecución del clúster actual, y ayuda a los usuarios a monitorear el estado del clúster y localizar problemas a tiempo.',
   // KubeSphere
+  STOPPED: 'Stopped',
   RUNNING_TIME: 'Tiempo de ejecución',
   KS_CONSOLE_DESC: 'Proporciona servicios de consola para KubeSphere.',
   KS_APISERVER_DESC:

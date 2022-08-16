@@ -58,7 +58,6 @@ module.exports = {
   PROBE_COMMAND_EMPTY: 'Please enter at least one command.',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'TCP Port',
-  // List > Create > Volume Settings
-  MOUNT_PATH_IN_USE:
-    'The mount path is already in use. Please enter another mount path.',
-}
+  // List > Create > Storage Settings
+  MOUNT_PATH_IN_USE: 'The mount path is already in use. Please enter another mount path.'
+};

@@ -19,11 +19,10 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
-  NOTIFICATION_CONFIGURATION_DESC:
-    'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
-  NOTIFICATION_EMAIL: 'Email',
+  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_EMAIL: '郵箱',
   // Email
-  MAIL_TITLE: 'Email',
+  MAIL_TITLE: '郵箱',
   INVALID_PORT_DESC: 'Please enter a valid port number.',
   ENTER_PORT_NUMBER: '請輸入端口',
   ALERTING_NAME: 'Alert name',
@@ -35,18 +34,16 @@ module.exports = {
   NOTIFICATION_CONDITIONS: 'Notification Conditions',
   CONTAINER: 'Container',
   VALUES: 'Values',
-  CONDITION_OPERATOR: 'Operator',
-  NOTIFICATION_CONDITION_SETTING_TIP:
-    'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
-  NOTIFICATION_CONDITION_SETTINGS_DESC:
-    'You will receive only notifications that meet the conditions.',
+  CONDITION_OPERATOR: '操作者',
+  NOTIFICATION_CONDITION_SETTING_TIP: 'Operators <strong>Includes values</strong> and <b>Does not include values</b> require one or more label values. Use a carriage return to separate values.</br>Operators <b>Exists</b> and <b>Does Not Exist</b> determine whether a label exists, and do not require a label value.',
+  NOTIFICATION_CONDITION_SETTINGS_DESC: 'You will receive only notifications that meet the conditions.',
   INCLUDES_VALUES: '包含值',
   DOES_NOT_INCLUDE_VALUES: '不包含值',
   EXISTS: 'Exists',
   DOES_NOT_EXIST: 'Does not exist',
   TAG_INPUT_PLACEHOLDER: 'Please enter the value and press Enter to confirm',
-  PATTERN_TAG_INVALID_TIP:
-    'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_INVALID_TIP: 'Invalid label. The label can contain only uppercase and lowercase letters, numbers, hyphens (-), underscores (_), and dots (.), and must begin and end with an uppercase or lowercase letter or number.',
+  PATTERN_TAG_VALUE_INVALID_TIP: 'Invalid label values. The label values can only contain uppercase and lowercase letters, numbers, hyphens (-), underscores (_) and dots (.) and must begin and end with an uppercase or lowercase letter or number and be a maximum of 63 characters.',
   INVALID_NOTIFICATION_CONDITION: '請填寫正確的通知條件。',
   SEND_TEST_MESSAGE: '發送測試信息',
   SEND_TEST_MESSAGE_DESC:
@@ -98,10 +95,10 @@ module.exports = {
   MAX_KEYWORD_COUNT: 'You can add a maximum of {count} keywords.',
   KEYWORD_EXISTS: 'The keyword already exists. Please add another keyword.',
   EMPTY_KEYWORDS_DESC: 'No keyword is added.',
-  DINGTALK_SECRET: 'Secret',
+  DINGTALK_SECRET: '保密字典',
   // WeCom
   WeCom: '企業微信',
-  WECOM_TITLE: 'WeCom',
+  WECOM_TITLE: '企業微信',
   WECOM_CORP_ID: 'Corporation ID',
   WECOM_AGENT_ID: 'App AgentId',
   WECOM_SECRET: 'App Secret',
@@ -115,14 +112,14 @@ module.exports = {
   // WeCom > User ID
   USER_ID: '用戶 ID',
   TOUSER_LIST: 'Added User IDs',
-  WECOM_TOUSER_PLACEHOLDER: 'User ID',
+  WECOM_TOUSER_PLACEHOLDER: '用戶 ID',
   EMPTY_TOUSER_DESC: 'No user ID is added.',
   ENTER_TOUSER_TIP: 'Please enter a user ID.',
   TOUSER_EXISTS: 'The user ID already exists. Please enter another user ID.',
   MAX_TOUSER_COUNT: 'You can add a maximum of {count} users.',
   // WeCom > Department ID
   DEPARTMENT_ID: '部門 ID',
-  WECOM_TOPARTY_PLACEHOLDER: 'Department ID',
+  WECOM_TOPARTY_PLACEHOLDER: '部門 ID',
   TOPARTY_LIST: 'Added Department IDs',
   EMPTY_TOPARTY_DESC: 'No department ID is added.',
   ENTER_TOPARTY_TIP: 'Please enter a department ID.',
@@ -132,7 +129,7 @@ module.exports = {
   // WeCom > Tag ID
   TAG_ID: '標簽 ID',
   TOTAG_LIST: 'Added Tag IDs',
-  WECOM_TOTAG_PLACEHOLDER: 'Tag ID',
+  WECOM_TOTAG_PLACEHOLDER: '標簽 ID',
   EMPTY_TOTAG_DESC: 'No tag ID is added.',
   ENTER_TOTAG_TIP: 'Please enter a tag ID.',
   TOTAG_EXISTS: 'The tag ID already exists. Please enter another tag ID.',
@@ -161,4 +158,7 @@ module.exports = {
   NO_AUTH: '無須認證',
   BEARER_TOKEN: 'Bearer token',
   TOKEN: 'Token',
-}
+  WEBHOOK_USERNAME_EMPTY_DESC: '請輸入用戶名稱',
+  WEBHOOK_PASSWORD_EMPTY_DESC: 'Please enter a password.',
+  WEBHOOK_TOKEN_EMPTY_DESC: 'Please enter a token.'
+};

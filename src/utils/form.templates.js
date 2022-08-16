@@ -345,17 +345,28 @@ const getVolumeTemplate = ({ namespace }) => ({
   },
 })
 
+const getSnapshotClassTemplate = () => ({
+  apiVersion: 'snapshot.storage.k8s.io/v1beta1',
+  deletionPolicy: 'Delete',
+  driver: '',
+  kind: 'VolumeSnapshotClass',
+  metadata: {
+    name: '',
+    annotations: {},
+  },
+})
+
 const getStorageClassTemplate = () => ({
   apiVersion: 'storage.k8s.io/v1',
   kind: 'StorageClass',
   metadata: {
     name: '',
     annotations: {},
-    VolumeBindingMode: 'WaitForFirstConsumer',
   },
   parameters: {},
   reclaimPolicy: 'Delete',
   allowVolumeExpansion: 'false',
+  volumeBindingMode: 'WaitForFirstConsumer',
 })
 
 const getProjectTemplate = () => ({
@@ -706,6 +717,61 @@ const getLResourceTemplate = ({ namespace }) => ({
   },
   rules: [],
 })
+const getCDTemplate = () => ({
+  kind: 'Application',
+  apiVersion: 'gitops.kubesphere.io/v1alpha1',
+  metadata: {},
+  spec: {
+    kind: 'argo-project',
+  },
+})
+
+const getCodeRepoTemplate = ({ namespace }) => ({
+  kind: 'GitRepository',
+  apiVersion: 'devops.kubesphere.io/v1alpha3',
+  metadata: {
+    name: '',
+    namespace,
+  },
+  spec: {},
+})
+
+const getAccessorsTemplate = name => ({
+  apiVersion: 'storage.kubesphere.io/v1alpha1',
+  kind: 'Accessor',
+  metadata: {
+    name: `${name}-accessor`,
+  },
+  spec: {
+    storageClassName: `${name}-disabled`,
+    namespaceSelector: {
+      fieldSelector: [
+        {
+          fieldExpressions: [
+            {
+              field: 'Name',
+              operator: 'In',
+              values: [],
+            },
+          ],
+        },
+      ],
+    },
+    workspaceSelector: {
+      fieldSelector: [
+        {
+          fieldExpressions: [
+            {
+              field: 'Name',
+              operator: 'In',
+              values: [],
+            },
+          ],
+        },
+      ],
+    },
+  },
+})
 
 const FORM_TEMPLATES = {
   deployments: getDeploymentTemplate,
@@ -725,7 +791,9 @@ const FORM_TEMPLATES = {
   globalroles: getGlobalRoleTemplate,
   workspaceroles: getWorkspaceRoleTemplate,
   volumes: getVolumeTemplate,
+  volumesnapshotclass: getSnapshotClassTemplate,
   storageclasses: getStorageClassTemplate,
+  accessors: getAccessorsTemplate,
   project: getProjectTemplate,
   limitRange: getLimitRangeTemplate,
   'alert-policies': getAlertPolicyTemplate,
@@ -752,6 +820,8 @@ const FORM_TEMPLATES = {
   linstornodes: getLNodeTemplate,
   storagepools: getSPTemplate,
   lresources: getLResourceTemplate,
+  cds: getCDTemplate,
+  codeRepos: getCodeRepoTemplate,
 }
 
 export default FORM_TEMPLATES

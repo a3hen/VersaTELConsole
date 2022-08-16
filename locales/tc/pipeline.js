@@ -18,7 +18,6 @@
 module.exports = {
   abortPipeline: '檢查結果是否影響後續任務',
   'Absolute duration': '代碼塊所用的絕對時間',
-  ADD_ACTION: '添加操作',
   'Add another credential': '增加一個憑證',
   'Add conditions': '添加條件',
   'Add nesting conditions': '添加嵌套條件',
@@ -167,7 +166,6 @@ module.exports = {
   'This name has been used.': '此名稱已被使用',
   'Time Used': '用時',
   Timeout: '超時',
-  TIMEOUT_VALUE: '超時：{value}',
   timeout: '超時',
   'Timeout after no activity in logs for this block':
     '此區塊代碼無紀錄輸出後開始計算超時',

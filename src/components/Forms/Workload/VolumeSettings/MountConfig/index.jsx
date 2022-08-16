@@ -284,6 +284,26 @@ export default class MountConfig extends React.Component {
     }
   }
 
+  relativePathValidator = (rule, value, callback) => {
+    const absPath = value.some(item => /^\//.test(item.path))
+    if (absPath) {
+      return callback({ message: t('PLEASE_USE_RELATIVE_PATH') })
+    }
+
+    const notSupportRelPath = value.some(item => /^(\.)\1{1,}/.test(item.path))
+    if (notSupportRelPath) {
+      return callback({ message: t('RELATIVE_PATH_NOT_SUPPORT') })
+    }
+
+    const pathIncorrect = value.some(item =>
+      /(\/)\1{1,}|(\.)\2{1,}/.test(item.path)
+    )
+    if (pathIncorrect) {
+      return callback({ message: t('MOUNT_PATH_INCORRECT') })
+    }
+    return callback()
+  }
+
   renderContent() {
     const { containers, collectSavedLog } = this.props
     const { type, formData } = this.state
@@ -324,7 +344,7 @@ export default class MountConfig extends React.Component {
           checkable
           keepDataWhenUncheck
         >
-          <Form.Item>
+          <Form.Item rules={[{ validator: this.relativePathValidator }]}>
             <ArrayInput name="items" itemType="object" addText={t('ADD')}>
               <ObjectInput>
                 <Select
@@ -350,7 +370,7 @@ export default class MountConfig extends React.Component {
           <a className="custom-icon" onClick={this.handleGoBack}>
             <BackIcon />
           </a>
-          {t('VOLUME_PL')}
+          {t('STORAGE_SETTINGS')}
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.title}>{t('MOUNT_CONFIGMAP_OR_SECRET')}</div>

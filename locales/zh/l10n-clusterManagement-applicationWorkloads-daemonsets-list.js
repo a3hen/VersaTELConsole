@@ -54,6 +54,6 @@ module.exports = {
   PROBE_COMMAND_EMPTY: '请输入至少一条命令。',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'TCP 端口',
-  // List > Create > Volume Settings
-  MOUNT_PATH_IN_USE: '挂载路径已被使用，请输入其他挂载路径。',
-}
+  // List > Create > Storage Settings
+  MOUNT_PATH_IN_USE: '挂载路径已被使用，请输入其他挂载路径。'
+};

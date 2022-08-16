@@ -48,7 +48,6 @@ export default class ContainerSetting extends React.Component {
     return {
       requests: limitRange.defaultRequest || {},
       limits: limitRange.default || {},
-      gpu: limitRange.gpu || {},
     }
   }
 
@@ -61,6 +60,7 @@ export default class ContainerSetting extends React.Component {
 
   get imageRegistries() {
     const { imageRegistries = [] } = this.props
+
     return imageRegistries.map(item => {
       const auths = get(item, 'data[".dockerconfigjson"].auths', {})
       const url = Object.keys(auths)[0] || ''
@@ -69,12 +69,20 @@ export default class ContainerSetting extends React.Component {
         ? get(item, 'clusters[0].name')
         : item.cluster
 
+      const isSkipTLS = Boolean(
+        get(item, 'annotations["secret.kubesphere.io/force-insecure"]', false)
+      )
+
+      const auth = get(auths[url], 'auth')
+
       return {
         url,
         username,
         label: item.name,
         value: item.name,
         cluster,
+        isSkipTLS,
+        auth,
       }
     })
   }
@@ -104,9 +112,23 @@ export default class ContainerSetting extends React.Component {
 
   getFormTemplate(data, imageRegistries) {
     if (data && data.image && !data.pullSecret) {
-      const { registry } = parseDockerImage(data.image)
+      const { registry, namespace } = parseDockerImage(data.image)
+
       if (registry) {
-        const reg = imageRegistries.find(({ url }) => url.endsWith(registry))
+        const reg = imageRegistries.find(({ url }) => {
+          url = url.endsWith('/') ? url.slice(0, -1) : url
+          const regUrl = url.replace(/^https?:\/\//, '')
+          const registryData = regUrl.split('/')
+
+          if (registry === registryData[0]) {
+            return (
+              (namespace && registryData[1] && registryData[1] === namespace) ||
+              (!namespace && !registryData[1])
+            )
+          }
+          return false
+        })
+
         if (reg) {
           data.pullSecret = reg.value
         }

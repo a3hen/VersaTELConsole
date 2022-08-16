@@ -21,6 +21,7 @@ module.exports = {
   SERVICE_COMPONENTS_DESC:
     '系统组件是 KubeSphere 系统中提供各种功能的软件组件，您可以在此页面查看系统组件的运行状态。',
   // KubeSphere
+  STOPPED: '已停止',
   RUNNING_TIME: '运行时间',
   KS_CONSOLE_DESC: '提供 KubeSphere 的控制台服务。',
   KS_APISERVER_DESC:

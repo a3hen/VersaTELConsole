@@ -69,7 +69,7 @@ class GatewayCard extends React.Component {
         key: 'view',
         icon: 'eye',
         text: t('VIEW_DETAILS'),
-        disabled: this.gateway.createTime == null,
+        disabled: this.canEdit || this.gateway.createTime == null,
       },
       {
         key: 'edit',
@@ -238,7 +238,16 @@ class GatewayCard extends React.Component {
       ? '-'
       : loadBalancerIngress.join(';')
 
-    const lbIcon = lb && CLUSTER_PROVIDERS.find(item => item.value === lb).icon
+    const lbs = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+      },
+    ]
+
+    const lbIcon = lb && lbs.find(item => item.value === lb).icon
 
     const isClusterPermission =
       globals.app.hasPermission({
@@ -427,6 +436,7 @@ class GatewayCard extends React.Component {
                 type={type}
                 handleCreateGateway={this.handleCreateGateway}
                 cluster={this.cluster}
+                canEdit={this.canEdit}
               />
             </>
           )
