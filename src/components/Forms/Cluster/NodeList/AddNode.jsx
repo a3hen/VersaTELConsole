@@ -83,7 +83,13 @@ export default class AddNode extends Component {
             <Input name="user" defaultValue="root" autoComplete="off" />
           </Form.Item>
           <Form.Item label={t('PASSWORD')} desc={t('NODE_PASSWORD_DESC')}>
-            <InputPassword name="password" autoComplete="off" />
+            <InputPassword
+              name="password"
+              autoComplete="off"
+              onCopy={e => e.preventDefault()}
+              onPaste={e => e.preventDefault()}
+              onCut={e => e.preventDefault()}
+            />
           </Form.Item>
         </>
       )

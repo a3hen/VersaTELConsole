@@ -234,7 +234,13 @@ export default class SecretSettings extends React.Component {
           ]}
         >
           <Base64Wrapper name="data.password">
-            <InputPassword type="password" autoComplete="new-password" />
+            <InputPassword
+              type="password"
+              autoComplete="new-password"
+              onCopy={e => e.preventDefault()}
+              onPaste={e => e.preventDefault()}
+              onCut={e => e.preventDefault()}
+            />
           </Base64Wrapper>
         </Form.Item>
       </div>

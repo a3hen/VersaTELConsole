@@ -250,6 +250,9 @@ export default class ImageRegistry extends Component {
                   value={password}
                   onChange={this.handlePasswordChange}
                   autoComplete="new-password"
+                  onCopy={e => e.preventDefault()}
+                  onPaste={e => e.preventDefault()}
+                  onCut={e => e.preventDefault()}
                 />
                 <Button onClick={this.handleValidate} loading={isValidating}>
                   {t('VALIDATE')}

@@ -93,6 +93,9 @@ export default class MailForm extends Component {
               name="secret.data.authPassword"
               type="password"
               autoComplete="new-password"
+              onCopy={e => e.preventDefault()}
+              onPaste={e => e.preventDefault()}
+              onCut={e => e.preventDefault()}
             />
           </Form.Item>
           <Form.Item

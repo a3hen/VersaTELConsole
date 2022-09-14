@@ -188,11 +188,21 @@ export default class Password extends React.Component {
             onChange={this.handleChange}
             onBlur={this.handleInputBlur}
             onClick={this.handleInputClick}
+            onCopy={e => e.preventDefault()}
+            onPaste={e => e.preventDefault()}
+            onCut={e => e.preventDefault()}
           />
         </div>
       )
     }
 
-    return <InputPassword {...rest} />
+    return (
+      <InputPassword
+        {...rest}
+        onCopy={e => e.preventDefault()}
+        onPaste={e => e.preventDefault()}
+        onCut={e => e.preventDefault()}
+      />
+    )
   }
 }
