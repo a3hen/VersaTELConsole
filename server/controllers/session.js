@@ -18,6 +18,12 @@
 
 const isEmpty = require('lodash/isEmpty')
 const jwtDecode = require('jwt-decode')
+const omit = require('lodash/omit')
+const base64_url_decode = require('jwt-decode/lib/base64_url_decode')
+const { getServerConfig } = require('../libs/utils')
+
+const { client: clientConfig } = getServerConfig()
+
 const {
   login,
   oAuthLogin,
@@ -29,6 +35,7 @@ const {
   isAppsRoute,
   decryptPassword,
   safeParseJSON,
+  safeBase64,
 } = require('../libs/utils')
 
 const { send_gateway_request } = require('../libs/request')
@@ -52,13 +59,15 @@ const handleLogin = async ctx => {
 
   if (isEmpty(error)) {
     try {
-      params.password = decryptPassword(params.encrypt, 'kubesphere')
+      const encryptKey = clientConfig.encryptKey || 'kubesphere'
+      params.password = decryptPassword(params.encrypt, encryptKey)
 
       user = await login(params, { 'x-client-ip': ctx.request.ip })
+
       if (!user) {
         Object.assign(error, {
-          status: 400,
-          reason: 'Internal Server Error',
+          status: 401,
+          reason: 'Unauthorized',
           message: 'Wrong username or password, please try again',
         })
       }
@@ -70,7 +79,7 @@ const handleLogin = async ctx => {
         case 401:
           Object.assign(error, {
             status: err.code,
-            reason: 'User Not Match',
+            reason: 'Unauthorized',
             message: 'Wrong username or password, please try again',
           })
           break
@@ -84,20 +93,20 @@ const handleLogin = async ctx => {
         case 502:
           Object.assign(error, {
             status: err.code,
-            reason: 'Internal Server Error',
+            reason: 'Bad Gateway',
             message: 'Unable to access the backend services',
           })
           break
         case 'ETIMEDOUT':
           Object.assign(error, {
-            status: 400,
+            status: 500,
             reason: 'Internal Server Error',
             message: 'Unable to access the api server',
           })
           break
         default:
           Object.assign(error, {
-            status: err.code,
+            status: 500,
             reason: err.statusText,
             message: err.message,
           })
@@ -118,7 +127,8 @@ const handleLogin = async ctx => {
   ctx.cookies.set('referer', null)
 
   if (user.username === 'system:pre-registration') {
-    ctx.cookies.set('defaultUser', user.extraname)
+    const extraname = safeBase64.safeBtoa(user.extraname)
+    ctx.cookies.set('defaultUser', extraname)
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }
@@ -142,6 +152,8 @@ const handleLogout = async ctx => {
     decodeURIComponent(ctx.cookies.get('oAuthLoginInfo'))
   )
 
+  const token = ctx.cookies.get('token')
+
   ctx.cookies.set('token', null)
   ctx.cookies.set('expire', null)
   ctx.cookies.set('refreshToken', null)
@@ -162,6 +174,7 @@ const handleLogout = async ctx => {
     await send_gateway_request({
       method: 'GET',
       url: '/oauth/logout',
+      token,
     })
 
     if (isAppsRoute(refererPath)) {
@@ -175,10 +188,14 @@ const handleLogout = async ctx => {
 const handleOAuthLogin = async ctx => {
   let user = null
   const error = {}
+  const oauthParams = omit(ctx.query, ['redirect_url', 'state'])
 
   try {
-    user = await oAuthLogin({ ...ctx.query, oauthName: ctx.params.name })
+    user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
   } catch (err) {
+    /* eslint-disable no-console */
+    console.log(err)
+
     ctx.app.emit('error', err)
     Object.assign(error, {
       status: err.code,
@@ -197,12 +214,36 @@ const handleOAuthLogin = async ctx => {
   ctx.cookies.set('refreshToken', user.refreshToken)
 
   if (user.username === 'system:pre-registration') {
-    ctx.cookies.set('defaultUser', user.extraname)
+    const extraname = safeBase64.safeBtoa(user.extraname)
+    ctx.cookies.set('defaultUser', extraname)
     ctx.cookies.set('defaultEmail', user.email)
     return ctx.redirect('/login/confirm')
   }
 
-  ctx.redirect('/')
+  const state = ctx.query.state
+  const redirect_url = ctx.query.redirect_url
+
+  if (state) {
+    try {
+      const state_object = base64_url_decode('state')
+      const state_url = state_object.redirect_url
+      if (state_url) {
+        ctx.redirect(state_url)
+      }
+    } catch (err) {
+      /* eslint-disable no-console */
+      console.log(err)
+    }
+  }
+
+  if (redirect_url) {
+    const redirectHost = new URL(redirect_url).host
+    if (redirectHost === ctx.headers.host) {
+      ctx.redirect(redirect_url)
+    }
+  } else {
+    ctx.redirect('/')
+  }
 }
 
 const handleLoginConfirm = async ctx => {

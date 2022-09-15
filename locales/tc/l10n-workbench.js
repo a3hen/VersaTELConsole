@@ -20,9 +20,10 @@ module.exports = {
   DASHBOARD_TITLE: '您好 {username}',
   LAST_LOGIN_TIME: 'Last Login: ',
   USER_DASHBOARD_EMPTY_TITLE: '您暫時不屬於任何企業空間',
-  USER_DASHBOARD_EMPTY_DESC: '您可以聯繫某個企業空間的管理員邀請您加入企業空間中',
+  USER_DASHBOARD_EMPTY_DESC:
+    '您可以聯繫某個企業空間的管理員邀請您加入企業空間中',
   // Platform Information
-  LAST_UPDATE_TIME: 'Last update time',
+  LAST_UPDATE_TIME: '上次更新時間',
   PLATFORM_VERSION: '平台版本',
   // Platform Resources
   PLATFORM_RESOURCES: 'Platform Resource',
@@ -30,13 +31,13 @@ module.exports = {
   // Recent Access
   RECENT_ACCESS: '最近訪問',
   MULTI_CLUSTER_DEPLOYMENT: '多集群部署',
-  WORKBENCH_PROJECT: 'Project',
-  WORKBENCH_WORKSPACE: 'Workspace',
-  WORKBENCH_DEVOPS: 'DevOps project',
-  WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
-  WORKBENCH_CLUSTER: 'Cluster',
+  WORKBENCH_PROJECT: '項目',
+  WORKBENCH_WORKSPACE: '企業空間',
+  WORKBENCH_DEVOPS: 'DevOps 项目',
+  WORKBENCH_MULTI_CLUSTER_PROJECT: '多集群項目',
+  WORKBENCH_CLUSTER: '集群',
   NOT_FOUND_DESC: '🙇 對不起沒有找到相關資源，系統將在 {time}s 後返回 <a href="{link}">工作台</a>',
   MULTI_CLUSTER_PROJECT_TIP: '該資源部署在多個集群',
   NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
-  NO_HISTORY_DESC: 'You can access platform resources.'
-};
+  NO_HISTORY_DESC: 'You can access platform resources.',
+}

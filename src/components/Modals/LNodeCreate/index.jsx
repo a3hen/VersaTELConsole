@@ -1,0 +1,187 @@
+/*
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+import { get, set } from 'lodash'
+import React from 'react'
+import { observer } from 'mobx-react'
+import PropTypes from 'prop-types'
+import { Input, Form, Select } from '@kube-design/components'
+
+import { Modal } from 'components/Base'
+
+import { PATTERN_IP, PATTERN_NODE_NAME } from 'utils/constants'
+
+@observer
+export default class LNodeCreateModal extends React.Component {
+  static propTypes = {
+    store: PropTypes.object,
+    module: PropTypes.string,
+    LNodeTemplates: PropTypes.array,
+    formTemplate: PropTypes.object,
+    title: PropTypes.string,
+    visible: PropTypes.bool,
+    onOk: PropTypes.func,
+    onCancel: PropTypes.func,
+    isSubmitting: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    visible: false,
+    isSubmitting: false,
+    module: 'linstornodes',
+    onOk() {},
+    onCancel() {},
+  }
+
+  handleCreate = LNodeTemplates => {
+    set(
+      this.props.formTemplate,
+      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+      JSON.stringify(LNodeTemplates)
+    )
+    this.props.onOk(this.props.formTemplate)
+  }
+
+  LNodeNameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    // const { workspace, cluster, namespace } = this.props
+    const name = get(this.props.formTemplate, 'name')
+
+    if (this.props.edit && name === value) {
+      return callback()
+    }
+
+    this.props.store
+      .checkName({ name: value })
+      // .checkName({ name: value, workspace, cluster, namespace })
+      .then(resp => {
+        if (resp.exist) {
+          return callback({ message: t('Node name exists'), field: rule.field })
+        }
+        callback()
+      })
+  }
+
+  render() {
+    const {
+      // title,
+      detail,
+      visible,
+      module,
+      onCancel,
+      formTemplate,
+      // LNodeTemplates,
+      // isSubmitting,
+    } = this.props
+    // const { showEditAuthorization } = this.state
+
+    const isLINSTORNode = module === 'linstornodes'
+    const title = detail ? 'Modify LINSTOR Node' : 'Create LINSTOR Node'
+    const nodeType = [
+      {
+        disabled: false,
+        isFedManaged: false.valueOf,
+        label: 'Combined',
+        value: 'Combined',
+      },
+      {
+        disabled: false,
+        isFedManaged: false.valueOf,
+        label: 'Controller',
+        value: 'Controller',
+      },
+      {
+        disabled: false,
+        isFedManaged: false.valueOf,
+        label: 'Satellite',
+        value: 'Satellite',
+      },
+      {
+        disabled: false,
+        isFedManaged: false.valueOf,
+        label: 'Auxiliary',
+        value: 'Auxiliary',
+      },
+    ]
+
+    return (
+      <Modal.Form
+        width={600}
+        title={t(title)}
+        icon="database"
+        data={formTemplate}
+        onCancel={onCancel}
+        onOk={this.handleCreate}
+        okText={t('OK')}
+        visible={visible}
+      >
+        <Form.Item
+          label={t('Name')}
+          desc={t('NODE_NAME_DESC')}
+          tip={isLINSTORNode ? t('WORKSPACE_ROLE_NAME_TIP') : null}
+          rules={[
+            { required: true, message: t('Please input LINSTOR Node name') },
+            {
+              pattern: PATTERN_NODE_NAME,
+              message: t('Invalid name', { message: t('NODE_NAME_DESC') }),
+            },
+            { validator: this.LNodeNameValidator },
+          ]}
+        >
+          <Input name="name" maxLength={63} placeholder="name" />
+        </Form.Item>
+        <Form.Item
+          label={t('LINSTOR Node IP Address')}
+          desc={t('IP Address of LINSTOR Node')}
+          rules={[
+            {
+              required: true,
+              message: t('Please input the IP address'),
+            },
+            {
+              pattern: PATTERN_IP,
+              message: t('Invalid IP address'),
+            },
+          ]}
+        >
+          <Input
+            name="addr"
+            placeholder="XXX.XXX.XXX.XXX"
+            autoComplete="off"
+            // onChange={this.emptyLink}
+          />
+        </Form.Item>
+        <Form.Item
+          label={t('LINSTOR Node Type')}
+          desc={t('Type of LINSTOR Node')}
+        >
+          <Select
+            name="node_type"
+            // cluster={this.props.cluster}
+            options={nodeType}
+            clearable
+            defaultValue="Combined"
+          />
+        </Form.Item>
+      </Modal.Form>
+    )
+  }
+}

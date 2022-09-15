@@ -35,8 +35,9 @@ module.exports = {
   WORKBENCH_DEVOPS: 'DevOps 项目',
   WORKBENCH_MULTI_CLUSTER_PROJECT: '多集群项目',
   WORKBENCH_CLUSTER: '集群',
-  NOT_FOUND_DESC: '🙇 对不起未发现相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
+  NOT_FOUND_DESC:
+    '🙇 对不起未发现相关资源，系统将在 {time}s 后返回 <a href="{link}">工作台</a>',
   MULTI_CLUSTER_PROJECT_TIP: '此项目跨多个集群。',
   NO_HISTORY_TITLE: '未发现最近访问的资源',
-  NO_HISTORY_DESC: '您可以对平台资源进行访问。'
-};
+  NO_HISTORY_DESC: '您可以对平台资源进行访问。',
+}

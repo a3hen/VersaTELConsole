@@ -18,15 +18,17 @@
 module.exports = {
   // Banner
   SERVICE_TYPES_Q: 'KubeSphere 支持哪些服务类型？',
-  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个存储卷，有状态服务中的每个容器组副本都拥有独立的存储卷。',
+  SERVICE_TYPES_A: 'KubeSphere 支持无状态服务和有状态服务。无状态服务中的多个容器组副本共享一个卷，有状态服务中的每个容器组副本都拥有独立的卷。',
   SCENARIOS_FOR_SERVICES_Q: '无状态服务和有状态服务分别适用于哪些场景？',
-  SCENARIOS_FOR_SERVICES_A: '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
+  SCENARIOS_FOR_SERVICES_A:
+    '无状态服务适用于不需要数据持久化的场景，例如 Nginx 和 Tomcat。有状态服务适用于需要数据持久化的场景，例如 MySQL 数据库、Kafka 和 ZooKeeper。',
   // Service List
   SERVICE_TYPE: '服务类型',
   SERVICE_LIST: '服务列表',
   // List > Create
   CREATE_SERVICE_DESC: '选择创建服务的方式。',
-  SELECT_SERVICE_TYPE_DESC: '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
+  SELECT_SERVICE_TYPE_DESC:
+    '创建一个无状态或有状态服务，或将一个服务映射到外部服务。',
   SERVICE_FROM_CODE: '通过代码创建服务',
   SERVICE_FROM_ARTIFACT: '通过制品创建服务',
   SERVICE_FROM_CODE_DESC: '将现有的代码构建成镜像并部署。',
@@ -35,7 +37,8 @@ module.exports = {
   CUSTOMIZE_SERVICE_DESC: '通过指定工作负载或编辑 YAML 配置文件来创建服务。',
   // List > Create > Select Service Type > Stateless Service > Pod Settings > Port Settings
   PORT_INPUT_DESC: '端口名称已存在，请输入其他名称。',
-  PORT_NAME_DESC: '端口名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
+  PORT_NAME_DESC:
+    '端口名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   // List > Create > Select Service Type > Stateful Service
   // List > Create > Select Service Type > External Service
   CREATE_EXTERNAL_SERVICE_DESC: '创建一个服务并将其映射到一个外部服务。',
@@ -95,13 +98,16 @@ module.exports = {
   // List > Delete
   NO_RELATED_RESOURCE_FOUND: '没有关联的资源',
   NO_SERVICE_RELATED_RESOURCE_DESC: '当前服务没有关联的资源。',
-  DELETE_SERVICE_DESC: '您即将删除服务 {resource}。请确认是否同时删除关联资源？',
-  DELETE_SERVICE_DESC_PL: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
-  DELETE_SERVICE_DESC_SI: '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
+  DELETE_SERVICE_DESC:
+    '您即将删除服务 {resource}。请确认是否同时删除关联资源？',
+  DELETE_SERVICE_DESC_PL:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
+  DELETE_SERVICE_DESC_SI:
+    '您即将删除服务 {resource}。<br/>请确认是否同时删除以下与服务关联的资源？',
   DELETE_SERVICE: '删除服务',
   DELETE_MULTIPLE_SERVICES: '批量删除服务',
   // Service Topology
   SERVICE_TOPOLOGY: '服务拓扑',
   AUTO_REFRESH: '自动更新',
-  POD_COUNT_VALUE: '容器组数量：{value}'
-};
+  POD_COUNT_VALUE: '容器组数量：{value}',
+}

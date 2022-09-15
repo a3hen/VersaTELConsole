@@ -28,7 +28,6 @@ import {
   isEmpty,
   trimStart,
   isNumber,
-  omit,
   pick,
   pickBy,
   endsWith,
@@ -70,12 +69,16 @@ export const formatUsedTime = ms => {
     return `${ms} ms`
   }
   if (ms <= 60000) {
-    return `${parseFloat(ms / 1000).toFixed(2)} s`
+    return `${parseFloat(ms / 1000).toFixed(2)}s`
   }
   if (ms <= 3600000) {
     return `${parseFloat(ms / 60000).toFixed(2)} min`
   }
   return `${parseFloat(ms / 3600000).toFixed(2)} h`
+}
+
+export const formaDayTime = time => {
+  return `${parseFloat(time / 86400000)} `
 }
 
 export const formatDuration = (str, targetUnit = 's') => {
@@ -406,7 +409,7 @@ export const getDisplayName = item => {
     return item.display_name
   }
 
-  return `${item.name}${item.aliasName ? `(${item.aliasName})` : ''}`
+  return `${item.name}${item.aliasName ? ` (${item.aliasName})` : ''}`
 }
 
 export const getWebSocketProtocol = protocol => {
@@ -658,44 +661,12 @@ const deal_With_Dot = hard => {
   cancel_Num_Dot(cpuAndMemory, hard)
 }
 
-export const getContainerGpu = item => {
+export const cancelContainerDot = item => {
   if (!isEmpty(get(item, 'resources', {}))) {
-    const gpu = get(item, 'resources.gpu', { type: '', value: '' })
-    item.resources.limits = pick(item.resources.limits, ['cpu', 'memory'])
-    if (gpu.type !== '' && gpu.value !== '') {
-      const value = isUndefined(gpu.value) ? '' : gpu.value
-      set(item, `resources.limits["${gpu.type}"]`, value)
-      set(item, `resources.requests["${gpu.type}"]`, value)
-    }
     const cpuAndMemory = pick(item.resources, ['requests', 'limits'])
     Object.keys(cpuAndMemory).forEach(key => {
       cancel_Num_Dot(cpuAndMemory[key], item.resources[key])
     })
-  }
-}
-
-export const omitJobGpuLimit = (data, path) => {
-  const containers = get(data, path, [])
-  if (containers.length > 0) {
-    const newContainer = containers.map(item => {
-      const gpu = get(item, 'resources.gpu', {})
-      if (isEmpty(gpu.type)) {
-        return item
-      }
-      if (
-        isEmpty(gpu.type) ||
-        isEmpty(gpu.value) ||
-        isUndefined(gpu.type) ||
-        isUndefined(gpu.value)
-      ) {
-        const limits = get(item, 'resources.limits', {})
-        const requests = get(item, 'resources.requests', {})
-        set(item, 'resources.limits', omit(limits, `${gpu.type}`))
-        set(item, 'resources.requests', omit(requests, `${gpu.type}`))
-      }
-      return omit(item, 'resources.gpu')
-    })
-    set(data, path, newContainer)
   }
 }
 
@@ -733,16 +704,10 @@ export const limits_Request_EndsWith_Dot = ({ limits, requests }) => {
   return { limits: result[0], requests: result[1] }
 }
 
-export const multiCluster_overrides_gpu = overrides => {
+export const multiCluster_overrides_Dot = overrides => {
   overrides.forEach(clusterOverride => {
     clusterOverride.clusterOverrides.forEach(item => {
       if (item.path.endsWith('resources')) {
-        const gpu = get(item.value, 'gpu', {})
-        if (!isEmpty(gpu) && gpu.type !== '' && gpu.value !== '') {
-          set(item.value, `limits["${gpu.type}"]`, gpu.value)
-          set(item.value, `requests["${gpu.type}"]`, gpu.value)
-        }
-        item.value = omit(item.value, 'gpu')
         Object.keys(item.value).forEach(key => {
           cancel_Num_Dot(item.value[key], item.value[key])
         })
@@ -757,8 +722,6 @@ export const resourceLimitKey = [
   'requests.cpu',
   'requests.memory',
 ]
-
-export const supportGpuType = ['nvidia.com/gpu']
 
 const accessModeMapper = {
   ReadWriteOnce: 'RWO',
@@ -778,3 +741,29 @@ export const map_accessModes = accessModes =>
   accessModes.map(item => accessModeMapper[item])
 
 export const quota_limits_requests_Dot = deal_With_Dot
+
+export const inCluster2Default = name => {
+  const clusterName = globals.hostClusterName || 'default'
+  return name === 'in-cluster' ? clusterName : name
+}
+
+export const encrypt = (salt, str) => {
+  return mix(salt, window.btoa(str))
+}
+
+function mix(salt, str) {
+  if (str.length > salt.length) {
+    salt += str.slice(0, str.length - salt.length)
+  }
+
+  const ret = []
+  const prefix = []
+  for (let i = 0, len = salt.length; i < len; i++) {
+    const tomix = str.length > i ? str.charCodeAt(i) : 64
+    const sum = salt.charCodeAt(i) + tomix
+    prefix.push(sum % 2 === 0 ? '0' : '1')
+    ret.push(String.fromCharCode(Math.floor(sum / 2)))
+  }
+
+  return `${window.btoa(prefix.join(''))}@${ret.join('')}`
+}

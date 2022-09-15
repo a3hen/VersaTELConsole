@@ -18,5 +18,5 @@
 module.exports = {
   'Set Replicas': 'Número fijo de copias',
   'Total Replicas Number': 'Número total de copias',
-  STORAGE_MANAGEMENT_SCAP: 'Gestión de la función de volumen de almacenamiento'
-};
+  STORAGE_MANAGEMENT_SCAP: 'Gestión de la función de volumen de almacenamiento',
+}

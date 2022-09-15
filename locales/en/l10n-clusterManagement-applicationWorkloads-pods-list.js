@@ -19,9 +19,9 @@
 module.exports = {
   // Banner
   POD_PL: 'Pods',
-
   // List
   // List > View YAML
   // List > Delete
   POD_LOW: 'pod',
+  PENDING: 'Pending',
 }

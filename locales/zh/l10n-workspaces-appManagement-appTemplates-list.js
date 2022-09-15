@@ -20,18 +20,26 @@ module.exports = {
   APP_TEMPLATE_PL: '应用模板',
   APPS_MANAGEMENT: '应用管理',
   UPLOAD_TEMPLATE: '上传模板',
-  APP_TEMPLATE_DESC: 'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
-  DEVELOP_APP_DESC: '您可以上传 Helm chart 或者使用 KubeSphere 提供的资源编排工具进行应用模板的开发。',
+  APP_TEMPLATE_DESC:
+    'KubeSphere 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+  DEVELOP_APP_DESC:
+    '您可以上传 Helm chart 或者使用 KubeSphere 提供的资源编排工具进行应用模板的开发。',
   DEVELOP_APP_TITLE: '如何开发应用模板？',
   HOW_PUBLISH_APP_TITLE: '如何发布应用到应用商店？',
-  HOW_PUBLISH_APP_DESC: '您可以将 Helm chart 上传为企业空间的应用模板，审核通过后，应用将会发布在应用商店中。',
+  HOW_PUBLISH_APP_DESC:
+    '您可以将 Helm chart 上传为企业空间的应用模板，审核通过后，应用将会发布在应用商店中。',
   // List
+  APP_STATUS_ACTIVE: '已发布',
+  APP_STATUS_DRAFT: '未发布',
+  APP_STATUS_SUSPENDING: '下架中',
   APP_TEMPLATE_EMPTY_DESC: '请创建一个应用模板。',
   LATEST_VERSION: '最新版本',
   // List > Create
   CREATE_APP_TEMPLATE: '创建应用模板',
-  CREATE_APP_TEMPLATE_DESC: '轻量级、可移植、自包含的软件打包技术，使应用可以在几乎任何地方以相同的方式运行。',
-  APP_CREATE_GUIDE: '请参阅开发指南 <a href="{docUrl}/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm 规范</a>。',
+  CREATE_APP_TEMPLATE_DESC:
+    '轻量级、可移植、自包含的软件打包技术，使应用可以在几乎任何地方以相同的方式运行。',
+  APP_CREATE_GUIDE:
+    '请参阅开发指南 <a href="{docUrl}/application-store/app-developer-guide/helm-specification/" target="_blank" rel="noreferrer noopener">Helm 规范</a>。',
   UPLOAD: '上传',
   // List > Create > Upload
   UPLOAD_HELM_TITLE: '上传 Helm Chart',
@@ -56,5 +64,5 @@ module.exports = {
   TRY_AGAIN: '重试',
   FILE_MAX_ICON_DESC: '图标尺寸不能超过 20 KB，请重试。',
   HOMEPAGE: '首页',
-  OPTIONAL: '可选'
-};
+  OPTIONAL: '可选',
+}

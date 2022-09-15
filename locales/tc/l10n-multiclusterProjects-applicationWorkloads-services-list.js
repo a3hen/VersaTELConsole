@@ -35,6 +35,7 @@ module.exports = {
   EMPTY_LABEL_DESC: '請添加標籤。',
   SPECIFY_NODE: '指定節點',
   SPECIFY_NODE_DESC: '指定節點可以將節點的 Label 作為預填充內容',
-  MAXIMUM_STICKINESS_DURATION_DESC: 'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
-  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.'
-};
+  MAXIMUM_STICKINESS_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.',
+}

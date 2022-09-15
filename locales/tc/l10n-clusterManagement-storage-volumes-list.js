@@ -19,16 +19,19 @@ module.exports = {
   // Navigation pane
   STORAGE: '儲存管理',
   // Banner
-  VOLUME_DESC: '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
+  VOLUME_DESC:
+    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
+  VOLUME_SNAPSHOT_EMPTY_DESC:
+    '儲存卷快照表示儲存卷的時間點副本。快照可用於配置新卷（預先填充快照數據）或將現有儲存卷還原到先前狀態（由快照表示）',
   VOLUME_STATUS_BOUND: '準備就緒',
   VOLUME_STATUS_LOST: '丢失',
   VOLUME_STATUS_PENDING: '等待中',
   VOLUME_STATUS_TERMINATING: '刪除中',
   VOLUME_STATUS_UPDATING: '更新中',
   VOLUME_CONDITION_FILESYSTEMRESIZEPENDING: '硬碟擴容中(FilesystemSizePending)',
-  VOLUME_EMPTY_DESC: '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
+  VOLUME_EMPTY_DESC:
+    '儲存卷供用戶創建的工作負載使用，是將工作負載數據持久化的一種資源對象。',
   MOUNT_STATUS: '掛載',
   MOUNTED: '已掛載',
   NOT_MOUNTED: '未掛載',
@@ -49,5 +52,5 @@ module.exports = {
   EDIT_TCAP: 'Edit',
   // List > Edit YAML
   // List > Delete
-  VOLUME_LOW: 'volumes'
-};
+  VOLUME_LOW: 'volumes',
+}

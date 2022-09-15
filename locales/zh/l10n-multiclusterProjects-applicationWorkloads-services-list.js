@@ -35,6 +35,7 @@ module.exports = {
   EMPTY_LABEL_DESC: '请添加标签。',
   SPECIFY_NODE: '指定节点',
   SPECIFY_NODE_DESC: '将节点的标签作为预填充内容',
-  MAXIMUM_STICKINESS_DURATION_DESC: '设置最大会话保持时间。取值范围为 0 到 86400，默认值 10800。',
-  SERVICE_ADD_METADATA_DESC: '为服务添加元数据。'
-};
+  MAXIMUM_STICKINESS_DURATION_DESC:
+    '设置最大会话保持时间。取值范围为 0 到 86400，默认值 10800。',
+  SERVICE_ADD_METADATA_DESC: '为服务添加元数据。',
+}

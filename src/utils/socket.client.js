@@ -75,6 +75,14 @@ export default class SocketClient {
     const { onopen, onmessage, onclose, onerror } = this.options
 
     this.client.onopen = ev => {
+      // if socket will close, try to keep alive
+      if (!this.immediately && this.reopenCount < this.options.reopenLimit) {
+        this.timer = setTimeout(
+          this.setUp.bind(this),
+          1000 * 2 ** this.reopenCount
+        )
+        this.reopenCount++
+      }
       onopen && onopen(ev)
     }
 
@@ -90,12 +98,6 @@ export default class SocketClient {
     }
 
     this.client.onclose = ev => {
-      // if socket will close, try to keep alive
-      if (!this.immediately && this.reopenCount < this.options.reopenLimit) {
-        setTimeout(this.setUp.bind(this), 1000 * 2 ** this.reopenCount)
-        this.reopenCount++
-      }
-
       onclose && onclose(ev)
     }
 
@@ -112,6 +114,7 @@ export default class SocketClient {
   close(val) {
     val && (this.immediately = true)
     this.client.close()
+    !!this.timer && clearTimeout(this.timer)
   }
 
   setUp() {

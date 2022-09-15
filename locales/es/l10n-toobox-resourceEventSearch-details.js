@@ -28,5 +28,5 @@ module.exports = {
   METADATA: 'Metadatos',
   // List > Resource Event Details > Details
   EARLIEST_START_TIME: 'Hora de inicio más temprana',
-  LATEST_START_TIME: 'Hora de inicio más reciente'
-};
+  LATEST_START_TIME: 'Hora de inicio más reciente',
+}

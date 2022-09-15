@@ -19,5 +19,5 @@ module.exports = {
   // Banner
   // Resource Quotas
   FOLD: 'Fold',
-  UNFOLD: 'Unfold'
-};
+  UNFOLD: 'Unfold',
+}

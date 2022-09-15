@@ -37,10 +37,12 @@ module.exports = {
   'Code Resource': 'Code Resource',
   CODE_URL: 'Code URL',
   creationTimestamp: 'creationTimestamp',
-  'Currently only supports git repo': 'Only Git repositories are supported currently.',
+  'Currently only supports git repo':
+    'Only Git repositories are supported currently.',
   'Download Artifact': 'Download Artifact',
   'Environment Params': 'Environment Params',
-  'exec: "git": executable file not found in $PATH': 'exec: "git": executable file not found in $PATH',
+  'exec: "git": executable file not found in $PATH':
+    'exec: "git": executable file not found in $PATH',
   'Image Builder': 'Image Builder',
   'Image Building': 'Image Building',
   'Image building failed': 'Image building failed',
@@ -53,7 +55,8 @@ module.exports = {
   'Published Time': 'Published Time',
   PULL_COMMAND: 'Pull Command',
   'Rebuild Image': 'Rebuild Image',
-  'Rebuilt successfully; the image status will be refreshed soon.': 'Rebuilt successfully; the image status will be refreshed soon.',
+  'Rebuilt successfully; the image status will be refreshed soon.':
+    'Rebuilt successfully; the image status will be refreshed soon.',
   'Release Time': 'Release Time',
   'Repo reading failed': 'Repo reading failed',
   'Repo url': 'Repo url',
@@ -66,7 +69,8 @@ module.exports = {
   'Source to image jobs': 'Source to image jobs',
   sourceUrl: 'sourceUrl',
   SourceUrl: 'SourceUrl',
-  S2I_RELATIVE_PATH_TIP: 'Specify a relative directory inside the application. (Default value /)',
+  S2I_RELATIVE_PATH_TIP:
+    'Specify a relative directory inside the application. (Default value /)',
   StartTime: 'StartTime',
   S2I_NO_SECRET: 'The current code repository does not require a secret.',
   UPLOAD_ARTIFACT_TIP: 'Please upload an artifact.',
@@ -74,26 +78,37 @@ module.exports = {
   'Upload file failed': 'Upload file failed',
   'Upload Percent': 'Upload Percent',
   SORT_BY: 'sort by { name }',
-  S2I_RELATIVE_PATH_DESC: 'Source code repository address (currently supports git) and can assign code branches and relative paths in source code terminals',
-  IMAGE_PULL_POLICY_DESC: 'By default, the image is pulled only if it is not already present locally.',
+  S2I_RELATIVE_PATH_DESC:
+    'Source code repository address (currently supports git) and can assign code branches and relative paths in source code terminals',
+  IMAGE_PULL_POLICY_DESC:
+    'By default, the image is pulled only if it is not already present locally.',
   S2I_UPDATE_WORKLOAD: 'Update workload after building is successful',
-  S2I_UPDATA_WORKLOAD_DESC: 'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
-  IMAGE_FROM_S2I_DESC: 'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
+  S2I_UPDATA_WORKLOAD_DESC:
+    'After the image is rebuilt successfully, the image of the relevant workload will be updated and the workload version will be updated.',
+  IMAGE_FROM_S2I_DESC:
+    'Get the code from the existing code repository and build the image by way of Source to Image. The process of building the image each time will be done as a job.',
   IMAGE_FROM_EXSIT: 'Select an existing image deployment container',
-  IMAGE_FROM_EXSIT_DESC: 'Pull an image from a public or private image repository',
-  S2I_SECRET_DESC: 'Select a secret if the code repository is a private repository.',
-  S2I_IMAGE_REPONSITRY_DESC: 'The source code repository address (currently supports Git). You can specify the code branch and relative path in the source code terminal.',
+  IMAGE_FROM_EXSIT_DESC:
+    'Pull an image from a public or private image repository',
+  S2I_SECRET_DESC:
+    'Select a secret if the code repository is a private repository.',
+  S2I_IMAGE_REPONSITRY_DESC:
+    'The source code repository address (currently supports Git). You can specify the code branch and relative path in the source code terminal.',
   S2I_RELATIVE_PATH: 'Code Relative Path (Optional)',
-  S2I_IMAGENAME_DESC: 'Image name and tag, which defaults to the project name of the code repository.',
-  S2I_BUILDERNAME_DESC: 'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
-  CONTAINERD_RUNTIME_NOT_SUPPORT: 'S2I and B2I do not support the containerd runtime.',
+  S2I_IMAGENAME_DESC:
+    'Image name and tag, which defaults to the project name of the code repository.',
+  S2I_BUILDERNAME_DESC:
+    'Select the editing environment, you can also view the <a href={link} target="_blank">corresponding compilation template</a>',
+  CONTAINERD_RUNTIME_NOT_SUPPORT:
+    'S2I and B2I do not support the containerd runtime.',
   'Build image for service x': 'Build image for service {service}',
   BINARY_DESC: '',
   SECRET_CODE: 'Secret Code',
-  SECRET_CODE_RULE_DESC: 'It can only contain upper and lower case letters and numbers.',
+  SECRET_CODE_RULE_DESC:
+    'It can only contain upper and lower case letters and numbers.',
   S2I_ACCESS_TOKEN_DESC: 'Set the ',
   'Remote Trigger Link': 'Remote Trigger Link',
   // Image Builder List Page
   // Creation Page
-  S2I_SECRET: 'Secret'
-};
+  S2I_SECRET: 'Secret',
+}

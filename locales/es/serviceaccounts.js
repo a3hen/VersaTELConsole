@@ -19,5 +19,5 @@ module.exports = {
   ServiceAccounts: 'Cuentas de servicio',
   ServiceAccount: 'Cuentas de servicio',
   'Edit Service Account': 'Editar cuenta de servicio',
-  SECRET_DETAILS: 'Detalle secreto'
-};
+  SECRET_DETAILS: 'Detalle secreto',
+}

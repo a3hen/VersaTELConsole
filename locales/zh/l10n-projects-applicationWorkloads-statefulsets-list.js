@@ -20,5 +20,5 @@ module.exports = {
   // List
   // List > Create > Basic Information
   // List > Create > Pod Settings > Update Settings > Rolling Update Settings
-  PARTITION_ORDINAL_EMPTY: '请设置容器组副本分组序号。'
-};
+  PARTITION_ORDINAL_EMPTY: '请设置容器组副本分组序号。',
+}

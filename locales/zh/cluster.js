@@ -46,7 +46,8 @@ module.exports = {
   'Nodes Management': '节点管理',
   'Not Ready': '未就绪',
   'Please input cluster name': '请输入集群名称',
-  'Please input the kubesphere api server address of the cluster': '请输入待加入集群的 Kubesphere API Server 地址',
+  'Please input the kubesphere api server address of the cluster':
+    '请输入待加入集群的 Kubesphere API Server 地址',
   'Please select or input a provider': '请选择或输入服务商',
   'Please select or input a tag': '请选择或输入标识',
   SELECT_CLUSTERS: '选择集群',
@@ -74,20 +75,28 @@ module.exports = {
   'etcd Backup Period': 'etcd 备份地址',
   'Keep Backup Number': '保留的备份数',
   'KubeSphere Settings': 'KubeSphere 设置',
-  NO_CLUSTER_TIP_DESC: '集群是一组运行着 Kubernetes 的节点 (物理或者虚拟机)，Kubesphere 的功能也依托于集群中的节点来运行',
+  NO_CLUSTER_TIP_DESC:
+    '集群是一组运行着 Kubernetes 的节点 (物理或者虚拟机)，Kubesphere 的功能也依托于集群中的节点来运行',
   ADD_NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
-  CHOOSE_PROVIDER_DESC: 'KubeSphere 提供了在主流服务商中快速部署 Kubernetes 集群的方案',
+  CHOOSE_PROVIDER_DESC:
+    'KubeSphere 提供了在主流服务商中快速部署 Kubernetes 集群的方案',
   MULTI_CLUSTER: '多集群',
   CLUSTER_INFO_TCAP: '集群信息',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀请新的成员来此集群',
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
   CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 KubeSphere API Server 地址',
-  AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC: '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
-  PUBLIC_CLUSTER_DESC: '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
-  CLUSTER_AUTHORIZATION_DESC: '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
-  REMOVE_WORKSPACE_CONFIRM_DESC: '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
-  K8S_NETWORK_PLUGIN_CALICO: 'Calico 是一个纯3层的网络方案，无缝集成 IaaS 云架构，能够提供的 VM、容器、裸机之间的IP通信',
-  K8S_NETWORK_PLUGIN_FLANNEL: 'Flannel 可以让集群中的不同节点主机创建的 Docker 容器都具有全集群唯一的虚拟IP地址',
+  AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
+    '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
+  PUBLIC_CLUSTER_DESC:
+    '公开状态的集群意味着平台内的用户都可以使用该集群，并在集群中创建和调度资源',
+  CLUSTER_AUTHORIZATION_DESC:
+    '集群授权可以将集群通过授权的形式指定给企业空间使用该集群',
+  REMOVE_WORKSPACE_CONFIRM_DESC:
+    '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  K8S_NETWORK_PLUGIN_CALICO:
+    'Calico 是一个纯3层的网络方案，无缝集成 IaaS 云架构，能够提供的 VM、容器、裸机之间的IP通信',
+  K8S_NETWORK_PLUGIN_FLANNEL:
+    'Flannel 可以让集群中的不同节点主机创建的 Docker 容器都具有全集群唯一的虚拟IP地址',
   K8S_NETWORK_PLUGIN_CILIUM: '基于 eBPF 的网络，具有安全性和可观察性',
   INIT_NODES: '初始化节点',
   PULL_IMAGES: '拉取镜像',
@@ -97,5 +106,5 @@ module.exports = {
   INSTALL_ADDONS: '安装插件',
   // Unbind Cluster
   // Cluster Visibility
-  AUDITING: '审计'
-};
+  AUDITING: '审计',
+}

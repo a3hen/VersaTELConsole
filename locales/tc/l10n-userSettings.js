@@ -31,5 +31,5 @@ module.exports = {
   ENTER_CURRENT_PASSWORD_TIP: '請輸入目前密碼',
   CONFIRM_PASSWORD: '重複新的密碼',
   PASSWORD_NOT_SAME_DESC: '兩次輸入的密碼必須一致',
-  ENTER_CURRENT_PASSWORD_DESC: '您必須輸入正確的目前密碼才可更改為新的密碼'
-};
+  ENTER_CURRENT_PASSWORD_DESC: '您必須輸入正確的目前密碼才可更改為新的密碼',
+}

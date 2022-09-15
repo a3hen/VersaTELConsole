@@ -18,12 +18,14 @@
 module.exports = {
   // Banner
   REQUESTS_FOR_PUSH_AN_ALARM_Q: '如何在告警策略触发后接收告警消息？',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: '平台管理员需要选择告警通知的方式并配置与该方式对应的服务器。',
+  REQUESTS_FOR_PUSH_AN_ALARM_A:
+    '平台管理员需要选择告警通知的方式并配置与该方式对应的服务器。',
   HOW_TO_SUPRESS_AN_ALARM_Q: '如何对告警消息进行抑制？',
-  HOW_TO_SUPRESS_AN_ALARM_A: '您可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期。',
+  HOW_TO_SUPRESS_AN_ALARM_A:
+    '您可以对每条告警策略进行多级别的设置，每个级别对应不同的告警周期。',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
   SELECT_WORKLOAD_TIP: '请选择至少一个工作负载。',
-  KUBE_NO_AVAILABLE_DATA: '未发现数据'
-};
+  KUBE_NO_AVAILABLE_DATA: '未发现数据',
+}

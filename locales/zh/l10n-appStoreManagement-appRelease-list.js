@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   APP_RELEASE: '应用发布',
-  APP_RELEASE_DESC: '管理待发布到应用商店中的应用。您可以查看应用详情并批准或拒绝应用发布。',
+  APP_RELEASE_DESC:
+    '管理待发布到应用商店中的应用。您可以查看应用详情并批准或拒绝应用发布。',
   // Unreleased
   UNRELEASED: '待发布',
   APP_REVIEW_EMPTY_DESC: '请在企业空间中创建应用模板并提交发布。',
@@ -36,5 +37,5 @@ module.exports = {
   APP_STATUS_DEVELOPING: '开发中',
   // Released
   RELEASED: '已发布',
-  OPERATOR: '操作者'
-};
+  OPERATOR: '操作者',
+}

@@ -22,5 +22,5 @@ module.exports = {
   SERVICE_VALUE: '服務：{value}',
   // More > Edit Annotations
   // Resource Status
-  PROTOCOL_VALUE: '協定：{value}'
-};
+  PROTOCOL_VALUE: '協定：{value}',
+}

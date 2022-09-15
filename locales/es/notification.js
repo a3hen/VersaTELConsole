@@ -22,31 +22,42 @@ module.exports = {
   'Notification On': 'Notificación activada',
   'Notification Off': 'Notificación desactivada',
   'Please select a tag': 'Seleccione una etiqueta',
-  'Please select a regex filter': 'Seleccione un filtro de expresiones regulares',
+  'Please select a regex filter':
+    'Seleccione un filtro de expresiones regulares',
   'Invalid notification condition': 'Condición de notificación no válida',
   Mail: 'Correo',
-  MAIL_SETTING_DESC: 'Puede recibir notificaciones de la plataforma por correo y debe configurar el servidor de envío de correo.',
+  MAIL_SETTING_DESC:
+    'Puede recibir notificaciones de la plataforma por correo y debe configurar el servidor de envío de correo.',
   SENDER_MAIL: 'Correo del remitente',
-  MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Su configuración de correo actual ha cambiado, guarde la configuración o cancele la modificación',
+  MAIL_SETTINGS_CHANGE_NEED_SAVE_TIP:
+    'Su configuración de correo actual ha cambiado, guarde la configuración o cancele la modificación',
   'Please enter an email address': 'Ingrese un correo electrónico para agregar',
   'This email address has existed': 'Este correo electrónico ha existido',
-  'Please add the recipient email address': 'Por favor, agregue el correo electrónico del destinatario',
+  'Please add the recipient email address':
+    'Por favor, agregue el correo electrónico del destinatario',
   keywords: 'palabras clave',
   'Please enter a conversation ID': 'Please enter a conversation ID',
   'Please enter a keyword': 'Please enter a keyword',
   'This conversation ID has existed': 'This conversation ID has existed',
   'This keyword has existed': 'This keyword has existed',
-  DINGTALK_SETTING_DESC: 'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
-  DINGTALK_KEYWORDS_DESC: 'Palabras clave personalizadas de ChatBot, si necesita más de una, sepárelas con "," ',
-  DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Su configuración actual de Dingding ha sido cambiada, guarde la configuración o cancele la modificación',
-  WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Su configuración corporativa actual de WeChat ha cambiado, guarde la configuración o cancele la modificación',
+  DINGTALK_SETTING_DESC:
+    'You can receive DingTalk notifications from the platform after configuring the DingTalk server.',
+  DINGTALK_KEYWORDS_DESC:
+    'Palabras clave personalizadas de ChatBot, si necesita más de una, sepárelas con "," ',
+  DINGTALK_SETTINGS_CHANGE_NEED_SAVE_TIP:
+    'Su configuración actual de Dingding ha sido cambiada, guarde la configuración o cancele la modificación',
+  WECOM_SETTINGS_CHANGE_NEED_SAVE_TIP:
+    'Su configuración corporativa actual de WeChat ha cambiado, guarde la configuración o cancele la modificación',
   Channel: 'Canal',
-  SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Su configuración actual de holgura ha cambiado, guarde la configuración o cancele la modificación',
+  SLACK_SETTINGS_CHANGE_NEED_SAVE_TIP:
+    'Su configuración actual de holgura ha cambiado, guarde la configuración o cancele la modificación',
   'Webhook Settings': 'Configuración de webhook',
   'Server Name': 'Nombre del servidor',
   'Root CA': 'CA raíz',
   'Client Certificate Cert': 'Certificado de certificado de cliente',
   'Client Certificate Key': 'Clave de certificado de cliente',
-  WEBHOOK_SETTING_DESC: 'Puede recibir notificaciones de la plataforma a través de webhook y debe configurar el servidor de envío de webhook.',
-  WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP: 'Su configuración actual de webhook ha cambiado, guarde la configuración o cancele la modificación'
-};
+  WEBHOOK_SETTING_DESC:
+    'Puede recibir notificaciones de la plataforma a través de webhook y debe configurar el servidor de envío de webhook.',
+  WEBHOOK_SETTINGS_CHANGE_NEED_SAVE_TIP:
+    'Su configuración actual de webhook ha cambiado, guarde la configuración o cancele la modificación',
+}

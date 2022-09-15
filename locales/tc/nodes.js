@@ -58,13 +58,20 @@ module.exports = {
   TAINT_DELETE_TIPS: '刪除汙點',
   NODE_OUTOFDISK: '硬碟可用空間 (OutOfDisk)',
   NODE_OUTOFDISK_DESC: '檢查節點上是否有空間添加新的容器組',
-  NODE_NETWORKUNAVAILABLE_TIP: 'If the network for the node is correctly configured.',
-  NODE_OUTOFDISK_TIP: 'If there is insufficient free space on the node for adding new pods.',
-  NODE_MEMORYPRESSURE_TIP: 'If pressure exists on the node memory – that is, if the node memory is low.',
-  NODE_DISKPRESSURE_TIP: ' If pressure exists on the disk size – that is, if the disk capacity is low.',
-  NODE_PIDPRESSURE_TIP: 'If pressure exists on the processes – that is, if there are too many processes on the node.',
+  NODE_NETWORKUNAVAILABLE_TIP:
+    'If the network for the node is correctly configured.',
+  NODE_OUTOFDISK_TIP:
+    'If there is insufficient free space on the node for adding new pods.',
+  NODE_MEMORYPRESSURE_TIP:
+    'If pressure exists on the node memory – that is, if the node memory is low.',
+  NODE_DISKPRESSURE_TIP:
+    ' If pressure exists on the disk size – that is, if the disk capacity is low.',
+  NODE_PIDPRESSURE_TIP:
+    'If pressure exists on the processes – that is, if there are too many processes on the node.',
   NODE_READY_TIP: 'If the node is healthy and ready to accept pods.',
-  NODE_TYPE_DESC: '節點類型為提供了主機節點分組功能，用戶可以通過創建合適關係的節點類型並將主機節點加入相應的分組，從而將容器組按照分組關係部署到合適的物理節點上，來提高資源的可用性，業務的連續性。',
-  NODE_TYPE_DESCRIPTION_DEC: '描述資訊在選擇節點類型時將幫助用戶更好的選擇節點類型並使用集群',
-  'Add Edge Node': '添加邊緣節點'
-};
+  NODE_TYPE_DESC:
+    '節點類型為提供了主機節點分組功能，用戶可以通過創建合適關係的節點類型並將主機節點加入相應的分組，從而將容器組按照分組關係部署到合適的物理節點上，來提高資源的可用性，業務的連續性。',
+  NODE_TYPE_DESCRIPTION_DEC:
+    '描述資訊在選擇節點類型時將幫助用戶更好的選擇節點類型並使用集群',
+  'Add Edge Node': '添加邊緣節點',
+}

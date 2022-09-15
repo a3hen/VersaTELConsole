@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  CONFIGMAP_DESC: 'Un ConfigMap a menudo se usa para almacenar la información de configuración necesaria para workload. Muchas aplicaciones leerán la información de archivos de configuración, de parámetros de la línea de comandos o de variables de entorno.',
+  CONFIGMAP_DESC:
+    'Un ConfigMap a menudo se usa para almacenar la información de configuración necesaria para workload. Muchas aplicaciones leerán la información de archivos de configuración, de parámetros de la línea de comandos o de variables de entorno.',
   // List
   FIELDS: 'Campo de configuración',
   // List > Create > Basic Information
@@ -26,6 +27,8 @@ module.exports = {
   // List > Edit YAML
   EDIT_YAML: 'Editar YAML',
   // List > Edit Settings
-  ENTER_CONFIG_VALUE_DESC: 'Introduce el valor de la entrada del configmap o utiliza el contenido del archivo',
-  CONFIG_FIELD_DESC: 'El valor único de la clave asignada por el campo de configuración.'
-};
+  ENTER_CONFIG_VALUE_DESC:
+    'Introduce el valor de la entrada del configmap o utiliza el contenido del archivo',
+  CONFIG_FIELD_DESC:
+    'El valor único de la clave asignada por el campo de configuración.',
+}

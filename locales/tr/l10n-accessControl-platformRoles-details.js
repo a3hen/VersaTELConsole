@@ -20,5 +20,5 @@ module.exports = {
   DESELECT_RESOURCE_FIRST: 'Lütfen önce {resource} seçiniz.',
   // Permissions
   // Authorized Users
-  NO_AUTHORIZED_USER_DESC: 'Bu rol herhangi bir kullanıcıya atanmamıştır.'
-};
+  NO_AUTHORIZED_USER_DESC: 'Bu rol herhangi bir kullanıcıya atanmamıştır.',
+}

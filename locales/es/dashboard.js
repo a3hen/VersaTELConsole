@@ -50,12 +50,14 @@ module.exports = {
   'View All Nodes': 'Ver todos los nodos',
   Volumes: 'Volúmenes',
   DASHBOARD_BANNER_TITLE: 'Visión general de la plataforma',
-  DASHBOARD_BANNER_DESC: 'Estadísticas agregadas sobre los recursos en ejecución y el uso de la plataforma actual.',
-  DASHBOARD_DESC: 'El dashboard proporciona información sobre el uso de varios recursos en el clúster actual.',
+  DASHBOARD_BANNER_DESC:
+    'Estadísticas agregadas sobre los recursos en ejecución y el uso de la plataforma actual.',
+  DASHBOARD_DESC:
+    'El dashboard proporciona información sobre el uso de varios recursos en el clúster actual.',
   NODE_UNIT: 'Nodos',
   USAGE_VALUE: 'Uso',
   USAGE_RATE: 'Uso',
   NO_PROJECT: 'No se han encontrado proyectos disponibles.',
   NO_POD_MONITOR_DATA: 'No hay datos de monitorización de pods',
-  CPU_AVERAGE_LOAD: 'Promedio de carga'
-};
+  CPU_AVERAGE_LOAD: 'Promedio de carga',
+}

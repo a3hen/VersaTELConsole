@@ -31,11 +31,13 @@ module.exports = {
   'Invalid type': '无效的类型',
   'Missing access key ID': '缺少 Access key ID',
   'Missing secret access key': '缺少 Secret access key',
-  'Please input access key ID and secret access key': '请输入 Access key ID 和 Secret access key',
+  'Please input access key ID and secret access key':
+    '请输入 Access key ID 和 Secret access key',
   'S3 access denied': 'S3 地址无法访问',
   Synchronize: '同步',
   syncing: '同步中',
   'Unrecognized URL': '无法识别的地址',
   'App Repositorys': 'App Repositories',
-  APP_REPOSITORY_CREATE_DESC: '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 '
-};
+  APP_REPOSITORY_CREATE_DESC:
+    '可用添加来自第三方的应用仓库源，可以支持基于 Helm 的 Kubernetes 应用。 ',
+}

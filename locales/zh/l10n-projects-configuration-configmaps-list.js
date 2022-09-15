@@ -26,5 +26,5 @@ module.exports = {
   // List > Edit Settings
   // List > Delete
   CONFIGMAPS: '配置字典',
-  CONFIGMAP_LOW: '配置字典'
-};
+  CONFIGMAP_LOW: '配置字典',
+}

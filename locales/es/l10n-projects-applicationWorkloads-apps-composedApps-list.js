@@ -20,7 +20,8 @@ module.exports = {
   COMPOSED_APP_PL: 'Aplicación por composición',
   // List
   NO_COMPOSED_APP_FOUND: 'No Composed App Found',
-  COMPOSED_APP_EMPTY_DESC: 'Puedes publicar servicios para crear aplicaciones a través de la orquestación de recursos (compatible con la gestión de aplicación).',
+  COMPOSED_APP_EMPTY_DESC:
+    'Puedes publicar servicios para crear aplicaciones a través de la orquestación de recursos (compatible con la gestión de aplicación).',
   // List > Edit Information
   // List > Delete
   // List > Create
@@ -33,17 +34,24 @@ module.exports = {
   CREATE_BY_YAML_DESC: 'Customize the settings in the YAML file.',
   // List > Create > Basic Information
   APPLICATION_GOVERNANCE: 'Gestión de aplicación',
-  VERSION_DESC: 'Para gestión, ayudándote a distinguir entre componentes. Solo puede contener letras minúsculas y números. La longitud máxima de caracteres se establece en 16.',
-  APPLICATION_GOVERNANCE_DESC: 'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
-  APP_BASIC_INFORMATION_DESC: 'Información básica de la aplicación (como la descripción)',
+  VERSION_DESC:
+    'Para gestión, ayudándote a distinguir entre componentes. Solo puede contener letras minúsculas y números. La longitud máxima de caracteres se establece en 16.',
+  APPLICATION_GOVERNANCE_DESC:
+    'Enable Application Governace to use the Traffic Monitoring, Grayscale Release, and Tracing features for the app.',
+  APP_BASIC_INFORMATION_DESC:
+    'Información básica de la aplicación (como la descripción)',
   // List > Create > Service Settings
   APP_SELECT_SERVICE_TYPE_DESC: 'Create a stateless or stateful Service.',
-  STATEFUL_SERVICE_DESC: 'Los servicios con estado o stateful se usan para administrar aplicaciones con estado, asegurando un despliegue y escala ordenada y elegante. También proporcionan almacenamiento persistente estable e identificadores de red.',
-  STATELESS_SERVICE_DESC: 'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
-  APPLICATION_SERVICE_DESC: 'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
+  STATEFUL_SERVICE_DESC:
+    'Los servicios con estado o stateful se usan para administrar aplicaciones con estado, asegurando un despliegue y escala ordenada y elegante. También proporcionan almacenamiento persistente estable e identificadores de red.',
+  STATELESS_SERVICE_DESC:
+    'El servicio más utilizado en servicios de contenedores. Define la plantilla del Pod para controlar el estado del Pod, incluidas las actualizaciones continuas y los retrocesos.',
+  APPLICATION_SERVICE_DESC:
+    'Puedes configurar diferentes componentes de servicio basándote en el tipo de servicio dentro de una aplicación. Tanto los servicios con estado como los sin estado están soportados.',
   APP_CREATE_SERVICE_DESC: 'Create a service for the app.',
   // List > Create > Route Settings
   ROUTE_SETTINGS: 'Route Settings',
   ROUTING_RULES: 'Reglas de ruta',
-  ROUTE_SETTINGS_DESC: 'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).'
-};
+  ROUTE_SETTINGS_DESC:
+    'Puedes definir las reglas de acceso a internet para la aplicación (Ingress).',
+}

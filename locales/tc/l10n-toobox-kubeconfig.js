@@ -20,5 +20,5 @@ module.exports = {
   KUBECONFIG_TIP: `
     <h2><a id="KubeConfig__0"></a>kubeconfig 配置方法</h2>
     <p>查閱更多命令請參照 <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">官方文件</a></p>
-  `
-};
+  `,
+}

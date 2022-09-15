@@ -31,9 +31,13 @@ module.exports = {
   MANAGE_DEVOPS_PROJECT: '管理 DevOps 项目',
   DEVOPS_BASEINFO_DESC: '请输入 DevOps 项目的基本信息',
   NO_RELATE_DEVOPS_TITLE: '未发现与您相关联的 DevOps 项目',
-  NO_RELATE_DEVOPS_DESC: '您可以创建或者联系项目管理员将您邀请到 DevOps 项目中开始您的工作',
-  DEVOPS_PROJECT_CREDENTIALS_DESC: '凭证是包含了一些敏感数据的对象，如用户名密码、SSH 密钥和令牌等，用于在流水线运行时, 为拉取代码、推送或拉取镜像、SSH 执行脚本等过程提供认证。',
-  DELETE_DEVOPS_TIP: '请输入 DevOps 项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  NO_RELATE_DEVOPS_DESC:
+    '您可以创建或者联系项目管理员将您邀请到 DevOps 项目中开始您的工作',
+  DEVOPS_PROJECT_CREDENTIALS_DESC:
+    '凭证是包含了一些敏感数据的对象，如用户名密码、SSH 密钥和令牌等，用于在流水线运行时, 为拉取代码、推送或拉取镜像、SSH 执行脚本等过程提供认证。',
+  DELETE_DEVOPS_TIP:
+    '请输入 DevOps 项目名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   // Credentials Creation Page
-  INVALID_ID_TIP: 'ID 只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。'
-};
+  INVALID_ID_TIP:
+    'ID 只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
+}

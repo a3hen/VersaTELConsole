@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: '应用资源',
-  MONITORING_APPLICATION_DESC: '应用资源提供应用资源用量的监控数据以及用量排行情况。',
+  MONITORING_APPLICATION_DESC:
+    '应用资源提供应用资源用量的监控数据以及用量排行情况。',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: '自定义时间范围',
   ACCOUNTS: '帐户',
@@ -86,5 +87,5 @@ module.exports = {
   SORT_BY_NAMESPACE_CPU_USAGE: '按 CPU 用量排行',
   SORT_BY_NAMESPACE_POD_COUNT: '按容器组数量排行',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: '按入站流量排行',
-  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按出站流量排行'
-};
+  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: '按出站流量排行',
+}

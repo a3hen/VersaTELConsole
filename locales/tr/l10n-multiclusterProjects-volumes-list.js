@@ -27,5 +27,5 @@ module.exports = {
   // List > Create > Advanced Settings
   VOLUME_ADD_METADATA_DESC: 'Add metadata to the volume.',
   // List > Create > Cluster Differences
-  STORAGE_SETTINGS: 'Storage Settings'
-};
+  STORAGE_SETTINGS: 'Storage Settings',
+}

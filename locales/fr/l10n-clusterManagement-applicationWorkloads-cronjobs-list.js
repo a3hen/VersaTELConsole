@@ -26,11 +26,11 @@ module.exports = {
   EVERY_WEEK: '0 0 * * 0 (every week)',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Start/Pause
   PAUSE: 'Pause',
-  START: 'Start'
-};
+  START: 'Start',
+}

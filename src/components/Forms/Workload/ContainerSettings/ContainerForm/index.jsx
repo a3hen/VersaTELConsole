@@ -32,6 +32,7 @@ import HealthChecker from './HealthChecker'
 import ContainerSetting from './ContainerSetting'
 import SecurityContext from './SecurityContext'
 import SyncTimeZone from './SyncTimeZone'
+import LifeManagement from './LifeManagement'
 
 import styles from './index.scss'
 
@@ -143,6 +144,22 @@ export default class ContaineForm extends React.Component {
           )
         }
 
+        if (isEmpty(data.lifecycle)) {
+          delete data.lifecycle
+        }
+
+        if (isEmpty(data.livenessProbe)) {
+          delete data.livenessProbe
+        }
+
+        if (isEmpty(data.startupProbe)) {
+          delete data.startupProbe
+        }
+
+        if (isEmpty(data.readinessProbe)) {
+          delete data.readinessProbe
+        }
+
         if (!withService && data.ports) {
           data.ports.forEach(item => {
             if (item.servicePort !== undefined) {
@@ -196,6 +213,7 @@ export default class ContaineForm extends React.Component {
           <Ports withService={containerType !== 'init' ? withService : false} />
           <ImagePullPolicy />
           {containerType !== 'init' && <HealthChecker />}
+          <LifeManagement />
           <Commands />
           <Environments
             namespace={namespace}

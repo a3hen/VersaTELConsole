@@ -58,5 +58,5 @@ module.exports = {
     <li>顯示 Pod 的詳細資訊</li>
     </ul>
     <p><code>kubectl describe pods/&lt;pod-name&gt;</code></p>
-  `
-};
+  `,
+}

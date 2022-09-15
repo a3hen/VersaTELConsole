@@ -48,5 +48,5 @@ module.exports = {
   // Resource Status
   // Image Artifacts
   IMAGE_ARTIFACTS: '镜像制品',
-  RELEASE_TIME_SCAP: '发布时间'
-};
+  RELEASE_TIME_SCAP: '发布时间',
+}

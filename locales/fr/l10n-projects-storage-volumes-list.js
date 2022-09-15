@@ -19,9 +19,11 @@ module.exports = {
   // Banner
   VOLUME_PL: 'Volumes',
   WHAT_IS_STORAGE_CLASS_Q: 'What is a storage class?',
-  WHAT_IS_STORAGE_CLASS_A: 'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
+  WHAT_IS_STORAGE_CLASS_A:
+    'A storage class is a storage type configured by the cluster administrator. Different storage classes provide cluster users with different types of volumes.',
   WHAT_IS_LOCAL_VOLUME_Q: 'What is a local volume?',
-  WHAT_IS_LOCAL_VOLUME_A: 'A local volume is a volume created in the local file system of the cluster.',
+  WHAT_IS_LOCAL_VOLUME_A:
+    'A local volume is a volume created in the local file system of the cluster.',
   // List
   // List > Create > Basic Information
   // List > Create > Storage Settings
@@ -30,5 +32,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  VOLUME: 'Volume'
-};
+  VOLUME: 'Volume',
+}

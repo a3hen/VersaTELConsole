@@ -24,39 +24,47 @@ module.exports = {
   // List > Create > Pod Settings
   // List > Create > Pod Settings > Add Container > Container Settings
   INVALID_IMAGE: '镜像无效。',
-  INVALID_NAME_DESC: '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
+  INVALID_NAME_DESC:
+    '名称无效。名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   NO_IMAGE_FOUND: '没有找到镜像',
   CONTAINER_EMPTY_DESC: '请至少添加一个容器。',
-  QUOTA_UNSET_TIP: 'Resource occupation is unset',
-  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
+  QUOTA_UNSET_TIP: '资源占用未设置。',
+  QUOTA_OVERCOST_TIP: '当前的资源占用已超过剩余资源。',
+  // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
+  ENVIRONMENT_INVALID_TIP: '环境变量的键只能包含字母、数字、下划线（_）、连字符（-）和句点（.），并且不能以数字开头。',
+  ENVIRONMENT_CANNOT_BE_EMPTY: '请设置环境变量的键。',
   // List > Create > Pod Settings > Port Settings
-  WORKLOAD_PORT_NAME_DESC: '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
+  WORKLOAD_PORT_NAME_DESC:
+    '端口名称只能包含小写字母、数字及分隔符（-），且必须以小写字母或数字开头及结尾，最长 15 个字符。',
   // List > Create > Pod Settings > Update Strategy > Rolling Update Settings
   MAX_EXTRA_PODS_DESC: '更新过程中允许的多余容器组副本的最大数量或百分比。',
   MAX_EXTRA_PODS: '最大多余容器组数量',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   AVAILABLE: '可用',
   IN_USER: '使用中',
   ACCESS_MODE_SCAP: '访问模式',
-  VOLUME_OR_TEMPLATE_EMPTY: '您已开启收集存储卷上的日志，请至少挂载一个存储卷或存储卷模板并指定日志所在的目录。',
-  VOLUME_EMPTY: '您已开启收集存储卷上的日志，请至少挂载一个存储卷并指定日志所在的目录。',
-  PROJECT_COLLECT_SAVED_DISABLED_DESC: '如需开启此功能，您需要在项目设置中开启收集存储卷上的日志。',
-  COLLECT_LOGS_ON_VOLUMES_DESC: '允许系统收集保存在存储卷上的容器日志。如需使用此功能，请为容器挂载读写模式的存储卷并设置容器将日志导出到存储卷。',
+  PVC_OR_TEMPLATE_EMPTY: '您已启用收集卷上日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
+  PVC_EMPTY: '您已启用收集卷上日志，请添加至少一个持久卷、临时卷或持久卷声明模板并指定容器日志所在的路径。',
+  PROJECT_COLLECT_SAVED_DISABLED_DESC: '如需启用此功能，您需要在项目设置中启用收集卷上日志。',
+  COLLECT_LOGS_ON_VOLUMES_DESC: '允许系统收集保存在卷上的容器日志。如需使用此功能，请为容器挂载读写模式的卷并设置容器将日志导出到卷。',
   // List > Create
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: '容器日志路径',
-  // List > Create > Volume Settings > Mount Volume > Temporary Volume (Question Mark)
-  CONTAINER_LOG_PATH_TIP: '容器日志的路径，相对于存储卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。例如，当存储卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
+  // List > Create > Storage Settings > Mount Volume > Temporary Volume
+  CONTAINER_LOG_PATH_TIP: '容器日志的路径，相对于卷的挂载路径，支持通配符，可使用半角逗号（,）分隔多个路径。<br /><br /><b>示例</b><br />当卷挂载路径为 /data 时，log/*.log 表示日志文件为 /data/log 目录下所有 .log 格式的文件。',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Re-create
-  RECREATE_CONFIRM_DESC: '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
+  RECREATE_CONFIRM_DESC:
+    '您确定重新创建{type} {resource} 吗？容器组副本将会根据更新策略更新，同时相关业务将会中断。',
   // List > Delete
   NO_WORKLOAD_RELATED_RESOURCE_DESC: '当前工作负载没有关联的资源。',
   SELECT_ALL: '选择全部',
-  DELETE_WORKLOAD_DESC_SI: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
-  DELETE_WORKLOAD_DESC_PL: '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
+  DELETE_WORKLOAD_DESC_SI:
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
+  DELETE_WORKLOAD_DESC_PL:
+    '您即将删除工作负载 {resource}。<br/>请确认是否同时删除以下与工作负载关联的资源。',
   DELETE_WORKLOAD: '删除工作负载',
-  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载'
-};
+  DELETE_MULTIPLE_WORKLOADS: '批量删除工作负载',
+}

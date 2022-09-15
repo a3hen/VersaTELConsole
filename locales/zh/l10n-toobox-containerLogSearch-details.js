@@ -34,5 +34,5 @@ module.exports = {
   LOG: '日志',
   // List > Container Log Details
   // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: '容器日志来源'
-};
+  CONTAINER_LOG_SOURCE: '容器日志来源',
+}

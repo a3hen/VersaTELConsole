@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   SERVICE_ACCOUNT_PL: '服務帳戶',
-  SERVICE_ACCOUNT_DESC: '服務帳戶（Service Account）為 Pod 中運行的進程提供了壹個標識，用於訪問 API Server。',
+  SERVICE_ACCOUNT_DESC:
+    '服務帳戶（Service Account）為 Pod 中運行的進程提供了壹個標識，用於訪問 API Server。',
   // List
   SERVICE_ACCOUNT_EMPTY_DESC: 'Please create a service account.',
   // List > Create
@@ -31,5 +32,5 @@ module.exports = {
   // List > Change Role
   CHANGE_ROLE: '修改角色',
   // List > Delete
-  SERVICE_ACCOUNT_LOW: 'service account'
-};
+  SERVICE_ACCOUNT_LOW: 'service account',
+}

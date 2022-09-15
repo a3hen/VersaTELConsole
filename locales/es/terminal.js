@@ -23,5 +23,5 @@ module.exports = {
   'Kubeconfig File': 'Archivo kubeconfig',
   'KubeSphere Terminal': 'Terminal KubeSphere',
   'Launch kubectl': 'Lanzar kubectl',
-  'Put this into': 'Poner esto en'
-};
+  'Put this into': 'Poner esto en',
+}

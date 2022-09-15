@@ -34,5 +34,5 @@ module.exports = {
   // Tracing
   APPLICATION_GOVERNANCE_ENABLED: 'Microservicio habilitado',
   APPLICATION_GOVERNANCE_DISABLED: 'Microservicio no habilitado',
-  TRACING_UNAVAILABLE: 'No se puede usar el servicio de tracing temporalmente'
-};
+  TRACING_UNAVAILABLE: 'No se puede usar el servicio de tracing temporalmente',
+}

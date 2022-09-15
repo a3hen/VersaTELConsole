@@ -30,5 +30,5 @@ module.exports = {
   // Metadata
   // Events
   // Snapshot
-  SNAPSHOT_PL: 'Snapshots'
-};
+  SNAPSHOT_PL: 'Snapshots',
+}

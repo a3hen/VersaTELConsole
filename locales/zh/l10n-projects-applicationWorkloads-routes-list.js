@@ -21,5 +21,5 @@ module.exports = {
   // List > Create > Basic Information
   // List > Create > Routing Rules > Add Routing Rule
   // List > Create > Routing Rules > Add Routing Rule > Auto Generate
-  PATH_EXIST: 'PATH 重复，请重新输入。'
-};
+  PATH_EXIST: 'PATH 重复，请重新输入。',
+}

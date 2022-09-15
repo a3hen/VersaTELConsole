@@ -20,13 +20,17 @@ module.exports = {
   CUSTOM_MONITORING: 'Custom Monitoring',
   CUSTOM_MONITORING_DASHBOARD: 'Panel de control personalizado',
   CUSTOM_MONITORING_DASHBOARD_PL: 'Custom Monitoring Dashboards',
-  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: 'Please create a custom monitoring dashboard.',
-  CUSTOM_MONITORING_DASHBOARD_DESC: 'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
+  CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC:
+    'Please create a custom monitoring dashboard.',
+  CUSTOM_MONITORING_DASHBOARD_DESC:
+    'Custom monitoring provides application monitoring templates. You can customize monitoring dashboards based on your needs.',
   // List
   // List > Create
-  CREATE_CUSTOM_MONITORING_DASHBOARD: 'Crear un panel de monitoreo personalizado',
+  CREATE_CUSTOM_MONITORING_DASHBOARD:
+    'Crear un panel de monitoreo personalizado',
   MONITORING_TEMPLATE: 'Monitoring Template',
-  CUSTOM_MONITORING_TEMPLATE_DESC: 'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
+  CUSTOM_MONITORING_TEMPLATE_DESC:
+    'Select a default template, upload a template, or customize a template to generate a custom monitoring dashboard.',
   // List > Create > Grafana
   UPLOAD_GRAFANA_DASHBOARD: 'Upload Grafana Dashboard',
   SUPPORT_JSON_FILE: 'Only files in JSON format are supported.',
@@ -78,5 +82,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
-  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord'
-};
+  CUSTOM_MONITORING_DASHBOARD_LOW: 'custom monitoring dashbord',
+}

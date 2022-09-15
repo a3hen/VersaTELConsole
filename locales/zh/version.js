@@ -58,12 +58,13 @@ module.exports = {
   'View in Store': '在商店查看',
   Working: 'Working',
   'Wrong version number format': '版本号的格式错误',
-  PACKAGE_FILE_DESC: 'Package.json文件，用于描述应用或版本的基本信息，包括名称版本号等',
+  PACKAGE_FILE_DESC:
+    'Package.json文件，用于描述应用或版本的基本信息，包括名称版本号等',
   CONFIG_FILE_DESC: '应用的默认值配置文件',
   LOCALE_EN__FILE_DESC: '应用配置的国际化英文翻译',
   LOCALE_ZH_FILE_DESC: '应用配置的国际化中文翻译',
   VERSION_SUBMIT_DOC: '更全面的测试手册请参看',
   // App Templates > Details
   APP_VERSION_SCAP: '应用版本',
-  TEST_INSTALLATION: '测试安装'
-};
+  TEST_INSTALLATION: '测试安装',
+}

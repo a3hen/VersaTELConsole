@@ -34,7 +34,9 @@ module.exports = {
   // List > Create > Stateful Service > Advanced Settings
   EMPTY_LABEL_DESC: 'Please add a label.',
   SPECIFY_NODE: 'Specify Node',
-  SPECIFY_NODE_DESC: 'Specify a node that needs to be associated with the service.',
-  MAXIMUM_STICKINESS_DURATION_DESC: 'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
-  SERVICE_ADD_METADATA_DESC: 'Add metadata to the service.'
-};
+  SPECIFY_NODE_DESC:
+    'Specify a node that needs to be associated with the service.',
+  MAXIMUM_STICKINESS_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the service.',
+}

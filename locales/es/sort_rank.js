@@ -21,5 +21,5 @@ module.exports = {
   NODE_MEMORY_UTILISATION: 'Utilización de memoria',
   NODE_DISK_SIZE_UTILISATION: 'Almacenamiento local',
   NODE_POD_UTILISATION: 'En uso',
-  NODE_DISK_INODE_UTILISATION: 'Utilización de inodos'
-};
+  NODE_DISK_INODE_UTILISATION: 'Utilización de inodos',
+}

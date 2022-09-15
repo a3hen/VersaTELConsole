@@ -35,6 +35,7 @@ module.exports = {
   EMPTY_LABEL_DESC: 'Please add a label.',
   SPECIFY_NODE: 'Especificar nó',
   SPECIFY_NODE_DESC: 'Especifique um nó que precisa ser associado ao serviço.',
-  MAXIMUM_STICKINESS_DURATION_DESC: 'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
-  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.'
-};
+  MAXIMUM_STICKINESS_DURATION_DESC:
+    'Set a maximum stickiness duration. The value range is 0 to 86400 and the default value is 10800.',
+  SERVICE_ADD_METADATA_DESC: 'Add metadata to the Service.',
+}

@@ -41,9 +41,12 @@ module.exports = {
   devops: 'DevOps 项目',
   'Edit Workspace Quota': '企業空間配額',
   WORKSPACE_SEARCH_PLACEHOLDER: '請輸入企業空間名稱進行查找',
-  WORKSPACE_NAME_DESC: '請盡量保持名稱簡短，比如用企業名稱的縮寫或者大家經常的稱呼，無需使用企業的完整名稱或者營業執照上的註冊名稱。',
-  WORKSPACE_LOGO_PLACEHOLDER: '企業標誌尺寸必須小於 200px X 200px，支持 png、jpg 格式。建議從上傳透明背景的 png 格式圖片以達到最佳顯示效果。',
-  NO_WORKSPACE_TIP: '您的帳號目前不屬於任何企業空間，請您創建一個企業空間或者聯繫管理員邀請您到其企業空間内進行工作',
+  WORKSPACE_NAME_DESC:
+    '請盡量保持名稱簡短，比如用企業名稱的縮寫或者大家經常的稱呼，無需使用企業的完整名稱或者營業執照上的註冊名稱。',
+  WORKSPACE_LOGO_PLACEHOLDER:
+    '企業標誌尺寸必須小於 200px X 200px，支持 png、jpg 格式。建議從上傳透明背景的 png 格式圖片以達到最佳顯示效果。',
+  NO_WORKSPACE_TIP:
+    '您的帳號目前不屬於任何企業空間，請您創建一個企業空間或者聯繫管理員邀請您到其企業空間内進行工作',
   SEARCH_WORKSPACE_TIP: '請輸入企業名稱進行查找',
   WORKSPACE_BASE_INFO_Q2: '如何定義網路策略？',
   WORKSPACE_BASE_INFO_A2: '',
@@ -58,5 +61,5 @@ module.exports = {
   // Department Management
   'Workspace Groups': 'Department Mangement',
   // Workspace Members > Details
-  REMOVE_MEMBER_PL: 'Remove Members'
-};
+  REMOVE_MEMBER_PL: 'Remove Members',
+}

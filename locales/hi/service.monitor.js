@@ -17,5 +17,5 @@
  */
 module.exports = {
   'Target Service': 'Target Service',
-  'View Monitor': 'View Monitor'
-};
+  'View Monitor': 'View Monitor',
+}

@@ -78,10 +78,12 @@ export default class Login extends Component {
 
     cookie('oAuthLoginInfo', '')
 
+    const encryptKey = get(globals, 'config.encryptKey', 'kubesphere')
+
     this.props.rootStore
       .login({
         username,
-        encrypt: encrypt('kubesphere', password),
+        encrypt: encrypt(encryptKey, password),
         ...rest,
       })
       .then(resp => {
@@ -138,7 +140,13 @@ export default class Login extends Component {
               label={t('PASSWORD')}
               rules={[{ required: true, message: t('PASSWORD_EMPTY_DESC') }]}
             >
-              <InputPassword name="password" placeholder="Password" />
+              <InputPassword
+                name="password"
+                placeholder="Password"
+                onCopy={e => e.preventDefault()}
+                onPaste={e => e.preventDefault()}
+                onCut={e => e.preventDefault()}
+              />
             </Form.Item>
             <div className={styles.footer}>
               <Button type="control" htmlType="submit" loading={isSubmmiting}>

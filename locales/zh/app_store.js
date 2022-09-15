@@ -32,8 +32,9 @@ module.exports = {
   RELEASE_DATE: '发布日期',
   Screenshots: '截图',
   VERSION_LIST_DES: '只显示 10 个最新的版本',
-  HOME_APP_STORE_DESC: 'KubeSphere 官方应用商店提供部署及管理功能，用户可以基于应用模板快速地一键部署应用。',
+  HOME_APP_STORE_DESC:
+    'KubeSphere 官方应用商店提供部署及管理功能，用户可以基于应用模板快速地一键部署应用。',
   APP_DEPLOYMENT_AGREEMENT: '应用部署须知',
   APP_DEPLOY_AGREEMENT_CHECK: '我已阅读<b>应用部署须知</b>并同意部署该应用。',
-  CHECK_APP_DEPLOY_AGREEMENT_TIP: '请阅读并同意<b>应用部署须知</b>。'
-};
+  CHECK_APP_DEPLOY_AGREEMENT_TIP: '请阅读并同意<b>应用部署须知</b>。',
+}

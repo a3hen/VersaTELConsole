@@ -34,5 +34,5 @@ module.exports = {
   LOG: 'Log',
   // List > Container Log Details
   // List > Container Log Details > Container Log Source
-  CONTAINER_LOG_SOURCE: 'Container Log Source'
-};
+  CONTAINER_LOG_SOURCE: 'Container Log Source',
+}

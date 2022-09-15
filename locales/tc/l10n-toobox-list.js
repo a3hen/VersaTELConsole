@@ -24,7 +24,8 @@ module.exports = {
   ANALYSIS_TOOLS: 'Analysis Tools',
   VIEW_KUBE_CONFIG: 'kubeConfig 配置的相關操作包含查看和下載',
   CONTAINER_LOG_SEARCH_DESC: '針對企業空間、項目、資源等多維度的紀錄查詢工具。',
-  RESOURCE_EVENT_SEARCH_DESC: '針對企業空間、項目、資源等多維度的事件查詢工具。',
+  RESOURCE_EVENT_SEARCH_DESC:
+    '針對企業空間、項目、資源等多維度的事件查詢工具。',
   AUDIT_LOG_DESC: '針對企業空間、項目、資源等多維度的操作審計查詢工具。',
   RESOURCE_CONSUMPTION_STATISTICS: '資源消費統計',
   METERING_AND_BILLING_DESC: '查看消費情况',
@@ -35,5 +36,5 @@ module.exports = {
   CONTROL_TOOL: 'Control Tool',
   TOOLBOX_SHIFT_TIPS: ' 👻 Shift + 鼠標左鍵 可以在新視窗中打開',
   // Third-Party Tools
-  THIRD_PARTY_TOOLS: '第三方工具'
-};
+  THIRD_PARTY_TOOLS: '第三方工具',
+}

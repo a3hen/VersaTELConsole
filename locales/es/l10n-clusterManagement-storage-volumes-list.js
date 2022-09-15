@@ -19,9 +19,11 @@ module.exports = {
   // Navigation pane
   STORAGE: 'Storage',
   // Banner
-  VOLUME_DESC: 'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
+  VOLUME_DESC:
+    'A volume is used for workloads created by users. It represents a resource object for the data persistence of workloads.',
   // List
-  VOLUME_SNAPSHOT_EMPTY_DESC: 'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
+  VOLUME_SNAPSHOT_EMPTY_DESC:
+    'Un snapshot de volumen se refiere a una snapshot de un volumen en un punto de tiempo particular. Se puede utilizar para crear nuevos volúmenes (preestablecer los datos del snapshot) o restaurar un volumen existente a su estado anterior (que se muestra en los snapshots).',
   VOLUME_STATUS_BOUND: 'Enlazado',
   VOLUME_STATUS_LOST: 'Perdido',
   VOLUME_STATUS_PENDING: 'Pendiente',
@@ -39,15 +41,17 @@ module.exports = {
   CREATE_VOLUME_BY_STORAGE_CLASS: 'Crear volumen por clase de almacenamiento',
   CREATE_VOLUME_BY_SNAPSHOT: 'Crear volumen por snapshot',
   SELECT_SNAPSHOT_TO_CREATE_VOLUME: 'Selecciona snapshot para crear volumen.',
-  SELECT_STORAGE_CLASS_CREATE_VOLUME: 'Seleccione una clase de almacenamiento para crear un volumen.',
+  SELECT_STORAGE_CLASS_CREATE_VOLUME:
+    'Seleccione una clase de almacenamiento para crear un volumen.',
   VOLUME_CAPACITY: 'Capacidad de volumen',
   PARAM_REQUIRED: 'Este parámetro es obligatorio',
   VOLUME_SIZE_TIP: 'The volume capacity must be greater than 0.',
-  VOLUME_STORAGE_CLASS_DESC: 'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
+  VOLUME_STORAGE_CLASS_DESC:
+    'Selecciona clase de almacenamiento para crear un tipo específico de volumen.',
   // List > Advanced Settings
   // List > Edit
   EDIT_TCAP: 'Edit',
   // List > Edit YAML
   // List > Delete
-  VOLUME_LOW: 'volume'
-};
+  VOLUME_LOW: 'volume',
+}

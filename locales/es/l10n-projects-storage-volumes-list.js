@@ -19,9 +19,11 @@ module.exports = {
   // Banner
   VOLUME_PL: 'Recuento de volumen',
   WHAT_IS_STORAGE_CLASS_Q: '¿Qué es una clase de almacenamiento?',
-  WHAT_IS_STORAGE_CLASS_A: 'El administrador del clúster configura la clase de almacenamiento para configurar los parámetros del servidor de almacenamiento y proporcionar almacenamiento para los usuarios del clúster por clase.',
+  WHAT_IS_STORAGE_CLASS_A:
+    'El administrador del clúster configura la clase de almacenamiento para configurar los parámetros del servidor de almacenamiento y proporcionar almacenamiento para los usuarios del clúster por clase.',
   WHAT_IS_LOCAL_VOLUME_Q: '¿Qué es un volumen local?',
-  WHAT_IS_LOCAL_VOLUME_A: 'Un volumen local es un dispositivo de almacenamiento local montado, como un disco, partición o directorio.',
+  WHAT_IS_LOCAL_VOLUME_A:
+    'Un volumen local es un dispositivo de almacenamiento local montado, como un disco, partición o directorio.',
   // List
   // List > Create > Basic Information
   // List > Create > Storage Settings
@@ -30,5 +32,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  VOLUME: 'Volumen'
-};
+  VOLUME: 'Volumen',
+}

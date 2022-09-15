@@ -20,8 +20,9 @@ module.exports = {
   configmaps: 'configmaps',
   ConfigMaps: 'ConfigMaps',
   EDIT_CONFIGMAP: 'Modificar configuración',
-  CONFIGMAP_EMPTY_DESC: 'Un ConfigMap es un objeto utilizado para almacenar variables de configuración comunes, lo que permite la gestión unificada de variables de entorno para diferentes módulos en un sistema distribuido.',
+  CONFIGMAP_EMPTY_DESC:
+    'Un ConfigMap es un objeto utilizado para almacenar variables de configuración comunes, lo que permite la gestión unificada de variables de entorno para diferentes módulos en un sistema distribuido.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: 'creat a ConfigMap'
-};
+  CREATE_CONFIG: 'creat a ConfigMap',
+}

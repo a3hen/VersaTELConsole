@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  NUMBER_OF_PODS: 'Number of Pods',
   STRATEGY_PL: 'Strategies',
   // Cluster Node List
   CORE: 'core',
@@ -53,14 +52,11 @@ module.exports = {
   Cancel: 'Cancel',
   'Canceled Successfully': 'Canceled Successfully',
   Ceased: 'Ceased',
-  CERTIFICATE: 'Certificate',
   'clear search conditions': 'clear search conditions.',
   CLUSTER_COUNT: 'Cluster',
   Collapse: 'Collapse',
   Completed: 'Completed',
   Configuration: 'Configuration',
-  CONFIGURATION_CENTER: 'Configuration Management',
-  STORAGE_MANAGEMENT: 'Storage Management',
   Confirm: 'Confirm',
   Container: 'Container',
   Containers: 'Containers',
@@ -69,7 +65,6 @@ module.exports = {
   Cordon: 'Cordon',
   Count: 'Count',
   Create: 'Create',
-  CREATED_BY: 'Created By',
   Current: 'Current',
   Custom: 'Custom',
   'Data Sources': 'Data Sources',
@@ -139,7 +134,6 @@ module.exports = {
   MilliSeconds: 'MilliSeconds',
   Minutes: 'Minutes',
   'MMMM Do YYYY': 'MMMM Do YYYY',
-  'MONITORING_&_ALERTING': 'Monitoring & Alerting',
   Monitors: 'Monitors',
   More: 'More',
   name: 'name',
@@ -216,9 +210,9 @@ module.exports = {
   secret: 'secret',
   secret_text: 'Secret text',
   Service: 'Service',
-  NUMBER_OF_SERVICES: 'Number of Services',
   'Service Components': 'Components',
-  'Session timeout or this account is logged in elsewhere, please login again': 'Session timeout or this account is logged in elsewhere, please login again',
+  'Session timeout or this account is logged in elsewhere, please login again':
+    'Session timeout or this account is logged in elsewhere, please login again',
   Set: 'Set',
   IN_PROGRESS: 'In progress',
   Settings: 'Settings',
@@ -291,15 +285,21 @@ module.exports = {
   NUM_UNIT: '',
   NAME_TOO_LONG: 'The value can contain a maximum of 63 characters.',
   LONG_NAME_TOO_LONG: 'The value can contain a maximum of 253 characters.',
-  DELETE_DESC: 'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
+  DELETE_DESC:
+    'Are you sure you want to delete the resource? The resource cannot be restored after it is deleted.',
   STOP_DESC: 'Are you sure you want to stop the resource?',
-  DELETE_RESOURCE_TYPE_DESC: 'Enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  DELETE_APP_RESOURCE_TIP: 'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
-  STOP_APP_RESOURCE_TIP: 'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  DELETE_RESOURCE_TYPE_DESC:
+    'Enter the {type} name <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  DELETE_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is deleted. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
+  STOP_APP_RESOURCE_TIP:
+    'Resource is managed by <strong>{app}</strong>, which may affect the normal use of this app if the resource is stopped. Please enter the {type} name <strong>{resource}</strong> to make sure you understand the risks associated with the operation.',
   DELETE_RESOURCE_TITLE: 'Warning',
-  DELETE_RESOURCE_TIP: 'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
+  DELETE_RESOURCE_TIP:
+    'Are you sure about deleting the resource <strong>{resource}</strong> ? The resource cannot be recovered after it is deleted.',
   add_: 'Add',
-  REMOVE_GROUP_TIP: 'Are you sure you want to remove the group <strong>{resource}</strong>?',
+  REMOVE_GROUP_TIP:
+    'Are you sure you want to remove the group <strong>{resource}</strong>?',
   UPDATE_TIME: 'Updated {diff}',
   MONTH_AGO: '{count, plural, =1 {1 month} other {# months}} ago',
   MONTH_TIME: '{count, plural, =1 {1 month} other {# months}}',
@@ -315,15 +315,19 @@ module.exports = {
   SECOND_TIME: '{count, plural, =1 {1 second} other {# seconds}}',
   EVENT_NORMAL: 'Normal',
   EVENT_WARNING: 'Warning',
-  QUOTA_LIMIT_TIP: 'The configuration here refers to Limits in Kubernetes resource management, which is mainly used to limit the maximum value of resources used by each container.',
-  DETAIL_NOT_FOUND_DESC: '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
+  QUOTA_LIMIT_TIP:
+    'The configuration here refers to Limits in Kubernetes resource management, which is mainly used to limit the maximum value of resources used by each container.',
+  DETAIL_NOT_FOUND_DESC:
+    '🙇 Sorry, no related resources were found. Back to <a href="{link}">{title}</a>.',
   CONDITION_STATUS_ANALYSE: 'Conditions',
   NAV_PROJECTS: 'Projects',
   NAV_ACCOUNTS: 'Accounts',
   'rules text': 'How to define operational audit collection rules?',
-  'rules desc': 'KubeSphere can collect operation audits according to the rules you set. Click to see how to define the rules.',
+  'rules desc':
+    'KubeSphere can collect operation audits according to the rules you set. Click to see how to define the rules.',
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
-  TOOLBOX_KUBECTL_DESC: 'Command line tool used to control the current cluster.',
+  TOOLBOX_KUBECTL_DESC:
+    'Command line tool used to control the current cluster.',
   PLATFORM_SETTINGS_SELECTOR_DESC: 'Customized Platform Settings',
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
   USER_GUIDES_DESC: 'The most comprehensive user guide of KubeSphere.',
@@ -333,5 +337,5 @@ module.exports = {
   // Workbench
   // Container Details Page
   CPU_VALUE: 'CPU: {value}',
-  MEMORY_VALUE: 'Memory: {value}'
-};
+  MEMORY_VALUE: 'Memory: {value}',
+}

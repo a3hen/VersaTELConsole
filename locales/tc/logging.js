@@ -43,14 +43,16 @@ module.exports = {
   'Refresh Rate': '刷新頻率',
   'Region Data': '元數據',
   'Release Collection': '釋放收集',
-  'Auditing log trends in the last 12 hours': '最近 12 小時操作審計總數變化趨勢',
+  'Auditing log trends in the last 12 hours':
+    '最近 12 小時操作審計總數變化趨勢',
   LOG_DATE: 'YYYY年MM月DD日HH時',
   EVENT_DATE: 'YYYY年MM月DD日0時',
   URL_SYNTAX_ERROR: 'URL 語法錯誤',
   'Search Logs by': '通過{field}查詢紀錄',
   'Search Events by': '通過{field}查詢事件',
   'Pod Event Query Tip': '可以根據容器組查看相關的事件資訊',
-  TOTAL_LOGS: '總共收錄了 <span class={className}>{containers}</span> 個容器<br/> <span class={className}> {logs} </span> 條紀錄資訊',
+  TOTAL_LOGS:
+    '總共收錄了 <span class={className}>{containers}</span> 個容器<br/> <span class={className}> {logs} </span> 條紀錄資訊',
   LOG_EXPORT: 'Log Export',
   IMPORT_GRAFANA_JSON_FILE: '導入 Grafana JSON 文件',
   CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
@@ -73,5 +75,5 @@ module.exports = {
   LOG_EXPORT_SCAP: 'Log export',
   START_TIME_COLON: 'Start Time: ',
   REASON_COLON: 'Reason: ',
-  MESSAGE_COLON: 'Message: '
-};
+  MESSAGE_COLON: 'Message: ',
+}

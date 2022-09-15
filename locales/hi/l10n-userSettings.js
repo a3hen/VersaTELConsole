@@ -17,19 +17,22 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'The email address can be used to log in to the KubeSphere web console.',
+  EMAIL_DESC: 'ईमेल पते का उपयोग KubeSphere वेब कंसोल में लॉग इन करने के लिए किया जा सकता है।',
   LANGUAGE: 'Language',
   USER_SETTINGS: 'User Settings',
   CLOSE: 'Close',
   CONTENT_NOT_SAVED_TIPS: 'content has been modified but not saved',
-  SAVE_EDIT_HINTS: 'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
+  SAVE_EDIT_HINTS:
+    'please confirm that the modified content is correct, you can save the settings or cancel the settings.',
   // Password Settings
   PASSWORD_SETTINGS: 'Password Settings',
   PASSWORD_EMPTY_DESC: 'Please set a password.',
-  CHANGE_PASSWORD_TIP: 'Since you are logging in for the first time, please reset your password.',
+  CHANGE_PASSWORD_TIP:
+    'Since you are logging in for the first time, please reset your password.',
   CURRENT_PASSWORD: 'Current Password',
   ENTER_CURRENT_PASSWORD_TIP: 'Please enter the current password.',
   CONFIRM_PASSWORD: 'Confirm Password',
   PASSWORD_NOT_SAME_DESC: 'New Password and Confirm Password must be the same.',
-  ENTER_CURRENT_PASSWORD_DESC: 'To change the password, you must first enter the current password.'
-};
+  ENTER_CURRENT_PASSWORD_DESC:
+    'To change the password, you must first enter the current password.',
+}

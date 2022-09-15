@@ -42,10 +42,13 @@ module.exports = {
   // Task Status
   PIPELINE_QUEUED_TITLE: 'La pipeline se inicializará pronto',
   INITIALIZING_PIPELINE: 'Inicialización de Pipeline',
-  PIPELINE_PREPARE_DESC: 'El ambiente se está preparando. Habrá una pantalla gráfica más tarde.',
-  INITIALIZING_PIPELINE_DESC: 'Please wait until the pipeline initialization is complete.',
+  PIPELINE_PREPARE_DESC:
+    'El ambiente se está preparando. Habrá una pantalla gráfica más tarde.',
+  INITIALIZING_PIPELINE_DESC:
+    'Please wait until the pipeline initialization is complete.',
   TASK_FAILED_NOT_OPERATIONAL: 'Tarea fallida, no operativa',
-  NO_PIPELINE_CONFIG_FILE_TIP: 'Archivo de configuración de Pipeline no encontrado',
+  NO_PIPELINE_CONFIG_FILE_TIP:
+    'Archivo de configuración de Pipeline no encontrado',
   // Task Status > Edit Pipeline
   EDIT_PIPELINE: 'Editar pipeline',
   AGENT_TYPE_DESC: `The agent section specifies
@@ -55,16 +58,20 @@ module.exports = {
     but the stage level usage is optional. `,
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
   CI: 'Continuous Integration (CI)',
-  CI_DESC: 'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
+  CI_DESC:
+    'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
   CICD: 'Continuous Integration & Delivery (CI/CD)',
-  CICD_DESC: 'Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user\'s installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.',
+  CICD_DESC:
+    "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
   CUSTOM_PIPELIEN: 'Custom Pipeline',
-  CUSTOM_PIPELIEN_DESC: 'You can select the tasks you need to customize the work content of the pipeline.',
+  CUSTOM_PIPELIEN_DESC:
+    'You can select the tasks you need to customize the work content of the pipeline.',
   CC: 'CC',
   CREDENTIAL_NAME: 'ID de autentificación',
   REMOTE_REPOSITORY_URL: 'URL de repositorio remoto',
   SCM: 'SCM',
-  INPUT_MESSAGE_DESC: 'Este mensaje se mostrará en el estado de ejecución de la canalización.',
+  INPUT_MESSAGE_DESC:
+    'Este mensaje se mostrará en el estado de ejecución de la canalización.',
   KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster.
     In a continuous integration or continuous deployment environment,
     only those resources that need to be updated regularly should be placed in the deployment step.
@@ -90,9 +97,15 @@ module.exports = {
     </li>`,
   STAGE: 'Stage',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: 'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: 'Editar Jenkinsfile',
-  CLOSE_JENKINSFILE_EDITOR_TIP: '¿Estás seguro de cerrar este editor de jenkinsfile?',
+  CLOSE_JENKINSFILE_EDITOR_TIP:
+    '¿Estás seguro de cerrar este editor de jenkinsfile?',
   // Task Status > View Logs
   PIPELINE_RUN_LOGS: 'Registros de ejecución de Pipelines',
   VIEW_LOGS: 'Mostrar logs',
@@ -109,8 +122,10 @@ module.exports = {
   DURATION: 'Duration',
   LAST_MESSAGE: 'Ultimo mensaje',
   RUN_ID: 'Run ID',
-  STOP_PIPELINE_SUCCESSFUL: 'Parado de ejecución satisfactorio, se actualizará el estado después',
-  INVALID_JENKINSFILE_TIP: 'El Jenkinsfile actual no es un Jenkinsfile declarativo estándar y no se puedes mostrar gráficamente',
+  STOP_PIPELINE_SUCCESSFUL:
+    'Parado de ejecución satisfactorio, se actualizará el estado después',
+  INVALID_JENKINSFILE_TIP:
+    'El Jenkinsfile actual no es un Jenkinsfile declarativo estándar y no se puedes mostrar gráficamente',
   PAUSED: 'Pausado',
   // Run Records > Run
   SET_PARAMETERS: 'Entrada de parámetros',
@@ -157,5 +172,5 @@ module.exports = {
   LINE_VALUE: 'Número de línea: {value}',
   PASSED: 'Pasado',
   // Pull Requests
-  PULL_REQUEST_PL: 'Pull Requests'
-};
+  PULL_REQUEST_PL: 'Pull Requests',
+}

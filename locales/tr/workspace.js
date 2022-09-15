@@ -17,7 +17,8 @@
  */
 module.exports = {
   WORKSPACE_MEMBER: 'Workspace Member',
-  WORKSPACE_CLUSTERS_DESC: 'The cluster information shows how cluster resources are used in the workspace.',
+  WORKSPACE_CLUSTERS_DESC:
+    'The cluster information shows how cluster resources are used in the workspace.',
   ONLINE: 'Online',
   OFFLINE: 'Offline',
   'Cluster Authorization Info': 'Cluster Authorization Information',
@@ -41,14 +42,18 @@ module.exports = {
   devops: 'DevOps Projects',
   'Edit Workspace Quota': 'Edit Workspace Quota',
   WORKSPACE_SEARCH_PLACEHOLDER: 'Enter a workspace name.',
-  WORKSPACE_NAME_DESC: 'You are advised to use a short workspace name such as the abbreviation of your company name.',
-  WORKSPACE_LOGO_PLACEHOLDER: 'The maximum size of the workspace logo is 200 x 200 pixels. Only PNG (recommended) and JPG formats are supported.',
-  NO_WORKSPACE_TIP: 'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
+  WORKSPACE_NAME_DESC:
+    'You are advised to use a short workspace name such as the abbreviation of your company name.',
+  WORKSPACE_LOGO_PLACEHOLDER:
+    'The maximum size of the workspace logo is 200 x 200 pixels. Only PNG (recommended) and JPG formats are supported.',
+  NO_WORKSPACE_TIP:
+    'Your account does not belong to any workspace currently. Please create a workspace or contact the administrator to invite you to a workspace.',
   SEARCH_WORKSPACE_TIP: 'Enter a workspace name.',
   WORKSPACE_BASE_INFO_Q2: 'How do I define a network policy?',
   WORKSPACE_BASE_INFO_A2: '',
   WORKSPACE_GROUP_USER_EMPTY_DESC: 'No user available.',
-  DELETE_WORDSPACE_RELATED_RESOURCES_DESC: 'Delete the project associated with the workspace',
+  DELETE_WORDSPACE_RELATED_RESOURCES_DESC:
+    'Delete the project associated with the workspace',
   // App Repositories
   // Basic Information
   // Quota Management
@@ -58,5 +63,5 @@ module.exports = {
   // Department Management
   'Workspace Groups': 'Department Mangement',
   // Workspace Members > Details
-  REMOVE_MEMBER_PL: 'Remove Members'
-};
+  REMOVE_MEMBER_PL: 'Remove Members',
+}

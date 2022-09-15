@@ -24,29 +24,32 @@ module.exports = {
   UPDATE_TIME_TCAP: 'Tiempo de actualización',
   ALL_PROJECTS: 'Todos los proyectos',
   // List > Create > Basic Information
-  SELECT_PROJECT_DESC: 'Select a project in which the resource is to be created.',
+  SELECT_PROJECT_DESC:
+    'Select a project in which the resource is to be created.',
   PROJECT_NOT_SELECT_DESC: 'Please select a project.',
   BASIC_INFORMATION: 'Información básica',
   NAME: 'Nombre',
   FEDPROJECT_RESOURCE_TIP: 'No se pueden crear recursos de proyectos de múltiples clústeres en la administración de clústeres, vaya a la página del proyecto de múltiples clústeres para operar.',
-  FINISHED: 'Finalizado',
-  NOT_SET: 'Sin definir',
+  FINISHED: 'Done',
+  NOT_SET: 'To do',
   CURRENT: 'Current',
   PROJECT: 'Proyecto',
   // List > Create > Pod Settings
   PREVIOUS: 'Anterior',
   NOTE: 'Advertencia',
+  CREATE_CONFIGMAP_SECRET_DESC: 'If no configmap or secret meets the requirements, you can',
   // List > Create > Pod Settings > Add Container > Container Settings
   IMAGE: 'Imagen',
   IMAGE_VALUE: 'Imagen: {value}',
   // List > Create > Pod Settings > Add Container > Health Check > Readiness Check > TCP Port
   PORT_NUMBER_EMPTY: 'Please enter a port number.',
   USER: 'Usuario',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   VOLUME_NAME_EXIST: 'nombre de volumen existe',
   SELECT_TYPE: 'Select {type}',
   SPECIFY_SUBPATH: 'Haga clic para agregar subPath',
   SPECIFY_SUBPATH_TIP: 'Solo es apropiado para montar volúmenes, pero no para hostpath',
+  MOUNT_PATH: 'Mount path',
   // List > Create > Advanced Settings
   NETWORK_SEGMENT_SCAP: 'Network segment',
   AVAILABLE_ADDRESSES: 'Available Number',
@@ -63,5 +66,5 @@ module.exports = {
   // List > Stop
   STOP: 'Stop',
   STOP_TITLE_SI: 'Stop {type}',
-  STOP_TITLE_PL: 'Stop Multiple {type}'
-};
+  STOP_TITLE_PL: 'Stop Multiple {type}',
+}

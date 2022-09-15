@@ -19,14 +19,11 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Alerting Policies',
-  ALERT_POLICY_DESC:
-    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
+  ALERT_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
-    'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
-
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
-  ALERTING_STATUS: 'Status',
+  ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'Please create an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
   ALERT_RULE_PENDING: 'Pending',
@@ -34,25 +31,21 @@ module.exports = {
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
   ALERT_RULE_HEALTH_UNKNOWN: 'UnKnown',
-
   // List > Create > Basic Information
   SEVERITY: 'Severity',
   CREATE_ALERTING_POLICY: 'Create Alerting Policy',
   CRITICAL_ALERT: 'Critical',
   ERROR_ALERT: 'Error',
   WARNING_ALERT: 'Warning',
-  INVALID_TIME_DESC:
-    'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
+  INVALID_TIME_DESC: 'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
   ALIAS: 'Alias',
   THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
-  ALERT_DURATION:
-    'The status of the alerting policy becomes Firing when the duration of the condition configured in the alerting rule reaches the threshold.',
-  LONG_NAME_DESC:
-    'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
-
+  ALERT_DURATION: 'The status of the alerting policy becomes Firing when the duration of the condition configured in the alerting rule reaches the threshold.',
+  LONG_NAME_DESC: 'The name can contain only lowercase letters, numbers, and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 253 characters.',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'CPU usage',
   DISK_READ_IOPS: 'Local disk read IOPS',
   DISK_READ_THROUGHPUT: 'Local disk read throughput',
@@ -65,7 +58,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'Memory usage',
   DATA_RECEIVE_RATE: 'Network data receiving rate',
   DATA_SEND_RATE: 'Network data sending rate',
-  SET_RULE_DESC: 'Please set an alerting rule.',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: 'Abnormal Pods',
   POD_USAGE_SCAP: 'Pod usage',
   THRESHOLD: 'Threshold',
@@ -75,22 +68,17 @@ module.exports = {
   CPU_LOAD_5: 'Average CPU load over the past 5 min',
   CPU_LOAD_15: 'Average CPU load over the past 15 min',
   SELECT_NODE_TIP: 'Please select at least one cluster node.',
-
   // List > Create > Rule Settings > Custom Rule
   CUSTOM_RULE: 'Custom Rule',
   RULE_EXPRESSION: 'Rule Expression',
   ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
-  ALERT_RULE_EXPRESSION_DESC:
-    'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
-
+  ALERT_RULE_EXPRESSION_DESC: 'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
   // List > Create > Message Settings
   MESSAGE_SETTINGS: 'Message Settings',
   NOTIFICATION_SUMMARY: 'Summary',
   NOTIFICATION_DETAILS: 'Details',
-
   // List > Edit
   EDIT_ALERTING_POLICY: 'Edit Alerting Policy',
-
   // List > Delete
   ALERTING_POLICY: 'Alerting Policy',
   ALERTING_POLICY_LOW: 'alerting policy',

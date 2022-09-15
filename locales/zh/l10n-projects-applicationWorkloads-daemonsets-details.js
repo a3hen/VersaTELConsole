@@ -26,9 +26,10 @@ module.exports = {
   // Details
   // Resource Status
   // Revision Records
-  REVISION_RECORDS_DESC: '系统在工作负载创建或修改后将生成修改记录，可用于回退工作负载设置。最多可保留 10 条修改记录。',
+  REVISION_RECORDS_DESC:
+    '系统在工作负载创建或修改后将生成修改记录，可用于回退工作负载设置。最多可保留 10 条修改记录。',
   // Metadata
   // Monitoring
   // Environment Variables
-  ENVIRONMENT_VARIABLE: '环境变量'
-};
+  ENVIRONMENT_VARIABLE: '环境变量',
+}

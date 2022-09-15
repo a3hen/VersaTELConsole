@@ -21,5 +21,5 @@ module.exports = {
   NODE_MEMORY_UTILISATION: '内存用量',
   NODE_DISK_SIZE_UTILISATION: '磁盘用量',
   NODE_POD_UTILISATION: '容器组用量',
-  NODE_DISK_INODE_UTILISATION: 'Inode 用量'
-};
+  NODE_DISK_INODE_UTILISATION: 'Inode 用量',
+}

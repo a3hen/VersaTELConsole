@@ -19,8 +19,10 @@ module.exports = {
   // Head
   DASHBOARD_TITLE: 'Hola {username}',
   LAST_LOGIN_TIME: 'Last Login: ',
-  USER_DASHBOARD_EMPTY_TITLE: 'No perteneces a ningún espacio de trabajo actualmente.',
-  USER_DASHBOARD_EMPTY_DESC: 'Puedes ponerte en contacto con un administrador del espacio de trabajo para que te invite a unirte.',
+  USER_DASHBOARD_EMPTY_TITLE:
+    'No perteneces a ningún espacio de trabajo actualmente.',
+  USER_DASHBOARD_EMPTY_DESC:
+    'Puedes ponerte en contacto con un administrador del espacio de trabajo para que te invite a unirte.',
   // Platform Information
   LAST_UPDATE_TIME: 'Last update time',
   PLATFORM_VERSION: 'Versión de plataforma',
@@ -30,13 +32,14 @@ module.exports = {
   // Recent Access
   RECENT_ACCESS: 'Visita reciente',
   MULTI_CLUSTER_DEPLOYMENT: 'Despliegue de multi-cluster',
-  WORKBENCH_PROJECT: 'Project',
-  WORKBENCH_WORKSPACE: 'Workspace',
+  WORKBENCH_PROJECT: 'Proyecto',
+  WORKBENCH_WORKSPACE: 'Espacio de trabajo',
   WORKBENCH_DEVOPS: 'DevOps project',
   WORKBENCH_MULTI_CLUSTER_PROJECT: 'Multi-cluster project',
   WORKBENCH_CLUSTER: 'Cluster',
-  NOT_FOUND_DESC: '🙇 Lo sentimos, no se encontraron recursos relacionados, el sistema volverá a <a href="{link}">Workbench</a> después de {time} s',
+  NOT_FOUND_DESC:
+    '🙇 Lo sentimos, no se encontraron recursos relacionados, el sistema volverá a <a href="{link}">Workbench</a> después de {time} s',
   MULTI_CLUSTER_PROJECT_TIP: 'El recurso se implementa en varios grupos.',
   NO_HISTORY_TITLE: 'No Recently Accessed Resource Found',
-  NO_HISTORY_DESC: 'You can access platform resources.'
-};
+  NO_HISTORY_DESC: 'You can access platform resources.',
+}

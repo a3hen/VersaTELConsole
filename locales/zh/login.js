@@ -27,11 +27,13 @@ module.exports = {
   'Please input the correct captcha': '验证码错误',
   Reload: '刷新',
   'Reload Captcha': '刷新验证码',
-  'Too many failed login attempts, please wait!': '登录失败次数过多，请稍后重试',
+  'Too many failed login attempts, please wait!':
+    '登录失败次数过多，请稍后重试',
   'Please input captch': '请输入验证码',
   'Please confirm your account info': '请确认您的帐户信息',
   'Please input username': '请输入用户名',
   'Please reset your password': '请重置您的密码',
   'Modify Later': '稍后修改',
-  'Your password must meet the following requirements': '您的密码必须符合如下要求'
-};
+  'Your password must meet the following requirements':
+    '您的密码必须符合如下要求',
+}

@@ -21,15 +21,23 @@ module.exports = {
   RESOURCE_CONSUMPTION_DESC: 'Choose the category you want to view',
   // Cluster Resource Consumption
   CLUSTER_CONSUMPTION: 'Cluster resource consumption',
-  CLUSTER_CONSUMPTION_DESC: 'View metering and billing information of cluster resources.',
-  CLUSTER_RESOURCE_CONSUMPTION_DESC: '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
-  CLUSTER_NODE_CONSUMPTION_DESC: 'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
-  CLUSTER_POD_CONSUMPTION_DESC: 'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory',
+  CLUSTER_CONSUMPTION_DESC:
+    'View metering and billing information of cluster resources.',
+  CLUSTER_RESOURCE_CONSUMPTION_DESC:
+    '<strong>Cluster</strong> CPU, memory, storage and other resource consumption',
+  CLUSTER_NODE_CONSUMPTION_DESC:
+    'Resource consumption of <strong>nodes</strong> in the cluster, such as CPU, memory, and storage',
+  CLUSTER_POD_CONSUMPTION_DESC:
+    'Resource consumption of <strong>Pods</strong> in a node, such as CPU and memory',
   VIEW: 'View',
   // Workspace Recource Consumption
   WORKSPACE_CONSUMPTION: 'Workspace (project) resource consumption',
-  WORKSPACE_CONSUMPTION_DESC: 'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
-  WORKSPACE_RESOURCE_CONSUMPTION_DESC: '<strong>Workspace</strong> CPU, memory, storage and other resource consumption',
-  WORKSPACE_PROJECT_CONSUMPTION_DESC: 'The consumption of CPU, memory, storage and other resources of the <strong>project</strong> in the workspace',
-  PROJECT_CONSUMPTION_DESC: 'The consumption of CPU, memory, storage and other resources of <strong>applications, services, container groups</strong> and other resources in the project'
-};
+  WORKSPACE_CONSUMPTION_DESC:
+    'Workspace (project) resource consumption statistics take the workspace as the dimension to calculate the CPU, memory, storage and other resource consumption of workspace and projects',
+  WORKSPACE_RESOURCE_CONSUMPTION_DESC:
+    '<strong>Workspace</strong> CPU, memory, storage and other resource consumption',
+  WORKSPACE_PROJECT_CONSUMPTION_DESC:
+    'The consumption of CPU, memory, storage and other resources of the <strong>project</strong> in the workspace',
+  PROJECT_CONSUMPTION_DESC:
+    'The consumption of CPU, memory, storage and other resources of <strong>applications, services, container groups</strong> and other resources in the project',
+}
