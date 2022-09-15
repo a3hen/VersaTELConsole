@@ -29,8 +29,10 @@ module.exports = {
   NO_IMAGE_FOUND: 'No Image Found',
   CONTAINER_EMPTY_DESC: 'Please add at least one container.',
   QUOTA_UNSET_TIP: 'Resource occupation is unset',
-  QUOTA_OVERCOST_TIP:
-    'The current resource occupation has exceeded the remaining',
+  QUOTA_OVERCOST_TIP: 'The current resource occupation has exceeded the remaining',
+  // List > Create > Pod Settings > Add Container > Container Settings > Environment Settings
+  ENVIRONMENT_INVALID_TIP: 'The key of an environment variable can contain only letters, numbers, underscores (_), hyphens (-), and periods (.), and must not start with a number.',
+  ENVIRONMENT_CANNOT_BE_EMPTY: 'Please set a key for the environment variable.',
   // List > Create > Pod Settings > Port Settings
   WORKLOAD_PORT_NAME_DESC:
     'The port name can contain only lowercase letters, numbers and hyphens (-), and must start and end with a lowercase letter or number. The maximum length is 15 characters.',
@@ -38,24 +40,19 @@ module.exports = {
   MAX_EXTRA_PODS_DESC:
     'Maximum number or percentage of extra pods allowed during the update process.',
   MAX_EXTRA_PODS: 'Maximum Extra Pods',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   AVAILABLE: 'Available',
   IN_USER: 'In use',
   ACCESS_MODE_SCAP: 'Access mode',
-  VOLUME_OR_TEMPLATE_EMPTY:
-    'You have enabled Collect Logs on Volumes. Please mount at least one volume or volume template and specify the directory of the logs.',
-  VOLUME_EMPTY:
-    'You have enabled Collect Logs on Volumes. Please mount at least one volume and specify the directory of the logs.',
-  PROJECT_COLLECT_SAVED_DISABLED_DESC:
-    'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
-  COLLECT_LOGS_ON_VOLUMES_DESC:
-    'Allow the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
+  PVC_OR_TEMPLATE_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume, temperary volume, or persistent volume claim template and specify the path of container logs.',
+  PVC_EMPTY: 'You have enabled Collect Logs on Volumes. Please add at least one persistent volume or temperary volume and specify the path of container logs.',
+  PROJECT_COLLECT_SAVED_DISABLED_DESC: 'To enable this function, you need to enable Collect Logs on Volumes in Project Settings.',
+  COLLECT_LOGS_ON_VOLUMES_DESC: 'Allow the system to collect container logs saved on volumes. To use this function, you need to mount a volume in read and write mode to a container and set the container to export logs to the volume.',
   // List > Create
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   CONTAINER_LOG_PATH: 'Container log path',
-  // List > Create > Volume Settings > Mount Volume > Temporary Volume (Question Mark)
-  CONTAINER_LOG_PATH_TIP:
-    'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
+  // List > Create > Storage Settings > Mount Volume > Temporary Volume
+  CONTAINER_LOG_PATH_TIP: 'Container log path relative to the volume mount path. Globbing patterns are supported. You can used commas (,) to separate multiple paths.<br /><br /><b>Example</b><br />When the volume mount path is /data, log/*.log indicates that the container log files are all .log files in the /data/log directory.',
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

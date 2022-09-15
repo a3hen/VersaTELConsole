@@ -17,13 +17,27 @@
  */
 module.exports = {
   // Banner
-  DEVOPS_PROJECT_SETTINGS: 'DevOps Project Settings',
-  DEVOPS_DESCRIPTION:
-    'A DevOps project is a separate namespace where a set of pipelines is defined. Users can group their pipelines themselves (for example, project type and organization type).',
+  DEVOPS_PROJECT_SETTINGS: 'DevOps Proje Ayarları',
+  DEVOPS_DESCRIPTION: 'DevOps projesi, bir dizi işlem hattının tanımlandığı ayrı bir ad alanıdır. Kullanıcılar işlem hatlarını kendileri gruplayabilir (örneğin, proje türü ve kuruluş türü).',
   // Basic Information
-  DEVOPS_PROJECT_ROLE_SCAP: 'DevOps project role',
-  DEVOPS_PROJECT_SCAP: 'DevOps project',
-  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps project member',
-  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps project members',
-  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps project roles',
-}
+  DEVOPS_PROJECT_ROLE_SCAP: 'DevOps Proje Rolü',
+  DEVOPS_PROJECT_SCAP: 'DevOps Proje',
+  DEVOPS_PROJECT_MEMBER_SCAP: 'DevOps Proje üyeleri',
+  DEVOPS_PROJECT_MEMBER_PL_SCAP: 'DevOps Proje üyeleri',
+  DEVOPS_PROJECT_ROLE_PL_SCAP: 'DevOps Proje Rolleri',
+  // Continuous Deployment Allowlist
+  CD_ALLOWLIST: 'Sürekli Dağıtım Yönetimi',
+  CD_ALLOWLIST_SCAP: 'Sürekli Dağıtım Yönetimi',
+  DEPLOYMENT_LOCATION_PL: 'Dağıtım konumu',
+  ENABLE_ALLOWLIST: 'İzin Verilenler Listesini Etkinleştir',
+  EDIT_ALLOWLIST: 'İzin Listesini Düzenle',
+  EMPTY_ALLOWLIST_TITLE: 'Sürekli Dağıtım İzin Listesi Devre Dışı Bırakıldı',
+  ALLOWLIST_EMPTY_DESC: 'Sürekli dağıtım için yalnızca belirli kod havuzlarının ve dağıtım konumlarının kullanılabilmesi için izin verilenler listesini etkinleştirin.',
+  MULTI_CLUSTER_PROJECT_NOT_FOR_CD: 'Çok kümeli projeler sürekli dağıtım için kullanılamaz.',
+  CODE_REPOSITORY_EXIST_DESC: 'Kod deposu zaten var. Lütfen başka bir kod deposu seçin.',
+  DEPLOYMENT_LOCATION_EXIST_DESC: 'Dağıtım konumu zaten var. Lütfen başka bir dağıtım konumu ayarlayın.',
+  CODE_REPOSITORY_NOT_SELECTED: 'Hiçbir kod deposu seçilmedi.',
+  RESOURCE_DEPLOYMENT_LOCATION_NOT_SELECTED: 'Hiçbir kaynak dağıtım konumu seçilmedi.',
+  ALL_CODE_REPOSITORIES: 'Tüm kod depoları',
+  ALL_RESOURCE_DEPLOYMENT_LOCATIONS: 'Tüm kaynak dağıtım konumları'
+};

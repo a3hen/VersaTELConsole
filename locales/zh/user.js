@@ -34,7 +34,7 @@ module.exports = {
   'Email exists': 'The email already exists.',
   'Invalid user name': 'Invalid username. {message}',
   NOT_LOGGED_IN: '尚未登录',
-  'Password length is at least 6 characters': '密码长度至少为 6',
+  'Password length is at least 6 characters': '密码长度至少为 8',
   'Password Strength': '密码强度',
   'Please repeat the new password': '请重复新的密码',
   'Please select role': '请选择角色',

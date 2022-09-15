@@ -20,7 +20,6 @@ module.exports = {
   Alerting: 'Alertando',
   NOTIFICATION_MESSAGE: 'Notification Message',
   'Alerting Detail': 'Detalles de alertas',
-  ALERTING_HISTORY: 'Historial de alertas',
   ALERTING_MESSAGE: 'Mensaje de alerta',
   'Alerting Messages': 'Mensajes de alerta',
   ALERT_MONITORING: 'Alerting Monitoring',

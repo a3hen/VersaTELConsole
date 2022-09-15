@@ -17,14 +17,23 @@
  */
 module.exports = {
   // Head
-  APP_STORE: 'App Store',
+  APP_STORE: 'ऐप स्टोर',
   // Discover
-  DISCOVER: 'Discover',
-  NEW_APPS: 'New Apps',
+  DISCOVER: 'खोजें',
+  NEW_APPS: 'नए ऐप्स',
   // App Categories
+  APP_CATE_ALL: 'All',
+  APP_CATE_UNCATEGORIZED: 'Uncategorized',
+  APP_CATE_MESSAGE_QUEUEING: 'Message Queuing',
+  APP_CATE_IMAGE_REGISTRY: 'Image Registry',
+  APP_CATE_PROMETHEUS_EXPORTER: 'Prometheus Exporter',
+  APP_CATE_WEB_SERVER: 'Web Server',
+  APP_CATE_NETWORKING: 'Networking',
+  APP_CATE_DATABASE_CACHE: 'Database & Cache',
+  APP_CATE_STORAGE: 'Storage',
   // List
-  MAINTAINER_VALUE: 'Maintainer: {value}',
-  LATEST_VALUE: 'Latest: {value}',
-  TOTAL_CATE_COUNT: 'Total Apps: {total}',
-  SEARCH_BY_NAME: 'Search by name',
-}
+  MAINTAINER_VALUE: 'मेंटेनर: {value}',
+  LATEST_VALUE: 'नवीनतम: {value}',
+  TOTAL_CATE_COUNT: 'कुल ऐप्स: {total}',
+  SEARCH_BY_NAME: 'नाम से खोजें'
+};

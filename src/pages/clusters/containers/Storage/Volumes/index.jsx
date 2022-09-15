@@ -48,9 +48,9 @@ export default class Volumes extends React.Component {
   get bannerProps() {
     return {
       className: 'margin-b12',
-      description: t('VOLUME_DESC'),
+      description: t('PERSISTENT_VOLUME_CLAIM_DESC'),
       module: 'persistentvolumeclaims',
-      title: t('VOLUME_PL'),
+      title: t('PERSISTENT_VOLUME_CLAIM_PL'),
     }
   }
 
@@ -64,11 +64,11 @@ export default class Volumes extends React.Component {
   }
 
   componentDidMount() {
-    this.pv.checkSupportPv(this.props.match.params)
+    this.pv.getKsVersion(this.props.match.params)
   }
 
   renderBanner() {
-    if (this.pv.supportPv) {
+    if (this.pv.ksVersion >= 3.2) {
       return (
         <Banner {...this.bannerProps} tips={this.tips} routes={this.routes} />
       )

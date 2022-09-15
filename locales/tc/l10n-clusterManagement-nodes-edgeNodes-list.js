@@ -22,10 +22,9 @@ module.exports = {
     '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
   // Node Count
   // List
-  EDGE_NODE_EMPTY_DESC:
-    '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
-  AGENT: 'Agent',
-  EDGE: 'Edge node',
+  EDGE_NODE_EMPTY_DESC: '邊緣節點提供了目前集群下節點的運行狀態，以及可以編輯刪除節點',
+  AGENT: '代理',
+  EDGE: '邊緣節點',
   // List > Add
   ADD: '添加',
   EDGENODE_CONFIG_COMMAND: '添加命令',
@@ -36,7 +35,7 @@ module.exports = {
   EDGENODE_CONFIG_COMMAND_TIP:
     '運行命令前請確保已在邊緣節點安裝容器運行時如 docker 或 container。<a href="https://kubeedge.io/en/docs/" target="_blank">了解更多</a>',
   ADD_DEFAULT_TAINT: '添加默認污點 {params}',
-  EDGE_NODE: 'Edge Node',
+  EDGE_NODE: '邊緣節點',
   INTERNAL_IP_ADDRESS: '節點內網 IP 地址',
   EDGENODE_INTERNAL_IP_DESC: '集群内各節點間可以互相訪問的內網 IP 地址',
   EDGENODE_INTERNAL_IP_EMPTY_DESC: '请输入节点在私网内的 IP 地址。',

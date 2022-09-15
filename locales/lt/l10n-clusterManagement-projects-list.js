@@ -23,6 +23,8 @@ module.exports = {
   USER_PROJECTS: 'User Projects',
   // List
   EMPTY_WRAPPER: 'No {resource} Found',
+  TERMINATING: 'Terminating',
+  ACTIVE: 'Active',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Project Administrator',
   PROJECT_ADMINISTRATOR_DESC:

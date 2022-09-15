@@ -22,6 +22,7 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: 'Contenedores',
   PROBE_PL: 'Investigacion',
+  HOOK_PL: 'Hooks',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED:
     'El contenedor no admite logs en tiempo real en el estado actual, intente nuevamente más tarde.',
@@ -49,6 +50,7 @@ module.exports = {
   NO_RESOURCE: 'No se encuentra {resource}.',
   LOG_DATA_LOW: 'Datos de registro',
   // Resource Status > Volumes
+  VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: 'Volume type: ConfigMap',
   TYPE_SECRET: 'Volume type: Secret',
   TYPE_EMPTYDIR: 'Volume type: emptyDir',
@@ -60,4 +62,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
+};

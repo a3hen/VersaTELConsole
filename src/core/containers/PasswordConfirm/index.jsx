@@ -105,6 +105,9 @@ export default class PasswordConfirm extends Component {
               <InputPassword
                 name="password"
                 onChange={this.handlePasswordChange}
+                onCopy={e => e.preventDefault()}
+                onPaste={e => e.preventDefault()}
+                onCut={e => e.preventDefault()}
               />
             </Form.Item>
             <div className={styles.tip}>

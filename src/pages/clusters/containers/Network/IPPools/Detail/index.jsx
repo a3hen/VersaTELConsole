@@ -134,20 +134,16 @@ export default class IPPoolDetail extends React.Component {
         value: detail.cidr,
       },
       {
-        name: t('MASK'),
-        value: block.mask,
-      },
-      {
         name: t('NETWORK'),
         value: block.base,
       },
       {
-        name: t('STARTING_IP_ADDRESS'),
+        name: t('START_IP_ADDRESS'),
         value: block.base,
       },
       {
-        name: t('ENDING_IP_ADDRESS'),
-        value: block.last,
+        name: t('END_IP_ADDRESS'),
+        value: block.broadcast,
       },
       {
         name: t('CREATION_TIME_TCAP'),

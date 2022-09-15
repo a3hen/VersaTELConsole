@@ -22,11 +22,10 @@ module.exports = {
   TARGET_REVISION_EMPTY_DESC: '请选择目标修改记录。',
   TARGET_REVISION_RECORD: '目标修改记录',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC:
-    '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
-  EDIT_AUTOSCALING: '编辑自动伸缩',
+  CONFIGURE_AUTOSCALING_DESC: '设置系统根据目标 CPU 和内存用量自动调整容器组副本数量。',
+  EDIT_AUTOSCALING: '编辑自动扩缩',
   TARGET_CPU_USAGE_UNIT: '目标 CPU 用量（%）',
-  AUTOSCALING: '自动伸缩',
+  AUTOSCALING: '自动扩缩',
   RESOURCE_NAME: '资源名称',
   TARGET_CPU_USAGE_DESC:
     '当实际 CPU 用量大于/小于目标值时，系统自动减少/增加容器组副本数量。',
@@ -40,6 +39,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: '编辑设置',
   // More > Edit Settings > Containers
+  FROM_CONFIGMAP: '来自配置字典',
+  FROM_SECRET: '来自保密字典',
+  BATCH_REFERENCE: '批量引用',
+  BATCH_REFERENCE_DESC: '从配置字典或保密字典中引用多个键。',
+  DESELECT_ALL: '全部取消选择',
+  KEY_PL: '键',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
@@ -62,7 +67,7 @@ module.exports = {
   TARGET_MEMORY_USAGE: '目标内存用量',
   TARGET_CPU_USAGE: '目标 CPU 用量',
   TARGET_CURRENT: '{target}（当前：{current}）',
-  NOT_ENABLE: '{resource}暂未开启',
+  NOT_ENABLE: '{resource}未启用',
   // Metadata
   // Monitoring
   // Monitoring > View All Replicas (visible only when replicas > 5)

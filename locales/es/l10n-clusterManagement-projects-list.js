@@ -23,6 +23,8 @@ module.exports = {
   USER_PROJECTS: 'Proyectos de usuario',
   // List
   EMPTY_WRAPPER: 'No se ha encontrado {resource}',
+  TERMINATING: 'Terminating',
+  ACTIVE: 'Activo',
   // List > Assign Workspace
   PROJECT_ADMINISTRATOR: 'Gestor de proyecto',
   PROJECT_ADMINISTRATOR_DESC:
@@ -59,10 +61,7 @@ module.exports = {
   PROJECT_LOW: 'project',
   DELETE_SUCCESSFUL: 'Eliminado con éxito.',
   STOP_SUCCESS_DESC: 'Stopped successfully.',
-  DELETE_RESOURCE_TYPE_DESC_SI:
-    'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
-  DELETE_RESOURCE_TYPE_DESC_PL:
-    'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
-  DELETE_RESOURCE_TYPE_DESC_GW:
-    'Enter the {type} names <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-}
+  DELETE_RESOURCE_TYPE_DESC_SI: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
+  DELETE_RESOURCE_TYPE_DESC_PL: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.',
+  DELETE_RESOURCE_TYPE_DESC_GW: 'Introduce el {type} nombre <strong>{resource}</strong> para asegurarte de comprender los riesgos asociados con la operación.'
+};

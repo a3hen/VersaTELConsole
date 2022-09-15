@@ -36,7 +36,7 @@ module.exports = {
   'Invalid user name': 'Invalid username. {message}',
   NOT_LOGGED_IN: 'Not logged in',
   'Password length is at least 6 characters':
-    'La longitud de la contraseña es de al menos 6 caracteres.',
+    'La longitud de la contraseña es de al menos 8 caracteres.',
   'Password Strength': 'Seguridad de la contraseña',
   'Please repeat the new password': 'Por favor repita la nueva contraseña',
   'Please select role': 'Por favor selecciona un rol',

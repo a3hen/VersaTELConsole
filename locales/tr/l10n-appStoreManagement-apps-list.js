@@ -17,10 +17,10 @@
  */
 module.exports = {
   // Banner
-  APPS: 'Apps',
-  APP_STORE_MANAGEMENT: 'App Store Management',
-  APP_STORE_DESC:
-    'Manage apps in the App Store. You can view app information, release apps, and suspend apps.',
+  APPS: 'Uygulamalar',
+  APP_STORE_MANAGEMENT: 'Uygulama Mağazası Yönetimi',
+  APP_STORE_DESC: 'Uygulama Mağazası\' ndaki uygulamaları yönetin. Uygulama bilgilerini görüntüleyebilir, uygulamaları yayınlayabilir ve uygulamaları askıya alabilirsiniz.',
   // List
-  APP_CATEGORY: 'App Category',
-}
+  APP_CATEGORY: 'Uygulama Kategorisi',
+  APP_EMPTY_DESC: 'Lütfen bir çalışma alanında bir uygulama şablonu oluşturun ve bunu App Store\'a bırakın.'
+};

@@ -24,9 +24,9 @@ module.exports = {
   ROUTE_PATH_VALUE: 'Path: <strong>{value}</strong>',
   ROUTE_SERVICE_VALUE: 'Servicio: <strong>{value}</strong>',
   ROUTE_PORT_VALUE: 'Port: <strong>{value}</strong>',
+  SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: 'Access Service',
   UNABLE_TO_ACCESS: 'Unable to access service',
-  UNABLE_TO_ACCESS_TIP:
-    '● Asegúrate de que el nombre de dominio establecido pueda resolverse en la dirección IP del portal de acceso. <br/>Si se encuentra en un entorno de nube privada, modifica el archivo de host local y luego accede a través de &ltDomain name&gt:&ltNodePort&gt. <br/> ● Al configurar el acceso DNS, modifica el nombre de dominio a &ltHostname&gt.&ltGateway address&gt.nip.io, y luego acceda al servicio a través de &ltHostname&gt.&ltGateway address&gt.nip.io:&ltNodePort&gt. <br/> ● Si el acceso está bloqueado cuando se usa el nombre de dominio, confirma si tu nombre de dominio existe y se ha registrado.',
-  CERTIFICATE_VALUE: 'Certificate: {value}',
-}
+  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+  CERTIFICATE_VALUE: 'Certificate: {value}'
+};

@@ -119,16 +119,14 @@ export default class AddExistVolumes extends React.Component {
 
     const placeholder = {
       icon: 'storage',
-      label: t('SELECT_VOLUME'),
-      description: t('SELECT_VOLUME_DESC'),
+      label: t('SELECT_PERSISITENT_VOLUME_CLAIM'),
+      description: t('SELECT_PERSISITENT_VOLUME_CLAIM_DESC'),
     }
 
     return (
       <div className={classNames(styles.wrapper, className)}>
         <Form data={formData} ref={formRef}>
-          <Form.Item
-            rules={[{ required: true, message: t('VOLUME_NOT_SELECT') }]}
-          >
+          <Form.Item rules={[{ required: true, message: t('PVC_NOT_SELECT') }]}>
             <TypeSelect
               name="volume"
               options={this.volumes}

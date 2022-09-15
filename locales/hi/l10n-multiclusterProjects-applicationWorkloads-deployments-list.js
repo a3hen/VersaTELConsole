@@ -21,6 +21,7 @@ module.exports = {
     'Workloads are used to handle service requests and can contain one or more pods. System functions such as logging and monitoring are also implemented by workloads.',
   // List
   DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
+  UPDATING: 'Updating',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -63,6 +64,7 @@ module.exports = {
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: 'No limit',
   NO_REQUEST: 'No request',
   NO_RESOURCE_LIMIT: 'No resource limit',
@@ -94,9 +96,16 @@ module.exports = {
   COMMANDS: 'Commands',
   HEALTH_CHECK: 'Health Check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
+  // List > Create > Pod Settings > Add Container > Life Management
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Add Environment Variable',
-  USE_CONFIGMAP_OR_SECRET: 'Use Configmap or Secret',
   KEY_IN_RESOURCE: 'Key in resource',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
@@ -122,7 +131,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'GID to run the entrypoint of the container process. The default value is the container runtime default GID.',
   SELINUX_CONTEXT: 'SELinux Context',
-  CAPABILITIES_BETA: 'Capabilities (beta)',
+  CAPABILITIES: 'Capabilities',
   DROP: 'Drop',
   ACCESS_CONTROL: 'Access Control',
   LEVEL: 'Level',
@@ -155,13 +164,9 @@ module.exports = {
     'Schedules the pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: 'Decentralized Scheduling',
   CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC:
-    'Schedules the pod replicas to nodes according to custom rules.',
-  'Pod IP': 'Pod IP',
-  DECENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to different nodes if possible.',
-  CENTRALIZED_SCHEDULING_DESC:
-    'Schedules the pod replicas to the same node if possible.',
+  CUSTOM_RULES_DESC: 'Schedules the pod replicas to nodes according to custom rules.',
+  DECENTRALIZED_SCHEDULING_DESC: 'Schedules the pod replicas to different nodes if possible.',
+  CENTRALIZED_SCHEDULING_DESC: 'Schedules the pod replicas to the same node if possible.',
   CENTRALIZED_SCHEDULING: 'Centralized Scheduling',
   SCHEDULE_WITH_TARGET: 'Schedule with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
@@ -172,20 +177,17 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Add Metadata',
   POD_ADD_METADATA_DESC: 'Add metadata to the pod replicas.',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: 'Volume Settings',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: 'read-only',
   READ_AND_WRITE_LOW: 'read and write',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: 'Mount Volume',
-  WORKLOAD_MOUNT_VOLUME_DESC:
-    'Mount an existing volume, temporary volume, or HostPath volume to the containers.',
-  EXISTING_VOLUME: 'Existing Volume',
-  SELECT_VOLUME: 'Select Volume',
-  SELECT_VOLUME_DESC:
-    'Select an existing volume and mount it to the containers.',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Capacity',
-  VOLUME_NOT_SELECT: 'Please select a volume.',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: 'Temporary Volume',
   VOLUME_NAME: 'Volume Name',
   VOLUME_NAME_EMPTY: 'Please set a name for the volume.',
@@ -197,7 +199,7 @@ module.exports = {
   HOST_PATH: 'Host Path',
   READ_AND_WRITE: 'Read and write',
   READ_ONLY: 'Read-only',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Mount Configmap or Secret',
   MOUNT_CONFIGMAP_OR_SECRET_DESC:
     'Mount a configmap or secret to the containers.',

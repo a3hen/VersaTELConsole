@@ -59,6 +59,6 @@ module.exports = {
   PROBE_COMMAND_EMPTY: 'Por favor introduce el comando',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > TCP Port
   TCP_PORT: 'Comprobación de puerto TCP',
-  // List > Create > Volume Settings
-  MOUNT_PATH_IN_USE: 'El punto de montaje ya está en uso',
-}
+  // List > Create > Storage Settings
+  MOUNT_PATH_IN_USE: 'El punto de montaje ya está en uso'
+};

@@ -41,11 +41,11 @@ class ResourceStatus extends React.Component {
   store = new Volume()
 
   componentDidMount() {
-    const { _originData, phase } = this.props.detailStore.detail
+    const { _originData, phase, cluster } = this.props.detailStore.detail
     if (phase !== 'Bound') {
       this.store.isLoading = false
     } else {
-      this.store.fetchDetail(_originData.spec.claimRef)
+      this.store.fetchDetail({ cluster, ..._originData.spec.claimRef })
     }
   }
 
@@ -67,7 +67,7 @@ class ResourceStatus extends React.Component {
             <span className={styles.title}>
               {getLocalTime(detail.createTime).format('YYYY-MM-DD HH:mm:ss')}
             </span>
-            <span className={styles.des}>{t('CREATION_TIME_TCAP')}</span>
+            <span className={styles.des}>{t('CREATION_TIME')}</span>
           </div>
         </div>
         <div className={styles.IconLine}>
@@ -91,7 +91,7 @@ class ResourceStatus extends React.Component {
             <Icon name="database" size={30}></Icon>
             <div className={styles.text}>
               <span className={styles.title}>{detail.capacity}</span>
-              <span className={styles.des}>{t('capacity')}</span>
+              <span className={styles.des}>{t('CAPACITY')}</span>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ class ResourceStatus extends React.Component {
   renderAccessTitle = () => {
     return (
       <div className={styles.mode_title}>
-        {t('ACCESS_MODE_TCAP')}
+        {t('ACCESS_MODE')}
         <Tooltip content={renderModeTip}>
           <Icon name="question" size={16} className={styles.toolTip}></Icon>
         </Tooltip>
@@ -115,9 +115,6 @@ class ResourceStatus extends React.Component {
     return (
       <>
         <span>{modes.join(',')}</span>
-        <Tooltip content={renderModeTip}>
-          <Icon name="question" size={16} className={styles.toolTip}></Icon>
-        </Tooltip>
       </>
     )
   }
@@ -125,7 +122,7 @@ class ResourceStatus extends React.Component {
   render() {
     const { detail, isLoading } = this.store
     return (
-      <Panel title={t('VOLUME_PL')}>
+      <Panel title={t('PERSISTENT_VOLUME_CLAIM')}>
         {!isEmpty(detail) && (
           <Loading spinning={isLoading}>{this.renderItem()}</Loading>
         )}

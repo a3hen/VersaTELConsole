@@ -21,8 +21,8 @@ module.exports = {
   CRONJOB_DESC:
     'CronJobs manages Jobs on a time-based schedule and can be used to perform periodic or recurring tasks.',
   // List
-  CRONJOB_PAUSED: 'Paused',
-  CRONJOB_RUNNING: 'Running',
+  CRONJOB_PAUSED: 'Pausado',
+  CRONJOB_RUNNING: 'En ejecución',
   CRONJOB_FAILED: 'Failed',
   // List > Create > Basic Information
   SCHEDULE: 'Schedule',
@@ -61,7 +61,7 @@ module.exports = {
   // List > Create > Pod Settings
   RESTART_POLICY: 'Política de reinicio',
   RESTART_POLICY_DESC: 'Set the Pod restart policy.',
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML

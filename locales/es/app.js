@@ -25,8 +25,6 @@ module.exports = {
   'App Deploy': 'Despliegue de Aplicación',
   'App Introduction': 'Introducción de Aplicación',
   'App Name': 'Nombre de Aplicación',
-  APP_REVIEW: 'Revisión de Aplicación',
-  APP_REVIEWS: 'Revisiones de Aplicación',
   'App Version': 'Versión de Aplicación',
   'App Version Types': 'Tipos de Versión de Aplicación',
   'Application Name': 'Nombre de Application',
@@ -119,15 +117,9 @@ module.exports = {
     'KubeSphere proporciona una herramienta de orquestación de recursos visuales que te permite' +
     ' crear plantillas de aplicación y desplegar pruebas mediante la pre-edición de recursos',
   HELM_DEVELOP_GUIDE: 'Especificación de Helm y del Desarrollo de Aplicaciones',
-  APP_CATE_All: 'Todas',
-  APP_CATE_UNCATEGORIZED: 'Sin categoría',
-  ICON_DESC:
-    'Selecciona un icono para identificar la clasificación, por favor.',
-  MODIFY_VERSION_TIPS:
-    'Toda modificación tendrá efecto a después del lanzamiento de la próxima versión',
-  UNDER_REVIEW_TIPS:
-    'La versión actual de la aplicación está bajo revisión,' +
-    ' y la siguiente información es inalterable temporalmente',
+  ICON_DESC: 'Selecciona un icono para identificar la clasificación, por favor.',
+  MODIFY_VERSION_TIPS: 'Toda modificación tendrá efecto a después del lanzamiento de la próxima versión',
+  UNDER_REVIEW_TIPS: 'La versión actual de la aplicación está bajo revisión,' + ' y la siguiente información es inalterable temporalmente',
   AUDIT_RECORD_CREATE_DESC: 'Sin registro de revisión relevante',
   UPLOAD_SUPPORT_FORMAT: 'Los formatos de fichero soportados son tar.gz y tgz',
   FILE_FORMAT_PACKAGE: 'Los formatos de fichero soportados son tar.gz y tgz',
@@ -142,20 +134,12 @@ module.exports = {
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',
   ALL_APP_RELEASE: 'Release Record',
-  'APP_CATE_MESSAGE QUEUEING': 'Message Queuing',
-  'APP_CATE_IMAGE REGISTRY': 'Image Registry',
-  'APP_CATE_PROMETHEUS EXPORTER': 'Prometheus Exporter',
-  'APP_CATE_WEB SERVER': 'Web Server',
-  APP_CATE_NETWORKING: 'Networking',
-  'APP_CATE_DATABASE & CACHE': 'Database & Cache',
-  APP_CATE_STORAGE: 'Storage',
   // App Review
   REVIEW: 'Review',
   PENDING_REVIEW: 'Pending',
   COMPLETE_REVIEW: 'Complete',
   SERVICE_PROVIDER: 'Service provider',
   // App Store
-  CATEGORIES: 'Categories',
   UPDATE_TIME_COLON: 'Update time: ',
   DEVELOPER: 'Developer',
   // App Categories

@@ -26,10 +26,8 @@ module.exports = {
   // Collect Logs on Volumes
   COLLECT_LOGS_ON_VOLUMES: 'Colección de registro de disco',
   DISABLE_LOG_COLLECTION: 'Disable Log Collection',
-  DISABLE_LOG_COLLECTION_TIP:
-    'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
-  LOG_COLLECTION_ENABLED_DESC:
-    'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
-  DISABLED: 'Disabled',
-  ENABLED: 'Habilitado',
-}
+  DISABLE_LOG_COLLECTION_TIP: 'Are you sure you want to disable log collection? After it is disabled, services that have enabled log collection will continue to collect logs saved in the volumes before the Pod replicas are restarted. If you need to collect the logs again, please enable log collection and restart the Pod replicas.',
+  LOG_COLLECTION_ENABLED_DESC: 'After this function is enabled or disabled, you need to restart the Pod replicas to make the change take effect.',
+  DISABLED: 'Deshabilitado',
+  ENABLED: 'Habilitado'
+};

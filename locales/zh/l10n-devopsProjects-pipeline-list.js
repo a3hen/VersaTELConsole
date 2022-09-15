@@ -99,8 +99,8 @@ module.exports = {
   ALL_BRANCHES: '包括所有分支',
   ONLY_PR_BRANCHES: '只包括已提交 PR 的分支',
   EXCLUDE_PR_BRANCHES: '排除已提交 PR 的分支',
-  ENABLE_TAG_BRANCH_DISCOVERY: '开启标签发现',
-  DISABLE_TAG_BRANCH_DISCOVERY: '关闭标签发现',
+  ENABLE_TAG_BRANCH_DISCOVERY: '启用标签发现',
+  DISABLE_TAG_BRANCH_DISCOVERY: '禁用标签发现',
   PULL_STRATEGY: '拉取策略',
   OPTIONS_PR_PARAMS_1: '拉取 PR 合并后的代码',
   OPTIONS_PR_PARAMS_2: '拉取 PR 提交时的代码',
@@ -125,7 +125,7 @@ module.exports = {
   CLONE_SETTINGS: '克隆设置',
   CLONE_TIMEOUT_PERIOD: '克隆超时时间（min）',
   CLONE_DEPTH: '克隆深度',
-  ENABLE_SHALLOW_CLONE: '开启浅克隆',
+  ENABLE_SHALLOW_CLONE: '启用浅克隆',
   WEBHOOK_PUSH_URL: 'Webhook 推送 URL',
   WEBHOOK_PUSH_DESC: '推送消息到此 URL 以触发仓库扫描。',
   TRUSTED_USERS: '受信用户',
@@ -166,4 +166,9 @@ module.exports = {
     '输入 CRON 表达式以设置定时计划。<a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">了解更多</a>',
   DEFAULT_VALUE: '默认值',
   PARAMETER_NAME_EMPTY_DESC: '请设置参数的名称。',
-}
+  SELECT_TEMPLATE: '选择模板',
+  PARAMETER_CONFIG: '参数设置',
+  PREVIEW: '预览',
+  EMPTY_PARAMS_CONFIG: '此操作不需要设置参数。',
+  PIPELINE_VALIDATOR_DESC: '请选择一个流水线模板。'
+};
