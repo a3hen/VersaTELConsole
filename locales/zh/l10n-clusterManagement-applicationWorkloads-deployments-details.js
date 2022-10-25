@@ -29,7 +29,8 @@ module.exports = {
   // More > Re-Create
   // More > Delete
   // Resource Status > Clusters
-  MULTI_CLUSTER_RESOURCE_TIP: '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
+  MULTI_CLUSTER_RESOURCE_TIP:
+    '当前资源跨多个集群部署。您可以点击一个集群以查看资源在该集群中的设置。',
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
@@ -40,5 +41,5 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: '事件'
-};
+  EVENT_PL: '事件',
+}

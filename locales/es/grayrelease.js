@@ -27,7 +27,8 @@ module.exports = {
   GRAYSCALE_RELEASE_VERSION_TCAP: 'Versión de Grayscale Release',
   GRAYSCALE_RELEASE_VERSION_NUMBER: 'Número de versión Grayscale Release',
   DELETE_JOB: 'Trabajo fuera de línea',
-  'Mirrored traffic is only receiving traffic, no service': 'El tráfico reflejado solo recibe tráfico, no hay servicio',
+  'Mirrored traffic is only receiving traffic, no service':
+    'El tráfico reflejado solo recibe tráfico, no hay servicio',
   NO_WORKLOAD_FOUND_TIP: 'No se encontró carga de trabajo',
   'Not online': 'Fuera de linea',
   'Operating System': 'Sistema operativo',
@@ -37,7 +38,8 @@ module.exports = {
   RULE_DESCRIPTION: 'Descripción de la regla',
   'Take Over': 'Tomar el control',
   TAKE_ONLINE: 'Tomar el control de todo el tráfico',
-  'The current version is not online, you can let this version take over all traffic and bring it online.': 'La versión actual no está online, puedes dejar que esta versión tome el control de todo el tráfico y lo ponga online.',
+  'The current version is not online, you can let this version take over all traffic and bring it online.':
+    'La versión actual no está online, puedes dejar que esta versión tome el control de todo el tráfico y lo ponga online.',
   traffic: 'tráfico',
   TRAFFIC_CONTROL: 'Control de trafico',
   VERSION_COMPARISON: 'Comparar versiones',
@@ -45,12 +47,16 @@ module.exports = {
   'Version Off': 'Versión desactivada',
   GRAY_RELEASE_CATEGORIES: 'Strategies',
   GRAY_RELEASE_STRATEGY_SI: 'G\brayscale Release Strategy',
-  AB_TESTING_DESC: 'Este método es muy útil para comprender si las actualizaciones o mejoras del producto han cumplido con las expectativas. Se puede usar cuando surgen nuevas necesidades y no afectará la estabilidad del negocio.',
-  GRAY_RELEASE_VERSION_DESC: 'Introducir la nueva versión en el service-mesh de aplicación existente',
-  POLICY_CONFIG_DESC: 'Versión basada en el ratio de tráfico: de acuerdo con la regla de configuración del ratio de tráfico, la proporción especificada de tráfico se dividirá de la versión original a la versión en Grayscale Release.',
+  AB_TESTING_DESC:
+    'Este método es muy útil para comprender si las actualizaciones o mejoras del producto han cumplido con las expectativas. Se puede usar cuando surgen nuevas necesidades y no afectará la estabilidad del negocio.',
+  GRAY_RELEASE_VERSION_DESC:
+    'Introducir la nueva versión en el service-mesh de aplicación existente',
+  POLICY_CONFIG_DESC:
+    'Versión basada en el ratio de tráfico: de acuerdo con la regla de configuración del ratio de tráfico, la proporción especificada de tráfico se dividirá de la versión original a la versión en Grayscale Release.',
   DEPLOY_APP_CONFIRM: '¿Seguro que deseas desplegar la aplicación de demo?',
   DEPLOY_APP_TIP: 'Desplegar la aplicación de demo {name}.',
-  DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP: 'El gateway para el application governance no se encuentra en el proyecto actual, por lo que no puedes implementar la aplicación de demo. Ponte en contacto con el administrador de tu proyecto para activarlo en [Configuración avanzada].',
+  DEPLOY_SAMPLE_NO_INTERNET_ACCESS_TIP:
+    'El gateway para el application governance no se encuentra en el proyecto actual, por lo que no puedes implementar la aplicación de demo. Ponte en contacto con el administrador de tu proyecto para activarlo en [Configuración avanzada].',
   // Grayscale release detail page
   // Grayscale release components tab
   GRAY_WORKLOAD_TYPE: 'Tipo de carga de trabajo: ',
@@ -59,5 +65,5 @@ module.exports = {
   // Canary Strategy Tab
   // Grayscale Release Job List
   GRAYSCALE_JOB_STRATEGY: 'Grayscale release strategy',
-  GRAYSCALE_JOB_COMPONENT: 'Componente de Grayscale Release'
-};
+  GRAYSCALE_JOB_COMPONENT: 'Componente de Grayscale Release',
+}

@@ -17,14 +17,18 @@
  */
 
 import React from 'react'
-import { isEmpty } from 'lodash'
+import { get, isEmpty } from 'lodash'
 import { observer, inject } from 'mobx-react'
 import { Loading } from '@kube-design/components'
 
-import { getDisplayName } from 'utils'
+import { getDisplayName, compareVersion } from 'utils'
 import { trigger } from 'utils/action'
-import { toJS } from 'mobx'
+import { toJS, observable } from 'mobx'
 import StorageClassStore from 'stores/storageClass'
+import AccessorStore from 'stores/accessor'
+import ValidateWebhookCFStore from 'stores/validateWebhookCF'
+import CrdStore from 'stores/crd'
+import FORM_TEMPLATES from 'utils/form.templates'
 
 import DetailPage from 'clusters/containers/Base/Detail'
 
@@ -35,6 +39,19 @@ import routes from './routes'
 @trigger
 export default class StorageClassDetail extends React.Component {
   store = new StorageClassStore()
+
+  accessorStore = new AccessorStore()
+
+  validateWebhookCFStore = new ValidateWebhookCFStore()
+
+  CrdStore = new CrdStore()
+
+  state = {
+    shouldAddCrd: false,
+  }
+
+  @observable
+  ksVersion = ''
 
   componentDidMount() {
     this.store.fetchList({ limit: -1 })
@@ -62,62 +79,161 @@ export default class StorageClassDetail extends React.Component {
     return `/clusters/${cluster}/storageclasses`
   }
 
-  fetchData = () => {
+  fetchData = async () => {
     const { params } = this.props.match
-    this.store.fetchDetail(params)
+    this.ksVersion = await this.accessorStore.getKsVersion(params)
+    await this.store.fetchDetail(params)
+
+    if (compareVersion(`${this.ksVersion}`, 'v3.3') < 0) {
+      // check if k8s supports accessor resource
+      Promise.all([
+        this.validateWebhookCFStore.fetchDetailWithoutWarning({
+          ...params,
+          name: 'storageclass-accessor.storage.kubesphere.io',
+        }),
+        this.CrdStore.fetchDetailWithoutWarning({
+          ...params,
+          name: 'accessors.storage.kubesphere.io',
+        }),
+      ]).then(([validate, crd]) => {
+        const { urlNotSupport: u1 } = validate
+        const { urlNotSupport: u2 } = crd
+        if (u1 || u2) {
+          this.setState({
+            shouldAddCrd: true,
+          })
+        } else if (!isEmpty(validate) && !isEmpty(crd)) {
+          this.checkHasAccessor()
+        }
+      })
+    } else {
+      this.checkHasAccessor()
+    }
   }
 
-  getOperations = () => [
-    {
-      key: 'editYaml',
-      type: 'default',
-      text: t('EDIT_YAML'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('resource.yaml.edit', {
-          detail: toJS(this.store.detail),
-          readOnly: false,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'setDefault',
-      icon: 'pen',
-      text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.set.default', {
-          detail: toJS(this.store.detail),
-          defaultStorageClass: this.defaultStorageClass.name,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'funcManage',
-      icon: 'slider',
-      text: t('VOLUME_MANAGEMENT'),
-      action: 'edit',
-      onClick: () =>
-        this.trigger('storageclass.volume.function.update', {
-          detail: toJS(this.store.detail),
-          StorageClassStore: this.store,
-          success: this.fetchData,
-        }),
-    },
-    {
-      key: 'delete',
-      icon: 'trash',
-      text: t('DELETE'),
-      action: 'delete',
-      type: 'danger',
-      onClick: () =>
-        this.trigger('resource.delete', {
-          type: this.name,
-          detail: toJS(this.store.detail),
-          success: this.returnTolist,
-        }),
-    },
-  ]
+  checkHasAccessor = async () => {
+    const { params } = this.props.match
+    const storageClassName = get(this.store.detail, 'name')
+    const detail = await this.accessorStore.fetchDetailWithoutWarning({
+      ...params,
+      name: `${storageClassName}-accessor`,
+    })
+    if (detail.urlNotSupport) {
+      this.setState({
+        shouldAddCrd: true,
+      })
+    } else if (isEmpty(detail)) {
+      const template = FORM_TEMPLATES['accessors'](storageClassName)
+      await this.accessorStore.create(template, { ...params })
+      await this.accessorStore.fetchDetail({
+        cluster: params.cluster,
+        name: `${params.name}-accessor`,
+      })
+    }
+  }
+
+  getOperations = () => {
+    const { shouldAddCrd } = this.state
+    const { cluster } = this.props.match.params
+    const show = compareVersion(`${this.ksVersion}`, 'v3.3') >= 0
+    return [
+      {
+        key: 'editYaml',
+        type: 'default',
+        text: t('EDIT_YAML'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('resource.yaml.edit', {
+            detail: toJS(this.store.detail),
+            readOnly: false,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'setDefault',
+        icon: 'pen',
+        text: t('SET_AS_DEFAULT_STORAGE_CLASS'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('storageclass.set.default', {
+            detail: toJS(this.store.detail),
+            defaultStorageClass: this.defaultStorageClass.name,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'accessor',
+        icon: () => (
+          <>
+            <img
+              src="/assets/storageclass-tree.svg"
+              style={{ width: '16px', marginRight: '12px' }}
+            />
+          </>
+        ),
+        text: t('SET_AUTHORIZATION_RULES'),
+        action: 'edit',
+        show,
+        onClick: () =>
+          this.trigger('storageclass.accessor', {
+            storageClassName: get(this.store.detail, 'name'),
+            shouldAddCrd,
+            store: this.accessorStore,
+            detail: toJS(this.accessorStore.detail),
+            cluster,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'funcManage',
+        icon: 'slider',
+        text: t('SET_VOLUME_OPERATIONS'),
+        action: 'edit',
+        onClick: () =>
+          this.trigger('storageclass.volume.function.update', {
+            detail: toJS(this.store.detail),
+            StorageClassStore: this.store,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'autoResizer',
+        icon: () => (
+          <>
+            <img
+              src="/assets/storageclass_autoresizer.svg"
+              style={{ width: '16px', marginRight: '12px' }}
+            />
+          </>
+        ),
+        text: t('SET_AUTO_EXPANSION'),
+        action: 'edit',
+        disabled:
+          !show || !get(toJS(this.store.detail), 'allowVolumeExpansion', false),
+        onClick: () =>
+          this.trigger('storageclass.pvc.autoresizer', {
+            detail: toJS(this.store.detail),
+            StorageClassStore: this.store,
+            success: this.fetchData,
+          }),
+      },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        type: 'danger',
+        onClick: () =>
+          this.trigger('storageclass.delete', {
+            type: this.name,
+            detail: toJS(this.store.detail),
+            accessorStore: this.accessorStore,
+            cluster,
+            success: this.returnTolist,
+          }),
+      },
+    ]
+  }
 
   getAttrs = () => {
     const { detail = {} } = this.store

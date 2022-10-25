@@ -20,7 +20,7 @@ module.exports = {
   PIPELINE_PL: '流水線',
   // List
   HEALTH: '健康狀態',
-  PULL_REQUEST_COUNT: 'Pull Requests',
+  PULL_REQUEST_COUNT: '拉取請求',
   HEALTHY: '健康',
   SUB_HEALTHY: '亞健康',
   NO_STATUS: '沒有狀態',
@@ -41,7 +41,8 @@ module.exports = {
   CREATE_PIPELINE: '創建流水線',
   // List > Create > Basic Information
   SELECT_CODE_REPOSITORY: '選擇代碼倉庫',
-  PIPELINE_CREATE_DEVOPS_PROJECT_DESC: 'Select the DevOps project to which the pipeline belongs.',
+  PIPELINE_CREATE_DEVOPS_PROJECT_DESC:
+    'Select the DevOps project to which the pipeline belongs.',
   CODE_REPOSITORY_OPTIONAL: '代碼倉庫（可選）',
   SELECT_CODE_REPO_DESC: '請選擇一個代碼倉庫作為流水線的代碼來源。',
   RESELECT: '重新選擇',
@@ -49,7 +50,8 @@ module.exports = {
   CREDENTIAL_SI: '憑證',
   CREDENTIAL: '憑證',
   PIPELINE_CREDENTIAL_EMPTY_TIP: 'Please select a credential.',
-  SELECT_CREDENTIAL_DESC: '獲取倉庫代碼可能需要憑證, 選擇已有憑證或添加一個新的憑證。',
+  SELECT_CREDENTIAL_DESC:
+    '獲取倉庫代碼可能需要憑證, 選擇已有憑證或添加一個新的憑證。',
   GITHUB_CREDENTIAL_EMPTY: '請輸入 GitHub 訪問令牌。',
   INCORRECT_GITHUB_TOKEN_DESC: `Token 錯誤
   <a
@@ -65,7 +67,8 @@ module.exports = {
   GITLAB_SERVER_ADDRESS: 'Gitlab 服務',
   GITLAB_SERVER_EMPTY_TIP: 'Please enter the address of a GitLab server.',
   PROJECT_GROUP_OWNER: 'GitLab 項目所屬組',
-  PROJECT_GROUP_OWNER_EMPTY_TIP: 'Please enter the name of a GitLab project group or project owner.',
+  PROJECT_GROUP_OWNER_EMPTY_TIP:
+    'Please enter the name of a GitLab project group or project owner.',
   REPOSITORY_NAME: '倉庫名稱',
   REPOSITORY_NAME_EMPTY_TIP: 'Please enter the name of a repository name.',
   // List > Create > Basic Information > Code Repository > Bitbucket
@@ -73,11 +76,13 @@ module.exports = {
   BITBUCKET_SERVER_EMPTY_TIP: 'Please enter the address of a Bitbucket server.',
   INCORRECT_USERNAME_OR_PASSWORD: '用戶名或密碼錯誤',
   BITBUCKET_SERVER_CREDENTIAL_EMPTY: '請輸入 BitBucket 帳號資訊。',
-  BITBUCKET_ADDRESS_EMPTY_TIP: 'Please enter the address of a Bitbucket server.',
+  BITBUCKET_ADDRESS_EMPTY_TIP:
+    'Please enter the address of a Bitbucket server.',
   BITBUCKET_ADDRESS_INVALID_TIP: 'Invalid Bitbucket server address.',
   // List > Create > Basic Information > Code Repository > Git
   CODE_REPOSITORY_ADDRESS_DESC: '請使用包含 Jenkinsfile 的倉庫。',
-  CODE_REPOSITORY_ADDRESS_EMPTY_TIP: 'Please enter the address of a code repository.',
+  CODE_REPOSITORY_ADDRESS_EMPTY_TIP:
+    'Please enter the address of a code repository.',
   CODE_REPOSITORY_ADDRESS: '倉庫 URL',
   // List > Create > Basic Information > Code Repository > SVN
   SINGLE_SVN: '單分支 SVN',
@@ -86,12 +91,14 @@ module.exports = {
   BRANCH_INCLUDED: '包括分支',
   // List > Create > Advanced Settings
   DELETE_OUTDATED_BRANCHES: '丢棄舊的分支',
-  DELETE_OUTDATED_BRANCHES_TIP: 'Set the system to automatically delete outdated branches to save disk space.',
+  DELETE_OUTDATED_BRANCHES_TIP:
+    'Set the system to automatically delete outdated branches to save disk space.',
   BRANCH_SETTINGS: ' 分支設置',
   BRANCH_RETENTION_PERIOD_DAYS: '保留分支的天數',
   MAXIMUM_BRANCHES: '保留分支的最大個數',
   BRANCH_RETENTION_PERIOD_DAYS_DESC: '達到保留天數的分支將被刪除，默認值為 7。',
-  MAXIMUM_BRANCHES_DESC: '如果分支數量超過保留的最大數量，將丟棄舊的分支。默認值為 5。',
+  MAXIMUM_BRANCHES_DESC:
+    '如果分支數量超過保留的最大數量，將丟棄舊的分支。默認值為 5。',
   ADD_STRATEGY: 'Add Strategy',
   DISCOVER_TAG_BRANCHES: '發現 Tag 分支',
   DISCOVER_BRANCHES: '發現分支',
@@ -106,7 +113,8 @@ module.exports = {
   OPTIONS_PR_PARAMS_3: 'Create two pipelines respectively',
   REGEX: '過濾規則',
   FILTER_BY_REGEX: '根據名稱過濾（正則匹配）',
-  FILTER_BY_REGEX_DESC: '啟用正則表達式，將忽略與提供的正則表達式不匹配的名稱（包括分支與PR等)',
+  FILTER_BY_REGEX_DESC:
+    '啟用正則表達式，將忽略與提供的正則表達式不匹配的名稱（包括分支與PR等)',
   SCRIPT_PATH: '腳本路徑',
   SCRIPT_PATH_DESC: '指定 Jenkinsfile 在源代碼倉庫的位置。',
   SCAN_TRIGGER: '倉庫掃描觸發器',
@@ -114,8 +122,10 @@ module.exports = {
   TIME_TRIGGER_DESC: 'Scan the code repository periodically.',
   SCAN_INTERVAL: '掃描時間間隔',
   SELECT_PIPELINE_SCAP: '選擇一個流水線。',
-  WHEN_DELETE_PIPELINE_DESC: '當有流水線被刪除時，將自動觸發指定流水線中的任務。',
-  WHEN_CREATE_PIPELINE_DESC: '當創建新的流水線時，將自動觸發指定流水線中的任務。',
+  WHEN_DELETE_PIPELINE_DESC:
+    '當有流水線被刪除時，將自動觸發指定流水線中的任務。',
+  WHEN_CREATE_PIPELINE_DESC:
+    '當創建新的流水線時，將自動觸發指定流水線中的任務。',
   PIPELINE_EVENT_TRIGGER: '流水線事件觸發器',
   WHEN_CREATE_PIPELINE: '創建流水線',
   WHEN_DELETE_PIPELINE: '當刪除流水線',
@@ -136,15 +146,18 @@ module.exports = {
   DELETE_OUTDATED_BUILD_RECORDS: '丢棄舊的構建',
   DELETE_OUTDATED_BUILD_RECORDS_TIP: `Set the system to automatically delete outdated build records including console output, archived artifacts, and metadata to save disk space.`,
   BUILD_RECORD_RETENTION_PERIOD_DAYS: '保留構建的天數',
-  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC: '達到保留天數的構建將被刪除，默認值為 7。',
+  BUILD_RECORD_RETENTION_PERIOD_DAYS_DESC:
+    '達到保留天數的構建將被刪除，默認值為 7。',
   MAXIMUM_BUILD_RECORDS: '保留構建的最大個數',
-  MAXIMUM_BUILD_RECORDS_DESC: '如果構建超過保留的最大數量，將丟棄舊的構建。默認值為 10。',
+  MAXIMUM_BUILD_RECORDS_DESC:
+    '如果構建超過保留的最大數量，將丟棄舊的構建。默認值為 10。',
   NO_CONCURRENT_BUILDS: '不允許並發構建',
   NO_CONCURRENT_BUILD_DESC: '如果勾選此選項，則不能同時運行多個構建。',
   BUILD_PARAMETERS: '參數化構建',
   BUILD_PARAMETERS_TIP: 'Pass build parameters to the pipeline.',
   PARAMS_STRING: '字符串參數 (String) ',
-  PIPELINE_PARAM_DEFAULT_DESC: '指定字段的預設值，您也可以在手動運行流水線前修改預設值。',
+  PIPELINE_PARAM_DEFAULT_DESC:
+    '指定字段的預設值，您也可以在手動運行流水線前修改預設值。',
   PARAMS_TEXT: '文本 (Text) ',
   PARAMS_TEXT_TCAP: '字符串參數 (String) ',
   PARAMETER_DESCRIPTION_DESC: '參數的描述。',
@@ -156,7 +169,13 @@ module.exports = {
   BUILD_PERIODICALLY: '定時構建',
   BUILD_PERIODICALLY_TIP: '提供類似 cron 的功能來定期執行此流水線。',
   PIPELINE_CRON_DESC: '上次運行時間 {lastTime}，下次運行時間 {nextTime}。',
-  PIPELINE_SCHEDULE_DESC: 'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
+  PIPELINE_SCHEDULE_DESC:
+    'Enter a CRON expression to set a schedule. <a href="//jenkins.io/doc/book/pipeline/syntax/#cron-syntax" target="_blank">Learn More</a>',
   DEFAULT_VALUE: '預設值',
-  PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.'
+  PARAMETER_NAME_EMPTY_DESC: 'Please set the parameter name.',
+  SELECT_TEMPLATE: 'Select template',
+  PARAMETER_CONFIG: 'Parameter configuration',
+  PREVIEW: 'Preview',
+  EMPTY_PARAMS_CONFIG: 'This operation does not require parameter configuration.',
+  PIPELINE_VALIDATOR_DESC: 'Please select a pipeline template.'
 };

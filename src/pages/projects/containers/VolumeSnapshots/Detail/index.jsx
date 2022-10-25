@@ -27,6 +27,7 @@ import { getDisplayName, getLocalTime } from 'utils'
 import { trigger } from 'utils/action'
 import { toJS } from 'mobx'
 import VolumeSnapshotStore from 'stores/volumeSnapshot'
+import VolumeSnapshotClassStore from 'stores/volumeSnapshotClasses'
 
 import DetailPage from 'projects/containers/Base/Detail'
 
@@ -38,8 +39,13 @@ import getRoutes from './routes'
 export default class VolumeSnapshotDetail extends React.Component {
   store = new VolumeSnapshotStore()
 
-  componentDidMount() {
-    this.fetchData()
+  snapshotClass = new VolumeSnapshotClassStore()
+
+  volumeStore = new VolumeStore()
+
+  async componentDidMount() {
+    await this.fetchData()
+    this.getVolumeInfo()
   }
 
   get name() {
@@ -58,21 +64,52 @@ export default class VolumeSnapshotDetail extends React.Component {
     return `/clusters/${cluster}/${this.module}`
   }
 
-  fetchData = () => {
-    this.store.fetchDetail(this.props.match.params)
+  fetchData = async () => {
+    const { params } = this.props.match
+    await this.store.fetchDetail(this.props.match.params)
+    await this.snapshotClass.fetchDetail({
+      cluster: params.cluster,
+      name: this.store.detail.snapshotClassName,
+    })
+  }
+
+  getVolumeInfo = () => {
+    const { params } = this.props.match
+    const name = this.store.detail.snapshotSourceName
+    this.volumeStore.fetchDetail({ ...params, name })
   }
 
   showApply = () => {
     const { cluster, namespace } = this.props.match.params
-    return globals.app.hasPermission({
-      module: 'volumes',
-      action: 'create',
-      project: namespace,
-      cluster,
-    })
+    const { detail } = toJS(this.snapshotClass)
+    return (
+      !isEmpty(detail) &&
+      globals.app.hasPermission({
+        module: 'volumes',
+        action: 'create',
+        project: namespace,
+        cluster,
+      })
+    )
   }
 
   getOperations = () => [
+    {
+      key: 'edit',
+      text: t('EDIT_YAML'),
+      show: this.store.detail.backupStatus === 'success',
+      onClick: () => {
+        const { cluster, namespace } = this.props.match.params
+        const { detail } = this.store
+        this.trigger('volume.snapshot.yaml.edit', {
+          store: this.store,
+          detail: detail._originData,
+          cluster,
+          namespace,
+          success: this.fetchData,
+        })
+      },
+    },
     {
       key: 'apply',
       icon: 'storage',
@@ -94,7 +131,10 @@ export default class VolumeSnapshotDetail extends React.Component {
                   storage: get(this.store, 'detail.restoreSize'),
                 },
               },
-              storageClassName: get(this.store, 'detail.snapshotClassName'),
+              storageClassName: get(
+                this.volumeStore,
+                'detail.storageClassName'
+              ),
               dataSource: {
                 name: get(this.store, 'detail.name'),
                 kind: 'VolumeSnapshot',
@@ -129,10 +169,15 @@ export default class VolumeSnapshotDetail extends React.Component {
       creator,
       errorMessage,
       namespace,
+      snapshotClassName,
     } = detail
     if (isEmpty(detail)) return null
 
     return [
+      {
+        name: t('PROJECT'),
+        value: namespace,
+      },
       {
         name: t('STATUS'),
         value: (
@@ -154,16 +199,16 @@ export default class VolumeSnapshotDetail extends React.Component {
         value: restoreSize,
       },
       {
-        name: t('CREATOR'),
-        value: creator,
-      },
-      {
-        name: t('PROJECT'),
-        value: namespace,
+        name: t('VOLUME_SNAPSHOT_CLASS'),
+        value: snapshotClassName,
       },
       {
         name: t('CREATION_TIME_TCAP'),
         value: getLocalTime(createTime).format('YYYY-MM-DD HH:mm:ss'),
+      },
+      {
+        name: t('CREATOR'),
+        value: creator,
       },
     ]
   }

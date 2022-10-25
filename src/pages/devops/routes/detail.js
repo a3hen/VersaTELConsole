@@ -19,6 +19,7 @@
 import RoleDetail from '../containers/Roles/Detail'
 import CredentialDetail from '../containers/Credential/detail'
 import PipelineDetail from '../containers/Pipelines/Detail/layout'
+import CDDetail from '../containers/CD/detail'
 
 const PATH = '/:workspace/clusters/:cluster/devops'
 
@@ -30,6 +31,10 @@ export default [
   {
     path: `${PATH}/:devops/credentials/:credential_id`,
     component: CredentialDetail,
+  },
+  {
+    path: `${PATH}/:devops/cd/:cd`,
+    component: CDDetail,
   },
   {
     path: `${PATH}/:namespace/roles/:name`,

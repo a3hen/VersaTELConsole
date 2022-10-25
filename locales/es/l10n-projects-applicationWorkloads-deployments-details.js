@@ -22,13 +22,16 @@ module.exports = {
   TARGET_REVISION_EMPTY_DESC: 'Por favor selecciona revisión de reversión',
   TARGET_REVISION_RECORD: 'Revisiones de Rollback',
   // More > Edit Autoscaling
-  CONFIGURE_AUTOSCALING_DESC: 'Escala automática de las réplicas automáticamente de acuerdo con el uso de CPU y memoria. Si se especifican tanto la CPU como la memoria, las réplicas se agregan o eliminan después de que se cumpla alguna de las condiciones.',
+  CONFIGURE_AUTOSCALING_DESC:
+    'Escala automática de las réplicas automáticamente de acuerdo con el uso de CPU y memoria. Si se especifican tanto la CPU como la memoria, las réplicas se agregan o eliminan después de que se cumpla alguna de las condiciones.',
   EDIT_AUTOSCALING: 'Edit Autoscaling',
   TARGET_CPU_USAGE_UNIT: 'Utilización de CPU',
   AUTOSCALING: 'Autoescalado horizontal de pods',
   RESOURCE_NAME: 'Nombre del recurso',
-  TARGET_CPU_USAGE_DESC: 'Las réplicas aumentarán cuando el uso de la CPU exceda este valor objetivo, por el contrario, disminuirá.',
-  TARGET_MEMORY_USAGE_DESC: 'Las réplicas aumentarán cuando el uso de la memoria exceda este valor objetivo, por el contrario, disminuirá.',
+  TARGET_CPU_USAGE_DESC:
+    'Las réplicas aumentarán cuando el uso de la CPU exceda este valor objetivo, por el contrario, disminuirá.',
+  TARGET_MEMORY_USAGE_DESC:
+    'Las réplicas aumentarán cuando el uso de la memoria exceda este valor objetivo, por el contrario, disminuirá.',
   MINIMUM_REPLICAS_DESC: 'Valor mínimo de la cantidad de réplicas',
   MAXIMUM_REPLICAS_DESC: 'Valor máximo del número de réplicas.',
   TARGET_MEMORY_USAGE_UNIT: 'Uso de destino de memoria',
@@ -37,6 +40,12 @@ module.exports = {
   // More > Edit Settings > Update Strategy
   EDIT_SETTINGS: 'Editar plantilla de configuración',
   // More > Edit Settings > Containers
+  FROM_CONFIGMAP: 'From configmap',
+  FROM_SECRET: 'From secret',
+  BATCH_REFERENCE: 'Batch Reference',
+  BATCH_REFERENCE_DESC: 'Reference multiple keys in a configmap or secret.',
+  DESELECT_ALL: 'Deselect all',
+  KEY_PL: 'Keys',
   // More > Edit Settings > Volumes
   // More > Edit Settings > Volumes > Mount Volume
   // More > Edit Settings > Volumes > Mount Configmap or Secret
@@ -51,7 +60,8 @@ module.exports = {
   REPLICAS_DESIRED: 'Esperadas',
   REPLICAS_CURRENT: 'Réplicas actuales',
   ADJUST_REPLICAS: '¿Tiene efecto de inmediato?',
-  REPLICAS_SCALE_NOTIFY_CONTENT: 'Va a cambiar las réplicas de su carga de trabajo a {num}. Puede continuar cambiando el número de réplicas o puede hacer que el cambio surta efecto de inmediato.',
+  REPLICAS_SCALE_NOTIFY_CONTENT:
+    'Va a cambiar las réplicas de su carga de trabajo a {num}. Puede continuar cambiando el número de réplicas o puede hacer que el cambio surta efecto de inmediato.',
   REPLICAS_SCALE_NOTIFY_CONFIRM: 'Aplicar cambios ({segundos} s)',
   REPLICAS_SCALE_NOTIFY_CANCEL: 'Descartar los cambios',
   // Resource Status > Autoscaling
@@ -65,7 +75,8 @@ module.exports = {
   VIEW_ALL_REPLICAS: 'Ver todas las réplicas',
   SHOW_SELECTED_ONLY: 'Mostrar solo seleccionados',
   MONITORING_SELECT_LIMIT_MSG: 'Puedes seleccionar hasta diez recursos',
-  MONITORING_ALERT_DESC: 'El gráfico de monitoreo actual muestra cinco réplicas como máximo. Puede hacer clic en "Ver todas las réplicas" para ver más gráficos de monitoreo si el número de réplicas supera las cinco.',
+  MONITORING_ALERT_DESC:
+    'El gráfico de monitoreo actual muestra cinco réplicas como máximo. Puede hacer clic en "Ver todas las réplicas" para ver más gráficos de monitoreo si el número de réplicas supera las cinco.',
   CURRENT_VALUE: 'Current: {value}',
   // Environment Variables
   ENVIRONMENT_VARIABLE_PL: 'Variables de entorno',
@@ -73,5 +84,5 @@ module.exports = {
   EVENT_AGE: 'Occurred',
   EVENT_AGE_DATA: '{lastTime}<br/>({count} times over {duration})',
   EVENT_AGE_DATA_TWICE: '{lastTime}<br/>(twice over {duration})',
-  SOURCE: 'Source'
-};
+  SOURCE: 'Source',
+}

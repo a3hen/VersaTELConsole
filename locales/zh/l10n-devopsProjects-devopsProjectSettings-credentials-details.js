@@ -24,5 +24,5 @@ module.exports = {
   // Details > Credential
   TYPE_VALUE: '类型：{value}',
   // Events
-  RECORD: '记录'
-};
+  RECORD: '记录',
+}

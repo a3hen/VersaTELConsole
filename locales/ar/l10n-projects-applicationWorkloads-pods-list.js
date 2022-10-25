@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Banner
-  POD_DESC: 'A pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
+  POD_DESC:
+    'A pod is the basic execution unit of a Kubernetes application, representing the smallest and simplest unit in the Kubernetes object model that you create or deploy.',
   // List
-  POD_EMPTY_DESC: 'Please create a pod.'
-};
+  POD_EMPTY_DESC: 'Please create a pod.',
+}

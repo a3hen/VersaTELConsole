@@ -17,22 +17,42 @@
  */
 module.exports = {
   // Details
-  TRUE: 'True',
-  FALSE: 'False',
+  TRUE: 'Doğru',
+  FALSE: 'Yanlış',
   // More > Set as Default Storage Class
-  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Set as Default Storage Class',
-  SET_AS_DEFAULT_STORAGE_CLASS: 'Set as Default Storage Class',
-  STORAGE_CLASS_SET_DEFAULT_DESC: 'After the default storage class is set, the system will create volumes of this class by default if no special requirement is added. Only one default storage class is allowed in a KubeSphere cluster.',
-  // More > Volume Management
-  VOLUME_MANAGEMENT: 'Volume Management',
-  VOLUME_CLONE: 'Volume Clone',
-  ALLOW_VOLUME_CLONE_DESC: 'Allows users to clone volumes.',
-  ALLOW_VOLUME_SNAPSHOT_DESC: 'Allows users to create volume snapshots.',
-  'Volume Expansion': 'Storage volume expansion',
-  ALLOW_VOLUME_EXPANSION_DESC: 'Allows users to extend volumes. Volumes can only be extended and cannot be shrunk.',
-  VOLUME_FUNCTION_MANAGEMENT_TIP: 'Volume Management only controls whether the following features are enabled in the KubeSphere web console. Before the features are enabled, contact your system administrator to confirm that they are supported by the storage system.',
-  VOLUME_SNAPSHOT: 'Volume Snapshot',
+  SET_DEFAULT_STORAGE_CLASS_TITLE: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
+  SET_AS_DEFAULT_STORAGE_CLASS: 'Varsayılan Depolama Sınıfı Olarak Ayarla',
+  STORAGE_CLASS_SET_DEFAULT_DESC: 'Varsayılan depolama sınıfı ayarlandıktan sonra, herhangi bir özel gereksinim eklenmemişse, sistem varsayılan olarak bu sınıfın birimlerini oluşturacaktır. KubeSphere kümesinde yalnızca bir varsayılan depolama sınıfına izin verilir.',
+  // More > Edit Authorization Rules
+  SET_AUTHORIZATION_RULES: 'Yetkilendirme Kuralları Belirleyin',
+  AUTHORIZATION_RULES: 'Yetkilendirme Kuralları Belirleyin',
+  AUTHORIZATION_RULES_DESC: 'Depolama sınıfına yalnızca belirli projelerde ve çalışma alanlarında erişilebilmesi için yetkilendirme kuralları ayarlayın.',
+  AUTHORIZATION_NOT_SUPPORT: 'Küme şu anda bu özelliği desteklemiyor. Lütfen KubeSphere\'i v3.3.0 veya sonraki bir sürümüne yükseltin veya manuel olarak yükleyin.<a href="https://github.com/kubesphere/storageclass-accessor" target="_blank">storageclass-accessor</a>.',
+  OPERATOR_IN: 'İçinde',
+  OPERATOR_NOT_IN: 'İçinde değil',
+  // More > Set Volume Permissions
+  SET_VOLUME_OPERATIONS: 'Hacim İşlemlerini Ayarla',
+  VOLUME_CLONING: 'Hacim Klonlama',
+  VOLUME_CLONING_DESC: 'Kullanıcıların birimleri klonlamasına izin verir.',
+  VOLUME_SNAPSHOT_CREATION: 'Hacim Anlık Görüntüsü Görüntüleme',
+  VOLUME_SNAPSHOT_CREATION_DESC: 'Kullanıcıların toplu anlık görüntüler oluşturmasına olanak tanır.',
+  VOLUME_EXPANSION_DESC: 'Kullanıcıların birimleri genişletmesine izin verir. Hacimler yalnızca genişletilebilir ve daraltılamaz.',
+  SET_VOLUME_OPERATIONS_TIP: 'Aşağıdaki ayarlar yalnızca kullanıcıların web konsolunda işlemleri gerçekleştirmesine izin verilip verilmediğini kontrol eder. Depolama sınıfına dayalı olarak oluşturulan kalıcı birimlerin işlemleri gerçekten destekleyip desteklemediği, arka uç depolama sistemine bağlıdır.',
+  // More > Set Auto Expansion
+  SET_AUTO_EXPANSION: 'Otomatik Genişletmeyi Ayarla',
+  AUTO_EXPANSION: 'Otomatik Genişletmeyi Ayarla',
+  AUTO_EXPANSION_DESC: 'Sistemi, kalan birim alanı bir eşikten daha düşük olduğunda birimleri otomatik olarak genişletecek şekilde ayarlayın.',
+  AUTO_EXPANSION_SETTINGS: 'Otomatik Genişletme Ayarları',
+  MAXIMUM_SIZE: 'En Fazla Boyut',
+  INCREMENT: 'Artış',
+  INCREMENT_DESC: 'Birim boyutu artışını, depolama sınıfının CSI eklentisine göre ayarlayın.',
+  RESTART_WORKLOAD_AUTOMATICALLY: 'İş yükünü otomatik olarak yeniden başlat.',
+  RESTART_WORKLOAD_AUTOMATICALLY_DESC: 'Sistem, iş yükünün yeniden başlatılması gerekip gerekmediğini belirlemek için birim durumunu otomatik olarak kontrol eder.',
+  RESTART_WORKLOAD_AUTOMATICALLY_TIP: 'Zaman aşımı süresi sona erdiğinde birim başarıyla genişletilmezse, sistem iş yükünün bir daha yeniden başlatılmaması için iş yüküne "restart.kubesphere.io/skip" ek açıklamasını ekler. İş yükü için otomatik yeniden başlatma işlevini yeniden etkinleştirmek için iş yükündeki ek açıklamayı manuel olarak silmeniz gerekir.',
   // More > Delete
-  // Volumes
-  VOLUME_COUNT: 'Volumes'
+  // Persistent Volume Claims > Persistent Volume Claims
+  MAXIMUM_SIZE_SCAP: 'Maksimum boyut',
+  VALUE_TIMEOUT: '{değer}ler (zaman aşımı)',
+  // Persistent Volume Claims > Persistent Volume Claims
+  PVC_COUNT: 'PVC\'ler'
 };

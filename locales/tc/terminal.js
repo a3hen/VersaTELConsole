@@ -23,5 +23,5 @@ module.exports = {
   'Kubeconfig File': 'Kubeconfig 檔案',
   'KubeSphere Terminal': 'KubeSphere 終端',
   'Launch kubectl': '啟動 kubectl',
-  'Put this into': '把它加入到'
-};
+  'Put this into': '把它加入到',
+}

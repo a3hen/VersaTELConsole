@@ -28,5 +28,6 @@ module.exports = {
   UPDATED_GATEWAY_DESC: '请在业务低峰期操作，升级过程可能会造成业务短暂中断。',
   UPDATED_GATEWAY_TITLE: '升级网关确认?',
   'Request Count': '请求量',
-  PROJECT_GATEWAY_EMPTY_DESC: '集群管理页面不支持项目网关的设置，如需设置需要转到对应项目下进行设置。'
-};
+  PROJECT_GATEWAY_EMPTY_DESC:
+    '集群管理页面不支持项目网关的设置，如需设置需要转到对应项目下进行设置。',
+}

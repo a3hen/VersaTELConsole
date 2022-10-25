@@ -19,10 +19,16 @@
 import { get, omit, isEmpty } from 'lodash'
 import React from 'react'
 import { Column, Columns, Form, Input, Select } from '@kube-design/components'
-import { PropertiesInput } from 'components/Inputs'
+import { PropertiesInput, TailIUnitInput } from 'components/Inputs'
 import { MODULE_KIND_MAP, PROVISIONERS, ACCESS_MODES } from 'utils/constants'
 
-const Components = { input: Input, select: Select }
+const Components = { input: TailIUnitInput, select: Select }
+
+const keyWithUnit = {
+  maxsize: 'GiB',
+  stepsize: 'GiB',
+  minsize: 'GiB',
+}
 
 export default class StorageClassSetting extends React.Component {
   constructor(props) {
@@ -113,7 +119,7 @@ export default class StorageClassSetting extends React.Component {
               desc={t(left.desc.toUpperCase())}
             >
               <LeftComponent
-                name={`parameters.${left.key}`}
+                name={`parameters.${left.key.toLowerCase()}`}
                 {...omit(left, [
                   'type',
                   'key',
@@ -121,6 +127,7 @@ export default class StorageClassSetting extends React.Component {
                   'placeholder',
                   'options',
                 ])}
+                unit={keyWithUnit[left.key.toLowerCase()] ?? null}
                 options={leftOptions}
                 placeholder={t(left.placeholder)}
               />
@@ -133,7 +140,8 @@ export default class StorageClassSetting extends React.Component {
                 desc={t(right.desc.toUpperCase())}
               >
                 <RightComponent
-                  name={`parameters.${right.key}`}
+                  name={`parameters.${right.key.toLowerCase()}`}
+                  unit={keyWithUnit[right.key.toLowerCase()] ?? null}
                   {...omit(right, ['type', 'key', 'desc'])}
                 />
               </Form.Item>
@@ -192,7 +200,7 @@ export default class StorageClassSetting extends React.Component {
                     message: t('PARAMETER_REQUIRED'),
                   },
                 ]}
-                label={t('STORAGE_SYSTEM')}
+                label={t('PROVISIONER')}
               >
                 <Input name={'provisioner'} />
               </Form.Item>
@@ -202,7 +210,7 @@ export default class StorageClassSetting extends React.Component {
             <Column>
               <Form.Item label={t('VOLUME_BINDING_MODE')}>
                 <Select
-                  name="metadata.VolumeBindingMode"
+                  name="volumeBindingMode"
                   options={this.volumeBindingMode}
                 ></Select>
               </Form.Item>

@@ -29,5 +29,5 @@ module.exports = {
   ACCESS_INFORMATION: 'Acceso al servicio',
   VIRTUAL_IP_ADDRESS: 'Virtual IP address',
   INTERNAL_DOMAIN_NAME_SCAP: 'Método de acceso dentro del clúster (DNS)',
-  NODE_PORT_SCAP: 'Node port'
-};
+  NODE_PORT_SCAP: 'Node port',
+}

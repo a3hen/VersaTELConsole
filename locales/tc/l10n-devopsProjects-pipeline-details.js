@@ -43,7 +43,8 @@ module.exports = {
   PIPELINE_QUEUED_TITLE: 'Pipeline 即將進行初始化',
   INITIALIZING_PIPELINE: 'Pipeline 初始化中',
   PIPELINE_PREPARE_DESC: '正在準備環境，稍後有圖形化顯示',
-  INITIALIZING_PIPELINE_DESC: 'Please wait until the pipeline initialization is complete.',
+  INITIALIZING_PIPELINE_DESC:
+    'Please wait until the pipeline initialization is complete.',
   TASK_FAILED_NOT_OPERATIONAL: '任務已失敗，不可操作',
   NO_PIPELINE_CONFIG_FILE_TIP: '未找到流水線配置文件',
   // Task Status > Edit Pipeline
@@ -52,9 +53,11 @@ module.exports = {
     具體取決於該 agent 部分的放置位置。該部分必須在流水線塊内的頂層定義，但 stage 級使用是可選的。`,
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
   CI: '持續集成 (CI)',
-  CI_DESC: '持續集成（CI）是在源代碼變更後自動檢測、拉取、構建和（在大多數情況下）進行單元測試的過程。 ',
+  CI_DESC:
+    '持續集成（CI）是在源代碼變更後自動檢測、拉取、構建和（在大多數情況下）進行單元測試的過程。 ',
   CICD: '持續集成&交付 (CI/CD)',
-  CICD_DESC: '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
+  CICD_DESC:
+    '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
   CUSTOM_PIPELIEN: '自定義流水線',
   CUSTOM_PIPELIEN_DESC: '您可以選擇您需要的任務自定義流水線的工作內容',
   CC: '副本',
@@ -86,6 +89,11 @@ module.exports = {
     </li>`,
   STAGE: '階段',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: '該步驟會在後續版本中棄用，建議考慮其他替代方案。',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: '編輯 Jenkinsfile',
   CLOSE_JENKINSFILE_EDITOR_TIP: '確定關閉 Jenkinsfile 編輯器？',
@@ -106,7 +114,8 @@ module.exports = {
   LAST_MESSAGE: '最後訊息',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: '任務已停止，狀態稍後更新',
-  INVALID_JENKINSFILE_TIP: '目前 Jenkinsfile 不是標準的聲明式 Jenkinsfile，無法進行圖形化顯示',
+  INVALID_JENKINSFILE_TIP:
+    '目前 Jenkinsfile 不是標準的聲明式 Jenkinsfile，無法進行圖形化顯示',
   PAUSED: '已暫停',
   // Run Records > Run
   SET_PARAMETERS: '輸入參數',
@@ -145,7 +154,7 @@ module.exports = {
   COVERAGE: '覆蓋率',
   TEST_RESULTS: '檢測結果',
   ISSUE_PL: '問題',
-  CRITICAL: 'Critical',
+  CRITICAL: '危險告警',
   MAJOR: 'Major',
   MINOR: 'Minor',
   DISPLAY_ALL: '顯示全部',
@@ -153,5 +162,5 @@ module.exports = {
   LINE_VALUE: '行：{value}',
   PASSED: '已通過',
   // Pull Requests
-  PULL_REQUEST_PL: '拉取請求'
-};
+  PULL_REQUEST_PL: '拉取請求',
+}

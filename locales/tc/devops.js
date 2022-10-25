@@ -31,9 +31,13 @@ module.exports = {
   MANAGE_DEVOPS_PROJECT: 'Manage DevOps Project',
   DEVOPS_BASEINFO_DESC: '請輸入 DevOps 项目的基本資訊',
   NO_RELATE_DEVOPS_TITLE: '沒有找到與您相關聯的 DevOps 项目',
-  NO_RELATE_DEVOPS_DESC: '您可以創建或者聯繫項目管理員將您邀請到 DevOps 项目中開始您的工作',
-  DEVOPS_PROJECT_CREDENTIALS_DESC: '憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和令牌等，用於在流水線運行時，為拉取代碼、拉取或推送鏡像、SSH 執行腳本等過程提供認證。',
-  DELETE_DEVOPS_TIP: '確定刪除 DevOps 项目 <strong>{resource}</strong> ? 刪除後將無法恢復, 项目下的資源也同時會被銷毀。',
+  NO_RELATE_DEVOPS_DESC:
+    '您可以創建或者聯繫項目管理員將您邀請到 DevOps 项目中開始您的工作',
+  DEVOPS_PROJECT_CREDENTIALS_DESC:
+    '憑證是包含了一些敏感數據的對象，如用戶名密碼，SSH 密鑰和令牌等，用於在流水線運行時，為拉取代碼、拉取或推送鏡像、SSH 執行腳本等過程提供認證。',
+  DELETE_DEVOPS_TIP:
+    '確定刪除 DevOps 项目 <strong>{resource}</strong> ? 刪除後將無法恢復, 项目下的資源也同時會被銷毀。',
   // Credentials Creation Page
-  INVALID_ID_TIP: 'ID 最長 63 個字元，只能包含小寫字母、數字及分隔符號（-），且必須以小寫字母或數字開頭及結尾。'
-};
+  INVALID_ID_TIP:
+    'ID 最長 63 個字元，只能包含小寫字母、數字及分隔符號（-），且必須以小寫字母或數字開頭及結尾。',
+}

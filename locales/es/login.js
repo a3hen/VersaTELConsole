@@ -21,17 +21,20 @@ module.exports = {
   'Username or Email': 'Username or Email',
   Captcha: 'Captcha',
   'User does not exist': 'User does not exist',
-  'Unable to access the backend services': 'Unable to access the backend services',
+  'Unable to access the backend services':
+    'Unable to access the backend services',
   'Unable to access the api server': 'Unable to access the api server',
   'Internal Server Error': 'Internal Server Error',
   'Please input the correct captcha': 'Please input the correct captcha',
   Reload: 'Reload',
   'Reload Captcha': 'Reload Captcha',
-  'Too many failed login attempts, please wait!': 'Too many failed login attempts, please wait!',
+  'Too many failed login attempts, please wait!':
+    'Too many failed login attempts, please wait!',
   'Please input captch': 'Please input captch',
   'Please confirm your account info': 'Please confirm your account info',
   'Please input username': 'Please enter your username',
   'Please reset your password': 'Please reset your password',
   'Modify Later': 'Modify Later',
-  'Your password must meet the following requirements': 'Your password must meet the following requirements'
-};
+  'Your password must meet the following requirements':
+    'Your password must meet the following requirements',
+}

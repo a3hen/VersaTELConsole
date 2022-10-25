@@ -18,14 +18,16 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: 'Alerting Policies',
-  ALERT_POLICY_DESC: 'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
+  ALERT_POLICY_DESC:
+    'Alerting policies are a series of conditions used to monitor cluster resources. You can create alerting policies to monitor resources.',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: 'How are alerting messages generated?',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: 'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    'You need to set an alerting policy for a resource. Alerting messages will be generated when the metric configured in the alerting policy reaches a threshold.',
   // List
-  ALERTING_STATUS: 'Estado de Alerta',
+  ALERTING_STATUS: 'Alerting Status',
   ALERTING_POLICY_EMPTY_DESC: 'You can notice if a resource is abnormal in real time by creating an alerting policy.',
   ALERT_RULE_INACTIVE: 'Inactive',
-  ALERT_RULE_PENDING: 'Pending',
+  ALERT_RULE_PENDING: 'Pendiente',
   ALERT_RULE_FIRING: 'Firing',
   ALERT_RULE_HEALTH_OK: 'Healthy',
   ALERT_RULE_HEALTH_ERR: 'Error',
@@ -36,14 +38,18 @@ module.exports = {
   CRITICAL_ALERT: 'Critical',
   ERROR_ALERT: 'Error',
   WARNING_ALERT: 'Warning',
-  INVALID_TIME_DESC: 'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
+  INVALID_TIME_DESC:
+    'Invalid value. Please select a value from the drop-down list or enter 0 or a positive integer.',
   ALIAS: 'Alias',
   THRESHOLD_DURATION_MIN: 'Threshold Duration (min)',
-  ALERT_DURATION: 'An alert is firing when the threshold duration reaches the preset value.',
-  LONG_NAME_DESC: 'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 253.',
+  ALERT_DURATION:
+    'An alert is firing when the threshold duration reaches the preset value.',
+  LONG_NAME_DESC:
+    'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de carácteres se establece en 253.',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: 'Rule Settings',
   MONITORING_TARGETS: 'Monitoring Targets',
+  ACTIVATION_CONDITION: 'Activation Condition',
   CPU_USAGE_SCAP: 'ratio de uso de CPU',
   DISK_READ_IOPS: 'iops de lectura de disco',
   DISK_READ_THROUGHPUT: 'rendimiento de lectura de disco',
@@ -56,7 +62,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: 'ratio de uso de memoria',
   DATA_RECEIVE_RATE: 'ratio de datos de red recibidos',
   DATA_SEND_RATE: 'Network data sending rate',
-  SET_RULE_DESC: 'Please set an alerting rule.',
+  SET_ACTIVATION_CONDITION_DESC: 'Please set an activation condition.',
   ABNORMAL_PODS: 'Relación anormal pod',
   POD_USAGE_SCAP: 'ratio de utilización de pod',
   THRESHOLD: 'Umbral',
@@ -70,7 +76,8 @@ module.exports = {
   CUSTOM_RULE: 'Custom Rule',
   RULE_EXPRESSION: 'Rule Expression',
   ENTER_RULE_EXPRESSION: 'Please enter a rule expression.',
-  ALERT_RULE_EXPRESSION_DESC: 'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
+  ALERT_RULE_EXPRESSION_DESC:
+    'You can define a custom rule using PromQL statements. <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">Learn More</a>',
   // List > Create > Message Settings
   MESSAGE_SETTINGS: 'Message Settings',
   NOTIFICATION_SUMMARY: 'Summary',
@@ -79,5 +86,5 @@ module.exports = {
   EDIT_ALERTING_POLICY: 'Edit Alerting Policy',
   // List > Delete
   ALERTING_POLICY: 'Política de alerta',
-  ALERTING_POLICY_LOW: 'alerting policy'
-};
+  ALERTING_POLICY_LOW: 'alerting policy',
+}

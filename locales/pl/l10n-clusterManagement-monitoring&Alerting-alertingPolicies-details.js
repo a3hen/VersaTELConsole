@@ -21,7 +21,8 @@ module.exports = {
   // Alerting Rule
   ALERTING_RULE: 'Alerting Rule',
   MONITORING_TARGETS_SCAP: 'Monitoring targets',
-  ALERTING_RULE_SCAP: 'Alerting rule',
+  ACTIVATION_CONDITION_SCAP: 'Activation condition',
+  METRIC_MONITORING: 'Metric Monitoring',
   // Alerting History
-  NO_DATA_DESC: 'No Data Found'
-};
+  NO_DATA_DESC: 'No Data Found',
+}

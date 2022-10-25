@@ -36,7 +36,7 @@ export default class AboutModal extends Component {
 
   render() {
     const { issueUrl, reposUrl, slackUrl } = globals.config
-    const { ksVersion } = globals.ksConfig
+    // const { ksVersion } = globals.ksConfig
     return (
       <Modal
         bodyClassName={styles.body}
@@ -50,10 +50,8 @@ export default class AboutModal extends Component {
           <div>
             <img src="/assets/logo.svg" alt="" />
           </div>
-          <p>{t('KS_DESCRIPTION')}</p>
-          <strong>
-            KubeSphere {t('VERSION')} : {ksVersion}
-          </strong>
+          <p>{t('VersaTEL_DESCRIPTION')}</p>
+          <strong>VersaTEL {t('VERSION')} : 1.0.0</strong>
         </div>
 
         <div className={styles.links}>

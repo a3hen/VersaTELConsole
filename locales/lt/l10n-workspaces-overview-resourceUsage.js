@@ -25,5 +25,5 @@ module.exports = {
   // Physical Resources
   PHYSICAL_RESOURCES: 'Physical Resources',
   CRONJOB: 'Cronjob',
-  CLUSTER_VALUE: 'Cluster: {value}'
-};
+  CLUSTER_VALUE: 'Cluster: {value}',
+}

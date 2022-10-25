@@ -30,16 +30,21 @@ import styles from './index.scss'
 export default class ProbeInput extends React.Component {
   static propTypes = {
     name: PropTypes.string,
+    label: PropTypes.string,
     value: PropTypes.object,
     onChange: PropTypes.func,
     onShowForm: PropTypes.func,
+    deleteNoObject: PropTypes.bool,
   }
 
   static defaultProps = {
     name: '',
+    label: '',
     value: {},
     onChange() {},
     onShowForm() {},
+    componentType: 'heal',
+    deleteNoObject: false,
   }
 
   state = {
@@ -48,14 +53,14 @@ export default class ProbeInput extends React.Component {
 
   getProbeTypeText = value => {
     if ('httpGet' in value) {
-      return 'HTTP_REQUEST'
+      return `HTTP_REQUEST`
     }
 
     if ('tcpSocket' in value) {
-      return 'TCP_PORT'
+      return `TCP_PORT`
     }
 
-    return 'COMMAND'
+    return `COMMAND`
   }
 
   showForm = () => {
@@ -73,8 +78,8 @@ export default class ProbeInput extends React.Component {
   }
 
   handleDelete = () => {
-    const { onChange } = this.props
-    onChange({})
+    const { onChange, deleteNoObject } = this.props
+    deleteNoObject ? onChange() : onChange({})
   }
 
   renderProbeInfo() {
@@ -125,7 +130,8 @@ export default class ProbeInput extends React.Component {
   }
 
   renderProbeForm() {
-    const { probType, value } = this.props
+    const { probType, value, componentType } = this.props
+
     return (
       <ProbeForm
         className={styles.form}
@@ -133,12 +139,13 @@ export default class ProbeInput extends React.Component {
         probType={probType}
         onSave={this.handleForm}
         onCancel={this.hideForm}
+        componentType={componentType}
       />
     )
   }
 
   render() {
-    const { description, value } = this.props
+    const { description, value, componentType, label } = this.props
     const { showForm } = this.state
 
     if (showForm) {
@@ -148,7 +155,7 @@ export default class ProbeInput extends React.Component {
     if (isEmpty(value)) {
       return (
         <div className={classnames(styles.empty)} onClick={this.showForm}>
-          <div>{t('ADD_PROBE')}</div>
+          <div>{label || t('ADD_PROBE')}</div>
           <p className="text-secondary">{description}</p>
         </div>
       )
@@ -160,14 +167,16 @@ export default class ProbeInput extends React.Component {
           <Icon name="monitor" size={40} />
           <div>
             <strong>{t(this.getProbeTypeText(value))}</strong>
-            <p>
-              <span>
-                {t('INITIAL_DELAY_TIMEOUT_VALUE', {
-                  delay: value.initialDelaySeconds || 0,
-                  timeout: value.timeoutSeconds || 0,
-                })}
-              </span>
-            </p>
+            {componentType === 'heal' && (
+              <p>
+                <span>
+                  {t('INITIAL_DELAY_TIMEOUT_VALUE', {
+                    delay: value.initialDelaySeconds || 0,
+                    timeout: value.timeoutSeconds || 0,
+                  })}
+                </span>
+              </p>
+            )}
           </div>
           {this.renderProbeInfo()}
         </div>

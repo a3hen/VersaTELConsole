@@ -17,7 +17,8 @@
  */
 module.exports = {
   // Title
-  TOTAL_EVENTS_TODAY: '今日總共收錄了 <span class={className}> {events} </span> 條事件',
+  TOTAL_EVENTS_TODAY:
+    '今日總共收錄了 <span class={className}> {events} </span> 條事件',
   NO_RESOURCE_EVENTS_TODAY: '今日沒有收錄的事件',
   // Search
   EVENT_NOT_ENABLED_DESC: '暫無啟用事件查詢的集群',
@@ -35,5 +36,5 @@ module.exports = {
   SEARCH_BY_RESOURCE_TYPE: 'Search by Resource Type',
   SEARCH_BY_RESOURCE_NAME: 'Search by Resource Name',
   SEARCH_BY_REASON: 'Search by Reason',
-  SEARCH_BY_CATEGORY: 'Search by Category'
-};
+  SEARCH_BY_CATEGORY: 'Search by Category',
+}

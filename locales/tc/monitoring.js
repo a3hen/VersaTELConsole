@@ -70,18 +70,24 @@ module.exports = {
   PROPOSAL_FAILED: '提議失敗速率',
   PROPOSAL_PENDING: '提議待處理數',
   CustomMonitorDashboards: '自定義監控面板',
-  CUSTOMMONITORDASHBOARD_CREATE_DESC: 'You can customize application monitoring dashboards based on your needs.',
+  CUSTOMMONITORDASHBOARD_CREATE_DESC:
+    'You can customize application monitoring dashboards based on your needs.',
   APPLICABLE_SCENE: '適用場景',
   BASE_LINE_CHART: '基礎折線圖',
   BASE_BAR_CHART: '基礎柱狀圖',
   STACK_LINE_CHART: '堆疊面積圖',
   STACK_BAR_CHART: '堆疊柱狀圖',
   LINE_CHART_DESC: '折線圖主要用來展示數據隨著時間推移的趨勢或變化。',
-  BASE_LINE_CHART_DESC: '折線圖主要用來展示數據相隨著時間推移的趨勢或變化。折線圖非常適合用於展示一個連續的二維數據，如某網站訪問人數或商品銷量價格的波動。',
-  STACK_LINE_CHART_DESC: '堆積面積圖是一種特殊的面積圖，可以用來比較在一個區間内的多個變量。如果有多個數據系列，並想分析每個類别的部分到整體的關係，並展現部分量對於總量的貢獻時，使用堆積面積圖是非常合適的選擇。',
-  BAR_CHART_DESC: '柱狀圖是最常見的圖表類型，通過使用水平或垂直方向\b柱子的高度來顯示不同類别的數值。',
-  BASE_BAR_CHART_DESC: '基礎柱狀圖的一個軸顯示正在比較的類别，而另一個軸代表對應的刻度值。',
-  STACK_BAR_CHART_DESC: '堆疊柱狀圖是柱狀圖的擴展，不同的是，柱狀圖的數據值為並行排列，堆疊柱圖則是一個個疊加起來的。它可以展示每一個分類的總量，以及該分類包含的每個小分類的大小及占比，因此非常適合處理部分與整體的關係。',
+  BASE_LINE_CHART_DESC:
+    '折線圖主要用來展示數據相隨著時間推移的趨勢或變化。折線圖非常適合用於展示一個連續的二維數據，如某網站訪問人數或商品銷量價格的波動。',
+  STACK_LINE_CHART_DESC:
+    '堆積面積圖是一種特殊的面積圖，可以用來比較在一個區間内的多個變量。如果有多個數據系列，並想分析每個類别的部分到整體的關係，並展現部分量對於總量的貢獻時，使用堆積面積圖是非常合適的選擇。',
+  BAR_CHART_DESC:
+    '柱狀圖是最常見的圖表類型，通過使用水平或垂直方向\b柱子的高度來顯示不同類别的數值。',
+  BASE_BAR_CHART_DESC:
+    '基礎柱狀圖的一個軸顯示正在比較的類别，而另一個軸代表對應的刻度值。',
+  STACK_BAR_CHART_DESC:
+    '堆疊柱狀圖是柱狀圖的擴展，不同的是，柱狀圖的數據值為並行排列，堆疊柱圖則是一個個疊加起來的。它可以展示每一個分類的總量，以及該分類包含的每個小分類的大小及占比，因此非常適合處理部分與整體的關係。',
   CUSTOM_DISPLAY_MODAL_DESC: '根據需要定制Table中的顯示格式',
   THRESHOLD_FILL_DESC: '可以設置臨界值，數值超出後可以自動更改樣式提示',
   // Cluster Status
@@ -91,5 +97,6 @@ module.exports = {
   ROUTES: 'Routes',
   // Custom Monitoring
   CUSTOM_MONITOR_DASHBOARD: 'Custom Monitoring Dashboard',
-  CUSTOM_MONITOR_DASHBOARD_CREATE_DESC: 'You can customize application monitoring dashboards based on your needs.'
-};
+  CUSTOM_MONITOR_DASHBOARD_CREATE_DESC:
+    'You can customize application monitoring dashboards based on your needs.',
+}

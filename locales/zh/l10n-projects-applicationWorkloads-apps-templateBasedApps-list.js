@@ -18,12 +18,14 @@
 module.exports = {
   // Banner
   TEMPLATE_BASED_APP_PL: '基于模板的应用',
-  APPLICATIONS_DESC: '应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。',
+  APPLICATIONS_DESC:
+    '应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。',
   APP_PL: '应用',
   APP_TYPES_Q: 'KubeSphere 支持哪些应用类型？',
-  APP_TYPES_A: 'KubeSphere 支持基于模板的应用和自制应用。基于模板的应用创建自 KubeSphere 应用商店或应用模板，自制应用由用户自定义。',
+  APP_TYPES_A:
+    'KubeSphere 支持基于模板的应用和自制应用。基于模板的应用创建自 KubeSphere 应用商店或应用模板，自制应用由用户自定义。',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用应用治理功能?',
-  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时开启应用治理功能。',
+  HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时启用应用治理功能。',
   DEPLOY_SAMPLE_APP: '部署示例应用',
   // List
   NO_TEMPLATE_BASED_APP_FOUND: '未发现基于模板的应用',
@@ -40,10 +42,11 @@ module.exports = {
   SELECT_APP_REPOSITORY: '选择应用仓库',
   CURRENT_WORKSPACE: '当前企业空间',
   FROM_APP_TEMPLATE_DESC: '从企业空间或远程应用仓库中的应用模板创建应用。',
-  APP_TEMPLATES_MODAL_DESC: '从下拉列表中选择当前企业空间或远程应用仓库以查看可用的应用模板。',
+  APP_TEMPLATES_MODAL_DESC:
+    '从下拉列表中选择当前企业空间或远程应用仓库以查看可用的应用模板。',
   // List > Create > From App Template > App Information
   // List > Create > From App Template > Chart Files
   // List > Edit
   // List > Delete
-  APP_LOW: '应用'
-};
+  APP_LOW: '应用',
+}

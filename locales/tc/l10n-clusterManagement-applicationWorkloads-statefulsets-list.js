@@ -18,5 +18,5 @@
 module.exports = {
   // Banner
   // List
-  STATEFULSETS: '有狀態副本集'
-};
+  STATEFULSETS: '有狀態副本集',
+}

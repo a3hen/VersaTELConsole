@@ -58,12 +58,13 @@ module.exports = {
   'View in Store': '在商店查看',
   Working: '工作中',
   'Wrong version number format': '版本號的格式錯誤',
-  PACKAGE_FILE_DESC: 'Package.json 檔案，用於描述應用或版本的基本資訊，包括名稱版本號等',
+  PACKAGE_FILE_DESC:
+    'Package.json 檔案，用於描述應用或版本的基本資訊，包括名稱版本號等',
   CONFIG_FILE_DESC: '應用的預設值配置檔案',
   LOCALE_EN__FILE_DESC: '應用配置的國際化英文翻譯',
   LOCALE_ZH_FILE_DESC: '應用配置的國際化中文翻譯',
   VERSION_SUBMIT_DOC: '更全面的測試手冊請參看',
   // App Templates > Details
   APP_VERSION_SCAP: 'App version',
-  TEST_INSTALLATION: 'Test Installation'
-};
+  TEST_INSTALLATION: 'Test Installation',
+}

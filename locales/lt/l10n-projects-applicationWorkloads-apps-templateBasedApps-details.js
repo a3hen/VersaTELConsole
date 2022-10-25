@@ -27,5 +27,5 @@ module.exports = {
   UPDATED_AGO: 'Updated {value}',
   // App Template > App Description
   APP_TEMPLATE: 'App Template',
-  NO_APP_DESC_FOUND: 'No app description found.'
-};
+  NO_APP_DESC_FOUND: 'No app description found.',
+}

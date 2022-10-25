@@ -20,5 +20,5 @@ module.exports = {
   // More > Edit Labels
   // More > Edit Taints
   // Running Status
-  LATEST_UPDATE_VALUE: '状态更新时间：{value}'
-};
+  LATEST_UPDATE_VALUE: '状态更新时间：{value}',
+}

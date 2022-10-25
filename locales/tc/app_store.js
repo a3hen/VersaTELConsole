@@ -32,8 +32,11 @@ module.exports = {
   RELEASE_DATE: '上架時間',
   Screenshots: '截圖',
   VERSION_LIST_DES: '只顯示 10 個最新的版本',
-  HOME_APP_STORE_DESC: 'KubeSphere 官方應用商店，提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
+  HOME_APP_STORE_DESC:
+    'KubeSphere 官方應用商店，提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
   APP_DEPLOYMENT_AGREEMENT: 'App Deployment Agreement',
-  APP_DEPLOY_AGREEMENT_CHECK: 'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',
-  CHECK_APP_DEPLOY_AGREEMENT_TIP: 'Please read and agree to <b>App Deployment Agreement</b>.'
-};
+  APP_DEPLOY_AGREEMENT_CHECK:
+    'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',
+  CHECK_APP_DEPLOY_AGREEMENT_TIP:
+    'Please read and agree to <b>App Deployment Agreement</b>.',
+}

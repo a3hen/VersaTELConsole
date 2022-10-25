@@ -18,14 +18,19 @@
 module.exports = {
   // Title
   TOOLBOX: 'Caja de herramientas',
-  TOOLBOX_DESC: 'La caja de herramientas proporciona búsqueda de registros y herramientas operativas de cli',
+  TOOLBOX_DESC:
+    'La caja de herramientas proporciona búsqueda de registros y herramientas operativas de cli',
   // Description
   // Ayalysis Tools
   ANALYSIS_TOOLS: 'Analysis Tools',
-  VIEW_KUBE_CONFIG: 'Related operations of kubeConfig configuration include viewing and downloading',
-  CONTAINER_LOG_SEARCH_DESC: 'Una herramienta de búsqueda de registros multidimensional para espacios de trabajo, proyectos y recursos.',
-  RESOURCE_EVENT_SEARCH_DESC: 'Una herramienta de búsqueda de eventos multidimensional para espacios de trabajo, proyectos y recursos.',
-  AUDIT_LOG_DESC: 'Una herramienta de búsqueda de auditoría multidimensional para espacios de trabajo, proyectos y recursos.',
+  VIEW_KUBE_CONFIG:
+    'Related operations of kubeConfig configuration include viewing and downloading',
+  CONTAINER_LOG_SEARCH_DESC:
+    'Una herramienta de búsqueda de registros multidimensional para espacios de trabajo, proyectos y recursos.',
+  RESOURCE_EVENT_SEARCH_DESC:
+    'Una herramienta de búsqueda de eventos multidimensional para espacios de trabajo, proyectos y recursos.',
+  AUDIT_LOG_DESC:
+    'Una herramienta de búsqueda de auditoría multidimensional para espacios de trabajo, proyectos y recursos.',
   RESOURCE_CONSUMPTION_STATISTICS: 'Medição e faturamento',
   METERING_AND_BILLING_DESC: 'Track resource consumption.',
   CONTAINER_LOG_SEARCH: 'Container Log Search',
@@ -33,7 +38,8 @@ module.exports = {
   AUDIT_LOG_SEARCH: 'Audit Log Search',
   // Control Tool
   CONTROL_TOOL: 'Control Tool',
-  TOOLBOX_SHIFT_TIPS: '👻 Puedes abrir la página en una nueva ventana con "MAYÚS + CLIC IZQUIERDO".',
+  TOOLBOX_SHIFT_TIPS:
+    '👻 Puedes abrir la página en una nueva ventana con "MAYÚS + CLIC IZQUIERDO".',
   // Third-Party Tools
-  THIRD_PARTY_TOOLS: 'Herramientas de terceros'
-};
+  THIRD_PARTY_TOOLS: 'Herramientas de terceros',
+}

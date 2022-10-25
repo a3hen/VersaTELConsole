@@ -21,19 +21,20 @@ module.exports = {
   // Description
   // Install > Deployment Agreement
   AGREE: '同意',
-  APP_DEPLOY_AGREEMENT: '部署须知',
+  APP_DEPLOY_AGREEMENT: '安装须知',
   APP_DEPLOY_AGREEMENT_DESC_1: '您必须遵守该应用的开源协议。',
-  APP_DEPLOY_AGREEMENT_DESC_2: '您部署该应用导致的任何后果将由您自行承担。如果需要支持服务，请联系相关开发者。',
+  APP_DEPLOY_AGREEMENT_DESC_2: '您将自行承担部署该应用导致的任何后果。如果需要支持服务，请联系相关开发者。',
   DO_NOT_REMIND_AGAIN: '不再提示',
   // Install > Basic Information
   LOCATION: '位置',
   CLUSTER_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母开头并以小写字母或数字结尾，最长 53 个字符。',
-  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中部署应用。',
+  FEDPROJECT_CANNOT_DEPLOY_APP_TIP: '无法在多集群项目中安装应用。',
   LATEST_VERSION_SCAP: '最新版本',
   WORKSPACE_EMPTY_DESC: '请选择企业空间',
   VERSION_EMPTY_DESC: '请选择版本。',
   // Install > App Settings
-  HELM_APP_SCHEMA_FORM_TIP: '您可以通过图形化表单或 YAML 文件对应用进行设置。图形化表单和 YAML 文件中的设置相互独立。',
+  HELM_APP_SCHEMA_FORM_TIP:
+    '您可以通过图形化表单或 YAML 文件对应用进行设置。图形化表单和 YAML 文件中的设置相互独立。',
   DEPLOYED_SUCCESSFUL: '部署成功。',
   // App Information
   APP_INFORMATION: '应用信息',
@@ -57,5 +58,5 @@ module.exports = {
   VERSION_INTRO_EMPTY_DESC: '未发现该版本的介绍。',
   // App Details > Chart Files
   CHART_FILES: 'Chart 文件',
-  NO_APP_CHART_FILE_FOUND: '未发现该应用的 chart 文件。'
-};
+  NO_APP_CHART_FILE_FOUND: '未发现该应用的 chart 文件。',
+}

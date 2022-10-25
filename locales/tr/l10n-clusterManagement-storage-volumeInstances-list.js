@@ -27,5 +27,5 @@ module.exports = {
   RECYCLING_STRATEGY: 'Recycling Strategy',
   VOLUME_INSTANCE_EMPTY_DESC: 'Please bind a volume to a workload.',
   // List > Delete
-  VOLUME_INSTANCE_LOW: 'volume instance'
-};
+  VOLUME_INSTANCE_LOW: 'volume instance',
+}

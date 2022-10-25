@@ -20,5 +20,5 @@ module.exports = {
   'Pod IP Pools': '容器組 IP 地址範圍',
   'Used IP': '已用 IP',
   NETWORK_RESOURCE_PL: 'Network Resources',
-  'Set to be globally available': '設為全局可用'
-};
+  'Set to be globally available': '設為全局可用',
+}

@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, cloneDeep } from 'lodash'
+import { get, cloneDeep, set } from 'lodash'
 import { action, observable } from 'mobx'
 
 import { LIST_DEFAULT_ORDER, DEFAULT_CLUSTER } from 'utils/constants'
@@ -36,6 +36,9 @@ export default class ClusterStore extends Base {
 
   @observable
   isValidating = false
+
+  @observable
+  isSubmitting = false
 
   @observable
   version = ''
@@ -204,5 +207,22 @@ export default class ClusterStore extends Base {
     )
 
     this.version = get(result, 'kubernetes.gitVersion')
+  }
+
+  @action
+  async updateKubeConfig({ cluster, data }) {
+    return this.submitting(
+      request.put(
+        `/kapis/cluster.kubesphere.io/v1alpha1/clusters/${cluster}/kubeconfig`,
+        data
+      )
+    )
+  }
+
+  @action
+  async fetchClusterConfigz({ cluster }) {
+    await this.fetchDetail({ name: cluster })
+    set(globals, `clusterConfig.${cluster}`, this.detail.configz)
+    return get(this.detail.configz, 'ksVersion', '') !== ''
   }
 }

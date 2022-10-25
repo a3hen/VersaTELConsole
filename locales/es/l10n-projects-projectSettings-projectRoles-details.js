@@ -25,5 +25,5 @@ module.exports = {
   // Permissions
   PERMISSION_PL: 'Lista de autorizaciones',
   // Authorized Users
-  AUTHORIZED_USER_PL: 'Usuarios autorizados'
-};
+  AUTHORIZED_USER_PL: 'Usuarios autorizados',
+}

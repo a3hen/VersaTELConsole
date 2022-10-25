@@ -57,5 +57,5 @@ module.exports = {
   USAGE_RATE: '使用率',
   NO_PROJECT: '未发现可用项目',
   NO_POD_MONITOR_DATA: '未发现容器组监控数据',
-  CPU_AVERAGE_LOAD: 'CPU 平均负载'
-};
+  CPU_AVERAGE_LOAD: 'CPU 平均负载',
+}

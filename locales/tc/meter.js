@@ -24,9 +24,12 @@ module.exports = {
   'Net Received': '網絡流入',
   'Net Transmitted': '網絡流出',
   APP_CONSUMPTION_DESC: '應用商店模板資源消費統計',
-  APP_RESOURCE_CONSUMPTION_DESC: '應用商店模板資源消費統計支持對模板在 KubeSphere 平台中被部署的次數查詢，支持以下查詢',
-  APP_WORKSPACE_CONSUMPTION_DESC: '應用模板在 <strong>企業空間</strong> 中的部署次數',
-  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC: '應用模板在企業空間下的某個 <strong>項目</strong> 中的部署次數',
+  APP_RESOURCE_CONSUMPTION_DESC:
+    '應用商店模板資源消費統計支持對模板在 KubeSphere 平台中被部署的次數查詢，支持以下查詢',
+  APP_WORKSPACE_CONSUMPTION_DESC:
+    '應用模板在 <strong>企業空間</strong> 中的部署次數',
+  APP_WORKSPACE_PROJECT_CONSUMPTION_DESC:
+    '應用模板在企業空間下的某個 <strong>項目</strong> 中的部署次數',
   'Meter CPU Usage': 'CPU 用量',
   'Meter Memory Usage': '內存 用量',
   'Meter Volume Usage': '存儲卷 用量',
@@ -34,5 +37,5 @@ module.exports = {
   'Meter Net Transmitted Usage': '網絡流出 用量',
   '￥': '￥',
   Price: '價格',
-  INVALID_METERING: '未開啟消費統計'
-};
+  INVALID_METERING: '未開啟消費統計',
+}

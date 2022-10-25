@@ -37,5 +37,5 @@ module.exports = {
   REJECT_SUCCESSFUL: 'Rejected successfully.',
   // Release
   RELEASE: 'Release',
-  RELEASE_SUCCESSFUL: 'Released successfully.'
-};
+  RELEASE_SUCCESSFUL: 'Released successfully.',
+}

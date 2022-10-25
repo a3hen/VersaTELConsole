@@ -76,12 +76,32 @@ export default class GatewaySettingModal extends React.Component {
           false
         )
       ),
+      configError: '',
     }
+  }
 
+  componentDidMount() {
+    this.initAnnotations()
+  }
+
+  getTypeOptions = () => [
+    { label: 'NodePort', value: 'NodePort' },
+    { label: 'LoadBalancer', value: 'LoadBalancer' },
+  ]
+
+  initAnnotations = () => {
     const annotations = get(this.template, 'spec.service.annotations')
     const type = get(this.template, 'spec.service.type')
+    const annotationType = get(
+      this.template,
+      "metadata.annotations['kubesphere.io/annotations']"
+    )
 
-    if (isEmpty(annotations) && type === 'LoadBalancer') {
+    if (
+      isEmpty(annotations) &&
+      type === 'LoadBalancer' &&
+      annotationType === 'QingCloud Kubernetes Engine'
+    ) {
       set(
         this.template,
         'spec.service.annotations',
@@ -89,11 +109,6 @@ export default class GatewaySettingModal extends React.Component {
       )
     }
   }
-
-  getTypeOptions = () => [
-    { label: 'NodePort', value: 'NodePort' },
-    { label: 'LoadBalancer', value: 'LoadBalancer' },
-  ]
 
   handleOk = () => {
     const { onOk } = this.props
@@ -105,7 +120,9 @@ export default class GatewaySettingModal extends React.Component {
       isChecked ? 'true' : 'false'
     )
 
-    onOk(this.template)
+    this.form.current.validate(() => {
+      onOk(this.template)
+    })
   }
 
   handleTypeChange = type => {
@@ -147,7 +164,11 @@ export default class GatewaySettingModal extends React.Component {
 
   handleAnnotations = value => {
     this.options = Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[value])
-    this.setAnnotations({})
+    if (value === 'QingCloud Kubernetes Engine') {
+      this.setAnnotations(globals.config.loadBalancerDefaultAnnotations)
+    } else {
+      this.setAnnotations({})
+    }
   }
 
   setAnnotations = value => {
@@ -156,11 +177,20 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   renderLoadBalancerSupport = () => {
+    const options = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+      },
+    ]
+
     return (
       <div className={styles.loadBalancer}>
         <Form.Item label={t('LOAD_BALANCER_PROVIDER')}>
           <Select
-            options={CLUSTER_PROVIDERS}
+            options={options}
             placeholder=" "
             optionRenderer={this.providerOptionRenderer}
             onChange={this.handleAnnotations}
@@ -187,9 +217,13 @@ export default class GatewaySettingModal extends React.Component {
     )
   }
 
+  handleConfigError = (err = '') => {
+    this.setState({ configError: err })
+  }
+
   render() {
     const { visible, onCancel, cluster, isSubmitting } = this.props
-    const { isChecked } = this.state
+    const { isChecked, configError } = this.state
 
     return (
       <Modal
@@ -255,6 +289,7 @@ export default class GatewaySettingModal extends React.Component {
                       className={styles.objectBg}
                       name="spec.controller.config"
                       addText={t('ADD')}
+                      onError={this.handleConfigError}
                     />
                   </Form.Item>
                 </div>
@@ -274,7 +309,7 @@ export default class GatewaySettingModal extends React.Component {
             type="control"
             onClick={this.handleOk}
             loading={isSubmitting}
-            disabled={isSubmitting}
+            disabled={isSubmitting || configError !== ''}
           >
             {t('OK')}
           </Button>

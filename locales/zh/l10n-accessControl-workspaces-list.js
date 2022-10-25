@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   WORKSPACE_PL: '企业空间',
-  WORKSPACE_DESC: '企业空间是一个组织您的项目和 DevOps 项目、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
+  WORKSPACE_DESC:
+    '企业空间是一个组织您的项目和 DevOps 项目、管理资源访问权限以及在团队内部共享资源等的逻辑单元，可以作为团队工作的独立工作空间。',
   // List
   CLUSTER_PL: '集群',
   // List > Create > Basic Information
@@ -28,13 +29,16 @@ module.exports = {
   ADMINISTRATOR: '管理员',
   // List > Create > Cluster Settings
   SELECT_CLUSTERS_DESC: '选择企业空间需要使用的集群。',
-  NO_CLUSTER_AVAILABLE_DESC: '未发现可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
-  WORKSPACE_NO_CLUSTER_TIP: '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
+  NO_CLUSTER_AVAILABLE_DESC:
+    '未发现可用的集群。请在企业空间创建完成后，联系平台管理员或集群管理员将一个集群授权给该企业空间。',
+  WORKSPACE_NO_CLUSTER_TIP:
+    '请联系平台管理员或者集群管理员将一个集群授权给企业空间。',
   AVAILABLE_CLUSTERS: '可用集群',
   CLUSTER_SETTINGS: '集群设置',
-  SELECT_HOST_CLUSTER_WARNING: '当前系统为多集群系统，请尽量避免在主集群上创建资源。主集群负载过高会导致多集群系统稳定性下降。',
+  SELECT_HOST_CLUSTER_WARNING:
+    '当前系统为多集群系统，请尽量避免在主集群上创建资源。主集群负载过高会导致多集群系统稳定性下降。',
   // List > Edit Information
   // List > Delete
   DELETE_WORKSPACE: '删除企业空间',
-  WORKSPACE_LOW: '企业空间'
-};
+  WORKSPACE_LOW: '企业空间',
+}

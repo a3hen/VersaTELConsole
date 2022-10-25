@@ -29,7 +29,8 @@ module.exports = {
   // More > Re-Create
   // More > Delete
   // Resource Status > Clusters
-  MULTI_CLUSTER_RESOURCE_TIP: 'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
+  MULTI_CLUSTER_RESOURCE_TIP:
+    'El recurso multi-clúster actual se ejecuta en distintos clústers. Puedes saltar entre clústers para comprobar los parámetros de este recurso en cada uno de ellos.',
   // Resource Status > Replica Status
   // Resource Status > Ports
   // Resource Status > Pods
@@ -40,5 +41,5 @@ module.exports = {
   // Monitoring
   // Environment Variables
   // Events
-  EVENT_PL: 'Events'
-};
+  EVENT_PL: 'Events',
+}

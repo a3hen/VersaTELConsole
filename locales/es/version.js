@@ -58,12 +58,15 @@ module.exports = {
   'View in Store': 'Ver en la tienda',
   Working: 'Trabajando',
   'Wrong version number format': 'Formato de número de versión incorrecto',
-  PACKAGE_FILE_DESC: 'El archivo Package.json, que describe la información básica de una aplicación o versión, como el nombre y el número de versión.',
+  PACKAGE_FILE_DESC:
+    'El archivo Package.json, que describe la información básica de una aplicación o versión, como el nombre y el número de versión.',
   CONFIG_FILE_DESC: 'Perfil predeterminado de la aplicación',
-  LOCALE_EN__FILE_DESC: 'Traducción al inglés para la configuración de la aplicación',
-  LOCALE_ZH_FILE_DESC: 'Traducción al chino para la configuración de la aplicación',
+  LOCALE_EN__FILE_DESC:
+    'Traducción al inglés para la configuración de la aplicación',
+  LOCALE_ZH_FILE_DESC:
+    'Traducción al chino para la configuración de la aplicación',
   VERSION_SUBMIT_DOC: 'Consulte un manual de prueba más completo',
   // App Templates > Details
   APP_VERSION_SCAP: 'App version',
-  TEST_INSTALLATION: 'Test Installation'
-};
+  TEST_INSTALLATION: 'Test Installation',
+}

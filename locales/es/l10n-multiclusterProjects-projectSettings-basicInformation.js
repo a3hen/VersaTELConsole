@@ -32,5 +32,5 @@ module.exports = {
   // Manage > Add Cluster
   // Manage > Edit Default Container Quotas
   // Manage > Delete Project
-  DELETE_PROJECT: 'Delete Project'
-};
+  DELETE_PROJECT: 'Delete Project',
+}

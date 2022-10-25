@@ -31,11 +31,13 @@ module.exports = {
   'Invalid type': 'Tipo no válido',
   'Missing access key ID': 'Falta la ID de la clave de acceso',
   'Missing secret access key': 'Falta la clave de acceso secreta',
-  'Please input access key ID and secret access key': 'Introduce la ID de la clave de acceso y la clave de acceso secreta',
+  'Please input access key ID and secret access key':
+    'Introduce la ID de la clave de acceso y la clave de acceso secreta',
   'S3 access denied': 'Acceso S3 denegado',
   Synchronize: 'Sincronizar',
   syncing: 'syncing',
   'Unrecognized URL': 'URL no reconocida',
   'App Repositorys': 'Repositorios de aplicaciones',
-  APP_REPOSITORY_CREATE_DESC: 'Puedes agregar un repositorio de aplicaciones de terceros que admita aplicaciones Kubernetes basadas en Helm.'
-};
+  APP_REPOSITORY_CREATE_DESC:
+    'Puedes agregar un repositorio de aplicaciones de terceros que admita aplicaciones Kubernetes basadas en Helm.',
+}

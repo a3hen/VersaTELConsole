@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
- */
+
+*/
 module.exports = {
   // Log in page
   INPUT_USERNAME_OR_EMAIL_TIP: '请输入用户名或邮箱。',
@@ -24,5 +25,5 @@ module.exports = {
   ABOUT: '关于',
   USERNAME_OR_EMAIL: '用户名或邮箱',
   WELCOME: '欢迎登录',
-  INTERNAL_SERVER_ERROR_TIP: '对不起，服务器开小差了'
-};
+  INTERNAL_SERVER_ERROR_TIP: '对不起，服务器开小差了',
+}

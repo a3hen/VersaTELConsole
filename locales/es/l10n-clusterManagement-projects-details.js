@@ -25,7 +25,8 @@ module.exports = {
   // Gateway
   GATEWAY: 'Información de puerta de enlace',
   GATEWAY_NOT_ENABLED: 'Puerta de enlace no establecida',
-  ENABLE_GATEWAY_TIP: 'To use the gateway, please configure the gateway in the cluster or the project.',
+  ENABLE_GATEWAY_TIP:
+    'To use the gateway, please configure the gateway in the cluster or the project.',
   // Quotas > Default Container Quotas
-  QUOTA_PL: 'Quotas'
-};
+  QUOTA_PL: 'Quotas',
+}

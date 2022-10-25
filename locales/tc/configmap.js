@@ -20,8 +20,9 @@ module.exports = {
   configmaps: '配置字典',
   ConfigMaps: '配置字典',
   EDIT_CONFIGMAP: '修改配置',
-  CONFIGMAP_EMPTY_DESC: '配置字典是儲存通用的配置變量的，用戶可以將分布式系統中用於不同模組的環境變量統一到一個對象中管理',
+  CONFIGMAP_EMPTY_DESC:
+    '配置字典是儲存通用的配置變量的，用戶可以將分布式系統中用於不同模組的環境變量統一到一個對象中管理',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: '新建配置項'
-};
+  CREATE_CONFIG: '新建配置項',
+}

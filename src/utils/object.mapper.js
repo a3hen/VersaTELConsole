@@ -38,6 +38,8 @@ import {
   getAliasName,
   getResourceCreator,
   replaceToLocalOrigin,
+  getLocalTime,
+  formaDayTime,
 } from 'utils'
 
 import { safeAtob } from 'utils/base64'
@@ -493,7 +495,9 @@ const VolumeMapper = item => {
       'status.capacity.storage',
       get(item, 'spec.resources.requests.storage')
     ),
-    inUse: get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true',
+    inUse:
+      get(item, 'metadata.annotations["kubesphere.io/in-use"]') === 'true' ||
+      get(item, 'status.phase') === 'Bound',
     type: 'pvc',
     _originData: getOriginData(item),
   }
@@ -1029,6 +1033,53 @@ const VolumeSnapshotMapper = detail => {
       : 'updating',
     namespace,
     snapshotSourceName,
+    _originData: getOriginData(detail),
+  }
+}
+
+const VolumeSnapshotContentMapper = detail => {
+  const { spec = {}, status = {}, metadata = {} } = detail
+  const { deletionTimestamp = '', creationTimestamp = '' } = metadata
+  const { error = {}, readyToUse, snapshotHandle } = status
+  const { message } = error
+
+  return {
+    ...getBaseInfo(detail),
+    creationTimestamp,
+    deletionTimestamp,
+    namespace: get(spec, 'volumeSnapshotRef.namespace'),
+    snapshotClassName: get(spec, 'volumeSnapshotClassName', '-'),
+    volumeSnapshot: get(spec, 'volumeSnapshotRef.name'),
+    annotations: get(detail, 'metadata.annotations'),
+    labels: get(detail, 'metadata.labels'),
+    deletionPolicy: get(spec, 'deletionPolicy', '-'),
+    driver: get(spec, 'driver', ''),
+    source: get(spec, 'source', {}),
+    error,
+    errorMessage: message,
+    generating: !readyToUse && isEmpty(error),
+    readyToUse,
+    status: readyToUse ? 'ready' : 'unready',
+    snapshotHandle,
+    restoreSize: get(status, 'restoreSize', 0),
+    _originData: getOriginData(detail),
+  }
+}
+
+const VolumeSnapshotClassesMapper = detail => {
+  const { metadata = {}, apiVersion, driver, deletionPolicy, kind } = detail
+  const { deletionTimestamp = '', creationTimestamp = '' } = metadata
+
+  return {
+    ...getBaseInfo(detail),
+    apiVersion,
+    driver,
+    deletionPolicy,
+    kind,
+    count: get(metadata, 'annotations["kubesphere.io/snapshot-count"]', 0),
+    creationTimestamp,
+    deletionTimestamp,
+    _originData: detail,
   }
 }
 
@@ -1036,6 +1087,16 @@ const ClusterMapper = item => {
   const conditions = keyBy(get(item, 'status.conditions', []), 'type')
   const configz = get(item, 'status.configz', {})
   configz.ksVersion = get(item, 'status.kubeSphereVersion', '')
+
+  const expiredDate = get(
+    conditions,
+    'KubeConfigCertExpiresInSevenDays.message',
+    undefined
+  )
+
+  const expiredDay = expiredDate
+    ? formaDayTime(getLocalTime(expiredDate) - new Date())
+    : undefined
 
   return {
     ...getBaseInfo(item),
@@ -1046,6 +1107,7 @@ const ClusterMapper = item => {
       get(item, 'metadata.labels', {}),
       'cluster-role.kubesphere.io/host'
     ),
+    expiredDay,
     kkName: get(item, 'metadata.labels["kubekey.kubesphere.io/name"]', ''),
     nodeCount: get(item, 'status.nodeCount'),
     kubernetesVersion: get(item, 'status.kubernetesVersion'),
@@ -1134,6 +1196,8 @@ const DevOpsMapper = item => {
     workspace: get(item, 'metadata.labels["kubesphere.io/workspace"]'),
     namespace: get(item, 'status.adminNamespace'),
     status: deletionTimestamp ? 'Terminating' : phase || syncStatus || 'Active',
+    sourceRepos: get(item, 'spec.argo.sourceRepos', []),
+    destinations: get(item, 'spec.argo.destinations', []),
     _originData: getOriginData(item),
   }
 }
@@ -1267,6 +1331,62 @@ const AlertingRuleMapper = item => {
   }
 }
 
+const CDSMapper = item => {
+  const status = safeParseJSON(get(item, 'status.argoApp', ''), {})
+  const syncStatus = get(status, 'sync.status')
+  const healthStatus = get(status, 'health.status')
+  const devops = get(item, 'devops')
+  const argoApp = get(item, 'spec.argoApp', {})
+
+  const repoSource = get(argoApp, 'spec.source', {})
+  const destination = get(argoApp, 'spec.destination', {})
+  const operation = get(argoApp, 'operation', {})
+  const syncOptions = get(argoApp, 'spec.syncPolicy.syncOptions', [])
+  const syncType = Object.keys(get(argoApp, 'spec.syncPolicy', {})).includes(
+    'automated'
+  )
+    ? 'automated'
+    : 'manual'
+  const _syncOptions = {}
+
+  if (syncOptions.length > 0) {
+    syncOptions.forEach(syncOption => {
+      const itemArrayValue = syncOption.split('=')
+      _syncOptions[itemArrayValue[0]] = safeParseJSON(
+        itemArrayValue[1],
+        itemArrayValue[1]
+      )
+    })
+  }
+
+  return {
+    ...getBaseInfo(item),
+    syncStatus,
+    healthStatus,
+    status,
+    devops,
+    repoSource,
+    destination,
+    operation,
+    syncType,
+    syncOptions: _syncOptions,
+    _originData: getOriginData(omit(item, 'devops')),
+  }
+}
+
+const CodeRepoMapper = item => {
+  const spec = get(item, 'spec', {})
+
+  return {
+    ...getBaseInfo(item),
+    provider: spec.provider,
+    repoURL: spec.url,
+    secret: spec.secret || {},
+    webhooks: spec.webhooks || [],
+    _originData: getOriginData(omit(item, 'devops')),
+  }
+}
+
 export default {
   deployments: WorkLoadMapper,
   daemonsets: WorkLoadMapper,
@@ -1307,6 +1427,8 @@ export default {
   codequality: CodeQualityMapper,
   imageBlob: ImageDetailMapper,
   volumesnapshots: VolumeSnapshotMapper,
+  volumesnapshotcontents: VolumeSnapshotContentMapper,
+  volumesnapshotclasses: VolumeSnapshotClassesMapper,
   users: UserMapper,
   clusters: ClusterMapper,
   kkclusters: KKClusterMapper,
@@ -1325,4 +1447,6 @@ export default {
   groups: GroupsMapper,
   default: DefaultMapper,
   rules: AlertingRuleMapper,
+  cds: CDSMapper,
+  codeRepos: CodeRepoMapper,
 }

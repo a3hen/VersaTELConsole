@@ -57,14 +57,22 @@ module.exports = {
   TAINT_SELECT_TIPS: 'Unir taints comunes',
   TAINT_DELETE_TIPS: 'Eliminar taint',
   NODE_OUTOFDISK: 'OutOfDisk',
-  NODE_OUTOFDISK_DESC: 'Compruebe si hay espacio en el nodo para agregar un nuevo pod',
-  NODE_NETWORKUNAVAILABLE_TIP: 'Si la red para el nodo está configurada correctamente.',
-  NODE_OUTOFDISK_TIP: 'Si no hay suficiente espacio libre en el nodo para agregar nuevos pods.',
-  NODE_MEMORYPRESSURE_TIP: 'Si existe carga en la memoria del nodo, es decir, si la memoria del nodo es baja.',
-  NODE_DISKPRESSURE_TIP: 'Si existe carga sobre el tamaño del disco, es decir, si la capacidad del disco es baja.',
-  NODE_PIDPRESSURE_TIP: 'Si existe carga sobre los procesos, es decir, si hay demasiados procesos en el nodo.',
+  NODE_OUTOFDISK_DESC:
+    'Compruebe si hay espacio en el nodo para agregar un nuevo pod',
+  NODE_NETWORKUNAVAILABLE_TIP:
+    'Si la red para el nodo está configurada correctamente.',
+  NODE_OUTOFDISK_TIP:
+    'Si no hay suficiente espacio libre en el nodo para agregar nuevos pods.',
+  NODE_MEMORYPRESSURE_TIP:
+    'Si existe carga en la memoria del nodo, es decir, si la memoria del nodo es baja.',
+  NODE_DISKPRESSURE_TIP:
+    'Si existe carga sobre el tamaño del disco, es decir, si la capacidad del disco es baja.',
+  NODE_PIDPRESSURE_TIP:
+    'Si existe carga sobre los procesos, es decir, si hay demasiados procesos en el nodo.',
   NODE_READY_TIP: 'Si el nodo está sano y listo para aceptar pods.',
-  NODE_TYPE_DESC: 'Los tipos de nodos ayudan a los usuarios a dividir los nodos en diferentes grupos. Los usuarios pueden agregar el nodo de alojamiento a un grupo correspondiente creando nodos de diferentes tipos que estén conectados adecuadamente entre sí. De esta forma, los Pods pueden desplegarse en los nodos físicos apropiados según el grupo. La disponibilidad de recursos y la continuidad del negocio también se pueden mejorar.',
-  NODE_TYPE_DESCRIPTION_DEC: 'La descripción ayudará a los usuarios a seleccionar tipos de nodos y usar el clúster.',
-  'Add Edge Node': 'Add Edge Node'
-};
+  NODE_TYPE_DESC:
+    'Los tipos de nodos ayudan a los usuarios a dividir los nodos en diferentes grupos. Los usuarios pueden agregar el nodo de alojamiento a un grupo correspondiente creando nodos de diferentes tipos que estén conectados adecuadamente entre sí. De esta forma, los Pods pueden desplegarse en los nodos físicos apropiados según el grupo. La disponibilidad de recursos y la continuidad del negocio también se pueden mejorar.',
+  NODE_TYPE_DESCRIPTION_DEC:
+    'La descripción ayudará a los usuarios a seleccionar tipos de nodos y usar el clúster.',
+  'Add Edge Node': 'Add Edge Node',
+}

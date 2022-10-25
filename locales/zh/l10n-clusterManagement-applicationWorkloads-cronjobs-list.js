@@ -26,11 +26,11 @@ module.exports = {
   EVERY_WEEK: '0 0 * * 0 （每周）',
   // List > Create > Strategy Settings
   // List > Create > Pod Settings
-  // List > Create > Volume Settings
+  // List > Create > Storage Settings
   // List > Create > Advanced Settings
   // List > Edit Information
   // List > Edit YAML
   // List > Start/Pause
   PAUSE: '暂停',
-  START: '启动'
-};
+  START: '启动',
+}

@@ -19,5 +19,5 @@ module.exports = {
   ServiceAccounts: '服务帐户',
   ServiceAccount: '服务帐户',
   'Edit Service Account': '编辑服务帐户',
-  SECRET_DETAILS: '保密字典详情'
-};
+  SECRET_DETAILS: '保密字典详情',
+}

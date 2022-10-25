@@ -17,5 +17,5 @@
  */
 module.exports = {
   principal: 'persona a cargo',
-  'project roles': 'roles de proyecto'
-};
+  'project roles': 'roles de proyecto',
+}

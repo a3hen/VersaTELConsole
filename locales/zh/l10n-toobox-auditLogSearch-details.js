@@ -28,5 +28,5 @@ module.exports = {
   RESOURCE_NAME_AND_TYPE: '资源类型与名称',
   VERB: '操作行为',
   STATUS_CODE: '状态码',
-  SUBRESOURCE: '子资源'
-};
+  SUBRESOURCE: '子资源',
+}

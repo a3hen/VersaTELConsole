@@ -25,7 +25,8 @@ module.exports = {
   'Add Selector': '添加選擇器',
   'Associated Application': '關聯應用',
   'Automatically assign Service IP': '自動分配服務 IP',
-  'Commonly included tags in the current workloads': '目前的工作負載中共同包含的標籤',
+  'Commonly included tags in the current workloads':
+    '目前的工作負載中共同包含的標籤',
   'Create Service': 'Create Service',
   'Create service by specifying workloads': '指定工作負載創建服務',
   'Create service by Yaml': '通過 Yaml 創建服務',
@@ -39,13 +40,15 @@ module.exports = {
   'Internal access': '内部訪問',
   'LoadBalancer IP': '負載平衡 IP',
   'Map Services outside the cluster': '映射集群外部的服務',
-  'No related resources found with current service(s)': 'No related resources found with current service(s)',
+  'No related resources found with current service(s)':
+    'No related resources found with current service(s)',
   'Node Port': '節點端口',
   'Node Port(s)': '節點端口',
   'Not Associate': '不關聯',
   'Path is Required': '請填寫 Path',
   'Please input ExternalName': '請輸入 ExternalName',
-  'Please input selectors that have corresponding workloads': '請輸入有對應工作負載的選擇器',
+  'Please input selectors that have corresponding workloads':
+    '請輸入有對應工作負載的選擇器',
   'Please input service name': '請輸入服務名稱',
   'Please select a workload': '請選擇一個工作負載',
   'Please select Service': '請選擇 Service',
@@ -63,9 +66,11 @@ module.exports = {
   'The current selector': '目前設置的選擇器',
   SERVICE_SELECTOR_AFFECT_1: '',
   SERVICE_SELECTOR_AFFECT_2: '共影響到 {count} 個工作負載',
-  SERVICES_BASEINFO_DESC: '創建服務需要提供服務的名稱和描述，服務名稱不能和同一項目下已有的服務名稱相同。',
+  SERVICES_BASEINFO_DESC:
+    '創建服務需要提供服務的名稱和描述，服務名稱不能和同一項目下已有的服務名稱相同。',
   SERVICES_SETTINGS_DESC: '服務設置定義了如何來訪問已有的工作負載。',
-  HEADLESS_EXTERNAL_NAME_TITLE: '映射集群外部的地址來訪 Headless (externalname)',
+  HEADLESS_EXTERNAL_NAME_TITLE:
+    '映射集群外部的地址來訪 Headless (externalname)',
   HEADLESS_EXTERNAL_NAME_DESC: '將集群或者項目外部服務映射到集群或項目内。',
   SERVICE_TYPE_STATEFULSERVICE: '有狀態服務',
   SERVICE_TYPE_STATELESSSERVICE: '無狀態服務',
@@ -73,5 +78,5 @@ module.exports = {
   // Services
   HEADLESS: 'Headless',
   EXTERNALNAME: 'ExternalName',
-  EXTERNALNAME_EXAMPLE: 'Example: '
-};
+  EXTERNALNAME_EXAMPLE: 'Example: ',
+}

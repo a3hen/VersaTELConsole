@@ -17,23 +17,30 @@
  */
 module.exports = {
   // Title
-  TOTAL_LOGS_TODAY: 'Hoy se recolectó un total de <span class={className}>{logs}</span> logs de <span class={className}>{contenedores}</span> contenedores.',
+  TOTAL_LOGS_TODAY:
+    'Hoy se recolectó un total de <span class={className}>{logs}</span> logs de <span class={className}>{contenedores}</span> contenedores.',
   // Search
   LOGGING_NOT_ENABLED_DESC: 'No hay clúster con módulo de registro habilitado',
   WORKLOAD: 'Carga de trabajo',
   TIME_RANGE_SCAP: 'Time range',
   // Querying Rules
   QUERYING_RULES: 'Regla de búsqueda',
-  CONTAINER_LOG_TRENDS_12H: 'Tendencias en el número total de registros en las últimas 12 horas.',
-  CONTAINER_LOG_KEYWORD_TIP: 'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
-  CONTAINER_LOG_PROJECT_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre del proyecto.',
-  CONTAINER_LOG_WORKLOAD_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre de la carga de trabajo.',
-  CONTAINER_LOG_CONTAINER_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre del contenedor.',
-  CONTAINER_LOG_POD_TIP: 'Puedes ver la información de log relacionada de acuerdo con el nombre del pod.',
+  CONTAINER_LOG_TRENDS_12H:
+    'Tendencias en el número total de registros en las últimas 12 horas.',
+  CONTAINER_LOG_KEYWORD_TIP:
+    'Introduce la palabra clave para encontrar el log. También puedes encontrar el log de errores por palabras clave como "Error", "Fail", "Fatal", "Exception" y "Warning".',
+  CONTAINER_LOG_PROJECT_TIP:
+    'Puedes ver la información de log relacionada de acuerdo con el nombre del proyecto.',
+  CONTAINER_LOG_WORKLOAD_TIP:
+    'Puedes ver la información de log relacionada de acuerdo con el nombre de la carga de trabajo.',
+  CONTAINER_LOG_CONTAINER_TIP:
+    'Puedes ver la información de log relacionada de acuerdo con el nombre del contenedor.',
+  CONTAINER_LOG_POD_TIP:
+    'Puedes ver la información de log relacionada de acuerdo con el nombre del pod.',
   SEARCH_BY_KEYWORD: 'Search by Keyword',
   SEARCH_BY_PROJECT: 'Search by Project',
   SEARCH_BY_WORKLOAD: 'Search by Workload',
   SEARCH_BY_POD: 'Search by Pod',
   SEARCH_BY_CONTAINER: 'Search by Container',
-  TIME_RANGE: 'Intervalo de tiempo'
-};
+  TIME_RANGE: 'Intervalo de tiempo',
+}

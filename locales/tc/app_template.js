@@ -25,6 +25,7 @@ module.exports = {
   NO_CHART_FILE_FOUND: 'No chart file is found.',
   'Update Successfully': 'Update Successfully',
   APP_TEMPLATE_DESCRIPTION_TITLE: '應用一鍵部署',
-  APP_TEMPLATE_DESCRIPTION_ARTICLE: '通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
-  TOTAL_APP_REPOS: '共計 {num} 個應用倉庫'
-};
+  APP_TEMPLATE_DESCRIPTION_ARTICLE:
+    '通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用模板快速地一鍵部署應用',
+  TOTAL_APP_REPOS: '共計 {num} 個應用倉庫',
+}

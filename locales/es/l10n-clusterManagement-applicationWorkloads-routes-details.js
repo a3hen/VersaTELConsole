@@ -22,5 +22,5 @@ module.exports = {
   SERVICE_VALUE: 'Servicio: {value}',
   // More > Edit Annotations
   // Resource Status
-  PROTOCOL_VALUE: 'Protocolo: {value}'
-};
+  PROTOCOL_VALUE: 'Protocolo: {value}',
+}

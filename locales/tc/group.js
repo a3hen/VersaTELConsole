@@ -17,5 +17,5 @@
  */
 module.exports = {
   principal: '負責人',
-  'project roles': '項目角色'
-};
+  'project roles': '項目角色',
+}
