@@ -20,8 +20,9 @@ module.exports = {
   INDEX_PREFIX: 'Index Prefix',
   // More > Change Status
   CHANGE_STATUS: 'Cambiar Estado',
-  LOG_COLLECTION_ENABLE_TIPS: 'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
+  LOG_COLLECTION_ENABLE_TIPS:
+    'El nuevo estado tarda aproximadamente 1 minuto en surtir efecto.',
   SELECT_STATUS_TIP: 'Select a status',
   // Resource Status
-  ADDRESS: 'Address'
-};
+  ADDRESS: 'Address',
+}

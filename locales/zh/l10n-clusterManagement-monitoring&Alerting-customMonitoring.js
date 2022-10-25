@@ -21,12 +21,14 @@ module.exports = {
   CUSTOM_MONITORING_DASHBOARD: '自定义监控面板',
   CUSTOM_MONITORING_DASHBOARD_PL: '自定义监控面板',
   CUSTOM_MONITORING_DASHBOARD_EMPTY_DESC: '请创建一个自定义监控面板。',
-  CUSTOM_MONITORING_DASHBOARD_DESC: '自定义监控提供应用监控模板，您可以根据需求自定义监控面板。',
+  CUSTOM_MONITORING_DASHBOARD_DESC:
+    '自定义监控提供应用监控模板，您可以根据需求自定义监控面板。',
   // List
   // List > Create
   CREATE_CUSTOM_MONITORING_DASHBOARD: '创建自定义监控面板',
   MONITORING_TEMPLATE: '监控模板',
-  CUSTOM_MONITORING_TEMPLATE_DESC: '选择默认模板、上传模板或自定义模板来生成自定义监控面板。',
+  CUSTOM_MONITORING_TEMPLATE_DESC:
+    '选择默认模板、上传模板或自定义模板来生成自定义监控面板。',
   // List > Create > Grafana
   UPLOAD_GRAFANA_DASHBOARD: '上传 Grafana 监控面板',
   SUPPORT_JSON_FILE: '仅支持 JSON 格式的文件。',
@@ -78,5 +80,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAMl
   // List > Delete
-  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板'
-};
+  CUSTOM_MONITORING_DASHBOARD_LOW: '自定义监控面板',
+}

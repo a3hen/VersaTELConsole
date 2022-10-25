@@ -19,12 +19,13 @@ module.exports = {
   ACCOUNT_PASSWORD_SECRET_TCAP: 'Secreto de contraseña de cuenta',
   EDIT_SECRET: 'Editar secreto',
   IMAGE_REGISTRY_SECRET_TCAP: 'Secreto del repositorio de imágenes',
-  'Please input the registry address': 'Por favor introduce la dirección de registro',
+  'Please input the registry address':
+    'Por favor introduce la dirección de registro',
   Secret: 'Secreto',
   secrets: 'secretos',
   Secrets: 'Secretos',
   Unverified: 'Sin verificar',
   // Secret Type Drop-down List
   SECRET_VALUE_LABEL: '{value} ({label})',
-  CREATE_SECRET: 'create a secret'
-};
+  CREATE_SECRET: 'create a secret',
+}

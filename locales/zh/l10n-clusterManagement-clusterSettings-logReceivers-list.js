@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   LOG_RECEIVER_PL: '日志接收器',
-  LOG_COLLECTION_DESC: '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务。',
+  LOG_COLLECTION_DESC:
+    '系统将收集每个容器的标准输出和标准错误输出日志，并将其发送到一个或多个目标服务。',
   // Banner > Add Log Receiver
   ADD_LOG_RECEIVER: '添加日志接收器',
   LOG_COLLECTION_TIPS: '每种类型的日志收集器只能添加一个。',
@@ -26,8 +27,10 @@ module.exports = {
   KAFKA_DESC: 'Kafka 是流行的开源流处理平台。',
   FLUENTD_DESC: 'Fluentd 是提供统一日志处理层的开源数据收集器。',
   // Banner > Add Log Receiver > Elasticsearch
-  LOG_COLLECTION_ES_URL_TIPS: '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
-  LOG_COLLECTION_ES_INDEX_TIPS: '使用索引前缀进行快速搜索。系统以<索引前缀>-<年-月-日>格式自动生成索引前缀。',
+  LOG_COLLECTION_ES_URL_TIPS:
+    '默认使用系统部署的 Elasticsearch 服务，您也可以输入在集群内部或外部单独部署的 Elasticsearch 服务的地址。',
+  LOG_COLLECTION_ES_INDEX_TIPS:
+    '使用索引前缀进行快速搜索。系统以<索引前缀>-<年-月-日>格式自动生成索引前缀。',
   PARAMETER_REQUIRED: '此参数为必填项。',
   // Banner > Add Log Receiver > Kafka
   TOPIC: '主题',
@@ -38,11 +41,9 @@ module.exports = {
   // Banner > Add Log Receiver > Fluentd
   LOG_COLLECTION_FLUENTD_URL_TIPS: '输入接收日志的 Fluentd 服务的地址。',
   // Container Logs
-  LOG_COLLECTING: '收集中',
-  LOG_DISABLED: '关闭',
   EMPTY_LOG_COLLECTIONS: '未发现日志接收器。您可以添加日志接收器将日志发送到外部日志接收器中。',
   // Resource Events
   RESOURCE_EVENTS: '资源事件',
   // Audit Logs
-  AUDIT_LOGS: '审计日志'
-};
+  AUDIT_LOGS: '审计日志',
+}

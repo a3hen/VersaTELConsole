@@ -24,5 +24,5 @@ module.exports = {
   // List > Edit YAML
   // List > Edit Settings
   // List > Delete
-  SECRET_LOW: '保密字典'
-};
+  SECRET_LOW: '保密字典',
+}

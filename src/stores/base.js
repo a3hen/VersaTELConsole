@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, set } from 'lodash'
+import { get, isEmpty, set } from 'lodash'
 import { action, observable } from 'mobx'
 import ObjectMapper from 'utils/object.mapper'
 
@@ -37,7 +37,7 @@ export default class BaseStore {
   isSubmitting = false
 
   @observable
-  supportPv = false
+  ksVersion = 3.1
 
   constructor(module) {
     this.module = module
@@ -204,6 +204,37 @@ export default class BaseStore {
   }
 
   @action
+  async fetchDetailWithoutWarning(params) {
+    let urlNotSupport = false
+    this.isLoading = true
+
+    const result = await request.get(
+      this.getDetailUrl(params),
+      {},
+      {},
+      (error, response) => {
+        if (error) {
+          if (error.status === 404) {
+            urlNotSupport = true
+          }
+          return {}
+        }
+        return response
+      }
+    )
+
+    if (urlNotSupport) {
+      return { urlNotSupport }
+    }
+
+    const detail = !isEmpty(result) ? { ...params, ...this.mapper(result) } : {}
+
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
+
+  @action
   setSelectRowKeys(selectedRowKeys) {
     this.list.selectedRowKeys.replace(selectedRowKeys)
   }
@@ -274,21 +305,31 @@ export default class BaseStore {
     window.onunhandledrejection(res)
   }
 
-  async checkSupportPv(params) {
+  async getKsVersion(params) {
     let result
-    if (globals.ksConfig.multicluster) {
-      result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+    let ksVersion
+    const configVersion = get(
+      globals.clusterConfig,
+      `${params.cluster}.ksVersion`,
+      ''
+    )
+    if (configVersion !== '') {
+      ksVersion = configVersion.replace(/[^\d.]/g, '')
     } else {
-      result = await request.get(`/kapis/version`)
+      if (globals.ksConfig.multicluster) {
+        result = await request.get(`/kapis/clusters/${params.cluster}/version`)
+      } else {
+        result = await request.get(`/kapis/version`)
+      }
+      ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
     }
-    const ksVersion = result.gitVersion.replace(/[^\d.]/g, '')
     const version = Number(
       ksVersion
         .split('.')
         .slice(0, 2)
         .join('.')
     )
-    this.supportPv = version >= 3.2
-    return this.supportPv
+    this.ksVersion = version
+    return version
   }
 }

@@ -35,5 +35,5 @@ module.exports = {
   CONTROL_TOOL: '控制工具',
   TOOLBOX_SHIFT_TIPS: ' 👻 按下“shift+左键”可在浏览器新窗口中打开 kubectl。',
   // Third-Party Tools
-  THIRD_PARTY_TOOLS: '第三方工具'
-};
+  THIRD_PARTY_TOOLS: '第三方工具',
+}

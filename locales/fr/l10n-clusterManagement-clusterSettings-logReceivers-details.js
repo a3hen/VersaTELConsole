@@ -20,8 +20,9 @@ module.exports = {
   INDEX_PREFIX: 'Index Prefix',
   // More > Change Status
   CHANGE_STATUS: 'Change Status',
-  LOG_COLLECTION_ENABLE_TIPS: 'The new status requires about 1 minute to take effect.',
+  LOG_COLLECTION_ENABLE_TIPS:
+    'The new status requires about 1 minute to take effect.',
   SELECT_STATUS_TIP: 'Select a status',
   // Resource Status
-  ADDRESS: 'Address'
-};
+  ADDRESS: 'Address',
+}

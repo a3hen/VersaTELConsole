@@ -17,5 +17,5 @@
  */
 module.exports = {
   'Target Service': '目標服務',
-  'View Monitor': '查看監控'
-};
+  'View Monitor': '查看監控',
+}

@@ -17,5 +17,5 @@
  */
 module.exports = {
   principal: 'principal',
-  'project roles': 'project roles'
-};
+  'project roles': 'project roles',
+}

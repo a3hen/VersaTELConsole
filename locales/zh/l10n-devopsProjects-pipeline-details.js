@@ -52,9 +52,11 @@ module.exports = {
       具体取决于该 agent 部分的放置位置。该部分必须在流水线块内的顶层定义，但 stage 级使用是可选的。`,
   CREATE_PIPELINE_DESC: '使用流水线进行构建，测试和部署',
   CI: '持续集成 (CI)',
-  CI_DESC: '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
+  CI_DESC:
+    '持续集成（CI）是在源代码变更后自动检测、拉取、构建和（在大多数情况下）进行单元测试的过程。',
   CICD: '持续集成&交付 (CI/CD)',
-  CICD_DESC: '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
+  CICD_DESC:
+    '持续部署（CD）是指能够自动提供持续交付管道中发布版本给最终用户使用的想法。根据用户的安装方式，在云环境中自动部署、app 升级（如手机上的应用程序）、更新网站或只更新可用版本列表。',
   CUSTOM_PIPELIEN: '自定义流水线',
   CUSTOM_PIPELIEN_DESC: '您可以选择您需要的任务自定义流水线的工作内容',
   CC: '抄送',
@@ -86,17 +88,22 @@ module.exports = {
       </li>`,
   STAGE: '阶段',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: '该步骤会在后续版本中弃用，建议考虑其他替代方案。',
+  ORIGINAL_IMAGE_ADDRESS: '原镜像地址',
+  NEW_IMAGE_ADDRESS: '新镜像地址',
+  NEW_IMAGE_TAG: '新镜像标签',
+  CD_STEP_DESC: '通过持续部署更新镜像信息。',
+  UPDATE_CD_TITLE: '持续部署更新',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: '编辑 Jenkinsfile',
-  CLOSE_JENKINSFILE_EDITOR_TIP: '确定关闭 Jenkinsfile 编辑器？',
+  CLOSE_JENKINSFILE_EDITOR_TIP: '确定禁用 Jenkinsfile 编辑器？',
   // Task Status > View Logs
   PIPELINE_RUN_LOGS: '流水线运行日志',
   VIEW_LOGS: '查看日志',
   DURATION_VALUE: '持续时间：{value}',
   DOWNLOAD_LOGS: '下载日志',
   // Task Status > View Logs > View Logs
-  START_REAL_TIME_LOG: '开启实时日志',
-  STOP_REAL_TIME_LOG: '停止实时日志',
+  START_REAL_TIME_LOG: '启用实时日志',
+  STOP_REAL_TIME_LOG: '禁用实时日志',
   // Run Records
   RUN_RECORDS: '运行记录',
   RUN: '运行',
@@ -106,7 +113,8 @@ module.exports = {
   LAST_MESSAGE: '最后消息',
   RUN_ID: '运行 ID',
   STOP_PIPELINE_SUCCESSFUL: '流水线停止成功。',
-  INVALID_JENKINSFILE_TIP: '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，图形化显示不可用。',
+  INVALID_JENKINSFILE_TIP:
+    '当前 Jenkinsfile 不是标准的声明式 Jenkinsfile，图形化显示不可用。',
   PAUSED: '已暂停',
   // Run Records > Run
   SET_PARAMETERS: '设置参数',
@@ -152,5 +160,5 @@ module.exports = {
   LINE_VALUE: '行：{value}',
   PASSED: '已通过',
   // Pull Requests
-  PULL_REQUEST_PL: '拉取请求'
-};
+  PULL_REQUEST_PL: '拉取请求',
+}

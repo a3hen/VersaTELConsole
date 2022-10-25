@@ -29,5 +29,5 @@ module.exports = {
   ACCESS_INFORMATION: '服務訪問',
   VIRTUAL_IP_ADDRESS: 'Virtual IP address',
   INTERNAL_DOMAIN_NAME_SCAP: '集群内部訪問方式(DNS)',
-  NODE_PORT_SCAP: 'Node port'
-};
+  NODE_PORT_SCAP: 'Node port',
+}

@@ -22,5 +22,5 @@ module.exports = {
   SORT_BY_WORKSPACE_POD_COUNT: 'Sort by pod count',
   SORT_BY_WORKSPACE_CPU_USAGE: 'Sort by CPU usage',
   SORT_BY_WORKSPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',
-  SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic'
-};
+  SORT_BY_WORKSPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
+}

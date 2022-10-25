@@ -21,5 +21,5 @@ module.exports = {
   NODE_MEMORY_UTILISATION: 'Memory usage',
   NODE_DISK_SIZE_UTILISATION: 'Disk usage',
   NODE_POD_UTILISATION: 'Pod usage',
-  NODE_DISK_INODE_UTILISATION: 'Inode usage'
-};
+  NODE_DISK_INODE_UTILISATION: 'Inode usage',
+}

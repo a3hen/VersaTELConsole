@@ -41,7 +41,7 @@ import styles from './index.scss'
   store: new VolumeStore(),
   module: 'persistentvolumeclaims',
   authKey: 'volumes',
-  name: 'VOLUME',
+  name: 'PERSISTENT_VOLUME_CLAIM',
   rowKey: 'uid',
 })
 export default class Volumes extends React.Component {
@@ -99,7 +99,7 @@ export default class Volumes extends React.Component {
   }
 
   componentDidMount() {
-    this.props.store.checkSupportPv(this.props.match.params)
+    this.props.store.getKsVersion(this.props.match.params)
   }
 
   getItemDesc = record => {
@@ -160,7 +160,7 @@ export default class Volumes extends React.Component {
     const { cluster } = this.props.match.params
 
     const pvColumn = {
-      title: t('VOLUME_BACKEND_TCAP'),
+      title: t('PERSISTENT_VOLUME'),
       dataIndex: '_originData',
       isHideable: true,
       search: false,
@@ -243,7 +243,7 @@ export default class Volumes extends React.Component {
       },
     ]
 
-    if (this.props.store.supportPv) {
+    if (this.props.store.ksVersion >= 3.2) {
       allColumns.splice(2, 0, pvColumn)
     }
 

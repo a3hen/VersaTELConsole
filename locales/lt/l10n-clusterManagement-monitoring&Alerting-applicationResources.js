@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   APPLICATION_RESOURCE_PL: 'Application Resources',
-  MONITORING_APPLICATION_DESC: 'Application resources provide the monitoring data of application resource usage and usage ranking.',
+  MONITORING_APPLICATION_DESC:
+    'Application resources provide the monitoring data of application resource usage and usage ranking.',
   // Resource Usage > Cluster Resource Usage
   CUSTOM_TIME_RANGE: 'Customize Time Range',
   ACCOUNTS: 'Accounts',
@@ -86,5 +87,5 @@ module.exports = {
   SORT_BY_NAMESPACE_CPU_USAGE: 'Sort by CPU usage',
   SORT_BY_NAMESPACE_POD_COUNT: 'Sort by pod count',
   SORT_BY_NAMESPACE_NET_BYTES_RECEIVED: 'Sort by inbound traffic',
-  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic'
-};
+  SORT_BY_NAMESPACE_NET_BYTES_TRANSMITTED: 'Sort by outbound traffic',
+}

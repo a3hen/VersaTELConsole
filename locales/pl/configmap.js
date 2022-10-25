@@ -23,5 +23,5 @@ module.exports = {
   CONFIGMAP_EMPTY_DESC: 'Please create a configmap.',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: 'create a configmap'
-};
+  CREATE_CONFIG: 'create a configmap',
+}

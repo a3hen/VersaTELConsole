@@ -86,12 +86,10 @@ export default class EdgeNodes extends React.Component {
       {
         key: 'terminal',
         icon: 'terminal',
-        text: t('TERMINAL'),
+        text: t('OPEN_TERMINAL'),
         action: 'edit',
-        show: item =>
-          item.importStatus === 'success' && this.getReady(item),
-        onClick: item => 
-          this.handleOpenTerminal(item),
+        show: item => item.importStatus === 'success' && this.getReady(item),
+        onClick: item => this.handleOpenTerminal(item),
       },
       {
         key: 'logs',
@@ -188,16 +186,17 @@ export default class EdgeNodes extends React.Component {
     const conditions = record.conditions
 
     return conditions.some(
-      condition => condition.type == 'Ready' && condition.status == "True"
+      condition => condition.type === 'Ready' && condition.status === 'True'
     )
   }
 
-  handleOpenTerminal= record => {
+  handleOpenTerminal = record => {
     const modal = Modal.open({
       onOk: () => {
         Modal.close(modal)
       },
       modal: KubeCtlModal,
+      cluster: this.cluster,
       title: record.name,
       nodename: record.name,
     })

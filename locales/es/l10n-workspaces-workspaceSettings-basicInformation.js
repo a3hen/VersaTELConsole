@@ -19,9 +19,12 @@ module.exports = {
   // Navigation Pane
   WORKSPACE_SETTINGS: 'Configuración del espacio de trabajo',
   // Banner
-  WORKSPACE_BASIC_INFO_DESC: 'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
-  WORKSPACE_BASE_INFO_Q1: '¿Cómo solicitar más clústeres para el espacio de trabajo?',
-  WORKSPACE_BASE_INFO_A1: 'Contact the platform or cluster administrator to apply for more clusters.',
+  WORKSPACE_BASIC_INFO_DESC:
+    'Basic information provides the overview of the workspace. You can view the basic information of the workspace.',
+  WORKSPACE_BASE_INFO_Q1:
+    '¿Cómo solicitar más clústeres para el espacio de trabajo?',
+  WORKSPACE_BASE_INFO_A1:
+    'Contact the platform or cluster administrator to apply for more clusters.',
   // Workspace Information
   WORKSPACE_INFO: 'Información del espacio de trabajo',
   WORKSPACE_MEMBER_TCAP: 'Workspace member',
@@ -38,11 +41,15 @@ module.exports = {
   ON: 'On',
   OFF: 'Off',
   WS_NETWORK_ISOLATION: 'Aislamiento de red de espacio de trabajo',
-  NETWORK_POLICY_UNINSATLLED_DESC: 'The network policy component is not installed in this cluster.',
+  NETWORK_POLICY_UNINSATLLED_DESC:
+    'The network policy component is not installed in this cluster.',
   // Delete Workspace
   // Delete Workspace > Delete
   SURE_TO_DELETE_WORKSPACE: 'Are you sure you want to delete the workspace?',
-  DELETE_WORKSPACE_PROJECTS_DESC: 'Eliminar el proyecto asociado con el espacio empresarial',
-  DELETE_WORKSPACE_DESC: 'El espacio de trabajo no se puede restaurar después de ser eliminado y los recursos en el espacio de trabajo también se eliminarán.',
-  DELETE_WORKSPACE_TIP: '¿Estás seguro de eliminar el espacio de trabajo <strong>{resource}</strong> ? No podrás recuperarlo, y los recursos en el espacio de trabajo también se eliminarán.'
-};
+  DELETE_WORKSPACE_PROJECTS_DESC:
+    'Eliminar el proyecto asociado con el espacio empresarial',
+  DELETE_WORKSPACE_DESC:
+    'El espacio de trabajo no se puede restaurar después de ser eliminado y los recursos en el espacio de trabajo también se eliminarán.',
+  DELETE_WORKSPACE_TIP:
+    '¿Estás seguro de eliminar el espacio de trabajo <strong>{resource}</strong> ? No podrás recuperarlo, y los recursos en el espacio de trabajo también se eliminarán.',
+}

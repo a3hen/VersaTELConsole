@@ -29,5 +29,5 @@ module.exports = {
   ACCESS_INFORMATION: 'Access Information',
   VIRTUAL_IP_ADDRESS: 'Virtual IP address',
   INTERNAL_DOMAIN_NAME_SCAP: 'Internal domain name',
-  NODE_PORT_SCAP: 'Node port'
-};
+  NODE_PORT_SCAP: 'Node port',
+}

@@ -21,6 +21,7 @@ module.exports = {
     '工作负载（Workload）用于处理业务请求，可包含一个或多个容器组。日志、监控等系统功能也是由工作负载实现的。',
   // List
   DEPLOYMENT_EMPTY_DESC: '请创建一个部署。',
+  UPDATING: '更新中',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -44,8 +45,7 @@ module.exports = {
   ADD_CONTAINER_DESC: '自定义容器的设置以创建容器。',
   CONTAINERS: '容器',
   IMAGE_TIME_SIZE_LAYER: '更新于 {time}',
-  IMAGE_DESC:
-    '如需使用私有镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
+  IMAGE_DESC: '如需使用私有镜像服务，您需要先创建镜像服务保密字典。<a href={link} target="_blank">了解更多</a>',
   IMAGE_PLACEHOLDER: '镜像名称或路径，例如 nginx:latest',
   IMAGE_EMPTY: '请设置镜像。',
   ENTER_POSITIVE_INTEGER_DESC: '请输入一个正整数。',
@@ -54,13 +54,13 @@ module.exports = {
   CONTAINER_TYPE: '容器类型',
   USE_DEFAULT_PORTS: '使用默认端口',
   NO_DEFAULT_PORT: '暂无默认端口配置',
-  REGISTRY: '仓库',
+  REGISTRY: '镜像服务',
   SET_IMAGE_DESC: '为容器设置镜像。',
   WORKER_CONTAINER: '工作容器',
-  CONTAINER_RESOURCE_LIMIT_TIP:
-    '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
-  GPU_TYPE: 'GPU类型',
-  GPU_LIMIT: 'GPU限制',
+  CONTAINER_RESOURCE_LIMIT_TIP: '设置容器的资源限制与资源预留，以将容器调度到合适的节点上。',
+  GPU_TYPE: 'GPU 类型',
+  GPU_LIMIT: 'GPU 限制',
+  NVIDIA_COM_GPU: '无效的GPU',
   NO_LIMIT: '不限制',
   NO_REQUEST: '不预留',
   NO_RESOURCE_LIMIT: '无资源限制',
@@ -92,18 +92,15 @@ module.exports = {
   HEALTH_CHECK: '健康检查',
   STARTUP_CHECK_TIP: '需要 Kubernetes v1.18 或以上版本。',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: '生命周期管理',
-  LIFE_MANAGEMENT_DESC:
-    '管理应用容器在运行和关闭前的一些动作，如环境准备，优雅线下等',
-  'Container PostStart': '添加 PostStart 设置',
-  'Container PreStop': '添加 PreStop 设置',
-  PRO_STOP_DESC:
-    '应用容器被终止前的任务，例如优雅关闭应用程序、通知其他系统等。',
-  POST_START_DESC:
-    '应用容器创建成功后、运行前的任务，例如资源部署、环境准备等。',
+  LIFECYCLE_MANAGEMENT: '生命周期管理',
+  LIFECYCLE_MANAGEMENT_DESC: '设置容器启动后或终止前需要执行的动作，以进行环境检查或体面终止。',
+  POSTSTART_ACTION: '启动后动作',
+  PRESTOP_ACTION: '终止前动作',
+  POSTSTART_ACTION_DESC: '设置容器启动后需要执行的动作。',
+  PRESTOP_ACTION_DESC: '设置容器终止前需要执行的动作。',
+  ADD_ACTION: '添加动作',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: '添加环境变量',
-  USE_CONFIGMAP_OR_SECRET: '引用配置字典或保密字典',
   KEY_IN_RESOURCE: '资源中的键',
   LABEL_TYPE: '{label} <span style="{style}">（{type}）</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
@@ -112,20 +109,17 @@ module.exports = {
   PRIVILEGED_MODE: '特权模式',
   PRIVILEGED_MODE_DESC: '以主机上的 root 用户运行容器进程。',
   ALLOW_PRIVILEGE_ESCALATION: '允许特权提升',
-  ALLOW_PRIVILEGE_ESCALATION_DESC:
-    '允许容器进程获取比父进程更多的特权。当特权模式打开时，此选项目默认打开。',
+  ALLOW_PRIVILEGE_ESCALATION_DESC: '允许容器进程获取比父进程更多的特权。当特权模式启用时，此选项目默认启用。',
   ROOT_DIRECTORY_READONLY: '根目录只读',
   ROOT_DIRECTORY_READONLY_DESC: '将容器文件系统的根目录设置为只读。',
   USER_AND_USER_GROUP: '用户和用户组',
   USER_GROUP: '用户组',
   RUN_AS_NON_ROOT: '仅允许非 root 用户运行',
-  RUN_AS_NON_ROOT_DESC:
-    '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
-  RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 GID。',
-  RUN_AS_USER_GROUP_DESC:
-    '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
+  RUN_AS_NON_ROOT_DESC: '启动容器之前检查容器是否将以 root 用户运行。如果容器将以 root 用户运行则不启动容器。',
+  RUN_AS_USER_DESC: '执行容器进程入口点的 UID。默认为镜像元数据中指定的 UID。',
+  RUN_AS_USER_GROUP_DESC: '执行容器进程入口点的 GID。默认为容器运行时的默认 GID。',
   SELINUX_CONTEXT: 'SELinux 上下文',
-  CAPABILITIES_BETA: '权能（测试中）',
+  CAPABILITIES: '权能',
   DROP: '移除',
   ACCESS_CONTROL: '访问控制',
   LEVEL: '等级',
@@ -155,7 +149,6 @@ module.exports = {
   DECENTRALIZED_SCHEDULING: '分散调度',
   CUSTOM_RULES: '自定义规则',
   CUSTOM_RULES_DESC: '按照自定义的规则将容器组副本调度到节点。',
-  'Pod IP': 'Pod IP',
   DECENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到不同的节点上。',
   CENTRALIZED_SCHEDULING_DESC: '尽可能将容器组副本调度到同一节点上。',
   CENTRALIZED_SCHEDULING: '集中调度',
@@ -168,31 +161,28 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: '添加元数据',
   POD_ADD_METADATA_DESC: '为容器组副本添加元数据。',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: '存储卷设置',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: '存储设置',
   READ_ONLY_LOW: '只读',
   READ_AND_WRITE_LOW: '读写',
-  // List > Create > Volume Settings > Mount Volume
-  MOUNT_VOLUME: '挂载存储卷',
-  WORKLOAD_MOUNT_VOLUME_DESC:
-    '为容器挂载现有存储卷、临时存储卷或 HostPath 存储卷。',
-  EXISTING_VOLUME: '现有存储卷',
-  SELECT_VOLUME: '选择存储卷',
-  SELECT_VOLUME_DESC: '选择现有的存储卷以将其挂载到容器。',
+  // List > Create > Storage Settings > Mount Volume
+  MOUNT_VOLUME: '挂载卷',
+  WORKLOAD_MOUNT_VOLUME_DESC: '为容器挂载持久卷、临时卷或 HostPath 卷。',
+  SELECT_PERSISITENT_VOLUME_CLAIM: '选择持久卷声明',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: '将根据持久卷声明创建的持久卷挂载到容器。',
   CAPACITY: '容量',
-  VOLUME_NOT_SELECT: '请选择存储卷。',
-  TEMPORARY_VOLUME: '临时存储卷',
-  VOLUME_NAME: '存储卷名称',
-  VOLUME_NAME_EMPTY: '请为存储卷设置名称。',
-  CONTAINER_NOT_SELECTED: '请将存储卷挂载到至少一个容器组。',
+  PVC_NOT_SELECT: '请选择一个持久卷声明。',
+  TEMPORARY_VOLUME: '临时卷',
+  VOLUME_NAME: '卷名称',
+  VOLUME_NAME_EMPTY: '请为卷设置名称。',
+  CONTAINER_NOT_SELECTED: '请将卷挂载到至少一个容器。',
   NOT_MOUNT: '不挂载',
-  HOSTPATH_VOLUME: 'HostPath 存储卷',
-  HOSTPATH_TIP:
-    '使用 HostPath 存储卷将主机文件系统中的文件或目录挂载到容器中。',
+  HOSTPATH_VOLUME: 'HostPath 卷',
+  HOSTPATH_TIP: '使用 HostPath 卷将主机文件系统中的文件或目录挂载到容器中。',
   HOST_PATH: '主机路径',
   READ_AND_WRITE: '读写',
   READ_ONLY: '只读',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: '挂载配置字典或保密字典',
   MOUNT_CONFIGMAP_OR_SECRET_DESC: '为容器挂载配置字典或保密字典。',
   CONFIGMAP: '配置字典',

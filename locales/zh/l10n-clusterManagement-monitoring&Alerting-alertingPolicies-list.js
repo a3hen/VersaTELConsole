@@ -18,15 +18,17 @@
 module.exports = {
   // Banner
   ALERTING_POLICY_PL: '告警策略',
-  ALERT_POLICY_DESC: '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
+  ALERT_POLICY_DESC:
+    '告警策略是用于监控集群资源的一系列条件，您可以创建告警策略对资源进行监控。',
   REQUESTS_FOR_TRIGGER_AN_ALARM_Q: '如何触发告警消息？',
-  REQUESTS_FOR_TRIGGER_AN_ALARM_A: '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警消息。',
+  REQUESTS_FOR_TRIGGER_AN_ALARM_A:
+    '您需要对资源设置告警策略，当资源的某项指标达到告警策略的阈值后即会触发告警消息。',
   // List
   ALERTING_STATUS: '告警状态',
   ALERTING_POLICY_EMPTY_DESC: '请创建一个告警规则。',
-  ALERT_RULE_INACTIVE: '未触发',
-  ALERT_RULE_PENDING: '待触发',
-  ALERT_RULE_FIRING: '触发中',
+  ALERT_RULE_INACTIVE: '未激活',
+  ALERT_RULE_PENDING: '待发送',
+  ALERT_RULE_FIRING: '发送中',
   ALERT_RULE_HEALTH_OK: '健康',
   ALERT_RULE_HEALTH_ERR: '错误',
   ALERT_RULE_HEALTH_UNKNOWN: '未知',
@@ -36,14 +38,18 @@ module.exports = {
   CRITICAL_ALERT: '危险告警',
   ERROR_ALERT: '重要告警',
   WARNING_ALERT: '一般告警',
-  INVALID_TIME_DESC: '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
+  INVALID_TIME_DESC:
+    '数值无效。请从下拉列表中选择一个数值，或者输入 0 或正整数。',
   ALIAS: '别名',
   THRESHOLD_DURATION_MIN: '阈值时间（分钟）',
-  ALERT_DURATION: '告警规则中设置的情形持续时间达到该阈值后，告警策略将变为触发中状态。',
-  LONG_NAME_DESC: '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
+  ALERT_DURATION:
+    '告警规则中设置的情形持续时间达到该阈值后，告警策略将变为触发中状态。',
+  LONG_NAME_DESC:
+    '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 253 个字符。',
   // List > Create > Rule Settings > Rule Template
   RULE_SETTINGS: '规则设置',
   MONITORING_TARGETS: '监控目标',
+  ACTIVATION_CONDITION: '激活条件',
   CPU_USAGE_SCAP: 'CPU 用量',
   DISK_READ_IOPS: '本地磁盘读取 IOPS',
   DISK_READ_THROUGHPUT: '本地磁盘读取吞吐量',
@@ -56,7 +62,7 @@ module.exports = {
   MEMORY_USAGE_SCAP: '内存用量',
   DATA_RECEIVE_RATE: '网络接收数据速率',
   DATA_SEND_RATE: '网络发送数据速率',
-  SET_RULE_DESC: '请设置告警规则。',
+  SET_ACTIVATION_CONDITION_DESC: '请设置激活条件。',
   ABNORMAL_PODS: '容器组异常率',
   POD_USAGE_SCAP: '容器组利用率',
   THRESHOLD: '阈值',
@@ -70,7 +76,8 @@ module.exports = {
   CUSTOM_RULE: '自定义规则',
   RULE_EXPRESSION: '告警规则表达式',
   ENTER_RULE_EXPRESSION: '请输入告警规则表达式。',
-  ALERT_RULE_EXPRESSION_DESC: '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
+  ALERT_RULE_EXPRESSION_DESC:
+    '您可以通过 PromQL 语句来自定义告警规则。<a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noreferrer noopener">了解更多</a>',
   // List > Create > Message Settings
   MESSAGE_SETTINGS: '消息设置',
   NOTIFICATION_SUMMARY: '概括',
@@ -79,5 +86,5 @@ module.exports = {
   EDIT_ALERTING_POLICY: '编辑告警策略',
   // List > Delete
   ALERTING_POLICY: '告警策略',
-  ALERTING_POLICY_LOW: '告警策略'
-};
+  ALERTING_POLICY_LOW: '告警策略',
+}

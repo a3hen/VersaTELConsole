@@ -24,8 +24,6 @@ module.exports = {
   'App Deploy': '應用部署',
   'App Introduction': '應用介紹',
   'App Name': '應用名稱',
-  APP_REVIEW: '應用審核',
-  APP_REVIEWS: '應用審核',
   'App Version': '應用版本',
   'App Version Types': '交付類型',
   'Application Name': '應用名稱',
@@ -46,7 +44,8 @@ module.exports = {
   'Edit App Information': '編輯應用資訊',
   'Evaluation stars': '綜合評價',
   File: '檔案',
-  'Format png/svg background transparency is the best': '格式： png/svg 背景透明最佳',
+  'Format png/svg background transparency is the best':
+    '格式： png/svg 背景透明最佳',
   Handle: '處理',
   Icon: '圖示',
   'In Project': '所屬項目',
@@ -96,21 +95,28 @@ module.exports = {
   'Version No': '版本號碼',
   'Very helpful when users search for apps': '在用戶搜索應用時會非常有幫助',
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
-  APP_TEMPLATE_CREATE_DESC: 'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
-  APP_TEMPLATES_DESC: 'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+  APP_TEMPLATE_CREATE_DESC:
+    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+  APP_TEMPLATES_DESC:
+    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   HOW_APP_DEPLOY_TITLE: '如何部署和測試應用',
-  APPS_CREATE_DESC: 'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+  APPS_CREATE_DESC:
+    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   APP_DETAIL_DESC: '在用戶搜索應用時會非常有幫助',
   APP_REVIEWS_CREATE_DESC: '對應用上架提供審核功能',
-  DELETE_CATEGORY_WARNING: 'This category binds <strong>{total}</strong> applications. Please' + ' choose to adjust these applications to other categories before deleting them',
+  DELETE_CATEGORY_WARNING:
+    'This category binds <strong>{total}</strong> applications. Please' +
+    ' choose to adjust these applications to other categories before deleting them',
   RESOURCE_TOOL_TITLE: '通過資源編排工具創建',
-  RESOURCE_TOOL_DESCRIPTION: 'KubeSphere provides a visual resource orchestration tool that allows you to' + ' create application templates and deploy tests through resource pre-editing',
+  RESOURCE_TOOL_DESCRIPTION:
+    'KubeSphere provides a visual resource orchestration tool that allows you to' +
+    ' create application templates and deploy tests through resource pre-editing',
   HELM_DEVELOP_GUIDE: 'Helm 規範及應用開發',
-  APP_CATE_All: '全部',
-  APP_CATE_UNCATEGORIZED: '未分類',
   ICON_DESC: '請選擇一個圖示來標示分類',
   MODIFY_VERSION_TIPS: '每次修改的内容都將跟随下一次版本上架而真正生效。',
-  UNDER_REVIEW_TIPS: 'The current version of the application is under review,' + ' and the following information is temporarily unalterable',
+  UNDER_REVIEW_TIPS:
+    'The current version of the application is under review,' +
+    ' and the following information is temporarily unalterable',
   AUDIT_RECORD_CREATE_DESC: '暫無相關的審核紀錄數據',
   UPLOAD_SUPPORT_FORMAT: '文件格式支持 tar.gz 和 tgz',
   FILE_FORMAT_PACKAGE: '文件格式支持 tar.gz 和 tgz',
@@ -123,20 +129,12 @@ module.exports = {
   UNPROCESSED_APP_RELEASE: 'Unreleased App',
   PROCESSED_APP_RELEASE: 'Released App',
   ALL_APP_RELEASE: 'Release Record',
-  'APP_CATE_MESSAGE QUEUEING': '消息佇列',
-  'APP_CATE_IMAGE REGISTRY': '鏡像倉庫',
-  'APP_CATE_PROMETHEUS EXPORTER': '數據匯出器',
-  'APP_CATE_WEB SERVER': 'Web 伺服器',
-  APP_CATE_NETWORKING: '網路',
-  'APP_CATE_DATABASE & CACHE': '資料庫和緩存',
-  APP_CATE_STORAGE: '存儲',
   // App Review
   REVIEW: 'Review',
   PENDING_REVIEW: 'Pending',
   COMPLETE_REVIEW: 'Complete',
   SERVICE_PROVIDER: 'Service provider',
   // App Store
-  CATEGORIES: 'Categories',
   UPDATE_TIME_COLON: 'Update time: ',
   DEVELOPER: 'Developer',
   // App Categories
@@ -145,5 +143,5 @@ module.exports = {
   // App Templates
   FILE: 'File',
   RECOVER_SUCCESSFUL: 'Recovered successfully.',
-  AUDIT_EMPTY_DESC: 'No app review record is found.'
-};
+  AUDIT_EMPTY_DESC: 'No app review record is found.',
+}

@@ -25,5 +25,5 @@ module.exports = {
   // Permissions
   PERMISSION_PL: '权限',
   // Authorized Users
-  AUTHORIZED_USER_PL: '授权用户'
-};
+  AUTHORIZED_USER_PL: '授权用户',
+}

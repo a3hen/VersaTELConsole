@@ -18,5 +18,5 @@
 module.exports = {
   // Banner
   // List
-  CREATION_TIME: '创建时间'
-};
+  CREATION_TIME: '创建时间',
+}

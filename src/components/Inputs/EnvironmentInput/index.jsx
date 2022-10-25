@@ -19,17 +19,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Button } from '@kube-design/components'
-
 import ConfigMapStore from 'stores/configmap'
 import SecretStore from 'stores/secret'
 import FederatedStore from 'stores/federated'
-import { get, isEmpty } from 'lodash'
+import { cloneDeep, get, isEmpty } from 'lodash'
 import { trigger } from 'utils/action'
+import AddConfigOrSecret from './ConfigOrSecret'
 
 import Item from './Item'
 import ArrayInput from '../ArrayInput'
 import styles from './index.scss'
+import ArrowModal from './ArrowModal'
 
 @trigger
 export default class EnvironmentInput extends React.Component {
@@ -80,22 +80,6 @@ export default class EnvironmentInput extends React.Component {
         secrets,
       })
     })
-  }
-
-  handleAddRef = () => {
-    this.handleGetResource()
-    const { value, onChange } = this.props
-    if (isEmpty(value)) {
-      return onChange([{ name: '', valueFrom: {} }])
-    }
-
-    if (value.length === 1 && value[0].name === '' && value[0].value === '') {
-      return onChange([{ name: '', valueFrom: {} }])
-    }
-
-    if (value.every(this.checkItemValid)) {
-      return onChange([...value, { name: '', valueFrom: {} }])
-    }
   }
 
   handleResourceData = (data, type) => {
@@ -181,8 +165,38 @@ export default class EnvironmentInput extends React.Component {
     !isEmpty(item.name) &&
     (!isEmpty(item.value) || !isEmpty(item.valueFrom))
 
+  handleBulkQuote = data => {
+    const newData = cloneDeep(data)
+    const { value, onChange } = this.props
+    const oldData = value ?? []
+    onChange([...oldData, ...newData])
+  }
+
+  get getRepeat() {
+    const { value = [] } = this.props
+    if (value.length > 1) {
+      const repeatObj = {}
+      value.forEach((item, index) => {
+        const name = item?.name ?? ''
+        if (item.name !== '') {
+          if (repeatObj[name]) {
+            repeatObj[name].push(`${index}`)
+          } else {
+            repeatObj[name] = []
+          }
+        }
+      })
+      const repeatArr = Object.values(repeatObj).reduce(
+        (total, cur) => [...total, ...cur],
+        []
+      )
+      return repeatArr
+    }
+    return []
+  }
+
   render() {
-    const { ...rest } = this.props
+    const { handleInputError, ...rest } = this.props
     const { configMaps, secrets } = this.state
 
     return (
@@ -194,23 +208,31 @@ export default class EnvironmentInput extends React.Component {
         extraAdd={
           <>
             <span className={styles.desc}>
-              {t.html('DESC_CREATE_CONFIGMAP_SECRET')}
+              {t.html('CREATE_CONFIGMAP_SECRET_DESC')}
               <a onClick={this.handleCreateConfig}>{t('CREATE_CONFIG')}</a>
               {t('or')}
               <a onClick={this.handleCreateSecrets}>{t('CREATE_SECRET')}</a>
             </span>
-            <Button
+            <ArrowModal
               className={styles.extraBtn}
-              onClick={this.handleAddRef}
-              data-test="add-env-configmap"
+              dataTest="add-env-configmap"
+              onOK={this.handleBulkQuote}
+              text={t('BATCH_REFERENCE')}
+              modalWidth={520}
+              modalHeight={492}
             >
-              {t('USE_CONFIGMAP_OR_SECRET')}
-            </Button>
+              <AddConfigOrSecret configMaps={configMaps} secrets={secrets} />
+            </ArrowModal>
           </>
         }
         {...rest}
       >
-        <Item configMaps={configMaps} secrets={secrets} />
+        <Item
+          configMaps={configMaps}
+          secrets={secrets}
+          repeatKeyArr={this.getRepeat}
+          handleInputError={handleInputError}
+        />
       </ArrayInput>
     )
   }

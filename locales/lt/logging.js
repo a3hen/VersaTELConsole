@@ -33,8 +33,10 @@ module.exports = {
   'No cluster with auditing module enabled': 'No cluster has Auditing enabled.',
   'No cluster with event query enabled': 'No cluster has Events enabled.',
   'No cluster with logging module enabled': 'No cluster has Logging enabled.',
-  'Passwords must be at least 6 characters long': 'Passwords must be at least 6 characters long',
-  'Please enter a filter to search for logs.': 'Please enter a filter to search for logs.',
+  'Passwords must be at least 6 characters long':
+    'Passwords must be at least 6 characters long',
+  'Please enter a filter to search for logs.':
+    'Please enter a filter to search for logs.',
   'Real-Time Data': 'Real-Time Data',
   'Recently Configured Updated': 'Recently Configured Updated',
   'Recently Updated': 'Recently Updated',
@@ -43,14 +45,16 @@ module.exports = {
   'Refresh Rate': 'Refresh Rate',
   'Region Data': 'Region Data',
   'Release Collection': 'Release Collection',
-  'Auditing log trends in the last 12 hours': 'Auditing log trends in the last 12 hours',
+  'Auditing log trends in the last 12 hours':
+    'Auditing log trends in the last 12 hours',
   LOG_DATE: 'YYYY/MM/DD HH:mm',
   EVENT_DATE: 'YYYY/MM/DD 00:00',
   URL_SYNTAX_ERROR: 'URL syntax error',
   'Search Logs by': 'Search Logs by {field}',
   'Search Events by': 'Search Events by {field}',
   'Pod Event Query Tip': 'Enter a pod name to search for container logs.',
-  TOTAL_LOGS: 'A total of <span class={className}> {logs} </span> log entries from<br/> <span class={className}>{containers}</span> containers have been collected.',
+  TOTAL_LOGS:
+    'A total of <span class={className}> {logs} </span> log entries from<br/> <span class={className}>{containers}</span> containers have been collected.',
   LOG_EXPORT: 'Log Export',
   IMPORT_GRAFANA_JSON_FILE: 'Import Grafana JSON Files',
   CUSTOMMONITORDASHBOARD: 'Custom Monitoring Dashboard',
@@ -73,5 +77,5 @@ module.exports = {
   LOG_EXPORT_SCAP: 'Log export',
   START_TIME_COLON: 'Start Time: ',
   REASON_COLON: 'Reason: ',
-  MESSAGE_COLON: 'Message: '
-};
+  MESSAGE_COLON: 'Message: ',
+}

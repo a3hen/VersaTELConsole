@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   APP_CATEGORY_PL: '应用分类',
-  APP_CATEGORIES_DESC: '对应用商店中已上架的应用进行分类管理。您可以创建、编辑、删除和调整应用分类。',
+  APP_CATEGORIES_DESC:
+    '对应用商店中已上架的应用进行分类管理。您可以创建、编辑、删除和调整应用分类。',
   // All Categories
   ALL_CATEGORIES_VALUE: '全部分类（{value}）',
   APP_CATEGORY_EMPTY_DESC: '没有属于当前分类的应用。',
@@ -31,6 +32,6 @@ module.exports = {
   // List
   // List > Change Category
   CHANGED_SUCCESSFULLY: '调整成功。',
-  CHANGE_CATEGORY: '调整分类',
+  CHANGE_CATEGORY: '更改分类',
   CHANGE_CATEGORY_DESC: '应用分类将决定该应用在应用商店中的分类。'
 };

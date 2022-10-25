@@ -16,7 +16,7 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { isEmpty } from 'lodash'
+import { isEmpty, sortBy } from 'lodash'
 import React from 'react'
 import { observer, inject } from 'mobx-react'
 import {
@@ -31,6 +31,7 @@ import ClusterCard from 'clusters/components/Cards/Cluster'
 import ClusterStore from 'stores/cluster'
 import { trigger } from 'utils/action'
 
+import EditBasicInfoModal from 'clusters/components/Modals/EditBasicInfo'
 import styles from './index.scss'
 
 @inject('rootStore')
@@ -45,8 +46,7 @@ class Clusters extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchHostData()
-    this.fetchData()
+    this.initData()
   }
 
   get authKey() {
@@ -59,8 +59,17 @@ class Clusters extends React.Component {
     })
   }
 
+  get isOperation() {
+    return this.enabledActions.includes('create')
+  }
+
   get routing() {
     return this.props.rootStore.routing
+  }
+
+  initData = () => {
+    this.fetchHostData()
+    this.fetchData()
   }
 
   fetchData = (params = {}) => {
@@ -103,6 +112,50 @@ class Clusters extends React.Component {
     this.routing.push(`/clusters/${cluster}/overview`)
   }
 
+  getItemActions = item => {
+    const actions = [
+      {
+        key: 'pen',
+        icon: 'pen',
+        text: t('EDIT_INFORMATION'),
+        show: true,
+        onClick: record => {
+          this.trigger('resource.baseinfo.edit', {
+            detail: record,
+            modal: EditBasicInfoModal,
+            success: this.initData,
+          })
+        },
+      },
+      {
+        key: 'data',
+        icon: 'data',
+        text: t('UPDATE_KUBECONFIG'),
+        show: !item.isHost,
+        onClick: record => {
+          this.trigger('cluster.updateKubeConfig', {
+            detail: record,
+            success: this.initData,
+          })
+        },
+      },
+      {
+        key: 'trash',
+        icon: 'trash',
+        text: t('UNBIND_CLUSTER'),
+        show: !item.isHost,
+        onClick: record => {
+          this.trigger('cluster.unbind', {
+            detail: record,
+            success: this.initData,
+          })
+        },
+      },
+    ]
+
+    return actions.filter(action => action.show)
+  }
+
   renderList() {
     const { data, page, total, limit, filters, isLoading } = this.store.list
     const {
@@ -125,7 +178,7 @@ class Clusters extends React.Component {
           title={t('NO_CLUSTER_TIP')}
           desc={t('NO_CLUSTER_TIP_DESC')}
           actions={
-            this.enabledActions.includes('create') ? (
+            this.isOperation ? (
               <Button type="control" onClick={this.showAddCluster}>
                 {t('ADD_CLUSTER')}
               </Button>
@@ -158,6 +211,8 @@ class Clusters extends React.Component {
       )
     }
 
+    const _data = sortBy(data, item => item.expiredDay)
+
     return (
       <ul className={styles.cards}>
         {!isEmpty(hostClusters) && (
@@ -172,21 +227,25 @@ class Clusters extends React.Component {
                 key={item.name}
                 data={item}
                 onEnter={this.enterCluster}
+                isOperation={this.isOperation}
+                itemActions={this.getItemActions(item)}
               />
             ))}
           </div>
         )}
-        {!isEmpty(data) && (
+        {!isEmpty(_data) && (
           <div>
             <div className="h6">
               {t('Member Clusters')}{' '}
               <span className={styles.total}>{total}</span>
             </div>
-            {data.map(item => (
+            {_data.map(item => (
               <ClusterCard
                 key={item.name}
                 data={item}
                 onEnter={this.enterCluster}
+                isOperation={this.isOperation}
+                itemActions={this.getItemActions(item)}
               />
             ))}
             <div className="text-right margin-t12">
@@ -236,8 +295,8 @@ class Clusters extends React.Component {
         <Banner
           className={styles.banner}
           icon="cluster"
-          title={t('Clusters Management')}
-          description={t('CLUSTERS_MANAGE_DESC')}
+          title={t('CLUSTER_MANAGEMENT')}
+          description={t('CLUSTER_DESC')}
           extra={this.renderSearch()}
         />
         {this.renderList()}

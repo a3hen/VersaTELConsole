@@ -192,8 +192,9 @@ export default class ContainerItem extends React.Component {
     const { showContainerLog } = this.state
     const link = this.getLink(detail.name)
     const { status, reason } = getContainerStatus(detail)
-    const hasProbe = detail.livenessProbe || detail.readinessProbe
-    const hasLife = detail.lifecycle
+    const hasProbe =
+      detail.livenessProbe || detail.readinessProbe || detail.startupProbe
+    const hasLife = detail.lifecycle && !isEmpty(detail.lifecycle)
 
     return (
       <div className={classnames(styles.item, className)} {...rest}>
@@ -259,7 +260,7 @@ export default class ContainerItem extends React.Component {
           )}
         </div>
         <div className={styles.text}>
-          <div>{isUndefined(status) ? '-' : t(status)}</div>
+          <div>{isUndefined(status) ? '-' : t(status.toUpperCase())}</div>
           <p>{t('STATUS')}</p>
         </div>
         <div className={styles.text}>

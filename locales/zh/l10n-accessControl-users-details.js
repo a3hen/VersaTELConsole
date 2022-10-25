@@ -28,5 +28,5 @@ module.exports = {
   LOGIN_HISTORY: '登录历史',
   NO_LOGIN_HISTORY: '未发现登录历史。',
   SUCCESSFUL: '成功',
-  FAILED: '失败'
-};
+  FAILED: '失败',
+}

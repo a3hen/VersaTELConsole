@@ -17,13 +17,16 @@
  */
 module.exports = {
   // Banner
-  REQUESTS_FOR_PUSH_AN_ALARM_Q: '¿Pre-requisitos para un mensaje push de política de alerta?',
-  REQUESTS_FOR_PUSH_AN_ALARM_A: 'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
+  REQUESTS_FOR_PUSH_AN_ALARM_Q:
+    '¿Pre-requisitos para un mensaje push de política de alerta?',
+  REQUESTS_FOR_PUSH_AN_ALARM_A:
+    'The platform administrator needs to select a notification method and configure the server corresponding to the method.',
   HOW_TO_SUPRESS_AN_ALARM_Q: '¿Cómo suprimir mensajes de alerta?',
-  HOW_TO_SUPRESS_AN_ALARM_A: 'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
+  HOW_TO_SUPRESS_AN_ALARM_A:
+    'You can set alerting policies at different levels. Each level corresponds to an alerting interval.',
   // List
   // List > Create > Basic Information
   // List > Create > Rule Settings > Rule Template
   SELECT_WORKLOAD_TIP: 'Please select at lease a workload.',
-  KUBE_NO_AVAILABLE_DATA: 'No hay datos disponibles'
-};
+  KUBE_NO_AVAILABLE_DATA: 'No hay datos disponibles',
+}

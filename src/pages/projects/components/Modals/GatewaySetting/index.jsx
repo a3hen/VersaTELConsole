@@ -78,11 +78,30 @@ export default class GatewaySettingModal extends React.Component {
       ),
       configError: '',
     }
+  }
 
+  componentDidMount() {
+    this.initAnnotations()
+  }
+
+  getTypeOptions = () => [
+    { label: 'NodePort', value: 'NodePort' },
+    { label: 'LoadBalancer', value: 'LoadBalancer' },
+  ]
+
+  initAnnotations = () => {
     const annotations = get(this.template, 'spec.service.annotations')
     const type = get(this.template, 'spec.service.type')
+    const annotationType = get(
+      this.template,
+      "metadata.annotations['kubesphere.io/annotations']"
+    )
 
-    if (isEmpty(annotations) && type === 'LoadBalancer') {
+    if (
+      isEmpty(annotations) &&
+      type === 'LoadBalancer' &&
+      annotationType === 'QingCloud Kubernetes Engine'
+    ) {
       set(
         this.template,
         'spec.service.annotations',
@@ -90,11 +109,6 @@ export default class GatewaySettingModal extends React.Component {
       )
     }
   }
-
-  getTypeOptions = () => [
-    { label: 'NodePort', value: 'NodePort' },
-    { label: 'LoadBalancer', value: 'LoadBalancer' },
-  ]
 
   handleOk = () => {
     const { onOk } = this.props
@@ -150,7 +164,11 @@ export default class GatewaySettingModal extends React.Component {
 
   handleAnnotations = value => {
     this.options = Object.keys(CLUSTER_PROVIDERS_ANNOTATIONS[value])
-    this.setAnnotations({})
+    if (value === 'QingCloud Kubernetes Engine') {
+      this.setAnnotations(globals.config.loadBalancerDefaultAnnotations)
+    } else {
+      this.setAnnotations({})
+    }
   }
 
   setAnnotations = value => {
@@ -159,11 +177,20 @@ export default class GatewaySettingModal extends React.Component {
   }
 
   renderLoadBalancerSupport = () => {
+    const options = [
+      ...CLUSTER_PROVIDERS,
+      {
+        label: 'OpenELB',
+        value: 'OpenELB',
+        icon: 'kubernetes',
+      },
+    ]
+
     return (
       <div className={styles.loadBalancer}>
         <Form.Item label={t('LOAD_BALANCER_PROVIDER')}>
           <Select
-            options={CLUSTER_PROVIDERS}
+            options={options}
             placeholder=" "
             optionRenderer={this.providerOptionRenderer}
             onChange={this.handleAnnotations}

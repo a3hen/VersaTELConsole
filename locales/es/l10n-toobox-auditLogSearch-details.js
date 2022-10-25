@@ -28,5 +28,5 @@ module.exports = {
   RESOURCE_NAME_AND_TYPE: 'Nombre y tipo de recurso',
   VERB: 'Verb',
   STATUS_CODE: 'Status Code',
-  SUBRESOURCE: 'Subresource'
-};
+  SUBRESOURCE: 'Subresource',
+}

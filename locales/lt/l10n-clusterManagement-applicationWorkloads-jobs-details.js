@@ -23,5 +23,5 @@ module.exports = {
   // Run Records
   END_TIME: 'End Time',
   SN_NO: 'No.',
-  START_TIME: 'Start Time'
-};
+  START_TIME: 'Start Time',
+}

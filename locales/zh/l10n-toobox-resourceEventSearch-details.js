@@ -28,5 +28,5 @@ module.exports = {
   METADATA: '元数据',
   // List > Resource Event Details > Details
   EARLIEST_START_TIME: '最早发生时间',
-  LATEST_START_TIME: '最近发生时间'
-};
+  LATEST_START_TIME: '最近发生时间',
+}

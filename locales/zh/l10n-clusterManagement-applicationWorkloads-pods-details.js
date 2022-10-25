@@ -22,7 +22,7 @@ module.exports = {
   // Resource Status > Containers
   CONTAINER_PL: '容器',
   PROBE_PL: '探针',
-  HOOK_PL: '挂钩',
+  HOOK_PL: '钩子',
   // Resource Status > Containers > Container Logs
   CONTAINER_LOGS_NOT_SUPPORTED: '容器在当前不支持实时日志，请稍后重试。',
   CONTAINER_LOGS: '容器日志',
@@ -47,12 +47,13 @@ module.exports = {
   // Resource Status > Details > Container Details > Environment Variables
   // Resource Status > Details > Container Details > Container Logs
   NO_RESOURCE: '未发现{resource}。',
-  LOG_DATA_LOW: '日志信息',
+  LOG_DATA_LOW: '日志数据',
   // Resource Status > Volumes
-  TYPE_CONFIGMAP: '存储卷类型：配置字典',
-  TYPE_SECRET: '存储卷类型：保密字典',
-  TYPE_EMPTYDIR: '存储卷类型：EmptyDir',
-  TYPE_HOSTPATH: '存储卷类型：HostPath',
+  VOLUME_PL: '卷',
+  TYPE_CONFIGMAP: '卷类型：配置字典',
+  TYPE_SECRET: '卷类型：保密字典',
+  TYPE_EMPTYDIR: '卷类型：EmptyDir',
+  TYPE_HOSTPATH: '卷类型：HostPath',
   // Scheduling Information
   REASON_VALUE: '原因：{value}',
   MESSAGE_VALUE: '消息：{value}',
@@ -60,4 +61,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: '未发现监控数据',
-}
+  OUTBOUND: '出站',
+  INBOUND: '入站'
+};

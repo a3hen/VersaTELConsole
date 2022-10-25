@@ -19,9 +19,11 @@ module.exports = {
   // Banner
   VOLUME_PL: '儲存卷數量',
   WHAT_IS_STORAGE_CLASS_Q: '什麼是存儲類型?',
-  WHAT_IS_STORAGE_CLASS_A: '存儲類型（Storage Class）是由集群管理員配置的多種存儲類型，不同的存儲類型為集群用戶提供不同類型的存儲卷。',
+  WHAT_IS_STORAGE_CLASS_A:
+    '存儲類型（Storage Class）是由集群管理員配置的多種存儲類型，不同的存儲類型為集群用戶提供不同類型的存儲卷。',
   WHAT_IS_LOCAL_VOLUME_Q: '什麼是本地儲存卷（Local Volume）?',
-  WHAT_IS_LOCAL_VOLUME_A: '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
+  WHAT_IS_LOCAL_VOLUME_A:
+    '本地儲存卷表示掛載的本地儲存設備，如硬碟、分割區或目錄。',
   // List
   // List > Create > Basic Information
   // List > Create > Storage Settings
@@ -30,5 +32,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  VOLUME: '儲存卷'
-};
+  VOLUME: '儲存卷',
+}

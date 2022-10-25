@@ -19,7 +19,8 @@ module.exports = {
   // Network Policies Page
   Ingress: 'Entrada',
   'Network Policy': 'Política de red',
-  NETWORK_POLICY_DESC: 'La configuración de la política de red permite el aislamiento de la red dentro del mismo clúster, lo que significa que se pueden configurar cortafuegos entre ciertas instancias (Pods).',
+  NETWORK_POLICY_DESC:
+    'La configuración de la política de red permite el aislamiento de la red dentro del mismo clúster, lo que significa que se pueden configurar cortafuegos entre ciertas instancias (Pods).',
   CIDR_DESC: 'Basado en la dirección del tráfico',
-  ALLOWLIST_ENTRY: 'Allowlist Entry'
-};
+  ALLOWLIST_ENTRY: 'Allowlist Entry',
+}

@@ -21,6 +21,8 @@ const {
   getKSConfig,
   getK8sRuntime,
   getOAuthInfo,
+  getClusterRole,
+  getSupportGpuList,
 } = require('../services/session')
 
 const {
@@ -28,19 +30,28 @@ const {
   getManifest,
   getLocaleManifest,
   isValidReferer,
+  safeBase64,
 } = require('../libs/utils')
 
 const { client: clientConfig } = getServerConfig()
 
 const renderView = async ctx => {
   try {
-    const [user, ksConfig, runtime] = await Promise.all([
-      getCurrentUser(ctx),
+    const clusterRole = await getClusterRole(ctx)
+    const [user, ksConfig, runtime, supportGpuType] = await Promise.all([
+      getCurrentUser(ctx, clusterRole),
       getKSConfig(),
       getK8sRuntime(ctx),
+      getSupportGpuList(ctx),
     ])
 
-    await renderIndex(ctx, { ksConfig, user, runtime })
+    await renderIndex(ctx, {
+      ksConfig,
+      user,
+      runtime,
+      clusterRole,
+      config: { ...clientConfig, supportGpuType },
+    })
   } catch (err) {
     renderViewErr(ctx, err)
   }
@@ -61,9 +72,10 @@ const renderLogin = async ctx => {
 }
 
 const renderLoginConfirm = async ctx => {
+  const usrName = ctx.cookies.get('defaultUser') || ''
   await renderIndex(ctx, {
     user: {
-      username: ctx.cookies.get('defaultUser'),
+      username: safeBase64.safeAtob(usrName),
       email: ctx.cookies.get('defaultEmail'),
     },
   })

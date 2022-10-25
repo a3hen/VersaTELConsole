@@ -23,5 +23,5 @@ module.exports = {
   KUBE_RANGE_SEPARATOR: ' hasta ',
   KUBE_SCROLL_TO_INCREMENT: 'Haz scroll para incrementar',
   KUBE_CLICK_TO_TOGGLE: 'Haz click para intercambiar',
-  KUBE_YEAR: ''
-};
+  KUBE_YEAR: '',
+}

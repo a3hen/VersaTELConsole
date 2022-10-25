@@ -22,5 +22,5 @@ module.exports = {
   // List > Create > Service Settings
   // List > Create > Service Settings > Cluster Differences
   NAME_VALUE: 'Nombre: {value}',
-  CONTAINER_PORT_VALUE: 'Puerto de contenedores: {value}'
-};
+  CONTAINER_PORT_VALUE: 'Puerto de contenedores: {value}',
+}

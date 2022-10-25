@@ -17,29 +17,29 @@
  */
 
 export const WORKLOAD_STATUS = [
-  { text: 'Running', value: 'running' },
-  { text: 'Updating', value: 'updating' },
-  { text: 'Stopped', value: 'stopped' },
+  { text: 'RUNNING', value: 'running' },
+  { text: 'UPDATING', value: 'updating' },
+  { text: 'STOPPED', value: 'stopped' },
 ]
 
 export const POD_STATUS = [
-  { text: 'Running', value: 'running' },
-  { text: 'Waiting', value: 'waiting' },
-  { text: 'Terminated', value: 'terminated' },
+  { text: 'RUNNING', value: 'running' },
+  { text: 'WAITING', value: 'waiting' },
+  { text: 'TERMINATED', value: 'terminated' },
 ]
 
 export const PODS_STATUS = [
-  { text: 'Pending', value: 'Pending' },
-  { text: 'Running', value: 'Running' },
-  { text: 'Completed', value: 'Succeeded' },
-  { text: 'Failed', value: 'Failed' },
-  { text: 'Unknown', value: 'Unknown' },
+  { text: 'PENDING', value: 'Pending' },
+  { text: 'RUNNING', value: 'Running' },
+  { text: 'COMPLETED', value: 'Succeeded' },
+  { text: 'FAILED', value: 'Failed' },
+  { text: 'UNKNOWN', value: 'Unknown' },
 ]
 
 export const JOB_STATUS = [
-  { text: 'Failed', value: 'failed' },
-  { text: 'Completed', value: 'completed' },
-  { text: 'Running', value: 'running' },
+  { text: 'FAILED', value: 'failed' },
+  { text: 'COMPLETED', value: 'completed' },
+  { text: 'RUNNING', value: 'running' },
 ]
 
 export const S2IJOBS_STATUS = [
@@ -78,6 +78,27 @@ export const NODE_STATUS = [
   { text: 'NODE_STATUS_WARNING', value: 'warning' },
 ]
 
+export const CD_WEATHER_STATUS = [
+  { text: 'HEALTHY', value: 'Healthy' },
+  { text: 'DEGRADED', value: 'Degraded' },
+  { text: 'PROGRESSING', value: 'Progressing' },
+  { text: 'SUSPENDED', value: 'Suspended' },
+  { text: 'UNKNOWN', value: 'Unknown' },
+  { text: 'MISSING', value: 'Missing' },
+]
+
+export const CD_SYNC_STATUS = [
+  { text: 'SYNCED', value: 'Synced' },
+  { text: 'OUTOFSYNC', value: 'OutOfSync' },
+  { text: 'UNKNOWN', value: 'Unknown' },
+]
+
+export const PRUNE_PROPAGATION_POLICY_OPTIONS = [
+  { label: 'foreground', value: 'foreground' },
+  { label: 'background', value: 'background' },
+  { label: 'orphan', value: 'orphan' },
+]
+
 export const ACCESS_MODES = {
   ReadWriteOnce: 'RWO',
   ReadOnlyMany: 'ROX',
@@ -100,6 +121,11 @@ export const VOLUME_SNAPSHOT_STATUS = [
   { text: 'VOLUME_SNAPSHOT_STATUS_CREATING', value: 'creating' },
   { text: 'VOLUME_SNAPSHOT_STATUS_READY', value: 'ready' },
   { text: 'VOLUME_SNAPSHOT_STATUS_DELETING', value: 'deleting' },
+]
+
+export const VOLUME_SNAPSHOT_CLASS_STATUS = [
+  { text: 'READY', value: 'true' },
+  { text: 'UNREADY', value: 'false' },
 ]
 
 export const INGRESS_ANNOTATIONS = [
@@ -242,6 +268,7 @@ export const ICON_TYPES = {
   s2ibuilders: 'vnas',
   apps: 'appcenter',
   'volume-snapshots': 'snapshot',
+  'volume-snapshot-content': 'snapshot',
   customresourcedefinitions: 'select',
   network: 'eip-group',
   networkpolicies: 'firewall',
@@ -251,8 +278,14 @@ export const ICON_TYPES = {
   cluster: 'cluster',
   notification: 'loudspeaker',
   notificationhistory: 'record',
+  linstornodes: 'database',
+  storagepools: 'database',
+  lresources: 'database',
   gpu: 'gpu',
   'gpu.limit': 'gpu',
+  cds: 'rocket',
+  codeRepos: 'code',
+  allowlists: 'allowlist',
 }
 
 export const MODULE_KIND_MAP = {
@@ -274,6 +307,7 @@ export const MODULE_KIND_MAP = {
   s2ibuilders: 'S2iBuilder',
   nodes: 'Node',
   volumesnapshots: 'VolumeSnapshot',
+  volumesnapshotclass: 'VolumeSnapshotClass',
   namespaces: 'Namespace',
   workspaces: 'WorkspaceTemplate',
   clusters: 'Cluster',
@@ -287,6 +321,9 @@ export const MODULE_KIND_MAP = {
   groups: 'Group',
   volumes: 'Volumes',
   hpas: 'HPA',
+  linstornodes: 'LNode',
+  storagepools: 'Storagepool',
+  lresources: 'LResource',
 }
 
 export const QUOTAS_MAP = {
@@ -462,6 +499,19 @@ export const STRATEGIES = {
   ],
 }
 
+export const SYNC_STRATEGY = [
+  {
+    label: 'AUTO_SYNC',
+    value: 'automated',
+    description: 'AUTO_SYNC_DESC',
+  },
+  {
+    label: 'MANUAL_SYNC',
+    value: 'manual',
+    description: 'MANUAL_SYNC_DESC',
+  },
+]
+
 export const PROTOCOLS = [
   { label: 'GRPC', value: 'GRPC' },
   { label: 'HTTP', value: 'HTTP' },
@@ -506,6 +556,11 @@ export const GRAY_RELEASE_CATEGORIES = [
   },
 ]
 
+export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_-]$/
+export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]*[a-z0-9]$/
+export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
+export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]*[a-zA-Z0-9]$/
+
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
 export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/
@@ -513,7 +568,7 @@ export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_SERVICE_VERSION = /^[a-z0-9]*$/
 export const PATTERN_LABEL = /(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?/
 export const PATTERN_TAG = /^[A-Za-z0-9]([-A-Za-z0-9_.]*[A-Za-z0-9])?$/
-export const PATTERN_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{6,64}$/
+export const PATTERN_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{8,64}$/
 export const PATTERN_IMAGE = /^\S+$/
 export const PATTERN_PORT_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_COMPONENT_VERSION = /^[a-z0-9]+$/
@@ -528,7 +583,7 @@ export const PATTERN_PORT = /^([0-9]|[1-9]\d{1,3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]
 export const PATTERN_IMAGE_TAG = /^(.*?)([0-9a-zA-Z/]*)(:[-.\w]*[0-9a-zA-Z])*$/
 export const PATTERN_APPTEMPLATE_VERSION = /[a-zA-Z0-9](\.?-?[a-zA-Z0-9])+(\s?\[?[a-zA-Z0-9]+\.?-?\]?)*/
 export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]+Z/
-export const PATTERN_ENV_NAME = /^[^0-9][a-zA-Z0-9_]*$/
+export const PATTERN_ENV_NAME = /^[-._a-zA-Z][-._a-zA-Z0-9]*$/
 
 export const PIPELINE_TASKS = {
   All: [
@@ -542,12 +597,13 @@ export const PIPELINE_TASKS = {
     'archiveArtifacts',
     'input',
     'kubernetesDeploy',
+    'cd',
     'timeout',
     'withSonarQubeEnv',
     'waitForQualityGate',
     'script',
   ],
-  SCM: ['git', 'checkout'],
+  SCM: ['git', 'checkout', 'cd'],
   Normal: [
     'echo',
     'shell',
@@ -666,6 +722,26 @@ export const MILLISECOND_IN_TIME_UNIT = {
 
 export const PROVISIONERS = [
   {
+    label: 'LINSTOR',
+    value: 'linstor.csi.linbit.com',
+    icon: 'database',
+    access_modes: ['ReadWriteOnce', 'ReadOnlyMany', 'ReadWriteMany'],
+    params: [
+      {
+        key: 'autoPlace',
+        type: 'input',
+        placeholder: 'number',
+        desc: 'Input the number',
+      },
+      {
+        key: 'storagePool',
+        type: 'input',
+        placeholder: 'Storagepool name',
+        desc: 'Input the Storagepool name that you use',
+      },
+    ],
+  },
+  {
     label: 'QingCloud CSI',
     value: 'disk.csi.qingcloud.com',
     icon: 'qingcloud',
@@ -714,6 +790,8 @@ export const PROVISIONERS = [
       {
         key: 'RESTURL',
         type: 'input',
+        placeholder:
+          'https://<Heketi service cluster IP address>:<Heketi service port>',
         desc: 'GLUSTERFS_RESTURL_DESC',
       },
       {
@@ -734,7 +812,7 @@ export const PROVISIONERS = [
       {
         key: 'REST_USER',
         type: 'input',
-        placeholder: 'rbd',
+        placeholder: 'admin',
         desc: 'GLUSTERFS_RESTUSER_DESC',
       },
       {
@@ -862,6 +940,7 @@ export const LIST_DEFAULT_ORDER = {
   deployments: 'updateTime',
   jobs: 'updateTime',
   pods: 'startTime',
+  lresources: 'name',
 }
 
 export const API_VERSIONS = {
@@ -885,6 +964,8 @@ export const API_VERSIONS = {
   persistentvolumes: 'api/v1',
   nodes: 'api/v1',
   storageclasses: 'apis/storage.k8s.io/v1',
+  accessors: 'apis/storage.kubesphere.io/v1alpha1',
+  validatingwebhookconfigurations: '/apis/admissionregistration.k8s.io/v1',
   roles: 'apis/rbac.authorization.k8s.io/v1',
   clusterroles: 'apis/rbac.authorization.k8s.io/v1',
   applications: 'apis/app.k8s.io/v1beta1',
@@ -907,6 +988,11 @@ export const API_VERSIONS = {
   storageclasscapabilities: 'apis/storage.kubesphere.io/v1alpha1',
   meter: 'kapis/metering.kubesphere.io/v1alpha1',
   gateways: 'kapis/gateway.kubesphere.io/v1alpha1',
+  linstornodes: 'kapis/versatel.kubesphere.io/v1alpha1',
+  storagepools: 'kapis/versatel.kubesphere.io/v1alpha1',
+  lresources: 'kapis/versatel.kubesphere.io/v1alpha1',
+  cds: 'kapis/gitops.kubesphere.io/v1alpha1',
+  codeRepos: 'kapis/devops.kubesphere.io/v1alpha3',
 }
 
 export const MONITOR_GRAPH_COLORS = [

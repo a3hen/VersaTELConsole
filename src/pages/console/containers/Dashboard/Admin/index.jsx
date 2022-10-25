@@ -57,13 +57,15 @@ export default class AdminDashboard extends React.Component {
       this.monitorStore.data,
       `${MetricTypes.cluster_count}.data.result[0].value[1]`
     )
-    const version = get(globals, 'ksConfig.ksVersion', '')
+    // const version = get(globals, 'config.vtelVersion', '')
+    // const version = get(globals, 'ksConfig.ksVersion', '')
     return (
       <Loading spinning={isLoading}>
         <>
           <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
-              title={version.replace('v', '')}
+              // title={version.replace('v', '')}
+              title="1.0.0"
               description={t('PLATFORM_VERSION')}
             />
             {globals.app.isMultiCluster ? (

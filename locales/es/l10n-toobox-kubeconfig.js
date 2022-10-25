@@ -20,5 +20,5 @@ module.exports = {
   KUBECONFIG_TIP: `
     <h2><a id="KubeConfig_Configuration_Method_0"></a>Método de configuración KubeConfig</h2>
     <p>Por favor, consultar la <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/" target="_blank">documentación oficial</a> para más comandos.</p>
-  `
-};
+  `,
+}

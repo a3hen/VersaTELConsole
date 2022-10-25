@@ -26,5 +26,5 @@ module.exports = {
   // List > Edit Settings
   // List > Delete
   CONFIGMAPS: 'ConfigMaps',
-  CONFIGMAP_LOW: 'ConfigMap'
-};
+  CONFIGMAP_LOW: 'ConfigMap',
+}

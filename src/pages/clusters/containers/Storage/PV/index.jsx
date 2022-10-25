@@ -35,7 +35,7 @@ import styles from './index.scss'
 @withList({
   store: new PvStore(),
   module: 'persistentvolumes',
-  name: 'VOLUME_INSTANCE',
+  name: 'PERSISTENT_VOLUME',
   rowKey: 'uid',
 })
 export default class PV extends React.Component {
@@ -50,7 +50,7 @@ export default class PV extends React.Component {
       {
         key: 'edit',
         icon: 'pen',
-        text: t('EDIT'),
+        text: t('EDIT_INFORMATION'),
         action: 'edit',
         onClick: item =>
           trigger('resource.baseinfo.edit', {
@@ -150,7 +150,11 @@ export default class PV extends React.Component {
             <Avatar
               icon={'storage'}
               iconSize={40}
-              to={`/clusters/${cluster}/pv/${name}`}
+              to={
+                record.phase === 'Terminating'
+                  ? ''
+                  : `/clusters/${cluster}/pv/${name}`
+              }
               isMultiCluster={record.isFedManaged}
               desc={this.getItemDesc(record)}
               title={getDisplayName(record)}
@@ -193,7 +197,7 @@ export default class PV extends React.Component {
         render: accessModes => this.mapperAccessMode(accessModes),
       },
       {
-        title: t('RECYCLING_STRATEGY'),
+        title: t('RECLAIM_POLICY'),
         dataIndex: '_originData',
         isHideable: true,
         width: '7.74%',

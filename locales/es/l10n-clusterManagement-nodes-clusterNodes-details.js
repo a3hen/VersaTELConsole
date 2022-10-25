@@ -35,13 +35,15 @@ module.exports = {
   // More > Edit Taints
   TAINTS: 'Taints',
   EDIT_TAINTS: 'Gestión de Taints',
-  TAINTS_DESC: 'Si se agrega un taint con "clave=valor" al nodo, significa que no se programará ningún pod en este nodo (política PodToleratesNodeTaints) o al menos se evita la programación tanto como sea posible (política TaintTolerationPriority), a menos que el pod tenga una coincidencia tolerancia con "clave=valor".',
+  TAINTS_DESC:
+    'Si se agrega un taint con "clave=valor" al nodo, significa que no se programará ningún pod en este nodo (política PodToleratesNodeTaints) o al menos se evita la programación tanto como sea posible (política TaintTolerationPriority), a menos que el pod tenga una coincidencia tolerancia con "clave=valor".',
   ADD_TAINT: 'Añadir Taint',
   COMMON_TAINTS: 'Taints Comunes',
   NOSCHEDULE: 'NoProgramable',
   PREFER_NOSCHEDULE: 'PreferNoSchedule',
   NOEXECUTE: 'NoEjecutar',
-  TAINTS_TIPS: 'Si hay al menos un taint no ignorado con efecto NoProgramable, entonces el sistema no programará pods en ese nodo. <br /> Si no hay un taint no ignorado con efecto NoProgramable pero hay al menos un taint no ignorada con efecto PreferNoSchedule, entonces el sistema intentará no programar pods en el nodo. <br /> si hay al menos un taint no ignorada con efecto NoEjecutar, los pods serán expulsados del nodo (si ya se está ejecutando en el nodo) y no se programarán en el nodo (si aún no se está ejecutando en el nodo).',
+  TAINTS_TIPS:
+    'Si hay al menos un taint no ignorado con efecto NoProgramable, entonces el sistema no programará pods en ese nodo. <br /> Si no hay un taint no ignorado con efecto NoProgramable pero hay al menos un taint no ignorada con efecto PreferNoSchedule, entonces el sistema intentará no programar pods en el nodo. <br /> si hay al menos un taint no ignorada con efecto NoEjecutar, los pods serán expulsados del nodo (si ya se está ejecutando en el nodo) y no se programarán en el nodo (si aún no se está ejecutando en el nodo).',
   // Running Status > Resource Usage
   RESOURCE_USAGE: 'Resource Usage',
   MAXIMUM_PODS: 'Maximum Pods',
@@ -57,20 +59,20 @@ module.exports = {
   RUNNING_STATUS: 'Estado de ejecución',
   HEALTH_STATUS: 'Health Status',
   NODE_NETWORKUNAVAILABLE: 'Red no disponible',
-  NODE_NETWORKUNAVAILABLE_DESC: 'Compruebe si la configuración de red en el nodo está disponible',
+  NODE_NETWORKUNAVAILABLE_DESC: 'Whether the network status of the node is normal.',
   NODE_MEMORYPRESSURE: 'Carga de memoria',
-  NODE_MEMORYPRESSURE_DESC: 'Si la carga de uso de memoria en el nodo es demasiado alta, la programación falla',
+  NODE_MEMORYPRESSURE_DESC: 'Whether the remaining memory of the node is less than the threshold.',
   NODE_DISKPRESSURE: 'Carga de disco',
-  NODE_DISKPRESSURE_DESC: 'Si existe carga sobre el tamaño del disco, es decir, si la capacidad del disco es baja',
+  NODE_DISKPRESSURE_DESC: 'Whether the ramaining disk space or inodes of the node is less than the threshold.',
   NODE_PIDPRESSURE: 'Carga PID',
-  NODE_PIDPRESSURE_DESC: 'Si existe carga sobre los procesos, es decir, si hay demasiados procesos en el nodo',
-  NODE_READY: 'Listo',
-  NODE_READY_DESC: 'Si el nodo está sano y listo para aceptar pods',
+  NODE_PIDPRESSURE_DESC: 'Whether the number of processes allowed to be created on the node is less the threshold.',
+  NODE_READY: 'Readiness',
+  NODE_READY_DESC: 'Whether the node is ready to accept pods.',
   // Running Status > Taints
   NO_TAINTS_TIPS: 'Aún no se han establecido taints.',
   POLICY: 'Policy',
   // Pods
   READY_VALUE: 'Ready: {readyCount}/{total}',
   STATUS_VALUE: 'Status: {value}',
-  CREATED_AGO: 'Creado {diff}'
-};
+  CREATED_AGO: 'Creado {diff}',
+}

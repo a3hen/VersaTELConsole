@@ -17,7 +17,8 @@
  */
 module.exports = {
   'Add New Cluster': 'Agregar nuevo clúster',
-  'Authorize the cluster to workspace': 'Autorizar el clúster en el espacio de trabajo',
+  'Authorize the cluster to workspace':
+    'Autorizar el clúster en el espacio de trabajo',
   'Choose a provider': 'Elige un proveedor',
   'Click to Copy': 'Haga clic para copiar',
   'Cluster initialization failed': 'La inicialización del clúster ha fallado',
@@ -46,9 +47,12 @@ module.exports = {
   'Nodes Management': 'Gestión de nodos',
   'Not Ready': 'No está listo',
   'Please input cluster name': 'Por favor introduce el nombre del clúster',
-  'Please input the kubesphere api server address of the cluster': 'Introduce la dirección del servidor de la API de Kubesphere del clúster',
-  'Please select or input a provider': 'Por favor selecciona o introduce un proveedor',
-  'Please select or input a tag': 'Por favor selecciona o introduce una etiqueta',
+  'Please input the kubesphere api server address of the cluster':
+    'Introduce la dirección del servidor de la API de Kubesphere del clúster',
+  'Please select or input a provider':
+    'Por favor selecciona o introduce un proveedor',
+  'Please select or input a tag':
+    'Por favor selecciona o introduce una etiqueta',
   SELECT_CLUSTERS: 'Seleccionar clústeres',
   'The current cluster is public': 'El clúster actual es público.',
   Tools: 'Herramientas',
@@ -60,7 +64,8 @@ module.exports = {
   'Import Cluster': 'Import Cluster',
   'Cluster Basic Info': 'Cluster Basic Information',
   'Node Settings': 'Node Settings',
-  'Please add at least one cluster node': 'Please add at least one cluster node',
+  'Please add at least one cluster node':
+    'Please add at least one cluster node',
   'Add node to the cluster': 'Add node to the cluster',
   'Kubernetes Cluster Settings': 'Kubernetes Cluster Settings',
   'Network Plugin': 'Network Plugin',
@@ -74,21 +79,32 @@ module.exports = {
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
   'KubeSphere Settings': 'KubeSphere Settings',
-  NO_CLUSTER_TIP_DESC: 'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',
+  NO_CLUSTER_TIP_DESC:
+    'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',
   ADD_NEW_CLUSTER_DESC: 'Agregar un nuevo clúster de Kubernetes',
-  CHOOSE_PROVIDER_DESC: 'KubeSphere proporciona una solución para implementar rápidamente los clústeres de Kubernetes entre los principales proveedores de servicios.',
+  CHOOSE_PROVIDER_DESC:
+    'KubeSphere proporciona una solución para implementar rápidamente los clústeres de Kubernetes entre los principales proveedores de servicios.',
   MULTI_CLUSTER: 'Multi-Clústers',
   CLUSTER_INFO_TCAP: 'Cluster Information',
-  INVITE_CLUSTER_MEMBER_DESC: 'Puedes invitar a nuevos miembros a este clúster.',
+  INVITE_CLUSTER_MEMBER_DESC:
+    'Puedes invitar a nuevos miembros a este clúster.',
   CLUSTER_API_SERVER_TITLE: 'Servidor API Kubesphere para agregar al clúster',
-  CLUSTER_API_SERVER_DESC: 'Debes indicar la dirección del servidor API de KubeSphere para agregarla al clúster',
-  AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC: 'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
-  PUBLIC_CLUSTER_DESC: 'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
-  CLUSTER_AUTHORIZATION_DESC: 'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
-  REMOVE_WORKSPACE_CONFIRM_DESC: 'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
-  K8S_NETWORK_PLUGIN_CALICO: 'Calico is a pure 3-layer network solution that seamlessly integrates the IaaS cloud architecture and can provide IP communication between VMs, containers, and bare metal.',
-  K8S_NETWORK_PLUGIN_FLANNEL: 'Flannel allows Docker containers created by different node hosts in the cluster to have a unique virtual IP address in the entire cluster',
-  K8S_NETWORK_PLUGIN_CILIUM: 'eBPF-based Networking, Security, and Observability.',
+  CLUSTER_API_SERVER_DESC:
+    'Debes indicar la dirección del servidor API de KubeSphere para agregarla al clúster',
+  AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
+    'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
+  PUBLIC_CLUSTER_DESC:
+    'Un clúster público significa que todos los usuarios de la plataforma pueden acceder al clúster, en el que pueden crear y programar recursos.',
+  CLUSTER_AUTHORIZATION_DESC:
+    'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
+  REMOVE_WORKSPACE_CONFIRM_DESC:
+    'Enter the name of the workspace(s) <strong>{resource}</strong> to confirm that you understand the risks of this operation.',
+  K8S_NETWORK_PLUGIN_CALICO:
+    'Calico is a pure 3-layer network solution that seamlessly integrates the IaaS cloud architecture and can provide IP communication between VMs, containers, and bare metal.',
+  K8S_NETWORK_PLUGIN_FLANNEL:
+    'Flannel allows Docker containers created by different node hosts in the cluster to have a unique virtual IP address in the entire cluster',
+  K8S_NETWORK_PLUGIN_CILIUM:
+    'eBPF-based Networking, Security, and Observability.',
   INIT_NODES: 'Init Nodes',
   PULL_IMAGES: 'Pull Images',
   INIT_ETCD_CLUSTER: 'Init etcd Cluster',
@@ -97,5 +113,5 @@ module.exports = {
   INSTALL_ADDONS: 'Install Addons',
   // Unbind Cluster
   // Cluster Visibility
-  AUDITING: 'Auditing'
-};
+  AUDITING: 'Auditing',
+}

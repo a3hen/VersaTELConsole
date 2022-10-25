@@ -19,7 +19,8 @@ module.exports = {
   // Network Policies Page
   Ingress: '入口',
   'Network Policy': '網路策略',
-  NETWORK_POLICY_DESC: '通過配置網路策略，允許在同個集群内時現網路的隔離，也就是可以在某些實例（Pod）之間架起防火牆。',
+  NETWORK_POLICY_DESC:
+    '通過配置網路策略，允許在同個集群内時現網路的隔離，也就是可以在某些實例（Pod）之間架起防火牆。',
   CIDR_DESC: '將根據流量的方向',
-  ALLOWLIST_ENTRY: '白名單條目'
-};
+  ALLOWLIST_ENTRY: '白名單條目',
+}

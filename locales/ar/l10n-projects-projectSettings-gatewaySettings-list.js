@@ -17,10 +17,13 @@
  */
 module.exports = {
   // Banner
-  PROJECT_GATEWAY_DESC: 'Set up and manage the configuration of the external network access gateway and service management in the project.',
+  PROJECT_GATEWAY_DESC:
+    'Set up and manage the configuration of the external network access gateway and service management in the project.',
   // Project Gateway
+  PROJECT_GATEWAY: 'Project Gateway',
   // Project Gateway > Enable Gateway
-  ENABLE_GATEWAY_DESC: 'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
+  ENABLE_GATEWAY_DESC:
+    'Enable the gateway controller to forward traffic to different services based on domain names and paths configured in routes.',
   // Project Gateway > Enable Gateway > NodePort
   // Project Gateway > Enable Gateway > LoadBalancer
   LOAD_BALANCER_PROVIDER: 'Load Balancer Provider',
@@ -31,5 +34,6 @@ module.exports = {
   // Manage > Edit > LoadBalancer
   // Manage > Disable
   // Cluster Gateway (displayed when the cluster gateway and project gateway are both enabled)
-  CLUSTER_GATEWAY_GUIDE_DESC: 'If the cluster gateway and project gateway both exist, the project gateway cannot be enabled after it is disabled. You are advised to used either the cluster gateway or project gateway.'
-};
+  CLUSTER_GATEWAY_GUIDE_DESC:
+    'If the cluster gateway and project gateway both exist, the project gateway cannot be enabled after it is disabled. You are advised to used either the cluster gateway or project gateway.',
+}

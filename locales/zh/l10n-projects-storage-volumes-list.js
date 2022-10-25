@@ -19,7 +19,8 @@ module.exports = {
   // Banner
   VOLUME_PL: '存储卷',
   WHAT_IS_STORAGE_CLASS_Q: '什么是存储类型?',
-  WHAT_IS_STORAGE_CLASS_A: '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
+  WHAT_IS_STORAGE_CLASS_A:
+    '存储类型（Storage Class）是由集群管理员配置的多种存储类型，不同的存储类型为集群用户提供不同类型的存储卷。',
   WHAT_IS_LOCAL_VOLUME_Q: '什么是本地存储卷?',
   WHAT_IS_LOCAL_VOLUME_A: '本地存储卷是创建在集群本地文件系统中的存储卷。',
   // List
@@ -30,5 +31,5 @@ module.exports = {
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
-  VOLUME: '存储卷'
-};
+  VOLUME: '存储卷',
+}

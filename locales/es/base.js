@@ -16,7 +16,6 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  NUMBER_OF_PODS: 'Number of Pods',
   STRATEGY_PL: 'Strategies',
   // Cluster Node List
   CORE: 'core',
@@ -53,14 +52,11 @@ module.exports = {
   Cancel: 'Cancelar',
   'Canceled Successfully': 'Cancelado con éxito',
   Ceased: 'Cesado',
-  CERTIFICATE: 'Certificate',
   'clear search conditions': 'borrar filtros',
   CLUSTER_COUNT: 'Cluster',
   Collapse: 'Colapsar',
   Completed: 'Completed',
   Configuration: 'Configuración',
-  CONFIGURATION_CENTER: 'Configuración',
-  STORAGE_MANAGEMENT: 'Storage Management',
   Confirm: 'Confirmar',
   Container: 'Contenedor',
   Containers: 'Contenedores',
@@ -69,7 +65,6 @@ module.exports = {
   Cordon: 'Cordon',
   Count: 'Contar',
   Create: 'Crear',
-  CREATED_BY: 'Created By',
   Current: 'Actual',
   Custom: 'Personalizado',
   'Data Sources': 'Fuentes de datos',
@@ -139,7 +134,6 @@ module.exports = {
   MilliSeconds: 'Milisegundos',
   Minutes: 'Minutos',
   'MMMM Do YYYY': 'MMMM Do YYYY',
-  'MONITORING_&_ALERTING': 'Monitorización y alertas',
   Monitors: 'Monitores',
   More: 'Más',
   name: 'nombre',
@@ -216,7 +210,6 @@ module.exports = {
   secret: 'secret',
   secret_text: 'texto secreto',
   Service: 'Servicio',
-  NUMBER_OF_SERVICES: 'Number of Services',
   'Service Components': 'Componentes',
   'Session timeout or this account is logged in elsewhere, please login again':
     'Timeout de sesión o se ha iniciado sesión con esta cuenta en otro lugar, vuelve a iniciar sesión',

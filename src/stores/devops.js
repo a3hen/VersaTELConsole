@@ -31,6 +31,8 @@ export default class DevOpsStore extends Base {
 
   module = 'devops'
 
+  hostName = ''
+
   @observable
   roles = {
     data: [],
@@ -72,6 +74,9 @@ export default class DevOpsStore extends Base {
 
   getDevopsUrlV2 = params =>
     `kapis/devops.kubesphere.io/v1alpha2${this.getPath(params)}/`
+
+  getDevopsUrlV3 = params =>
+    `kapis/devops.kubesphere.io/v1alpha3${this.getPath(params)}/`
 
   getDevopsTenantUrl = params =>
     `kapis/tenant.kubesphere.io/v1alpha2${this.getPath(params)}/devops`
@@ -172,6 +177,21 @@ export default class DevOpsStore extends Base {
         )
       )
     }
+  }
+
+  @action
+  async editAllowlist({ cluster, workspace, devops }, newData) {
+    await this.fetchDetail({ cluster, workspace, devops })
+    const data = cloneDeep(this.itemDetail)
+    set(data, 'spec.argo', get(newData, 'spec.argo'))
+
+    return this.submitting(
+      request.put(`${this.getBaseUrl({ cluster, workspace, devops })}`, data, {
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+    )
   }
 
   @action

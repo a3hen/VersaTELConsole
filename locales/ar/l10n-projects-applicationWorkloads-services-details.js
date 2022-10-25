@@ -26,23 +26,21 @@ module.exports = {
   // More > Edit Service
   // More > Edit Service > Specify Workload
   // More > Edit External Access > Access Mode
-  ACCESS_NONE_TIP: 'Internet access is not supported. The service can be accessed only within the cluster.',
+  ACCESS_NONE_TIP:
+    'Internet access is not supported. The service can be accessed only within the cluster.',
   EXTERNAL_SERVICE: 'External Service',
   // More > Edit Monitoring Exporter
-  SERVICE_MONITORING_EXPORTER: 'Service Monitoring Exporter',
-  EXPORTER_SERVICE_PORTS: 'Exporter Service Ports',
-  SCRAPE_INTERVAL_MIN: 'Scrape Interval (min)',
-  SCRAP_INTERVAL_DESC: 'Monitoring data collection interval. It defaults to 1 minute.',
+  COLLECTION_INTERVAL_MIN: 'Collection Interval (min)',
+  COLLECTION_INTERVAL_MIN_DESC: 'Interval in minutes between two metric collection operations. The default value is 1.',
+  COLLECTION_TIMEOUT_DESC: 'Timeout interval in seconds of each collection operation. The default value is 10.',
   SELECT_AUTHENTICATION_METHOD: 'Select Authentication Method',
-  PORT_CONNECTION_AUTHENTICATION: 'Port connection authentication.',
-  NO_AUTH_TIP: 'The interface can be directly connected without authentication.',
+  SELECT_AUTHENTICATION_METHOD_DESC: 'Select the authentication method used during metric collection.',
+  NO_AUTHENTICATION_TCAP: 'No Authentication',
+  NO_AUTHENTICATION_TIP: 'Authentication is not used during metric collection.',
   CREATE_A_NEW_SECRET: 'Create a new secret',
   REFRESH_SECRETS: 'refresh secrets.',
-  SCRAP_TIMEOUT_DESC: 'Collection timeout. It defaults to 10 seconds.',
   CERTIFICATE_AUTHORITY: 'Certificate Authority',
-  ENCRYPTION_KEY: 'Encryption Key',
   SERVER_NAME: 'Server Name',
-  NO_AUTHENTICATION_TCAP: 'No Authentication',
   TLS_SETTINGS_TCAP: 'TLS Settings',
   BEARER_TOKEN_TCAP: 'Bearer Token',
   BASIC_AUTHENTICATION_TCAP: 'Basic Authentication',
@@ -53,8 +51,9 @@ module.exports = {
   MONITORING_EXPORTER: 'Monitoring Exporter',
   MONITORING_EXPORTER_VALUE: 'Monitoring exporter: {value}',
   PORT_PL: 'Ports',
-  SERVICE_NODE_PORT_DESC: 'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the service.',
+  SERVICE_NODE_PORT_DESC:
+    'If your client machine is on the same network as the cluster, you can use <Node IP address>:<Node port> to access the service.',
   IMAGE_BUILDING_FAILED: 'Image building failed',
   IMAGE_BUILDING_SUCCESSFUL: 'Image building successful',
-  BUILDING_IMAGE: 'Building image'
-};
+  BUILDING_IMAGE: 'Building image',
+}

@@ -58,12 +58,13 @@ module.exports = {
   'View in Store': 'View in Store',
   Working: 'Working',
   'Wrong version number format': 'Wrong version number format',
-  PACKAGE_FILE_DESC: 'Package.json file, which describes the basic information of an application or version, such as the name and version number.',
+  PACKAGE_FILE_DESC:
+    'Package.json file, which describes the basic information of an application or version, such as the name and version number.',
   CONFIG_FILE_DESC: 'Application Default Profile',
   LOCALE_EN__FILE_DESC: 'English Translation for the Application Configuration',
   LOCALE_ZH_FILE_DESC: 'Chinese Translation for the Application Configuration',
   VERSION_SUBMIT_DOC: 'For a more comprehensive test manual, see ',
   // App Templates > Details
   APP_VERSION_SCAP: 'App version',
-  TEST_INSTALLATION: 'Test Installation'
-};
+  TEST_INSTALLATION: 'Test Installation',
+}

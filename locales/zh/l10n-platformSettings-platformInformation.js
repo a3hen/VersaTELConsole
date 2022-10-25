@@ -23,5 +23,5 @@ module.exports = {
   PLATFORM_INFORMATION: '平台信息',
   PLATFORM_DESCRIPTION: '平台描述',
   PLATFORM_TITLE: '平台标题',
-  PLATFORM_ADDRESS: '平台地址'
-};
+  PLATFORM_ADDRESS: '平台地址',
+}

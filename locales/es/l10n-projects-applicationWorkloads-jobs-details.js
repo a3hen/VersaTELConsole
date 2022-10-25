@@ -19,5 +19,5 @@ module.exports = {
   // More
   MORE: 'Más',
   // More > View YAML
-  VIEW_YAML: 'Ver YAML'
-};
+  VIEW_YAML: 'Ver YAML',
+}

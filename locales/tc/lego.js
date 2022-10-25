@@ -23,5 +23,5 @@ module.exports = {
   KUBE_RANGE_SEPARATOR: ' 至 ',
   KUBE_SCROLL_TO_INCREMENT: '點擊切換 12/24 小時時制',
   KUBE_CLICK_TO_TOGGLE: '滾動切換',
-  KUBE_YEAR: ''
-};
+  KUBE_YEAR: '',
+}

@@ -43,7 +43,8 @@ module.exports = {
   PIPELINE_QUEUED_TITLE: 'About to Complete Initialization',
   INITIALIZING_PIPELINE: 'Pipeline Initializing',
   PIPELINE_PREPARE_DESC: 'Preparing the environment...',
-  INITIALIZING_PIPELINE_DESC: 'Please wait until the pipeline initialization is complete.',
+  INITIALIZING_PIPELINE_DESC:
+    'Please wait until the pipeline initialization is complete.',
   TASK_FAILED_NOT_OPERATIONAL: 'The stage has failed and is not operational.',
   NO_PIPELINE_CONFIG_FILE_TIP: 'No pipeline configuration file is found.',
   // Task Status > Edit Pipeline
@@ -55,16 +56,20 @@ module.exports = {
     but the stage level usage is optional. `,
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
   CI: 'Continuous Integration (CI)',
-  CI_DESC: 'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
+  CI_DESC:
+    'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
   CICD: 'Continuous Integration & Delivery (CI/CD)',
-  CICD_DESC: 'Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user\'s installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.',
+  CICD_DESC:
+    "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
   CUSTOM_PIPELIEN: 'Custom Pipeline',
-  CUSTOM_PIPELIEN_DESC: 'You can select the tasks you need to customize the contents of the pipeline.',
+  CUSTOM_PIPELIEN_DESC:
+    'You can select the tasks you need to customize the contents of the pipeline.',
   CC: 'CC',
   CREDENTIAL_NAME: 'Credential Name',
   REMOTE_REPOSITORY_URL: 'Remote Repository URL',
   SCM: 'SCM',
-  INPUT_MESSAGE_DESC: 'This message will be displayed in the pipeline running state.',
+  INPUT_MESSAGE_DESC:
+    'This message will be displayed in the pipeline running state.',
   KUBERNETES_DEPLOY_DESC: `Deploy resources on a Kubernetes cluster.
     In a continuous integration or continuous deployment environment,
     only those resources that need to be updated regularly should be placed in the deployment step.
@@ -91,6 +96,11 @@ module.exports = {
   </li>`,
   STAGE: 'Stage',
   KUBERNETES_DEPLOY_DEPRECATED_TIP: 'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
+  ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
+  NEW_IMAGE_ADDRESS: 'New Image Address',
+  NEW_IMAGE_TAG: 'New Image Tag',
+  CD_STEP_DESC: 'Update image information using continuous deployment.',
+  UPDATE_CD_TITLE: 'Continuous Deployment of Updates',
   // Task Status > Edit Jenkinsfile
   EDIT_JENKINSFILE: 'Edit Jenkinsfile',
   CLOSE_JENKINSFILE_EDITOR_TIP: 'Are you sure to close the Jenkinsfile editor?',
@@ -111,7 +121,8 @@ module.exports = {
   LAST_MESSAGE: 'Last Message',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: 'The pipeline was stopped successfully.',
-  INVALID_JENKINSFILE_TIP: 'The current Jenkinsfile is not a standard declarative Jenkinsfile and graphical display is unavailable.',
+  INVALID_JENKINSFILE_TIP:
+    'The current Jenkinsfile is not a standard declarative Jenkinsfile and graphical display is unavailable.',
   PAUSED: 'Paused',
   // Run Records > Run
   SET_PARAMETERS: 'Set Parameters',
@@ -158,5 +169,5 @@ module.exports = {
   LINE_VALUE: 'Line: {value}',
   PASSED: 'Passed',
   // Pull Requests
-  PULL_REQUEST_PL: 'Pull Requests'
-};
+  PULL_REQUEST_PL: 'Pull Requests',
+}

@@ -25,15 +25,18 @@ module.exports = {
   KUBESPHERE_VERSION: 'Versión de KubeSphere',
   VISIBILITY_PARTIAL: 'Parcialmente visible',
   VISIBILITY_PUBLIC: 'Público',
-  CLUSTER_BASE_INFO_DESC: 'Basic information provides an overview of the cluster. You can view and edit cluster information.',
+  CLUSTER_BASE_INFO_DESC:
+    'Basic information provides an overview of the cluster. You can view and edit cluster information.',
   // System Components
   // Resource Usage
   MEMORY: 'Memoria',
   TOTAL: 'Total',
   USED: 'En uso',
   // Tools
-  KUBECTL_DESC: 'Herramienta de línea de comandos para controlar el clúster Kubernetes actual',
-  KUBECONFIG_DESC: 'Puedes usar este archivo para configurar el acceso al clúster Kubernetes actual',
+  KUBECTL_DESC:
+    'Herramienta de línea de comandos para controlar el clúster Kubernetes actual',
+  KUBECONFIG_DESC:
+    'Puedes usar este archivo para configurar el acceso al clúster Kubernetes actual',
   // Kubernetes Status
   KUBERNETES_STATUS: 'Estado de Kubernetes',
   API_REQUESTS_PER_SECOND: 'API solicitudes por segundo',
@@ -43,5 +46,5 @@ module.exports = {
   SCHEDULING_FAILURES: 'Programar pods fallidos',
   SCHEDULING_FAILURE: 'Scheduling failure',
   // Nodes
-  VIEW_MORE: 'Ver más'
-};
+  VIEW_MORE: 'Ver más',
+}

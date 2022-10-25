@@ -19,5 +19,5 @@ module.exports = {
   // Details
   // Projects
   // DevOps Projects
-  DEVOPS_PROJECTS: 'DevOps 项目'
-};
+  DEVOPS_PROJECTS: 'DevOps 项目',
+}

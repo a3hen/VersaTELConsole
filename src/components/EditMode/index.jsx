@@ -20,7 +20,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { saveAs } from 'file-saver'
-import { get, isEmpty } from 'lodash'
+import { get, isEmpty, isString } from 'lodash'
 
 import ReactFileReader from 'react-file-reader'
 import { Icon } from '@kube-design/components'
@@ -33,6 +33,10 @@ import styles from './index.scss'
 const objectToYaml = formTemplate => {
   if (formTemplate.metadata) {
     return getValue(formTemplate)
+  }
+
+  if (isString(formTemplate)) {
+    return formTemplate
   }
 
   return Object.values(formTemplate)
@@ -87,6 +91,7 @@ export default class EditMode extends React.Component {
       if (!isEmpty(e.target.result)) {
         this.value = e.target.result
         this.forceUpdate()
+        this.props.onChange && this.props.onChange(this.value)
       }
     }
     reader.readAsText(file[0])
@@ -119,6 +124,7 @@ export default class EditMode extends React.Component {
 
   handleChange = value => {
     this.value = value
+    this.props.onChange && this.props.onChange(value)
   }
 
   getData = () => yamlToObject(this.value, !!this.props.value.metadata)

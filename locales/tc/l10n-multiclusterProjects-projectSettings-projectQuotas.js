@@ -19,5 +19,5 @@ module.exports = {
   // Banner
   // Resource Quotas
   FOLD: '折疊',
-  UNFOLD: '展開'
-};
+  UNFOLD: '展開',
+}

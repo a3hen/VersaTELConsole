@@ -20,24 +20,28 @@ module.exports = {
   PROJECT_SETTINGS: 'Configuraciones del proyecto',
   // Banner
   HOW_TO_USE_QUOTA_Q: 'How do I use resource quotas?',
-  HOW_TO_USE_QUOTA_A: 'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
+  HOW_TO_USE_QUOTA_A:
+    'Resource quotas are a mechanism used to limit the resource usage. You can edit project resource quotas and default container quotas by clicking <b>Edit Project</b>.',
   WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_Q: 'What are default container quotas?',
-  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A: 'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
-  PROJECT_BASIC_INFO_DESC: 'Basic information provides an overview of the project. You can view the project information and resource quotas.',
+  WHAT_ARE_DEFAULT_CONTAINER_QUOTAS_A:
+    'Default container quotas specify the default CPU request, CPU limit, memory request, and memory limit of containers created in the project.',
+  PROJECT_BASIC_INFO_DESC:
+    'Basic information provides an overview of the project. You can view the project information and resource quotas.',
   // Manage > Edit Information
   // Manage > Edit Project Quotas
   EDIT_PROJECT_QUOTA: 'Edit Project Quota',
-  NUMBER_OF_CRONJOBS: 'Number of CronJobs',
   PROJECT_REMAINING_QUOTAS: 'Project Remaining Quotas',
   WORKSPACE_REMAINING_QUOTAS: 'Workspace Remaining Quotas',
-  NUMBER_OF_JOBS: 'Number of Jobs',
   // Manage > Edit Default Container Quotas
   GPU_TYPE_SCAP: 'GPU type',
   GPU_LIMIT_SCAP: 'GPU limit',
-  REQUEST_EXCEED_WORKSPACE: 'Resource requests and limits cannot exceed workspace resource limits.',
-  REQUEST_EXCEED_LIMIT: 'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
+  REQUEST_EXCEED_WORKSPACE:
+    'Resource requests and limits cannot exceed workspace resource limits.',
+  REQUEST_EXCEED_LIMIT:
+    'Las solicitudes de recursos no deben ser mayores que los límites de recursos',
   // Mange > Delete
-  DELETE_PROJECT_TIP: '¿Está seguro de eliminar el proyecto <strong>{resource}</strong> ? Después de la eliminación no podrás recuperarlo y los recursos del proyecto también serán destruidos.',
+  DELETE_PROJECT_TIP:
+    '¿Está seguro de eliminar el proyecto <strong>{resource}</strong> ? Después de la eliminación no podrás recuperarlo y los recursos del proyecto también serán destruidos.',
   // Project Information
   MANAGE: 'Manage',
   PROJECT_INFO: 'Información del proyecto',
@@ -53,5 +57,5 @@ module.exports = {
   LIMITS_MEMORY: 'limits.memoria',
   // Project Quotas
   PROJECT_QUOTA_PL: 'Project Quotas',
-  RESOURCE_TYPE_SCAP: 'Tipo de recurso'
-};
+  RESOURCE_TYPE_SCAP: 'Tipo de recurso',
+}

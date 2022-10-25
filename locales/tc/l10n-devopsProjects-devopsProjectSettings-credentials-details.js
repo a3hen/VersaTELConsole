@@ -24,5 +24,5 @@ module.exports = {
   // Details > Credential
   TYPE_VALUE: 'Type: {value}',
   // Events
-  RECORD: 'Record'
-};
+  RECORD: 'Record',
+}

@@ -18,7 +18,8 @@
 module.exports = {
   // Banner
   IMAGE_BUILDER_PL: '镜像构建器',
-  IMAGE_BUILDER_DESC: '镜像构建器（Image Builder）是将代码或者制品制作成容器镜像的工具。您可以通过简单的设置将制品或代码直接制作成容器镜像。',
+  IMAGE_BUILDER_DESC:
+    '镜像构建器（Image Builder）是将代码或者制品制作成容器镜像的工具。您可以通过简单的设置将制品或代码直接制作成容器镜像。',
   // List
   IMAGE_BUILDER_EMPTY_DESC: '请创建一个镜像构建器。',
   NOT_RUNNING_YET: '未运行',
@@ -35,18 +36,22 @@ module.exports = {
   CODE_REPOSITORY_BRANCH: '代码仓库分支',
   CODE_REPOSITORY_KEY: '代码仓库密钥',
   CODE_REPOSITORY_URL_DESC: '输入代码仓库的地址。目前仅支持 Git 仓库。',
-  CODE_REPOSITORY_KEY_DESC: '如果使用私有代码仓库，请选择包含代码仓库密钥的保密字典。',
+  CODE_REPOSITORY_KEY_DESC:
+    '如果使用私有代码仓库，请选择包含代码仓库密钥的保密字典。',
   IMAGE_NAME: '镜像名称',
   IMAGE_TAG: '镜像标签',
-  TARGET_IMAGE_REPOSITORY: '目标镜像仓库',
+  TARGET_IMAGE_REPOSITORY: '目标镜像服务',
   S2I_IMAGE_NAME_DESC: '名称只能包含小写字母、数字、连字符（-）、句点（.）、斜钱（/）和冒号（:），并以小写字母或数字开头和结尾。',
-  S2I_TARGET_IMAGE_REPOSITORY_DESC: '选择一个镜像仓库用于存放即将创建的镜像。如果没有可用的镜像仓库，您需要先创建镜像仓库保密字典。<a href={link} target="_blank">了解更多</a>',
+  S2I_TARGET_IMAGE_REPOSITORY_DESC: '选择一个镜像服务用于存放即将创建的镜像。如果没有可用的镜像服务，您需要先创建镜像服务保密字典。<br/><a href={link} target="_blank">了解更多</a>',
   TRIGGER_TOKEN: '触发令牌',
-  INVALID_TRIGGER_TOKEN_DESC: '令牌无效。令牌只能包含大写字母、小写字母和数字。',
-  TRIGGER_TOKEN_DESC: '设置客户端通过 Webhook 触发 KubeSphere 镜像构建时所使用的认证令牌。令牌只能包含大写字母、小写字母和数字。',
+  INVALID_TRIGGER_TOKEN_DESC:
+    '令牌无效。令牌只能包含大写字母、小写字母和数字。',
+  TRIGGER_TOKEN_DESC:
+    '设置客户端通过 Webhook 触发 KubeSphere 镜像构建时所使用的认证令牌。令牌只能包含大写字母、小写字母和数字。',
   CODE_RELATIVE_PATH: '代码相对路径',
   CODE_RELATIVE_PATH_DESC: '设置代码在代码仓库中的相对路径。默认值为 /。',
-  S2I_ENVIRONMENT_DESC: '添加环境变量以控制镜像运行时的行为。<a href={link} target="_blank">了解更多</a>',
+  S2I_ENVIRONMENT_DESC:
+    '添加环境变量以控制镜像运行时的行为。<a href={link} target="_blank">了解更多</a>',
   // List > Create > JAR > Build Settings
   UPLOAD_ARTIFACT_FILE: '上传制品文件',
   UPLOAD_PERCENT: '已上传：{percent}%',
@@ -63,5 +68,5 @@ module.exports = {
   WRONG_FILE_EXTENSION_NAME: '选择的文件类型不匹配，请选择 {type} 类型。',
   IMAGE_NAME_EMPTY_DESC: '请输入镜像名称。',
   IMAGE_TAG_EMPTY_DESC: '请输入镜像标签。',
-  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像仓库。'
+  TARGET_IMAGE_REPOSITORY_EMPTY_DESC: '请设置目标镜像服务。'
 };

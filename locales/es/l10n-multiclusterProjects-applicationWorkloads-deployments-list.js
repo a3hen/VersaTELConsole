@@ -20,7 +20,8 @@ module.exports = {
   WORKLOAD_DESC:
     'La carga de trabajo suele ser el operador real para acceder al servicio, y también es el operador real en ejecución para aplicaciones del sistema, como la recopilación y supervisión de registros de nodos. Workload es un modelo abstracto para un grupo de Pods.',
   // List
-  DEPLOYMENT_EMPTY_DESC: 'Please create a deployment.',
+  DEPLOYMENT_EMPTY_DESC: 'Cree un deployment.',
+  UPDATING: 'Actualización',
   // List > Edit Information
   // List > Edit YAML
   // List > Delete
@@ -29,13 +30,11 @@ module.exports = {
   NEXT: 'Siguiente',
   // List > Create > Pod Settings > Replica Scheduling Mode
   REPLICA_SCHEDULING_MODE: 'Modo de despliegue',
-  SPECIFY_REPLICAS: 'Specify Replicas',
-  WEIGHTS: 'Weights',
-  SPECIFY_WEIGHTS: 'Specify Weights',
-  SPECIFY_WEIGHTS_DESC:
-    'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
-  SPECIFY_REPLICAS_DESC:
-    'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
+  SPECIFY_REPLICAS: 'Especificar las réplicas',
+  WEIGHTS: 'Pesas',
+  SPECIFY_WEIGHTS: 'Especificar los pesos',
+  SPECIFY_WEIGHTS_DESC: 'El número total de copias establecido se asignará a los grupos seleccionados de acuerdo con los pesos establecidos, y las copias de los grupos no disponibles se migrarán automáticamente a los grupos disponibles.',
+  SPECIFY_REPLICAS_DESC: 'Especifique claramente la cantidad de réplicas que se implementarán para cada clúster.',
   REPLICA_LOW_SI: 'replica',
   REPLICA_LOW_PL: 'replicas',
   WEIGHT: 'Peso',
@@ -64,6 +63,7 @@ module.exports = {
     'Set the resource limits and requests of the container so that the container is scheduled to appropriate nodes.',
   GPU_TYPE: 'GPU Type',
   GPU_LIMIT: 'GPU Limit',
+  NVIDIA_COM_GPU: 'NVIDIA GPU',
   NO_LIMIT: 'Ilimitado',
   NO_REQUEST: 'Ninguna solicitud',
   NO_RESOURCE_LIMIT: 'No resource limit',
@@ -98,18 +98,15 @@ module.exports = {
   HEALTH_CHECK: 'Health check',
   STARTUP_CHECK_TIP: 'Kubernetes v1.18 or later is required.',
   // List > Create > Pod Settings > Add Container > Life Management
-  LIFE_MANAGEMENT: 'Lifecycle Management',
-  LIFE_MANAGEMENT_DESC:
-    'Manage some actions of the application container before running and shutting down, such as environment preparation, graceful offline, etc.',
-  'Container PostStart': 'Add PostStart settings',
-  'Container PreStop': 'Add PreStop settings',
-  PRO_STOP_DESC:
-    ' Tasks before the application container is terminated, such as graceful shutdown of the application, notification to other systems, etc. ',
-  POST_START_DESC:
-    'The tasks after the application container is successfully created and before running, such as resource deployment, environment preparation, etc. ',
+  LIFECYCLE_MANAGEMENT: 'Lifecycle Management',
+  LIFECYCLE_MANAGEMENT_DESC: 'Add actions to be performed after the container is started or before it is stopped for environment preparation or graceful shutdown.',
+  POSTSTART_ACTION: 'Post-start Action',
+  PRESTOP_ACTION: 'Pre-stop Action',
+  POSTSTART_ACTION_DESC: 'Add an action to be performed after the container is started.',
+  PRESTOP_ACTION_DESC: 'Add an action to be performed before the container is stopped.',
+  ADD_ACTION: 'Add Action',
   // List > Create > Pod Settings > Add Container > Environment Variables
   ADD_ENVIRONMENT_VARIABLE: 'Agregar variable de entorno',
-  USE_CONFIGMAP_OR_SECRET: 'Use ConfigMap o Secret',
   KEY_IN_RESOURCE: 'Seleccionar clave',
   LABEL_TYPE: '{label} <span style="{style}">({type})</span>',
   // List > Create > Pod Settings > Add Container > Container Security Context
@@ -135,7 +132,7 @@ module.exports = {
   RUN_AS_USER_GROUP_DESC:
     'El GID para ejecutar el punto de entrada del proceso contenedor. Utiliza el tiempo de ejecución predeterminado si no está configurado.',
   SELINUX_CONTEXT: 'SELinux Context',
-  CAPABILITIES_BETA: 'Capabilities (beta)',
+  CAPABILITIES: 'Capabilities',
   DROP: 'Drop',
   ACCESS_CONTROL: 'Control de acceso',
   LEVEL: 'Nivel',
@@ -167,13 +164,9 @@ module.exports = {
     'Schedules the Pod replicas to nodes according to default rules.',
   DECENTRALIZED_SCHEDULING: 'Despliegue descentralizado de pod',
   CUSTOM_RULES: 'Custom Rules',
-  CUSTOM_RULES_DESC:
-    'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
-  'Pod IP': 'Pod IP',
-  DECENTRALIZED_SCHEDULING_DESC:
-    'Las réplicas de pod se implementarán en diferentes nodos tanto como sea posible.',
-  CENTRALIZED_SCHEDULING_DESC:
-    'Las réplicas de pod se implementarán en el mismo nodo tanto como sea posible.',
+  CUSTOM_RULES_DESC: 'Las réplicas de pod se implementarán de acuerdo con la política predeterminada.',
+  DECENTRALIZED_SCHEDULING_DESC: 'Las réplicas de pod se implementarán en diferentes nodos tanto como sea posible.',
+  CENTRALIZED_SCHEDULING_DESC: 'Las réplicas de pod se implementarán en el mismo nodo tanto como sea posible.',
   CENTRALIZED_SCHEDULING: 'Implementación de agregación de pod',
   SCHEDULE_WITH_TARGET: 'Deploy with target',
   SCHEDULE_AWAY_FROM_TARGET: 'Schedule away from target',
@@ -184,19 +177,17 @@ module.exports = {
   // List > Create > Pod Settings > Add Metadata
   ADD_METADATA: 'Agregar metadatos',
   POD_ADD_METADATA_DESC: 'Add metadata to the Pod replicas.',
-  // List > Create > Volume Settings
-  VOLUME_SETTINGS: 'Montar Volúmenes',
+  // List > Create > Storage Settings
+  STORAGE_SETTINGS: 'Storage Settings',
   READ_ONLY_LOW: 'read-only',
   READ_AND_WRITE_LOW: 'read and write',
-  // List > Create > Volume Settings > Mount Volume
+  // List > Create > Storage Settings > Mount Volume
   MOUNT_VOLUME: 'Mount Volume',
-  WORKLOAD_MOUNT_VOLUME_DESC: 'Admite EmptyDir y PersistentVolumeClaim.',
-  EXISTING_VOLUME: 'Volumen existente',
-  SELECT_VOLUME: 'Elige un volumen existente',
-  SELECT_VOLUME_DESC:
-    'Selecciona un volumen que se haya creado y móntelo en el contenedor.',
+  WORKLOAD_MOUNT_VOLUME_DESC: 'Mount an persistent volume, temporary volume, or HostPath volume to the containers.',
+  SELECT_PERSISITENT_VOLUME_CLAIM: 'Select Persistent Volume Claim',
+  SELECT_PERSISITENT_VOLUME_CLAIM_DESC: 'Mount a persistent volume created according to the persistent volume claim to the containers.',
   CAPACITY: 'Capacidad',
-  VOLUME_NOT_SELECT: 'Por favor selecciona un volumen',
+  PVC_NOT_SELECT: 'Please select a persistent volume claim.',
   TEMPORARY_VOLUME: 'Volumen Temporal',
   VOLUME_NAME: 'Nombre del volumen',
   VOLUME_NAME_EMPTY: 'Por favor introduce el nombre del volumen',
@@ -208,7 +199,7 @@ module.exports = {
   HOST_PATH: 'Host Path',
   READ_AND_WRITE: 'Lectura y escritura',
   READ_ONLY: 'Solo lectura',
-  // List > Create > Volume Settings > Mount Configmap or Secret
+  // List > Create > Storage Settings > Mount Configmap or Secret
   MOUNT_CONFIGMAP_OR_SECRET: 'Monte ConfigMap o Secret',
   MOUNT_CONFIGMAP_OR_SECRET_DESC:
     'Monte el configmap o secret en el directorio especificado.',
@@ -230,8 +221,8 @@ module.exports = {
     'Puede permitir que las réplicas de Pod se ejecuten en nodos específicos.',
   ADD_NODE_SELECTOR: 'Agregar selector de nodo',
   ADD_METADATA_DESC: 'Add metadata to resources.',
-  KEY: 'Key',
-  VALUE: 'Value',
+  KEY: 'Clave',
+  VALUE: 'Valor',
   ADVANCED_SETTINGS: 'Ajustes avanzados',
   // List > Create > Advanced Settings > Specify Node
   WORKLOAD_SPECIFY_NODE_DESC: 'Assign Pod replicas to a specific node.',

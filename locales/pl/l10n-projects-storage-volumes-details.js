@@ -32,5 +32,5 @@ module.exports = {
   // Resource Status
   AVAILABLE_CAPACITY: 'Available capacity',
   POD_IP_ADDRESS_SCAP: 'Pod IP address',
-  TOTAL_CAPACITY: 'Total capacity'
-};
+  TOTAL_CAPACITY: 'Total capacity',
+}

@@ -18,5 +18,5 @@
 module.exports = {
   // Details
   // Events
-  MESSAGE: '消息'
-};
+  MESSAGE: '消息',
+}

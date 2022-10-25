@@ -16,10 +16,12 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 module.exports = {
-  // Button
-  CREATE_VOLUME: 'Create Volume',
+  // More > Create Volume
+  CREATE_VOLUME: 'Birim Oluştur',
+  SNAPSHOT_CLASS_NOT_EXIST_TITLE: 'Birim Anlık Görüntü Sınıfı Bulunamadı',
+  SNAPSHOT_CLASS_NOT_EXIST: 'Birim anlık görüntüsünün birim anlık görüntüsü sınıfı mevcut değil.',
   // Details
   // Data Source
-  STORAGE_CLASS_SCAP: 'Storage class',
-  DATA_SOURCE: 'Data Source'
+  STORAGE_CLASS_SCAP: 'Depolama Sınıfı',
+  DATA_SOURCE: 'Veri Kaynağı'
 };

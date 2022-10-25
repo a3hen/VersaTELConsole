@@ -28,5 +28,5 @@ module.exports = {
   LOGIN_HISTORY: 'Login History',
   NO_LOGIN_HISTORY: 'No login history is found.',
   SUCCESSFUL: 'Successful',
-  FAILED: 'Failed'
-};
+  FAILED: 'Failed',
+}

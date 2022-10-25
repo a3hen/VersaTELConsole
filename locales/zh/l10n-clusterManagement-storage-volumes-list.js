@@ -19,7 +19,8 @@ module.exports = {
   // Navigation pane
   STORAGE: '存储',
   // Banner
-  VOLUME_DESC: '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
+  VOLUME_DESC:
+    '存储卷供用户创建的工作负载使用，是将工作负载数据持久化的一种资源对象。',
   // List
   VOLUME_SNAPSHOT_EMPTY_DESC: '请前往存储卷详情页面创建一个存储卷快照。',
   VOLUME_STATUS_BOUND: '准备就绪',
@@ -49,5 +50,5 @@ module.exports = {
   EDIT_TCAP: '编辑',
   // List > Edit YAML
   // List > Delete
-  VOLUME_LOW: '存储卷'
-};
+  VOLUME_LOW: '存储卷',
+}

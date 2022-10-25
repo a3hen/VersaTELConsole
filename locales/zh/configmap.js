@@ -23,5 +23,5 @@ module.exports = {
   CONFIGMAP_EMPTY_DESC: '请创建一个配置字典。',
   CONFIGMAPS_BASEINFO_DESC: '',
   CONFIGMAP_SETTINGS_DESC: '',
-  CREATE_CONFIG: '创建配置字典'
-};
+  CREATE_CONFIG: '创建配置字典',
+}

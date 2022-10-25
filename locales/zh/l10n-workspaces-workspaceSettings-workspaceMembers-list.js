@@ -26,7 +26,7 @@ module.exports = {
   WORKSPACE_MEMBER_EMPTY_DESC: '请邀请一个用户到当前企业空间。',
   ROLE: '角色',
   REMOVE_MEMBER: '移除成员',
-  REMOVE_MULTIPLE_MEMBERS: '批量移除成员',
+  REMOVE_MULTIPLE_MEMBERS: '指移除成员',
   REMOVE_MULTIPLE_MEMBERS_TIP:
     '请输入用户名 <strong>{resource}</strong> 以确认您了解此操作的风险。',
   // List > Invite

@@ -50,6 +50,7 @@ module.exports = {
   NO_RESOURCE: 'No {resource}.',
   LOG_DATA_LOW: 'log data',
   // Resource Status > Volumes
+  VOLUME_PL: 'Volumes',
   TYPE_CONFIGMAP: 'Volume type: configmap',
   TYPE_SECRET: 'Volume type: secret',
   TYPE_EMPTYDIR: 'Volume type: emptyDir',
@@ -61,4 +62,6 @@ module.exports = {
   // Metadata
   // Monitoring
   NO_MONITORING_DATA: 'No Monitoring Data',
-}
+  OUTBOUND: 'Outbound',
+  INBOUND: 'Inbound'
+};

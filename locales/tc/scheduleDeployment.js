@@ -18,5 +18,5 @@
 module.exports = {
   'Set Replicas': '固定副本数量',
   'Total Replicas Number': '總副本數',
-  STORAGE_MANAGEMENT_SCAP: '存儲卷管理'
-};
+  STORAGE_MANAGEMENT_SCAP: '存儲卷管理',
+}
