@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Bildirim Yönetimi',
   NOTIFICATION_CONFIGURATION: 'Bildirim Yapılandırması',
-  NOTIFICATION_CONFIGURATION_DESC: 'KubeSphere, birden çok bildirim kanalı için bildirim yapılandırmasını destekler. Sunucuları ve alıcıları ayarlayabilir ve bildirimleri etkinleştirebilir veya devre dışı bırakabilirsiniz.',
+  NOTIFICATION_CONFIGURATION_DESC: 'CoSAN Manager, birden çok bildirim kanalı için bildirim yapılandırmasını destekler. Sunucuları ve alıcıları ayarlayabilir ve bildirimleri etkinleştirebilir veya devre dışı bırakabilirsiniz.',
   NOTIFICATION_EMAIL: 'E-Posta',
   // Email
   MAIL_TITLE: 'E-Posta',

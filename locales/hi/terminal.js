@@ -21,7 +21,7 @@ module.exports = {
   disconnected: 'disconnected',
   'Download File': 'Download File',
   'Kubeconfig File': 'Kubeconfig File',
-  'KubeSphere Terminal': 'KubeSphere Terminal',
+  'CoSAN Manager Terminal': 'CoSAN Manager Terminal',
   'Launch kubectl': 'Launch kubectl',
   'Put this into': 'Put this into',
 }

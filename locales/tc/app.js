@@ -96,12 +96,12 @@ module.exports = {
   'Very helpful when users search for apps': '在用戶搜索應用時會非常有幫助',
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
   APP_TEMPLATE_CREATE_DESC:
-    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+    'CoSAN Manager 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   APP_TEMPLATES_DESC:
-    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+    'CoSAN Manager 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   HOW_APP_DEPLOY_TITLE: '如何部署和測試應用',
   APPS_CREATE_DESC:
-    'KubeSphere 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
+    'CoSAN Manager 提供全生命週期的應用管理，可以上傳或者創建新的應用模板，並且快速部署它們，也可以通過應用商店進行發佈應用。',
   APP_DETAIL_DESC: '在用戶搜索應用時會非常有幫助',
   APP_REVIEWS_CREATE_DESC: '對應用上架提供審核功能',
   DELETE_CATEGORY_WARNING:
@@ -109,7 +109,7 @@ module.exports = {
     ' choose to adjust these applications to other categories before deleting them',
   RESOURCE_TOOL_TITLE: '通過資源編排工具創建',
   RESOURCE_TOOL_DESCRIPTION:
-    'KubeSphere provides a visual resource orchestration tool that allows you to' +
+    'CoSAN Manager provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
   HELM_DEVELOP_GUIDE: 'Helm 規範及應用開發',
   ICON_DESC: '請選擇一個圖示來標示分類',

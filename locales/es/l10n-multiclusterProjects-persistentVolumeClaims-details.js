@@ -24,7 +24,7 @@ module.exports = {
   // More > Delete
   // Resource Status
   VOLUME_MONITORING_TIP:
-    'KubeSphere collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
+    'CoSAN Manager collects volume usage data, excluding data from unmounted volumes. For path-based volumes such as OpenEBS/Local PV and NFS, the data collected may be different from the actual amount. For detailed information, see <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">volume monitoring data analysis</a>.',
   // Mount Information
   MOUNT_INFORMATION: 'Información de montaje',
 }

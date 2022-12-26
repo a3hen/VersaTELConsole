@@ -37,7 +37,7 @@ module.exports = {
   SP_VOL_NAME_DESC: '请按照磁盘的具体进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
-    'VersaTEL 是青岛大学存储研究所设计开发的 VersaRACK 容器云平台的管理系统，它包含了对基于 Kubenetes 的容器平台的图形化管理、VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
+    'CoSAN Manager 是青岛大学存储研究所设计开发的 VersaRACK 容器云平台的管理系统，它包含了对基于 Kubenetes 的容器平台的图形化管理、VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
   'LINSTOR Node IP Address': '节点IP',
   'LINSTOR Node Type': '节点类型',
   'IP Address of LINSTOR Node': 'LINSTOR节点的IP地址，须符合IP地址格式',
@@ -113,4 +113,6 @@ module.exports = {
   'Please input Volume name': '请输入 LVM 设备卷的名称',
   'Please input the IP address': '请输入 IP 地址',
   DELETE_TIP_SUCCESSFUL: '删除操作已完成',
+  DUPLICATE: '备份',
+
 }

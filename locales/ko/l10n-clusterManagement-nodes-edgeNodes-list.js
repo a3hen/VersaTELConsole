@@ -18,7 +18,7 @@
 module.exports = {
   // Banner
   EDGE_NODE_PL: 'Edge Nodes',
-  EDGE_NODE_DESC: 'Edge nodes are servers deployed outside the KubeSphere cluster. You can add edge nodes to the KubeSphere cluster to manage them.',
+  EDGE_NODE_DESC: 'Edge nodes are servers deployed outside the CoSAN Manager cluster. You can add edge nodes to the CoSAN Manager cluster to manage them.',
   // Node Count
   // List
   EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
@@ -35,8 +35,8 @@ module.exports = {
   ADD_DEFAULT_TAINT: 'Add the default taint {params}',
   EDGE_NODE: 'Edge Node',
   INTERNAL_IP_ADDRESS: 'Internal IP Address',
-  EDGENODE_INTERNAL_IP_DESC: 'Set the internal IP address of the edge node in the KubeSphere cluster.',
-  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the edge node in the KubeSphere cluster.',
+  EDGENODE_INTERNAL_IP_DESC: 'Set the internal IP address of the edge node in the CoSAN Manager cluster.',
+  EDGENODE_INTERNAL_IP_EMPTY_DESC: 'Please set the internal IP address of the edge node in the CoSAN Manager cluster.',
   COPY_SUCCESSFUL: 'Copied successfully.',
   // List > View Log
   LOGS: 'Logs',

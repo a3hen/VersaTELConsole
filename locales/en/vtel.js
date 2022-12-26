@@ -18,7 +18,7 @@
 
 module.exports = {
   VersaTEL_DESCRIPTION:
-    'VersaTEL is the management system of VersaRACK container cloud platform designed and developed by Institute of Storage Technology Studies,Qingdao University.',
+    'CoSAN Manager is the management system of VersaRACK container cloud platform designed and developed by Institute of Storage Technology Studies,Qingdao University.',
   LINSTOR_NODES: 'LINSTOR Node',
   LNODE: 'LINSTOR Node',
   LNODE_DESC: 'Manages LINSTOR Nodes. You can create or delete Nodes here.',
@@ -51,4 +51,5 @@ module.exports = {
   SEARCH_BY_LRESOURCE: 'Search by Resource',
   AUTOPLACE: 'Auto place',
   DELETE_TIP_SUCCESSFUL: 'Delete operation completed',
+  DUPLICATE: 'Duplicate',
 }
