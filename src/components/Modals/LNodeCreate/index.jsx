@@ -114,12 +114,6 @@ export default class LNodeCreateModal extends React.Component {
         label: 'Satellite',
         value: 'Satellite',
       },
-      {
-        disabled: false,
-        isFedManaged: false.valueOf,
-        label: 'Auxiliary',
-        value: 'Auxiliary',
-      },
     ]
 
     return (
