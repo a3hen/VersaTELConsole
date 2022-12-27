@@ -37,7 +37,7 @@ export default class ClusterSettings extends React.Component {
         />
         <Form className={styles.form} data={formTemplate} ref={formRef}>
           <Form.Group
-            label={t('KubeSphere Settings')}
+            label={t('CoSAN Manager Settings')}
             desc={t('CLUSTER_KUBESPHERE_SETTINGS_DESC')}
             checkable
             keepDataWhenUnCheck

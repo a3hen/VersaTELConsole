@@ -20,10 +20,10 @@ module.exports = {
   PLATFORM_ROLE_PL: 'Platform Rolleri',
   // List
   PLATFORM_ROLE_EMPTY_DESC: 'Lütfen bir platform rolü oluşturun.',
-  ROLE_USERS_MANAGER: 'KubeSphere platformundaki tüm kullanıcıları yönetin.',
+  ROLE_USERS_MANAGER: 'CoSAN Manager platformundaki tüm kullanıcıları yönetin.',
   ROLE_WORKSPACES_MANAGER:
-    'KubeSphere platformundaki tüm çalışma alanlarını yönetin.',
-  ROLE_PLATFORM_ADMIN: 'KubeSphere platformundaki tüm kaynakları yönetin.',
+    'CoSAN Manager platformundaki tüm çalışma alanlarını yönetin.',
+  ROLE_PLATFORM_ADMIN: 'CoSAN Manager platformundaki tüm kaynakları yönetin.',
   ROLE_PLATFORM_REGULAR:
     'Bir çalışma alanına katılmadan önce hiçbir kaynağa erişilemez.',
   CREATION_TIME_TCAP: 'Oluşturma Zamanı',
@@ -58,5 +58,5 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Ayarları',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Ayarları Yönetimi',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'KubeSphere platformunun ayarlarını görüntüleyin ve düzenleyin.'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'CoSAN Manager platformunun ayarlarını görüntüleyin ve düzenleyin.'
 };

@@ -325,7 +325,7 @@ module.exports = {
   'rules text':
     '¿Cómo definir la colección de reglas de operación para los registros de auditoría?',
   'rules desc':
-    'KubeSphere puede recopilar registros de auditoría de operación de acuerdo con las reglas que establezcas. Haga clic para ver cómo definir las reglas.',
+    'CoSAN Manager puede recopilar registros de auditoría de operación de acuerdo con las reglas que establezcas. Haga clic para ver cómo definir las reglas.',
   EVENT_CREATE_DESC:
     'Puedes cambiar los criterios de búsqueda y buscar nuevamente.',
   TOOLBOX_KUBECTL_DESC:
@@ -333,10 +333,10 @@ module.exports = {
   PLATFORM_SETTINGS_SELECTOR_DESC:
     'Configuraciones de plataforma personalizadas',
   FILE_OVERSIZED_TIP: '¡El archivo cargado debe ser inferior a 2M!',
-  USER_GUIDES_DESC: 'La guía de usuario más completa de KubeSphere.',
+  USER_GUIDES_DESC: 'La guía de usuario más completa de CoSAN Manager.',
   DEVELOPER_DESC:
     'Haz una pregunta en la comunidad de desarrolladores para obtener ayuda.',
-  API_DOCS_DESC: 'La documentación más completa de la API de KubeSphere.',
+  API_DOCS_DESC: 'La documentación más completa de la API de CoSAN Manager.',
   GITHUB_ISSUES_DESC:
     'Puedes plantear un problema en GitHub para obtener ayuda.',
   // Workbench

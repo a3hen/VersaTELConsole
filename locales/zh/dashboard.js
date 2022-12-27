@@ -29,7 +29,7 @@ module.exports = {
   'Inbound Traffic': '入站流量',
   'involved project': '参与项目',
   Jobs: '任务',
-  'KubeSphere Running Status': 'KubeSphere 运行状态',
+  'CoSAN Manager Running Status': 'CoSAN Manager 运行状态',
   'Log Data': '日志数据',
   'Memory Usage': '内存使用量',
   'Memory Utilization': '内存利用率',

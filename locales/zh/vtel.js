@@ -37,7 +37,7 @@ module.exports = {
   SP_VOL_NAME_DESC: '请按照磁盘的具体进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
-    'VersaTEL 是青岛大学存储研究所设计开发的 VersaRACK 容器云平台的管理系统，它包含了对基于 Kubenetes 的容器平台的图形化管理、VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
+    'CoSAN Manager 是青岛大学存储研究所设计开发的 VersaRACK 容器云平台的管理系统，它包含了对基于 Kubenetes 的容器平台的图形化管理、VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理等多项功能，是一个统一的、模块化的管理平台。',
   'VersaSDS Node IP Address': '节点 IP 地址',
   'VersaSDS Node Type': '节点类型',
   'IP Address of VersaSDS Node': 'VersaSDS 节点的 IP 地址，须符合 IP 地址格式',
@@ -57,7 +57,8 @@ module.exports = {
   'Volume name': 'LVM设备名',
   LVM_VOLUME_NAME_DESC: '请选择LVM设备以用于存储池创建',
   'Select LVM Type': '选择LVM类型',
-  LRESOURCE_DESC: '提供了当前 VersaSDS 集群下资源的状态，以及可以创建和删除资源',
+  LRESOURCE_DESC:
+    '提供了当前 VersaSDS 集群下资源的状态，以及可以创建和删除资源',
   LRESOURCE_CREATE_DESC: '创建资源',
   'Mirror Way': '副本',
   'Device Name': '设备名称',
@@ -113,4 +114,5 @@ module.exports = {
   'Please input Volume name': '请输入 LVM 设备卷的名称',
   'Please input the IP address': '请输入 IP 地址',
   DELETE_TIP_SUCCESSFUL: '删除操作已完成',
+  DUPLICATE: '备份',
 }
