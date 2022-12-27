@@ -19,10 +19,10 @@
 module.exports = {
   VersaTEL_DESCRIPTION:
     'VersaTEL is the management system of VersaRACK container cloud platform designed and developed by Institute of Storage Technology Studies,Qingdao University.',
-  LINSTOR_NODES: 'LINSTOR Node',
-  LNODE: 'LINSTOR Node',
-  LNODE_DESC: 'Manages LINSTOR Nodes. You can create or delete Nodes here.',
-  LNODE_CREATE_DESC: 'Create LINSTOR Node',
+  LINSTOR_NODES: 'VersaSDS Node',
+  LNODE: 'VersaSDS Node',
+  LNODE_DESC: 'Manages VersaSDS Nodes. You can create or delete Nodes here.',
+  LNODE_CREATE_DESC: 'Create VersaSDS Node',
   LNODE_EMPTY_DESC: 'Please create a Node',
   VTEL_NAME_DESC:
     'Only letters, numbers, dash and underscores are supported. Begin with a letter. Length must be greater than 2',
@@ -36,12 +36,12 @@ module.exports = {
   STORAGEPOOL: 'Storagepool',
   LVM_VOLUME_NAME_DESC: 'Please input a device name of type LVM',
   LRESOURCE_DESC:
-    'Manages LINSTOR Resources. You can create or delete Resources here.',
+    'Manages VersaSDS Resources. You can create or delete Resources here.',
   LRESOURCE_CREATE_DESC: 'Create Resource',
   VTEL_SIZE_DESC:
     'Please enter the size. If no unit is added, the default unit is K',
   LINSTOR_STORAGEPOOLS: 'Storagepool',
-  LNode_LOW: 'LINSTOR Node',
+  LNode_LOW: 'VersaSDS Node',
   Storagepool_LOW: 'Storagepool',
   LResource_LOW: 'Resource',
   LRESOURCE: 'Resource',

@@ -94,7 +94,7 @@ export default class LNodeCreateModal extends React.Component {
     // const { showEditAuthorization } = this.state
 
     const isLINSTORNode = module === 'linstornodes'
-    const title = detail ? 'Modify LINSTOR Node' : 'Create LINSTOR Node'
+    const title = detail ? 'Modify VersaSDS Node' : 'Create VersaSDS Node'
     const nodeType = [
       {
         disabled: false,
@@ -138,7 +138,7 @@ export default class LNodeCreateModal extends React.Component {
           desc={t('NODE_NAME_DESC')}
           tip={isLINSTORNode ? t('WORKSPACE_ROLE_NAME_TIP') : null}
           rules={[
-            { required: true, message: t('Please input LINSTOR Node name') },
+            { required: true, message: t('Please input VersaSDS Node name') },
             {
               pattern: PATTERN_NODE_NAME,
               message: t('Invalid name', { message: t('NODE_NAME_DESC') }),
@@ -149,8 +149,8 @@ export default class LNodeCreateModal extends React.Component {
           <Input name="name" maxLength={63} placeholder="name" />
         </Form.Item>
         <Form.Item
-          label={t('LINSTOR Node IP Address')}
-          desc={t('IP Address of LINSTOR Node')}
+          label={t('VersaSDS Node IP Address')}
+          desc={t('IP Address of VersaSDS Node')}
           rules={[
             {
               required: true,
@@ -170,8 +170,8 @@ export default class LNodeCreateModal extends React.Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('LINSTOR Node Type')}
-          desc={t('Type of LINSTOR Node')}
+          label={t('VersaSDS Node Type')}
+          desc={t('Type of VersaSDS Node')}
         >
           <Select
             name="node_type"
