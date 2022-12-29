@@ -18,7 +18,7 @@
 
 module.exports = {
   VersaTEL_DESCRIPTION:
-    'CoSAN Manager is the management system of VersaRACK container cloud platform designed and developed by Institute of Storage Technology Studies,Qingdao University.',
+    'CoSAN Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, CloudRACK system hardware management, graphical management of Kubenetes based container platform and other functions. ',
   LINSTOR_NODES: 'VersaSDS Node',
   LNODE: 'VersaSDS Node',
   LNODE_DESC: 'Manages VersaSDS Nodes. You can create or delete Nodes here.',
