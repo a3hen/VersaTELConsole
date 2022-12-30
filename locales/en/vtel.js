@@ -21,6 +21,7 @@ module.exports = {
     'CoSAN Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, CloudRACK system hardware management, graphical management of Kubernetes based container platform and other functions. ',
   LINSTOR_NODES: 'VersaSDS Node',
   LNODE: 'VersaSDS Node',
+  LNode: 'VersaSDS Node',
   LNODE_DESC: 'Manages VersaSDS Nodes. You can create or delete Nodes here.',
   LNODE_CREATE_DESC: 'Create VersaSDS Node',
   LNODE_EMPTY_DESC: 'Please create a Node',

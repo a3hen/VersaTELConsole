@@ -20,6 +20,7 @@ module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VersaSDS 集群节点',
   LNODE: '节点',
+  LNode: 'VersaSDS 集群节点',
   LNODE_DESC:
     '提供了当前 VersaSDS 集群下节点的运行状态，以及可以创建和删除 VersaSDS 节点',
   'Node Type': '节点类型',
@@ -78,9 +79,9 @@ module.exports = {
   'Select Storagepool': '选择存储池',
   'Please select Storagepool': '请选择存储池',
   'Select Storagepool to create diskful resource':
-    '请选择创建的diskful资源所在的存储池',
+    '请选择创建的 diskful 资源所在的存储池',
   'Select VersaSDS Node to create diskless resource':
-    '请选择创建的diskless资源所在的节点',
+    '请选择创建的 diskless 资源所在的节点',
   'Created Failed, Reason:': '创建失败，原因：',
   'Deleted Failed, Reason:': '删除失败，原因：',
   'Diskful Resource': 'Diskful 资源',
