@@ -89,7 +89,7 @@ module.exports = {
   WORKLOAD_NAME_EXIST: 'Workload {name} exists',
   TIP_APP_TYPE: 'You can deploy apps from the App Store or Helm-based app repositories. Composing apps (app CRDs) are also supported.',
   TIP_APP_GOVERNANCE: 'Using App Governance requires creating a homebrew app and turning on service governance for each service',
-  APP_REPOS_DESC: 'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in KubeSphere. Users can quickly deploy applications with one click based on templates in the app repository.',
+  APP_REPOS_DESC: 'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in CoSAN Manager. Users can quickly deploy applications with one click based on templates in the app repository.',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP: 'Traffic governance depends on the microservices module. The current cluster has not enabled the microservices module.',
   TRACING_NO_MICROSERVICE_TIP: 'Please enable the Application Governance component in the current cluster.',
 }

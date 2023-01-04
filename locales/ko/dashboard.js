@@ -32,7 +32,7 @@ module.exports = {
   'Inbound Traffic': 'Inbound Traffic',
   'involved project': 'involved project',
   Jobs: 'Jobs',
-  'KubeSphere Running Status': 'KubeSphere Running Status',
+  'CoSAN Manager Running Status': 'CoSAN Manager Running Status',
   'Log Data': 'Log Data',
   'Memory Usage': 'Memory Usage',
   'Memory Utilization': 'Memory Utilization',
