@@ -99,7 +99,7 @@ module.exports = {
   event: '事件',
   'Event metadata': '事件元數據',
   EVENT_SEARCH: '事件查詢',
-  EVENT_DESC: '事件查詢（Event）是 KubeSphere 提供的平台内資源的歷史事件查詢',
+  EVENT_DESC: '事件查詢（Event）是 CoSAN Manager 提供的平台内資源的歷史事件查詢',
   Events: '事件',
   events: '事件',
   exists: '已存在',
@@ -328,9 +328,9 @@ module.exports = {
   TOOLBOX_KUBECTL_DESC: '操作多集群的客戶端命令行工具',
   PLATFORM_SETTINGS_SELECTOR_DESC: '客製化平台的系統配置',
   FILE_OVERSIZED_TIP: '文件過大，超過 2M 不能上傳！',
-  USER_GUIDES_DESC: '最詳盡的 KubeSphere 用戶指南文件',
+  USER_GUIDES_DESC: '最詳盡的 CoSAN Manager 用戶指南文件',
   DEVELOPER_DESC: '透過在開發者社區提出問題獲得幫助',
-  API_DOCS_DESC: '最詳盡的 KubeSphere API 文件',
+  API_DOCS_DESC: '最詳盡的 CoSAN Manager API 文件',
   GITHUB_ISSUES_DESC: '透過在 GitHub 提出 Issue 獲得幫助',
   // Workbench
   // Container Details Page

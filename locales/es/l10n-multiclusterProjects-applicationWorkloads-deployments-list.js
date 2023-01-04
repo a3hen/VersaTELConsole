@@ -42,7 +42,7 @@ module.exports = {
   // List > Create > Pod Settings > Add Container > Container Settings
   ADD_CONTAINER: 'Add Container',
   ADD_CONTAINER_DESC:
-    'KubeSphere admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
+    'CoSAN Manager admite la extracción de imágenes de los Registros de imágenes y la creación de nuevas imágenes a través del código fuente (Fuente a imagen).',
   CONTAINERS: 'Imagen de contenedor',
   IMAGE_TIME_SIZE_LAYER: 'Updated {time}',
   IMAGE_DESC:

@@ -157,7 +157,7 @@ export default class Node extends React.Component {
   showCreate = () => {
     const { store, trigger, getData } = this.props
     return trigger('linstornodes.create', {
-      // title: t('Create LINSTOR Node'),
+      // title: t('Create VersaSDS Node'),
       LNodeTemplates: toJS(store.LNodeTemplates.data),
       success: getData,
     })

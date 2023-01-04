@@ -229,8 +229,8 @@ export default class LResourceCreateModal extends React.Component {
         </Form.Item>
         <Form.Item
           label={t('LINSTOR_NODES')}
-          desc={t('Select LINSTOR Node to create diskless resource')}
-          // rules={[{ required: true, message: t('Please select LINSTOR Node') }]}
+          desc={t('Select VersaSDS Node to create diskless resource')}
+          // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select
             name="node"
