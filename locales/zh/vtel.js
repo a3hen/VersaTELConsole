@@ -116,4 +116,9 @@ module.exports = {
   'Please input the IP address': '请输入 IP 地址',
   DELETE_TIP_SUCCESSFUL: '删除操作已完成',
   DUPLICATE: '备份',
+  WORKSPACE_AUDIT: '主机名',
+  RESOURCE_NAME_AND_TYPE_AUDIT: '审计对象',
+  EXPLAIN_AUDIT: '事件说明',
+  LEVEL_AUDIT: '事件级别',
+  SOURCE_IP_ADDRESS_AUDIT: '访问发起端',
 }

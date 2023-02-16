@@ -53,4 +53,9 @@ module.exports = {
   AUTOPLACE: 'Auto place',
   DELETE_TIP_SUCCESSFUL: 'Delete operation completed',
   DUPLICATE: 'Duplicate',
+  WORKSPACE_AUDIT: 'Host Name',
+  RESOURCE_NAME_AND_TYPE_AUDIT: 'Audit Object',
+  EXPLAIN_AUDIT: 'Event Description',
+  LEVEL_AUDIT: 'Event Level',
+  SOURCE_IP_ADDRESS_AUDIT: 'Access Initiator'
 }

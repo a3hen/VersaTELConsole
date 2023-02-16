@@ -87,6 +87,7 @@ export function toArray(data = {}, level = 0) {
 }
 
 export const dropDownItems = {
+  // TODO search bar
   workspace_filter: {
     icon: 'appcenter',
     text: t('WORKSPACE'),
@@ -138,6 +139,7 @@ export const getSecond = step => {
 }
 
 export const supportQueryParams = [
+  // TODO search bar
   {
     icon: 'appcenter',
     title: t('SEARCH_BY_WORKSPACE'),
