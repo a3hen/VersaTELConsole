@@ -33,7 +33,7 @@ module.exports = {
   AUDIT_LOG_VERB_TIP: '输入操作行为查找审计日志。',
   AUDIT_LOG_STATUS_CODE_TIP: '输入状态码查找审计日志。',
   AUDIT_LOG_OPERATOR_TIP: '输入操作者查找审计日志。',
-  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP: '输入源 IP 地址查找审计日志。',
+  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP: '输入访问发起端 IP 地址查找审计日志。',
   SEARCH_BY_VERB: '按操作行为搜索',
   SEARCH_BY_STATUS_CODE: '按状态码搜索',
   SEARCH_BY_OPERATOR: '按操作者搜索',

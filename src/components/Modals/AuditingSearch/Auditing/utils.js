@@ -59,6 +59,7 @@ export const httpcodes = {
 }
 
 export const queryKeyMapping = {
+  // workspace_filter: 'workspace_filter',
   workspace_filter: 'workspace_search',
   objectref_namespace_filter: 'objectref_namespace_search',
   objectref_name_filter: 'objectref_name_search',
@@ -67,6 +68,8 @@ export const queryKeyMapping = {
   response_code_filter: 'response_code_filter',
   user_filter: 'user_search',
   source_ip_search: 'source_ip_search',
+  reason_search: 'reason_search',
+  response_status_filter: 'response_status_filter',
 }
 
 export function toArray(data = {}, level = 0) {
@@ -87,39 +90,47 @@ export function toArray(data = {}, level = 0) {
 }
 
 export const dropDownItems = {
-  // TODO search bar
-  workspace_filter: {
-    icon: 'appcenter',
-    text: t('WORKSPACE'),
-  },
-  objectref_namespace_filter: {
-    icon: 'project',
-    text: t('PROJECT'),
-  },
-  objectref_resource_filter: {
-    icon: 'resource',
-    text: t('RESOURCE_TYPE'),
-  },
-  objectref_name_filter: {
-    icon: 'strategy-group',
-    text: t('RESOURCE_NAME'),
-  },
-  verb_filter: {
-    icon: 'wrench',
-    text: t('VERB'),
-  },
-  response_code_filter: {
-    icon: 'logout',
-    text: t('STATUS_CODE'),
-  },
   user_filter: {
     icon: 'human',
     text: t('OPERATOR'),
   },
+  objectref_resource_filter: {
+    icon: 'resource',
+    text: t('RESOURCE_TYPE_AUDIT'),
+  },
+  objectref_name_filter: {
+    icon: 'strategy-group',
+    text: t('RESOURCE_NAME_AUDIT'),
+  },
+  // workspace_filter: {
+  //   icon: 'appcenter',
+  //   text: t('WORKSPACE_AUDIT'),
+  // },
+  // reason_search: {
+  //   icon: 'logout',
+  //   text: t('SOURCE_IP_ADDRESS_AUDIT'),
+  // },
+  response_status_filter: {
+    icon: 'logout',
+    text: t('RESPONSE_STATUS_AUDIT'),
+  },
   source_ip_search: {
     icon: 'ip',
-    text: t('SOURCE_IP_ADDRESS'),
+    text: t('SOURCE_IP_ADDRESS_AUDIT'),
   },
+  // objectref_namespace_filter: {
+  //   icon: 'project',
+  //   text: t('PROJECT'),
+  // },
+
+  // verb_filter: {
+  //   icon: 'wrench',
+  //   text: t('VERB'),
+  // },
+  // response_code_filter: {
+  //   icon: 'logout',
+  //   text: t('STATUS_CODE'),
+  // },
 }
 
 export const queryModeOptions = [1, 0].map(mode => ({
@@ -139,43 +150,31 @@ export const getSecond = step => {
 }
 
 export const supportQueryParams = [
-  // TODO search bar
-  {
-    icon: 'appcenter',
-    title: t('SEARCH_BY_WORKSPACE'),
-    tips: t('AUDIT_LOG_WORKSPACE_TIP'),
-    key: 'workspace_filter',
-  },
-  {
-    icon: 'project',
-    title: t('SEARCH_BY_PROJECT'),
-    tips: t('AUDIT_LOG_PROJECT_TIP'),
-    key: 'objectref_namespace_filter',
-  },
-  {
-    icon: 'resource',
-    title: t('SEARCH_BY_RESOURCE_TYPE'),
-    tips: t('AUDIT_LOG_RESOURCE_TYPE_TIP'),
-    key: 'objectref_resource_filter',
-  },
-  {
-    icon: 'strategy-group',
-    title: t('SEARCH_BY_RESOURCE_NAME'),
-    tips: t('AUDIT_LOG_RESOURCE_NAME_TIP'),
-    key: 'objectref_name_filter',
-  },
-  {
-    icon: 'wrench',
-    title: t('SEARCH_BY_VERB'),
-    tips: t('AUDIT_LOG_VERB_TIP'),
-    key: 'verb_filter',
-  },
-  {
-    icon: 'logout',
-    title: t('SEARCH_BY_STATUS_CODE'),
-    tips: t('AUDIT_LOG_STATUS_CODE_TIP'),
-    key: 'response_code_filter',
-  },
+  // {
+  //   icon: 'appcenter',
+  //   title: t('SEARCH_BY_WORKSPACE_AUDIT'),
+  //   tips: t('AUDIT_LOG_WORKSPACE_AUDIT_TIP'),
+  //   key: 'workspace_filter',
+  // },
+  // {
+  //   icon: 'project',
+  //   title: t('SEARCH_BY_PROJECT'),
+  //   tips: t('AUDIT_LOG_PROJECT_TIP'),
+  //   key: 'objectref_namespace_filter',
+  // },
+
+  // {
+  //   icon: 'wrench',
+  //   title: t('SEARCH_BY_VERB'),
+  //   tips: t('AUDIT_LOG_VERB_TIP'),
+  //   key: 'verb_filter',
+  // },
+  // {
+  //   icon: 'logout',
+  //   title: t('SEARCH_BY_STATUS_CODE'),
+  //   tips: t('AUDIT_LOG_STATUS_CODE_TIP'),
+  //   key: 'response_code_filter',
+  // },
   {
     icon: 'human',
     title: t('SEARCH_BY_OPERATOR'),
@@ -183,8 +182,26 @@ export const supportQueryParams = [
     key: 'user_filter',
   },
   {
+    icon: 'resource',
+    title: t('SEARCH_BY_RESOURCE_TYPE_AUDIT'),
+    tips: t('AUDIT_LOG_RESOURCE_TYPE_AUDIT_TIP'),
+    key: 'objectref_resource_filter',
+  },
+  {
+    icon: 'strategy-group',
+    title: t('SEARCH_BY_RESOURCE_NAME_AUDIT'),
+    tips: t('AUDIT_LOG_RESOURCE_NAME_AUDIT_TIP'),
+    key: 'objectref_name_filter',
+  },
+  {
+    icon: 'logout',
+    title: t('SEARCH_BY_RESPONSE_STATUS_AUDIT'),
+    tips: t('AUDIT_LOG_RESPONSE_STATUS_AUDIT_TIP'),
+    key: 'response_status_filter',
+  },
+  {
     icon: 'ip',
-    title: t('SEARCH_BY_SOURCE_IP_ADDRESS'),
+    title: t('SEARCH_BY_SOURCE_IP_ADDRESS_AUDIT'),
     tips: t('AUDIT_LOG_SOURCE_IP_ADDRESS_TIP'),
     key: 'source_ip_search',
   },

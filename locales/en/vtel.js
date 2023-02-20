@@ -57,5 +57,16 @@ module.exports = {
   RESOURCE_NAME_AND_TYPE_AUDIT: 'Audit Object',
   EXPLAIN_AUDIT: 'Event Description',
   LEVEL_AUDIT: 'Event Level',
-  SOURCE_IP_ADDRESS_AUDIT: 'Access Initiator'
+  SOURCE_IP_ADDRESS_AUDIT: 'Access Initiator',
+  RESPONSE_STATUS_AUDIT: 'Audit Level',
+  AUDIT_LOG_WORKSPACE_AUDIT_TIP: 'Enter a hostname to search for audit logs.',
+  SEARCH_BY_WORKSPACE_AUDIT: 'Search by Hostname',
+  RESOURCE_TYPE_AUDIT: 'Audit Object - Type',
+  RESOURCE_NAME_AUDIT: 'Audit Object - Name',
+  SEARCH_BY_RESOURCE_TYPE_AUDIT: 'Search by Audit Object - Type',
+  AUDIT_LOG_RESOURCE_TYPE_AUDIT_TIP: 'Enter type of audit object to search for audit logs.',
+  SEARCH_BY_RESOURCE_NAME_AUDIT: 'Search by Audit Object - Name',
+  AUDIT_LOG_RESOURCE_NAME_AUDIT_TIP: 'Enter name of audit object to search for audit logs.',
+  SEARCH_BY_RESPONSE_STATUS_AUDIT: 'Search by Audit Level',
+  AUDIT_LOG_RESPONSE_STATUS_AUDIT_TIP: 'Enter audit level to search for audit logs.',
 }

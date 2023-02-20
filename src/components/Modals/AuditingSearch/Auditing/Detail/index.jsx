@@ -182,7 +182,7 @@ export default class Detail extends React.PureComponent {
     {
       thead: t('LEVEL_AUDIT'),
       key: 'status',
-      hidden: true,
+      hidden: false,
       content: ({ ResponseStatus }) => get(ResponseStatus, 'status'),
       className: styles.statuscol,
     },
