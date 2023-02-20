@@ -272,7 +272,7 @@ client:
   accessNavs:
     - cate: "access"
       items:
-        - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
+        # - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
         - { name: accounts, title: USER_PL, icon: human, authKey: users }
         - { name: roles, title: PLATFORM_ROLE_PL, icon: role }
 
