@@ -19,7 +19,8 @@
 export const httpcodes = {
   100: 'Continue',
   101: 'Switching Protocols',
-  200: 'OK',
+  // 200: 'OK',
+  200: 'Success',
   201: 'Created',
   202: 'Accepted',
   203: 'Non-Authoritative Information',

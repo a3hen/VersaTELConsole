@@ -36,7 +36,7 @@ import {
   queryModeOptions,
   dropDownItems,
   getSecond,
-  // httpcodes,
+  httpcodes,
 } from '../utils'
 
 import styles from './index.scss'
@@ -176,7 +176,13 @@ export default class Detail extends React.PureComponent {
       thead: t('EXPLAIN_AUDIT'),
       key: 'reason',
       hidden: false,
-      content: ({ ResponseStatus }) => get(ResponseStatus, 'reason'),
+      // content: ({ ResponseStatus,Verb }) => get(ResponseStatus, 'reason'),
+      content: ({ ResponseStatus, Verb }) => {
+        const code = get(ResponseStatus, 'code')
+        const codeShow = code ? httpcodes[code] : ''
+        const reason = get(ResponseStatus, 'reason')
+        return reason || `${Verb} ${codeShow}`
+      },
       className: styles.reasoncol,
     },
     {
