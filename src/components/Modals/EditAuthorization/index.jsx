@@ -155,7 +155,9 @@ export default class EditAuthorizationModal extends React.Component {
       currentModule,
     } = this.state
     const templates = sortBy(groupedTemplates[currentModule] || [], 'aliasName')
-
+    if (templates.length === 6) {
+      templates.splice(4, 2)
+    }
     return (
       <div className={styles.content}>
         <div className={styles.title}>{t('PERMISSION_PL')}</div>
