@@ -556,10 +556,10 @@ export const GRAY_RELEASE_CATEGORIES = [
   },
 ]
 
-export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_-]$/
-export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]*[a-z0-9]$/
+export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]+[a-zA-Z0-9_-]$/
+export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]+[a-z0-9]$/
 export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
-export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]*[a-zA-Z0-9]$/
+export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]+[a-zA-Z0-9]$/
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
