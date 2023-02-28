@@ -93,15 +93,24 @@ export default class RoleStore extends Base {
       }
     )
 
-    const data = result.items.map(item => ({
+    const dataOriginal = result.items.map(item => ({
       cluster,
       workspace,
       ...this.mapper(item, devops ? 'devopsroles' : this.module),
     }))
 
+    const listRemove = [
+      'workspaces-manager',
+      'users-manager',
+      'platform-regular',
+    ]
+
+    const data = dataOriginal.filter(item => !listRemove.includes(item.name))
+
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: result.totalItems || result.total_count || data.length || 0,
+      // total: result.totalItems || result.total_count || data.length || 0,
+      total: data.length || 0,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
