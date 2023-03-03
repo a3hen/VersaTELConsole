@@ -133,4 +133,6 @@ module.exports = {
   SEARCH_BY_RESPONSE_STATUS_AUDIT: '按事件级别搜索',
   AUDIT_LOG_RESPONSE_STATUS_AUDIT_TIP: '输入事件级别查找审计日志。',
   SEARCH_BY_SOURCE_IP_ADDRESS_AUDIT: '按访问发起端搜索',
+  LResource_PL: '资源',
+  LNode_PL: 'VersaSDS 节点',
 }

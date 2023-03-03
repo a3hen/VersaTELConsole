@@ -69,4 +69,6 @@ module.exports = {
   AUDIT_LOG_RESOURCE_NAME_AUDIT_TIP: 'Enter name of audit object to search for audit logs.',
   SEARCH_BY_RESPONSE_STATUS_AUDIT: 'Search by Audit Level',
   AUDIT_LOG_RESPONSE_STATUS_AUDIT_TIP: 'Enter audit level to search for audit logs.',
+  LResource_PL: 'Resource',
+  LNode_PL: 'VersaSDS Node',
 }
