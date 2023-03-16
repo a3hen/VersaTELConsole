@@ -135,4 +135,9 @@ module.exports = {
   SEARCH_BY_SOURCE_IP_ADDRESS_AUDIT: '按访问发起端搜索',
   LResource_PL: '资源',
   LNode_PL: 'VersaSDS 节点',
+  InUse: '使用中',
+  Unused: '未使用',
+  Synching: '同步中',
+  Connecting: '连接中',
+  Unhealthy: '异常',
 }
