@@ -140,4 +140,5 @@ module.exports = {
   Synching: '同步中',
   Connecting: '连接中',
   Unhealthy: '异常',
+  NORMAL: '正常',
 }
