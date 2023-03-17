@@ -1042,7 +1042,7 @@ export const MONITOR_GRAPH_COLORS = [
 
 export const COMPONENT_ICON_MAP = {
   kubernetes: 'kubernetes',
-  kubesphere: 'kubesphere',
+  // kubesphere: 'kubesphere',
   istio: 'istio',
   openpitrix: 'openpitrix',
   devops: 'jenkins',
