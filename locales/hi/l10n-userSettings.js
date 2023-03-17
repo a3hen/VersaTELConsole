@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'ईमेल पते का उपयोग CoSAN Manager वेब कंसोल में लॉग इन करने के लिए किया जा सकता है।',
+  EMAIL_DESC: 'ईमेल पते का उपयोग mistyPLX Manager वेब कंसोल में लॉग इन करने के लिए किया जा सकता है।',
   LANGUAGE: 'Language',
   USER_SETTINGS: 'User Settings',
   CLOSE: 'Close',

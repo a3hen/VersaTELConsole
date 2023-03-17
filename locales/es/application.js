@@ -95,11 +95,11 @@ module.exports = {
   'Last {day} days': 'Últimos {day} días',
   WORKLOAD_NAME_EXIST: 'La carga de trabajo {name} existe',
   TIP_APP_TYPE:
-    'CoSAN Manager admite el despliegue de aplicaciones (basado en Helm) desde tiendas de aplicaciones y repositorios de aplicaciones, así como aplicaciones propias (Application CRD).',
+    'mistyPLX Manager admite el despliegue de aplicaciones (basado en Helm) desde tiendas de aplicaciones y repositorios de aplicaciones, así como aplicaciones propias (Application CRD).',
   TIP_APP_GOVERNANCE:
     'Usar la gestión de aplicación requiere crear una aplicación propia y activar la gestión para cada servicio',
   APP_REPOS_DESC:
-    'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en CoSAN Manager. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
+    'El repositorio de aplicaciones proviene de un repositorio de Charts de Helm de terceros, que visualmente muestra y proporciona capacidades de despliegue y administración en mistyPLX Manager. Los usuarios pueden desplegar rápidamente aplicaciones con un solo click, basadas en las plantillas del repositorio de aplicaciones.',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     'La gestión del tráfico depende del módulo de microservicios. El clúster actual no tiene habilitado dicho módulo',
   TRACING_NO_MICROSERVICE_TIP:

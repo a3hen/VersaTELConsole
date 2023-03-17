@@ -231,7 +231,7 @@ module.exports = {
   WORKLOAD_REASON_REPLICASETCREATEERROR: 'ReplicaSet creation error',
   WORKLOAD_REASON_REPLICASETUPDATED: 'ReplicaSet updated',
   Workloads: 'Workloads',
-  DEPLOYMENT_DESC: 'Deployment provides fine-grained management of common applications in CoSAN Manager. Deployment configuration describes the desired state of specific components of an application as pod templates.',
+  DEPLOYMENT_DESC: 'Deployment provides fine-grained management of common applications in mistyPLX Manager. Deployment configuration describes the desired state of specific components of an application as pod templates.',
   STATEFULSET_DESC: 'Statefulset is used to manage stateful applications, manages the deployment and scaling of a set of pods, and provides guarantees about the ordering and uniqueness of these pods.',
   DAEMONSET_DESC: 'A daemonset ensures that all (or some) Nodes run a copy of a pod. Typically, a daemonset is used to running a logs collection, monitoring daemon or other system management applications.',
   CRONJOB_NAME_DESC: 'It can only contain lowercase letters, numbers and hyphens("-"), and must start and end with a lowercase letter or a number. The value can contain a maximum of 52 characters.',

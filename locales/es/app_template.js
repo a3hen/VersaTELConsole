@@ -26,6 +26,6 @@ module.exports = {
   'Update Successfully': 'Subida Satisfactoriamente',
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Implementar aplicaciones empaquetadas',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:
-    'CoSAN Manager visualiza plantillas de aplicaciones y proporciona funciones de despliegue y administración, lo que permite a los usuarios desplegar aplicaciones rápidamente con un solo click en función de las plantillas de la aplicación.',
+    'mistyPLX Manager visualiza plantillas de aplicaciones y proporciona funciones de despliegue y administración, lo que permite a los usuarios desplegar aplicaciones rápidamente con un solo click en función de las plantillas de la aplicación.',
   TOTAL_APP_REPOS: 'Total de {num} repositorios de Aplicaciones',
 }

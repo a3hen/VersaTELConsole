@@ -50,7 +50,7 @@ module.exports = {
   INVALID_TRIGGER_TOKEN_DESC:
     'It can only contain upper and lower case letters, numbers.',
   TRIGGER_TOKEN_DESC:
-    'Set a token used to authenticate a client against CoSAN Manager when the client attempts to trigger image building on CoSAN Manager. The token can contain only uppercase letters, lowercase letters, and numbers.',
+    'Set a token used to authenticate a client against mistyPLX Manager when the client attempts to trigger image building on mistyPLX Manager. The token can contain only uppercase letters, lowercase letters, and numbers.',
   CODE_RELATIVE_PATH: 'Ruta relativa del código (opcional):',
   CODE_RELATIVE_PATH_DESC:
     'Especifica un directorio relativo dentro de la aplicación. (Valor por defecto /)',

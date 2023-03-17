@@ -339,7 +339,7 @@ module.exports = {
 
   'rules text': 'How to define operational audit collection rules?',
   'rules desc':
-    'CoSAN Manager can collect operation audits according to the rules you set. Click to see how to define the rules.',
+    'mistyPLX Manager can collect operation audits according to the rules you set. Click to see how to define the rules.',
 
   EVENT_CREATE_DESC: 'You can change the search criteria and search again.',
 
@@ -350,9 +350,9 @@ module.exports = {
 
   FILE_OVERSIZED_TIP: 'The file uploaded must be less than 2M!',
 
-  USER_GUIDES_DESC: 'The most comprehensive user guide of CoSAN Manager.',
+  USER_GUIDES_DESC: 'The most comprehensive user guide of mistyPLX Manager.',
   DEVELOPER_DESC: 'Raise a question in the developer community to get help.',
-  API_DOCS_DESC: 'The most comprehensive CoSAN Manager API documentation.',
+  API_DOCS_DESC: 'The most comprehensive mistyPLX Manager API documentation.',
   GITHUB_ISSUES_DESC: 'Raise an issue in GitHub to get help.',
 
   // Workbench

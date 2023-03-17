@@ -74,17 +74,17 @@ module.exports = {
   'etcd Backup Dir': 'etcd 備份地址',
   'etcd Backup Period': 'etcd 備份地址',
   'Keep Backup Number': '保留的備份數量',
-  'CoSAN Manager Settings': 'CoSAN Manager 設置',
+  'mistyPLX Manager Set':'mistyPLX Manager 設置',
   NO_CLUSTER_TIP_DESC:
     '集群是一組運行著 Kubernetes 的節點（物理或者虛擬機）, Kubesphere 的功能也依靠於集群中的節點來運行',
   ADD_NEW_CLUSTER_DESC: '添加新的 Kubernetes 集群',
   CHOOSE_PROVIDER_DESC:
-    'CoSAN Manager 提供了在主流服務商中快速部署 Kubernetes 集群的方案',
+    'mistyPLX Manager 提供了在主流服務商中快速部署 Kubernetes 集群的方案',
   MULTI_CLUSTER: '多集群',
   CLUSTER_INFO_TCAP: 'Cluster Information',
   INVITE_CLUSTER_MEMBER_DESC: '您可以邀請新的成員來此集群',
   CLUSTER_API_SERVER_TITLE: '待加入集群的 Kubesphere API Server',
-  CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 CoSAN Manager API Server 地址',
+  CLUSTER_API_SERVER_DESC: '需要添加待加入集群的 mistyPLX Manager API Server 地址',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     '集群授權可以將集群通過授權的形式指定给企業空間使用該集群',
   PUBLIC_CLUSTER_DESC:
