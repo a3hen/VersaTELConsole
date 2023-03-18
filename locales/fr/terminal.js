@@ -21,7 +21,7 @@ module.exports = {
   disconnected: 'disconnected',
   'Download File': 'Download File',
   'Kubeconfig File': 'Kubeconfig File',
-  'mistyPLX Manager TermistyPLX Manageranageranageranager Terminal',
+  'mistyPLX Manager Terminal': 'mistyPLX Manager Terminal',
   'Launch kubectl': 'Launch kubectl',
   'Put this into': 'Put this into',
 }
