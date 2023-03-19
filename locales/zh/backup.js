@@ -1,0 +1,21 @@
+module.exports = {
+  Backup: '备份',
+  RESOUECEBACKUP_DESC: '提供可用于备份的 VersaSDS 集群资源，可进行快照备份',
+  Snapshot: '快照',
+  'Snapshot Restore': '快照恢复',
+  Image: '映像',
+  'Image Restore': '映像恢复',
+  'Create snapshot': '创建快照',
+  'Backup resource as snapshot': '以快照的形式备份资源',
+  BACKUP_SNAPSHOT_TIP: '您确定要创建快照吗？',
+  BACKUP_RESTORE_TIP: '您确定要恢复资源吗？',
+  'Using snapshots to restore resources': '使用快照来恢复资源',
+  'Create image': '创建映像',
+  'Backup resource as image': '以映像的形式备份资源 ',
+  'Using image to restore resources': '使用映像来恢复资源',
+  BACKUP_IMAGE_TIP: '您确定要创建映像吗？',
+  VG_NAME_DESC: '请填写卷组名以用于资源恢复',
+  VG_VOL_NAME_DESC: '请按照实际的磁盘进行填写，如 vg0',
+  'VG name': '卷组名',
+  'Please input VG name': '请输入卷组名'
+}

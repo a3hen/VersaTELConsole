@@ -1,21 +1,3 @@
-/*
- * This file is part of KubeSphere Console.
- * Copyright (C) 2019 The KubeSphere Console Authors.
- *
- * KubeSphere Console is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * KubeSphere Console is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VersaSDS 集群节点',
@@ -24,7 +6,7 @@ module.exports = {
   LNODE_DESC:
     '提供了当前 VersaSDS 集群下节点的运行状态，以及可以创建和删除 VersaSDS 节点',
   'Node Type': '节点类型',
-  'LVM Type': 'LVM类型',
+  'LVM Type': 'LVM 类型',
   'Storagepool Num': '存储池数量',
   'Resource Num': '资源数量',
   LNODE_CREATE_DESC: '创建 VersaSDS 集群节点',
@@ -35,7 +17,7 @@ module.exports = {
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
   NODE_NAME_DESC:
     '仅支持小写字母、数字以及中横线，且以小写字母开头和结束，长度必须大于2',
-  SP_VOL_NAME_DESC: '请按照磁盘的具体进行填写，如 vg0, thinpool/thinlv0',
+  SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
     'mistyPLX Manager 是 CoSAN 数据安全存储系统的管理系统，它包含了 VersaSDS 并行存储系统管理、mistyRACK 系统硬件管理、对基于 Kubernetes 的容器平台的图形化管理等多项功能，是一个统一的、模块化的管理平台。',
@@ -55,7 +37,7 @@ module.exports = {
   'Total Size': '总空间',
   'Create Storagepool': '创建存储池',
   'Select VersaSDS Node': '选择 VersaSDS 节点',
-  'Volume name': 'LVM设备名',
+  'Volume name': 'LVM 设备名',
   LVM_VOLUME_NAME_DESC: '请选择 LVM 设备以用于存储池创建',
   'Select LVM Type': '选择 LVM 类型',
   LRESOURCE_DESC:

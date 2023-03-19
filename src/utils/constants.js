@@ -281,6 +281,7 @@ export const ICON_TYPES = {
   linstornodes: 'database',
   storagepools: 'database',
   lresources: 'database',
+  resourcebackups: 'snapshot',
   gpu: 'gpu',
   'gpu.limit': 'gpu',
   cds: 'rocket',
@@ -991,6 +992,7 @@ export const API_VERSIONS = {
   linstornodes: 'kapis/versatel.kubesphere.io/v1alpha1',
   storagepools: 'kapis/versatel.kubesphere.io/v1alpha1',
   lresources: 'kapis/versatel.kubesphere.io/v1alpha1',
+  resourcebackups: 'kapis/storsecu.kubesphere.io/v1alpha1',
   cds: 'kapis/gitops.kubesphere.io/v1alpha1',
   codeRepos: 'kapis/devops.kubesphere.io/v1alpha3',
 }

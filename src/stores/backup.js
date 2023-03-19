@@ -22,18 +22,17 @@ import { action } from 'mobx'
 import Base from 'stores/base'
 import List from 'stores/base.list'
 
-export default class StoragepoolStore extends Base {
-  StoragepoolTemplates = new List()
+export default class ResourceBackupStore extends Base {
+  ResoueceBackupTemplates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/storagepool`
+  getResourceUrl = () => `kapis/storsecu.kubesphere.io/v1alpha1/backup`
 
   getListUrl = this.getResourceUrl
 
-  getDeleteUrl = (params = {}) =>
-    `${this.getListUrl()}/${params.name}/${params.node}`
+  // getDeleteUrl = (params = {}) =>
+  //   `${this.getListUrl()}/${params.name}/${params.node}`
 
-  constructor(module = 'storagepools') {
+  constructor(module = 'resourcebackups') {
     super(module)
   }
 
@@ -64,44 +63,40 @@ export default class StoragepoolStore extends Base {
 
     // const result = {
     //   code: 0,
-    //   count: 2,
+    //   count: 3,
     //   data: [
     //     {
-    // "driver": "false",
-    // "freeCapacity": "15 MB",
-    // "name": "pool_a",
-    // "node": "vince2",
-    // "poolName": "vg0",
-    // "resNum": "0",
-    // "status": "OK",
-    // "supportsSnapshots": "false",
-    // "totalCapacity": "15 MB"
+    //       "name": "res_a",
+    //       "snapshot": "resa320230313132918",
+    //       "snapshotRestore": "resa320230313132918_r",
+    //       "image": "resa320230313132918.img",
+    //       "imageRestore": "/dev/vg/lvxxx",
+    //       "time": "2023-03-13 13:29:18",
     //     },
     //     {
-    //       // "driver": "false",
-    // "freeCapacity": "15 MB",
-    // "name": "pool_b",
-    // "node": "vince2",
-    // "poolName": "vg0",
-    // "resNum": "0",
-    // "status": "OK",
-    // "supportsSnapshots": "false",
-    // "totalCapacity": "15 MB"
+    //       "name": "res_a",
+    //       "snapshot": "",
+    //       "snapshotRestore": "",
+    //       "image": "",
+    //       "imageRestore": "",
+    //       "time": "2023-03-13 13:29:18",
+    //     },
+    //     {
+    //       "name": "res_c",
+    //       "snapshot": "",
+    //       "snapshotRestore": "",
+    //       "image": "",
+    //       "imageRestore": "",
+    //       "time": "",
     //     },
     //   ],
     // }
 
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
-      item.uniqueID = item.name.concat('-', item.node)
+      item.uniqueID = item.name.concat('-', item.snapshot)
       return item
     })
-
-    // const data = result.authentication.map(item => ({
-    //   cluster,
-    //   workspace,
-    //   ...this.mapper(item, devops ? 'devopslinstornodes' : this.module),
-    // }))
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
@@ -120,26 +115,27 @@ export default class StoragepoolStore extends Base {
   }
 
   @action
-  async fetchStoragepoolTemplates() {
-    this.StoragepoolTemplates.isLoading = true
+  async fetchResoueceBackupTemplates() {
+    this.ResoueceBackupTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/storagepool`
+      `kapis/storsecu.kubesphere.io/v1alpha1/backup`
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
-      item.uniqueID = item.name.concat('-', item.node)
+      item.uniqueID = item.name.concat('-', item.snapshot)
       return item
     })
-    this.StoragepoolTemplates.update({
+
+    this.ResoueceBackupTemplates.update({
       data: data.map(this.mapper),
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })
   }
 
-  @action
-  delete(params) {
-    return this.submitting(request.delete(this.getDeleteUrl(params)))
-  }
+  // @action
+  // delete(params) {
+  //   return this.submitting(request.delete(this.getDeleteUrl(params)))
+  // }
 }
