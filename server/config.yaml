@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: CoSAN Manager
+  title: mistyPLX Manager
   description: ""
   encryptKey: kubesphere
 
@@ -123,6 +123,9 @@ client:
             - { name: node, title: Node }
             - { name: storagepool, title: Storagepool }
             - { name: resource, title: Resource }
+        - name: backup
+          title: Backup
+          icon: snapshot
         - name: nodes
           title: NODE_PL
           icon: nodes

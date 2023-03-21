@@ -18,7 +18,7 @@
 module.exports = {
   // Basic Information
   EMAIL_DESC:
-    'The email address can be used to log in to the CoSAN Manager web console.',
+    'The email address can be used to log in to the mistyPLX Manager web console.',
   LANGUAGE: 'Language',
   USER_SETTINGS: 'User Settings',
   CLOSE: 'Close',

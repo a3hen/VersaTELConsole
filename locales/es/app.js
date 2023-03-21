@@ -100,12 +100,12 @@ module.exports = {
     'Muy útil cuando los usuarios buscan aplicaciones',
   FILE_UPLOAD_MAX: 'El tamaño de fichero no puedes exceder 2M.',
   APP_TEMPLATE_CREATE_DESC:
-    'CoSAN Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
+    'mistyPLX Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
   APP_TEMPLATES_DESC:
-    'CoSAN Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
+    'mistyPLX Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
   HOW_APP_DEPLOY_TITLE: 'Cómo desplegar y probar Aplicaciones',
   APPS_CREATE_DESC:
-    'CoSAN Manager proporciona la gestión del ciclo de vida de las plantillas de aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus plantillas de aplicación en la Tienda de Aplicaciones para que otros usuarios puedan obtenerlas e implementarlas.',
+    'mistyPLX Manager proporciona la gestión del ciclo de vida de las plantillas de aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus plantillas de aplicación en la Tienda de Aplicaciones para que otros usuarios puedan obtenerlas e implementarlas.',
   APP_DETAIL_DESC: 'Muy útil cuando se buscan aplicaciones',
   APP_REVIEWS_CREATE_DESC:
     'Certifique a los proveedores de servicios y revise las aplicaciones para aprobar o rechazar las aplicaciones que se mostrarán o no en la tienda.',
@@ -114,7 +114,7 @@ module.exports = {
     ' asocia estas aplicaciones a otras categorías antes de eliminarla',
   RESOURCE_TOOL_TITLE: 'Creado usando el Coreógrafo de Recursos',
   RESOURCE_TOOL_DESCRIPTION:
-    'CoSAN Manager proporciona una herramienta de orquestación de recursos visuales que te permite' +
+    'mistyPLX Manager proporciona una herramienta de orquestación de recursos visuales que te permite' +
     ' crear plantillas de aplicación y desplegar pruebas mediante la pre-edición de recursos',
   HELM_DEVELOP_GUIDE: 'Especificación de Helm y del Desarrollo de Aplicaciones',
   ICON_DESC: 'Selecciona un icono para identificar la clasificación, por favor.',

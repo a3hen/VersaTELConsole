@@ -96,12 +96,12 @@ module.exports = {
   'Very helpful when users search for apps': '在用户搜索应用时会非常有帮助',
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
   APP_TEMPLATE_CREATE_DESC:
-    'CoSAN Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+    'mistyPLX Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   APP_TEMPLATES_DESC:
-    'CoSAN Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+    'mistyPLX Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   HOW_APP_DEPLOY_TITLE: '如何部署和测试应用',
   APPS_CREATE_DESC:
-    'CoSAN Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
+    'mistyPLX Manager 提供全生命周期的应用管理，可以上传或者创建新的应用模板，并且快速部署它们，也可以通过应用商店进行发布应用。',
   APP_DETAIL_DESC: '在用户搜索应用时会非常有帮助',
   APP_REVIEWS_CREATE_DESC: '对应用上架提供审核功能',
   DELETE_CATEGORY_WARNING:
@@ -109,7 +109,7 @@ module.exports = {
     ' choose to adjust these applications to other categories before deleting them',
   RESOURCE_TOOL_TITLE: '通过资源编排工具创建',
   RESOURCE_TOOL_DESCRIPTION:
-    'CoSAN Manager provides a visual resource orchestration tool that allows you to' +
+    'mistyPLX Manager provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
   HELM_DEVELOP_GUIDE: 'Helm 规范及应用开发',
   ICON_DESC: '请选择一个图标来标识分类',

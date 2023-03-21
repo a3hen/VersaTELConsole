@@ -64,6 +64,7 @@ import Gateway from '../containers/Gateway'
 import Node from '../containers/VersaTEL/Node'
 import Storagepool from '../containers/VersaTEL/Storagepool'
 import Resource from '../containers/VersaTEL/Resource'
+import ResourceBackup from '../containers/ResourceBackup'
 
 const PATH = '/clusters/:cluster'
 
@@ -112,6 +113,11 @@ export default [
           {
             path: `${PATH}/resource`,
             component: Resource,
+            exact: true,
+          },
+          {
+            path: `${PATH}/backup`,
+            component: ResourceBackup,
             exact: true,
           },
           {

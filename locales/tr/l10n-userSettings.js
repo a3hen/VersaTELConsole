@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'E-posta adresi, CoSAN Manager web konsolunda oturum açmak için kullanılabilir.',
+  EMAIL_DESC: 'E-posta adresi, mistyPLX Manager web konsolunda oturum açmak için kullanılabilir.',
   LANGUAGE: 'Dil',
   USER_SETTINGS: 'Kullanıcı Ayarları',
   CLOSE: 'Kapat',

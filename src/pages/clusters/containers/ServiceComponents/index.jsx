@@ -66,7 +66,7 @@ export default class ServiceComponents extends React.Component {
   getConfigs = () => [
     {
       type: 'kubesphere',
-      title: 'CoSAN Manager',
+      title: 'mistyPLX Manager',
       icon: '/assets/logo.svg',
     },
     {
