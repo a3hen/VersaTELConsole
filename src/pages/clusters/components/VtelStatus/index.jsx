@@ -30,12 +30,21 @@ export default class VStatus extends React.Component {
     return 'Stopped'
   }
 
+  getStatusName() {
+    const { name = '' } = this.props
+    if (name === 'OK') {
+      return 'NORMAL'
+    }
+    return name || 'ERROR'
+    // return 'ERROR'
+  }
+
   render() {
     return (
       <div className={styles.status}>
         <Status
           type={this.getStatusType(this.props.name)}
-          name={this.props.name || 'ERROR'}
+          name={t(this.getStatusName(this.props.name))}
         />
       </div>
     )

@@ -33,7 +33,7 @@ module.exports = {
   AUDIT_LOG_VERB_TIP: '可以根據操作行為查看相關的操作審計',
   AUDIT_LOG_STATUS_CODE_TIP: '可以根據狀態碼查看相關的操作審計',
   AUDIT_LOG_OPERATOR_TIP: '可以根據操作帳號查看相關的操作審計',
-  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP: '可以根據來源IP查看相關的操作審計',
+  AUDIT_LOG_SOURCE_IP_ADDRESS_TIP: '可以访问发起端IP查看相關的操作審計',
   SEARCH_BY_VERB: 'Search by Verb',
   SEARCH_BY_STATUS_CODE: 'Search by Status Code',
   SEARCH_BY_OPERATOR: 'Search by Operator',
