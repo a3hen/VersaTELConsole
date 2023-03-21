@@ -21,7 +21,7 @@ module.exports = {
   disconnected: 'desconectado',
   'Download File': 'Descargar archivo',
   'Kubeconfig File': 'Archivo kubeconfig',
-  'CoSAN Manager Terminal': 'Terminal CoSAN Manager',
+  'mistyPLX Manager Terminal': 'Terminal mistyPLX Manager',
   'Launch kubectl': 'Lanzar kubectl',
   'Put this into': 'Poner esto en',
 }

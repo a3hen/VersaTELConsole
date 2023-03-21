@@ -720,6 +720,20 @@ const getLResourceTemplate = ({ namespace }) => ({
   },
   rules: [],
 })
+
+const getResourceBackupTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1/backup',
+  kind: 'ResourceBackup',
+  metadata: {
+    namespace,
+    name: detail.name,
+    type,
+  },
+  snapshot: detail.snapshot,
+  image: detail.image,
+  rules: [],
+})
+
 const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
@@ -823,6 +837,7 @@ const FORM_TEMPLATES = {
   linstornodes: getLNodeTemplate,
   storagepools: getSPTemplate,
   lresources: getLResourceTemplate,
+  resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,
 }

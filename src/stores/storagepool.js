@@ -93,7 +93,7 @@ export default class StoragepoolStore extends Base {
 
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
-      item.uniqueID = item.name.concat(' - ', item.node)
+      item.uniqueID = item.name.concat('-', item.node)
       return item
     })
 
@@ -128,7 +128,7 @@ export default class StoragepoolStore extends Base {
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
-      item.uniqueID = item.name.concat(' - ', item.node)
+      item.uniqueID = item.name.concat('-', item.node)
       return item
     })
     this.StoragepoolTemplates.update({

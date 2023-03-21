@@ -26,7 +26,7 @@ module.exports = {
   APP_CONSUMPTION_DESC:
     'Application store template resource consumption statistics',
   APP_RESOURCE_CONSUMPTION_DESC:
-    'Application store template resource consumption statistics support querying the number of times a template has been deployed on the CoSAN Manager platform, and support the following queries',
+    'Application store template resource consumption statistics support querying the number of times a template has been deployed on the mistyPLX Manager platform, and support the following queries',
   APP_WORKSPACE_CONSUMPTION_DESC:
     'The number of deployments of the application template in the <strong>workspace</strong>',
   APP_WORKSPACE_PROJECT_CONSUMPTION_DESC:

@@ -89,13 +89,13 @@ module.exports = {
   'Number of volumes': 'Numero de volúmenes',
   RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
   PROJECTS_DESC:
-    'Un proyecto es un namespace de Kubernetes en CoSAN Manager, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
+    'Un proyecto es un namespace de Kubernetes en mistyPLX Manager, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
   PROJECT_ADVANCE_DESC:
     'Establecer la solicitud de recursos predeterminada del proyecto',
   PROJECT_BASEINFO_DESC: 'Configuración de información básica del proyecto',
   PROJECT_TYPES_PROJECT_TITLE: 'Crear un proyecto de recursos',
   PROJECT_TYPES_PROJECT_DESC:
-    'El proyecto en CoSAN Manager corresponde al namespace de Kubernetes, que es una colección abstracta de un conjunto de recursos y objetos que se pueden agrupar de acuerdo con diferentes unidades de negocio o proyectos de productos.',
+    'El proyecto en mistyPLX Manager corresponde al namespace de Kubernetes, que es una colección abstracta de un conjunto de recursos y objetos que se pueden agrupar de acuerdo con diferentes unidades de negocio o proyectos de productos.',
   PROJECT_TYPES_DEVOPS_TITLE: 'Crear un proyecto DevOps',
   PROJECT_TYPES_DEVOPS_DESC:
     'Cree y pruebe proyectos de software de forma continua y automática.',

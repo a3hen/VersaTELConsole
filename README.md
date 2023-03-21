@@ -1,1 +1,1 @@
-# CoSAN Manager Console
+# mistyPLX Manager Console

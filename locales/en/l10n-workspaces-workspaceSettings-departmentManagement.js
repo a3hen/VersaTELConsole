@@ -47,7 +47,7 @@ module.exports = {
   PROJECT_ROLE: 'Project Role',
   SELECT_ROLE_TIP: 'Please select a role.',
   ADD_PROJECT: 'Add Project',
-  CLUSTER_UPGRADE_REQUIRED: 'The current CoSAN Manager version does not support this feature. Please upgrade CoSAN Manager to {version} or later.',
+  CLUSTER_UPGRADE_REQUIRED: 'The current mistyPLX Manager version does not support this feature. Please upgrade mistyPLX Manager to {version} or later.',
   // List > Set Departments > DevOps Project Role
   DEVOPS_PROJECT_ROLE: 'DevOps Project Role',
   ADD_DEVOPS_PROJECT: 'Add DevOps Project',

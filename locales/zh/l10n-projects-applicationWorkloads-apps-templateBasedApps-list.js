@@ -21,23 +21,23 @@ module.exports = {
   APPLICATIONS_DESC:
     '应用为用户提供完整的业务功能，由一个或多个特定功能的组件组成。',
   APP_PL: '应用',
-  APP_TYPES_Q: 'CoSAN Manager 支持哪些应用类型？',
+  APP_TYPES_Q: 'mistyPLX Manager 支持哪些应用类型？',
   APP_TYPES_A:
-    'CoSAN Manager 支持基于模板的应用和自制应用。基于模板的应用创建自 CoSAN Manager 应用商店或应用模板，自制应用由用户自定义。',
+    'mistyPLX Manager 支持基于模板的应用和自制应用。基于模板的应用创建自 mistyPLX Manager 应用商店或应用模板，自制应用由用户自定义。',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用应用治理功能?',
   HOW_TO_USE_APP_GOVERN_A: '您可以在创建自制应用时启用应用治理功能。',
   DEPLOY_SAMPLE_APP: '部署示例应用',
   // List
   NO_TEMPLATE_BASED_APP_FOUND: '未发现基于模板的应用',
-  TEMPLATE_BASED_APP_EMPTY_DESC: '请从 CoSAN Manager 应用商店或应用模板创建应用。',
+  TEMPLATE_BASED_APP_EMPTY_DESC: '请从 mistyPLX Manager 应用商店或应用模板创建应用。',
   APP: '应用',
   VERSION: '版本',
   // List > Create
   CREATE_APP: '创建应用',
-  CREATE_APP_DESC: '从 CoSAN Manager 应用商店或应用模板创建应用。',
+  CREATE_APP_DESC: '从 mistyPLX Manager 应用商店或应用模板创建应用。',
   FROM_APP_STORE: '从应用商店',
   FROM_APP_TEMPLATE: '从应用模板',
-  FROM_APP_STORE_DESC: '从 CoSAN Manager 应用商店创建应用。',
+  FROM_APP_STORE_DESC: '从 mistyPLX Manager 应用商店创建应用。',
   // List > Create > From App Template
   SELECT_APP_REPOSITORY: '选择应用仓库',
   CURRENT_WORKSPACE: '当前企业空间',
