@@ -53,12 +53,12 @@ export default {
           store.create(data).then(res => {
             // Modal.close(modal)
 
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
+            if (res.message === 'success') {
               Notify.success({ content: `${t('Created Successfully')}` })
+            } else {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res.message}`,
+              })
             }
             success && success()
           })
@@ -98,12 +98,12 @@ export default {
           store.create(data).then(res => {
             // Modal.close(modal)
 
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
+            if (res.message === 'success') {
               Notify.success({ content: `${t('Created Successfully')}` })
+            } else {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res.message}`,
+              })
             }
             success && success()
           })
@@ -143,12 +143,12 @@ export default {
           store.create(data).then(res => {
             // Modal.close(modal)
 
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
+            if (res.message === 'success') {
               Notify.success({ content: `${t('Created Successfully')}` })
+            } else {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res.message}`,
+              })
             }
             success && success()
           })
@@ -188,12 +188,12 @@ export default {
           store.create(data).then(res => {
             // Modal.close(modal)
 
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
+            if (res.message === 'success') {
               Notify.success({ content: `${t('Created Successfully')}` })
+            } else {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res.message}`,
+              })
             }
             success && success()
           })

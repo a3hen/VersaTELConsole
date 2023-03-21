@@ -123,4 +123,5 @@ module.exports = {
   Connecting: '连接中',
   Unhealthy: '异常',
   NORMAL: '正常',
+  'Created Successfully': '创建成功',
 }
