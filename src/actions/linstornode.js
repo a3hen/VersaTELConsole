@@ -41,7 +41,8 @@ export default {
 
           store.create(data).then(res => {
             // Modal.close(modal)
-            if (res) {
+
+            if (Array.isArray(res)) {
               Notify.error({
                 content: `${t('Created Failed, Reason:')}${res[0].message}`,
               })

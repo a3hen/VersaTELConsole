@@ -64,16 +64,13 @@ client:
   supportLangs:
     - label: "繁體中文"
       value: "tc"
-      recommend: true
     - label: "简体中文"
       value: "zh"
       recommend: true
     - label: "English"
       value: "en"
-      recommend: true
     - label: "Español"
       value: "es"
-      recommend: true
     - label: "العربية"
       value: "ar"
     - label: "Français"
@@ -87,7 +84,7 @@ client:
     - label: "Türkçe"
       value: "tr"
   defaultLang: "zh"
-  showAllLangs: true
+  showAllLangs: false
 
   # platform management navigations
   globalNavs:
@@ -272,7 +269,7 @@ client:
   accessNavs:
     - cate: "access"
       items:
-        - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
+        # - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
         - { name: accounts, title: USER_PL, icon: human, authKey: users }
         - { name: roles, title: PLATFORM_ROLE_PL, icon: role }
 
@@ -562,7 +559,8 @@ client:
   # preset infos
   presetUsers: [admin, sonarqube]
   presetGlobalRoles:
-    [platform-admin, platform-regular, workspaces-manager, users-manager]
+    # [platform-admin, platform-regular, workspaces-manager, users-manager]
+    [platform-admin]
   presetClusterRoles: [cluster-admin, cluster-viewer]
   presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
   presetDevOpsRoles: [admin, operator, viewer]

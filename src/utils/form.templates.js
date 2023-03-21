@@ -696,6 +696,7 @@ const getLNodeTemplate = ({ namespace }) => ({
   kind: 'LNode',
   metadata: {
     namespace,
+    name: 'node',
   },
   rules: [],
 })
@@ -705,6 +706,7 @@ const getSPTemplate = ({ namespace }) => ({
   kind: 'Storagepool',
   metadata: {
     namespace,
+    name: 'storagepool',
   },
   rules: [],
 })
@@ -714,6 +716,7 @@ const getLResourceTemplate = ({ namespace }) => ({
   kind: 'LResource',
   metadata: {
     namespace,
+    name: 'resource',
   },
   rules: [],
 })

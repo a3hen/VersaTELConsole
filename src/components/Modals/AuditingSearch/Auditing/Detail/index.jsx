@@ -115,45 +115,46 @@ export default class Detail extends React.PureComponent {
       className: styles.timecol,
     },
     {
-      thead: t('VERB'),
-      key: 'verb',
+      thead: t('OPERATOR'),
+      key: 'Operation Account',
       hidden: false,
-      content: ({ Verb }) => Verb,
-      className: styles.Verbcol,
+      content: ({ User }) => get(User, 'Username'),
+      className: styles.usernamecol,
     },
+    // {
+    //   thead: t('VERB'),
+    //   key: 'verb',
+    //   hidden: false,
+    //   content: ({ Verb }) => Verb,
+    //   className: styles.Verbcol,
+    // },
+    // {
+    //   thead: t('STATUS_CODE'),
+    //   key: 'Status Code',
+    //   hidden: false,
+    //   content: ({ ResponseStatus }) => {
+    //     const code = get(ResponseStatus, 'code')
+    //     return code ? httpcodes[code] : ''
+    //   },
+    //   className: styles.statuscol,
+    // },
     {
-      thead: t('STATUS_CODE'),
-      key: 'Status Code',
-      hidden: false,
-      content: ({ ResponseStatus }) => {
-        const code = get(ResponseStatus, 'code')
-        return code ? httpcodes[code] : ''
-      },
-      className: styles.statuscol,
-    },
-    {
-      thead: t('WORKSPACE'),
+      thead: t('WORKSPACE_AUDIT'),
       key: 'Workspace',
       hidden: false,
       content: ({ Workspace }) => Workspace,
       className: styles.workspacecol,
     },
+    // {
+    //   thead: t('PROJECT'),
+    //   key: 'Project',
+    //   hidden: false,
+    //   content: ({ ObjectRef }) => get(ObjectRef, 'Namespace'),
+    //   className: styles.namespacecol,
+    // },
+
     {
-      thead: t('PROJECT'),
-      key: 'Project',
-      hidden: false,
-      content: ({ ObjectRef }) => get(ObjectRef, 'Namespace'),
-      className: styles.namespacecol,
-    },
-    {
-      thead: t('REASON'),
-      key: 'reason',
-      hidden: true,
-      content: ({ ResponseStatus }) => get(ResponseStatus, 'reason'),
-      className: styles.reasoncol,
-    },
-    {
-      thead: t('RESOURCE_NAME_AND_TYPE'),
+      thead: t('RESOURCE_NAME_AND_TYPE_AUDIT'),
       key: 'resources',
       hidden: false,
       content: ({ ObjectRef = {} }) => (
@@ -164,24 +165,37 @@ export default class Detail extends React.PureComponent {
       ),
       className: styles.namecol,
     },
+    // {
+    //   thead: t('SUBRESOURCE'),
+    //   key: 'Subresource',
+    //   hidden: true,
+    //   content: ({ ObjectRef }) => get(ObjectRef, 'Subresource'),
+    //   className: styles.subresourcecol,
+    // },
     {
-      thead: t('SUBRESOURCE'),
-      key: 'Subresource',
-      hidden: true,
-      content: ({ ObjectRef }) => get(ObjectRef, 'Subresource'),
-      className: styles.subresourcecol,
-    },
-    {
-      thead: t('OPERATOR'),
-      key: 'Operation Account',
+      thead: t('EXPLAIN_AUDIT'),
+      key: 'reason',
       hidden: false,
-      content: ({ User }) => get(User, 'Username'),
-      className: styles.usernamecol,
+      // content: ({ ResponseStatus,Verb }) => get(ResponseStatus, 'reason'),
+      content: ({ ResponseStatus, Verb }) => {
+        const code = get(ResponseStatus, 'code')
+        const codeShow = code ? httpcodes[code] : ''
+        const reason = get(ResponseStatus, 'reason')
+        return reason || `${Verb} ${codeShow}`
+      },
+      className: styles.reasoncol,
     },
     {
-      thead: t('SOURCE_IP_ADDRESS'),
+      thead: t('LEVEL_AUDIT'),
+      key: 'status',
+      hidden: false,
+      content: ({ ResponseStatus }) => get(ResponseStatus, 'status'),
+      className: styles.statuscol,
+    },
+    {
+      thead: t('SOURCE_IP_ADDRESS_AUDIT'),
       key: 'sourceIP',
-      hidden: true,
+      hidden: false,
       content: ({ SourceIPs }) => SourceIPs,
       className: styles.messagecol,
     },

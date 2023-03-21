@@ -191,11 +191,12 @@ $chartContainerPadding: 8px;
   .statuscol {
     width: 150px;
     margin: auto;
+    margin-left: 10px;
     flex: unset;
   }
 
   .reasoncol {
-    width: 100px;
+    width: 250px;
     margin: auto;
     flex: unset;
   }
@@ -234,14 +235,16 @@ $chartContainerPadding: 8px;
   }
 
   .workspacecol {
-    width: 100px;
+    width: 200px;
     margin: auto;
     flex: unset;
     line-height: 1.5;
   }
 
   .usernamecol {
+    width: 150px;
     margin: auto;
+    flex: unset;
     line-height: 1.5;
   }
 
