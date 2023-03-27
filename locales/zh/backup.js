@@ -17,5 +17,6 @@ module.exports = {
   VG_NAME_DESC: '请填写卷组名以用于资源恢复',
   VG_VOL_NAME_DESC: '请按照实际的磁盘进行填写，如 vg0',
   'VG name': '卷组名',
-  'Please input VG name': '请输入卷组名'
+  'Please input VG name': '请输入卷组名',
+  'Snapshot Time': '快照创建时间'
 }
