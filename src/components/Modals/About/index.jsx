@@ -35,7 +35,7 @@ export default class AboutModal extends Component {
   }
 
   render() {
-    const { issueUrl, reposUrl, slackUrl } = globals.config
+    // const { issueUrl, reposUrl, slackUrl } = globals.config
     // const { ksVersion } = globals.ksConfig
     return (
       <Modal
@@ -55,7 +55,7 @@ export default class AboutModal extends Component {
         </div>
 
         <div className={styles.links}>
-          <div className={styles.left}>
+          {/* <div className={styles.left}>
             <span>
               <a href={reposUrl} target="_blank" rel="noreferrer noopener">
                 <img src="/assets/github.svg" alt="github" />
@@ -88,7 +88,7 @@ export default class AboutModal extends Component {
                 <strong>{t('GITHUB_STAR')}</strong>
               </a>
             </span>
-          </div>
+          </div> */}
         </div>
       </Modal>
     )
