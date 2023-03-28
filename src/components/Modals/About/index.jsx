@@ -51,7 +51,7 @@ export default class AboutModal extends Component {
             <img src="/assets/logo.svg" alt="" />
           </div>
           <p>{t('VersaTEL_DESCRIPTION')}</p>
-          <strong>MistyPLX Manager {t('VERSION')} : 1.0.3</strong>
+          <strong>MistyPLX Manager {t('VERSION')} : 1.0.4</strong>
         </div>
 
         <div className={styles.links}>
