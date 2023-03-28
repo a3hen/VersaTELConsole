@@ -27,7 +27,7 @@ module.exports = {
   // Unbind Cluster
   UNBIND: '解绑',
   UNBIND_CLUSTER: '解绑集群',
-  UNBIND_CLUSTER_DESC: '集群解绑后，mistyPLX Manager 将无法管理集群。集群中的 Kubernetes 资源将不会被删除。请输入集群名称 <strong>{name}</strong> 以确保您了解该操作的风险。',
+  UNBIND_CLUSTER_DESC: '集群解绑后，MistyPLX Manager 将无法管理集群。集群中的 Kubernetes 资源将不会被删除。请输入集群名称 <strong>{name}</strong> 以确保您了解该操作的风险。',
   UNBIND_SUCCESS: '解绑成功。',
   SURE_TO_UNBIND_CLUSTER: '我已了解操作的风险。',
   UNBIND_CLUSTER_Q: '解绑集群',

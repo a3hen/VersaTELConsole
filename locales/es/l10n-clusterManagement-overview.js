@@ -22,7 +22,7 @@ module.exports = {
   // Baisc Information
   PROVIDER: 'Proveedor',
   KUBERNETES_VERSION: 'Versión de Kubernetes',
-  KUBESPHERE_VERSION: 'Versión de mistyPLX Manager',
+  KUBESPHERE_VERSION: 'Versión de MistyPLX Manager',
   VISIBILITY_PARTIAL: 'Parcialmente visible',
   VISIBILITY_PUBLIC: 'Público',
   CLUSTER_BASE_INFO_DESC:

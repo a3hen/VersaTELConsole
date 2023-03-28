@@ -28,6 +28,6 @@ module.exports = {
 
   APP_TEMPLATE_DESCRIPTION_TITLE: 'Deploy packaged applications',
   APP_TEMPLATE_DESCRIPTION_ARTICLE:
-    'mistyPLX Manager visualizes app templates and provides deployment and management function, allowing users to quickly deploy applications with one click based on app templates.',
+    'MistyPLX Manager visualizes app templates and provides deployment and management function, allowing users to quickly deploy applications with one click based on app templates.',
   TOTAL_APP_REPOS: 'Total {num} app repositories',
 }

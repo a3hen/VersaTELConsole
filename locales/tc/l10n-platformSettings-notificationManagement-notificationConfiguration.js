@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
-  NOTIFICATION_CONFIGURATION_DESC: 'mistyPLX Manager supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_CONFIGURATION_DESC: 'MistyPLX Manager supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
   NOTIFICATION_EMAIL: '郵箱',
   // Email
   MAIL_TITLE: '郵箱',

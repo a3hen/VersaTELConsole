@@ -88,12 +88,12 @@ module.exports = {
   'Number of volumes': '存儲卷（數量）',
   RESOURCE_QUANTITY_LIMIT: 'Resource quantity limit',
   PROJECTS_DESC:
-    'mistyPLX Manager 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
+    'MistyPLX Manager 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，常用來將系統内部的對象劃分為不同的項目組或用戶組。',
   PROJECT_ADVANCE_DESC: '設置項目資源預設請求',
   PROJECT_BASEINFO_DESC: '項目基礎資訊設置',
   PROJECT_TYPES_PROJECT_TITLE: '創建資源類型項目',
   PROJECT_TYPES_PROJECT_DESC:
-    'mistyPLX Manager 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，可以根據不同的業務部門或者產品項目進行資源分組。',
+    'MistyPLX Manager 中的項目對應的是 Kubernetes 的 namespace，是對一組資源和對象的抽象集合，可以根據不同的業務部門或者產品項目進行資源分組。',
   PROJECT_TYPES_DEVOPS_TITLE: '創建一個 DevOps 项目',
   PROJECT_TYPES_DEVOPS_DESC: '持續、自動地構建/測試軟體項目。',
   DELETE_MEMBER_TIP:

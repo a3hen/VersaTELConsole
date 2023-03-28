@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: mistyPLX Manager
+  title: MistyPLX Manager
   description: ""
   encryptKey: kubesphere
 
