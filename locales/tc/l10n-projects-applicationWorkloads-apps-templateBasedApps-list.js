@@ -23,7 +23,7 @@ module.exports = {
   APP_PL: '應用',
   APP_TYPES_Q: '應用類型',
   APP_TYPES_A:
-    'mistyPLX Manager 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
+    'MistyPLX Manager 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同樣也支持自制應用(Application CRD)。',
   HOW_TO_USE_APP_GOVERN_Q: '如何使用應用治理？',
   HOW_TO_USE_APP_GOVERN_A:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
@@ -31,7 +31,7 @@ module.exports = {
   // List
   NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
   TEMPLATE_BASED_APP_EMPTY_DESC:
-    'Please create an app from the mistyPLX Manager App Store or an app template.',
+    'Please create an app from the MistyPLX Manager App Store or an app template.',
   APP: '應用',
   VERSION: '版本',
   // List > Create
@@ -48,7 +48,7 @@ module.exports = {
   FROM_APP_TEMPLATE_DESC:
     '來自於企業空間的自制應用模板以及應用倉庫中添加的第三方 Helm 應用模板',
   APP_TEMPLATES_MODAL_DESC:
-    '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 mistyPLX Manager 中展示並提供部署及管理的功能',
+    '應用模板來自於企業空間和第三方的 Helm 應用模板，支持一鍵部署並可通過視覺化的方式在 MistyPLX Manager 中展示並提供部署及管理的功能',
   // List > Create > From App Template > App Information
   // List > Create > From App Template > Chart Files
   // List > Edit

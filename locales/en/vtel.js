@@ -18,7 +18,7 @@
 
 module.exports = {
   VersaTEL_DESCRIPTION:
-    'mistyPLX Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, mistyRACK system hardware management, graphical management of Kubernetes based container platform and other functions. ',
+    'MistyPLX Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, MistyRACK system hardware management, graphical management of Kubernetes based container platform and other functions. ',
   LINSTOR_NODES: 'VersaSDS Node',
   LNODE: 'VersaSDS Node',
   LNode: 'VersaSDS Node',

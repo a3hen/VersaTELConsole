@@ -172,7 +172,7 @@ export default class ResourceBackup extends React.Component {
         render: imageRestore => imageRestore,
       },
       {
-        title: t('Time'),
+        title: t('Snapshot Time'),
         dataIndex: 'time',
         isHideable: true,
         render: time => time,

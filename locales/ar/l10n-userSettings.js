@@ -17,7 +17,7 @@
  */
 module.exports = {
   // Basic Information
-  EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم mistyPLX Manager.',
+  EMAIL_DESC: 'يمكن استخدام عنوان البريد الإلكتروني لتسجيل الدخول إلى وحدة تحكم MistyPLX Manager.',
   LANGUAGE: 'Language',
   USER_SETTINGS: 'User Settings',
   CLOSE: 'Close',

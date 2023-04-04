@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: '通知管理',
   NOTIFICATION_CONFIGURATION: '通知配置',
-  NOTIFICATION_CONFIGURATION_DESC: 'mistyPLX Manager 支持多种通知渠道的通知配置，您可以进行服务器和接收配置，并启用或禁用通知。',
+  NOTIFICATION_CONFIGURATION_DESC: 'MistyPLX Manager 支持多种通知渠道的通知配置，您可以进行服务器和接收配置，并启用或禁用通知。',
   NOTIFICATION_EMAIL: '邮件',
   // Email
   MAIL_TITLE: '邮件',

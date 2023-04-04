@@ -29,7 +29,7 @@ module.exports = {
   'Inbound Traffic': '網路流入速率',
   'involved project': '參與項目',
   Jobs: '任務',
-  'mistyPLX Manager Running Status': 'mistyPLX Manager 運行狀態',
+  'MistyPLX Manager Running Status': 'MistyPLX Manager 運行狀態',
   'Log Data': '紀錄數據',
   'Memory Usage': '記憶體使用量',
   'Memory Utilization': '記憶體利用率',

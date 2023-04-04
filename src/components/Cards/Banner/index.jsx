@@ -22,7 +22,7 @@ import { isEmpty } from 'lodash'
 import { Icon } from '@kube-design/components'
 import classnames from 'classnames'
 
-import { getDocsUrl } from 'utils'
+// import { getDocsUrl } from 'utils'
 import { ICON_TYPES } from 'utils/constants'
 
 import Tip from './Tip'
@@ -107,7 +107,7 @@ export default class Banner extends React.Component {
       extra,
       routes,
     } = this.props
-    const docUrl = getDocsUrl(module)
+    // const docUrl = getDocsUrl(module)
 
     return (
       <div className={classnames(styles.wrapper, className)}>
@@ -119,14 +119,14 @@ export default class Banner extends React.Component {
             <div className="h3">{title}</div>
             <p className="text-second">
               {description}
-              {docUrl && (
+              {/* {docUrl && (
                 <span className={styles.more}>
                   <Icon name="documentation" size={20} />
                   <a href={docUrl} target="_blank" rel="noreferrer noopener">
                     {t('LEARN_MORE')}
                   </a>
                 </span>
-              )}
+              )} */}
             </p>
           </div>
         </div>
