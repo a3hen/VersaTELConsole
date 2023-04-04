@@ -21,9 +21,9 @@ module.exports = {
   PLATFORM_ROLE_PL: 'Platform Roles',
   // List
   PLATFORM_ROLE_EMPTY_DESC: 'Please create a platform role.',
-  ROLE_USERS_MANAGER: 'Manage all users on the mistyPLX Manager platform.',
-  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the mistyPLX Manager platform.',
-  ROLE_PLATFORM_ADMIN: 'Manage all resources on the mistyPLX Manager platform.',
+  ROLE_USERS_MANAGER: 'Manage all users on the MistyPLX Manager platform.',
+  ROLE_WORKSPACES_MANAGER: 'Manage all workspaces on the MistyPLX Manager platform.',
+  ROLE_PLATFORM_ADMIN: 'Manage all resources on the MistyPLX Manager platform.',
   ROLE_PLATFORM_REGULAR: 'Cannot access any resources before joining a workspace.',
   CREATION_TIME_TCAP: 'Creation Time',
   // List > Create
@@ -57,7 +57,7 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: 'Platform Settings',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: 'Platform Settings Management',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the mistyPLX Manager platform.',
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: 'View and edit settings of the MistyPLX Manager platform.',
   // List > Edit Information
   // List > Edit Permissions
   // List > Delete

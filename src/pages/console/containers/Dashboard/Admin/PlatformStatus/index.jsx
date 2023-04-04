@@ -31,12 +31,12 @@ import styles from './index.scss'
 export default class PlatformStatus extends Component {
   get resources() {
     return [
-      {
-        icon: 'enterprise',
-        name: 'WORKSPACE',
-        link: '/access/workspaces',
-        metric: 'kubesphere_workspace_count',
-      },
+      // {
+      //   icon: 'enterprise',
+      //   name: 'WORKSPACE',
+      //   link: '/access/workspaces',
+      //   metric: 'kubesphere_workspace_count',
+      // },
       {
         icon: 'human',
         name: 'USER',

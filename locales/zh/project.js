@@ -88,12 +88,12 @@ module.exports = {
   'Number of volumes': '存储卷（数量）',
   RESOURCE_QUANTITY_LIMIT: '资源数量限制',
   PROJECTS_DESC:
-    'mistyPLX Manager 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
+    'MistyPLX Manager 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，常用来将系统内部的对象划分为不同的项目组或用户组。',
   PROJECT_ADVANCE_DESC: '设置项目资源默认请求',
   PROJECT_BASEINFO_DESC: '项目基础信息设置',
   PROJECT_TYPES_PROJECT_TITLE: '创建资源型项目',
   PROJECT_TYPES_PROJECT_DESC:
-    'mistyPLX Manager 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
+    'MistyPLX Manager 中的项目对应的是 Kubernetes 的 namespace，是对一组资源和对象的抽象集合，可以根据不同的业务部门或者产品项目进行资源分组。',
   PROJECT_TYPES_DEVOPS_TITLE: '创建一个 DevOps 项目',
   PROJECT_TYPES_DEVOPS_DESC: '持续、自动地构建/测试软件项目。',
   DELETE_MEMBER_TIP:

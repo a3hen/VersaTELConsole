@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: mistyPLX Manager
+  title: MistyPLX Manager
   description: ""
   encryptKey: kubesphere
 
@@ -605,18 +605,18 @@ client:
     # Project User Guide
     applications: /project-user-guide/application/app-template/
     composingapps: /project-user-guide/application/compose-app/
-    deployments: /project-user-guide/application-workloads/deployments/
+    # deployments: /project-user-guide/application-workloads/deployments/
     statefulsets: /project-user-guide/application-workloads/statefulsets/
     daemonsets: /project-user-guide/application-workloads/daemonsets/
-    jobs: /project-user-guide/application-workloads/jobs/
+    # jobs: /project-user-guide/application-workloads/jobs/
     cronjobs: /project-user-guide/application-workloads/cronjobs/
-    services: /project-user-guide/application-workloads/services/
-    ingresses: /project-user-guide/application-workloads/routes/
+    # services: /project-user-guide/application-workloads/services/
+    # ingresses: /project-user-guide/application-workloads/routes/
     s2i_template: /project-user-guide/image-builder/s2i-templates/
     volumes: /project-user-guide/storage/volumes/
-    secrets: /project-user-guide/configuration/secrets/
-    configmaps: /project-user-guide/configuration/configmaps/
-    serviceaccounts: /project-user-guide/configuration/serviceaccounts/
+    # secrets: /project-user-guide/configuration/secrets/
+    # configmaps: /project-user-guide/configuration/configmaps/
+    # serviceaccounts: /project-user-guide/configuration/serviceaccounts/
     imageregistry: /project-user-guide/configuration/image-registry/
     grayrelease: /project-user-guide/grayscale-release/overview/
 
@@ -627,8 +627,8 @@ client:
     project_members: /project-administration/role-and-member-management/
 
     # Cluster Administrator Guide
-    nodes: /cluster-administration/nodes/
-    storageclasses: /cluster-administration/persistent-volume-and-storage-class/
+    # nodes: /cluster-administration/nodes/
+    # storageclasses: /cluster-administration/persistent-volume-and-storage-class/
 
     # DevOps User Guide
     pipelines: /devops-user-guide/how-to-use/pipeline-settings/

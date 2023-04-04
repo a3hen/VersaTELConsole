@@ -29,7 +29,7 @@ module.exports = {
   'Inbound Traffic': 'Tráfico entrante',
   'involved project': 'proyecto involucrado',
   Jobs: 'Jobs',
-  'mistyPLX Manager Running Status': 'Estado de ejecución de mistyPLX Manager',
+  'MistyPLX Manager Running Status': 'Estado de ejecución de MistyPLX Manager',
   'Log Data': 'Datos de registro',
   'Memory Usage': 'Uso de memoria',
   'Memory Utilization': 'Utilización de memoria',
