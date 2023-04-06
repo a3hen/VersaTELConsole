@@ -101,14 +101,14 @@ module.exports = {
   FILE_UPLOAD_MAX: 'The file size cannot exceed 2M.',
 
   APP_TEMPLATE_CREATE_DESC:
-    'MistyPLX Manager provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
+    'CoSAN Manager provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
   APP_TEMPLATES_DESC:
-    'MistyPLX Manager provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
+    'CoSAN Manager provides full lifecycle management for apps. You can upload or create new app templates and test them quickly. In addition, you can publish your apps to the App Store so that other users can deploy with one click.',
 
   HOW_APP_DEPLOY_TITLE: 'How to deploy and test applications',
 
   APPS_CREATE_DESC:
-    'MistyPLX Manager provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to the App Store so that other users can deploy them.',
+    'CoSAN Manager provides lifecycle management of app templates. You can upload or create new app templates and test them quickly. In addition, you can publish your app templates to the App Store so that other users can deploy them.',
 
   APP_DETAIL_DESC: 'Very helpful when searching applications',
 
@@ -121,7 +121,7 @@ module.exports = {
 
   RESOURCE_TOOL_TITLE: 'Created through Resource Choreographer',
   RESOURCE_TOOL_DESCRIPTION:
-    'MistyPLX Manager provides a visual resource orchestration tool that allows you to' +
+    'CoSAN Manager provides a visual resource orchestration tool that allows you to' +
     ' create application templates and deploy tests through resource pre-editing',
 
   HELM_DEVELOP_GUIDE: ' Helm Specifications.',

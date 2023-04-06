@@ -22,7 +22,7 @@ module.exports = {
   // Baisc Information
   PROVIDER: 'Sağlayıcı',
   KUBERNETES_VERSION: 'Kubernetes Sürümü',
-  KUBESPHERE_VERSION: 'MistyPLX Manager sürümü',
+  KUBESPHERE_VERSION: 'CoSAN Manager sürümü',
   VISIBILITY_PARTIAL: 'Bazı çalışma alanlarında görünür',
   VISIBILITY_PUBLIC: 'Tüm çalışma alanlarında görünür',
   CLUSTER_BASE_INFO_DESC: 'Temel bilgiler, kümeye genel bir bakış sağlar. Küme bilgilerini görüntüleyebilir ve düzenleyebilirsiniz.',

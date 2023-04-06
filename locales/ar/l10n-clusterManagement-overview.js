@@ -22,7 +22,7 @@ module.exports = {
   // Baisc Information
   PROVIDER: 'Provider',
   KUBERNETES_VERSION: 'Kubernetes version',
-  KUBESPHERE_VERSION: 'MistyPLX Manager version',
+  KUBESPHERE_VERSION: 'CoSAN Manager version',
   VISIBILITY_PARTIAL: 'Visible to Some Workspaces',
   VISIBILITY_PUBLIC: 'Visible to All Workspaces',
   CLUSTER_BASE_INFO_DESC:

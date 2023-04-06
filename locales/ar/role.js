@@ -129,9 +129,9 @@ module.exports = {
   CRD_MANAGEMENT_DESC: 'View, modify, and delete cluster CRDs.',
   COMPONENTS_MANAGEMENT_DESC: 'Manage cluster components.',
   ACCOUNT_ROLE_DESC:
-    'The role of an account defines the permissions of the account on the MistyPLX Manager platform.',
+    'The role of an account defines the permissions of the account on the CoSAN Manager platform.',
   ACCOUNT_ROLE_CREATE_DESC:
-    'The role of an account defines the permissions of the account on the MistyPLX Manager platform.',
+    'The role of an account defines the permissions of the account on the CoSAN Manager platform.',
   DEVOPS_ROLES_VIEW_DESC: 'View DevOps project roles.',
   DEVOPS_ROLES_MANAGEMENT_DESC:
     'Create, edit, and delete DevOps project roles except preset roles.',

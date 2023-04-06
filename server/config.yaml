@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: MistyPLX Manager
+  title: CoSAN Manager
   description: ""
   encryptKey: kubesphere
 
