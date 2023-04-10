@@ -53,32 +53,47 @@ export default class LResource extends React.Component {
   }
 
   get itemActions() {
-    return []
+    const { name, trigger, routing, store } = this.props
+    return [
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: true,
+        onClick: item =>
+        trigger('lresources.delete', {
+        LResourceTemplates: toJS(store.LResourceTemplates.data),
+        // success: getData,
+        })
+      },
+    ]
   }
 
   get tableActions() {
     const { tableProps, trigger, routing } = this.props
+    console.log(tableProps.tableActions)
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      getCheckboxProps: record => ({
-        disabled: this.showAction(record),
-        name: record.name,
-      }),
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('DELETE'),
-          action: 'delete',
-          onClick: () =>
-            trigger('lresources.batch.delete', {
-              type: 'LResource',
-              rowKey: 'name',
-              success: routing.query,
-            }),
-        },
-      ],
+      // getCheckboxProps: record => ({
+      //   disabled: this.showAction(record),
+      //   name: record.name,
+      // }),
+      // selectActions: [
+      //   {
+      //     key: 'delete',
+      //     type: 'danger',
+      //     text: t('DELETE'),
+      //     action: 'delete',
+      //     onClick: () =>
+      //       trigger('lresources.batch.delete', {
+      //         type: 'LResource',
+      //         rowKey: 'name',
+      //         success: routing.query,
+      //       }),
+      //   },
+      // ],
     }
   }
 
@@ -122,6 +137,12 @@ export default class LResource extends React.Component {
         isHideable: true,
         render: deviceName => deviceName,
       },
+      {
+        title: t('Assigned_Node'),
+        dataIndex: 'assignedNode',
+        isHideable: true,
+        render: assignedNode => assignedNode,
+      }
     ]
   }
 
@@ -135,6 +156,7 @@ export default class LResource extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    console.log('bannerProps', bannerProps, tableProps)
 
     return (
       <ListPage {...this.props} noWatch>

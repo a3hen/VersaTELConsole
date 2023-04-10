@@ -171,8 +171,7 @@ export default class LResourceCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
-
-    const title = 'Create Resource'
+    const title = 'Choose Node'
 
     return (
       <Modal.Form
@@ -185,47 +184,20 @@ export default class LResourceCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
+        选择 diskless 资源所在的节点
         <Form.Item
           label={t('Name')}
           desc={t('VTEL_NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input Resource name') },
+            { required: true, message: t('Please input Node name') },
             {
               pattern: PATTERN_VTEL_NAME,
-              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
+              message: t('Invalid name', { message: t('Please input Node name') }),
             },
             { validator: this.LResourceNameValidator },
           ]}
         >
           <Input name="name" maxLength={63} placeholder="name" />
-        </Form.Item>
-        <Form.Item
-          label={t('Size')}
-          desc={t('VTEL_SIZE_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource size') },
-            {
-              pattern: PATTERN_VTEL_SIZE,
-              message: t('Invalid size', { message: t('VTEL_SIZE_DESC') }),
-            },
-          ]}
-        >
-          <Input name="size" maxLength={63} placeholder="size" />
-        </Form.Item>
-        <Form.Item
-          label={t('LINSTOR_STORAGEPOOLS')}
-          desc={t('Select Storagepool to create diskful resource')}
-          rules={[{ required: true, message: t('Please select Storagepool') }]}
-        >
-          <Select
-            name="storagepool"
-            options={this.storagepools}
-            onFetch={this.fetchStoragepools}
-            // onChange={this.handleStoragepoolChange}
-            searchable
-            clearable
-            multi
-          />
         </Form.Item>
       </Modal.Form>
     )

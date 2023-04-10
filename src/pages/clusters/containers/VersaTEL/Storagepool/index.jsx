@@ -68,6 +68,7 @@ export default class Storagepool extends React.Component {
 
   get tableActions() {
     const { tableProps } = this.props
+    console.log(tableProps)
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,

@@ -45,6 +45,7 @@ module.exports = {
   LRESOURCE_CREATE_DESC: '创建资源',
   'Mirror Way': '副本',
   'Device Name': '设备名称',
+  'Assigned_Node': '已分配的节点',
   LResource: '资源',
   'Node name exists': '节点名已存在',
   'Storagepool name exists': '存储池名已存在',
