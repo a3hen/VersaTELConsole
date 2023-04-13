@@ -20,10 +20,46 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/LResourceCreate'
+import DeleteModalR from 'components/Modals/LResourceDelete'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
+  'lresources.delete': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          store.create(data).then(res => {
+            // Modal.close(modal)
+
+            if (Array.isArray(res)) {
+              Notify.error({
+                content: `${t('Created Failed, Reason:')}${res[0].message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('Created Successfully')}` })
+            }
+            success && success()
+          })
+          Modal.close(modal)
+        },
+        modal: DeleteModalR,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
   'lresources.create': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
