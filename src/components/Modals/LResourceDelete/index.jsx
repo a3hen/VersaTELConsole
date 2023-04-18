@@ -28,6 +28,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 import StoragepoolStore from 'stores/storagepool'
+import DisklessResourceStore from 'stores/disklessresource'
 
 @observer
 export default class LResourceCreateModal extends React.Component {
@@ -56,6 +57,7 @@ export default class LResourceCreateModal extends React.Component {
 
     this.linstornodeStore = new LNodeStore()
     this.storagepoolStore = new StoragepoolStore()
+    this.disklessresourceStore = new DisklessResourceStore()
 
     this.fetchNodes()
     this.fetchStoragepools()
@@ -124,12 +126,13 @@ export default class LResourceCreateModal extends React.Component {
   // }
 
   handleCreate = LResourceTemplates => {
-    set(
-      this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(LResourceTemplates)
-    )
-    this.props.onOk(this.props.formTemplate)
+    const dataToSubmit = { ...this.props.formTemplate, ...LResourceTemplates }
+    // set(
+    //   this.props.formTemplate,
+    //   // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+    //   JSON.stringify(LResourceTemplates)
+    // )
+    this.props.onOk(dataToSubmit)
   }
 
   LResourceNameValidator = (rule, value, callback) => {

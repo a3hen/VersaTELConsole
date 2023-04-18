@@ -59,6 +59,7 @@ export default class LResourceStore extends Base {
     const result = await request.get(this.getResourceUrl(), {
       ...params,
     })
+    console.log(result);
 
     // const result = {
     //   code: 0,

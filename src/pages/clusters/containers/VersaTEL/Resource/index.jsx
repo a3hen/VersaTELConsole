@@ -61,11 +61,13 @@ export default class LResource extends React.Component {
         text: t('choose_diskless_node'),
         action: 'delete',
         show: true,
-        onClick: item =>
-            trigger('lresources.delete', {
-              LResourceTemplates: toJS(store.LResourceTemplates.data),
-              // success: getData,
-            })
+        onClick: item => {
+          trigger('lresources.delete', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
+          })
+        }
       },
     ]
   }

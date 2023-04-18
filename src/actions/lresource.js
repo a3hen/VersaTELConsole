@@ -27,7 +27,9 @@ import FORM_TEMPLATES from 'utils/form.templates'
 export default {
   'lresources.delete': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const resourceName = props?.name
       const { module } = store
+      console.log('store & module',store, module)
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
@@ -35,7 +37,10 @@ export default {
             return
           }
 
-          store.create(data).then(res => {
+          const mergedData = { ...data, name: resourceName }
+          console.log('mergedData', mergedData)
+
+          request.post(`/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`, mergedData).then(res => {
             // Modal.close(modal)
 
             if (Array.isArray(res)) {

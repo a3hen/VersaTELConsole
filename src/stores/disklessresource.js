@@ -21,6 +21,7 @@ import { action } from 'mobx'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
+import { Notify } from "@kube-design/components";
 
 export default class DisklessResourceStore extends Base {
   DisklessResourceTemplates = new List()
@@ -129,4 +130,7 @@ export default class DisklessResourceStore extends Base {
       isLoading: false,
     })
   }
+
+  @action
+  async assignNode(params) {}
 }
