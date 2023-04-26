@@ -22,7 +22,7 @@ module.exports = {
   disconnected: 'disconnected',
   'Download File': 'Download File',
   'Kubeconfig File': 'Kubeconfig File',
-  'MistyPLX Manager Terminal': 'MistyPLX Manager Terminal',
+  'CoSAN Manager Terminal': 'CoSAN Manager Terminal',
   'Launch kubectl': 'Launch kubectl',
   'Put this into': 'Put this into',
   OPEN_TERMINAL_DESC: 'Please ensure that the websocket proxy configuration on your proxy server is correct.',

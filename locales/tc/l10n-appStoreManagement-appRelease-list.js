@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   APP_RELEASE: '應用上架',
   APP_RELEASE_DESC:
-    'MistyPLX Manager supports reviewing the contents of applications to be released. You can view the contents and approve or reject to publish the applications.',
+    'CoSAN Manager supports reviewing the contents of applications to be released. You can view the contents and approve or reject to publish the applications.',
   // Unreleased
   UNRELEASED: 'Unreleased',
   APP_REVIEW_EMPTY_DESC: 'No unreleased app is found.',

@@ -25,7 +25,7 @@ module.exports = {
   'Net Transmitted': '網絡流出',
   APP_CONSUMPTION_DESC: '應用商店模板資源消費統計',
   APP_RESOURCE_CONSUMPTION_DESC:
-    '應用商店模板資源消費統計支持對模板在 MistyPLX Manager 平台中被部署的次數查詢，支持以下查詢',
+    '應用商店模板資源消費統計支持對模板在 CoSAN Manager 平台中被部署的次數查詢，支持以下查詢',
   APP_WORKSPACE_CONSUMPTION_DESC:
     '應用模板在 <strong>企業空間</strong> 中的部署次數',
   APP_WORKSPACE_PROJECT_CONSUMPTION_DESC:

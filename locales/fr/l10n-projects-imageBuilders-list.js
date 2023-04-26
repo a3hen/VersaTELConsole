@@ -50,7 +50,7 @@ module.exports = {
   INVALID_TRIGGER_TOKEN_DESC:
     'Invalid token. The token can contain only uppercase letters, lowercase letters, and numbers.',
   TRIGGER_TOKEN_DESC:
-    'Set a token used to authenticate a client against MistyPLX Manager. You can set a client to automatically trigger image building on MistyPLX Manager over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
+    'Set a token used to authenticate a client against CoSAN Manager. You can set a client to automatically trigger image building on CoSAN Manager over a webhook. The token can contain only uppercase letters, lowercase letters, and numbers.',
   CODE_RELATIVE_PATH: 'Code Relative Path',
   CODE_RELATIVE_PATH_DESC:
     'Set the relative path of the code in the code repository. The default path is /.',
