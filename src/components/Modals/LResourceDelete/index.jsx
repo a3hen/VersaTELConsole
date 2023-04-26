@@ -189,17 +189,17 @@ export default class LResourceCreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-            label={t('LINSTOR_NODES')}
-            desc={t('Select VersaSDS Node to create diskless resource')}
-            // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
+          label={t('LINSTOR_NODES')}
+          desc={t('Select VersaSDS Node to create diskless resource')}
+          // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select
-              name="node"
-              options={this.nodes}
-              onFetch={this.fetchNodes}
-              searchable
-              clearable
-              multi
+            name="node"
+            options={this.nodes}
+            onFetch={this.fetchNodes}
+            searchable
+            clearable
+            multi
           />
         </Form.Item>
       </Modal.Form>

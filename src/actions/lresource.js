@@ -27,9 +27,11 @@ import FORM_TEMPLATES from 'utils/form.templates'
 export default {
   'lresources.delete': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      // const resourceName = name
       const resourceName = props?.name
       const { module } = store
-      console.log('store & module',store, module)
+      console.log('props',props)
+      console.log('store & module', store, module)
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
@@ -37,21 +39,30 @@ export default {
             return
           }
 
+          console.log("data",data)
+          console.log("resourcename",resourceName)
+          data.metadata.name = resourceName
           const mergedData = { ...data, name: resourceName }
+          delete mergedData.name //删除创建diskless资源传递对象的name属性
           console.log('mergedData', mergedData)
 
-          request.post(`/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`, mergedData).then(res => {
-            // Modal.close(modal)
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`,
+              mergedData
+            )
+            .then(res => {
+              // Modal.close(modal)
 
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
-              Notify.success({ content: `${t('Created Successfully')}` })
-            }
-            success && success()
-          })
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Created Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Created Successfully')}` })
+              }
+              success && success()
+            })
           Modal.close(modal)
         },
         modal: DeleteModalR,
@@ -74,6 +85,10 @@ export default {
             Modal.close(modal)
             return
           }
+          const resourceName = data.name
+          data.metadata.name = resourceName
+          delete data.name //删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
+          console.log("data",data)
 
           store.create(data).then(res => {
             // Modal.close(modal)
