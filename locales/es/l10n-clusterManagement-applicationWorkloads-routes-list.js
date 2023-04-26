@@ -25,7 +25,7 @@ module.exports = {
     'To use a route, the project administrator needs to set the gateway for the current project.',
   ACCESS_TYPES_OF_ROUTE_Q: '¿Qué tipos de acceso admite la ruta?',
   ACCESS_TYPES_OF_ROUTE_A:
-    'Las rutas de MistyPLX Manager admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',
+    'Las rutas de CoSAN Manager admiten nombres de dominio personalizados (HostName) y así como wildcards DNS.',
   ROUTE_PL: 'Routes',
   // List
   GATEWAY_ADDRESS_TCAP: 'Dirección del gateway',

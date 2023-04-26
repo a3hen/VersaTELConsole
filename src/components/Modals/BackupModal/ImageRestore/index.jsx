@@ -22,7 +22,7 @@ import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Modal } from 'components/Base'
 import { Input, Form } from '@kube-design/components'
-import { PATTERN_SP_VOL_NAME } from 'utils/constants'
+import { PATTERN_VTEL_NAME } from 'utils/constants'
 // import { Modal, Text } from 'components/Base'
 
 @observer
@@ -78,17 +78,17 @@ export default class ImageRestoreModal extends React.Component {
       >
         {/* <Text title={t('BACKUP_RESTORE_TIP')} description='' /> */}
         <Form.Item
-          label={t('VG name')}
-          desc={t('VG_NAME_DESC')}
+          label={t('Storagepool')}
+          desc={t('VTEL_NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input VG name') },
+            { required: true, message: t('Please input Storagepool name') },
             {
-              pattern: PATTERN_SP_VOL_NAME,
-              message: t('Invalid name', { message: t('VG_VOL_NAME_DESC') }),
+              pattern: PATTERN_VTEL_NAME,
+              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
             },
           ]}
         >
-          <Input name="vg" maxLength={63} placeholder="VG name" />
+          <Input name="sp" maxLength={63} placeholder="Storagepool name" />
         </Form.Item>
       </Modal.Form>
     )

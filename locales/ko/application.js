@@ -111,7 +111,7 @@ module.exports = {
   TIP_APP_GOVERNANCE:
     'Using App Governance requires creating a homebrew app and turning on service governance for each service',
   APP_REPOS_DESC:
-    'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in MistyPLX Manager. Users can quickly deploy applications with one click based on templates in the app repository.',
+    'The app repository comes from a third-party Helm Chart Repo, which visually displays and provides deployment and management capabilities in CoSAN Manager. Users can quickly deploy applications with one click based on templates in the app repository.',
 
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     'Traffic governance depends on the microservices module. The current cluster has not enabled the microservices module.',

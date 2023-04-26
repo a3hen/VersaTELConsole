@@ -33,7 +33,7 @@ module.exports = {
   Screenshots: 'Capturas de pantalla',
   VERSION_LIST_DES: 'Only display the last 10 versions',
   HOME_APP_STORE_DESC:
-    'La App Store oficial de MistyPLX Manager proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
+    'La App Store oficial de CoSAN Manager proporciona características de despliegue y administración que permiten a los usuarios desplegar aplicaciones rápidamente con un solo click en base a plantillas de aplicaciones.',
   APP_DEPLOYMENT_AGREEMENT: 'Acuerdo de implementación de aplicaciones',
   APP_DEPLOY_AGREEMENT_CHECK:
     'I have read <b>App Deployment Agreement</b> and agree to deploy the app.',

@@ -246,7 +246,7 @@ module.exports = {
   WORKLOAD_REASON_REPLICASETUPDATED: 'ReplicaSet updated',
   Workloads: 'Workloads',
   DEPLOYMENT_DESC:
-    'Deployment provides fine-grained management of common applications in MistyPLX Manager. Deployment configuration describes the desired state of specific components of an application as pod templates.',
+    'Deployment provides fine-grained management of common applications in CoSAN Manager. Deployment configuration describes the desired state of specific components of an application as pod templates.',
   STATEFULSET_DESC:
     'Statefulset is used to manage stateful applications, manages the deployment and scaling of a set of pods, and provides guarantees about the ordering and uniqueness of these pods.',
   DAEMONSET_DESC:
