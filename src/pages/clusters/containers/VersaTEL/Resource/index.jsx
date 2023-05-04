@@ -62,7 +62,7 @@ export default class LResource extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log("item")
+          console.log('item')
           console.log(item)
           trigger('lresources.delete', {
             LResourceTemplates: toJS(store.LResourceTemplates.data),
@@ -94,24 +94,24 @@ export default class LResource extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      // getCheckboxProps: record => ({
-      //   disabled: this.showAction(record),
-      //   name: record.name,
-      // }),
-      // selectActions: [
-      //   {
-      //     key: 'delete',
-      //     type: 'danger',
-      //     text: t('DELETE'),
-      //     action: 'delete',
-      //     onClick: () =>
-      //       trigger('lresources.batch.delete', {
-      //         type: 'LResource',
-      //         rowKey: 'name',
-      //         success: routing.query,
-      //       }),
-      //   },
-      // ],
+      getCheckboxProps: record => ({
+        disabled: this.showAction(record),
+        name: record.name,
+      }),
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('DELETE'),
+          action: 'delete',
+          onClick: () =>
+            trigger('lresources.batch.delete', {
+              type: 'LResource',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 

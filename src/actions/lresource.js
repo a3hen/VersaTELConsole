@@ -30,7 +30,7 @@ export default {
       // const resourceName = name
       const resourceName = props?.name
       const { module } = store
-      console.log('props',props)
+      console.log('props', props)
       console.log('store & module', store, module)
       const modal = Modal.open({
         onOk: data => {
@@ -39,16 +39,16 @@ export default {
             return
           }
 
-          console.log("data",data)
-          console.log("resourcename",resourceName)
+          console.log('data', data)
+          console.log('resourcename', resourceName)
           data.metadata.name = resourceName
           const mergedData = { ...data, name: resourceName }
-          delete mergedData.name //删除创建diskless资源传递对象的name属性
+          delete mergedData.name // 删除创建diskless资源传递对象的name属性
           console.log('mergedData', mergedData)
 
           request
             .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`,
+              `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`,
               mergedData
             )
             .then(res => {
@@ -87,8 +87,8 @@ export default {
           }
           const resourceName = data.name
           data.metadata.name = resourceName
-          delete data.name //删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
-          console.log("data",data)
+          delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
+          console.log('data', data)
 
           store.create(data).then(res => {
             // Modal.close(modal)
