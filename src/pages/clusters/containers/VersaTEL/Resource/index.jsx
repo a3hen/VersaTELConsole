@@ -71,6 +71,23 @@ export default class LResource extends React.Component {
           })
         },
       },
+      {
+        key: 'mirrorway',
+        icon: 'trash',
+        text: t('choose_mirrorway'),
+        action: 'delete',
+        show: true,
+        onClick: item => {
+          console.log('item------------')
+          console.log(item)
+          trigger('lresources.mirrorway', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
+            mirrorWay: item?.mirrorWay,
+          })
+        },
+      },
     ]
   }
 
