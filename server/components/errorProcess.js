@@ -57,6 +57,6 @@ module.exports = function(app) {
   process.on('uncaughtException', err => {
     console.error(err)
     /* eslint-disable no-console */
-    console.log('NOT exit...')
+    ('NOT exit...')
   })
 }

@@ -194,7 +194,7 @@ const handleOAuthLogin = async ctx => {
     user = await oAuthLogin({ ...oauthParams, oauthName: ctx.params.name })
   } catch (err) {
     /* eslint-disable no-console */
-    console.log(err)
+    (err)
 
     ctx.app.emit('error', err)
     Object.assign(error, {
@@ -232,7 +232,7 @@ const handleOAuthLogin = async ctx => {
       }
     } catch (err) {
       /* eslint-disable no-console */
-      console.log(err)
+      (err)
     }
   }
 

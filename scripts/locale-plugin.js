@@ -73,7 +73,7 @@ function only(lang) {
     const fileObj = require(`../locales/${lang}/${file}`)
     Object.keys(fileObj).forEach(key => {
       if (allKeyArr.indexOf(key) > -1) {
-        console.log(lang, '语言环境下重复UI词条为:', key)
+        (lang, '语言环境下重复UI词条为:', key)
       } else {
         allKeyArr.push(key)
       }

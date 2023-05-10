@@ -35,7 +35,7 @@ export default {
           const resourceName = data.name
           data.metadata.name = resourceName
           delete data.name // 删除创建node传递对象的name属性，并在metadata中将name属性更改为资源名
-          console.log(data)
+          (data)
 
           // if (devops) {
           //   data.metadata.namespace = devops

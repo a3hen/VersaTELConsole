@@ -62,8 +62,8 @@ export default class LResource extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log('item')
-          console.log(item)
+          ('item')
+          (item)
           trigger('lresources.delete', {
             LResourceTemplates: toJS(store.LResourceTemplates.data),
             // success: getData,
