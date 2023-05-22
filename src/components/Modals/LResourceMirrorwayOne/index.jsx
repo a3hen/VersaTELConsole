@@ -142,16 +142,16 @@ export default class LResourceCreateModal extends React.Component {
     //   JSON.stringify(LResourceTemplates)
     // )
     console.log('stepOne-handleCreate', dataToSubmit)
-    let storagepool = [];
+    const storagepool = []
 
-    for (let key in dataToSubmit) {
-      if (key.startsWith("storagepool_")) {
-        let index = parseInt(key.substring(12));
-        storagepool[index] = dataToSubmit[key][0];
+    for (const key in dataToSubmit) {
+      if (key.startsWith('storagepool_')) {
+        const index = parseInt(key.substring(12))
+        storagepool[index] = dataToSubmit[key][0]
       }
     }
 
-    dataToSubmit.storagepool = storagepool;
+    dataToSubmit.storagepool = storagepool
     this.props.onOk(dataToSubmit)
   }
 
@@ -205,9 +205,11 @@ export default class LResourceCreateModal extends React.Component {
       selectBoxes.push(
         <Form.Item
           key={i}
-          label={t('CHOOSE_LINSTOR_STORAGEPOOLS'+": "+node[i])}
-          desc={t(`Select Storagepool to add mirrorway ${i}`)}
-          rules={[{ required: true, message: t(`Please select Storagepool ${i}`) }]}
+          label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
+          desc={`${t('Select Storagepool to add mirrorway')} ${i}`}
+          rules={[
+            { required: true, message: `${t(`Please select Storagepool`)} ${i}` },
+          ]}
         >
           <Select
             name={`storagepool_${i}`}

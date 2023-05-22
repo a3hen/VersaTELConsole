@@ -111,7 +111,7 @@ export default {
               mergedData
             )
             .then(res => {
-              console.log("res",res)
+              console.log('res', res)
               // Modal.close(modal)
 
               if (Array.isArray(res)) {

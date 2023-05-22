@@ -30,6 +30,7 @@ import { ICON_TYPES } from 'utils/constants'
 
 import StorageClassStore from 'stores/storageClass'
 import AccessorStore from 'stores/accessor'
+import storageclass from "../../../../../actions/storageclass";
 
 @withList({
   store: new StorageClassStore(),
@@ -38,6 +39,12 @@ import AccessorStore from 'stores/accessor'
 })
 export default class StorageClasses extends React.Component {
   accessorStore = new AccessorStore()
+  constructor(props) {
+    super(props);
+    this.state = {
+      flag: true,
+    };
+  }
 
   validateSelect({ callback }) {
     return (...args) => {
@@ -57,7 +64,8 @@ export default class StorageClasses extends React.Component {
   }
 
   showAction(record) {
-    return record.associationPVCCount !== 0
+    console.log("showaction_record",record)
+    return record.associationPVCCount !== 0;
   }
 
   getColumns = () => {
@@ -142,6 +150,7 @@ export default class StorageClasses extends React.Component {
   }
 
   handleDelete = item => {
+    console.log("item",item)
     this.props.trigger('storageclass.delete', {
       detail: item,
       accessorStore: this.accessorStore,
@@ -156,7 +165,6 @@ export default class StorageClasses extends React.Component {
       'tableActions.selectActions',
       []
     ).filter(action => action.key !== 'delete')
-
     return {
       ...tableProps.tableActions,
       selectActions: [
@@ -172,8 +180,31 @@ export default class StorageClasses extends React.Component {
     }
   }
 
+  // get itemActions() {
+  //   const { tableProps } = this.props
+  //   console.log("props",this.props)
+  //   console.log("tableprops",tableProps)
+  //   const actions = get(tableProps, 'itemActions', []).filter(
+  //     action => action.key !== 'delete'
+  //   )
+  //   return [
+  //     ...actions,
+  //     {
+  //       action: 'delete',
+  //       key: 'delete',
+  //       icon: 'trash',
+  //       onClick: item => this.handleDelete(item),
+  //       text: t('DELETE'),
+  //       type: 'danger',
+  //     },
+  //   ]
+  // }
   get itemActions() {
     const { tableProps } = this.props
+    console.log("props",this.props)
+    // console.log("item", item)
+    console.log("tableprops",tableProps)
+    console.log("flag",this.state.flag)
     const actions = get(tableProps, 'itemActions', []).filter(
       action => action.key !== 'delete'
     )
@@ -187,6 +218,12 @@ export default class StorageClasses extends React.Component {
         onClick: item => this.handleDelete(item),
         text: t('DELETE'),
         type: 'danger',
+        show: (record) => {
+          if (record.associationPVCCount > 0) {
+            return false
+          }
+          return true
+        }
       },
     ]
   }
@@ -199,6 +236,7 @@ export default class StorageClasses extends React.Component {
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
+
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}

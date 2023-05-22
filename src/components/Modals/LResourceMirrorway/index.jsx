@@ -144,52 +144,58 @@ export default class LResourceCreateModal extends React.Component {
         mirrorWay: formValues.members,
       },
     })
-    console.log("members",formValues.members)
-    console.log("mirroway", this.props.mirrorWay)
+    console.log('members', formValues.members)
+    console.log('mirroway', this.props.mirrorWay)
     if (formValues.members == this.props.mirrorWay) {
-      alert("填写的修改副本数量不能为原副本数量")
-      return;
+      alert('填写的修改副本数量不能为原副本数量')
+      return
     }
     if (formValues.members <= 0) {
-      alert("填写的修改副本数量不能小于等于0")
-      return;
+      alert('填写的修改副本数量不能小于等于0')
+      return
     }
-    const a_mirrorway_value = Math.abs(this.props.mirrorWay - formValues.members);
+    const a_mirrorway_value = Math.abs(
+      this.props.mirrorWay - formValues.members
+    )
     console.log('formvalues', formValues, 'mirrorWay', mirrorWay)
-    console.log('a_mirrorway_value',a_mirrorway_value)
-    const ChooseNode = this.props.name;
-    console.log("choosenode",ChooseNode)
+    console.log('a_mirrorway_value', a_mirrorway_value)
+    const ChooseNode = this.props.name
+    console.log('choosenode', ChooseNode)
     if (formValues.members > mirrorWay) {
-      fetch(`/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful?name=${ChooseNode}`)
+      fetch(
+        `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful?name=${ChooseNode}`
+      )
         .then(response => response.json())
         .then(Nvalue => {
-          const DNvalue = Nvalue;
-          console.log("DNvalue",DNvalue)
+          const DNvalue = Nvalue
+          console.log('DNvalue', DNvalue)
 
-          DNvalue.data = DNvalue.data.filter(item => item.name === ChooseNode);
-          let found = false;
+          DNvalue.data = DNvalue.data.filter(item => item.name === ChooseNode)
+          let found = false
           for (let i = 0; i < DNvalue.data.length; i++) {
-            const item = DNvalue.data[i];
-            console.log("item", item)
-            console.log("formvalues.node", formValues.node)
+            const item = DNvalue.data[i]
+            console.log('item', item)
+            console.log('formvalues.node', formValues.node)
             for (let i = 0; i < formValues.node.length; i++) {
-              console.log("step_value", formValues.node[i])
+              console.log('step_value', formValues.node[i])
               if (item.node === formValues.node[i]) {
-                alert(`创建操作选择的节点不能是已有diskful资源的节点: ${formValues.node[i]}`);
-                found = true;
-                break;
+                alert(
+                  `创建操作选择的节点不能是已有diskful资源的节点: ${formValues.node[i]}`
+                )
+                found = true
+                break
               }
             }
             if (found) {
-              break;
+              break
             }
           }
           if (!found) {
-            this.showStepOne();
+            this.showStepOne()
           }
         })
-        .catch(error => console.error(error));
-      console.log("formvalues.node",formValues.node[0])
+        .catch(error => console.error(error))
+      console.log('formvalues.node', formValues.node[0])
 
       // this.showStepOne()
     } else {
@@ -211,7 +217,7 @@ export default class LResourceCreateModal extends React.Component {
     //   JSON.stringify(LResourceTemplates)
     // )
     const stepzeroValues = this.state.stepzeroValue
-    console.log("stepzero-handlecreate",dataToSubmit)
+    console.log('stepzero-handlecreate', dataToSubmit)
     this.props.onOk({
       resname: '',
       poolname: dataToSubmit.storagepool,
@@ -290,8 +296,17 @@ export default class LResourceCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-        <Form.Item label={t('change_mirrorway_number')} desc={t('choose_mirrorway_number')}>
-          <Input name="members" maxLength={63} placeholder="number" type="number" pattern="[0-9]*" />
+        <Form.Item
+          label={t('change_mirrorway_number')}
+          desc={t('choose_mirrorway_number')}
+        >
+          <Input
+            name="members"
+            maxLength={63}
+            placeholder="number"
+            type="number"
+            pattern="[0-9]*"
+          />
         </Form.Item>
         <Form.Item
           label={t('LINSTOR_NODES')}
