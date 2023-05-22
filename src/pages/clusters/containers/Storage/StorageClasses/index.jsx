@@ -30,7 +30,7 @@ import { ICON_TYPES } from 'utils/constants'
 
 import StorageClassStore from 'stores/storageClass'
 import AccessorStore from 'stores/accessor'
-import storageclass from "../../../../../actions/storageclass";
+import storageclass from '../../../../../actions/storageclass'
 
 @withList({
   store: new StorageClassStore(),
@@ -39,11 +39,12 @@ import storageclass from "../../../../../actions/storageclass";
 })
 export default class StorageClasses extends React.Component {
   accessorStore = new AccessorStore()
+
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       flag: true,
-    };
+    }
   }
 
   validateSelect({ callback }) {
@@ -64,8 +65,8 @@ export default class StorageClasses extends React.Component {
   }
 
   showAction(record) {
-    console.log("showaction_record",record)
-    return record.associationPVCCount !== 0;
+    console.log('showaction_record', record)
+    return record.associationPVCCount !== 0
   }
 
   getColumns = () => {
@@ -150,7 +151,7 @@ export default class StorageClasses extends React.Component {
   }
 
   handleDelete = item => {
-    console.log("item",item)
+    console.log('item', item)
     this.props.trigger('storageclass.delete', {
       detail: item,
       accessorStore: this.accessorStore,
@@ -201,10 +202,10 @@ export default class StorageClasses extends React.Component {
   // }
   get itemActions() {
     const { tableProps } = this.props
-    console.log("props",this.props)
+    console.log('props', this.props)
     // console.log("item", item)
-    console.log("tableprops",tableProps)
-    console.log("flag",this.state.flag)
+    console.log('tableprops', tableProps)
+    console.log('flag', this.state.flag)
     const actions = get(tableProps, 'itemActions', []).filter(
       action => action.key !== 'delete'
     )
@@ -218,12 +219,12 @@ export default class StorageClasses extends React.Component {
         onClick: item => this.handleDelete(item),
         text: t('DELETE'),
         type: 'danger',
-        show: (record) => {
+        show: record => {
           if (record.associationPVCCount > 0) {
             return false
           }
           return true
-        }
+        },
       },
     ]
   }
@@ -236,7 +237,6 @@ export default class StorageClasses extends React.Component {
         <Banner {...bannerProps} />
         <Table
           {...tableProps}
-
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}

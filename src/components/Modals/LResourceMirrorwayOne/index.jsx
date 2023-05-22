@@ -208,7 +208,10 @@ export default class LResourceCreateModal extends React.Component {
           label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
           desc={`${t('Select Storagepool to add mirrorway')} ${i}`}
           rules={[
-            { required: true, message: `${t(`Please select Storagepool`)} ${i}` },
+            {
+              required: true,
+              message: `${t(`Please select Storagepool`)} ${i}`,
+            },
           ]}
         >
           <Select
