@@ -135,7 +135,6 @@ export default class LResourceCreateModal extends React.Component {
   }
 
   handleCreate = LResourceTemplates => {
-
     const dataToSubmit = { ...this.props.formTemplate, ...LResourceTemplates }
     // set(
     //   this.props.formTemplate,
@@ -143,6 +142,16 @@ export default class LResourceCreateModal extends React.Component {
     //   JSON.stringify(LResourceTemplates)
     // )
     console.log('stepOne-handleCreate', dataToSubmit)
+    let storagepool = [];
+
+    for (let key in dataToSubmit) {
+      if (key.startsWith("storagepool_")) {
+        let index = parseInt(key.substring(12));
+        storagepool[index] = dataToSubmit[key][0];
+      }
+    }
+
+    dataToSubmit.storagepool = storagepool;
     this.props.onOk(dataToSubmit)
   }
 
@@ -185,11 +194,36 @@ export default class LResourceCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate, node } = this.props
-    console.log('props',this.props)
+    console.log('stepone_props', this.props)
 
-    const title = 'Choose diskless node'
+    const title = 'Choose mirrorway numbers'
 
     const { showStepOne } = this.state
+
+    const selectBoxes = []
+    for (let i = 0; i < node.length; i++) {
+      selectBoxes.push(
+        <Form.Item
+          key={i}
+          label={t('CHOOSE_LINSTOR_STORAGEPOOLS'+": "+node[i])}
+          desc={t(`Select Storagepool to add mirrorway ${i}`)}
+          rules={[{ required: true, message: t(`Please select Storagepool ${i}`) }]}
+        >
+          <Select
+            name={`storagepool_${i}`}
+            options={this.storagepools.filter(pool => {
+              console.log('pool', pool)
+              if (!node) return true
+              return pool.label.indexOf(node[i]) !== -1
+            })}
+            onFetch={this.fetchStoragepools}
+            // onChange={this.handleStoragepoolChange}
+            searchable
+            clearable
+          />
+        </Form.Item>
+      )
+    }
 
     return (
       <Modal.Form
@@ -202,25 +236,7 @@ export default class LResourceCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-        <Form.Item
-          label={t('LINSTOR_STORAGEPOOLS')}
-          desc={t('Select Storagepool to create diskful resource')}
-          rules={[{ required: true, message: t('Please select Storagepool') }]}
-        >
-          <Select
-            name="storagepool"
-            options={this.storagepools.filter(pool => {
-              console.log('pool', pool)
-              if (!node) return true
-              return pool.label.indexOf(node[0] || 'node01') !== -1
-            })}
-            onFetch={this.fetchStoragepools}
-            // onChange={this.handleStoragepoolChange}
-            searchable
-            clearable
-            multi
-          />
-        </Form.Item>
+        {selectBoxes}
       </Modal.Form>
     )
   }

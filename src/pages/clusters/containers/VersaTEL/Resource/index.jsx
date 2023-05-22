@@ -74,7 +74,7 @@ export default class LResource extends React.Component {
       {
         key: 'mirrorway',
         icon: 'trash',
-        text: t('choose_mirrorway'),
+        text: t('Choose mirrorway numbers'),
         action: 'delete',
         show: true,
         onClick: item => {

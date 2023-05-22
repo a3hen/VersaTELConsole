@@ -46,13 +46,17 @@ export default {
           console.log('data', data)
           console.log('resourcename', resourceName)
           // data.metadata.name = resourceName
-          const mergedData = { ...data, resname: resourceName, originalnum: originalnum }
-          delete mergedData.name // 删除创建diskless资源传递对象的name属性
+          const mergedData = {
+            ...data,
+            resname: resourceName,
+            originalnum,
+          }
+          delete mergedData.name
           console.log('mergedData', mergedData)
 
           request
             .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool/diskful`,
+              `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/copy`,
               mergedData
             )
             .then(res => {
@@ -107,6 +111,7 @@ export default {
               mergedData
             )
             .then(res => {
+              console.log("res",res)
               // Modal.close(modal)
 
               if (Array.isArray(res)) {

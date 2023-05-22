@@ -27,7 +27,7 @@ export default class DisklessResourceStore extends Base {
   DisklessResourceTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/resource/diskless`
+    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
 
   getListUrl = this.getResourceUrl
 
@@ -116,7 +116,7 @@ export default class DisklessResourceStore extends Base {
     this.DisklessResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/resource/diskless`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
