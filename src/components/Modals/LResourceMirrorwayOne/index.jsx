@@ -205,9 +205,14 @@ export default class LResourceCreateModal extends React.Component {
       selectBoxes.push(
         <Form.Item
           key={i}
-          label={t('CHOOSE_LINSTOR_STORAGEPOOLS'+": "+node[i])}
-          desc={t(`Select Storagepool to add mirrorway ${i}`)}
-          rules={[{ required: true, message: t(`Please select Storagepool ${i}`) }]}
+          label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
+          desc={`${t('Select Storagepool to add mirrorway')} ${i}`}
+          rules={[
+            {
+              required: true,
+              message: `${t(`Please select Storagepool`)} ${i}`,
+            },
+          ]}
         >
           <Select
             name={`storagepool_${i}`}
