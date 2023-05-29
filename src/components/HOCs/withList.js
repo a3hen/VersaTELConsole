@@ -207,7 +207,7 @@ export default function withList(options) {
             enabledActions={this.enabledActions}
             trigger={this.trigger.bind(this)}
             getData={this.getData}
-	    data={this.list}
+            data={this.list}
             {...this.props}
           />
         )

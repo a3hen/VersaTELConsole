@@ -80,15 +80,15 @@ export default class ResourceBackup extends React.Component {
         icon: 'pen',
         text: t('Create image'),
         action: 'create',
-	show: record => {
-	  if (record.snapshot !== "") {
-            if (record.image !== "") {
-	      return false;
-	    }
-	    return true;
-	  }
-          return false;
-	},
+        show: record => {
+          if (record.snapshot !== '') {
+            if (record.image !== '') {
+              return false
+            }
+            return true
+          }
+          return false
+        },
         onClick: item =>
           trigger('resourcebackups.image.create', {
             detail: item,
@@ -102,13 +102,13 @@ export default class ResourceBackup extends React.Component {
         text: t('Snapshot Restore'),
         action: 'create',
         show: record => {
-	  if (record.snapshot !== "") {
-	    if (record.snapshotRestore !== "") {
-	      return false;
-	    }
-	    return true;
-	  }
-	  return false;
+          if (record.snapshot !== '') {
+            if (record.snapshotRestore !== '') {
+              return false
+            }
+            return true
+          }
+          return false
         },
         onClick: item =>
           trigger('resourcebackups.snapshotrestore.create', {
@@ -122,15 +122,15 @@ export default class ResourceBackup extends React.Component {
         icon: 'pen',
         text: t('Image Restore'),
         action: 'create',
-	show: record => {
-	  if (record.image !== "") {
-	    if (record.imageRestore !== "") {
-	      return false;
-	    }
-	    return true;
-	  }     
-	  return false;
-	},	   
+        show: record => {
+          if (record.image !== '') {
+            if (record.imageRestore !== '') {
+              return false
+            }
+            return true
+          }
+          return false
+        },
         onClick: item =>
           trigger('resourcebackups.imagerestore.create', {
             detail: item,
@@ -165,10 +165,10 @@ export default class ResourceBackup extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
-    console.log("props",this.props)
-    const {tableProps} = this.props
-    console.log('tableprops',tableProps)
-    const actions = get(tableProps,'itemActions',[])
+    console.log('props', this.props)
+    const { tableProps } = this.props
+    console.log('tableprops', tableProps)
+    const actions = get(tableProps, 'itemActions', [])
     // const { getSortOrder, module } = this.props
     return [
       {
@@ -221,7 +221,7 @@ export default class ResourceBackup extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    console.log("col",this.getColumns())
+    console.log('col', this.getColumns())
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Backup')} />
