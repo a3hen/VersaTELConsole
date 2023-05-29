@@ -113,6 +113,7 @@ function withTableActions(WrappedComponent) {
     }
 
     renderMoreMenu = record => {
+      console.log("record",record)
       const items = this.enabledItemActions.map(action => {
         const show = isFunction(action.show)
           ? action.show(record)
