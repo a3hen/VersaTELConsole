@@ -21,14 +21,14 @@ module.exports = {
   APPS_MANAGEMENT: 'Gestión de Alicaciones',
   UPLOAD_TEMPLATE: 'Subir Plantilla',
   APP_TEMPLATE_DESC:
-    'mistyPLX Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
+    'CoSAN Manager proporciona una gestión completa del ciclo de vida para las aplicaciones. Puedes subir o crear nuevas plantillas de aplicación y probarlas rápidamente. Además, puedes publicar tus aplicaciones en la Tienda de Aplicaciones para que otros usuarios puedan desplegarlas con un solo click.',
   DEVELOP_APP_DESC:
-    'Puedes subir Charts de Helm o utilizar la herramienta de orquestación de recursos proporcionada por mistyPLX Manager para desarrollar plantillas de aplicaciones.',
+    'Puedes subir Charts de Helm o utilizar la herramienta de orquestación de recursos proporcionada por CoSAN Manager para desarrollar plantillas de aplicaciones.',
   DEVELOP_APP_TITLE: 'Cómo desarrollar plantillas de aplicación?',
   HOW_PUBLISH_APP_TITLE:
     'Cómo publicar aplicaciones en la Tienda de Aplicaciones?',
   HOW_PUBLISH_APP_DESC:
-    'mistyPLX Manager actualmente admite la subida de Charts de Helm a través de plantillas de aplicación dentro del espacio de trabajo, donde puedes enviar tu plantilla para su revisión. Una vez que se apruebe la plantilla, podrás publicarla en la Tienda de Aplicaciones.',
+    'CoSAN Manager actualmente admite la subida de Charts de Helm a través de plantillas de aplicación dentro del espacio de trabajo, donde puedes enviar tu plantilla para su revisión. Una vez que se apruebe la plantilla, podrás publicarla en la Tienda de Aplicaciones.',
   // List
   APP_STATUS_ACTIVE: 'Released',
   APP_STATUS_DRAFT: 'Unreleased',

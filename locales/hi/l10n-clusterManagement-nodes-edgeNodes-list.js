@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   EDGE_NODE_PL: 'Edge Nodes',
   EDGE_NODE_DESC:
-    'Edge nodes are servers deployed outside the mistyPLX Manager cluster. You can add edge nodes to the mistyPLX Manager cluster to manage them.',
+    'Edge nodes are servers deployed outside the CoSAN Manager cluster. You can add edge nodes to the CoSAN Manager cluster to manage them.',
   // Node Count
   // List
   EDGE_NODE_EMPTY_DESC: 'Please add an edge node to the cluster.',
@@ -40,9 +40,9 @@ module.exports = {
   EDGE_NODE: 'Edge Node',
   INTERNAL_IP_ADDRESS: 'Internal IP Address',
   EDGENODE_INTERNAL_IP_DESC:
-    'Set the internal IP address of the edge node in the mistyPLX Manager cluster.',
+    'Set the internal IP address of the edge node in the CoSAN Manager cluster.',
   EDGENODE_INTERNAL_IP_EMPTY_DESC:
-    'Please set the internal IP address of the edge node in the mistyPLX Manager cluster.',
+    'Please set the internal IP address of the edge node in the CoSAN Manager cluster.',
   COPY_SUCCESSFUL: 'Copied successfully.',
   // List > View Log
   LOGS: 'Logs',

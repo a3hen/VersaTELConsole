@@ -28,7 +28,7 @@ module.exports = {
   SCHEDULE: 'Schedule',
   ENTER_SCHEDULE_TIP: 'Please select a schedule.',
   CRONJOB_CRON_DESC:
-    'Set a schedule for the CronJob. mistyPLX Manager uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
+    'Set a schedule for the CronJob. CoSAN Manager uses UTC by default and you need to adjust the schedule according to your time zone. <a href="//en.wikipedia.org/wiki/Cron" target="_blank">Learn More</a>',
   // List > Create > Advanced settings
   MAXIMUM_DELAY: 'Maximum Start Delay (s)',
   SUCCESSFUL_JOBS_RETAINED: 'Success Records',

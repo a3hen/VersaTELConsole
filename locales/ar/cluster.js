@@ -75,18 +75,18 @@ module.exports = {
   'etcd Backup Dir': 'etcd Backup Dir',
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
-  'mistyPLX Manager Settings': 'mistyPLX Manager Settings',
+  'CoSAN Manager Settings': 'CoSAN Manager Settings',
   NO_CLUSTER_TIP_DESC:
     'A cluster is a group of nodes (physical or virtual machines) running Kubernetes, and the function of Kubesphere also depends on the nodes in the cluster.',
   ADD_NEW_CLUSTER_DESC: 'Add a new Kubernetes cluster',
   CHOOSE_PROVIDER_DESC:
-    'mistyPLX Manager provides a solution for quickly deploying Kubernetes clusters among mainstream service providers',
+    'CoSAN Manager provides a solution for quickly deploying Kubernetes clusters among mainstream service providers',
   MULTI_CLUSTER: 'Multi-Clusters',
   CLUSTER_INFO_TCAP: 'Cluster Information',
   INVITE_CLUSTER_MEMBER_DESC: 'You can invite new members to this cluster.',
   CLUSTER_API_SERVER_TITLE: 'Kubesphere API Server to be added to the cluster',
   CLUSTER_API_SERVER_DESC:
-    'You need to input the mistyPLX Manager API Server address to be added to the cluster',
+    'You need to input the CoSAN Manager API Server address to be added to the cluster',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Clusters can be assigned to workspaces through authorization.',
   PUBLIC_CLUSTER_DESC:

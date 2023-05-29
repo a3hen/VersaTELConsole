@@ -17,8 +17,8 @@
  */
 module.exports = {
   // Banner
-  SERVICE_TYPES_Q: 'mistyPLX Manager hangi servis türlerini destekliyor?',
-  SERVICE_TYPES_A: 'mistyPLX Manager durum bilgili ve durum bilgisiz servisleri destekler. Durum bilgili servislerin kapsül replikalarının her birinin bağımsız bölümleri varken, durum bilgisiz servislerin kapsül replikaları aynı bölüm içerisinde bulunurlar.',
+  SERVICE_TYPES_Q: 'CoSAN Manager hangi servis türlerini destekliyor?',
+  SERVICE_TYPES_A: 'CoSAN Manager durum bilgili ve durum bilgisiz servisleri destekler. Durum bilgili servislerin kapsül replikalarının her birinin bağımsız bölümleri varken, durum bilgisiz servislerin kapsül replikaları aynı bölüm içerisinde bulunurlar.',
   SCENARIOS_FOR_SERVICES_Q: 'Durum bilgili ve durum bilgisiz servislerin kullanım senaryoları nelerdir?',
   SCENARIOS_FOR_SERVICES_A: 'Durum bilgisiz servisler, Nginx ve Tomcat gibi veri sürerliliğinin gerekmediği senaryolarda uygulanabilir. Durum bilgili servisler ise, MySQL veritabanları, Kafka ve Zookeeper gibi veri sürerliliğinin gerektiği senaryolarda uygulanabilir.',
   // Service List
