@@ -187,6 +187,12 @@ export default class StorageClasses extends React.Component {
         onClick: item => this.handleDelete(item),
         text: t('DELETE'),
         type: 'danger',
+        show: (record) => {
+          if (record.associationPVCCount > 0) {
+            return false
+          }
+          return true
+        }
       },
     ]
   }
