@@ -1,7 +1,7 @@
 module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VersaSDS 集群节点',
-  DISKLESS_NODES: 'diskless资源坐在的节点',
+  DISKLESS_NODES: 'diskless资源所在的节点',
   LNODE: '节点',
   LNode: 'VersaSDS 集群节点',
   LNODE_DESC:
@@ -46,7 +46,7 @@ module.exports = {
   LRESOURCE_CREATE_DESC: '创建资源',
   'Mirror Way': '副本',
   'Device Name': '设备名称',
-  'Assigned_Node': '已分配的节点',
+  'Assigned node': '已分配的节点',
   LResource: '资源',
   'Node name exists': '节点名已存在',
   'Storagepool name exists': '存储池名已存在',
@@ -69,7 +69,7 @@ module.exports = {
   'Select Storagepool to add mirrorway':'请选择需要新增副本的存储池',
   'Select VersaSDS Node to create diskless resource':
     '请选择创建的 diskless 资源所在的节点',
-  'choose_mirrorway_number':'请选择修改后的副本数量',
+  'choose mirrorway number':'请选择修改后的副本数量',
   'Select Resource mirrorway change node':'请选择要进行操作的节点',
   'Created Failed, Reason:': '创建失败，原因：',
   'Deleted Failed, Reason:': '删除失败，原因：',

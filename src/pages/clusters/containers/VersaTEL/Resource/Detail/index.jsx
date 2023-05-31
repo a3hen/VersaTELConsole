@@ -73,7 +73,7 @@ export default class ResourceDetail extends React.Component {
         value: detail.deviceName,
       },
       {
-        name: t('Assigned_Node'),
+        name: t('Assigned node'),
         value: detail.assignedNode,
       },
     ]

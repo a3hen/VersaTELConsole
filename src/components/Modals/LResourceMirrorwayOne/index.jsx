@@ -141,7 +141,6 @@ export default class LResourceCreateModal extends React.Component {
     //   // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
     //   JSON.stringify(LResourceTemplates)
     // )
-    console.log('stepOne-handleCreate', dataToSubmit)
     const storagepool = []
 
     for (const key in dataToSubmit) {
@@ -194,7 +193,6 @@ export default class LResourceCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate, node } = this.props
-    console.log('stepone_props', this.props)
 
     const title = 'Choose mirrorway numbers'
 
@@ -217,7 +215,6 @@ export default class LResourceCreateModal extends React.Component {
           <Select
             name={`storagepool_${i}`}
             options={this.storagepools.filter(pool => {
-              console.log('pool', pool)
               if (!node) return true
               return pool.label.indexOf(node[i]) !== -1
             })}

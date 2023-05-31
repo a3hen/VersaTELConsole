@@ -56,15 +56,13 @@ export default class LResource extends React.Component {
     const { name, trigger, routing, store } = this.props
     return [
       {
-        key: 'delete',
+        key: 'diskless',
         icon: 'trash',
         text: t('choose_diskless_node'),
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log('item')
-          console.log(item)
-          trigger('lresources.delete', {
+          trigger('lresources.diskless', {
             LResourceTemplates: toJS(store.LResourceTemplates.data),
             // success: getData,
             name: item?.name,
@@ -78,8 +76,6 @@ export default class LResource extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log('item------------')
-          console.log(item)
           trigger('lresources.mirrorway', {
             LResourceTemplates: toJS(store.LResourceTemplates.data),
             // success: getData,
@@ -173,7 +169,7 @@ export default class LResource extends React.Component {
         render: deviceName => deviceName,
       },
       {
-        title: t('Assigned_Node'),
+        title: t('Assigned node'),
         dataIndex: 'assignedNode',
         isHideable: true,
         render: assignedNode => assignedNode,

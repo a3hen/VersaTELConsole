@@ -20,7 +20,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/LResourceCreate'
-import DeleteModalR from 'components/Modals/LResourceDelete'
+import DisklessModalR from 'components/Modals/LResourceDiskless'
 import MirrorwayModal from 'components/Modals/LResourceMirrorway'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
@@ -32,19 +32,12 @@ export default {
       const resourceName = props?.name
       const originalnum = parseInt(props?.mirrorWay)
       const { module } = store
-      console.log('props', props)
-      console.log('store', store)
-      console.log('module', module)
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
             Modal.close(modal)
             return
           }
-          console.log('now calling ok!!!!!!!')
-
-          console.log('data', data)
-          console.log('resourcename', resourceName)
           // data.metadata.name = resourceName
           const mergedData = {
             ...data,
@@ -52,7 +45,6 @@ export default {
             originalnum,
           }
           delete mergedData.name
-          console.log('mergedData', mergedData)
 
           request
             .post(
@@ -84,13 +76,12 @@ export default {
       })
     },
   },
-  'lresources.delete': {
+  'lresources.diskless': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       // const resourceName = name
       const resourceName = props?.name
       const { module } = store
-      console.log('props', props)
-      console.log('store & module', store, module)
+
       const modal = Modal.open({
         onOk: data => {
           if (!data) {
@@ -98,12 +89,10 @@ export default {
             return
           }
 
-          console.log('data', data)
-          console.log('resourcename', resourceName)
+
           data.metadata.name = resourceName
           const mergedData = { ...data, name: resourceName }
           delete mergedData.name // 删除创建diskless资源传递对象的name属性
-          console.log('mergedData', mergedData)
 
           request
             .post(
@@ -111,7 +100,6 @@ export default {
               mergedData
             )
             .then(res => {
-              console.log("res",res)
               // Modal.close(modal)
 
               if (Array.isArray(res)) {
@@ -125,7 +113,7 @@ export default {
             })
           Modal.close(modal)
         },
-        modal: DeleteModalR,
+        modal: DisklessModalR,
         store,
         module,
         cluster,
@@ -148,7 +136,6 @@ export default {
           const resourceName = data.name
           data.metadata.name = resourceName
           delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
-          console.log('data', data)
 
           store.create(data).then(res => {
             // Modal.close(modal)
