@@ -80,6 +80,15 @@ export default class ResourceBackup extends React.Component {
         icon: 'pen',
         text: t('Create image'),
         action: 'create',
+        show: record => {
+          if (record.snapshot !== '') {
+            if (record.image !== '') {
+              return false
+            }
+            return true
+          }
+          return false
+        },
         onClick: item =>
           trigger('resourcebackups.image.create', {
             detail: item,
@@ -92,6 +101,15 @@ export default class ResourceBackup extends React.Component {
         icon: 'pen',
         text: t('Snapshot Restore'),
         action: 'create',
+        show: record => {
+          if (record.snapshot !== '') {
+            if (record.snapshotRestore !== '') {
+              return false
+            }
+            return true
+          }
+          return false
+        },
         onClick: item =>
           trigger('resourcebackups.snapshotrestore.create', {
             detail: item,
@@ -104,6 +122,15 @@ export default class ResourceBackup extends React.Component {
         icon: 'pen',
         text: t('Image Restore'),
         action: 'create',
+        show: record => {
+          if (record.image !== '') {
+            if (record.imageRestore !== '') {
+              return false
+            }
+            return true
+          }
+          return false
+        },
         onClick: item =>
           trigger('resourcebackups.imagerestore.create', {
             detail: item,
