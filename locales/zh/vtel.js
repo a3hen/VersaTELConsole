@@ -124,4 +124,11 @@ module.exports = {
   Unhealthy: '异常',
   NORMAL: '正常',
   'Created Successfully': '创建成功',
+  'Raw Device': '裸设备',
+  'Display the message of Raw Device': '展示可用的裸设备磁盘',
+  'Display the message of PV Resource': '展示 PV 资源信息',
+  'PV Resource': 'PV 资源',
+  'Create PV': '创建 PV 资源',
+  'Device': '设备',
+  'Select Device': '选择设备',
 }
