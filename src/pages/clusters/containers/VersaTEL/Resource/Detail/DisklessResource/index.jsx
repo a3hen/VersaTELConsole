@@ -142,6 +142,7 @@ export default class DisklessResource extends React.Component {
           pagination={pagination}
           isLoading={isLoading}
           onFetch={this.handleFetch}
+          rowKey="node"
           hideCustom
           hideHeader
           silentLoading
