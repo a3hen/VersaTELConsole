@@ -204,7 +204,7 @@ export default class LResourceCreateModal extends React.Component {
         <Form.Item
           key={i}
           label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
-          desc={`${t('Select Storagepool to add mirrorway')} ${i}`}
+          desc={`${t('Select Storagepool to add mirrorway')}`}
           rules={[
             {
               required: true,

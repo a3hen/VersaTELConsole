@@ -72,6 +72,7 @@ module.exports = {
   'choose mirrorway number':'请选择修改后的副本数量',
   'Select Resource mirrorway change node':'请选择要进行操作的节点',
   'Created Failed, Reason:': '创建失败，原因：',
+  'Operation Failed, Reason:': '操作失败，原因：',
   'Deleted Failed, Reason:': '删除失败，原因：',
   'Diskful Resource': 'Diskful 资源',
   'Diskless Resource': 'Diskless 资源',
@@ -135,4 +136,5 @@ module.exports = {
   Unhealthy: '异常',
   NORMAL: '正常',
   'Created Successfully': '创建成功',
+  'Operation Successfully': '操作成功',
 }

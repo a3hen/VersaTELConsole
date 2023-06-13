@@ -56,10 +56,10 @@ export default {
 
               if (Array.isArray(res)) {
                 Notify.error({
-                  content: `${t('Created Failed, Reason:')}${res[0].message}`,
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
                 })
               } else {
-                Notify.success({ content: `${t('Created Successfully')}` })
+                Notify.success({ content: `${t('Operation Successfully')}` })
               }
               success && success()
             })
@@ -88,7 +88,6 @@ export default {
             Modal.close(modal)
             return
           }
-
 
           data.metadata.name = resourceName
           const mergedData = { ...data, name: resourceName }
