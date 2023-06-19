@@ -1,6 +1,7 @@
 module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VersaSDS 集群节点',
+  MIRRORWAY_LINSTOR_NODES: '选择调整副本的节点',
   DISKLESS_NODES: 'diskless资源所在的节点',
   LNODE: '节点',
   LNode: 'VersaSDS 集群节点',

@@ -99,7 +99,7 @@ export default class LResourceCreateModal extends React.Component {
     })
   }
   componentDidMount() {
-    console.log('componentDidMount called') // 添加这一行
+    console.log('componentDidMount called')
     this.fetchdiskfullData()
   }
   // get nodes() {
@@ -337,13 +337,16 @@ export default class LResourceCreateModal extends React.Component {
           visible={visible}
         >
           <Form.Item
-            label={t('文本显示框')}
-            desc={t('123')}
+            label={<strong>{t('资源副本信息详情')}</strong>}
+            desc={t('')}
           >
-            <h1>123456</h1>
-            {this.state.diskfullData.map((item, index) => (
-              <div key={index}>{JSON.stringify(item)}</div>
-            ))}
+            <div>
+              {this.state.diskfullData.map((item, index) => (
+                <div key={index}>
+                  <div>节点: {item.node} ; 存储池: {item.storagepool}</div>
+                </div>
+              ))}
+            </div>
           </Form.Item>
           <Form.Item
             label={t('change_mirrorway_number')}
@@ -358,7 +361,7 @@ export default class LResourceCreateModal extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            label={t('LINSTOR_NODES')}
+            label={t('MIRRORWAY_LINSTOR_NODES')}
             desc={t('Select Resource mirrorway change node')}
             // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
           >
