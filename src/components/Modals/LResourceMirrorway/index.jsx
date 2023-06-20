@@ -70,12 +70,18 @@ export default class LResourceCreateModal extends React.Component {
       isLoading: true,
     }
   }
+
   fetchdiskfullData = () => {
     const ChooseNode = this.props.name
-    fetch(`/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful?name=${ChooseNode}`)
+    fetch(
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful?name=${ChooseNode}`
+    )
       .then(response => response.json())
       .then(data => {
-        if (data && JSON.stringify(data) !== JSON.stringify(this.state.diskfullData)) {
+        if (
+          data &&
+          JSON.stringify(data) !== JSON.stringify(this.state.diskfullData)
+        ) {
           this.setState({ diskfullData: data.data || [], isLoading: false })
         }
       })
@@ -84,6 +90,7 @@ export default class LResourceCreateModal extends React.Component {
         this.setState({ isLoading: false })
       })
   }
+
   // componentDidMount() {
   //   this.fetchdiskfullData()
   // }
@@ -98,8 +105,8 @@ export default class LResourceCreateModal extends React.Component {
       ...params,
     })
   }
+
   componentDidMount() {
-    console.log('componentDidMount called')
     this.fetchdiskfullData()
   }
   // get nodes() {
@@ -178,13 +185,10 @@ export default class LResourceCreateModal extends React.Component {
     )
 
     if (a_mirrorway_value !== formValues.node.length) {
-      alert("调整的副本数量和选择的节点的数量不一致")
+      alert('调整的副本数量和选择的节点的数量不一致')
       return
     }
 
-    console.log("formvalues_node_length",formValues.node.length)
-    console.log("formvalues",formValues)
-    console.log("a_mirrorway_value",a_mirrorway_value)
 
     const ChooseNode = this.props.name
 
@@ -294,8 +298,6 @@ export default class LResourceCreateModal extends React.Component {
     const { showStepOne } = this.state
     const { isLoading } = this.state
 
-    console.log("data",this.state.diskfullData)
-    console.log("isloading",this.state.isLoading)
     // if (this.state.diskfullData.data) {
     //   this.setState({ true_diskfullData: this.state.diskfullData.data })
     // } else {
@@ -303,79 +305,74 @@ export default class LResourceCreateModal extends React.Component {
     // }
     // console.log("diskfullinfo", this.state.true_diskfullData);
 
-
     if (isLoading) {
-      console.log("1111111111111111")
       return <div>Loading...</div>
-      console.log("isloading",this.state.isLoading)
-      console.log("1111111111111111")
-    }else {
-      console.log("2222222222222222")
-      console.log("data11",this.state.diskfullData)
-      if (showStepOne) {
-        return (
-          <StepOne
-            module={module}
-            visible={visible}
-            formTemplate={formTemplate}
-            onOk={this.handleCreate}
-            onCancel={onCancel}
-            node={this.state.stepzeroValue.node}
-          />
-        )
-      }
-
+    }
+    if (showStepOne) {
       return (
-        <Modal.Form
-          width={600}
-          title={t(title)}
-          icon="database"
-          data={formTemplate}
-          onCancel={onCancel}
-          onOk={this.handleStepOne}
-          okText={t('OK')}
+        <StepOne
+          module={module}
           visible={visible}
-        >
-          <Form.Item
-            label={<strong>{t('资源副本信息详情')}</strong>}
-            desc={t('')}
-          >
-            <div>
-              {this.state.diskfullData.map((item, index) => (
-                <div key={index}>
-                  <div>节点: {item.node} ; 存储池: {item.storagepool}</div>
-                </div>
-              ))}
-            </div>
-          </Form.Item>
-          <Form.Item
-            label={t('change_mirrorway_number')}
-            desc={t('choose mirrorway number')}
-          >
-            <Input
-              name="members"
-              maxLength={63}
-              placeholder="number"
-              type="number"
-              pattern="[0-9]*"
-            />
-          </Form.Item>
-          <Form.Item
-            label={t('MIRRORWAY_LINSTOR_NODES')}
-            desc={t('Select Resource mirrorway change node')}
-            // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
-          >
-            <Select
-              name="node"
-              options={this.nodes}
-              onFetch={this.fetchNodes}
-              searchable
-              clearable
-              multi
-            />
-          </Form.Item>
-        </Modal.Form>
+          formTemplate={formTemplate}
+          onOk={this.handleCreate}
+          onCancel={onCancel}
+          node={this.state.stepzeroValue.node}
+        />
       )
     }
+
+    return (
+      <Modal.Form
+        width={600}
+        title={t(title)}
+        icon="database"
+        data={formTemplate}
+        onCancel={onCancel}
+        onOk={this.handleStepOne}
+        okText={t('OK')}
+        visible={visible}
+      >
+        <Form.Item
+          label={<strong>{t('资源副本信息详情')}</strong>}
+          desc={t('')}
+        >
+          <div>
+            {this.state.diskfullData.map((item, index) => (
+              <div key={index}>
+                <div>
+                  节点: {item.node} ; 存储池: {item.storagepool}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Form.Item>
+        <Form.Item
+          label={t('change_mirrorway_number')}
+          desc={t('choose mirrorway number')}
+        >
+          <Input
+            name="members"
+            maxLength={63}
+            placeholder="number"
+            type="number"
+            pattern="[0-9]*"
+          />
+        </Form.Item>
+        <Form.Item
+          label={t('MIRRORWAY_LINSTOR_NODES')}
+          desc={t('Select Resource mirrorway change node')}
+          // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
+        >
+          <Select
+            name="node"
+            options={this.nodes}
+            onFetch={this.fetchNodes}
+            searchable
+            clearable
+            multi
+          />
+        </Form.Item>
+      </Modal.Form>
+    )
   }
 }
