@@ -102,6 +102,7 @@ export default class Node extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
+    const { cluster } = this.props.match.params
     // const { getSortOrder, module } = this.props
     return [
       {
@@ -109,7 +110,11 @@ export default class Node extends React.Component {
         dataIndex: 'name',
         // width: '20%',
         render: name => (
-          <Avatar icon={ICON_TYPES[module]} noLink title={name} />
+          <Avatar
+            icon={ICON_TYPES[module]}
+            to={`/clusters/${cluster}/node/${name}`}
+            title={name}
+          />
         ),
       },
       {
@@ -117,21 +122,21 @@ export default class Node extends React.Component {
         dataIndex: 'status',
         isHideable: true,
         // width: '20%',
-        render: name => <VStatus name={name} />,
+        render: status => <VStatus name={status} />,
       },
       {
         title: t('Node Type'),
         dataIndex: 'nodeType',
         isHideable: true,
         // width: '10%',
-        render: name => name,
+        render: nodeType => nodeType,
       },
       {
         title: t('Address'),
         dataIndex: 'addr',
         isHideable: true,
         // width: '10%',
-        render: name => name,
+        render: addr => addr,
       },
       {
         title: t('Storagepool Num'),
@@ -140,7 +145,7 @@ export default class Node extends React.Component {
         // sortOrder: getSortOrder('spnum'),
         isHideable: true,
         // width: '20%',
-        render: name => name,
+        render: storagePoolNum => storagePoolNum,
       },
       {
         title: t('Resource Num'),
@@ -149,7 +154,7 @@ export default class Node extends React.Component {
         // sortOrder: getSortOrder('rnum'),
         isHideable: true,
         // width: '20%',
-        render: name => name,
+        render: resourceNum => resourceNum,
       },
     ]
   }

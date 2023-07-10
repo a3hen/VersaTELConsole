@@ -721,6 +721,15 @@ const getLResourceTemplate = ({ namespace }) => ({
   rules: [],
 })
 
+const getPVResourceTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'PVResource',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
 const getResourceBackupTemplate = ({ namespace, type, detail }) => ({
   apiVersion: 'storsecu.kubesphere.io/v1alpha1/backup',
   kind: 'ResourceBackup',
@@ -837,6 +846,7 @@ const FORM_TEMPLATES = {
   linstornodes: getLNodeTemplate,
   storagepools: getSPTemplate,
   lresources: getLResourceTemplate,
+  pvresources: getPVResourceTemplate,
   resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,

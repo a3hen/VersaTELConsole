@@ -21,7 +21,7 @@ module.exports = {
   disconnected: '未连接',
   'Download File': '下载文件',
   'Kubeconfig File': 'Kubeconfig 文件',
-  'mistyPLX Manager Terminal': 'mistyPLX Manager 终端',
+  'CoSAN Manager Terminal': 'CoSAN Manager 终端',
   'Launch kubectl': '启动 kubectl',
   'Put this into': '把它加入到',
   OPEN_TERMINAL_DESC: '请确保您代理服务器上的 WebSocket 代理配置无误.',

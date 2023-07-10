@@ -17,7 +17,7 @@
  */
 module.exports = {
   KS_DESCRIPTION:
-    "mistyPLX Manager, Kubernetes'in üzerinde kurumsal düzeyde multi-tenant konteyner platformu sağlamayı amaçlayan açık kaynaklı bir projedir. Kullanımı kolay arayüz ve tak-çıkar mimaride, günlük geliştirme, test ve bakım çalışmaları açısından Kubernetes'in öğrenme eğrisini ve işletme maliyetini azaltır.",
+    "CoSAN Manager, Kubernetes'in üzerinde kurumsal düzeyde multi-tenant konteyner platformu sağlamayı amaçlayan açık kaynaklı bir projedir. Kullanımı kolay arayüz ve tak-çıkar mimaride, günlük geliştirme, test ve bakım çalışmaları açısından Kubernetes'in öğrenme eğrisini ve işletme maliyetini azaltır.",
   REPS_ADDRESS: 'GitHub',
   ISSUE_FEEDBACK: 'Geri Bildirim',
   PART_IN_DISCUSSION: 'Forumlar',

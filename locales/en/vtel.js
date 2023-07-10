@@ -18,7 +18,7 @@
 
 module.exports = {
   VersaTEL_DESCRIPTION:
-    'mistyPLX Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, mistyRACK system hardware management, graphical management of Kubernetes based container platform and other functions. ',
+    'CoSAN Manager is the management system of CoSAN data security storage system. It includes VersaSDS parallel storage system management, VersaRACK system hardware management, graphical management of Kubernetes based container platform and other functions. ',
   LINSTOR_NODES: 'VersaSDS Node',
   LNODE: 'VersaSDS Node',
   LNode: 'VersaSDS Node',
@@ -71,4 +71,6 @@ module.exports = {
   AUDIT_LOG_RESPONSE_STATUS_AUDIT_TIP: 'Enter audit level to search for audit logs.',
   LResource_PL: 'Resource',
   LNode_PL: 'VersaSDS Node',
+  LVM_THIN_VOLUME_NAME_DESC: 'Please input a device name of type LVM THIN',
+  THINLV_SIZE_DESC: 'The default unit is K. If you do not enter a size, all space of selected resource is used by default',
 }

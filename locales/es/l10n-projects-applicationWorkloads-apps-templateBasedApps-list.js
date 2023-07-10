@@ -19,11 +19,11 @@ module.exports = {
   // Banner
   TEMPLATE_BASED_APP_PL: 'Template-Based Apps',
   APPLICATIONS_DESC:
-    'Una aplicación proporciona a los usuarios funciones comerciales integrales en un solo paquete. Las plantillas de aplicación en mistyPLX Manager se basan en la especificación de empaquetado de Helm. Se entregan a través de un repositorio Helm público o privado unificado. Una aplicación está compuesta por uno o más objetos de Kubernetes, que incluyen workload, servicios e ingress.',
+    'Una aplicación proporciona a los usuarios funciones comerciales integrales en un solo paquete. Las plantillas de aplicación en CoSAN Manager se basan en la especificación de empaquetado de Helm. Se entregan a través de un repositorio Helm público o privado unificado. Una aplicación está compuesta por uno o más objetos de Kubernetes, que incluyen workload, servicios e ingress.',
   APP_PL: 'Aplicaciones',
   APP_TYPES_Q: 'tipo de aplicacion',
   APP_TYPES_A:
-    'mistyPLX Manager admite implementaciones de aplicaciones (basadas en Helm) desde App Store, así como Application CRD.',
+    'CoSAN Manager admite implementaciones de aplicaciones (basadas en Helm) desde App Store, así como Application CRD.',
   HOW_TO_USE_APP_GOVERN_Q: '¿Cómo usar la Gestión de aplicaciones?',
   HOW_TO_USE_APP_GOVERN_A:
     'Cree una aplicación por composición y habilite la gestión de servicios para cada servicio antes de utilizar la gestión de aplicaciones.',
@@ -31,7 +31,7 @@ module.exports = {
   // List
   NO_TEMPLATE_BASED_APP_FOUND: 'No Template-Based App Found',
   TEMPLATE_BASED_APP_EMPTY_DESC:
-    'Please create an app from the mistyPLX Manager App Store or an app template.',
+    'Please create an app from the CoSAN Manager App Store or an app template.',
   APP: 'App',
   VERSION: 'Versión',
   // List > Create
@@ -41,14 +41,14 @@ module.exports = {
   FROM_APP_STORE: 'Desde la tienda de aplicaciones',
   FROM_APP_TEMPLATE: 'Desde plantillas de aplicaciones',
   FROM_APP_STORE_DESC:
-    'Desde la tienda de aplicaciones oficial de mistyPLX Manager con aplicaciones de alta calidad y despliegues fáciles.',
+    'Desde la tienda de aplicaciones oficial de CoSAN Manager con aplicaciones de alta calidad y despliegues fáciles.',
   // List > Create > From App Template
   SELECT_APP_REPOSITORY: 'Select app repository',
   CURRENT_WORKSPACE: 'Del espacio de trabajo',
   FROM_APP_TEMPLATE_DESC:
     'Desde las plantillas de aplicación del espacio de trabajo y las plantillas de aplicaciones Helm de terceros del repositorio de aplicaciones.',
   APP_TEMPLATES_MODAL_DESC:
-    'La plantilla de la aplicación proviene del espacio de trabajo y las plantillas de aplicación de Helm de terceros. Admite el despliegue con un click y se puede visualizar en mistyPLX Manager para mostrar y proporcionar despliegues y funciones de administración.',
+    'La plantilla de la aplicación proviene del espacio de trabajo y las plantillas de aplicación de Helm de terceros. Admite el despliegue con un click y se puede visualizar en CoSAN Manager para mostrar y proporcionar despliegues y funciones de administración.',
   // List > Create > From App Template > App Information
   // List > Create > From App Template > Chart Files
   // List > Edit

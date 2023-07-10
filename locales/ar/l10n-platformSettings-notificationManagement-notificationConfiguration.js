@@ -19,7 +19,7 @@ module.exports = {
   // Banner
   NOTIFICATION_MANAGEMENT: 'Notification Management',
   NOTIFICATION_CONFIGURATION: 'Notification Configuration',
-  NOTIFICATION_CONFIGURATION_DESC: 'mistyPLX Manager supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
+  NOTIFICATION_CONFIGURATION_DESC: 'CoSAN Manager supports notification configuration for multiple notification channels. You can set servers and recipients, and enable or disable notifications.',
   NOTIFICATION_EMAIL: 'البريد الإلكتروني',
   // Email
   MAIL_TITLE: 'البريد الإلكتروني',

@@ -33,7 +33,7 @@ module.exports = {
     'Una vez que el proyecto se asigna a un espacio de trabajo ya no se puedes cambiar.',
   // List > Create
   CREATE_PROJECT_DESC:
-    'Un proyecto es un namespace de Kubernetes en mistyPLX Manager, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
+    'Un proyecto es un namespace de Kubernetes en CoSAN Manager, que proporciona un mecanismo para organizar los recursos en un espacio de trabajo.',
   PROJECT_NAME_DESC:
     'Solo puede contener letras minúsculas, números y guiones ("-"), y debe comenzar con una letra minúscula y terminar con un número o letra minúscula. La longitud máxima de caracteres se establece en 63.',
   PROJECT_NAME_INVALID_DESC:
