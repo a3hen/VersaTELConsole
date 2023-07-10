@@ -189,7 +189,6 @@ export default class LResourceCreateModal extends React.Component {
       return
     }
 
-
     const ChooseNode = this.props.name
 
     if (formValues.members > mirrorWay) {
