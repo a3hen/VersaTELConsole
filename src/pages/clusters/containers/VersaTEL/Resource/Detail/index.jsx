@@ -59,7 +59,6 @@ export default class ResourceDetail extends React.Component {
     const { detail = {} } = this.store
 
     if (isEmpty(detail)) return null
-
     return [
       {
         name: t('Mirror Way'),
@@ -72,6 +71,10 @@ export default class ResourceDetail extends React.Component {
       {
         name: t('Device Name'),
         value: detail.deviceName,
+      },
+      {
+        name: t('Assigned node'),
+        value: detail.assignedNode,
       },
     ]
   }

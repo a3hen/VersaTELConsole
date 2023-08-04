@@ -28,6 +28,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 import StoragepoolStore from 'stores/storagepool'
+import DisklessResourceStore from 'stores/disklessresource'
 
 @observer
 export default class LResourceCreateModal extends React.Component {
@@ -56,6 +57,7 @@ export default class LResourceCreateModal extends React.Component {
 
     this.linstornodeStore = new LNodeStore()
     this.storagepoolStore = new StoragepoolStore()
+    this.disklessresourceStore = new DisklessResourceStore()
 
     this.fetchNodes()
     this.fetchStoragepools()
@@ -124,12 +126,13 @@ export default class LResourceCreateModal extends React.Component {
   // }
 
   handleCreate = LResourceTemplates => {
-    set(
-      this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(LResourceTemplates)
-    )
-    this.props.onOk(this.props.formTemplate)
+    const dataToSubmit = { ...this.props.formTemplate, ...LResourceTemplates }
+    // set(
+    //   this.props.formTemplate,
+    //   // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+    //   JSON.stringify(LResourceTemplates)
+    // )
+    this.props.onOk(dataToSubmit)
   }
 
   LResourceNameValidator = (rule, value, callback) => {
@@ -172,7 +175,7 @@ export default class LResourceCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    const title = 'Create Resource'
+    const title = 'Choose diskless node'
 
     return (
       <Modal.Form
@@ -186,42 +189,14 @@ export default class LResourceCreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('Name')}
-          desc={t('VTEL_NAME_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource name') },
-            {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
-            },
-            { validator: this.LResourceNameValidator },
-          ]}
-        >
-          <Input name="name" maxLength={63} placeholder="name" />
-        </Form.Item>
-        <Form.Item
-          label={t('Size')}
-          desc={t('VTEL_SIZE_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource size') },
-            {
-              pattern: PATTERN_VTEL_SIZE,
-              message: t('Invalid size', { message: t('VTEL_SIZE_DESC') }),
-            },
-          ]}
-        >
-          <Input name="size" maxLength={63} placeholder="size" />
-        </Form.Item>
-        <Form.Item
-          label={t('LINSTOR_STORAGEPOOLS')}
-          desc={t('Select Storagepool to create diskful resource')}
-          rules={[{ required: true, message: t('Please select Storagepool') }]}
+          label={t('LINSTOR_NODES')}
+          desc={t('Select VersaSDS Node to create diskless resource')}
+          // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select
-            name="storagepool"
-            options={this.storagepools}
-            onFetch={this.fetchStoragepools}
-            // onChange={this.handleStoragepoolChange}
+            name="node"
+            options={this.nodes}
+            onFetch={this.fetchNodes}
             searchable
             clearable
             multi

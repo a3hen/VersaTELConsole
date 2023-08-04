@@ -27,7 +27,7 @@ export default class LResourceStore extends Base {
   LResourceTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
+    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
 
   getListUrl = this.getResourceUrl
 
@@ -118,7 +118,7 @@ export default class LResourceStore extends Base {
     this.LResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
     )
     this.LResourceTemplates.update({
       data: get(result, 'data', []).map(this.mapper),

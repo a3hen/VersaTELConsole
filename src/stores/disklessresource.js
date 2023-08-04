@@ -21,12 +21,13 @@ import { action } from 'mobx'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
+import { Notify } from '@kube-design/components'
 
 export default class DisklessResourceStore extends Base {
   DisklessResourceTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`
+    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
 
   getListUrl = this.getResourceUrl
 
@@ -115,7 +116,7 @@ export default class DisklessResourceStore extends Base {
     this.DisklessResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskless`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
@@ -129,4 +130,7 @@ export default class DisklessResourceStore extends Base {
       isLoading: false,
     })
   }
+
+  @action
+  async assignNode(params) {}
 }

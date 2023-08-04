@@ -28,6 +28,8 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 import StoragepoolStore from 'stores/storagepool'
+import DisklessResourceStore from 'stores/disklessresource'
+import StepOne from 'components/Modals/EditAuthorization'
 
 @observer
 export default class LResourceCreateModal extends React.Component {
@@ -56,6 +58,7 @@ export default class LResourceCreateModal extends React.Component {
 
     this.linstornodeStore = new LNodeStore()
     this.storagepoolStore = new StoragepoolStore()
+    this.disklessresourceStore = new DisklessResourceStore()
 
     this.fetchNodes()
     this.fetchStoragepools()
@@ -123,13 +126,32 @@ export default class LResourceCreateModal extends React.Component {
   //   this.setState({ unselectedNodes: newNodes })
   // }
 
+  state = {
+    showStepOne: false,
+  }
+
+  showStepOne = () => {
+    this.setState({ showStepOne: true })
+  }
+
   handleCreate = LResourceTemplates => {
-    set(
-      this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(LResourceTemplates)
-    )
-    this.props.onOk(this.props.formTemplate)
+    const dataToSubmit = { ...this.props.formTemplate, ...LResourceTemplates }
+    // set(
+    //   this.props.formTemplate,
+    //   // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+    //   JSON.stringify(LResourceTemplates)
+    // )
+    const storagepool = []
+
+    for (const key in dataToSubmit) {
+      if (key.startsWith('storagepool_')) {
+        const index = parseInt(key.substring(12))
+        storagepool[index] = dataToSubmit[key][0]
+      }
+    }
+
+    dataToSubmit.storagepool = storagepool
+    this.props.onOk(dataToSubmit)
   }
 
   LResourceNameValidator = (rule, value, callback) => {
@@ -170,9 +192,40 @@ export default class LResourceCreateModal extends React.Component {
   }
 
   render() {
-    const { visible, onCancel, formTemplate } = this.props
+    const { visible, onCancel, formTemplate, node } = this.props
 
-    const title = 'Create Resource'
+    const title = 'Choose mirrorway numbers'
+
+    const { showStepOne } = this.state
+
+    const selectBoxes = []
+    for (let i = 0; i < node.length; i++) {
+      selectBoxes.push(
+        <Form.Item
+          key={i}
+          label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
+          desc={`${t('Select Storagepool to add mirrorway')}`}
+          rules={[
+            {
+              required: true,
+              message: `${t(`Please select Storagepool`)} ${i}`,
+            },
+          ]}
+        >
+          <Select
+            name={`storagepool_${i}`}
+            options={this.storagepools.filter(pool => {
+              if (!node) return true
+              return pool.label.indexOf(node[i]) !== -1
+            })}
+            onFetch={this.fetchStoragepools}
+            // onChange={this.handleStoragepoolChange}
+            searchable
+            clearable
+          />
+        </Form.Item>
+      )
+    }
 
     return (
       <Modal.Form
@@ -185,48 +238,7 @@ export default class LResourceCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-        <Form.Item
-          label={t('Name')}
-          desc={t('VTEL_NAME_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource name') },
-            {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
-            },
-            { validator: this.LResourceNameValidator },
-          ]}
-        >
-          <Input name="name" maxLength={63} placeholder="name" />
-        </Form.Item>
-        <Form.Item
-          label={t('Size')}
-          desc={t('VTEL_SIZE_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource size') },
-            {
-              pattern: PATTERN_VTEL_SIZE,
-              message: t('Invalid size', { message: t('VTEL_SIZE_DESC') }),
-            },
-          ]}
-        >
-          <Input name="size" maxLength={63} placeholder="size" />
-        </Form.Item>
-        <Form.Item
-          label={t('LINSTOR_STORAGEPOOLS')}
-          desc={t('Select Storagepool to create diskful resource')}
-          rules={[{ required: true, message: t('Please select Storagepool') }]}
-        >
-          <Select
-            name="storagepool"
-            options={this.storagepools}
-            onFetch={this.fetchStoragepools}
-            // onChange={this.handleStoragepoolChange}
-            searchable
-            clearable
-            multi
-          />
-        </Form.Item>
+        {selectBoxes}
       </Modal.Form>
     )
   }
