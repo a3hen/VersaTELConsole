@@ -72,7 +72,6 @@ export default class LResource extends React.Component {
 
   get tableActions() {
     const { tableProps, trigger, routing } = this.props
-    console.log(tableProps.tableActions)
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
@@ -156,7 +155,6 @@ export default class LResource extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    console.log('bannerProps', bannerProps, tableProps)
 
     return (
       <ListPage {...this.props} noWatch>

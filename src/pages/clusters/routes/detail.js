@@ -51,10 +51,15 @@ import IPPoolDetail from '../containers/Network/IPPools/Detail'
 import GatewayDetail from '../containers/Gateway/Detail'
 
 import ResourceDetail from '../containers/VersaTEL/Resource/Detail'
+import LNodeDetail from '../containers/VersaTEL/Node/Detail'
 
 const PATH = '/clusters/:cluster'
 
 export default [
+  {
+    path: `${PATH}/node/:name`,
+    component: LNodeDetail,
+  },
   {
     path: `${PATH}/resource/:name`,
     component: ResourceDetail,
