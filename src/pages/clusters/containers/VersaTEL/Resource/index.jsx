@@ -72,7 +72,7 @@ export default class LResource extends React.Component {
       {
         key: 'mirrorway',
         icon: 'trash',
-        text: t('Choose mirrorway numbers'),
+        text: t('创建diskless资源'),
         action: 'delete',
         show: true,
         onClick: item => {
@@ -168,12 +168,12 @@ export default class LResource extends React.Component {
         isHideable: true,
         render: deviceName => deviceName,
       },
-      {
-        title: t('Assigned node'),
-        dataIndex: 'assignedNode',
-        isHideable: true,
-        render: assignedNode => assignedNode,
-      },
+      // {
+      //   title: t('Assigned node'),
+      //   dataIndex: 'assignedNode',
+      //   isHideable: true,
+      //   render: assignedNode => assignedNode,
+      // },
     ]
   }
 

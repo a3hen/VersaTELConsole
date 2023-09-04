@@ -27,7 +27,7 @@ export default class LResourceStore extends Base {
   LResourceTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
+    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource`
 
   getListUrl = this.getResourceUrl
 
