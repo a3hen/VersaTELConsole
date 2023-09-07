@@ -292,7 +292,7 @@ export default class LResourceCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    const title = 'Choose mirrorway numbers'
+    const title = '调整副本数量'
 
     const { showStepOne } = this.state
     const { isLoading } = this.state
@@ -346,8 +346,8 @@ export default class LResourceCreateModal extends React.Component {
           </div>
         </Form.Item>
         <Form.Item
-          label={t('change_mirrorway_number')}
-          desc={t('choose mirrorway number')}
+          label={t('新副本数量')}
+          desc={t('请选择修改后的副本数量')}
         >
           <Input
             name="members"
@@ -358,8 +358,8 @@ export default class LResourceCreateModal extends React.Component {
           />
         </Form.Item>
         <Form.Item
-          label={t('MIRRORWAY_LINSTOR_NODES')}
-          desc={t('Select Resource mirrorway change node')}
+          label={t('选择调整副本的节点')}
+          desc={t('请选择要进行操作的节点')}
           // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select

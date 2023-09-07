@@ -11,6 +11,7 @@ module.exports = {
   'LVM Type': 'LVM 类型',
   'Storagepool Num': '存储池数量',
   'Resource Num': '资源数量',
+  'choose_diskless_node': '创建diskless资源',
   LNODE_CREATE_DESC: '创建 VersaSDS 集群节点',
   LNODE_EMPTY_DESC: '请创建一个节点',
   'Create VersaSDS Node': '创建 VersaSDS 集群节点',

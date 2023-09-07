@@ -58,7 +58,7 @@ export default class LResource extends React.Component {
       {
         key: 'diskless',
         icon: 'trash',
-        text: t('choose_diskless_node'),
+        text: t('创建diskless资源'),
         action: 'delete',
         show: true,
         onClick: item => {
@@ -72,7 +72,7 @@ export default class LResource extends React.Component {
       {
         key: 'mirrorway',
         icon: 'trash',
-        text: t('创建diskless资源'),
+        text: t('调整副本数量'),
         action: 'delete',
         show: true,
         onClick: item => {
