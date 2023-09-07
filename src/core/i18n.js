@@ -57,7 +57,6 @@ const init = async () => {
     const data = await request.get(`dist/${localePath}`)
     locales[userLang] = data
   }
-  console.log(locales[userLang].Assigned_Node, localePath)
   return { locales }
 }
 
