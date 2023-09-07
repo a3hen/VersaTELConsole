@@ -56,6 +56,16 @@ export default class LResource extends React.Component {
     const { name, trigger, routing, store } = this.props
     return [
       {
+        key: 'delete',
+        icon: 'trash',
+        text: t('Delete'),
+        action: 'delete',
+        show: true,
+        onClick: item =>
+        trigger('lresources.delete', {
+        LResourceTemplates: toJS(store.LResourceTemplates.data),
+        // success: getData,
+        })
         key: 'diskless',
         icon: 'trash',
         text: t('choose_diskless_node'),
@@ -107,24 +117,24 @@ export default class LResource extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      getCheckboxProps: record => ({
-        disabled: this.showAction(record),
-        name: record.name,
-      }),
-      selectActions: [
-        {
-          key: 'delete',
-          type: 'danger',
-          text: t('DELETE'),
-          action: 'delete',
-          onClick: () =>
-            trigger('lresources.batch.delete', {
-              type: 'LResource',
-              rowKey: 'name',
-              success: routing.query,
-            }),
-        },
-      ],
+      // getCheckboxProps: record => ({
+      //   disabled: this.showAction(record),
+      //   name: record.name,
+      // }),
+      // selectActions: [
+      //   {
+      //     key: 'delete',
+      //     type: 'danger',
+      //     text: t('DELETE'),
+      //     action: 'delete',
+      //     onClick: () =>
+      //       trigger('lresources.batch.delete', {
+      //         type: 'LResource',
+      //         rowKey: 'name',
+      //         success: routing.query,
+      //       }),
+      //   },
+      // ],
     }
   }
 
@@ -169,6 +179,11 @@ export default class LResource extends React.Component {
         render: deviceName => deviceName,
       },
       {
+        title: t('Assigned_Node'),
+        dataIndex: 'assignedNode',
+        isHideable: true,
+        render: assignedNode => assignedNode,
+      }
         title: t('Assigned node'),
         dataIndex: 'assignedNode',
         isHideable: true,

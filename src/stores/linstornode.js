@@ -172,6 +172,20 @@ export default class LNodeStore extends Base {
     })
   }
 
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+    const result = await request.get(this.getResourceUrl(), {
+      name: params.name,
+    })
+    const filterData = get(result, 'data', [])
+    const data = filterData.filter(item => item.name === params.name)
+    const detail = { ...params, ...data[0], kind: 'LNode' }
+    this.detail = detail
+    this.isLoading = false
+    return detail
+  }
+
   // @action
   // delete({ cluster, name, workspace, namespace }) {
   //   if (this.checkIfIsPresetLNode(name)) {

@@ -286,7 +286,6 @@ export default class WorkloadTable extends React.Component {
 
   renderActions() {
     const { onCreate, createText, actions } = this.props
-
     if (actions) {
       return actions.map(action => (
         <Button

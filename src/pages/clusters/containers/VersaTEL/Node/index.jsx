@@ -104,6 +104,7 @@ export default class Node extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
+    const { cluster } = this.props.match.params
     // const { getSortOrder, module } = this.props
     return [
       {
@@ -111,7 +112,11 @@ export default class Node extends React.Component {
         dataIndex: 'name',
         // width: '20%',
         render: name => (
-          <Avatar icon={ICON_TYPES[module]} noLink title={name} />
+          <Avatar
+            icon={ICON_TYPES[module]}
+            to={`/clusters/${cluster}/node/${name}`}
+            title={name}
+          />
         ),
       },
       {
