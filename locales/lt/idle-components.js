@@ -63,7 +63,7 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_PERIOD_DESC:
     'Period of running backup etcd job, the unit is minutes.',
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: 'How many backup replicas to keep.',
-  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for mistyPLX Manager',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for CoSAN Manager',
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
   // Add Node
@@ -73,9 +73,9 @@ module.exports = {
   SSH_KEY_SCAP: 'SSH key',
   SSH_AUTH_MODE: 'SSH Authentication Mode',
   NODE_INTERNAL_IP_DESC:
-    'Set the internal IP address of the node in the mistyPLX Manager cluster.',
+    'Set the internal IP address of the node in the CoSAN Manager cluster.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please set the internal IP address of the node in the mistyPLX Manager cluster.',
+    'Please set the internal IP address of the node in the CoSAN Manager cluster.',
   NODE_ROLE_DESC: 'Set the role of the node in the cluster.',
   NODE_EXTERNAL_IP_DESC:
     'Enter the node IP address and port number used for SSH login.',

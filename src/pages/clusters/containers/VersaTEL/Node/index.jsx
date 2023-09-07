@@ -38,6 +38,8 @@ import LNodeStore from 'stores/linstornode'
 export default class Node extends React.Component {
   componentDidMount() {
     this.props.store.fetchLNodeTemplates()
+    // this.prop
+    // s.store.fetchLNodeTemplates()
     this.interval = setInterval(() => {
       this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)

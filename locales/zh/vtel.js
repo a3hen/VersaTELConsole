@@ -1,6 +1,8 @@
 module.exports = {
   VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VersaSDS 集群节点',
+  MIRRORWAY_LINSTOR_NODES: '选择调整副本的节点',
+  DISKLESS_NODES: 'diskless资源所在的节点',
   LNODE: '节点',
   LNode: 'VersaSDS 集群节点',
   LNODE_DESC:
@@ -20,7 +22,7 @@ module.exports = {
   SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
-    'mistyPLX Manager 是 CoSAN 数据安全存储系统的管理系统，它包含了 VersaSDS 并行存储系统管理、mistyRACK 系统硬件管理、对基于 Kubernetes 的容器平台的图形化管理等多项功能，是一个统一的、模块化的管理平台。',
+    'CoSAN Manager 是 CoSAN 数据安全存储系统的管理系统，它包含了 VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理、对基于 Kubernetes 的容器平台的图形化管理等多项功能，是一个统一的、模块化的管理平台。',
   'VersaSDS Node IP Address': '节点 IP 地址',
   'VersaSDS Node Type': '节点类型',
   'IP Address of VersaSDS Node': 'VersaSDS 节点的 IP 地址，须符合 IP 地址格式',
@@ -46,6 +48,7 @@ module.exports = {
   'Mirror Way': '副本',
   'Device Name': '设备名称',
   'Assigned_Node': '已分配的节点',
+  'Assigned node': '已分配的节点',
   LResource: '资源',
   'Node name exists': '节点名已存在',
   'Storagepool name exists': '存储池名已存在',
@@ -54,6 +57,8 @@ module.exports = {
   'Create PV': '创建PV',
   'Create VG': '创建VG',
   'Create TP': '创建ThinPool',
+  'Choose diskless node':'选择diskless资源所在的节点',
+  'Choose mirrorway numbers':'调整副本数量',
   VTEL_SIZE_DESC: '请输入资源的大小，不加单位则默认单位为 K',
   'Invalid size': '输入的资源大小格式不合法',
   'Please input Resource size': '请输入资源的大小',
@@ -66,9 +71,13 @@ module.exports = {
   'Please select Storagepool': '请选择存储池',
   'Select Storagepool to create diskful resource':
     '请选择创建的 diskful 资源所在的存储池',
+  'Select Storagepool to add mirrorway':'请选择需要新增副本的存储池',
   'Select VersaSDS Node to create diskless resource':
     '请选择创建的 diskless 资源所在的节点',
+  'choose mirrorway number':'请选择修改后的副本数量',
+  'Select Resource mirrorway change node':'请选择要进行操作的节点',
   'Created Failed, Reason:': '创建失败，原因：',
+  'Operation Failed, Reason:': '操作失败，原因：',
   'Deleted Failed, Reason:': '删除失败，原因：',
   'Deleted Successful': '删除成功',
   'Diskful Resource': 'Diskful 资源',
@@ -112,6 +121,8 @@ module.exports = {
   'Please select Device': '请选择裸设备',
   'Please input name': '请输入名称',
   'Please select Volume name': '请选择用于创建存储池的LVM设备',
+  'change_mirrorway_number':'新副本数量',
+  'CHOOSE_LINSTOR_STORAGEPOOLS':'选择对应节点的存储池',
   Status: '状态',
   Snapshots: '存储卷快照',
   LNode_LOW: 'VersaSDS 节点',
@@ -120,6 +131,8 @@ module.exports = {
   Name: '名称',
   'Invalid IP address': 'IP 地址格式错误',
   Delete: '删除',
+  choose_diskless_node: '选择diskless节点',
+  choose_mirrorway: '选择副本数量',
   存储池_LOW: '存储池',
   Conns: '连接状态',
   STORAGEPOOL: '存储池',
@@ -163,4 +176,5 @@ module.exports = {
   Unhealthy: '异常',
   NORMAL: '正常',
   'Created Successfully': '创建成功',
+  'Operation Successfully': '操作成功',
 }

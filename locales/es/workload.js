@@ -259,7 +259,7 @@ module.exports = {
   WORKLOAD_REASON_REPLICASETUPDATED: 'WORKLOAD_REASON_REPLICASETUPDATED',
   Workloads: 'Cargas de trabajo',
   DEPLOYMENT_DESC:
-    'La implementación proporciona una gestión detallada de aplicaciones comunes en mistyPLX Manager. La configuración de implementación describe el estado deseado de componentes específicos de una aplicación como plantillas Pod.',
+    'La implementación proporciona una gestión detallada de aplicaciones comunes en CoSAN Manager. La configuración de implementación describe el estado deseado de componentes específicos de una aplicación como plantillas Pod.',
   STATEFULSET_DESC:
     'StatefulSet se usa para administrar aplicaciones con estado, administrar la implementación y la ampliación de un conjunto de Pods, y proporciona garantías sobre el orden y la unicidad de estos Pods.',
   DAEMONSET_DESC:

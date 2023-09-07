@@ -26,7 +26,7 @@ export default class StoragepoolStore extends Base {
   StoragepoolTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/storagepool`
+    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool`
 
   getListUrl = this.getResourceUrl
 
@@ -124,7 +124,7 @@ export default class StoragepoolStore extends Base {
     this.StoragepoolTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/storagepool`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool`
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {

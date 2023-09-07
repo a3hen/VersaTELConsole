@@ -20,7 +20,7 @@ module.exports = {
   OVERVIEW: 'Visión global',
   // Description
   WORKSPACE_OVERVIEW_DESC:
-    'Workspace proporciona a mistyPLX Manager una plataforma segura, aislada y accesible. Aquí puedes ver el estado de ejecución de los recursos en el espacio de trabajo actual.',
+    'Workspace proporciona a CoSAN Manager una plataforma segura, aislada y accesible. Aquí puedes ver el estado de ejecución de los recursos en el espacio de trabajo actual.',
   // Statistics
   ROLE_PL: 'Roles',
   // Physical Resources

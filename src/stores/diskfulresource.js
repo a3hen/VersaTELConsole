@@ -26,7 +26,7 @@ export default class DiskfulResourceStore extends Base {
   DiskfulResourceTemplates = new List()
 
   getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskful`
+    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful`
 
   getListUrl = this.getResourceUrl
 
@@ -132,7 +132,7 @@ export default class DiskfulResourceStore extends Base {
     this.DiskfulResourceTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/resource/diskful`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful`
     )
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
