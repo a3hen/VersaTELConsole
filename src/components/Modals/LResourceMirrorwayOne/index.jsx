@@ -194,7 +194,7 @@ export default class LResourceCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate, node } = this.props
 
-    const title = '调整副本数量'
+    const title = 'Choose mirrorway numbers'
 
     const { showStepOne } = this.state
 
@@ -203,8 +203,8 @@ export default class LResourceCreateModal extends React.Component {
       selectBoxes.push(
         <Form.Item
           key={i}
-          label={`${t('选择对应节点的存储池')}: ${node[i]}`}
-          desc={`${t('请选择需要新增副本的存储池')}`}
+          label={`${t('CHOOSE_LINSTOR_STORAGEPOOLS')}: ${node[i]}`}
+          desc={`${t('Select Storagepool to add mirrorway')}`}
           rules={[
             {
               required: true,
