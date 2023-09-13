@@ -56,16 +56,16 @@ export default class LResource extends React.Component {
     const { name, trigger, routing, store } = this.props
     return [
       {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        show: true,
-        onClick: item =>
-        trigger('lresources.delete', {
-        LResourceTemplates: toJS(store.LResourceTemplates.data),
-        // success: getData,
-        })
+        // key: 'delete',
+        // icon: 'trash',
+        // text: t('Delete'),
+        // action: 'delete',
+        // show: true,
+        // onClick: item =>
+        // trigger('lresources.delete', {
+        // LResourceTemplates: toJS(store.LResourceTemplates.data),
+        // // success: getData,
+        // })
         key: 'diskless',
         icon: 'trash',
         text: t('choose_diskless_node'),
@@ -178,17 +178,12 @@ export default class LResource extends React.Component {
         isHideable: true,
         render: deviceName => deviceName,
       },
-      {
-        title: t('Assigned_Node'),
-        dataIndex: 'assignedNode',
-        isHideable: true,
-        render: assignedNode => assignedNode,
-      }
-        title: t('Assigned node'),
-        dataIndex: 'assignedNode',
-        isHideable: true,
-        render: assignedNode => assignedNode,
-      },
+      // {
+      //   title: t('Assigned_Node'),
+      //   dataIndex: 'assignedNode',
+      //   isHideable: true,
+      //   render: assignedNode => assignedNode,
+      // },
     ]
   }
 
