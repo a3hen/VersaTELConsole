@@ -27,8 +27,6 @@ import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
-  'lresources.delete': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
   'lresources.mirrorway': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       // const resourceName = name
@@ -41,23 +39,6 @@ export default {
             Modal.close(modal)
             return
           }
-
-          store.create(data).then(res => {
-            // Modal.close(modal)
-
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
-              Notify.success({ content: `${t('Created Successfully')}` })
-            }
-            success && success()
-          })
-          Modal.close(modal)
-        },
-        modal: DeleteModalR,
-          // data.metadata.name = resourceName
           const mergedData = {
             ...data,
             resname: resourceName,
@@ -83,6 +64,20 @@ export default {
               success && success()
             })
           Modal.close(modal)
+
+          // store.create(data).then(res => {
+          //   // Modal.close(modal)
+          //
+          //   if (Array.isArray(res)) {
+          //     Notify.error({
+          //       content: `${t('Created Failed, Reason:')}${res[0].message}`,
+          //     })
+          //   } else {
+          //     Notify.success({ content: `${t('Created Successfully')}` })
+          //   }
+          //   success && success()
+          // })
+          // Modal.close(modal)
         },
         modal: MirrorwayModal,
         store,

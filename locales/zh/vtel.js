@@ -57,7 +57,7 @@ module.exports = {
   'Create PV': '创建PV',
   'Create VG': '创建VG',
   'Create TP': '创建ThinPool',
-  'Choose diskless node':'选择diskless资源所在的节点',
+  'Choose diskless node': '创建diskless资源',
   'Choose mirrorway numbers':'调整副本数量',
   VTEL_SIZE_DESC: '请输入资源的大小，不加单位则默认单位为 K',
   'Invalid size': '输入的资源大小格式不合法',
@@ -74,6 +74,7 @@ module.exports = {
   'Select Storagepool to add mirrorway':'请选择需要新增副本的存储池',
   'Select VersaSDS Node to create diskless resource':
     '请选择创建的 diskless 资源所在的节点',
+
   'choose mirrorway number':'请选择修改后的副本数量',
   'Select Resource mirrorway change node':'请选择要进行操作的节点',
   'Created Failed, Reason:': '创建失败，原因：',
@@ -131,7 +132,7 @@ module.exports = {
   Name: '名称',
   'Invalid IP address': 'IP 地址格式错误',
   Delete: '删除',
-  choose_diskless_node: '选择diskless节点',
+  choose_diskless_node: '创建diskless资源',
   choose_mirrorway: '选择副本数量',
   存储池_LOW: '存储池',
   Conns: '连接状态',
