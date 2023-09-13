@@ -65,7 +65,7 @@ export default class AdminDashboard extends React.Component {
           <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
               // title={version.replace('v', '')}
-              title="1.0.5"
+              title="1.1.0-RC"
               description={t('PLATFORM_VERSION')}
             />
             {globals.app.isMultiCluster ? (
