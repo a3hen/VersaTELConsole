@@ -123,6 +123,7 @@ client:
             - { name: node, title: Node }
             - { name: storagepool, title: Storagepool }
             - { name: resource, title: Resource }
+            - { name: snapshot, title: Snapshot }
         - name: backup
           title: Backup
           icon: snapshot

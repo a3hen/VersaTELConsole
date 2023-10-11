@@ -761,6 +761,31 @@ const getResourceBackupTemplate = ({ namespace, type, detail }) => ({
   rules: [],
 })
 
+const getSnapshotTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'Snapshot',
+  metadata: {
+    namespace,
+    // name: detail.name,
+    type,
+  },
+  // snapshot: detail.snapshot,
+  // image: detail.image,
+  rules: [],
+})
+const getSSnapshotTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'SSnapshot',
+  metadata: {
+    namespace,
+    // name: detail.name,
+    type,
+  },
+  // snapshot: detail.snapshot,
+  // image: detail.image,
+  rules: [],
+})
+
 const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
@@ -867,6 +892,8 @@ const FORM_TEMPLATES = {
   pvresources: getPVResourceTemplate,
   vgresources: getVGResourceTemplate,
   tpresources: getTPResourceTemplate,
+  snapshot: getSnapshotTemplate,
+  ssnapshot: getSSnapshotTemplate,
   resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,

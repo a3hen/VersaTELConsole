@@ -200,6 +200,7 @@ module.exports = {
   RESET: '重置',
   'Resource List': '资源列表',
   Resource: '资源',
+
   Restart: '重启',
   Running: '运行中',
   Scheme: '方案',
