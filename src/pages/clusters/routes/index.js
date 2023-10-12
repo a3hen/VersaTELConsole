@@ -65,6 +65,8 @@ import Node from '../containers/VersaTEL/Node'
 import Storagepool from '../containers/VersaTEL/Storagepool'
 import Resource from '../containers/VersaTEL/Resource'
 import ResourceBackup from '../containers/ResourceBackup'
+import Snapshot from '../containers/VersaTEL/Snapshot'
+import SSnapshot from '../containers/VersaTEL/SSnapshot'
 
 const PATH = '/clusters/:cluster'
 
@@ -113,6 +115,16 @@ export default [
           {
             path: `${PATH}/resource`,
             component: Resource,
+            exact: true,
+          },
+          {
+            path: `${PATH}/snapshot`,
+            component: Snapshot,
+            exact: true,
+          },
+          {
+            path: `${PATH}/ssnapshot`,
+            component: SSnapshot,
             exact: true,
           },
           {

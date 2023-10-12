@@ -158,7 +158,6 @@ export default class Storagepool extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Storagepool')} />
