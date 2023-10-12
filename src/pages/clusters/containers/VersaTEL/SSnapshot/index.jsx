@@ -97,7 +97,7 @@ export default class SSnapshot extends React.Component {
   }
 
   get itemActions() {
-    const { trigger, routing, store, tableProps} = this.props
+    const { trigger, routing, store, tableProps } = this.props
     return [
       {
         key: 'snapshot_recovery',
@@ -212,7 +212,9 @@ export default class SSnapshot extends React.Component {
         dataIndex: 'time',
         width: '20%',
         render: time => {
-          let formattedTime = new Date(time).toLocaleString('zh-CN', { hour12: false });
+          const formattedTime = new Date(time).toLocaleString('zh-CN', {
+            hour12: false,
+          })
           return formattedTime
         },
       },
@@ -233,7 +235,7 @@ export default class SSnapshot extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    let sortedData = this.props.tableProps.data.slice().sort((a, b) => {
+    const sortedData = this.props.tableProps.data.slice().sort((a, b) => {
       if (a.resource < b.resource) {
         return -1
       }
@@ -250,11 +252,7 @@ export default class SSnapshot extends React.Component {
     })
     return (
       <ListPage {...this.props} module="namespaces">
-        <Banner
-          {...bannerProps}
-          tips={this.tips}
-          tabs={this.tabs}
-        />
+        <Banner {...bannerProps} tips={this.tips} tabs={this.tabs} />
         <Table
           {...tableProps}
           itemActions={this.itemActions}

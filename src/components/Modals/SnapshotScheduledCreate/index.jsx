@@ -150,7 +150,12 @@ export default class SnapshotCreateModal extends React.Component {
           label={t('Time')}
           rules={[
             { required: true, message: t('Please select a time') },
-            { pattern: /^(2[0-4]|1[0-9]|[1-9])$/, message: t('Invalid input. Please input a number between 1 and 24') },
+            {
+              pattern: /^(2[0-4]|1[0-9]|[1-9])$/,
+              message: t(
+                'Invalid input. Please input a number between 1 and 24'
+              ),
+            },
           ]}
         >
           <Input name="time" placeholder="Input a time" />
@@ -160,7 +165,12 @@ export default class SnapshotCreateModal extends React.Component {
           label={t('Count')}
           rules={[
             { required: true, message: t('Please select a count') },
-            { pattern: /^([1-9]|10)$/, message: t('Invalid input. Please input a number between 1 and 10') },
+            {
+              pattern: /^([1-9]|10)$/,
+              message: t(
+                'Invalid input. Please input a number between 1 and 10'
+              ),
+            },
           ]}
         >
           <Input name="count" placeholder="Input a count" />

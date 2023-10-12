@@ -209,12 +209,14 @@ export default {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
                 })
+              } else {
+                Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
               }
             })
           )
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
+          // Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },

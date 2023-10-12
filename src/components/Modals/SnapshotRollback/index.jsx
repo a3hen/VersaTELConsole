@@ -104,19 +104,19 @@ export default class SnapshotRollbackModal extends React.Component {
         visible={visible}
       >
         <p>点击以确认将此资源回滚到快照</p>
-        {/*<Form.Item*/}
-        {/*  label={t('NewResourceName')}*/}
-        {/*  desc={t('VTEL_NAME_DESC')}*/}
-        {/*  rules={[*/}
-        {/*    { required: true, message: t('Please input new resource name') },*/}
-        {/*    {*/}
-        {/*      pattern: PATTERN_VTEL_NAME,*/}
-        {/*      message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),*/}
-        {/*    },*/}
-        {/*  ]}*/}
-        {/*>*/}
-        {/*  <Input name="newres" maxLength={63} placeholder="name" />*/}
-        {/*</Form.Item>*/}
+        {/* <Form.Item */}
+        {/*  label={t('NewResourceName')} */}
+        {/*  desc={t('VTEL_NAME_DESC')} */}
+        {/*  rules={[ */}
+        {/*    { required: true, message: t('Please input new resource name') }, */}
+        {/*    { */}
+        {/*      pattern: PATTERN_VTEL_NAME, */}
+        {/*      message: t('Invalid name', { message: t('VTEL_NAME_DESC') }), */}
+        {/*    }, */}
+        {/*  ]} */}
+        {/* > */}
+        {/*  <Input name="newres" maxLength={63} placeholder="name" /> */}
+        {/* </Form.Item> */}
       </Modal.Form>
     )
   }
