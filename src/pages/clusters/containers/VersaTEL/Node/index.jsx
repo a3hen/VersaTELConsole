@@ -114,7 +114,7 @@ export default class Node extends React.Component {
         render: name => (
           <Avatar
             icon={ICON_TYPES[module]}
-            to={`/clusters/${cluster}/node/${name}`}
+            // to={`/clusters/${cluster}/node/${name}`}
             title={name}
           />
         ),
