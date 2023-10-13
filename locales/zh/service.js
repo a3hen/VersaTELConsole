@@ -24,6 +24,7 @@ module.exports = {
   'Add Route Rule': 'Add Route Rule',
   'Add Selector': '添加选择器',
   'Associated Application': '关联应用',
+  'Assigned node': '已分配的节点',
   'Automatically assign Service IP': '自动分配服务 IP',
   'Commonly included tags in the current workloads':
     '当前的工作负载中共同包含的标签',

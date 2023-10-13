@@ -47,7 +47,7 @@ export default class LNodeStore extends Base {
   //   return path
   // }
 
-  getResourceUrl = () => `/kapis/versatel.kubesphere.io/v1alpha1/linstor/node`
+  getResourceUrl = () => `/kapis/versatel.kubesphere.io/v1alpha1/versasdsnode`
 
   getListUrl = this.getResourceUrl
 
@@ -162,7 +162,7 @@ export default class LNodeStore extends Base {
     this.LNodeTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/linstor/node`
+      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsnode`
     )
     this.LNodeTemplates.update({
       data: get(result, 'data', []).map(this.mapper),
@@ -170,6 +170,20 @@ export default class LNodeStore extends Base {
       total: result.count || result.totalItems || result.total_count || 0,
       isLoading: false,
     })
+  }
+
+  @action
+  async fetchDetail(params) {
+    this.isLoading = true
+    const result = await request.get(this.getResourceUrl(), {
+      name: params.name,
+    })
+    const filterData = get(result, 'data', [])
+    const data = filterData.filter(item => item.name === params.name)
+    const detail = { ...params, ...data[0], kind: 'LNode' }
+    this.detail = detail
+    this.isLoading = false
+    return detail
   }
 
   // @action

@@ -35,7 +35,7 @@ server:
   dockerHubUrl: https://hub.docker.com
 
 client:
-  title: VersaTEL
+  title: CoSAN Manager
   description: ""
   encryptKey: kubesphere
 
@@ -64,16 +64,13 @@ client:
   supportLangs:
     - label: "繁體中文"
       value: "tc"
-      recommend: true
     - label: "简体中文"
       value: "zh"
       recommend: true
     - label: "English"
       value: "en"
-      recommend: true
     - label: "Español"
       value: "es"
-      recommend: true
     - label: "العربية"
       value: "ar"
     - label: "Français"
@@ -87,7 +84,7 @@ client:
     - label: "Türkçe"
       value: "tr"
   defaultLang: "zh"
-  showAllLangs: true
+  showAllLangs: false
 
   # platform management navigations
   globalNavs:
@@ -126,6 +123,10 @@ client:
             - { name: node, title: Node }
             - { name: storagepool, title: Storagepool }
             - { name: resource, title: Resource }
+            - { name: snapshot, title: Snapshot }
+        - name: backup
+          title: Backup
+          icon: snapshot
         - name: nodes
           title: NODE_PL
           icon: nodes
@@ -272,7 +273,7 @@ client:
   accessNavs:
     - cate: "access"
       items:
-        - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
+        # - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
         - { name: accounts, title: USER_PL, icon: human, authKey: users }
         - { name: roles, title: PLATFORM_ROLE_PL, icon: role }
 
@@ -562,7 +563,8 @@ client:
   # preset infos
   presetUsers: [admin, sonarqube]
   presetGlobalRoles:
-    [platform-admin, platform-regular, workspaces-manager, users-manager]
+    # [platform-admin, platform-regular, workspaces-manager, users-manager]
+    [platform-admin]
   presetClusterRoles: [cluster-admin, cluster-viewer]
   presetWorkspaceRoles: [admin, regular, viewer, self-provisioner]
   presetDevOpsRoles: [admin, operator, viewer]
@@ -604,18 +606,18 @@ client:
     # Project User Guide
     applications: /project-user-guide/application/app-template/
     composingapps: /project-user-guide/application/compose-app/
-    deployments: /project-user-guide/application-workloads/deployments/
+    # deployments: /project-user-guide/application-workloads/deployments/
     statefulsets: /project-user-guide/application-workloads/statefulsets/
     daemonsets: /project-user-guide/application-workloads/daemonsets/
-    jobs: /project-user-guide/application-workloads/jobs/
+    # jobs: /project-user-guide/application-workloads/jobs/
     cronjobs: /project-user-guide/application-workloads/cronjobs/
-    services: /project-user-guide/application-workloads/services/
-    ingresses: /project-user-guide/application-workloads/routes/
+    # services: /project-user-guide/application-workloads/services/
+    # ingresses: /project-user-guide/application-workloads/routes/
     s2i_template: /project-user-guide/image-builder/s2i-templates/
     volumes: /project-user-guide/storage/volumes/
-    secrets: /project-user-guide/configuration/secrets/
-    configmaps: /project-user-guide/configuration/configmaps/
-    serviceaccounts: /project-user-guide/configuration/serviceaccounts/
+    # secrets: /project-user-guide/configuration/secrets/
+    # configmaps: /project-user-guide/configuration/configmaps/
+    # serviceaccounts: /project-user-guide/configuration/serviceaccounts/
     imageregistry: /project-user-guide/configuration/image-registry/
     grayrelease: /project-user-guide/grayscale-release/overview/
 
@@ -626,8 +628,8 @@ client:
     project_members: /project-administration/role-and-member-management/
 
     # Cluster Administrator Guide
-    nodes: /cluster-administration/nodes/
-    storageclasses: /cluster-administration/persistent-volume-and-storage-class/
+    # nodes: /cluster-administration/nodes/
+    # storageclasses: /cluster-administration/persistent-volume-and-storage-class/
 
     # DevOps User Guide
     pipelines: /devops-user-guide/how-to-use/pipeline-settings/

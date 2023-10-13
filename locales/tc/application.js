@@ -90,11 +90,11 @@ module.exports = {
   'Last {day} days': '最近 {day} 天',
   WORKLOAD_NAME_EXIST: '工作負載 {name} 已存在',
   TIP_APP_TYPE:
-    'KubeSphere 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同样也支持自制應用(Application CRD)。',
+    'CoSAN Manager 支持來自於應用商店和應用倉庫的應用部署(基於 Helm)，同样也支持自制應用(Application CRD)。',
   TIP_APP_GOVERNANCE:
     '使用應用治理需要創建自制應用並對每項服務開啟服務治理功能',
   APP_REPOS_DESC:
-    '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 KubeSphere 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
+    '應用倉庫來自於第三方的 Helm Chart Repo，通過視覺化的方式在 CoSAN Manager 中展示並提供部署及管理功能，用戶可以基於應用倉庫中的模板快速地一鍵部署應用。',
   TRAFFIC_MANAGEMENT_NO_MICROSERVICE_TIP:
     '流量治理依賴於微服務模組，目前集群未啟用微服務模組',
   TRACING_NO_MICROSERVICE_TIP:

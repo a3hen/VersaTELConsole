@@ -20,10 +20,123 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/LResourceCreate'
+import DeleteModalR from 'components/Modals/LResourceDelete'
+import DisklessModalR from 'components/Modals/LResourceDiskless'
+import MirrorwayModal from 'components/Modals/LResourceMirrorway'
 import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
+  'lresources.mirrorway': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      // const resourceName = name
+      const resourceName = props?.name
+      const originalnum = parseInt(props?.mirrorWay)
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          const mergedData = {
+            ...data,
+            resname: resourceName,
+            originalnum,
+          }
+          delete mergedData.name
+
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/copy`,
+              mergedData
+            )
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
+
+          // store.create(data).then(res => {
+          //   // Modal.close(modal)
+          //
+          //   if (Array.isArray(res)) {
+          //     Notify.error({
+          //       content: `${t('Created Failed, Reason:')}${res[0].message}`,
+          //     })
+          //   } else {
+          //     Notify.success({ content: `${t('Created Successfully')}` })
+          //   }
+          //   success && success()
+          // })
+          // Modal.close(modal)
+        },
+        modal: MirrorwayModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'lresources.diskless': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      // const resourceName = name
+      const resourceName = props?.name
+      const { module } = store
+
+      const modal = Modal.open({
+        onOk: data => {
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          data.metadata.name = resourceName
+          const mergedData = { ...data, name: resourceName }
+          delete mergedData.name // 删除创建diskless资源传递对象的name属性
+
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`,
+              mergedData
+            )
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Created Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Created Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
+        },
+        modal: DisklessModalR,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
   'lresources.create': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
@@ -33,10 +146,14 @@ export default {
             Modal.close(modal)
             return
           }
+          const resourceName = data.name
+          data.metadata.name = resourceName
+          delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
 
           store.create(data).then(res => {
             // Modal.close(modal)
-            if (res) {
+
+            if (Array.isArray(res)) {
               Notify.error({
                 content: `${t('Created Failed, Reason:')}${res[0].message}`,
               })
@@ -92,12 +209,14 @@ export default {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
                 })
+              } else {
+                Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
               }
             })
           )
 
           Modal.close(modal)
-          Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
+          // Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
           store.setSelectRowKeys([])
           success && success()
         },

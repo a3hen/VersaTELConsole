@@ -696,6 +696,7 @@ const getLNodeTemplate = ({ namespace }) => ({
   kind: 'LNode',
   metadata: {
     namespace,
+    name: 'node',
   },
   rules: [],
 })
@@ -705,6 +706,7 @@ const getSPTemplate = ({ namespace }) => ({
   kind: 'Storagepool',
   metadata: {
     namespace,
+    name: 'storagepool',
   },
   rules: [],
 })
@@ -714,9 +716,76 @@ const getLResourceTemplate = ({ namespace }) => ({
   kind: 'LResource',
   metadata: {
     namespace,
+    name: 'resource',
   },
   rules: [],
 })
+
+const getPVResourceTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'PVResource',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
+const getVGResourceTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'VGResource',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
+const getTPResourceTemplate = ({ namespace }) => ({
+  apiVersion: 'versatel.kubesphere.io/v1alpha1',
+  kind: 'TPResource',
+  metadata: {
+    namespace,
+  },
+  rules: [],
+})
+
+const getResourceBackupTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1/backup',
+  kind: 'ResourceBackup',
+  metadata: {
+    namespace,
+    name: detail.name,
+    type,
+  },
+  snapshot: detail.snapshot,
+  image: detail.image,
+  rules: [],
+})
+
+const getSnapshotTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'Snapshot',
+  metadata: {
+    namespace,
+    // name: detail.name,
+    type,
+  },
+  // snapshot: detail.snapshot,
+  // image: detail.image,
+  rules: [],
+})
+const getSSnapshotTemplate = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'SSnapshot',
+  metadata: {
+    namespace,
+    // name: detail.name,
+    type,
+  },
+  // snapshot: detail.snapshot,
+  // image: detail.image,
+  rules: [],
+})
+
 const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
@@ -820,6 +889,12 @@ const FORM_TEMPLATES = {
   linstornodes: getLNodeTemplate,
   storagepools: getSPTemplate,
   lresources: getLResourceTemplate,
+  pvresources: getPVResourceTemplate,
+  vgresources: getVGResourceTemplate,
+  tpresources: getTPResourceTemplate,
+  snapshot: getSnapshotTemplate,
+  ssnapshot: getSSnapshotTemplate,
+  resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,
 }

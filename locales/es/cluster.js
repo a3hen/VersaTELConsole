@@ -78,19 +78,19 @@ module.exports = {
   'etcd Backup Dir': 'etcd Backup Dir',
   'etcd Backup Period': 'etcd Backup Period',
   'Keep Backup Number': 'Keep Backup Number',
-  'KubeSphere Settings': 'KubeSphere Settings',
+  'CoSAN Manager Settings': 'CoSAN Manager Settings',
   NO_CLUSTER_TIP_DESC:
     'Un clúster es un grupo de nodos (máquinas físicas o virtuales) que ejecutan Kubernetes, y la función de Kubesphere también depende de los nodos en el clúster.',
   ADD_NEW_CLUSTER_DESC: 'Agregar un nuevo clúster de Kubernetes',
   CHOOSE_PROVIDER_DESC:
-    'KubeSphere proporciona una solución para implementar rápidamente los clústeres de Kubernetes entre los principales proveedores de servicios.',
+    'CoSAN Manager proporciona una solución para implementar rápidamente los clústeres de Kubernetes entre los principales proveedores de servicios.',
   MULTI_CLUSTER: 'Multi-Clústers',
   CLUSTER_INFO_TCAP: 'Cluster Information',
   INVITE_CLUSTER_MEMBER_DESC:
     'Puedes invitar a nuevos miembros a este clúster.',
   CLUSTER_API_SERVER_TITLE: 'Servidor API Kubesphere para agregar al clúster',
   CLUSTER_API_SERVER_DESC:
-    'Debes indicar la dirección del servidor API de KubeSphere para agregarla al clúster',
+    'Debes indicar la dirección del servidor API de CoSAN Manager para agregarla al clúster',
   AUTHORIZE_CLUSTER_TO_WORKSPACE_DESC:
     'Los clústeres se pueden asignar a espacios de trabajo mediante autorización.',
   PUBLIC_CLUSTER_DESC:

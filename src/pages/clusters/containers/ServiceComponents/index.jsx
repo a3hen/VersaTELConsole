@@ -66,8 +66,8 @@ export default class ServiceComponents extends React.Component {
   getConfigs = () => [
     {
       type: 'kubesphere',
-      title: 'KubeSphere',
-      icon: '/assets/kubesphere.svg',
+      title: 'CoSAN Manager',
+      icon: '/assets/logo.svg',
     },
     {
       type: 'kubernetes',

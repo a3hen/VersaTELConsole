@@ -63,7 +63,7 @@ module.exports = {
   CLUSTER_ETCD_BACKUP_PERIOD_DESC:
     'Period of running backup etcd job, the unit is minutes.',
   CLUSTER_ETCD_BACKUP_NUMBER_DESC: 'How many backup replicas to keep.',
-  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for KubeSphere',
+  CLUSTER_KUBESPHERE_SETTINGS_DESC: 'Customized settings for CoSAN Manager',
   MASTER_NODE_COUNT_TIP: 'The number of Master nodes needs to be 1 or 3',
   WORKER_NODE_COUNT_TIP: 'The number of Worker nodes is at least 1',
   // Add Node
@@ -75,7 +75,7 @@ module.exports = {
   NODE_INTERNAL_IP_DESC:
     'The internal IP address for the connection between cluster nodes.',
   NODE_INTERNAL_IP_EMPTY_DESC:
-    'Please set the IP address of the node in the KubeSphere cluster.',
+    'Please set the IP address of the node in the CoSAN Manager cluster.',
   NODE_ROLE_DESC:
     'The number of master nodes needs to be 1 or 3, and the number of woker nodes must be at least 1.',
   NODE_EXTERNAL_IP_DESC:

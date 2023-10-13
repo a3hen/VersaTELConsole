@@ -281,6 +281,7 @@ export const ICON_TYPES = {
   linstornodes: 'database',
   storagepools: 'database',
   lresources: 'database',
+  resourcebackups: 'snapshot',
   gpu: 'gpu',
   'gpu.limit': 'gpu',
   cds: 'rocket',
@@ -556,10 +557,10 @@ export const GRAY_RELEASE_CATEGORIES = [
   },
 ]
 
-export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]*[a-zA-Z0-9_-]$/
-export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]*[a-z0-9]$/
+export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]+[a-zA-Z0-9_-]$/
+export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]+[a-z0-9]$/
 export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
-export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]*[a-zA-Z0-9]$/
+export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]+[a-zA-Z0-9]$/
 
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
@@ -991,6 +992,7 @@ export const API_VERSIONS = {
   linstornodes: 'kapis/versatel.kubesphere.io/v1alpha1',
   storagepools: 'kapis/versatel.kubesphere.io/v1alpha1',
   lresources: 'kapis/versatel.kubesphere.io/v1alpha1',
+  resourcebackups: 'kapis/storsecu.kubesphere.io/v1alpha1',
   cds: 'kapis/gitops.kubesphere.io/v1alpha1',
   codeRepos: 'kapis/devops.kubesphere.io/v1alpha3',
 }
@@ -1042,7 +1044,7 @@ export const MONITOR_GRAPH_COLORS = [
 
 export const COMPONENT_ICON_MAP = {
   kubernetes: 'kubernetes',
-  kubesphere: 'kubesphere',
+  // kubesphere: 'kubesphere',
   istio: 'istio',
   openpitrix: 'openpitrix',
   devops: 'jenkins',

@@ -34,10 +34,14 @@ export default {
             Modal.close(modal)
             return
           }
+          const resourceName = data.name
+          data.metadata.name = resourceName
+          delete data.name // 删除创建storagepool传递对象的name属性，并在metadata中将name属性更改为资源名
 
           store.create(data).then(res => {
             // Modal.close(modal)
-            if (res) {
+
+            if (Array.isArray(res)) {
               Notify.error({
                 content: `${t('Created Failed, Reason:')}${res[0].message}`,
               })

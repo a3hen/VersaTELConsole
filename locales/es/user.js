@@ -53,7 +53,7 @@ module.exports = {
   USER_AVATAR_TIP:
     'El tamaño del avatar debe ser inferior a 120 px X 120 px y debe admitir el formato png, jpg.',
   MEMBER_ROLE_CREATE_DESC:
-    'Lo que un usuario está autorizado a hacer depende de la función que define la identidad del usuario, así como de la relación entre el usuario y los recursos que el usuario tiene acceso para ver y manejar. Los usuarios pueden crear roles personalizados cuando el rol preestablecido de KubeSphere no satisface sus necesidades. La mayor ventaja de los roles personalizados es que se pueden configurar para admitir la gestión detallada de los recursos de la plataforma, ya que se pueden autorizar diferentes roles para acceder a diferentes recursos',
+    'Lo que un usuario está autorizado a hacer depende de la función que define la identidad del usuario, así como de la relación entre el usuario y los recursos que el usuario tiene acceso para ver y manejar. Los usuarios pueden crear roles personalizados cuando el rol preestablecido de CoSAN Manager no satisface sus necesidades. La mayor ventaja de los roles personalizados es que se pueden configurar para admitir la gestión detallada de los recursos de la plataforma, ya que se pueden autorizar diferentes roles para acceder a diferentes recursos',
   CLUSTER_ROLE_DESC:
     'Este módulo le permite administrar el acceso de los usuarios dentro de un clúster.',
 }

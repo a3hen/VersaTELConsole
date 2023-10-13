@@ -34,7 +34,7 @@ module.exports = {
   Screenshots: 'Screenshots',
   VERSION_LIST_DES: 'Only display the last 10 versions',
   HOME_APP_STORE_DESC:
-    'The official App Store of KubeSphere provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
+    'The official App Store of CoSAN Manager provides deployment and management features that allow users to quickly deploy apps with one click based on app templates.',
 
   APP_DEPLOYMENT_AGREEMENT: 'App Deployment Agreement',
   APP_DEPLOY_AGREEMENT_CHECK:

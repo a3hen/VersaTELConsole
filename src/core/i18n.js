@@ -57,13 +57,11 @@ const init = async () => {
     const data = await request.get(`dist/${localePath}`)
     locales[userLang] = data
   }
-
   return { locales }
 }
 
 const t = (key, options) => {
   let value = key && locale.get(key, options)
-
   if (options && options.defaultValue && value === key) {
     value = options.defaultValue
   }

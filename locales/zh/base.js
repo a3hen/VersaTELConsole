@@ -200,6 +200,7 @@ module.exports = {
   RESET: '重置',
   'Resource List': '资源列表',
   Resource: '资源',
+
   Restart: '重启',
   Running: '运行中',
   Scheme: '方案',
@@ -327,9 +328,9 @@ module.exports = {
   TOOLBOX_KUBECTL_DESC: '操作多集群的客户端命令行工具',
   PLATFORM_SETTINGS_SELECTOR_DESC: '定制化平台的系统配置',
   FILE_OVERSIZED_TIP: '文件过大，超过 2M 不能上传！',
-  USER_GUIDES_DESC: '最详尽的 KubeSphere 用户指南文档',
+  USER_GUIDES_DESC: '最详尽的 CoSAN Manager 用户指南文档',
   DEVELOPER_DESC: '通过在开发者社区提出问题获得帮助',
-  API_DOCS_DESC: '最详尽的 KubeSphere API 文档',
+  API_DOCS_DESC: '最详尽的 CoSAN Manager API 文档',
   GITHUB_ISSUES_DESC: '通过在 GitHub 提出 Issue 获得帮助',
   // Workbench
   // Container Details Page

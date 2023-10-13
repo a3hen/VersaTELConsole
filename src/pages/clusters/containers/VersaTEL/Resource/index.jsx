@@ -53,18 +53,74 @@ export default class LResource extends React.Component {
   }
 
   get itemActions() {
-    return []
+    const { name, trigger, routing, store } = this.props
+    return [
+      {
+        // key: 'delete',
+        // icon: 'trash',
+        // text: t('Delete'),
+        // action: 'delete',
+        // show: true,
+        // onClick: item =>
+        // trigger('lresources.delete', {
+        // LResourceTemplates: toJS(store.LResourceTemplates.data),
+        // // success: getData,
+        // })
+        key: 'diskless',
+        icon: 'trash',
+        text: t('choose_diskless_node'),
+        action: 'delete',
+        show: true,
+        onClick: item => {
+          trigger('lresources.diskless', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
+          })
+        },
+      },
+      {
+        key: 'mirrorway',
+        icon: 'trash',
+        text: t('Choose mirrorway numbers'),
+        action: 'delete',
+        show: true,
+        onClick: item => {
+          trigger('lresources.mirrorway', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
+            mirrorWay: item?.mirrorWay,
+          })
+        },
+      },
+    ]
   }
+
+  // get itemActions() {
+  //   const { name, trigger, routing } = this.props
+  //   return [
+  //     {
+  //       key: 'chose diskless node',
+  //       icon: 'trash',
+  //       text: t('chose diskless node'),
+  //       action: 'chose diskless node',
+  //       show: true,
+  //       onClick: item =>
+  //           trigger('chose diskles node', {}),
+  //     },
+  //   ]
+  // }
 
   get tableActions() {
     const { tableProps, trigger, routing } = this.props
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      getCheckboxProps: record => ({
-        disabled: this.showAction(record),
-        name: record.name,
-      }),
+      // getCheckboxProps: record => ({
+      //   disabled: this.showAction(record),
+      //   name: record.name,
+      // }),
       selectActions: [
         {
           key: 'delete',
@@ -122,6 +178,12 @@ export default class LResource extends React.Component {
         isHideable: true,
         render: deviceName => deviceName,
       },
+      // {
+      //   title: t('Assigned_Node'),
+      //   dataIndex: 'assignedNode',
+      //   isHideable: true,
+      //   render: assignedNode => assignedNode,
+      // },
     ]
   }
 

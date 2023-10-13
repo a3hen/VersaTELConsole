@@ -56,12 +56,17 @@ export default class Storagepool extends React.Component {
         text: t('Delete'),
         action: 'delete',
         show: true,
-        onClick: item =>
+        onClick: item => {
+          if (item.resNum >= 1) {
+            alert('此存储池已有资源存在，无法被删除。')
+            return
+          }
           trigger('storagepools.delete', {
             detail: item,
             type: t(name),
             success: routing.query,
-          }),
+          })
+        },
       },
     ]
   }
@@ -71,6 +76,12 @@ export default class Storagepool extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
+      // getCheckboxProps: record => {
+      //   console.log("record",record)
+      //   return {
+      //     disabled: this.showAction(record),
+      //   }
+      // },
       selectActions: [],
     }
   }
@@ -147,7 +158,6 @@ export default class Storagepool extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Storagepool')} />
