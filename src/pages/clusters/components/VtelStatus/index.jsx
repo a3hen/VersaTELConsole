@@ -33,7 +33,7 @@ export default class VStatus extends React.Component {
 
   getStatusName() {
     const { name = '' } = this.props
-    if (name === 'OK') {
+    if (name === 'OK' || name === 'SUCCESSFUL') {
       return 'NORMAL'
     }
     return name || 'ERROR'

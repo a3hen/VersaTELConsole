@@ -35,10 +35,7 @@ export default {
             return
           }
           request
-            .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/snapshot`,
-              data
-            )
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
             .then(res => {
               // Modal.close(modal)
 
@@ -74,10 +71,7 @@ export default {
             return
           }
           request
-            .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/snapshot`,
-              data
-            )
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
             .then(res => {
               // Modal.close(modal)
 
@@ -114,10 +108,7 @@ export default {
             return
           }
           request
-            .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/snapshot`,
-              data
-            )
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
             .then(res => {
               // Modal.close(modal)
 

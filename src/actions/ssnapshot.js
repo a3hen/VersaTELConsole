@@ -41,7 +41,7 @@ export default {
             )
             .then(res => {
               // Modal.close(modal)
-              if (res !== "快照恢复到资源成功:") {
+              if (res !== '快照恢复到资源成功:') {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
                 })
@@ -73,13 +73,10 @@ export default {
             return
           }
           request
-            .post(
-              `/kapis/versatel.kubesphere.io/v1alpha1/rollsnapshot`,
-              data
-            )
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/rollsnapshot`, data)
             .then(res => {
               // Modal.close(modal)
-              if (res !== "回滚快照成功:") {
+              if (res !== '回滚快照成功:') {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
                 })
@@ -116,7 +113,7 @@ export default {
             )
             .then(res => {
               // Modal.close(modal)
-              if (res !== "快照删除成功") {
+              if (res !== '快照删除成功') {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
                 })

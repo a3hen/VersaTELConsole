@@ -121,20 +121,20 @@ export default class LResource extends React.Component {
       //   disabled: this.showAction(record),
       //   name: record.name,
       // }),
-      // selectActions: [
-      //   {
-      //     key: 'delete',
-      //     type: 'danger',
-      //     text: t('DELETE'),
-      //     action: 'delete',
-      //     onClick: () =>
-      //       trigger('lresources.batch.delete', {
-      //         type: 'LResource',
-      //         rowKey: 'name',
-      //         success: routing.query,
-      //       }),
-      //   },
-      // ],
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('DELETE'),
+          action: 'delete',
+          onClick: () =>
+            trigger('lresources.batch.delete', {
+              type: 'LResource',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 
