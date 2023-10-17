@@ -94,16 +94,15 @@ export default class SnapshotStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    const data = get(result, 'data', null)
 
     this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
+      data: more ? [...this.list.data, ...(data || [])] : data || [],
       total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
+        (result && result.count) ||
+        (result && result.totalItems) ||
+        (result && result.total_count) ||
+        (data ? data.length : 0),
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
