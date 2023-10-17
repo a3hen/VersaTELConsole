@@ -112,12 +112,15 @@ export default class Node extends React.Component {
         dataIndex: 'name',
         // width: '20%',
         render: name => (
-          <Avatar
-            icon={ICON_TYPES[module]}
-            // to={`/clusters/${cluster}/node/${name}`}
-            title={name}
-          />
+          <Avatar icon={ICON_TYPES[module]} title={name} noLink />
         ),
+        // render: name => (
+        //   <Avatar
+        //     icon={ICON_TYPES[module]}
+        //     to={`/clusters/${cluster}/node/${name}`}
+        //     title={name}
+        //   />
+        // ),
       },
       {
         title: t('Status'),

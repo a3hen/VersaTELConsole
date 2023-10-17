@@ -115,7 +115,7 @@ export default class SnapshotRecoveryModal extends React.Component {
             },
           ]}
         >
-          <Input name="newres" maxLength={63} placeholder="名称" />
+          <Input name="newres" maxLength={63} placeholder="name" />
         </Form.Item>
       </Modal.Form>
     )
