@@ -44,7 +44,6 @@ export default {
 
           store.create(data).then(res => {
             // Modal.close(modal)
-            console.log("res",res)
 
             if (Array.isArray(res)) {
               Notify.error({
