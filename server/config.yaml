@@ -124,6 +124,7 @@ client:
             - { name: storagepool, title: Storagepool }
             - { name: resource, title: Resource }
             - { name: snapshot, title: Snapshot }
+            - { name: iSCSImapping, title: iSCSIMapping }
         - name: backup
           title: Backup
           icon: snapshot
