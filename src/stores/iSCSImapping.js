@@ -26,7 +26,8 @@ import List from 'stores/base.list'
 export default class iSCSIMappingStore extends Base {
   iSCSIMappingTemplates = new List()
 
-  getiSCSIMappingUrl = () => `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
+  getiSCSIMappingUrl = () =>
+    `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
 
   getListUrl = this.getiSCSIMappingUrl
 
