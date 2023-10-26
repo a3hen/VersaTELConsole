@@ -29,7 +29,7 @@ import { getDisplayName } from 'utils'
 import { getSuitableValue, getValueByUnit } from 'utils/monitoring'
 import { ICON_TYPES } from 'utils/constants'
 
-import SnapshotStore from 'stores/snapshot'
+import iSCSIMapping1Store from 'stores/iSCSImapping1'
 
 // import ProjectStore from 'stores/project'
 // import ProjectMonitorStore from 'stores/monitoring/project'
@@ -41,11 +41,11 @@ import SnapshotStore from 'stores/snapshot'
 // }
 
 @withList({
-  store: new SnapshotStore(),
-  name: 'Snapshot',
-  module: 'snapshot',
+  store: new iSCSIMapping1Store(),
+  name: 'iSCSIMapping1',
+  module: 'iSCSImapping1',
 })
-export default class Snapshot extends React.Component {
+export default class iSCSIMapping1 extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.props.tableProps.tableActions.onFetch({ silent: true })
@@ -64,67 +64,55 @@ export default class Snapshot extends React.Component {
     const { trigger, routing, store, tableProps } = this.props
     return [
       {
-        key: 'create_snapshot',
-        icon: 'pen',
-        text: t('CREATE_SNAPSHOT'),
-        action: 'edit',
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
         show: this.showAction,
         onClick: item => {
-          // console.log(item)
-          trigger('snapshot.create', {
-            SnapshotTemplatesTemplates: toJS(store.SnapshotTemplates.data),
+          trigger('target.delete', {
+            iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
-            resourcename: item?.name,
+            name: item?.name,
+            iqn: item?.numbers,
           })
         },
       },
-      // {
-      //   key: 'create_scheduled_snapshot',
-      //   icon: 'pen',
-      //   text: t('CREATE_SHEDULED_SNAPSHOT'),
-      //   action: 'manage',
-      //   show: record => !record.workspace && this.showAction(record),
-      //   onClick: item => {
-      //     // console.log(item)
-      //     trigger('snapshot_scheduled.create', {
-      //       SnapshotTemplatesTemplates: toJS(store.SnapshotTemplates.data),
-      //       // success: getData,
-      //       resourcename: item?.name,
-      //     })
-      //   },
-      // },
-      // {
-      //   key: 'delete',
-      //   icon: 'trash',
-      //   text: t('DELETE'),
-      //   action: 'delete',
-      //   show: record => !record.workspace && this.showAction(record),
-      //   onClick: item => {
-      //     // console.log(item)
-      //     trigger('snapshot_resource.delete', {
-      //       SnapshotTemplatesTemplates: toJS(store.SnapshotTemplates.data),
-      //       // success: getData,
-      //       resourcename: item?.name,
-      //     })
-      //   },
-      // },
+      {
+        key: 'bstorage',
+        icon: 'pen',
+        text: t('BIND_STORAGE'),
+        action: 'edit',
+        show: true,
+        onClick: item => {
+          trigger('target.bind', {
+            iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
+            // success: getData,
+            name: item?.name,
+            iqn: item?.numbers,
+          })
+        },
+      },
     ]
   }
 
   get tabs() {
-    console.log('snapshot_props', this.props)
     return {
       value: this.props.module,
       // value: this.type || 'snapshot',
       onChange: this.handleTabChange,
       options: [
         {
-          value: 'snapshot',
-          label: t('SNAPSHOT_RESOURCE'),
+          value: 'iSCSImapping',
+          label: t('INITIATOR'),
         },
         {
-          value: 'ssnapshot',
-          label: t('SNAPSHOT_SNAPSHOT'),
+          value: 'iSCSImapping1',
+          label: t('iSCSITARGET'),
+        },
+        {
+          value: 'iSCSImapping2',
+          label: t('MAPPING'),
         },
       ],
     }
@@ -134,8 +122,10 @@ export default class Snapshot extends React.Component {
     const { tableProps } = this.props
     return {
       ...tableProps.tableActions,
+      onCreate: this.showCreate,
       onFetch: this.handleFetch,
       selectActions: [],
+      createText: '注册',
     }
   }
 
@@ -153,22 +143,28 @@ export default class Snapshot extends React.Component {
     const { module } = this.props
     return [
       {
-        title: t('Resource'),
+        title: t('Target'),
         dataIndex: 'name',
-        width: '50%',
+        width: '33%',
         render: name => name,
       },
       {
-        title: t('Snapshot_Numbers'),
+        title: t('VIP'),
+        dataIndex: 'vip',
+        width: '33%',
+        render: () => "test_vip",
+      },
+      {
+        title: t('Storage'),
         dataIndex: 'numbers',
-        width: '50%',
+        width: '33%',
         render: numbers => numbers,
       },
     ]
   }
 
   showCreate = () =>
-    this.props.trigger('snapshot.create', {
+    this.props.trigger('target.registered', {
       ...this.props.match.params,
       success: () => this.props.getData,
     })
@@ -184,8 +180,6 @@ export default class Snapshot extends React.Component {
           tableActions={this.tableActions}
           columns={this.getColumns()}
           rowSelection={undefined}
-          // onCreate={this.type === 'snapshot' ? null : this.showCreate}
-          // isLoading={tableProps.isLoading || isLoadingMonitor}
           searchType="name"
           hideSearch={true}
         />

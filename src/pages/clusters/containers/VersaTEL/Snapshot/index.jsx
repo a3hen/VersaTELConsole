@@ -112,7 +112,6 @@ export default class Snapshot extends React.Component {
   }
 
   get tabs() {
-    console.log('snapshot_props', this.props)
     return {
       value: this.props.module,
       // value: this.type || 'snapshot',

@@ -17,6 +17,8 @@ module.exports = {
   'Please input VersaSDS Node name': '请输入 VersaSDS 节点名称',
   VTEL_NAME_DESC:
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+  VTEL_IQN_DESC:
+    'IQN由三个部分组成,用冒号(:)分隔,格式为:iqn.yyyy-mm.(域名反转).(唯一标识符)。',
   NODE_NAME_DESC:
     '仅支持小写字母、数字以及中横线，且以小写字母开头和结束，长度必须大于2',
   SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',

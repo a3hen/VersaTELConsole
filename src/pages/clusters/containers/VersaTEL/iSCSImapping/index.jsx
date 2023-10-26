@@ -64,17 +64,17 @@ export default class iSCSIMapping extends React.Component {
     const { trigger, routing, store, tableProps } = this.props
     return [
       {
-        key: 'create_snapshot',
-        icon: 'pen',
-        text: t('CREATE_SNAPSHOT'),
-        action: 'edit',
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
         show: this.showAction,
         onClick: item => {
-          // console.log(item)
-          trigger('snapshot.create', {
-            SnapshotTemplatesTemplates: toJS(store.SnapshotTemplates.data),
+          trigger('host.delete', {
+            iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
             // success: getData,
-            resourcename: item?.name,
+            name: item?.name,
+            iqn: item?.numbers,
           })
         },
       },
@@ -143,7 +143,7 @@ export default class iSCSIMapping extends React.Component {
   }
 
   showCreate = () =>
-    this.props.trigger('snapshot.create', {
+    this.props.trigger('host.registered', {
       ...this.props.match.params,
       success: () => this.props.getData,
     })
