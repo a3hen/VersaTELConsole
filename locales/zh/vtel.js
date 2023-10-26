@@ -129,6 +129,8 @@ module.exports = {
   'Snapshot Rollback':'快照回滚',
   'Snapshot Delete':'快照删除',
   'Create Snapshot':'创建快照',
+  'SSNAPSHOT':'快照',
+  SSNAPSHOT_EMPTY_DESC: '未发现快照，请创建快照',
   WHAT_IS_SNAPSHOT_ROLLBACK_Q: '什么是快照回滚？',
   WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。',
   WHAT_IS_SNAPSHOT_RECOVERY_Q: '什么是快照恢复？',
