@@ -62,6 +62,7 @@ export default class iSCSIMapping extends React.Component {
 
   get itemActions() {
     const { trigger, routing, store, tableProps } = this.props
+    console.log("props",this.props)
     return [
       {
         key: 'delete',

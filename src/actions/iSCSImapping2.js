@@ -19,12 +19,12 @@
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
-import RegisteredModal from 'components/Modals/iSCSITargetRegistered'
-import DeleteModal from 'components/Modals/iSCSIInitiatorDelete'
+import MapModal from 'components/Modals/iSCSIMappingMap'
+import DeleteModal from 'components/Modals/iSCSIMappingDelete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
-  'target.delete': {
+  'mapping.delete2': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
@@ -57,12 +57,12 @@ export default {
         cluster,
         namespace,
         workspace,
-        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        // formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },
   },
-  'target.bind': {
+  'mapping.map': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
@@ -88,50 +88,13 @@ export default {
           //   })
           // Modal.close(modal)
         },
-        modal: RegisteredModal,
+        modal: MapModal,
         store,
         module,
         cluster,
         namespace,
         workspace,
-        formTemplate: FORM_TEMPLATES[module]({ namespace }),
-        ...props,
-      })
-    },
-  },
-  'target.registered': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
-      const { module } = store
-      const modal = Modal.open({
-        onOk: data => {
-          console.log("data",data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          // request
-          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Operation Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
-        },
-        modal: RegisteredModal,
-        store,
-        module,
-        cluster,
-        namespace,
-        workspace,
-        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        // formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },

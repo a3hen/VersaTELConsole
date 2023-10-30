@@ -19,12 +19,13 @@
 import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
-import RegisteredModal from 'components/Modals/iSCSIInitiatorRegistered'
-import DeleteModal from 'components/Modals/iSCSIInitiatorDelete'
+import RegisteredModal from 'components/Modals/iSCSITargetRegistered'
+import TargetDeleteModal from 'components/Modals/iSCSITargetDelete'
+import TargetBindModal from 'components/Modals/iSCSITargetBind'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
-  'target.delete': {
+  'target.delete1': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
@@ -35,23 +36,22 @@ export default {
           //   return
           // }
           // request
-          //   .delete(
-          //     `/kapis/versatel.kubesphere.io/v1alpha1/snapshot/${data.name}/${data.resource}`
-          //   )
+          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
           //   .then(res => {
           //     // Modal.close(modal)
-          //     if (res !== '快照删除成功') {
+          //
+          //     if (Array.isArray(res)) {
           //       Notify.error({
-          //         content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
           //       })
           //     } else {
-          //       Notify.success({ content: `${t('Deleted Successful')}` })
+          //       Notify.success({ content: `${t('Operation Successfully')}` })
           //     }
           //     success && success()
           //   })
           // Modal.close(modal)
         },
-        modal: DeleteModal,
+        modal: TargetDeleteModal,
         store,
         module,
         cluster,
@@ -62,7 +62,44 @@ export default {
       })
     },
   },
-  'target.bind': {
+  'target.bind1': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log("data",data)
+          // if (!data) {
+          //   Modal.close(modal)
+          //   return
+          // }
+          // request
+          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
+          //   .then(res => {
+          //     // Modal.close(modal)
+          //
+          //     if (Array.isArray(res)) {
+          //       Notify.error({
+          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+          //       })
+          //     } else {
+          //       Notify.success({ content: `${t('Operation Successfully')}` })
+          //     }
+          //     success && success()
+          //   })
+          // Modal.close(modal)
+        },
+        modal: TargetBindModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'target.registered': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({

@@ -68,9 +68,10 @@ export default class iSCSIMapping1 extends React.Component {
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
-        show: this.showAction,
+        show: true,
         onClick: item => {
-          trigger('target.delete', {
+          console.log("trigger",trigger)
+          trigger('target.delete1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
             name: item?.name,
@@ -85,7 +86,7 @@ export default class iSCSIMapping1 extends React.Component {
         action: 'edit',
         show: true,
         onClick: item => {
-          trigger('target.bind', {
+          trigger('target.bind1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
             name: item?.name,

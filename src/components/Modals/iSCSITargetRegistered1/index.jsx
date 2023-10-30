@@ -187,7 +187,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleStepTwo}
-        okText={t('OK')}
+        okText={t('NEXT_STEP')}
         visible={visible}
       >
         <Form.Item
@@ -219,6 +219,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             options={this.state.runningNode || []}
             searchable
             clearable
+            multi
             onChange={this.handleSecondaryNodeChange}
           />
         </Form.Item>

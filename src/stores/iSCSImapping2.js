@@ -23,15 +23,15 @@ import Base from 'stores/base'
 import List from 'stores/base.list'
 // import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class iSCSIMappingStore extends Base {
-  iSCSIMappingTemplates = new List()
+export default class iSCSIMapping2Store extends Base {
+  iSCSIMapping2Templates = new List()
 
-  getiSCSIMappingUrl = () =>
+  getiSCSIMapping2Url = () =>
     `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
 
   getListUrl = this.getiSCSIMappingUrl
 
-  constructor(module = 'iSCSImapping') {
+  constructor(module = 'iSCSImapping2') {
     super(module)
   }
 
@@ -56,7 +56,7 @@ export default class iSCSIMappingStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getiSCSIMappingUrl(), {
+    const result = await request.get(this.getiSCSIMapping2Url(), {
       ...params,
     })
 
@@ -114,13 +114,13 @@ export default class iSCSIMappingStore extends Base {
   }
 
   @action
-  async fetchLiSCSIMappingTemplates() {
-    this.iSCSIMappingTemplates.isLoading = true
+  async fetchLiSCSIMapping2Templates() {
+    this.iSCSIMapping2Templates.isLoading = true
 
     const result = await request.get(
       `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
     )
-    this.iSCSIMappingTemplates.update({
+    this.iSCSIMapping2Templates.update({
       data: get(result, 'data', []).map(this.mapper),
       // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
@@ -131,12 +131,12 @@ export default class iSCSIMappingStore extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-    const result = await request.get(this.getiSCSIMappingUrl(), {
+    const result = await request.get(this.getiSCSIMapping2Url(), {
       name: params.name,
     })
     const filterData = get(result, 'data', [])
     const data = filterData.filter(item => item.name === params.name)
-    const detail = { ...params, ...data[0], kind: 'iSCSIMapping' }
+    const detail = { ...params, ...data[0], kind: 'iSCSIMapping2' }
     this.detail = detail
     this.isLoading = false
     return detail

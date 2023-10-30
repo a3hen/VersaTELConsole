@@ -28,14 +28,16 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
-import iSCSIMappingStore from 'stores/iSCSImapping'
+import iSCSIMapping1Store from 'stores/iSCSImapping1'
+import DiskfulResourceStore from 'stores/diskfulresource'
+import DisklessResourceStore from 'stores/disklessresource'
 
 @observer
-export default class iSCSIMappingDeleteModal extends React.Component {
+export default class iSCSIMapping1DeleteModal extends React.Component {
   static propTypes = {
     store: PropTypes.object,
     module: PropTypes.string,
-    iSCSIMappingTemplates: PropTypes.array,
+    iSCSIMapping1Templates: PropTypes.array,
     formTemplate: PropTypes.object,
     title: PropTypes.string,
     visible: PropTypes.bool,
@@ -47,7 +49,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   static defaultProps = {
     visible: false,
     isSubmitting: false,
-    module: 'iSCSImapping',
+    module: 'iSCSImapping1',
     onOk() {},
     onCancel() {},
   }
@@ -55,32 +57,70 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.iSCSIMappingStore = new iSCSIMappingStore()
+    this.iSCSIMapping1Store = new iSCSIMapping1Store()
+    this.DisklessresourceStore = new DisklessResourceStore()
+    this.DiskfulresourceStore = new DiskfulResourceStore()
 
     this.fetchResource()
+    this.fetchDiskfulResource()
+    this.fetchDisklessResource()
   }
 
   fetchResource = params => {
-    return this.iSCSIMappingStore.fetchList({
+    return this.iSCSIMapping1Store.fetchList({
+      ...params,
+    })
+  }
+
+  fetchAllResources = params => {
+    return Promise.all([
+      this.fetchDiskfulResource(params),
+      this.fetchDisklessResource(params),
+    ])
+  }
+  fetchDisklessResource = params => {
+    return this.DisklessresourceStore.fetchList({
+      ...params,
+    })
+  }
+
+  fetchDiskfulResource = params => {
+    return this.DiskfulresourceStore.fetchList({
       ...params,
     })
   }
 
   get resources() {
-    const resources = this.iSCSIMappingStore.list.data.map(node => ({
+    const resources = this.iSCSIMapping1Store.list.data.map(node => ({
       label: node.name,
       value: node.name,
     }))
     return resources
   }
 
-  handleCreate = iSCSIMappingTemplates => {
-    iSCSIMappingTemplates.name = this.props.name
-    iSCSIMappingTemplates.iqn = this.props.iqn
+  get diskless() {
+    const nodes = this.DisklessresourceStore.list.data.map(node => ({
+      label: node.name,
+      value: node.name,
+    }))
+    return nodes
+  }
+
+  get diskful() {
+    const nodes = this.DiskfulresourceStore.list.data.map(node => ({
+      label: node.name,
+      value: node.name,
+    }))
+    return nodes
+  }
+
+  handleCreate = iSCSIMapping1Templates => {
+    iSCSIMapping1Templates.name = this.props.name
+    iSCSIMapping1Templates.iqn = this.props.iqn
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(iSCSIMappingTemplates)
+      JSON.stringify(iSCSIMapping1Templates)
     )
     this.props.onOk(this.props.formTemplate)
   }
@@ -88,7 +128,12 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    const title = 'Delete Initiator'
+    const title = 'Bind Storage'
+
+    console.log("this.props",this.props)
+    console.log("this.DisklessresourceStore.list.data",this.DisklessresourceStore.list.data)
+    console.log("this.DiskfulresourceStore.list.data",this.DiskfulresourceStore.list.data)
+
     return (
       <Modal.Form
         width={600}
@@ -100,7 +145,19 @@ export default class iSCSIMappingDeleteModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-        <p>点击以确认删除此发起端主机</p>
+        <Form.Item
+          label={t('RESOURCE')}
+          desc={t('Select resource to bind storage')}
+        >
+          <Select
+            name="resource"
+            options={this.diskful}
+            onFetch={this.fetchAllResources}
+            searchable
+            clearable
+            multi
+          />
+        </Form.Item>
       </Modal.Form>
     )
   }

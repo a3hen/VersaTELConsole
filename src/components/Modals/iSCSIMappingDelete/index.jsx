@@ -28,14 +28,14 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
-import iSCSIMappingStore from 'stores/iSCSImapping'
+import iSCSIMapping2Store from 'stores/iSCSImapping2'
 
 @observer
-export default class iSCSIMappingDeleteModal extends React.Component {
+export default class iSCSIMapping2DeleteModal extends React.Component {
   static propTypes = {
     store: PropTypes.object,
     module: PropTypes.string,
-    iSCSIMappingTemplates: PropTypes.array,
+    iSCSIMapping2Templates: PropTypes.array,
     formTemplate: PropTypes.object,
     title: PropTypes.string,
     visible: PropTypes.bool,
@@ -47,7 +47,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   static defaultProps = {
     visible: false,
     isSubmitting: false,
-    module: 'iSCSImapping',
+    module: 'iSCSImapping2',
     onOk() {},
     onCancel() {},
   }
@@ -55,32 +55,32 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.iSCSIMappingStore = new iSCSIMappingStore()
+    this.iSCSIMapping2Store = new iSCSIMapping2Store()
 
     this.fetchResource()
   }
 
   fetchResource = params => {
-    return this.iSCSIMappingStore.fetchList({
+    return this.iSCSIMapping2Store.fetchList({
       ...params,
     })
   }
 
   get resources() {
-    const resources = this.iSCSIMappingStore.list.data.map(node => ({
+    const resources = this.iSCSIMapping2Store.list.data.map(node => ({
       label: node.name,
       value: node.name,
     }))
     return resources
   }
 
-  handleCreate = iSCSIMappingTemplates => {
-    iSCSIMappingTemplates.name = this.props.name
-    iSCSIMappingTemplates.iqn = this.props.iqn
+  handleCreate = iSCSIMapping2Templates => {
+    iSCSIMapping2Templates.name = this.props.name
+    iSCSIMapping2Templates.iqn = this.props.iqn
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(iSCSIMappingTemplates)
+      JSON.stringify(iSCSIMapping2Templates)
     )
     this.props.onOk(this.props.formTemplate)
   }
@@ -88,7 +88,10 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    const title = 'Delete Initiator'
+    const title = 'Delete Map'
+
+    console.log("this.props",this.props)
+
     return (
       <Modal.Form
         width={600}
@@ -100,7 +103,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-        <p>点击以确认删除此发起端主机</p>
+        <p>点击以确认删除此条映射</p>
       </Modal.Form>
     )
   }
