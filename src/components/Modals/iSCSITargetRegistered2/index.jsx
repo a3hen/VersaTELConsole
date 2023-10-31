@@ -24,7 +24,7 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME} from 'utils/constants'
+import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME, PATTERN_IP} from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -167,6 +167,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             label={t(`VIP ${i + 1}`)}
             rules={[
               { required: true, message: t('Please input VIP') },
+              {
+                pattern: PATTERN_IP,
+                message: t('IP地址格式错误', { message: t('VTEL_IP_DESC') }),
+              },
             ]}
           >
             <Input name={`vip${i + 1}`} />

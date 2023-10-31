@@ -19,6 +19,8 @@ module.exports = {
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
   VTEL_IQN_DESC:
     'IQN由三个部分组成,用冒号(:)分隔,格式为:iqn.yyyy-mm.(域名反转).(唯一标识符)。',
+  VTEL_IP_DESC:
+    '请输入正确格式的IP地址。',
   NODE_NAME_DESC:
     '仅支持小写字母、数字以及中横线，且以小写字母开头和结束，长度必须大于2',
   SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',
@@ -29,6 +31,7 @@ module.exports = {
   'VersaSDS Node Type': '节点类型',
   'IP Address of VersaSDS Node': 'VersaSDS 节点的 IP 地址，须符合 IP 地址格式',
   'Type of VersaSDS Node': 'VersaSDS 节点的类型，请选择需要的节点类型',
+  'Invalid IP': 'IP地址格式错误',
   Modify: '修改',
   'Modify VersaSDS Node': '修改 VersaSDS 节点',
   Storagepool: '存储池',
@@ -142,7 +145,7 @@ module.exports = {
   'Bind Storage': '绑定存储',
   'RESOURCE': '选择资源',
   'Select resource to bind storage': '选择资源以绑定存储',
-  'Target Registered': 'Target主注册',
+  'Target Registered': 'Target注册',
   'Target Name': 'Target名',
   'RUNNING_NODES': '运行节点',
   'Select Running Node': '选择运行节点',
@@ -165,7 +168,8 @@ module.exports = {
   'Select registered host': '选择已注册的主机',
   SSNAPSHOT_EMPTY_DESC: '未发现快照，请创建快照',
   WHAT_IS_SNAPSHOT_ROLLBACK_Q: '什么是快照回滚？',
-  WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。',
+  WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。' +
+    '如需回滚到旧快照的状态，请先删除中间快照。注意：一旦回滚到最新的快照状态，就无法通过之前的快照进行回滚。',
   WHAT_IS_SNAPSHOT_RECOVERY_Q: '什么是快照恢复？',
   WHAT_IS_SNAPSHOT_RECOVERY_A: '快照恢复：使用已创建的快照将数据恢复到新创建的资源中。',
   name: '名称',
@@ -183,7 +187,7 @@ module.exports = {
   iSCSIMapping1_PL: 'iSCSI映射',
   ISCSIMAPPING1_DESC: 'iSCSI映射',
   iSCSIMapping2_PL: 'iSCSI映射',
-  ISCSIMAPPING1_DESC: 'iSCSI映射',
+  ISCSIMAPPING2_DESC: 'iSCSI映射',
   INITIATOR: '发起端主机',
   iSCSITARGET: 'iSCSI Target',
   MAPPING: '映射',

@@ -90,7 +90,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const title = 'Delete Target'
 
-    console.log("this.props",this.props)
+    console.log('this.props', this.props)
 
     return (
       <Modal.Form

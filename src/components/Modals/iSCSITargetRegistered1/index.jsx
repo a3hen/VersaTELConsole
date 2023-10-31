@@ -24,7 +24,11 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME} from 'utils/constants'
+import {
+  PATTERN_VTEL_NAME,
+  PATTERN_VTEL_SIZE,
+  PATTERN_IQN_NAME,
+} from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -94,7 +98,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   handleSecondaryNodeChange = value => {
-    const valueArray = Array.isArray(value) ? value : [value];
+    const valueArray = Array.isArray(value) ? value : [value]
 
     const secondaryNode = valueArray.map(node => ({
       label: node,
@@ -140,7 +144,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    const dataToSubmit = { ...this.props.formTemplate, ...iSCSIMappingTemplates }
+    const dataToSubmit = {
+      ...this.props.formTemplate,
+      ...iSCSIMappingTemplates,
+    }
     this.props.onOk(dataToSubmit)
   }
 
@@ -153,11 +160,16 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const { isLoading } = this.state
 
-    const initialNodes = this.state.runningNode.filter((obj) => !this.state.secondaryNode.some((obj2) => obj.label === obj2.label && obj.value === obj2.value))
+    const initialNodes = this.state.runningNode.filter(
+      obj =>
+        !this.state.secondaryNode.some(
+          obj2 => obj.label === obj2.label && obj.value === obj2.value
+        )
+    )
 
-    console.log("step1.this.props.formTemplate",this.props.formTemplates)
-    console.log("step1.this.props",this.props)
-    console.log("step1.this.state",this.state)
+    console.log('step1.this.props.formTemplate', this.props.formTemplates)
+    console.log('step1.this.props', this.props)
+    console.log('step1.this.state', this.state)
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -193,9 +205,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         <Form.Item
           label={t('RUNNING_NODES')}
           desc={t('Select Running Node')}
-          rules={[
-            { required: true, message: t('Please select Running Node') },
-          ]}
+          rules={[{ required: true, message: t('Please select Running Node') }]}
         >
           <Select
             name="running_node"
@@ -226,9 +236,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         <Form.Item
           label={t('INITIAL_NODES')}
           desc={t('Select Initial Node')}
-          rules={[
-            { required: true, message: t('Please select Initial Node') },
-          ]}
+          rules={[{ required: true, message: t('Please select Initial Node') }]}
         >
           <Select
             name="initial_node"

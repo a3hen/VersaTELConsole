@@ -151,7 +151,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { required: true, message: t('Please input IQN') },
             {
               pattern: PATTERN_IQN_NAME,
-              message: t('Invalid IQN', { message: t('VTEL_IQN_DESC') }),
+              message: t('IQN格式错误', { message: t('VTEL_IQN_DESC') }),
             },
           ]}
         >

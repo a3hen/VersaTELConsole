@@ -24,7 +24,11 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME} from 'utils/constants'
+import {
+  PATTERN_VTEL_NAME,
+  PATTERN_VTEL_SIZE,
+  PATTERN_IQN_NAME,
+} from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -144,8 +148,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const { isLoading } = this.state
 
-    console.log("step0.this.props.formTemplate",this.props.formTemplates)
-    console.log("step0.this.state",this.state)
+    console.log('step0.this.props.formTemplate', this.props.formTemplates)
+    console.log('step0.this.state', this.state)
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -195,7 +199,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { required: true, message: t('Please input IQN') },
             {
               pattern: PATTERN_IQN_NAME,
-              message: t('Invalid IQN', { message: t('VTEL_IQN_DESC') }),
+              message: t('IQN格式错误', { message: t('VTEL_IQN_DESC') }),
             },
           ]}
         >

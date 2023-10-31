@@ -78,6 +78,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       this.fetchDisklessResource(params),
     ])
   }
+
   fetchDisklessResource = params => {
     return this.DisklessresourceStore.fetchList({
       ...params,
@@ -130,9 +131,15 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const title = 'Bind Storage'
 
-    console.log("this.props",this.props)
-    console.log("this.DisklessresourceStore.list.data",this.DisklessresourceStore.list.data)
-    console.log("this.DiskfulresourceStore.list.data",this.DiskfulresourceStore.list.data)
+    console.log('this.props', this.props)
+    console.log(
+      'this.DisklessresourceStore.list.data',
+      this.DisklessresourceStore.list.data
+    )
+    console.log(
+      'this.DiskfulresourceStore.list.data',
+      this.DiskfulresourceStore.list.data
+    )
 
     return (
       <Modal.Form

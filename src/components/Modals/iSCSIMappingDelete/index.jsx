@@ -90,7 +90,7 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
 
     const title = 'Delete Map'
 
-    console.log("this.props",this.props)
+    console.log('this.props', this.props)
 
     return (
       <Modal.Form

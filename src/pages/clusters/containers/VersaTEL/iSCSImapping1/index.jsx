@@ -70,7 +70,7 @@ export default class iSCSIMapping1 extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log("trigger",trigger)
+          console.log('trigger', trigger)
           trigger('target.delete1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
@@ -153,7 +153,7 @@ export default class iSCSIMapping1 extends React.Component {
         title: t('VIP'),
         dataIndex: 'vip',
         width: '33%',
-        render: () => "test_vip",
+        render: () => 'test_vip',
       },
       {
         title: t('Storage'),
