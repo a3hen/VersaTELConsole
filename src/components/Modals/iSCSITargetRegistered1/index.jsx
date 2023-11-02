@@ -71,8 +71,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       showStepTwo: false,
       showStepZero: false,
       steponeValue: null,
+      isRunningNodeDisabled: false,
       runningNode: [],
       secondaryNode: [],
+      initialNode: [],
     }
   }
 
@@ -105,12 +107,24 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   handleSecondaryNodeChange = value => {
     const valueArray = Array.isArray(value) ? value : [value]
+    value = value || []
 
     const secondaryNode = valueArray.map(node => ({
       label: node,
       value: node,
     }))
-    this.setState({ secondaryNode })
+    this.setState({ secondaryNode }, this.checkNodeSelection)
+  }
+
+  handleInitialNodeChange = value => {
+    value = value || []
+    this.setState({ initialNode: value }, this.checkNodeSelection)
+  }
+
+  checkNodeSelection = () => {
+    const { secondaryNode, initialNode } = this.state
+    const isRunningNodeDisabled = secondaryNode.length > 0 || initialNode.length > 0
+    this.setState({ isRunningNodeDisabled })
   }
 
   fetchResource = params => {
@@ -236,6 +250,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             clearable
             multi
             onChange={this.handleRunningNodeChange}
+            disabled={this.state.isRunningNodeDisabled}
           />
         </Form.Item>
         <Form.Item
@@ -252,6 +267,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             clearable
             multi
             onChange={this.handleSecondaryNodeChange}
+            disabled={this.state.initialNode.length > 0}
           />
         </Form.Item>
         <Form.Item
@@ -264,6 +280,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             options={initialNodes}
             searchable
             clearable
+            onChange={this.handleInitialNodeChange}
           />
         </Form.Item>
       </Modal.Form>
