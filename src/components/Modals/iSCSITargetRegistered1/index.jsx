@@ -123,7 +123,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   checkNodeSelection = () => {
     const { secondaryNode, initialNode } = this.state
-    const isRunningNodeDisabled = secondaryNode.length > 0 || initialNode.length > 0
+    const isRunningNodeDisabled =
+      secondaryNode.length > 0 || initialNode.length > 0
     this.setState({ isRunningNodeDisabled })
   }
 

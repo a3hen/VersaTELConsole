@@ -235,25 +235,28 @@ export default class SSnapshot extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    const sortedData = this.props.tableProps.data.slice().sort((a, b) => {
-      if (a.resource < b.resource) {
-        return -1
-      }
-      if (a.resource > b.resource) {
-        return 1
-      }
-      return 0
-    }).sort((a, b) => {
-      if (a.resource === b.resource) {
-        if (a.time < b.time) {
-          return 1
-        }
-        if (a.time > b.time) {
+    const sortedData = this.props.tableProps.data
+      .slice()
+      .sort((a, b) => {
+        if (a.resource < b.resource) {
           return -1
         }
-      }
-      return 0
-    })
+        if (a.resource > b.resource) {
+          return 1
+        }
+        return 0
+      })
+      .sort((a, b) => {
+        if (a.resource === b.resource) {
+          if (a.time < b.time) {
+            return 1
+          }
+          if (a.time > b.time) {
+            return -1
+          }
+        }
+        return 0
+      })
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tips={this.tips} tabs={this.tabs} />
