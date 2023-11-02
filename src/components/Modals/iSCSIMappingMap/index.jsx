@@ -20,7 +20,7 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Select } from '@kube-design/components'
+import { Input, Form, Select, Radio } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
@@ -28,16 +28,16 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
-import iSCSIMapping1Store from 'stores/iSCSImapping1'
+import iSCSIMapping2Store from 'stores/iSCSImapping2'
 import DiskfulResourceStore from 'stores/diskfulresource'
 import DisklessResourceStore from 'stores/disklessresource'
 
 @observer
-export default class iSCSIMapping1DeleteModal extends React.Component {
+export default class iSCSIMapping2MapModal extends React.Component {
   static propTypes = {
     store: PropTypes.object,
     module: PropTypes.string,
-    iSCSIMapping1Templates: PropTypes.array,
+    iSCSIMapping2Templates: PropTypes.array,
     formTemplate: PropTypes.object,
     title: PropTypes.string,
     visible: PropTypes.bool,
@@ -49,7 +49,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   static defaultProps = {
     visible: false,
     isSubmitting: false,
-    module: 'iSCSImapping1',
+    module: 'iSCSImapping2',
     onOk() {},
     onCancel() {},
   }
@@ -57,7 +57,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
-    this.iSCSIMapping1Store = new iSCSIMapping1Store()
+    this.iSCSIMapping2Store = new iSCSIMapping2Store()
     this.DisklessresourceStore = new DisklessResourceStore()
     this.DiskfulresourceStore = new DiskfulResourceStore()
 
@@ -67,7 +67,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   }
 
   fetchResource = params => {
-    return this.iSCSIMapping1Store.fetchList({
+    return this.iSCSIMapping2Store.fetchList({
       ...params,
     })
   }
@@ -92,7 +92,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   }
 
   get resources() {
-    const resources = this.iSCSIMapping1Store.list.data.map(node => ({
+    const resources = this.iSCSIMapping2Store.list.data.map(node => ({
       label: node.name,
       value: node.name,
     }))
@@ -115,15 +115,9 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     return nodes
   }
 
-  handleCreate = iSCSIMapping1Templates => {
-    iSCSIMapping1Templates.name = this.props.name
-    iSCSIMapping1Templates.iqn = this.props.iqn
-    set(
-      this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(iSCSIMapping1Templates)
-    )
-    this.props.onOk(this.props.formTemplate)
+  handleCreate = iSCSIMapping2Templates => {
+    const dataToSubmit = { ...this.props, ...iSCSIMapping2Templates }
+    this.props.onOk(dataToSubmit)
   }
 
   render() {
@@ -131,15 +125,18 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const title = 'Mapping'
 
+    const data = [
+      {
+        label: '开启',
+        value: '1',
+      },
+      {
+        label: '关闭',
+        value: '0',
+      },
+    ]
+
     console.log('this.props', this.props)
-    console.log(
-      'this.DisklessresourceStore.list.data',
-      this.DisklessresourceStore.list.data
-    )
-    console.log(
-      'this.DiskfulresourceStore.list.data',
-      this.DiskfulresourceStore.list.data
-    )
 
     return (
       <Modal.Form
@@ -153,8 +150,22 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         visible={visible}
       >
         <Form.Item
+          label={t('UNMAP_SUPPORT')}
+          desc={t('Select to turn on/off unmap support')}
+          rules={[{ required: true }]}
+        >
+          <Select
+            name="unmap"
+            options={data}
+            searchable
+            clearable
+            defaultValue=""
+          />
+        </Form.Item>
+        <Form.Item
           label={t('REGISTERED_HOST')}
           desc={t('Select registered host')}
+          rules={[{ required: true }]}
         >
           <Select
             name="host"

@@ -116,7 +116,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    const dataToSubmit = { ...this.props, ...iSCSIMappingTemplates}
+    const dataToSubmit = { ...this.props, ...iSCSIMappingTemplates }
 
     this.props.onOk(dataToSubmit)
   }

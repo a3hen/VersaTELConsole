@@ -165,6 +165,10 @@ module.exports = {
   'Mapping': '映射',
   'REGISTERED_HOST': '已注册的主机',
   'Select registered host': '选择已注册的主机',
+  'UNMAP_SUPPORT': 'Unmap支持',
+  'Select to turn on/off unmap support': '选择以是否开启Unmap支持',
+  'Please Select the number of VIPs': '请选择VIP的数量',
+  'Please input VIP': '请输入VIP',
   SSNAPSHOT_EMPTY_DESC: '未发现快照，请创建快照',
   WHAT_IS_SNAPSHOT_ROLLBACK_Q: '什么是快照回滚？',
   WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。' +
