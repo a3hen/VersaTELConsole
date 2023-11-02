@@ -148,7 +148,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const { isLoading } = this.state
 
-    console.log('step0.this.props.formTemplate', this.props.formTemplates)
+    console.log('step0.this.props', this.props)
     console.log('step0.this.state', this.state)
 
     if (isLoading) {
@@ -190,7 +190,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="名称" maxLength={63} placeholder="name" />
+          <Input name="name" maxLength={63} placeholder="名称" />
         </Form.Item>
         <Form.Item
           label={t('IQN')}
@@ -203,7 +203,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="IQN" maxLength={63} placeholder="iqn" />
+          <Input name="iqn" maxLength={63} placeholder="IQN" />
         </Form.Item>
       </Modal.Form>
     )

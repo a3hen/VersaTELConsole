@@ -29,6 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME, PATTERN_IP} fr
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import iSCSIMappingStore from 'stores/iSCSImapping'
+import StepOne from 'components/Modals/iSCSITargetRegistered1'
 
 @observer
 export default class iSCSIMappingRegisteredModal extends React.Component {
@@ -61,11 +62,16 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     this.state = {
       vipCount: 1,
+      showStepOne: false,
     }
   }
 
   handleVipChange = value => {
     this.setState({ vipCount: value === '1个VIP' ? 1 : 2 })
+  }
+
+  showStepOne = () => {
+    this.setState({ showStepOne: true })
   }
 
   fetchResource = params => {
@@ -120,6 +126,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const title = 'Target Registered'
 
+    const { showStepOne } = this.state
+
     const data = [
       {
         label: '1个VIP',
@@ -134,15 +142,30 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     console.log("step2.this.props.formTemplate",this.props.formTemplates)
     console.log("step2.this.props",this.props)
 
+    if (showStepOne) {
+      return (
+        <StepOne
+          module={module}
+          visible={visible}
+          formTemplate={formTemplate}
+          onOk={this.handleCreate}
+          onCancel={onCancel}
+          targetname={this.props.targetname}
+          iqn={this.props.iqn}
+        />
+      )
+    }
+
     return (
       <Modal.Form
         width={600}
         title={t(title)}
         icon="database"
         data={formTemplate}
-        onCancel={onCancel}
+        onCancel={this.showStepOne}
         onOk={this.handleCreate}
         okText={t('OK')}
+        cancelText={t('PREVIOUS_STEP')}
         visible={visible}
       >
         <Form.Item

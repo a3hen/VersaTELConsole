@@ -34,6 +34,7 @@ import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import iSCSIMappingStore from 'stores/iSCSImapping'
 import StepTwo from 'components/Modals/iSCSITargetRegistered2'
+import StepZero from 'components/Modals/iSCSITargetRegistered'
 
 @observer
 export default class iSCSIMappingRegisteredModal extends React.Component {
@@ -68,6 +69,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     this.state = {
       showStepTwo: false,
+      showStepZero: false,
       steponeValue: null,
       runningNode: [],
       secondaryNode: [],
@@ -76,6 +78,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   showStepTwo = () => {
     this.setState({ showStepTwo: true })
+  }
+
+  showStepZero = () => {
+    this.setState({ showStepZero: true })
   }
 
   handleStepTwo = formValues => {
@@ -158,6 +164,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const { showStepTwo } = this.state
 
+    const { showStepZero } = this.state
+
     const { isLoading } = this.state
 
     const initialNodes = this.state.runningNode.filter(
@@ -190,6 +198,17 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         />
       )
     }
+    if (showStepZero) {
+      return (
+        <StepZero
+          module={module}
+          visible={visible}
+          formTemplate={formTemplate}
+          onOk={this.handleCreate}
+          onCancel={onCancel}
+        />
+      )
+    }
 
     return (
       <Modal.Form
@@ -197,8 +216,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         title={t(title)}
         icon="database"
         data={formTemplate}
-        onCancel={onCancel}
+        // onCancel={onCancel}
+        onCancel={this.showStepZero}
         onOk={this.handleStepTwo}
+        cancelText={t('PREVIOUS_STEP')}
         okText={t('NEXT_STEP')}
         visible={visible}
       >
