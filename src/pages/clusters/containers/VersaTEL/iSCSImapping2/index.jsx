@@ -21,6 +21,7 @@ import { toJS } from 'mobx'
 import { get, omit } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
+import { Tooltip } from '@kube-design/components'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
@@ -139,12 +140,30 @@ export default class iSCSIMapping2 extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
+    let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
+      'aaaaaa','bbbbbbbb','ccccc','dddddd',
+      'aaaaaa','bbbbbbbb','ccccc','dddddd',
+      'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    ]
     return [
       {
         title: t('Host'),
         dataIndex: 'name',
         width: '50%',
-        render: name => name,
+        render: name => (
+          <Tooltip content={
+            <div style={{
+              maxHeight: '200px',
+              overflowY: 'auto',
+            }}>
+              {test_list.map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
+          }>
+            <a>{name}</a>
+          </Tooltip>
+        ),
       },
       {
         title: t('Storage'),

@@ -123,7 +123,6 @@ module.exports = {
   'PVRESOURCE_EMPTY_DESC': '请创建PV',
   'RAWDEVICE_EMPTY_DESC': '暂无可用的裸设备',
   'VGRESOURCE_EMPTY_DESC': '请创建VG',
-
   'TPRESOURCE_EMPTY_DESC': '请创建ThinPool',
   'Please select Device': '请选择裸设备',
   'Please input name': '请输入名称',
@@ -182,6 +181,7 @@ module.exports = {
   SnapshotName: '快照',
   SNAPSHOT_RECOVERY: '快照恢复',
   SNAPSHOT_ROLLBACK: '快照回滚',
+  iSCSIMapping: 'iSCSI映射',
   iSCSIMapping_PL: 'iSCSI映射',
   ISCSIMAPPING_DESC: 'iSCSI映射',
   iSCSIMapping1_PL: 'iSCSI映射',

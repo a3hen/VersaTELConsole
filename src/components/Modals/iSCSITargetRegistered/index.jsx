@@ -186,11 +186,11 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { required: true, message: t('Please input target name') },
             {
               pattern: PATTERN_VTEL_NAME,
-              message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
+              message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
             },
           ]}
         >
-          <Input name="name" maxLength={63} placeholder="name" />
+          <Input name="名称" maxLength={63} placeholder="name" />
         </Form.Item>
         <Form.Item
           label={t('IQN')}
@@ -203,7 +203,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="iqn" maxLength={63} placeholder="iqn" />
+          <Input name="IQN" maxLength={63} placeholder="iqn" />
         </Form.Item>
       </Modal.Form>
     )
