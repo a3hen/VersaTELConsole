@@ -241,11 +241,15 @@ export default class SSnapshot extends React.Component {
       if (a.resource > b.resource) {
         return 1
       }
-      if (a.time < b.time) {
-        return 1
-      }
-      if (a.time > b.time) {
-        return -1
+      return 0
+    }).sort((a, b) => {
+      if (a.resource === b.resource) {
+        if (a.time < b.time) {
+          return 1
+        }
+        if (a.time > b.time) {
+          return -1
+        }
       }
       return 0
     })
