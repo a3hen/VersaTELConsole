@@ -46,18 +46,18 @@ export default [
     requireETCD: true,
     exact: true,
   },
-  {
-    path: `${PATH}/api-server`,
-    title: 'API_SERVER_MONITORING',
-    component: APIServerMonitoring,
-    exact: true,
-  },
-  {
-    path: `${PATH}/scheduler`,
-    title: 'SCHEDULER_MONITORING',
-    component: SchedulerMonitoring,
-    exact: true,
-  },
+  // {
+  //   path: `${PATH}/api-server`,
+  //   title: 'API_SERVER_MONITORING',
+  //   component: APIServerMonitoring,
+  //   exact: true,
+  // },
+  // {
+  //   path: `${PATH}/scheduler`,
+  //   title: 'SCHEDULER_MONITORING',
+  //   component: SchedulerMonitoring,
+  //   exact: true,
+  // },
   {
     path: `${PATH}/ranking`,
     title: 'RESOURCE_USAGE_RANKING',
