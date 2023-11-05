@@ -74,8 +74,7 @@ export default class iSCSIMapping2 extends React.Component {
           trigger('mapping.delete2', {
             iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
             // success: getData,
-            name: item?.name,
-            iqn: item?.numbers,
+            hostName: item?.hostName,
           })
         },
       },
@@ -89,8 +88,7 @@ export default class iSCSIMapping2 extends React.Component {
           trigger('mapping.map', {
             iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
             // success: getData,
-            name: item?.name,
-            iqn: item?.numbers,
+            resname: item?.resName,
           })
         },
       },
@@ -147,29 +145,29 @@ export default class iSCSIMapping2 extends React.Component {
     ]
     return [
       {
-        title: t('Host'),
-        dataIndex: 'name',
+        title: t('Storage'),
+        dataIndex: 'resName',
         width: '50%',
-        render: name => (
+        render: resName => resName,
+      },
+      {
+        title: t('Host'),
+        dataIndex: 'hostName',
+        width: '50%',
+        render: (hostNum,hostName) => (
           <Tooltip content={
             <div style={{
               maxHeight: '200px',
               overflowY: 'auto',
             }}>
-              {test_list.map((item, index) => (
+              {hostName.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
             </div>
           }>
-            <a>{name}</a>
+            <a>{hostNum}</a>
           </Tooltip>
         ),
-      },
-      {
-        title: t('Storage'),
-        dataIndex: 'numbers',
-        width: '50%',
-        render: numbers => numbers,
       },
     ]
   }

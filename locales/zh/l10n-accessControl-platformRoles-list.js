@@ -22,7 +22,7 @@ module.exports = {
   PLATFORM_ROLE_EMPTY_DESC: '请创建一个平台角色。',
   ROLE_USERS_MANAGER: '管理 CoSAN Manager 平台上的所有用户。',
   ROLE_WORKSPACES_MANAGER: '管理 CoSAN Manager 平台上的所有企业空间。',
-  ROLE_PLATFORM_ADMIN: '管理 CoSAN Manager 平台上的所有资源。',
+  ROLE_PLATFORM_ADMIN: '管理平台上的所有资源。',
   ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前无法访问任何资源。',
   CREATION_TIME_TCAP: '创建时间',
   // List > Create

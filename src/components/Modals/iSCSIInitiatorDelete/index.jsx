@@ -75,7 +75,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMappingTemplates => {
-    iSCSIMappingTemplates.name = this.props.name
+    iSCSIMappingTemplates.hostname = this.props.hostname
     iSCSIMappingTemplates.iqn = this.props.iqn
     set(
       this.props.formTemplate,

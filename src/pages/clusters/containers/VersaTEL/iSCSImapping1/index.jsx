@@ -76,7 +76,6 @@ export default class iSCSIMapping1 extends React.Component {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
             name: item?.name,
-            iqn: item?.numbers,
           })
         },
       },
@@ -91,7 +90,6 @@ export default class iSCSIMapping1 extends React.Component {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
             name: item?.name,
-            iqn: item?.numbers,
           })
         },
       },
@@ -157,26 +155,26 @@ export default class iSCSIMapping1 extends React.Component {
       },
       {
         title: t('VIP'),
-        dataIndex: 'vip',
+        dataIndex: 'vipList',
         width: '33%',
-        render: () => 'test_vip',
+        render: vipList => vipList,
       },
       {
         title: t('Storage'),
-        dataIndex: 'numbers',
+        dataIndex: 'storageNum',
         width: '33%',
-        render: numbers => (
+        render: (storageNum, storageList) => (
           <Tooltip content={
             <div style={{
               maxHeight: '200px',
               overflowY: 'auto',
             }}>
-              {test_list.map((item, index) => (
+              {storageList.map((item, index) => (
                 <p key={index}>{item}</p>
               ))}
             </div>
           }>
-            <a>{numbers}</a>
+            <a>{storageNum}</a>
           </Tooltip>
         ),
       },

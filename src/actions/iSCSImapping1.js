@@ -31,25 +31,26 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log('data', data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          // request
-          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Operation Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .delete(
+              `/kapis/versatel.kubesphere.io/v1alpha1/target/${data.name} `
+            )
+            .then(res => {
+              // Modal.close(modal)
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Deleted Successful')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
         },
         modal: TargetDeleteModal,
         store,
@@ -68,25 +69,25 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log('data', data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          // request
-          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Operation Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/storage`, data)
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
         },
         modal: TargetBindModal,
         store,
@@ -105,25 +106,25 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log('data', data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          // request
-          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/snapshot`, data)
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Operation Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/target`, data)
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
         },
         modal: RegisteredModal,
         store,

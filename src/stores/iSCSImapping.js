@@ -27,7 +27,7 @@ export default class iSCSIMappingStore extends Base {
   iSCSIMappingTemplates = new List()
 
   getiSCSIMappingUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
+    `/kapis/versatel.kubesphere.io/v1alpha1/registered`
 
   getListUrl = this.getiSCSIMappingUrl
 
@@ -118,7 +118,7 @@ export default class iSCSIMappingStore extends Base {
     this.iSCSIMappingTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/thinresource`
+      `/kapis/versatel.kubesphere.io/v1alpha1/registered`
     )
     this.iSCSIMappingTemplates.update({
       data: get(result, 'data', []).map(this.mapper),

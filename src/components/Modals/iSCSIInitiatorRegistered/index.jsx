@@ -142,7 +142,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="名称" maxLength={63} placeholder="name" />
+          <Input name="hostname" maxLength={63} placeholder="名称" />
         </Form.Item>
         <Form.Item
           label={t('IQN')}
@@ -155,7 +155,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="IQN" maxLength={63} placeholder="IQN" />
+          <Input name="iqn" maxLength={63} placeholder="IQN" />
         </Form.Item>
       </Modal.Form>
     )

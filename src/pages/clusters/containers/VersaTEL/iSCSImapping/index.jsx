@@ -74,8 +74,8 @@ export default class iSCSIMapping extends React.Component {
           trigger('host.delete', {
             iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
             // success: getData,
-            name: item?.name,
-            iqn: item?.numbers,
+            hostname: item?.hostname,
+            iqn: item?.iqn,
           })
         },
       },
@@ -130,15 +130,15 @@ export default class iSCSIMapping extends React.Component {
     return [
       {
         title: t('Hostname'),
-        dataIndex: 'name',
+        dataIndex: 'hostname',
         width: '50%',
-        render: name => name,
+        render: hostname => hostname,
       },
       {
         title: t('IQN'),
-        dataIndex: 'numbers',
+        dataIndex: 'iqn',
         width: '50%',
-        render: numbers => numbers,
+        render: iqn => iqn,
       },
     ]
   }

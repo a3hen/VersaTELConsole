@@ -244,7 +244,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           rules={[{ required: true, message: t('Please select Running Node') }]}
         >
           <Select
-            name="running_node"
+            name="nodeRun"
             options={this.nodes}
             onFetch={this.fetchNodes}
             searchable
@@ -262,7 +262,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           ]}
         >
           <Select
-            name="secondary_node"
+            name="nodeLess"
             options={this.state.runningNode || []}
             searchable
             clearable
@@ -277,7 +277,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           rules={[{ required: true, message: t('Please select Initial Node') }]}
         >
           <Select
-            name="initial_node"
+            name="nodeOn"
             options={initialNodes}
             searchable
             clearable

@@ -117,7 +117,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
   handleCreate = iSCSIMapping1Templates => {
     iSCSIMapping1Templates.name = this.props.name
-    iSCSIMapping1Templates.iqn = this.props.iqn
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -157,7 +156,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
           desc={t('Select resource to bind storage')}
         >
           <Select
-            name="resource"
+            name="resName"
             options={this.diskful}
             onFetch={this.fetchAllResources}
             searchable

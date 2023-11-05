@@ -29,8 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import iSCSIMapping2Store from 'stores/iSCSImapping2'
-import DiskfulResourceStore from 'stores/diskfulresource'
-import DisklessResourceStore from 'stores/disklessresource'
+import iSCSIMappingStore from 'stores/iSCSImapping'
 
 @observer
 export default class iSCSIMapping2MapModal extends React.Component {
@@ -58,9 +57,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
     super(props)
 
     this.iSCSIMapping2Store = new iSCSIMapping2Store()
-    this.DisklessresourceStore = new DisklessResourceStore()
-    this.DiskfulresourceStore = new DiskfulResourceStore()
-
+    this.iSCSIMappingStore = new iSCSIMappingStore()
     this.fetchResource()
     this.fetchDiskfulResource()
     this.fetchDisklessResource()
@@ -72,21 +69,8 @@ export default class iSCSIMapping2MapModal extends React.Component {
     })
   }
 
-  fetchAllResources = params => {
-    return Promise.all([
-      this.fetchDiskfulResource(params),
-      this.fetchDisklessResource(params),
-    ])
-  }
-
-  fetchDisklessResource = params => {
-    return this.DisklessresourceStore.fetchList({
-      ...params,
-    })
-  }
-
-  fetchDiskfulResource = params => {
-    return this.DiskfulresourceStore.fetchList({
+  fetchHostName = params => {
+    return this.iSCSIMappingStore.fetchList({
       ...params,
     })
   }
@@ -99,18 +83,10 @@ export default class iSCSIMapping2MapModal extends React.Component {
     return resources
   }
 
-  get diskless() {
-    const nodes = this.DisklessresourceStore.list.data.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
-    return nodes
-  }
-
-  get diskful() {
-    const nodes = this.DiskfulresourceStore.list.data.map(node => ({
-      label: node.name,
-      value: node.name,
+  get hostname() {
+    const nodes = this.iSCSIMappingStore.list.data.map(node => ({
+      label: node.hostname,
+      value: node.hostname,
     }))
     return nodes
   }
@@ -155,7 +131,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
           rules={[{ required: true }]}
         >
           <Select
-            name="unmap"
+            name="unMap"
             options={data}
             searchable
             clearable
@@ -168,9 +144,9 @@ export default class iSCSIMapping2MapModal extends React.Component {
           rules={[{ required: true }]}
         >
           <Select
-            name="host"
-            options={this.diskful}
-            onFetch={this.fetchAllResources}
+            name="hostname"
+            options={this.hostname}
+            onFetch={this.fetchHostName}
             searchable
             clearable
             multi
