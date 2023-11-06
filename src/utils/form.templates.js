@@ -785,6 +785,24 @@ const getSSnapshotTemplate = ({ namespace, type, detail }) => ({
   // image: detail.image,
   rules: [],
 })
+const getiSCSIMappingTemplates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+const getiSCSIMapping1Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping1',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
 
 const getCDTemplate = () => ({
   kind: 'Application',
@@ -894,6 +912,8 @@ const FORM_TEMPLATES = {
   tpresources: getTPResourceTemplate,
   snapshot: getSnapshotTemplate,
   ssnapshot: getSSnapshotTemplate,
+  iSCSImapping: getiSCSIMappingTemplates,
+  iSCSImapping1: getiSCSIMapping1Templates,
   resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,
