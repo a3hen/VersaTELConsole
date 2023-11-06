@@ -171,8 +171,7 @@ module.exports = {
   'Please input VIP': '请输入VIP',
   SSNAPSHOT_EMPTY_DESC: '未发现快照，请创建快照',
   WHAT_IS_SNAPSHOT_ROLLBACK_Q: '什么是快照回滚？',
-  WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。' +
-    '如需回滚到旧快照的状态，请先删除中间快照。注意：一旦回滚到最新的快照状态，就无法通过之前的快照进行回滚。',
+  WHAT_IS_SNAPSHOT_ROLLBACK_A: '快照回滚：将资源回滚到最新的快照时的状态。如需回滚到旧快照的状态，请先删除中间快照。注意：一旦回滚到最新的快照状态，就无法通过之前的快照进行回滚。',
   WHAT_IS_SNAPSHOT_RECOVERY_Q: '什么是快照恢复？',
   WHAT_IS_SNAPSHOT_RECOVERY_A: '快照恢复：使用已创建的快照将数据恢复到新创建的资源中。',
   name: '名称',
