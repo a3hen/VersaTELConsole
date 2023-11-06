@@ -59,8 +59,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
     this.iSCSIMapping2Store = new iSCSIMapping2Store()
     this.iSCSIMappingStore = new iSCSIMappingStore()
     this.fetchResource()
-    this.fetchDiskfulResource()
-    this.fetchDisklessResource()
+    this.fetchHostName()
   }
 
   fetchResource = params => {
@@ -85,8 +84,8 @@ export default class iSCSIMapping2MapModal extends React.Component {
 
   get hostname() {
     const nodes = this.iSCSIMappingStore.list.data.map(node => ({
-      label: node.hostname,
-      value: node.hostname,
+      label: node.hostName,
+      value: node.hostName,
     }))
     return nodes
   }
@@ -135,7 +134,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
             options={data}
             searchable
             clearable
-            defaultValue=""
+            defaultValue="0"
           />
         </Form.Item>
         <Form.Item

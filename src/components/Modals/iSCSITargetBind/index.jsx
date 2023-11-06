@@ -29,8 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import iSCSIMapping1Store from 'stores/iSCSImapping1'
-import DiskfulResourceStore from 'stores/diskfulresource'
-import DisklessResourceStore from 'stores/disklessresource'
+import ResourceStore from 'stores/lresource'
 
 @observer
 export default class iSCSIMapping1DeleteModal extends React.Component {
@@ -58,12 +57,46 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     super(props)
 
     this.iSCSIMapping1Store = new iSCSIMapping1Store()
-    this.DisklessresourceStore = new DisklessResourceStore()
-    this.DiskfulresourceStore = new DiskfulResourceStore()
+    this.ResourceStore = new ResourceStore()
 
     this.fetchResource()
-    this.fetchDiskfulResource()
-    this.fetchDisklessResource()
+
+    this.state = {
+      list_data: [],
+      r_diskful: 0,
+      r_diskless: 0,
+    }
+  }
+
+  componentDidMount() {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: this.props.targetname }),
+    }
+
+    fetch('/kapis/versatel.kubesphere.io/v1alpha1/getnode', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        let r_diskless = 0
+        let r_diskful = 0
+        const nodeLess = data.data[0].NodeLess
+        const nodeRun = data.data[0].nodeRun
+
+        if (Array.isArray(nodeLess)) {
+          r_diskless = nodeLess.length
+        } else if (typeof nodeLess === 'string' && nodeLess !== '') {
+          r_diskless = 1
+        }
+
+        if (Array.isArray(nodeRun)) {
+          r_diskful = nodeRun.length
+        } else if (typeof nodeRun === 'string' && nodeRun !== '') {
+          r_diskful = 1
+        }
+
+        this.setState({ data, r_diskless, r_diskful })
+      })
   }
 
   fetchResource = params => {
@@ -72,21 +105,8 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     })
   }
 
-  fetchAllResources = params => {
-    return Promise.all([
-      this.fetchDiskfulResource(params),
-      this.fetchDisklessResource(params),
-    ])
-  }
-
-  fetchDisklessResource = params => {
-    return this.DisklessresourceStore.fetchList({
-      ...params,
-    })
-  }
-
-  fetchDiskfulResource = params => {
-    return this.DiskfulresourceStore.fetchList({
+  fetchResource = params => {
+    return this.ResourceStore.fetchList({
       ...params,
     })
   }
@@ -99,24 +119,35 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     return resources
   }
 
-  get diskless() {
-    const nodes = this.DisklessresourceStore.list.data.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
-    return nodes
-  }
+  // get lresource() {
+  //   const nodes = this.ResourceStore.list.data.map(node => ({
+  //     label: node.name,
+  //     value: node.name,
+  //   }))
+  //   return nodes
+  // }
+  get lresource() {
+    const nodes = this.ResourceStore.list.data
+      .filter(node => {
+        const assignedNodeIsEmpty = node.assignedNode === ''
+        const assignedNodeIsNotEmpty = node.assignedNode !== ''
+        const mirrorWayMatches = parseInt(node.mirrorWay, 10) === this.state.r_diskful
 
-  get diskful() {
-    const nodes = this.DiskfulresourceStore.list.data.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
+        return ((assignedNodeIsEmpty && this.state.r_diskless === 0) ||
+            (assignedNodeIsNotEmpty && this.state.r_diskless === 1)) &&
+          mirrorWayMatches
+      })
+      .map(node => ({
+        label: node.name,
+        value: node.name,
+      }))
+    console.log("nodes",nodes)
+
     return nodes
   }
 
   handleCreate = iSCSIMapping1Templates => {
-    iSCSIMapping1Templates.name = this.props.name
+    iSCSIMapping1Templates.name = this.props.targetname
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -130,15 +161,17 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const title = 'Bind Storage'
 
-    console.log('this.props', this.props)
+    console.log('bind_this.props', this.props)
     console.log(
-      'this.DisklessresourceStore.list.data',
-      this.DisklessresourceStore.list.data
+      'this.ResourceStore.list.data',
+      this.ResourceStore.list.data
     )
-    console.log(
-      'this.DiskfulresourceStore.list.data',
-      this.DiskfulresourceStore.list.data
-    )
+    console.log("this.ResourceStore.list.data",this.ResourceStore.list.data)
+    console.log("this.state",this.state)
+
+    if (!this.state.data) {
+      return null
+    }
 
     return (
       <Modal.Form
@@ -157,8 +190,8 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         >
           <Select
             name="resName"
-            options={this.diskful}
-            onFetch={this.fetchAllResources}
+            options={this.lresource}
+            onFetch={this.fetchResource}
             searchable
             clearable
             multi

@@ -138,11 +138,11 @@ export default class iSCSIMapping2 extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
-    let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    ]
+    // let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    // ]
     return [
       {
         title: t('Storage'),
@@ -152,17 +152,17 @@ export default class iSCSIMapping2 extends React.Component {
       },
       {
         title: t('Host'),
-        dataIndex: 'hostName',
+        dataIndex: 'hostNum',
         width: '50%',
-        render: (hostNum,hostName) => (
+        render: (hostNum, hostName) => (
           <Tooltip content={
             <div style={{
               maxHeight: '200px',
               overflowY: 'auto',
             }}>
-              {hostName.map((item, index) => (
+              {Array.isArray(hostName) ? hostName.map((item, index) => (
                 <p key={index}>{item}</p>
-              ))}
+              )) : <p>data error</p>}
             </div>
           }>
             <a>{hostNum}</a>

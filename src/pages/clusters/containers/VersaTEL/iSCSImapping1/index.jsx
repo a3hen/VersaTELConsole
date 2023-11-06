@@ -71,11 +71,10 @@ export default class iSCSIMapping1 extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log('trigger', trigger)
           trigger('target.delete1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
-            name: item?.name,
+            targetname: item?.name,
           })
         },
       },
@@ -89,7 +88,7 @@ export default class iSCSIMapping1 extends React.Component {
           trigger('target.bind1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
-            name: item?.name,
+            targetname: item?.name,
           })
         },
       },
@@ -141,11 +140,12 @@ export default class iSCSIMapping1 extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
-    let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    ]
+    // let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    // ]
+    // console.log("props",this.props)
     return [
       {
         title: t('Target'),
@@ -164,14 +164,15 @@ export default class iSCSIMapping1 extends React.Component {
         dataIndex: 'storageNum',
         width: '33%',
         render: (storageNum, storageList) => (
+          // console.log("storagenum",storageNum)
           <Tooltip content={
             <div style={{
               maxHeight: '200px',
               overflowY: 'auto',
             }}>
-              {storageList.map((item, index) => (
+              {Array.isArray(storageList) ? storageList.map((item, index) => (
                 <p key={index}>{item}</p>
-              ))}
+              )) : <p>data error</p>}
             </div>
           }>
             <a>{storageNum}</a>
@@ -189,6 +190,7 @@ export default class iSCSIMapping1 extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    // console.log("props",this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />

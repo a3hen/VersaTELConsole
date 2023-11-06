@@ -75,13 +75,11 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping2Templates => {
-    iSCSIMapping2Templates.name = this.props.name
-    iSCSIMapping2Templates.iqn = this.props.iqn
-    set(
-      this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
-      JSON.stringify(iSCSIMapping2Templates)
-    )
+    iSCSIMapping2Templates.hostName = this.props.hostName
+    this.props.formTemplate = {
+      ...this.props.formTemplate,
+      ...iSCSIMapping2Templates,
+    }
     this.props.onOk(this.props.formTemplate)
   }
 

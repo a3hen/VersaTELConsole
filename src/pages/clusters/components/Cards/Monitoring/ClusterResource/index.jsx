@@ -91,12 +91,12 @@ export default class ClusterResourceStatusTab extends React.Component {
         used: this.getValue(lastData[MetricTypes.disk_size_usage]),
         total: this.getValue(lastData[MetricTypes.disk_size_capacity]),
       },
-      {
-        name: 'PODS',
-        unit: '',
-        used: this.getValue(lastData[MetricTypes.pod_count]),
-        total: this.getValue(lastData[MetricTypes.pod_capacity]),
-      },
+      // {
+      //   name: 'PODS',
+      //   unit: '',
+      //   used: this.getValue(lastData[MetricTypes.pod_count]),
+      //   total: this.getValue(lastData[MetricTypes.pod_capacity]),
+      // },
     ]
 
     return result.map(item => ({

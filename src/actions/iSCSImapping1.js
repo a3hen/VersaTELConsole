@@ -105,7 +105,9 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          console.log('data', data)
+          let vipList = [data.vip1]
+          if (data.vip2) vipList.push(data.vip2)
+          data.vipList = vipList
           if (!data) {
             Modal.close(modal)
             return

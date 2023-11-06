@@ -51,7 +51,7 @@ export default class AboutModal extends Component {
             <img src="/assets/logo.svg" alt="" />
           </div>
           <p>{t('VersaTEL_DESCRIPTION')}</p>
-          <strong>CoSAN Manager {t('VERSION')} : 1.1.0</strong>
+          <strong>CoSAN Manager {t('VERSION')} : 1.1.0-RC</strong>
         </div>
 
         <div className={styles.links}>

@@ -23,15 +23,15 @@ import Base from 'stores/base'
 import List from 'stores/base.list'
 // import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class iSCSIMapping1Store extends Base {
-  iSCSIMapping1Templates = new List()
+export default class HostStore extends Base {
+  HostTemplates = new List()
 
-  getiSCSIMapping1Url = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/target`
+  getHostUrl = () =>
+    `/kapis/versatel.kubesphere.io/v1alpha1/getnode`
 
-  getListUrl = this.getiSCSIMapping1Url
+  getListUrl = this.getResourceUrl
 
-  constructor(module = 'iSCSImapping1') {
+  constructor(module = 'host') {
     super(module)
   }
 
@@ -56,41 +56,71 @@ export default class iSCSIMapping1Store extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getiSCSIMapping1Url(), {
+    const result = await request.get(this.getHostUrl(), {
       ...params,
     })
 
+    // const result = {
+    //   code: 0,
+    //   count: 2,
+    //   data: [
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_a",
+    //       "node": "ubuntu",
+    //       "size": "12 KB",
+    //       "status": "Healthy"
+    //     },
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_c",
+    //       "size": "12 KB",
+    //       "status": "Unhealthy"
+    //     },
+    //     {
+    //       "deviceName": "/dev/drbd1000",
+    //       "mirrorWay": "1",
+    //       "disklessNode": ["ubuntu"],
+    //       "diskfulNode": ["ubuntu1","ubuntu2"],
+    //       "name": "res_b",
+    //       "size": "12 KB",
+    //       "status": "Synching"
+    //     },
+    //   ],
+    // }
 
     const data = get(result, 'data', [])
 
-    if (data) {
-      this.list.update({
-        data: more ? [...this.list.data, ...data] : data,
-        total:
-          result && (result.count ||
-            result.totalItems ||
-            result.total_count ||
-            data.length) ||
-          0,
-        ...params,
-        limit: Number(params.limit) || 10,
-        page: Number(params.page) || 1,
-        isLoading: false,
-        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-      })
-    } else {
-      this.list.update({ isLoading: false })
-    }
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data,
+      total:
+        result.count ||
+        result.totalItems ||
+        result.total_count ||
+        data.length ||
+        0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      isLoading: false,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
   }
 
   @action
-  async fetchLiSCSIMapping1Templates() {
-    this.iSCSIMapping1Templates.isLoading = true
+  async fetchLHostTemplates() {
+    this.HostTemplates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/target`
+      `/kapis/versatel.kubesphere.io/v1alpha1/getnode`
     )
-    this.iSCSIMapping1Templates.update({
+    this.HostTemplates.update({
       data: get(result, 'data', []).map(this.mapper),
       // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
@@ -101,12 +131,12 @@ export default class iSCSIMapping1Store extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-    const result = await request.get(this.getiSCSIMapping1Url(), {
+    const result = await request.get(this.getHostUrl(), {
       name: params.name,
     })
     const filterData = get(result, 'data', [])
     const data = filterData.filter(item => item.name === params.name)
-    const detail = { ...params, ...data[0], kind: 'iSCSIMapping1' }
+    const detail = { ...params, ...data[0], kind: 'Host' }
     this.detail = detail
     this.isLoading = false
     return detail

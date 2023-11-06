@@ -195,6 +195,8 @@ module.exports = {
   INITIATOR: '发起端主机',
   iSCSITARGET: 'iSCSI Target',
   MAPPING: '映射',
+  ISCSIMAPPING1: 'iSCSI Target',
+  ISCSIMAPPING1_EMPTY_DESC: '请创建iSCSI Target',
   NewResourceName: '新资源名',
   Status: '状态',
   Snapshot_Numbers: '快照数量',

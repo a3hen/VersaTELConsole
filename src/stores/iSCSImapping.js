@@ -97,20 +97,24 @@ export default class iSCSIMappingStore extends Base {
 
     const data = get(result, 'data', [])
 
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
-      ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
-      isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
+    if (data) {
+      this.list.update({
+        data: more ? [...this.list.data, ...data] : data,
+        total:
+          result && (result.count ||
+            result.totalItems ||
+            result.total_count ||
+            data.length) ||
+          0,
+        ...params,
+        limit: Number(params.limit) || 10,
+        page: Number(params.page) || 1,
+        isLoading: false,
+        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      })
+    } else {
+      this.list.update({ isLoading: false })
+    }
   }
 
   @action
