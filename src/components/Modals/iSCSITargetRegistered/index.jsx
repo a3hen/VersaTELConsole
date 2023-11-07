@@ -148,8 +148,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const { isLoading } = this.state
 
-    console.log('step0.this.props', this.props)
-    console.log('step0.this.state', this.state)
 
     if (isLoading) {
       return <div>Loading...</div>

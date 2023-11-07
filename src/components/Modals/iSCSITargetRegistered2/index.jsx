@@ -142,9 +142,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         value: '2个VIP',
       },
     ]
-
-    console.log("step2.this.props.formTemplate",this.props.formTemplates)
-    console.log("step2.this.props",this.props)
+    
 
     if (showStepOne) {
       return (

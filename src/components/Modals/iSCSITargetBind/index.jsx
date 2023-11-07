@@ -80,7 +80,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       .then(data => {
         let r_diskless = 0
         let r_diskful = 0
-        console.log("data",data)
         const nodeLess = data[0].NodeLess
         const nodeRun = data[0].nodeRun
 
@@ -142,7 +141,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         label: node.name,
         value: node.name,
       }))
-    console.log("nodes",nodes)
 
     return nodes
   }
@@ -161,14 +159,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Bind Storage'
-
-    console.log('bind_this.props', this.props)
-    console.log(
-      'this.ResourceStore.list.data',
-      this.ResourceStore.list.data
-    )
-    console.log("this.ResourceStore.list.data",this.ResourceStore.list.data)
-    console.log("this.state",this.state)
 
     if (!this.state.data) {
       return null

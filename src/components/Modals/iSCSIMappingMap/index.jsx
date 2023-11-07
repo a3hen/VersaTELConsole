@@ -111,7 +111,6 @@ export default class iSCSIMapping2MapModal extends React.Component {
       },
     ]
 
-    console.log('this.props', this.props)
 
     return (
       <Modal.Form
