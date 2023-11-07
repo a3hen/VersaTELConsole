@@ -154,20 +154,23 @@ export default class iSCSIMapping2 extends React.Component {
         title: t('Host'),
         dataIndex: 'hostNum',
         width: '50%',
-        render: (hostNum, hostName) => (
-          <Tooltip content={
-            <div style={{
-              maxHeight: '200px',
-              overflowY: 'auto',
-            }}>
-              {Array.isArray(hostName) ? hostName.map((item, index) => (
-                <p key={index}>{item}</p>
-              )) : <p>data error</p>}
-            </div>
-          }>
-            <a>{hostNum}</a>
-          </Tooltip>
-        ),
+        render: (hostNum, record) => {
+          const hostName = record.hostName
+          return (
+            <Tooltip content={
+              <div style={{
+                maxHeight: '200px',
+                overflowY: 'auto',
+              }}>
+                {Array.isArray(hostName) ? hostName.map((item, index) => (
+                  <p key={index}>{item}</p>
+                )) : <p>data error</p>}
+              </div>
+            }>
+              <a>{hostNum}</a>
+            </Tooltip>
+          );
+        },
       },
     ]
   }

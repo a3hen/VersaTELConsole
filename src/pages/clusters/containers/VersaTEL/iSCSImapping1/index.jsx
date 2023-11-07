@@ -163,21 +163,23 @@ export default class iSCSIMapping1 extends React.Component {
         title: t('Storage'),
         dataIndex: 'storageNum',
         width: '33%',
-        render: (storageNum, storageList) => (
-          // console.log("storagenum",storageNum)
-          <Tooltip content={
-            <div style={{
-              maxHeight: '200px',
-              overflowY: 'auto',
-            }}>
-              {Array.isArray(storageList) ? storageList.map((item, index) => (
-                <p key={index}>{item}</p>
-              )) : <p>data error</p>}
-            </div>
-          }>
-            <a>{storageNum}</a>
-          </Tooltip>
-        ),
+        render: (storageNum, record) => {
+          const storageList = record.storageList
+          return (
+            <Tooltip content={
+              <div style={{
+                maxHeight: '200px',
+                overflowY: 'auto',
+              }}>
+                {Array.isArray(storageList) ? storageList.map((item, index) => (
+                  <p key={index}>{item}</p>
+                )) : <p>data error</p>}
+              </div>
+            }>
+              <a>{storageNum}</a>
+            </Tooltip>
+          );
+        },
       },
     ]
   }

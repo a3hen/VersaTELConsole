@@ -142,7 +142,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         value: '2个VIP',
       },
     ]
-    
+
 
     if (showStepOne) {
       return (
