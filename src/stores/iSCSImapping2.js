@@ -60,57 +60,27 @@ export default class iSCSIMapping2Store extends Base {
       ...params,
     })
 
-    // const result = {
-    //   code: 0,
-    //   count: 2,
-    //   data: [
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
-    //       "node": "ubuntu",
-    //       "size": "12 KB",
-    //       "status": "Healthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_c",
-    //       "size": "12 KB",
-    //       "status": "Unhealthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_b",
-    //       "size": "12 KB",
-    //       "status": "Synching"
-    //     },
-    //   ],
-    // }
 
     const data = get(result, 'data', [])
 
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
-      ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
-      isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
+    if (data) {
+      this.list.update({
+        data: more ? [...this.list.data, ...data] : data,
+        total:
+          result && (result.count ||
+            result.totalItems ||
+            result.total_count ||
+            data.length) ||
+          0,
+        ...params,
+        limit: Number(params.limit) || 10,
+        page: Number(params.page) || 1,
+        isLoading: false,
+        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      })
+    } else {
+      this.list.update({ isLoading: false })
+    }
   }
 
   @action
