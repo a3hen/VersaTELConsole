@@ -107,9 +107,16 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
+    const inputHostname = get(this.props.formTemplate, 'hostname')
+    const isHostnameExists = this.props.arrayData.some(item => item.hostName === inputHostname)
+
+    if (isHostnameExists) {
+      alert('此主机名已被注册！')
+      return
+    }
+
     set(
       this.props.formTemplate,
-      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
       JSON.stringify(iSCSIMappingTemplates)
     )
     this.props.onOk(this.props.formTemplate)
@@ -119,6 +126,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Initiator Registered'
+
 
     return (
       <Modal.Form

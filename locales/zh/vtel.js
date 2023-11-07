@@ -26,7 +26,7 @@ module.exports = {
   SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',
   resource: '存储资源',
   VersaTEL_DESCRIPTION:
-    'CoSAN Manager 是 CoSAN 数据安全存储系统的管理系统，它包含了 VersaSDS 并行存储系统管理、VersaRACK 系统硬件管理、对基于 Kubernetes 的容器平台的图形化管理等多项功能，是一个统一的、模块化的管理平台。',
+    'VishinStor K3000 统一管理系统是 VishinStor K3000 分布式块存储的图形管理界面。本系统为用户提供直观、易于操作的图形用户界面，使用户能够轻松地管理 VishinStor K3000 分布式块存储。',
   'VersaSDS Node IP Address': '节点 IP 地址',
   'VersaSDS Node Type': '节点类型',
   'IP Address of VersaSDS Node': 'VersaSDS 节点的 IP 地址，须符合 IP 地址格式',
@@ -194,6 +194,8 @@ module.exports = {
   INITIATOR: '发起端主机',
   iSCSITARGET: 'iSCSI Target',
   MAPPING: '映射',
+  ISCSIMAPPING1: 'iSCSI Target',
+  ISCSIMAPPING1_EMPTY_DESC: '请创建iSCSI Target',
   NewResourceName: '新资源名',
   Status: '状态',
   Snapshot_Numbers: '快照数量',

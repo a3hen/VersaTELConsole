@@ -116,10 +116,13 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    const vipValues = Array.from({ length: this.state.vipCount }, (_, i) => this.props.formTemplate[`vip${i + 1}`]);
-    const dataToSubmit = { ...this.props, ...iSCSIMappingTemplates, vipList: vipValues };
+    const vipValues = Array.from({ length: this.state.vipCount }, (_, i) => this.props.formTemplate[`vip${i + 1}`])
+    const dataToSubmit = { ...this.props, ...iSCSIMappingTemplates, vipList: vipValues }
 
-    this.props.onOk(dataToSubmit);
+    // Create a new object to pass to onOk
+    const dataForOnOk = { ...dataToSubmit }
+
+    this.props.onOk(dataForOnOk)
   }
 
   render() {
@@ -139,9 +142,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         value: '2个VIP',
       },
     ]
-
-    console.log("step2.this.props.formTemplate",this.props.formTemplates)
-    console.log("step2.this.props",this.props)
+    
 
     if (showStepOne) {
       return (
@@ -177,11 +178,11 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           ]}
         >
           <Select
-            name="vipList"
+            name="vipnumbers"
             options={data}
             searchable
             clearable
-            defaultValue=""
+            defaultValue="1个VIP"
             onChange={this.handleVipChange}
           />
         </Form.Item>

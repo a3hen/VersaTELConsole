@@ -62,23 +62,22 @@ export default class iSCSIMapping extends React.Component {
 
   get itemActions() {
     const { trigger, routing, store, tableProps } = this.props
-    console.log('props', this.props)
     return [
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        show: this.showAction,
-        onClick: item => {
-          trigger('host.delete', {
-            iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
-            // success: getData,
-            hostname: item?.hostname,
-            iqn: item?.iqn,
-          })
-        },
-      },
+      // {
+      //   key: 'delete',
+      //   icon: 'trash',
+      //   text: t('DELETE'),
+      //   action: 'delete',
+      //   show: this.showAction,
+      //   onClick: item => {
+      //     trigger('host.delete', {
+      //       iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
+      //       // success: getData,
+      //       hostname: item?.hostName,
+      //       iqn: item?.iqn,
+      //     })
+      //   },
+      // },
     ]
   }
 
@@ -130,9 +129,9 @@ export default class iSCSIMapping extends React.Component {
     return [
       {
         title: t('Hostname'),
-        dataIndex: 'hostname',
+        dataIndex: 'hostName',
         width: '50%',
-        render: hostname => hostname,
+        render: hostName => hostName,
       },
       {
         title: t('IQN'),
@@ -143,14 +142,19 @@ export default class iSCSIMapping extends React.Component {
     ]
   }
 
-  showCreate = () =>
+  showCreate = () => {
+    const datalist = this.props.tableProps.data
+
     this.props.trigger('host.registered', {
       ...this.props.match.params,
+      arrayData: datalist,
       success: () => this.props.getData,
     })
+  }
 
   render() {
     const { bannerProps, tableProps } = this.props
+    // console.log("props",this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />

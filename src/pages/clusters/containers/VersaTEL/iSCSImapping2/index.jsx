@@ -64,20 +64,20 @@ export default class iSCSIMapping2 extends React.Component {
   get itemActions() {
     const { trigger, routing, store, tableProps } = this.props
     return [
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        show: true,
-        onClick: item => {
-          trigger('mapping.delete2', {
-            iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
-            // success: getData,
-            hostName: item?.hostName,
-          })
-        },
-      },
+      // {
+      //   key: 'delete',
+      //   icon: 'trash',
+      //   text: t('DELETE'),
+      //   action: 'delete',
+      //   show: true,
+      //   onClick: item => {
+      //     trigger('mapping.delete2', {
+      //       iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
+      //       // success: getData,
+      //       hostName: item?.hostName,
+      //     })
+      //   },
+      // },
       {
         key: 'map',
         icon: 'pen',
@@ -138,11 +138,11 @@ export default class iSCSIMapping2 extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
-    let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-      'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    ]
+    // let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
+    // ]
     return [
       {
         title: t('Storage'),
@@ -152,17 +152,17 @@ export default class iSCSIMapping2 extends React.Component {
       },
       {
         title: t('Host'),
-        dataIndex: 'hostName',
+        dataIndex: 'hostNum',
         width: '50%',
-        render: (hostNum,hostName) => (
+        render: (hostNum, hostName) => (
           <Tooltip content={
             <div style={{
               maxHeight: '200px',
               overflowY: 'auto',
             }}>
-              {hostName.map((item, index) => (
+              {Array.isArray(hostName) ? hostName.map((item, index) => (
                 <p key={index}>{item}</p>
-              ))}
+              )) : <p>data error</p>}
             </div>
           }>
             <a>{hostNum}</a>
