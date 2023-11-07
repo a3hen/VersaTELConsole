@@ -60,6 +60,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     this.ResourceStore = new ResourceStore()
 
     this.fetchResource()
+    this.fetchlResource()
 
     this.state = {
       list_data: [],
@@ -105,9 +106,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     })
   }
 
-  fetchResource = params => {
+  fetchlResource = params => {
     return this.ResourceStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
