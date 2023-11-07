@@ -80,8 +80,9 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       .then(data => {
         let r_diskless = 0
         let r_diskful = 0
-        const nodeLess = data.data[0].NodeLess
-        const nodeRun = data.data[0].nodeRun
+        console.log("data",data)
+        const nodeLess = data[0].NodeLess
+        const nodeRun = data[0].nodeRun
 
         if (Array.isArray(nodeLess)) {
           r_diskless = nodeLess.length
