@@ -1,5 +1,5 @@
 module.exports = {
-  VersaSDS: 'VishinStor K3000 统一管理系统',
+  VersaSDS: '分布式存储管理',
   LINSTOR_NODES: 'VishinStor K3000 统一管理系统集群节点',
   MIRRORWAY_LINSTOR_NODES: '选择调整副本的节点',
   DISKLESS_NODES: 'diskless资源所在的节点',
