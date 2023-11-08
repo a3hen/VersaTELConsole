@@ -29,7 +29,9 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import iSCSIMapping1Store from 'stores/iSCSImapping1'
-import ResourceStore from 'stores/lresource'
+// import ResourceStore from 'stores/lresource'
+import DisklessStore from 'stores/disklessresource'
+import DiskfulStore from 'stores/diskfulresource'
 
 @observer
 export default class iSCSIMapping1DeleteModal extends React.Component {
@@ -57,10 +59,14 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     super(props)
 
     this.iSCSIMapping1Store = new iSCSIMapping1Store()
-    this.ResourceStore = new ResourceStore()
+    this.DisklessStore = new DisklessStore()
+    this.DiskfulStore = new DiskfulStore()
+    // this.ResourceStore = new ResourceStore()
 
     this.fetchResource()
-    this.fetchlResource()
+    this.fetchdiskful()
+    this.fetchdiskless()
+    // this.fetchlResource()
 
     this.state = {
       list_data: [],
@@ -79,21 +85,21 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     fetch('/kapis/versatel.kubesphere.io/v1alpha1/getnode', requestOptions)
       .then(response => response.json())
       .then(data => {
-        let r_diskless = 0
-        let r_diskful = 0
+        let r_diskless = []
+        let r_diskful = []
         const nodeLess = data[0].NodeLess
         const nodeRun = data[0].nodeRun
 
         if (Array.isArray(nodeLess)) {
-          r_diskless = nodeLess.length
+          r_diskless = nodeLess
         } else if (typeof nodeLess === 'string' && nodeLess !== '') {
-          r_diskless = 1
+          r_diskless = [nodeLess]
         }
 
         if (Array.isArray(nodeRun)) {
-          r_diskful = nodeRun.length
+          r_diskful = nodeRun.filter(n => !r_diskless.includes(n))
         } else if (typeof nodeRun === 'string' && nodeRun !== '') {
-          r_diskful = 1
+          r_diskful = [nodeRun]
         }
 
         this.setState({ data, r_diskless, r_diskful })
@@ -105,13 +111,25 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       ...params,
     })
   }
-
-  fetchlResource = params => {
-    return this.ResourceStore.fetchList({
+  fetchdiskless = params => {
+    return this.DisklessStore.fetchList({
       ...params,
       limit: 999,
     })
   }
+  fetchdiskful = params => {
+    return this.DiskfulStore.fetchList({
+      ...params,
+      limit: 999,
+    })
+  }
+
+  // fetchlResource = params => {
+  //   return this.ResourceStore.fetchList({
+  //     ...params,
+  //     limit: 999,
+  //   })
+  // }
 
   get resources() {
     const resources = this.iSCSIMapping1Store.list.data.map(node => ({
@@ -121,30 +139,85 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     return resources
   }
 
-  // get lresource() {
-  //   const nodes = this.ResourceStore.list.data.map(node => ({
-  //     label: node.name,
-  //     value: node.name,
-  //   }))
-  //   return nodes
-  // }
   get lresource() {
-    const nodes = this.ResourceStore.list.data
-      .filter(node => {
-        const assignedNodeIsEmpty = node.assignedNode === ''
-        const assignedNodeIsNotEmpty = node.assignedNode !== ''
-        const mirrorWayMatches = parseInt(node.mirrorWay, 10) === this.state.r_diskful
+    const diskful = this.DiskfulStore.list.data
+    const diskless = this.DisklessStore.list.data
 
-        return ((assignedNodeIsEmpty && this.state.r_diskless === 0) ||
-            (assignedNodeIsNotEmpty && this.state.r_diskless === 1)) &&
-          mirrorWayMatches
-      })
-      .map(node => ({
-        label: node.name,
-        value: node.name,
+    const sameNameItemsDiskful = diskful.filter(item1 =>
+      diskful.some(item2 => item1.name === item2.name && item1 !== item2)
+    )
+
+    let resultDiskful = diskful.reduce((acc, item) => {
+      let foundItem = acc.find(i => i.name === item.name)
+      if (foundItem) {
+        foundItem.diskfulnode.push(item.node)
+      } else {
+        acc.push({
+          name: item.name,
+          diskfulnode: [item.node]
+        })
+      }
+      return acc
+    }, [])
+
+    resultDiskful = resultDiskful.reduce((unique, o) => {
+      if(!unique.some(obj => obj.name === o.name && obj.diskfulnode.toString() === o.diskfulnode.toString())) {
+        unique.push(o)
+      }
+      return unique
+    },[])
+
+    const sameNameItemsDiskless = diskless.filter(item1 =>
+      diskless.some(item2 => item1.name === item2.name && item1 !== item2)
+    )
+
+    let resultDiskless = diskless.length > 1 ? diskless.reduce((acc, item) => {
+      let foundItem = acc.find(i => i.name === item.name)
+      if (foundItem) {
+        foundItem.disklessnode.push(item.node)
+      } else {
+        acc.push({
+          name: item.name,
+          disklessnode: [item.node]
+        })
+      }
+      return acc
+    }, []) : diskless.map(item => ({
+      name: item.name,
+      disklessnode: [item.node]
+    }))
+
+    resultDiskless = resultDiskless.reduce((unique, o) => {
+      if(!unique.some(obj => obj.name === o.name && obj.disklessnode.toString() === o.disklessnode.toString())) {
+        unique.push(o)
+      }
+      return unique
+    },[])
+
+    const result = resultDiskful.map(item => {
+      const disklessItem = resultDiskless.find(i => i.name === item.name)
+      return {
+        ...item,
+        disklessnode: disklessItem ? disklessItem.disklessnode : []
+      }
+    })
+
+    console.log("result",result)
+    console.log("state",this.state)
+
+    const newArray = result
+      .filter(item =>
+        this.state.r_diskful.every(val => item.diskfulnode.includes(val)) &&
+        (this.state.r_diskless.length === 0 ? item.disklessnode.length === 0 : this.state.r_diskless.every(val => item.disklessnode.includes(val)))
+      )
+      .map(item => ({
+        label: item.name,
+        value: item.name,
       }))
 
-    return nodes
+    console.log("newarray",newArray)
+
+    return newArray
   }
 
   handleCreate = iSCSIMapping1Templates => {
