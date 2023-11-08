@@ -102,7 +102,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       label: node,
       value: node,
     }))
-    this.setState({ runningNode })
+    this.setState({
+      runningNode,
+      isNodeLessDisabled: value.length === 1
+    })
   }
 
   handleSecondaryNodeChange = value => {
@@ -265,7 +268,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             clearable
             multi
             onChange={this.handleSecondaryNodeChange}
-            disabled={this.state.initialNode.length > 0}
+            disabled={this.state.initialNode.length > 0 || this.state.isNodeLessDisabled}
           />
         </Form.Item>
         <Form.Item

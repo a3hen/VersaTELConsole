@@ -157,7 +157,7 @@ export default class iSCSIMapping1 extends React.Component {
         title: t('VIP'),
         dataIndex: 'vipList',
         width: '33%',
-        render: vipList => vipList,
+        render: vipList => Array.isArray(vipList) ? vipList.join(', ') : vipList,
       },
       {
         title: t('Storage'),
@@ -192,7 +192,6 @@ export default class iSCSIMapping1 extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    // console.log("props",this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />
