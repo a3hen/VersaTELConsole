@@ -108,7 +108,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   handleCreate = iSCSIMappingTemplates => {
     const inputHostname = get(this.props.formTemplate, 'hostname')
-    const isHostnameExists = this.props.arrayData.some(item => item.hostName === inputHostname)
+    const isHostnameExists = this.props.hosta_data.some(item => item.hostName === inputHostname)
 
     if (isHostnameExists) {
       alert('此主机名已被注册！')
@@ -120,6 +120,50 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       JSON.stringify(iSCSIMappingTemplates)
     )
     this.props.onOk(this.props.formTemplate)
+  }
+
+  NameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    // const { workspace, cluster, namespace } = this.props
+    const name = get(this.props.formTemplate, 'hostname')
+
+    if (this.props.edit && name === value) {
+      return callback()
+    }
+
+    const isNameExistInTargetData = this.props.host_data.some(item => item.hostName === value)
+    if (isNameExistInTargetData) {
+      return callback({
+        message: t('Hostname exists'),
+        field: rule.field,
+      })
+    }
+    callback()
+  }
+
+  iqnValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    // const { workspace, cluster, namespace } = this.props
+    const name = get(this.props.formTemplate, 'iqn')
+
+    if (this.props.edit && name === value) {
+      return callback()
+    }
+
+    const isNameExistInTargetData = this.props.host_data.some(item => item.iqn === value)
+    if (isNameExistInTargetData) {
+      return callback({
+        message: t('iqn exists'),
+        field: rule.field,
+      })
+    }
+    callback()
   }
 
   render() {
@@ -148,6 +192,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
               pattern: PATTERN_VTEL_NAME,
               message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
             },
+            { validator: this.NameValidator },
           ]}
         >
           <Input name="hostname" maxLength={63} placeholder="名称" />
@@ -161,6 +206,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
               pattern: PATTERN_IQN_NAME,
               message: t('IQN格式错误', { message: t('VTEL_IQN_DESC') }),
             },
+            { validator: this.iqnValidator },
           ]}
         >
           <Input name="iqn" maxLength={63} placeholder="IQN" />

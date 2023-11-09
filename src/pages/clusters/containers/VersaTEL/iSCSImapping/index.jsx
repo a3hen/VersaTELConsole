@@ -143,11 +143,9 @@ export default class iSCSIMapping extends React.Component {
   }
 
   showCreate = () => {
-    const datalist = this.props.tableProps.data
-
     this.props.trigger('host.registered', {
       ...this.props.match.params,
-      arrayData: datalist,
+      host_data: this.props.tableProps.data,
       success: () => this.props.getData,
     })
   }

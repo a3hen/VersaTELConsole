@@ -45,7 +45,7 @@ const UnitTypes = {
   },
   memory: {
     conditions: [1024 ** 4, 1024 ** 3, 1024 ** 2, 1024, 0],
-    units: ['Ti', 'Gi', 'Mi', 'Ki', 'Bytes'],
+    units: ['Ti', 'GiB', 'Mi', 'Ki', 'Bytes'],
   },
   disk: {
     conditions: [1000 ** 4, 1000 ** 3, 1000 ** 2, 1000, 0],

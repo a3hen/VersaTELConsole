@@ -67,6 +67,11 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
+          if (data.unMap === '关闭') {
+            data.unMap = '0'
+          } else if (data.unMap === '开启') {
+            data.unMap = '1'
+          }
           console.log('data', data)
           if (!data) {
             Modal.close(modal)

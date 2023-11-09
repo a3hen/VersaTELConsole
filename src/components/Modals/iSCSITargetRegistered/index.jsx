@@ -139,6 +139,28 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.props.onOk(this.props.formTemplate)
   }
 
+  NameValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    // const { workspace, cluster, namespace } = this.props
+    const name = get(this.props.formTemplate, 'name')
+
+    if (this.props.edit && name === value) {
+      return callback()
+    }
+
+    const isNameExistInTargetData = this.props.target_data.some(item => item.name === value)
+    if (isNameExistInTargetData) {
+        return callback({
+          message: t('Target name exists'),
+          field: rule.field,
+        })
+      }
+      callback()
+  }
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
@@ -147,7 +169,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { showStepOne } = this.state
 
     const { isLoading } = this.state
-
+    console.log("this.props",this.props)
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -186,6 +208,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
               pattern: PATTERN_VTEL_NAME,
               message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
             },
+            { validator: this.NameValidator },
           ]}
         >
           <Input name="name" maxLength={63} placeholder="名称" />

@@ -233,6 +233,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         data={formTemplate}
         // onCancel={onCancel}
         onCancel={this.showStepZero}
+        onClose={this.props.onCancel}
         onOk={this.handleStepTwo}
         cancelText={t('PREVIOUS_STEP')}
         okText={t('NEXT_STEP')}
