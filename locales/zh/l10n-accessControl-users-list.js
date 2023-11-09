@@ -32,7 +32,7 @@ module.exports = {
   PASSWORD_DESC: '密码必须包含数字、大写字母和小写字母，长度为 8 至 64 个字符。',
   PASSWORD_INVALID_DESC: '密码无效。密码必须包含数字、大写字母和小写字母，长度为 8 至 64 个字符。',
   PLATFORM_ROLE_DESC: '设置用户的角色。',
-  USER_SETTING_EMAIL_DESC: '邮箱地址可用于登录 CoSAN Manager Web 控制台。',
+  USER_SETTING_EMAIL_DESC: '邮箱地址可用于登录 VishinStor K3000 统一管理系统 控制台。',
   USERNAME_EXISTS: '用户名已存在，请输入其他用户名。',
   USERNAME_EMPTY_DESC: '请输入一个用户名。',
   PLATFORM_ROLE: '平台角色',
