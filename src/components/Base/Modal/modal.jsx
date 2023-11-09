@@ -68,6 +68,7 @@ export default class Modal extends React.Component {
     cancelButtonType: PropTypes.string,
     onOk: PropTypes.func,
     onCancel: PropTypes.func,
+    onClose: PropTypes.func,
     renderFooter: PropTypes.func,
     children: PropTypes.any,
     hideHeader: PropTypes.bool,
@@ -156,6 +157,7 @@ export default class Modal extends React.Component {
       hideFooter,
       onOk,
       onCancel,
+      onClose,
       okText,
       cancelText,
       okButtonType,
@@ -222,7 +224,7 @@ export default class Modal extends React.Component {
                 icon="close"
                 iconType="light"
                 type="control"
-                onClick={onCancel}
+                onClick={onClose || onCancel}
                 data-test="modal-close"
               />
             )}

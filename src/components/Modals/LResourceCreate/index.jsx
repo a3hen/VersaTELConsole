@@ -173,6 +173,7 @@ export default class LResourceCreateModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Create Resource'
+    console.log("this.props",this.props)
 
     return (
       <Modal.Form

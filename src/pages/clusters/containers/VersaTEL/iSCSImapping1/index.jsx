@@ -187,6 +187,7 @@ export default class iSCSIMapping1 extends React.Component {
   showCreate = () =>
     this.props.trigger('target.registered', {
       ...this.props.match.params,
+      target_data: this.props.tableProps.data,
       success: () => this.props.getData,
     })
 
