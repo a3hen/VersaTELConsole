@@ -207,9 +207,12 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const newArray = result
       .filter(item =>
+        this.state.r_diskful.length === item.diskfulnode.length &&
         this.state.r_diskful.every(val => item.diskfulnode.includes(val)) &&
-        (this.state.r_diskless.length === 0 ? item.disklessnode.length === 0 : this.state.r_diskless.every(val => item.disklessnode.includes(val)))
+        this.state.r_diskless.length === item.disklessnode.length &&
+        this.state.r_diskless.every(val => item.disklessnode.includes(val))
       )
+      .filter(item => !item.name.includes('linstordb') && !item.name.includes('pvc-'))
       .map(item => ({
         label: item.name,
         value: item.name,

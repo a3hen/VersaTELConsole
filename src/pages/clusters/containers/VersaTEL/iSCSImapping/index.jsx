@@ -49,7 +49,7 @@ export default class iSCSIMapping extends React.Component {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 2000)
+    }, 5000)
   }
 
   componentWillUnmount() {
