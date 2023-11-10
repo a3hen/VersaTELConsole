@@ -36,7 +36,7 @@ export default {
           }
           request
             .delete(
-              `/kapis/versatel.kubesphere.io/v1alpha1/registered/${data.hostname}/${data.iqn}`
+              `/kapis/versatel.kubesphere.io/v1alpha1/registered/${data.hostname}`
             )
             .then(res => {
               // Modal.close(modal)

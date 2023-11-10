@@ -63,21 +63,21 @@ export default class iSCSIMapping extends React.Component {
   get itemActions() {
     const { trigger, routing, store, tableProps } = this.props
     return [
-      // {
-      //   key: 'delete',
-      //   icon: 'trash',
-      //   text: t('DELETE'),
-      //   action: 'delete',
-      //   show: this.showAction,
-      //   onClick: item => {
-      //     trigger('host.delete', {
-      //       iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
-      //       // success: getData,
-      //       hostname: item?.hostName,
-      //       iqn: item?.iqn,
-      //     })
-      //   },
-      // },
+      {
+        key: 'delete',
+        icon: 'trash',
+        text: t('DELETE'),
+        action: 'delete',
+        show: this.showAction,
+        onClick: item => {
+          trigger('host.delete', {
+            iSCSIMappingTemplates: toJS(store.iSCSIMappingTemplates.data),
+            // success: getData,
+            hostname: item?.hostName,
+            iqn: item?.iqn,
+          })
+        },
+      },
     ]
   }
 
