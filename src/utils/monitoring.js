@@ -126,15 +126,19 @@ export const getValueByUnit = (num, unit, precision = 2) => {
       if (value < 1) return 0
       break
     case 'Ki':
+    case 'KiB':
       value /= 1024
       break
     case 'Mi':
+    case 'MiB':
       value /= 1024 ** 2
       break
     case 'Gi':
+    case 'GiB':
       value /= 1024 ** 3
       break
     case 'Ti':
+    case 'TiB':
       value /= 1024 ** 4
       break
     case 'Bytes':
