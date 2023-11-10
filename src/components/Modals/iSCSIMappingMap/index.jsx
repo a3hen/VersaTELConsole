@@ -137,10 +137,14 @@ export default class iSCSIMapping2MapModal extends React.Component {
           />
         </Form.Item>
         <Form.Item>
-          <div style={{ fontStyle: 'italic', color: '#888' }}>
+          <div>
             UNMAP 命令用于释放不再需要的数据块。通过启用 UNMAP 支持，可以释放不再使用的存储空间。
-            要启用此功能，请确保 LUN 的底层硬件设备支持 Disacard，或者 LUN 基于精简置备存储池。
-            未达到上述条件，请<strong>不要</strong>启用此支持功能，否则会导致该 LUN 映射失败以及整个 iSCSI 目标不可用。
+            <span style={{ color: 'red' }}>
+              要启用此功能，请确保 LUN 的底层硬件设备支持 Disacard，或者 LUN
+              基于精简置备存储池。 未达到上述条件，请<strong>不要</strong>
+              启用此支持功能，否则会导致该 LUN 映射失败以及整个 iSCSI
+              目标不可用。
+            </span>
           </div>
         </Form.Item>
         <Form.Item

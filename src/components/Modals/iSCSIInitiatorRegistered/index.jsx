@@ -107,13 +107,13 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    const inputHostname = get(this.props.formTemplate, 'hostname')
-    const isHostnameExists = this.props.hosta_data.some(item => item.hostName === inputHostname)
-
-    if (isHostnameExists) {
-      alert('此主机名已被注册！')
-      return
-    }
+    // const inputHostname = get(this.props.formTemplate, 'hostname')
+    // const isHostnameExists = this.props.host_data.some(item => item.hostName === inputHostname)
+    //
+    // if (isHostnameExists) {
+    //   alert('此主机名已被注册！')
+    //   return
+    // }
 
     set(
       this.props.formTemplate,
@@ -168,6 +168,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
+
+    console.log("this.props",this.props)
 
     const title = 'Initiator Registered'
 

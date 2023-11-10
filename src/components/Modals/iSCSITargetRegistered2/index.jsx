@@ -143,6 +143,9 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       },
     ]
 
+    console.log("step2.this.props",this.props)
+    console.log("this.state",this.state)
+
 
     if (showStepOne) {
       return (
@@ -154,6 +157,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           onCancel={onCancel}
           targetname={this.props.targetname}
           iqn={this.props.iqn}
+          target_data={this.props.target_data}
         />
       )
     }
