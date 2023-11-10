@@ -80,13 +80,19 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   handleStepOne = formValues => {
+    console.log('handleStepOne start')
+    console.log("this.props",this.props)
+    console.log('formValues', formValues)
     this.setState({
       stepzeroValue: {
         targetname: formValues.name,
         iqn: formValues.iqn,
       },
     })
+    console.log('After setState')
     this.showStepOne()
+    console.log('After showStepOne')
+    console.log('handleStepOne end')
   }
 
   fetchResource = params => {
@@ -169,7 +175,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { showStepOne } = this.state
 
     const { isLoading } = this.state
-    console.log("this.props",this.props)
+    console.log("step0.this.props",this.props)
+    console.log("this.state",this.state)
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -182,8 +189,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           formTemplate={formTemplate}
           onOk={this.handleCreate}
           onCancel={onCancel}
+          store={this.props.store}
           targetname={this.state.stepzeroValue.targetname}
           iqn={this.state.stepzeroValue.iqn}
+          target_data={this.props.target_data}
         />
       )
     }
@@ -195,6 +204,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         icon="database"
         data={formTemplate}
         onCancel={onCancel}
+        // onOk={this.handleStepOne}
         onOk={this.handleStepOne}
         okText={t('NEXT_STEP')}
         visible={visible}

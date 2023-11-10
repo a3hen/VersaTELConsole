@@ -192,6 +192,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           obj2 => obj.label === obj2.label && obj.value === obj2.value
         )
     )
+    console.log("step1.this.props",this.props)
+    console.log("this.state",this.state)
 
 
     if (isLoading) {
@@ -210,6 +212,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           running_node={this.state.steponeValue.running_node}
           secondary_node={this.state.steponeValue.secondary_node}
           initial_node={this.state.steponeValue.initial_node}
+          target_data={this.props.target_data}
         />
       )
     }
@@ -221,6 +224,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           formTemplate={formTemplate}
           onOk={this.handleCreate}
           onCancel={onCancel}
+          store={this.props.store}
+          targetname={this.props.targetname}
+          iqn={this.props.iqn}
+          target_data={this.props.target_data}
         />
       )
     }
