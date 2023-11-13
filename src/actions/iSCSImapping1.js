@@ -22,6 +22,7 @@ import { Modal } from 'components/Base'
 import RegisteredModal from 'components/Modals/iSCSITargetRegistered'
 import TargetDeleteModal from 'components/Modals/iSCSITargetDelete'
 import TargetBindModal from 'components/Modals/iSCSITargetBind'
+import TargetUnBindModal from 'components/Modals/iSCSITargetUnBind'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -100,6 +101,44 @@ export default {
       })
     },
   },
+  'target.unbind1': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log('data', data)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .delete(
+              `/kapis/versatel.kubesphere.io/v1alpha1/storage/${data.resName} `
+            )
+            .then(res => {
+              // Modal.close(modal)
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Deleted Successful')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
+        },
+        modal: TargetUnBindModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
   'target.registered': {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
@@ -140,4 +179,5 @@ export default {
       })
     },
   },
+
 }

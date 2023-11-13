@@ -92,6 +92,20 @@ export default class iSCSIMapping1 extends React.Component {
           })
         },
       },
+      {
+        key: 'ubstorage',
+        icon: 'pen',
+        text: t('UNBIND_STORAGE'),
+        action: 'edit',
+        show: true,
+        onClick: item => {
+          trigger('target.unbind1', {
+            iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
+            // success: getData,
+            targetname: item?.name,
+          })
+        },
+      },
     ]
   }
 
