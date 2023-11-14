@@ -60,6 +60,10 @@ export default class iSCSIMapping2MapModal extends React.Component {
     this.iSCSIMappingStore = new iSCSIMappingStore()
     this.fetchResource()
     this.fetchHostName()
+
+    this.state = {
+      selectedHostnames: [],
+    }
   }
 
   fetchResource = params => {

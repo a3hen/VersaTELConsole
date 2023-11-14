@@ -143,7 +143,7 @@ module.exports = {
   'Delete Initiator': '删除发起端主机',
   'Storage': '存储',
   'BIND_STORAGE': '绑定存储',
-  'UNBIND_STORAGE': '绑定存储',
+  'UNBIND_STORAGE': '解绑存储',
   'Delete Target':'删除iSCSI Target',
   'Bind Storage': '绑定存储',
   'UnBind Storage': '解绑存储',
