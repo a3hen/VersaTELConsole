@@ -28,7 +28,7 @@ export default {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
-        onOk: async (data) => {
+        onOk: data => {
           console.log('data', data)
           if (!data) {
             Modal.close(modal)

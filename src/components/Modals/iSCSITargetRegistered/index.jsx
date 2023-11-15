@@ -59,22 +59,23 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   constructor(props) {
     super(props)
-    this.myRef = React.createRef()
+    // this.myRef = React.createRef()
     this.iSCSIMappingStore = new iSCSIMappingStore()
 
     this.fetchResource()
 
-    // this.state = {
-    //   unselectedNodes: {},
-    //   selectedNodes: [],
-    // }
+    this.state = {
+      showStepOne: false,
+      stepzeroValue: null,
+      iqn: null,
+    }
   }
 
-  state = {
-    showStepOne: false,
-    stepzeroValue: null,
-    iqn: null,
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.iqn !== this.state.iqn) {
+  //     this.myRef.current.value = this.state.iqn
+  //   }
+  // }
 
   showStepOne = () => {
     this.setState({ showStepOne: true })
@@ -223,6 +224,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             maxLength={63}
             placeholder="IQN"
             value={this.state.iqn}
+            // ref={this.myRef}
             onChange={this.handleIQNChange}
           />
         </Form.Item>
