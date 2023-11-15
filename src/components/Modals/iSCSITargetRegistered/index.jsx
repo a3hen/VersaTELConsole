@@ -59,40 +59,44 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   constructor(props) {
     super(props)
-
+    // this.myRef = React.createRef()
     this.iSCSIMappingStore = new iSCSIMappingStore()
 
     this.fetchResource()
 
-    // this.state = {
-    //   unselectedNodes: {},
-    //   selectedNodes: [],
-    // }
+    this.state = {
+      showStepOne: false,
+      stepzeroValue: null,
+      iqn: null,
+    }
   }
 
-  state = {
-    showStepOne: false,
-    stepzeroValue: null,
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.iqn !== this.state.iqn) {
+  //     this.myRef.current.value = this.state.iqn
+  //   }
+  // }
 
   showStepOne = () => {
     this.setState({ showStepOne: true })
   }
 
   handleStepOne = formValues => {
-    console.log('handleStepOne start')
-    console.log("this.props",this.props)
-    console.log('formValues', formValues)
     this.setState({
       stepzeroValue: {
         targetname: formValues.name,
         iqn: formValues.iqn,
       },
     })
-    console.log('After setState')
     this.showStepOne()
-    console.log('After showStepOne')
-    console.log('handleStepOne end')
+  }
+
+  handleNameChange = (e, value) => {
+    this.setState({ iqn: "iqn.1988-12.com.oracle:" + value })
+  }
+
+  handleIQNChange = (e, value) => {
+    this.setState({ [e.target.name]: value })
   }
 
   fetchResource = params => {
@@ -100,25 +104,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       ...params,
     })
   }
-  // get nodes() {
-  //   const allNodes = this.linstornodeStore.list.data.map(node => {
-  //     if(node.storagePoolNum > 1) {
-  //       return ({
-  //         label: node.name,
-  //         value: node.name,
-  //         visual: true,
-  //       })
-  //     }else{
-  //       return ({
-  //         label: node.name,
-  //         value: node.name,
-  //         visual: false,
-  //       })
-  //     }
-  //   })
-  //   const nodes = allNodes.filter(node => node.visual)
-  //   return nodes
-  // }
 
   get resources() {
     const resources = this.iSCSIMappingStore.list.data.map(node => ({
@@ -221,7 +206,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { validator: this.NameValidator },
           ]}
         >
-          <Input name="name" maxLength={63} placeholder="名称" />
+          <Input name="name" maxLength={63} placeholder="名称" onChange={this.handleNameChange} />
         </Form.Item>
         <Form.Item
           label={t('IQN')}
@@ -234,7 +219,14 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             },
           ]}
         >
-          <Input name="iqn" maxLength={63} placeholder="IQN" />
+          <Input
+            name="iqn"
+            maxLength={63}
+            placeholder="IQN"
+            value={this.state.iqn}
+            // ref={this.myRef}
+            onChange={this.handleIQNChange}
+          />
         </Form.Item>
       </Modal.Form>
     )

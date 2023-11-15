@@ -28,24 +28,18 @@ export default {
     on({ store, cluster, namespace, workspace, success, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
-        onOk: async (data) => {
+        onOk: data => {
           console.log('data', data)
           if (!data) {
             Modal.close(modal)
             return
           }
-
-          // 创建一个空数组来存储所有的删除请求
-          const reqs = data.hostName.map(hostName =>
-            request.delete(`/kapis/versatel.kubesphere.io/v1alpha1/mapping/${hostName}`)
-          )
-
-          // 等待所有的删除请求完成
-          await Promise.all(reqs)
-
-          // 遍历每一个删除请求的Promise对象
-          reqs.forEach(item =>
-            item.then(res => {
+          request
+            .delete(
+              `/kapis/versatel.kubesphere.io/v1alpha1/mapping/${data.resName} `
+            )
+            .then(res => {
+              // Modal.close(modal)
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -55,8 +49,6 @@ export default {
               }
               success && success()
             })
-          )
-
           Modal.close(modal)
         },
         modal: DeleteModal,
