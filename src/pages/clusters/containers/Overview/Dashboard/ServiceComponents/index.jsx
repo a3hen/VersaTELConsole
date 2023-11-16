@@ -73,23 +73,24 @@ export default class ServiceComponents extends Component {
   render() {
     const { cluster } = this.props
     return (
-      <Panel title={t('SYSTEM_COMPONENT_PL')}>
-        <div className={styles.icons}>
-          {this.configs
-            .filter(item => !item.disabled)
-            .map(item => (
-              <span key={item.type} data-tooltip={item.title}>
-                <Link to={`/clusters/${cluster}/components?type=${item.type}`}>
-                  <Icon
-                    name={COMPONENT_ICON_MAP[item.type]}
-                    size={44}
-                    clickable
-                  />
-                </Link>
-              </span>
-            ))}
-        </div>
-      </Panel>
+      <div></div>
+      // <Panel title={t('SYSTEM_COMPONENT_PL')}>
+      //   <div className={styles.icons}>
+      //     {this.configs
+      //       .filter(item => !item.disabled)
+      //       .map(item => (
+      //         <span key={item.type} data-tooltip={item.title}>
+      //           <Link to={`/clusters/${cluster}/components?type=${item.type}`}>
+      //             <Icon
+      //               name={COMPONENT_ICON_MAP[item.type]}
+      //               size={44}
+      //               clickable
+      //             />
+      //           </Link>
+      //         </span>
+      //       ))}
+      //   </div>
+      // </Panel>
     )
   }
 }

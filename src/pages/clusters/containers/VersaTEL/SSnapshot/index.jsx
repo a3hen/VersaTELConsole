@@ -212,9 +212,8 @@ export default class SSnapshot extends React.Component {
         dataIndex: 'time',
         width: '20%',
         render: time => {
-          const formattedTime = new Date(time).toLocaleString('zh-CN', {
-            hour12: false,
-          })
+          const date = new Date(time)
+          const formattedTime = `${date.getUTCFullYear()}/${date.getUTCMonth() + 1}/${date.getUTCDate()} ${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
           return formattedTime
         },
       },
@@ -242,11 +241,15 @@ export default class SSnapshot extends React.Component {
       if (a.resource > b.resource) {
         return 1
       }
-      if (a.time < b.time) {
-        return 1
-      }
-      if (a.time > b.time) {
-        return -1
+      return 0
+    }).sort((a, b) => {
+      if (a.resource === b.resource) {
+        if (a.time < b.time) {
+          return 1
+        }
+        if (a.time > b.time) {
+          return -1
+        }
       }
       return 0
     })

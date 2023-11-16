@@ -46,12 +46,12 @@ export default class Dashboard extends React.Component {
 
     return (
       <div>
-        <ClusterTitle
-          className="margin-b12"
-          cluster={detail}
-          size="large"
-          noStatus
-        />
+        {/*<ClusterTitle*/}
+        {/*  className="margin-b12"*/}
+        {/*  cluster={detail}*/}
+        {/*  size="large"*/}
+        {/*  noStatus*/}
+        {/*/>*/}
         <Columns>
           <Column>
             {globals.app.isMultiCluster && (

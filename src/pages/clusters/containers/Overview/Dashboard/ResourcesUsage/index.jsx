@@ -84,12 +84,12 @@ export default class ResourcesUsage extends Component {
         used: this.getValue(data[MetricTypes.memory_usage]),
         total: this.getValue(data[MetricTypes.memory_total]),
       },
-      {
-        name: t('POD'),
-        unitType: '',
-        used: this.getValue(data[MetricTypes.pod_count]),
-        total: this.getValue(data[MetricTypes.pod_capacity]),
-      },
+      // {
+      //   name: t('POD'),
+      //   unitType: '',
+      //   used: this.getValue(data[MetricTypes.pod_count]),
+      //   total: this.getValue(data[MetricTypes.pod_capacity]),
+      // },
       {
         name: t('DISK'),
         unitType: 'disk',

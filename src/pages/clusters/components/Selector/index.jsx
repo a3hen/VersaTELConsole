@@ -62,25 +62,26 @@ export default class Selector extends React.Component {
     const { showSelect } = this.state
 
     return (
-      <div>
-        <div
-          className={styles.titleWrapper}
-          onClick={globals.app.isMultiCluster ? this.showSelect : null}
-        >
-          <div className={styles.icon}>
-            <Icon name="cluster" size={40} type="light" />
-          </div>
-          <div className={styles.text}>
-            <div className="h6">{value}</div>
-            <p>{t('CLUSTER')}</p>
-          </div>
-        </div>
-        <SelectModal
-          visible={showSelect}
-          onChange={this.handleSelect}
-          onCancel={this.hideSelect}
-        />
-      </div>
+      <div></div>
+      // <div>
+      //   <div
+      //     className={styles.titleWrapper}
+      //     onClick={globals.app.isMultiCluster ? this.showSelect : null}
+      //   >
+      //     <div className={styles.icon}>
+      //       <Icon name="cluster" size={40} type="light" />
+      //     </div>
+      //     <div className={styles.text}>
+      //       <div className="h6">{value}</div>
+      //       <p>{t('CLUSTER')}</p>
+      //     </div>
+      //   </div>
+      //   <SelectModal
+      //     visible={showSelect}
+      //     onChange={this.handleSelect}
+      //     onCancel={this.hideSelect}
+      //   />
+      // </div>
     )
   }
 }

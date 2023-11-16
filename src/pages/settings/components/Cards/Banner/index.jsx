@@ -28,10 +28,10 @@ export default class BaseBanner extends React.PureComponent {
       onChange: this.handleTabChange,
       options: [
         { value: 'mail', label: t('NOTIFICATION_EMAIL') },
-        { value: 'dingtalk', label: t('DingTalk') },
-        { value: 'wecom', label: t('WeCom') },
-        { value: 'slack', label: t('Slack') },
-        { value: 'webhook', label: t('Webhook') },
+        // { value: 'dingtalk', label: t('DingTalk') },
+        // { value: 'wecom', label: t('WeCom') },
+        // { value: 'slack', label: t('Slack') },
+        // { value: 'webhook', label: t('Webhook') },
       ],
     }
   }
