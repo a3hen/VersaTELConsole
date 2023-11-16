@@ -20,15 +20,11 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Select } from '@kube-design/components'
+import { Input, Form } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import {
-  PATTERN_VTEL_NAME,
-  PATTERN_VTEL_SIZE,
-  PATTERN_IQN_NAME,
-} from 'utils/constants'
+import { PATTERN_VTEL_NAME, PATTERN_IQN_NAME } from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -67,7 +63,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.state = {
       showStepOne: false,
       stepzeroValue: null,
-      iqn: null,
+      iqn: '',
     }
   }
 
@@ -92,12 +88,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   handleNameChange = (e, value) => {
-    this.setState({ iqn: "iqn.1988-12.com.oracle:" + value })
+    this.setState({ iqn: `iqn.1988-12.com.oracle:${value}` })
   }
 
-  handleIQNChange = (e, value) => {
-    this.setState({ [e.target.name]: value })
-  }
+  // handleIQNChange = (e, value) => {
+  //   this.setState({ [e.target.name]: value })
+  // }
 
   fetchResource = params => {
     return this.iSCSIMappingStore.fetchList({
@@ -142,14 +138,16 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       return callback()
     }
 
-    const isNameExistInTargetData = this.props.target_data.some(item => item.name === value)
+    const isNameExistInTargetData = this.props.target_data.some(
+      item => item.name === value
+    )
     if (isNameExistInTargetData) {
-        return callback({
-          message: t('Target name exists'),
-          field: rule.field,
-        })
-      }
-      callback()
+      return callback({
+        message: t('Target name exists'),
+        field: rule.field,
+      })
+    }
+    callback()
   }
 
   render() {
@@ -160,8 +158,9 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { showStepOne } = this.state
 
     const { isLoading } = this.state
-    console.log("step0.this.props",this.props)
-    console.log("this.state",this.state)
+    // console.log("step0.this.props",this.props)
+    // console.log("this.state",this.state)
+    set(this.props.formTemplate, 'iqn', this.state.iqn)
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -206,7 +205,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { validator: this.NameValidator },
           ]}
         >
-          <Input name="name" maxLength={63} placeholder="名称" onChange={this.handleNameChange} />
+          <Input
+            name="name"
+            maxLength={63}
+            placeholder="名称"
+            onChange={this.handleNameChange}
+          />
         </Form.Item>
         <Form.Item
           label={t('IQN')}
@@ -223,9 +227,9 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             name="iqn"
             maxLength={63}
             placeholder="IQN"
-            value={this.state.iqn}
+            // value={this.state.iqn}
             // ref={this.myRef}
-            onChange={this.handleIQNChange}
+            // onChange={this.handleIQNChange}
           />
         </Form.Item>
       </Modal.Form>
