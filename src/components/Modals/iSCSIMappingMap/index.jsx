@@ -20,7 +20,7 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Select, Radio } from '@kube-design/components'
+import { Input, Form, Select, Radio, Checkbox } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
@@ -63,6 +63,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
 
     this.state = {
       selectedHostnames: [],
+      isLoading: false, // isloading
     }
   }
 
@@ -95,9 +96,17 @@ export default class iSCSIMapping2MapModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping2Templates => {
-    const dataToSubmit = { ...this.props, ...iSCSIMapping2Templates }
-    this.props.onOk(dataToSubmit)
+    this.setState({ isLoading: true }) // isloading
+    set(
+      this.props.formTemplate,
+      // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
+      JSON.stringify(iSCSIMapping2Templates)
+    )
+    this.props.onOk(this.props.formTemplate)
   }
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -114,7 +123,10 @@ export default class iSCSIMapping2MapModal extends React.Component {
         value: '关闭',
       },
     ]
+    console.log("this.props",this.props)
+    console.log("this.state",this.state)
 
+    set(this.props.formTemplate, 'hostname', this.state.selectedHostnames)
 
     return (
       <Modal.Form
@@ -126,6 +138,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
           label={t('UNMAP_SUPPORT')}
@@ -151,6 +164,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
             </span>
           </div>
         </Form.Item>
+
         <Form.Item
           label={t('REGISTERED_HOST')}
           desc={t('Select registered host')}
@@ -165,6 +179,21 @@ export default class iSCSIMapping2MapModal extends React.Component {
             multi
           />
         </Form.Item>
+        <Checkbox
+          name="test"
+          onChange={(isChecked) => {
+            if (isChecked) {
+              this.fetchHostName().then(() => {
+                const nodes = this.iSCSIMappingStore.list.data.map(node => node.hostName)
+                this.setState({ selectedHostnames: nodes })
+              })
+            } else {
+              this.setState({ selectedHostnames: [] })
+            }
+          }}
+        >
+          全选
+        </Checkbox>
       </Modal.Form>
     )
   }

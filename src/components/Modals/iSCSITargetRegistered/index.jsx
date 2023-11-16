@@ -88,7 +88,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   handleNameChange = (e, value) => {
-    this.setState({ iqn: `iqn.1988-12.com.oracle:${value}` })
+    const date = new Date()
+    const year = date.getFullYear()
+    const month = ("0" + (date.getMonth() + 1)).slice(-2)
+    this.setState({ iqn: `iqn.${year}-${month}.com.example:${value}` })
   }
 
   // handleIQNChange = (e, value) => {
@@ -158,7 +161,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { showStepOne } = this.state
 
     const { isLoading } = this.state
-    // console.log("step0.this.props",this.props)
+    console.log("step0.this.props",this.props)
     // console.log("this.state",this.state)
     set(this.props.formTemplate, 'iqn', this.state.iqn)
 

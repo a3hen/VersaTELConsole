@@ -55,9 +55,14 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
+
     this.iSCSIMapping2Store = new iSCSIMapping2Store()
 
     this.fetchResource()
+
+    this.state = {
+      isLoading: false, // isloading
+    }
   }
 
   fetchResource = params => {
@@ -75,13 +80,18 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping2Templates => {
-    console.log("delete.props",this.props)
+    this.setState({ isLoading: true }) // isloading
     iSCSIMapping2Templates.resName = this.props.resName
     this.props.formTemplate = {
       ...iSCSIMapping2Templates,
     }
+    console.log("this.props.formTemplate",this.props.formTemplate)
     this.props.onOk(this.props.formTemplate)
   }
+
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -100,6 +110,7 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <p>点击以确认删除此条映射</p>
       </Modal.Form>

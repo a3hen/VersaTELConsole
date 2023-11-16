@@ -804,6 +804,16 @@ const getiSCSIMapping1Templates = ({ namespace, type, detail }) => ({
   rules: [],
 })
 
+const getiSCSIMapping2Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping2',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+
 const getCDTemplate = () => ({
   kind: 'Application',
   apiVersion: 'gitops.kubesphere.io/v1alpha1',
@@ -914,6 +924,7 @@ const FORM_TEMPLATES = {
   ssnapshot: getSSnapshotTemplate,
   iSCSImapping: getiSCSIMappingTemplates,
   iSCSImapping1: getiSCSIMapping1Templates,
+  iSCSImapping2: getiSCSIMapping2Templates,
   resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,

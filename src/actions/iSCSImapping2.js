@@ -25,7 +25,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
   'mapping.delete2': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -39,7 +39,6 @@ export default {
               `/kapis/versatel.kubesphere.io/v1alpha1/mapping/${data.resName} `
             )
             .then(res => {
-              // Modal.close(modal)
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -48,8 +47,27 @@ export default {
                 Notify.success({ content: `${t('Deleted Successful')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
+          // request
+          //   .delete(
+          //     `/kapis/versatel.kubesphere.io/v1alpha1/mapping/${data.resName} `
+          //   )
+          //   .then(res => {
+          //     // Modal.close(modal)
+          //     if (Array.isArray(res)) {
+          //       Notify.error({
+          //         content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
+          //       })
+          //     } else {
+          //       Notify.success({ content: `${t('Deleted Successful')}` })
+          //     }
+          //     success && success()
+          //   })
+          // Modal.close(modal)
         },
         modal: DeleteModal,
         store,
@@ -57,12 +75,13 @@ export default {
         cluster,
         namespace,
         workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },
   },
   'mapping.map': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -79,8 +98,6 @@ export default {
           request
             .post(`/kapis/versatel.kubesphere.io/v1alpha1/mapping`, data)
             .then(res => {
-              // Modal.close(modal)
-
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
@@ -89,8 +106,26 @@ export default {
                 Notify.success({ content: `${t('Operation Successfully')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
+          // request
+          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/mapping`, data)
+          //   .then(res => {
+          //     if (Array.isArray(res)) {
+          //       Notify.error({
+          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+          //       })
+          //     } else {
+          //       Notify.success({ content: `${t('Operation Successfully')}` })
+          //     }
+          //     onLoadingComplete && onLoadingComplete()
+          //     success && success()
+          //     Modal.close(modal)
+          //   })
+          // Modal.close(modal)
         },
         modal: MapModal,
         store,
@@ -98,7 +133,7 @@ export default {
         cluster,
         namespace,
         workspace,
-        // formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },
