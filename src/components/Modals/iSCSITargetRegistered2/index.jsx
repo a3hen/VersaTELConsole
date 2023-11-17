@@ -164,7 +164,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           targetname={this.props.targetname}
           iqn={this.props.iqn}
           target_data={this.props.target_data}
-          isSubmitting={this.state.isLoading} // isloading
         />
       )
     }
@@ -181,6 +180,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         okText={t('OK')}
         cancelText={t('PREVIOUS_STEP')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
           label={t('VIP')}

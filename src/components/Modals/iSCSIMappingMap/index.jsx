@@ -97,6 +97,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
 
   handleCreate = iSCSIMapping2Templates => {
     this.setState({ isLoading: true }) // isloading
+    this.props.formTemplate.resname = this.props.resname
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
