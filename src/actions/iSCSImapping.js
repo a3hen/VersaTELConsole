@@ -25,7 +25,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
   'host.delete': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -39,7 +39,6 @@ export default {
               `/kapis/versatel.kubesphere.io/v1alpha1/registered/${data.hostname}`
             )
             .then(res => {
-              // Modal.close(modal)
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -48,8 +47,11 @@ export default {
                 Notify.success({ content: `${t('Deleted Successful')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: DeleteModal,
         store,
@@ -63,7 +65,7 @@ export default {
     },
   },
   'host.registered': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -75,8 +77,6 @@ export default {
           request
             .post(`/kapis/versatel.kubesphere.io/v1alpha1/registered`, data)
             .then(res => {
-              // Modal.close(modal)
-
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
@@ -85,8 +85,11 @@ export default {
                 Notify.success({ content: `${t('Operation Successfully')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: RegisteredModal,
         store,

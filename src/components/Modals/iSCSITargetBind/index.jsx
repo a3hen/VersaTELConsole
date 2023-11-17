@@ -72,6 +72,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       list_data: [],
       r_diskful: 0,
       r_diskless: 0,
+      isLoading: false, // isloading
     }
   }
 
@@ -224,6 +225,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping1Templates => {
+    this.setState({ isLoading: true }) // isloading
     iSCSIMapping1Templates.name = this.props.targetname
     set(
       this.props.formTemplate,
@@ -232,6 +234,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     )
     this.props.onOk(this.props.formTemplate)
   }
+
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -252,6 +258,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
           label={t('RESOURCE')}

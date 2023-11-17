@@ -58,6 +58,11 @@ export default class iSCSIMappingDeleteModal extends React.Component {
     this.iSCSIMappingStore = new iSCSIMappingStore()
 
     this.fetchResource()
+
+    this.state = {
+      isLoading: false, // isloading
+    }
+
   }
 
   fetchResource = params => {
@@ -75,6 +80,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMappingTemplates => {
+    this.setState({ isLoading: true }) // isloading
     iSCSIMappingTemplates.hostname = this.props.hostname
     iSCSIMappingTemplates.iqn = this.props.iqn
     set(
@@ -84,6 +90,10 @@ export default class iSCSIMappingDeleteModal extends React.Component {
     )
     this.props.onOk(this.props.formTemplate)
   }
+
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -99,6 +109,7 @@ export default class iSCSIMappingDeleteModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <p>点击以确认删除此发起端主机</p>
       </Modal.Form>

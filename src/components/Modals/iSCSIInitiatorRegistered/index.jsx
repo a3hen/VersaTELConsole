@@ -59,10 +59,9 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     this.fetchResource()
 
-    // this.state = {
-    //   unselectedNodes: {},
-    //   selectedNodes: [],
-    // }
+    this.state = {
+      isLoading: false, // isloading
+    }
   }
 
   fetchResource = params => {
@@ -107,20 +106,17 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    // const inputHostname = get(this.props.formTemplate, 'hostname')
-    // const isHostnameExists = this.props.host_data.some(item => item.hostName === inputHostname)
-    //
-    // if (isHostnameExists) {
-    //   alert('此主机名已被注册！')
-    //   return
-    // }
-
+    this.setState({ isLoading: true }) // isloading
     set(
       this.props.formTemplate,
       JSON.stringify(iSCSIMappingTemplates)
     )
     this.props.onOk(this.props.formTemplate)
   }
+
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   NameValidator = (rule, value, callback) => {
     if (!value) {
@@ -184,6 +180,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
           label={t('HostName')}

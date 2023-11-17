@@ -27,7 +27,7 @@ import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
   'target.delete1': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -41,7 +41,6 @@ export default {
               `/kapis/versatel.kubesphere.io/v1alpha1/target/${data.name} `
             )
             .then(res => {
-              // Modal.close(modal)
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -50,8 +49,11 @@ export default {
                 Notify.success({ content: `${t('Deleted Successful')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: TargetDeleteModal,
         store,
@@ -65,7 +67,7 @@ export default {
     },
   },
   'target.bind1': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -77,8 +79,6 @@ export default {
           request
             .post(`/kapis/versatel.kubesphere.io/v1alpha1/storage`, data)
             .then(res => {
-              // Modal.close(modal)
-
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
@@ -87,8 +87,11 @@ export default {
                 Notify.success({ content: `${t('Operation Successfully')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: TargetBindModal,
         store,
@@ -102,7 +105,7 @@ export default {
     },
   },
   'target.unbind1': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -116,7 +119,6 @@ export default {
               `/kapis/versatel.kubesphere.io/v1alpha1/storage/${data.resName} `
             )
             .then(res => {
-              // Modal.close(modal)
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -125,8 +127,11 @@ export default {
                 Notify.success({ content: `${t('Deleted Successful')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: TargetUnBindModal,
         store,
@@ -140,7 +145,7 @@ export default {
     },
   },
   'target.registered': {
-    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
@@ -155,8 +160,6 @@ export default {
           request
             .post(`/kapis/versatel.kubesphere.io/v1alpha1/target`, data)
             .then(res => {
-              // Modal.close(modal)
-
               if (Array.isArray(res)) {
                 Notify.error({
                   content: `${t('Operation Failed, Reason:')}${res[0].message}`,
@@ -165,8 +168,11 @@ export default {
                 Notify.success({ content: `${t('Operation Successfully')}` })
               }
               success && success()
+              onLoadingComplete && onLoadingComplete()
             })
-          Modal.close(modal)
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: RegisteredModal,
         store,

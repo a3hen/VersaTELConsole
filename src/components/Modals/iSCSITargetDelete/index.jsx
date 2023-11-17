@@ -58,6 +58,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     this.iSCSIMapping1Store = new iSCSIMapping1Store()
 
     this.fetchResource()
+
+    this.state = {
+      isLoading: false, // isloading
+    }
   }
 
   fetchResource = params => {
@@ -75,6 +79,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping1Templates => {
+    this.setState({ isLoading: true }) // isloading
     iSCSIMapping1Templates.name = this.props.targetname
     set(
       this.props.formTemplate,
@@ -83,6 +88,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     )
     this.props.onOk(this.props.formTemplate)
   }
+
+  onLoadingComplete = () => {
+    this.setState({ isLoading: false })
+  } // isloading
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -101,6 +110,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         onOk={this.handleCreate}
         okText={t('OK')}
         visible={visible}
+        isSubmitting={this.state.isLoading} // isloading
       >
         <p>点击以确认删除此iSCSI Target</p>
       </Modal.Form>
