@@ -277,13 +277,18 @@ export default class StoragepoolCreateModal extends React.Component {
             { required: true, message: t('Please select Volume name') },
           ]}
         >
-          <Select
+          <Input
             name="volume"
-            options={volumeOptions}
-            onFetch={this.fetchVgs}
-            searchable
-            clearable
+            maxLength={63}
+            placeholder="name"
           />
+          {/*<Select*/}
+          {/*  name="volume"*/}
+          {/*  options={volumeOptions}*/}
+          {/*  onFetch={this.fetchVgs}*/}
+          {/*  searchable*/}
+          {/*  clearable*/}
+          {/*/>*/}
         </Form.Item>
         {/*<Form.Item*/}
         {/*  label={t('Volume name')}*/}

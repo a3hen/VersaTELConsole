@@ -103,7 +103,22 @@ export default class iSCSIMapping2MapModal extends React.Component {
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
       JSON.stringify(iSCSIMapping2Templates)
     )
+    if (Array.isArray(this.props.formTemplate.hostname)) {
+      this.props.formTemplate.hostname = this.props.formTemplate.hostname.filter(item => item !== 'all')
+    }
     this.props.onOk(this.props.formTemplate)
+  }
+
+  handleSelectChange = selectedValues => {
+    if (selectedValues.includes('all')) {
+      this.fetchHostName().then(() => {
+        const nodes = this.iSCSIMappingStore.list.data.map(node => node.hostName)
+        nodes.unshift('all')
+        this.setState({ selectedHostnames: nodes })
+      })
+    } else if (this.state.selectedHostnames.includes('all')) {
+      this.setState({ selectedHostnames: [] })
+    }
   }
   onLoadingComplete = () => {
     this.setState({ isLoading: false })
@@ -124,6 +139,15 @@ export default class iSCSIMapping2MapModal extends React.Component {
         value: '关闭',
       },
     ]
+
+    const hostnameOptions = [
+      {
+        label: '全选',
+        value: 'all',
+      },
+      ...this.hostname,
+    ]
+
     console.log("this.props",this.props)
     console.log("this.state",this.state)
 
@@ -173,28 +197,30 @@ export default class iSCSIMapping2MapModal extends React.Component {
         >
           <Select
             name="hostname"
-            options={this.hostname}
+            // options={this.hostname}
             onFetch={this.fetchHostName}
+            options={hostnameOptions}
+            onChange={this.handleSelectChange}
             searchable
             clearable
             multi
           />
         </Form.Item>
-        <Checkbox
-          name="test"
-          onChange={(isChecked) => {
-            if (isChecked) {
-              this.fetchHostName().then(() => {
-                const nodes = this.iSCSIMappingStore.list.data.map(node => node.hostName)
-                this.setState({ selectedHostnames: nodes })
-              })
-            } else {
-              this.setState({ selectedHostnames: [] })
-            }
-          }}
-        >
-          全选
-        </Checkbox>
+        {/*<Checkbox*/}
+        {/*  name="test"*/}
+        {/*  onChange={(isChecked) => {*/}
+        {/*    if (isChecked) {*/}
+        {/*      this.fetchHostName().then(() => {*/}
+        {/*        const nodes = this.iSCSIMappingStore.list.data.map(node => node.hostName)*/}
+        {/*        this.setState({ selectedHostnames: nodes })*/}
+        {/*      })*/}
+        {/*    } else {*/}
+        {/*      this.setState({ selectedHostnames: [] })*/}
+        {/*    }*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  全选*/}
+        {/*</Checkbox>*/}
       </Modal.Form>
     )
   }

@@ -208,7 +208,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             { validator: this.iqnValidator },
           ]}
         >
-          <Input name="iqn" maxLength={63} placeholder="IQN" />
+          <Input name="iqn" maxLength={99} placeholder="IQN" />
         </Form.Item>
       </Modal.Form>
     )

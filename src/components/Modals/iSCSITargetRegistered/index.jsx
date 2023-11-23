@@ -63,7 +63,8 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.state = {
       showStepOne: false,
       stepzeroValue: null,
-      iqn: '',
+      // iqn: '',
+      iqn: localStorage.getItem('iqn') || '', // 从 localStorage 中获取 iqn 的值
     }
   }
 
@@ -84,6 +85,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         iqn: formValues.iqn,
       },
     })
+    localStorage.setItem('iqn', formValues.iqn)
     this.showStepOne()
   }
 
@@ -153,6 +155,11 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     callback()
   }
 
+  handleCancel = () => {
+    localStorage.removeItem('iqn')
+    this.props.onCancel()
+  } // 重构oncancel方法
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
@@ -190,7 +197,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         title={t(title)}
         icon="database"
         data={formTemplate}
-        onCancel={onCancel}
+        onCancel={this.handleCancel}
         // onOk={this.handleStepOne}
         onOk={this.handleStepOne}
         okText={t('NEXT_STEP')}
@@ -228,9 +235,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         >
           <Input
             name="iqn"
-            maxLength={63}
+            maxLength={99}
             placeholder="IQN"
             // value={this.state.iqn}
+            // onChange={e => this.setState({ iqn: e.target.value })}
             // ref={this.myRef}
             // onChange={this.handleIQNChange}
           />
