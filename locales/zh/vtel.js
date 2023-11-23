@@ -6,7 +6,7 @@ module.exports = {
   LNODE: '节点',
   LNode: 'VersaSDS 集群节点',
   LNODE_DESC:
-    '提供了当前 VersaSDS 集群下节点的运行状态，以及可以创建和删除 VersaSDS 节点',
+    '提供了当前 VersaSDS 集群下节点的运行状态，以及可以创建和删除 VersaSDS 节点。',
   'Node Type': '节点类型',
   'LVM Type': 'LVM 类型',
   'Storagepool Num': '存储池数量',
@@ -31,7 +31,7 @@ module.exports = {
   'Modify VersaSDS Node': '修改 VersaSDS 节点',
   Storagepool: '存储池',
   STORAGEPOOL_DESC:
-    '提供了当前 VersaSDS 集群下存储池的状态，以及可以创建和删除存储池',
+    '提供了当前 VersaSDS 集群下存储池的状态，以及可以创建和删除存储池。',
   STORAGEPOOL_EMPTY_DESC: '请创建一个存储池',
   Driver: '设备',
   'Pool Name': '资源池名',
@@ -43,7 +43,7 @@ module.exports = {
   LVM_VOLUME_NAME_DESC: '请选择 LVM 设备以用于存储池创建',
   'Select LVM Type': '选择 LVM 类型',
   LRESOURCE_DESC:
-    '提供了当前 VersaSDS 集群下资源的状态，以及可以创建和删除资源',
+    '提供了当前 VersaSDS 集群下资源的状态，以及可以创建和删除资源。',
   LRESOURCE_CREATE_DESC: '创建资源',
   'Mirror Way': '副本',
   'Device Name': '设备名称',
@@ -138,8 +138,8 @@ module.exports = {
   name: '名称',
   Snapshot_PL: '快照',
   SSnapshot_PL: '快照',
-  SNAPSHOT_DESC: '使用 VersaSDS 集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力',
-  SSNAPSHOT_DESC: '使用 VersaSDS 集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力',
+  SNAPSHOT_DESC: '使用 VersaSDS 集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力。',
+  SSNAPSHOT_DESC: '使用 VersaSDS 集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力。',
   SNAPSHOT_RESOURCE: '资源',
   SNAPSHOT_SNAPSHOT: '快照',
   SnapshotName: '快照',
