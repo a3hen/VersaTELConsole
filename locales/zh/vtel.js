@@ -17,6 +17,10 @@ module.exports = {
   'Please input VersaSDS Node name': '请输入 VersaSDS 节点名称',
   VTEL_NAME_DESC:
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+  VTEL_IQN_DESC:
+      'IQN 命名格式为：iqn.yyyy-mm.reverse.domain.name:identifier。',
+  VTEL_IP_DESC:
+      '请输入正确格式的IP地址。',
   NODE_NAME_DESC:
     '仅支持小写字母、数字以及中横线，且以小写字母开头和结束，长度必须大于2',
   SP_VOL_NAME_DESC: '请按照磁盘的具体名称进行填写，如 vg0, thinpool/thinlv0',
@@ -27,6 +31,7 @@ module.exports = {
   'VersaSDS Node Type': '节点类型',
   'IP Address of VersaSDS Node': 'VersaSDS 节点的 IP 地址，须符合 IP 地址格式',
   'Type of VersaSDS Node': 'VersaSDS 节点的类型，请选择需要的节点类型',
+  'Invalid IP': 'IP地址格式错误',
   Modify: '修改',
   'Modify VersaSDS Node': '修改 VersaSDS 节点',
   Storagepool: '存储池',
@@ -53,6 +58,9 @@ module.exports = {
   'Node name exists': '节点名已存在',
   'Storagepool name exists': '存储池名已存在',
   'Resource name exists': '资源名已存在',
+  'Hostname exists': '主机名已存在',
+  'iqn exists': 'iqn已存在',
+  'Target name exists': 'Target名已存在',
   'Create Resource': '创建资源',
   'Create PV': '创建PV',
   'Create VG': '创建VG',

@@ -42,6 +42,8 @@ module.exports = {
   NAME_EXIST_DESC: '名称已存在，请输入其他名称。',
   NAME_EMPTY_DESC: '请设置一个名称。',
   OK: '确定',
+  NEXT_STEP: '下一步',
+  PREVIOUS_STEP: '上一步',
   NAME_DESC:
     '名称只能包含小写字母、数字和连字符（-），必须以小写字母或数字开头和结尾，最长 63 个字符。',
   DESCRIPTION_DESC: '描述可包含任意字符，最长 256 个字符。',

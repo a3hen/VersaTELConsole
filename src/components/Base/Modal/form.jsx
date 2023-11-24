@@ -44,6 +44,7 @@ export default class ModalForm extends React.Component {
       bodyClassName,
       formClassName,
       disableOk,
+      onClose,
       ...rest
     } = this.props
 
@@ -52,6 +53,7 @@ export default class ModalForm extends React.Component {
         {...rest}
         bodyClassName={classnames(styles.formBody, bodyClassName)}
         onCancel={onCancel}
+        onClose={onClose || onCancel}
         hideFooter
       >
         <Form ref={formRef} data={data} onSubmit={onOk}>
