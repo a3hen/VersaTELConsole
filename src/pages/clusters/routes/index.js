@@ -67,6 +67,9 @@ import Resource from '../containers/VersaTEL/Resource'
 import ResourceBackup from '../containers/ResourceBackup'
 import Snapshot from '../containers/VersaTEL/Snapshot'
 import SSnapshot from '../containers/VersaTEL/SSnapshot'
+import iSCSIMapping from '../containers/VersaTEL/iSCSImapping'
+import iSCSIMapping1 from '../containers/VersaTEL/iSCSImapping1'
+import iSCSIMapping2 from '../containers/VersaTEL/iSCSImapping2'
 
 const PATH = '/clusters/:cluster'
 
@@ -75,8 +78,8 @@ export default [
     path: '/clusters',
     component: Clusters,
     redirect: globals.app.isMultiCluster
-      ? null
-      : {
+        ? null
+        : {
           from: '/clusters',
           to: '/clusters/default/overview',
           exact: true,
@@ -125,6 +128,21 @@ export default [
           {
             path: `${PATH}/ssnapshot`,
             component: SSnapshot,
+            exact: true,
+          },
+          {
+            path: `${PATH}/iSCSImapping`,
+            component: iSCSIMapping,
+            exact: true,
+          },
+          {
+            path: `${PATH}/iSCSImapping1`,
+            component: iSCSIMapping1,
+            exact: true,
+          },
+          {
+            path: `${PATH}/iSCSImapping2`,
+            component: iSCSIMapping2,
             exact: true,
           },
           {
