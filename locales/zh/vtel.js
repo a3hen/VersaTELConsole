@@ -68,6 +68,7 @@ module.exports = {
   'Choose diskless node': '创建diskless资源',
   'Choose mirrorway numbers':'调整副本数量',
   VTEL_SIZE_DESC: '请输入资源的大小，不加单位则默认单位为 K',
+  NEW_VTEL_SIZE_DESC: '请输入资源的大小',
   'Invalid size': '输入的资源大小格式不合法',
   'Please input Resource size': '请输入资源的大小',
   'Please input Resource name': '请输入资源名称',

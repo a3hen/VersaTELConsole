@@ -58,16 +58,16 @@ export default class StoragepoolCreateModal extends React.Component {
     super(props)
 
     this.linstornodeStore = new LNodeStore()
-    this.linstorresourceStore = new LResourceStore()
-    this.tpsStore = new TPResourceStore()
-    this.vgsStore = new VGResourceStore()
-    this.spStore = new StoragepoolStore()
+    // this.linstorresourceStore = new LResourceStore()
+    // this.tpsStore = new TPResourceStore()
+    // this.vgsStore = new VGResourceStore()
+    // this.spStore = new StoragepoolStore()
 
     this.fetchNodes()
-    this.fetchResource()
-    this.fetchVgs()
-    this.fetchTps()
-    this.fetchSps()
+    // this.fetchResource()
+    // this.fetchVgs()
+    // this.fetchTps()
+    // this.fetchSps()
   }
 
   state = {
@@ -85,31 +85,31 @@ export default class StoragepoolCreateModal extends React.Component {
     })
   }
 
-  fetchResource = params => {
-    return this.linstorresourceStore.fetchList({
-      ...params,
-    })
-  }
+  // fetchResource = params => {
+  //   return this.linstorresourceStore.fetchList({
+  //     ...params,
+  //   })
+  // }
 
-  fetchSps = params => {
-    return this.spStore.fetchList({
-      ...params,
-    })
-  }
-
-  fetchVgs = params => {
-    return this.vgsStore.fetchList({
-      node: this.props.node,
-      ...params,
-    })
-  }
-
-  fetchTps = params => {
-    return this.tpsStore.fetchList({
-      name: this.props.name,
-      ...params,
-    })
-  }
+  // fetchSps = params => {
+  //   return this.spStore.fetchList({
+  //     ...params,
+  //   })
+  // }
+  //
+  // fetchVgs = params => {
+  //   return this.vgsStore.fetchList({
+  //     node: this.props.node,
+  //     ...params,
+  //   })
+  // }
+  //
+  // fetchTps = params => {
+  //   return this.tpsStore.fetchList({
+  //     name: this.props.name,
+  //     ...params,
+  //   })
+  // }
 
   get nodes() {
     const nodes = this.linstornodeStore.list.data.map(node => ({
@@ -141,14 +141,14 @@ export default class StoragepoolCreateModal extends React.Component {
     return new_tps
   }
 
-  get sps() {
-    const new_list = this.spStore.list.data.filter(node => node.node === this.state.selectedNode);
-    const sps = new_list.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
-    return new_list
-  }
+  // get sps() {
+  //   const new_list = this.spStore.list.data.filter(node => node.node === this.state.selectedNode);
+  //   const sps = new_list.map(node => ({
+  //     label: node.name,
+  //     value: node.name,
+  //   }))
+  //   return new_list
+  // }
 
   handleCreate = LNodeTemplates => {
     set(
@@ -267,7 +267,7 @@ export default class StoragepoolCreateModal extends React.Component {
             options={lvmType}
             defaultValue="LVM"
             clearable
-            onChange={this.handleLvmTypeChange}
+            // onChange={this.handleLvmTypeChange}
           />
         </Form.Item>
         <Form.Item

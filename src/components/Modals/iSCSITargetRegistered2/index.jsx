@@ -131,6 +131,11 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.setState({ isLoading: false })
   } // isloading
 
+  handleCancel = () => {
+    localStorage.removeItem('iqn')
+    this.props.onCancel()
+  } // 重构oncancel方法
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
@@ -140,12 +145,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     const data = [
       {
-        label: '1个VIP',
-        value: '1个VIP',
+        label: '1个连接IP',
+        value: '1个连接IP',
       },
       {
-        label: '2个VIP',
-        value: '2个VIP',
+        label: '2个连接IP',
+        value: '2个连接IP',
       },
     ]
 
@@ -175,7 +180,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         icon="database"
         data={formTemplate}
         onCancel={this.showStepOne}
-        onClose={this.props.onCancel}
+        onClose={this.handleCancel}
         onOk={this.handleCreate}
         okText={t('OK')}
         cancelText={t('PREVIOUS_STEP')}
@@ -183,10 +188,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
-          label={t('VIP')}
-          desc={t('Select the number of VIPs')}
+          label={t('连接')}
+          desc={t('Select the number of IPs')}
           rules={[
-            { required: true, message: t('Please Select the number of VIPs') },
+            { required: true, message: t('Please Select the number of IPs') },
           ]}
         >
           <Select
@@ -194,7 +199,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             options={data}
             searchable
             clearable
-            defaultValue="1个VIP"
+            defaultValue="1个连接IP"
             onChange={this.handleVipChange}
           />
         </Form.Item>
@@ -203,14 +208,14 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
             key={i}
             label={t(`VIP ${i + 1}`)}
             rules={[
-              { required: true, message: t('Please input VIP') },
+              { required: true, message: t('Please input IP') },
               {
                 pattern: PATTERN_IP,
                 message: t('IP地址格式错误', { message: t('VTEL_IP_DESC') }),
               },
             ]}
           >
-            <Input name={`vip${i + 1}`} />
+            <Input name={`连接ip${i + 1}`} />
           </Form.Item>
         ))}
       </Modal.Form>

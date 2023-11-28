@@ -175,6 +175,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.props.onOk(dataToSubmit)
   }
 
+  handleCancel = () => {
+    localStorage.removeItem('iqn')
+    this.props.onCancel()
+  } // 重构oncancel方法
+
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
@@ -240,7 +246,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         data={formTemplate}
         // onCancel={onCancel}
         onCancel={this.showStepZero}
-        onClose={this.props.onCancel}
+        onClose={this.handleCancel}
         onOk={this.handleStepTwo}
         cancelText={t('PREVIOUS_STEP')}
         okText={t('NEXT_STEP')}

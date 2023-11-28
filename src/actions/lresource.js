@@ -149,19 +149,20 @@ export default {
           const resourceName = data.name
           data.metadata.name = resourceName
           delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
+          console.log("data",data)
 
-          store.create(data).then(res => {
-            // Modal.close(modal)
-
-            if (Array.isArray(res)) {
-              Notify.error({
-                content: `${t('Created Failed, Reason:')}${res[0].message}`,
-              })
-            } else {
-              Notify.success({ content: `${t('Created Successfully')}` })
-            }
-            success && success()
-          })
+          // store.create(data).then(res => {
+          //   // Modal.close(modal)
+          //
+          //   if (Array.isArray(res)) {
+          //     Notify.error({
+          //       content: `${t('Created Failed, Reason:')}${res[0].message}`,
+          //     })
+          //   } else {
+          //     Notify.success({ content: `${t('Created Successfully')}` })
+          //   }
+          //   success && success()
+          // })
           Modal.close(modal)
         },
         modal: CreateModal,

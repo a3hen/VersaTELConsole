@@ -125,84 +125,84 @@ client:
             - { name: resource, title: Resource }
             - { name: snapshot, title: Snapshot }
             - { name: iSCSImapping, title: iSCSIMapping }
-        # - name: backup
-        #   title: Backup
-        #   icon: snapshot
-        # - name: nodes
-        #   title: NODE_PL
-        #   icon: nodes
-        #   children:
-        #     - { name: nodes, title: CLUSTER_NODE_PL }
-        #     - {
-        #         name: edgenodes,
-        #         title: EDGE_NODE_PL,
-        #         clusterModule: edgeruntime,
-        #       }
-        # - { name: components, title: SYSTEM_COMPONENT_PL, icon: components }
-        # - { name: projects, title: PROJECT_PL, icon: project }
-        # - name: app-workloads
-        #   title: APPLICATION_WORKLOAD_PL
-        #   icon: appcenter
-        #   children:
-        #     - name: workloads
-        #       title: WORKLOAD_PL
-        #       tabs:
-        #         - { name: deployments, title: DEPLOYMENT_PL }
-        #         - { name: statefulsets, title: STATEFULSET_PL }
-        #         - { name: daemonsets, title: DAEMONSET_PL }
-        #     - name: jobs
-        #       title: JOB_PL
-        #       tabs:
-        #         - { name: jobs, title: JOB_PL }
-        #         - { name: cronjobs, title: CRONJOB_PL }
-        #     - { name: pods, title: POD_PL }
-        #     - { name: services, title: SERVICE_PL }
-        #     - { name: ingresses, title: ROUTE_PL }
-        # - name: config
-        #   title: CONFIGURATION
-        #   icon: hammer
-        #   children:
-        #     - { name: secrets, title: SECRET_PL }
-        #     - { name: configmaps, title: CONFIGMAP_PL }
-        #     - {
-        #         name: serviceaccounts,
-        #         title: SERVICE_ACCOUNT_PL,
-        #         requiredClusterVersion: v3.1.0,
-        #       }
-        # - name: network
-        #   title: NETWORK
-        #   icon: earth
-        #   children:
-        #     - {
-        #         name: networkpolicies,
-        #         title: NETWORK_POLICY_PL,
-        #         clusterModule: network,
-        #       }
-        #     - {
-        #         name: ippools,
-        #         title: POD_IP_POOL_PL,
-        #         clusterModule: "network.ippool",
-        #       }
-        # Contains dangerous operations, only available for platform-admin.
-        # - { name: customresources, title: CRD_PL, icon: select, admin: true }
-        # - name: storage
-        #   title: STORAGE
-        #   icon: database
-        #   children:
-        #     - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
-        #     - { name: storageclasses, title: STORAGE_CLASS_PL }
-        #     - {
-        #         name: volume-snapshots,
-        #         title: VOLUME_SNAPSHOT_PL,
-        #         authKey: volumes,
-        #         requiredClusterVersion: v3.3.0,
-        #       }
-        #     - {
-        #         name: volume-snapshot-classes,
-        #         title: VOLUME_SNAPSHOT_CLASS_PL,
-        #         authKey: volumes,
-        #         requiredClusterVersion: v3.3.0,
-        #       }
+#     - name: backup
+#       title: Backup
+#       icon: snapshot
+#     - name: nodes
+#       title: NODE_PL
+#       icon: nodes
+#       children:
+#         - { name: nodes, title: CLUSTER_NODE_PL }
+#         - {
+#             name: edgenodes,
+#             title: EDGE_NODE_PL,
+#             clusterModule: edgeruntime,
+#           }
+#     - { name: components, title: SYSTEM_COMPONENT_PL, icon: components }
+#     - { name: projects, title: PROJECT_PL, icon: project }
+#     - name: app-workloads
+#       title: APPLICATION_WORKLOAD_PL
+#       icon: appcenter
+#       children:
+#         - name: workloads
+#           title: WORKLOAD_PL
+#           tabs:
+#             - { name: deployments, title: DEPLOYMENT_PL }
+#             - { name: statefulsets, title: STATEFULSET_PL }
+#             - { name: daemonsets, title: DAEMONSET_PL }
+#         - name: jobs
+#           title: JOB_PL
+#           tabs:
+#             - { name: jobs, title: JOB_PL }
+#             - { name: cronjobs, title: CRONJOB_PL }
+#         - { name: pods, title: POD_PL }
+#         - { name: services, title: SERVICE_PL }
+#         - { name: ingresses, title: ROUTE_PL }
+#     - name: config
+#       title: CONFIGURATION
+#       icon: hammer
+#       children:
+#         - { name: secrets, title: SECRET_PL }
+#         - { name: configmaps, title: CONFIGMAP_PL }
+#         - {
+#             name: serviceaccounts,
+#             title: SERVICE_ACCOUNT_PL,
+#             requiredClusterVersion: v3.1.0,
+#           }
+#     - name: network
+#       title: NETWORK
+#       icon: earth
+#       children:
+#         - {
+#             name: networkpolicies,
+#             title: NETWORK_POLICY_PL,
+#             clusterModule: network,
+#           }
+#         - {
+#             name: ippools,
+#             title: POD_IP_POOL_PL,
+#             clusterModule: "network.ippool",
+#           }
+#     Contains dangerous operations, only available for platform-admin.
+#     - { name: customresources, title: CRD_PL, icon: select, admin: true }
+#     - name: storage
+#       title: STORAGE
+#       icon: database
+#       children:
+#         - { name: volumes, title: PERSISTENT_VOLUME_CLAIM_PL }
+#         - { name: storageclasses, title: STORAGE_CLASS_PL }
+#         - {
+#             name: volume-snapshots,
+#             title: VOLUME_SNAPSHOT_PL,
+#             authKey: volumes,
+#             requiredClusterVersion: v3.3.0,
+#           }
+#         - {
+#             name: volume-snapshot-classes,
+#             title: VOLUME_SNAPSHOT_CLASS_PL,
+#             authKey: volumes,
+#             requiredClusterVersion: v3.3.0,
+#           }
         - name: monitoring-alerting
           title: MONITORING_AND_ALERTING
           icon: monitor
