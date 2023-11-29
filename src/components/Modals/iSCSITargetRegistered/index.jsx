@@ -86,6 +86,14 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       },
     })
     localStorage.setItem('iqn', formValues.iqn)
+    const { stepzeroValue } = this.state
+    const { target_data } = this.props
+
+    if (target_data.some(item => item.iqn && item.iqn === stepzeroValue.iqn)) {
+      alert('输入的iqn已存在！')
+      return
+    }
+
     this.showStepOne()
   }
 

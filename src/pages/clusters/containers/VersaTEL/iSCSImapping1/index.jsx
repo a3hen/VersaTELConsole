@@ -89,6 +89,7 @@ export default class iSCSIMapping1 extends React.Component {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
             // success: getData,
             targetname: item?.name,
+            storage: item?.storageList,
           })
         },
       },
@@ -154,29 +155,30 @@ export default class iSCSIMapping1 extends React.Component {
 
   getColumns = () => {
     const { module } = this.props
-    // let test_list = ['aaaaaa','bbbbbbbbbbbbbbbbbbbbbbbbbbbbbz','ccccc','dddddd',
-    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    //   'aaaaaa','bbbbbbbb','ccccc','dddddd',
-    // ]
     // console.log("props",this.props)
     return [
       {
         title: t('Target'),
         dataIndex: 'name',
-        width: '33%',
+        width: '25%',
         render: name => name,
+      },
+      {
+        title: t('IQN'),
+        dataIndex: 'iqn',
+        width: '25%',
+        render: iqn => iqn,
       },
       {
         title: t('VIP'),
         dataIndex: 'vipList',
-        width: '33%',
+        width: '25%',
         render: vipList => Array.isArray(vipList) ? vipList.join(', ') : vipList,
       },
       {
         title: t('Storage'),
         dataIndex: 'storageNum',
-        width: '33%',
+        width: '25%',
         render: (storageNum, record) => {
           const storageList = record.storageList
           return (
@@ -207,6 +209,7 @@ export default class iSCSIMapping1 extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    // console.log("this.props",this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />

@@ -221,17 +221,20 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     console.log("newarray",newArray)
 
-    return newArray
+    return (this.props.storage && this.props.storage.length > 0)
+      ? newArray.filter(item => !this.props.storage.includes(item.value))
+      : newArray
   }
 
   handleCreate = iSCSIMapping1Templates => {
-    this.setState({ isLoading: true }) // isloading
     iSCSIMapping1Templates.name = this.props.targetname
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
       JSON.stringify(iSCSIMapping1Templates)
     )
+    console.log("this.props.formTemplate",this.props.formTemplate)
+    this.setState({ isLoading: true }) // isloading
     this.props.onOk(this.props.formTemplate)
   }
 
@@ -241,6 +244,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
+    console.log("this.props",this.props)
 
     const title = 'Bind Storage'
 

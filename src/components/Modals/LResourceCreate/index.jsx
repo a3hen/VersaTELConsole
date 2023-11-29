@@ -69,7 +69,6 @@ export default class LResourceCreateModal extends React.Component {
       selectValue: 'GB',
     }
 
-    this.props.formTemplate.size = ''
   }
 
   fetchNodes = params => {
@@ -130,7 +129,12 @@ export default class LResourceCreateModal extends React.Component {
   // }
 
   handleCreate = LResourceTemplates => {
-    console.log("this.props.formTemplate",this.props.formTemplate)
+    if (!this.state.inputValue) {
+      alert('请输入资源的大小！')
+      return
+    }
+    this.props.formTemplate.size = this.state.inputValue + this.state.selectValue
+    console.log("handlecreate_this.props.formTemplate",this.props.formTemplate)
     console.log("this.state",this.state)
     set(
       this.props.formTemplate,
@@ -199,8 +203,8 @@ export default class LResourceCreateModal extends React.Component {
     ]
 
     set(
-      this.props.,
-      'Size',
+      this.props.formTemplate,
+      'size',
       this.state.inputValue + this.state.selectValue
     )
 
@@ -237,15 +241,15 @@ export default class LResourceCreateModal extends React.Component {
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Input
               style={{ width: '70%' }}
-              name="size"
+              name="number"
               maxLength={63}
               placeholder="size"
               onChange={e => {
                 const re = /^[0-9\b]+$/
                 if (e.target.value === '' || re.test(e.target.value)) {
                   this.setState({inputValue: e.target.value})
-                  formTemplate.size = e.target.value // 更新 "size" 字段的值
-                  formTemplate.Size = e.target.value + formTemplate.unit // 更新 "Size" 字段的值
+                  formTemplate.number = e.target.value // 更新 "size" 字段的值
+                  formTemplate.size = e.target.value + formTemplate.unit // 更新 "Size" 字段的值
                 }
               }}
               value={this.state.inputValue}
@@ -253,14 +257,14 @@ export default class LResourceCreateModal extends React.Component {
             <Select
               style={{ width: '28%' }}
               name="unit"
-              options={unitdata
+              options={unitdata}
               searchable
               clearable
               defaultValue="GB"
               onChange={value => {
                 this.setState({selectValue: value})
                 formTemplate.unit = value
-                formTemplate.Size = this.state.inputValue + value // 更新 "Size" 字段的值
+                formTemplate.size = this.state.inputValue + value
               }}
             />
           </div>

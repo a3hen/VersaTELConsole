@@ -68,7 +68,11 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   handleVipChange = value => {
-    this.setState({ vipCount: value === '1个VIP' ? 1 : 2 })
+    this.setState({ vipCount: value === '1个连接IP' ? 1 : 2 })
+    // 如果选择的是1个连接IP，清除第二个IP输入框的值
+    if (value === '1个连接IP') {
+      this.props.formTemplate.vip2 = ''
+    }
   }
 
   showStepOne = () => {
@@ -117,14 +121,19 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   // }
 
   handleCreate = iSCSIMappingTemplates => {
-    this.setState({ isLoading: true }) // isloading
     const vipValues = Array.from({ length: this.state.vipCount }, (_, i) => this.props.formTemplate[`vip${i + 1}`])
     const dataToSubmit = { ...this.props, ...iSCSIMappingTemplates, vipList: vipValues }
 
     // Create a new object to pass to onOk
     const dataForOnOk = { ...dataToSubmit }
+    if (dataForOnOk.vip2 && dataForOnOk.vip1 === dataForOnOk.vip2) {
+      alert('填写的两个连接ip不能相同！')
+      return
+    }
+    this.setState({ isLoading: true }) // isloading
+    console.log("dataforonok",dataForOnOk)
 
-    this.props.onOk(dataForOnOk)
+    // this.props.onOk(dataForOnOk)
   }
 
   onLoadingComplete = () => {
@@ -206,7 +215,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         {Array.from({ length: this.state.vipCount }, (_, i) => (
           <Form.Item
             key={i}
-            label={t(`VIP ${i + 1}`)}
+            label={t(`连接IP ${i + 1}`)}
             rules={[
               { required: true, message: t('Please input IP') },
               {
@@ -215,7 +224,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
               },
             ]}
           >
-            <Input name={`连接ip${i + 1}`} />
+            <Input name={`vip${i + 1}`} />
           </Form.Item>
         ))}
       </Modal.Form>

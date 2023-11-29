@@ -250,27 +250,30 @@ export default class KubeTools extends React.Component {
   }
 
   render() {
-    if (isEmpty(this.enabledTools)) {
-      return null
-    }
-
-    return (
-      <Draggable
-        axis="y"
-        defaultPosition={this.state.defaultPosition}
-        onStop={this.handleStop}
-      >
-        <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
-          <Button
-            className={styles.button}
-            onMouseEnter={this.onMouseEnter}
-            type="control"
-            icon="hammer"
-            iconType="light"
-          />
-          {this.renderTools()}
-        </div>
-      </Draggable>
-    )
+    return null
   }
+  // render() {
+  //   if (isEmpty(this.enabledTools)) {
+  //     return null
+  //   }
+  //
+  //   return (
+  //     <Draggable
+  //       axis="y"
+  //       defaultPosition={this.state.defaultPosition}
+  //       onStop={this.handleStop}
+  //     >
+  //       <div className={styles.trigger} onMouseLeave={this.onMouseLeave}>
+  //         <Button
+  //           className={styles.button}
+  //           onMouseEnter={this.onMouseEnter}
+  //           type="control"
+  //           icon="hammer"
+  //           iconType="light"
+  //         />
+  //         {this.renderTools()}
+  //       </div>
+  //     </Draggable>
+  //   )
+  // }
 }

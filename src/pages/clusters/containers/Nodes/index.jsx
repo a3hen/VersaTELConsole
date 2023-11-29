@@ -83,54 +83,54 @@ export default class Nodes extends React.Component {
   get itemActions() {
     const { store, clusterStore, routing, trigger, name } = this.props
     return [
-      {
-        key: 'uncordon',
-        icon: 'start',
-        text: t('UNCORDON'),
-        action: 'edit',
-        show: item =>
-          item.importStatus === 'success' && this.getUnschedulable(item),
-        onClick: item => store.uncordon(item).then(routing.query),
-      },
-      {
-        key: 'cordon',
-        icon: 'stop',
-        text: t('CORDON'),
-        action: 'edit',
-        show: item =>
-          item.importStatus === 'success' && !this.getUnschedulable(item),
-        onClick: item => store.cordon(item).then(routing.query),
-      },
-      {
-        key: 'terminal',
-        icon: 'terminal',
-        text: t('OPEN_TERMINAL'),
-        action: 'edit',
-        show: item => item.importStatus === 'success' && this.getReady(item),
-        onClick: item => this.handleOpenTerminal(item),
-      },
-      {
-        key: 'logs',
-        icon: 'eye',
-        text: t('VIEW_LOG'),
-        action: 'edit',
-        show: item => item.importStatus !== 'success',
-        onClick: () =>
-          trigger('node.add.log', { detail: toJS(clusterStore.detail) }),
-      },
-      {
-        key: 'delete',
-        icon: 'trash',
-        text: t('DELETE'),
-        action: 'delete',
-        show: item => item.importStatus === 'failed',
-        onClick: item =>
-          trigger('resource.delete', {
-            type: name,
-            detail: item,
-            success: routing.query,
-          }),
-      },
+      // {
+      //   key: 'uncordon',
+      //   icon: 'start',
+      //   text: t('UNCORDON'),
+      //   action: 'edit',
+      //   show: item =>
+      //     item.importStatus === 'success' && this.getUnschedulable(item),
+      //   onClick: item => store.uncordon(item).then(routing.query),
+      // },
+      // {
+      //   key: 'cordon',
+      //   icon: 'stop',
+      //   text: t('CORDON'),
+      //   action: 'edit',
+      //   show: item =>
+      //     item.importStatus === 'success' && !this.getUnschedulable(item),
+      //   onClick: item => store.cordon(item).then(routing.query),
+      // },
+      // {
+      //   key: 'terminal',
+      //   icon: 'terminal',
+      //   text: t('OPEN_TERMINAL'),
+      //   action: 'edit',
+      //   show: item => item.importStatus === 'success' && this.getReady(item),
+      //   onClick: item => this.handleOpenTerminal(item),
+      // },
+      // {
+      //   key: 'logs',
+      //   icon: 'eye',
+      //   text: t('VIEW_LOG'),
+      //   action: 'edit',
+      //   show: item => item.importStatus !== 'success',
+      //   onClick: () =>
+      //     trigger('node.add.log', { detail: toJS(clusterStore.detail) }),
+      // },
+      // {
+      //   key: 'delete',
+      //   icon: 'trash',
+      //   text: t('DELETE'),
+      //   action: 'delete',
+      //   show: item => item.importStatus === 'failed',
+      //   onClick: item =>
+      //     trigger('resource.delete', {
+      //       type: name,
+      //       detail: item,
+      //       success: routing.query,
+      //     }),
+      // },
     ]
   }
 
@@ -154,16 +154,16 @@ export default class Nodes extends React.Component {
       ...tableProps.tableActions,
       actions,
       selectActions: [
-        {
-          key: 'taint',
-          type: 'default',
-          text: t('EDIT_TAINTS'),
-          action: 'edit',
-          onClick: () =>
-            trigger('node.taint.batch', {
-              success: routing.query,
-            }),
-        },
+        // {
+        //   key: 'taint',
+        //   type: 'default',
+        //   text: t('EDIT_TAINTS'),
+        //   action: 'edit',
+        //   onClick: () =>
+        //     trigger('node.taint.batch', {
+        //       success: routing.query,
+        //     }),
+        // },
       ],
     }
   }
@@ -558,6 +558,7 @@ export default class Nodes extends React.Component {
         <Table
           {...tableProps}
           itemActions={this.itemActions}
+          // itemActions={null}
           tableActions={this.tableActions}
           columns={this.getColumns()}
           isLoading={tableProps.isLoading || isLoadingMonitor}
