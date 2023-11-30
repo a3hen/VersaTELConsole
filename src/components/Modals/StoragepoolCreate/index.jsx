@@ -27,10 +27,10 @@ import { Modal } from 'components/Base'
 import { PATTERN_VTEL_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
-import StoragepoolStore from 'stores/storagepool'
-import VGResourceStore from 'stores/vgresource'
-import TPResourceStore from 'stores/tpresource'
-import LResourceStore from 'stores/lresource'
+// import StoragepoolStore from 'stores/storagepool'
+// import VGResourceStore from 'stores/vgresource'
+// import TPResourceStore from 'stores/tpresource'
+// import LResourceStore from 'stores/lresource'
 
 @observer
 export default class StoragepoolCreateModal extends React.Component {
@@ -119,27 +119,27 @@ export default class StoragepoolCreateModal extends React.Component {
     return nodes
   }
 
-  get vgs() {
-    const spNames = this.sps.map(sp => sp.poolName)
-    const new_list = this.vgsStore.list.data.filter(node => node.node === this.state.selectedNode && !spNames.includes(node.vg));
-    const vgs = new_list.map(node => ({
-      label: node.vg,
-      value: node.vg,
-    }))
-    return vgs
-  }
-
-  get tps() {
-    const sppoolname = this.sps.map(sp => sp.poolName)
-    const new_list = this.tpsStore.list.data.filter(node => node.node === this.state.selectedNode);
-    const tps = new_list.map(node => ({
-      label: node.vg + '/' + node.name,
-      value: node.vg + '/' + node.name,
-      vg: node.vg,
-    }))
-    const new_tps = tps.filter(tp => !sppoolname.includes(tp.value))
-    return new_tps
-  }
+  // get vgs() {
+  //   const spNames = this.sps.map(sp => sp.poolName)
+  //   const new_list = this.vgsStore.list.data.filter(node => node.node === this.state.selectedNode && !spNames.includes(node.vg));
+  //   const vgs = new_list.map(node => ({
+  //     label: node.vg,
+  //     value: node.vg,
+  //   }))
+  //   return vgs
+  // }
+  //
+  // get tps() {
+  //   const sppoolname = this.sps.map(sp => sp.poolName)
+  //   const new_list = this.tpsStore.list.data.filter(node => node.node === this.state.selectedNode);
+  //   const tps = new_list.map(node => ({
+  //     label: node.vg + '/' + node.name,
+  //     value: node.vg + '/' + node.name,
+  //     vg: node.vg,
+  //   }))
+  //   const new_tps = tps.filter(tp => !sppoolname.includes(tp.value))
+  //   return new_tps
+  // }
 
   // get sps() {
   //   const new_list = this.spStore.list.data.filter(node => node.node === this.state.selectedNode);
