@@ -101,7 +101,12 @@ export default class Storagepool extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        render: status => <VStatus name={status} />,
+        render: (status, record) => {
+          if (record.freeCapacity === '0.00 KiB') {
+            return <VStatus name="warning1" />
+          }
+          return <VStatus name={status} />
+        },
       },
       {
         title: t('Node'),

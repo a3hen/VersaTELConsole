@@ -238,9 +238,9 @@ export default class LResourceCreateModal extends React.Component {
           desc={t('NEW_VTEL_SIZE_DESC')}
           // rules={[{ required: true, message: t('Please input Resource size') }]}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <Input
-              style={{ width: '70%' }}
+              style={{ width: '355px' }}
               name="number"
               maxLength={63}
               placeholder="size"
@@ -255,7 +255,7 @@ export default class LResourceCreateModal extends React.Component {
               value={this.state.inputValue}
             />
             <Select
-              style={{ width: '28%' }}
+              style={{ width: '100px' }}
               name="unit"
               options={unitdata}
               searchable
