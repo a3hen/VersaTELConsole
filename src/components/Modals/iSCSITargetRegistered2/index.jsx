@@ -133,7 +133,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.setState({ isLoading: true }) // isloading
     console.log("dataforonok",dataForOnOk)
 
-    // this.props.onOk(dataForOnOk)
+    this.props.onOk(dataForOnOk)
   }
 
   onLoadingComplete = () => {
