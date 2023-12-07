@@ -126,6 +126,16 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
     // Create a new object to pass to onOk
     const dataForOnOk = { ...dataToSubmit }
+    if (
+      this.props.target_data.some(
+        item =>
+          item.vipList.includes(dataForOnOk.vip1) ||
+          item.vipList.includes(dataForOnOk.vip2)
+      )
+    ) {
+      alert('填写的连接ip不能是被使用的ip！')
+      return
+    }
     if (dataForOnOk.vip2 && dataForOnOk.vip1 === dataForOnOk.vip2) {
       alert('填写的两个连接ip不能相同！')
       return
