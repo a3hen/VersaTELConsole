@@ -220,9 +220,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       }))
 
     console.log("newarray",newArray)
+    console.log("aaaaadata",this.props.data)
 
-    return (this.props.storage && this.props.storage.length > 0)
-      ? newArray.filter(item => !this.props.storage.includes(item.value))
+    return (this.props.data && this.props.data.length > 0)
+      ? newArray.filter(item => !this.props.data.some(dataItem => dataItem.storageList.includes(item.value)))
       : newArray
   }
 

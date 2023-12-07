@@ -90,6 +90,7 @@ export default class iSCSIMapping1 extends React.Component {
             // success: getData,
             targetname: item?.name,
             storage: item?.storageList,
+            data: this.props.tableProps.data,
           })
         },
       },
@@ -209,7 +210,7 @@ export default class iSCSIMapping1 extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
-    // console.log("this.props",this.props)
+    console.log("this.props",this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />
