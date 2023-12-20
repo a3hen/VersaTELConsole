@@ -57,7 +57,7 @@ export default class Modal extends React.Component {
     headerClassName: PropTypes.string,
     bodyClassName: PropTypes.string,
     footerClassName: PropTypes.string,
-    icon: PropTypes.string,
+    icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     title: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
     description: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -133,15 +133,15 @@ export default class Modal extends React.Component {
     const { icon, imageIcon, title, description, rightScreen } = this.props
     const size = rightScreen ? 48 : isUndefined(description) ? 20 : 40
 
+    const iconElement = typeof icon === 'string' ? <Icon name={icon} size={size} /> : icon
+
     return (
       <div className={styles.title}>
         {imageIcon ? (
           <label className={styles.image}>
             <Image src={imageIcon} iconLetter={imageIcon} iconSize={size} />
           </label>
-        ) : (
-          icon && <Icon name={icon} size={size} />
-        )}
+        ) : iconElement}
         <Text title={title} description={description} />
       </div>
     )
@@ -186,6 +186,8 @@ export default class Modal extends React.Component {
     if (!fullScreen && !rightScreen) {
       style.content.width = width
     }
+
+    console.log("modal",okButtonType)
 
     return (
       <ReactModal

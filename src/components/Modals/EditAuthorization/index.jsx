@@ -154,10 +154,14 @@ export default class EditAuthorizationModal extends React.Component {
       roleTemplatesMap,
       currentModule,
     } = this.state
+    // const templates = sortBy(groupedTemplates[currentModule] || [], 'aliasName')
     const templates = sortBy(groupedTemplates[currentModule] || [], 'aliasName')
+      .filter(template => template.aliasName !== "Workspaces View")
+
     if (templates.length === 6) {
       templates.splice(4, 2)
     }
+    console.log("templates",templates)
     return (
       <div className={styles.content}>
         <div className={styles.title}>{t('PERMISSION_PL')}</div>

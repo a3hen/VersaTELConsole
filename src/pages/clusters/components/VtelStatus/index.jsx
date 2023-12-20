@@ -25,6 +25,10 @@ export default class VStatus extends React.Component {
       return 'Updating'
     }
 
+    if (name === 'Unknow') {
+      return 'Warning'
+    }
+
     if (name === 'warning1') {
       return 'Stopped'
     }
@@ -42,6 +46,9 @@ export default class VStatus extends React.Component {
     }
     if (name === 'warning1') {
       return 'warning1'
+    }
+    if (name === 'Unknow') {
+      return 'Unknow'
     }
     return name || 'ERROR'
     // return 'ERROR'

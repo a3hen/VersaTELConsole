@@ -87,9 +87,9 @@ export default class AdminDashboard extends React.Component {
           <Panel className={styles.status} title={t('PLATFORM_RESOURCES')}>
             <PlatformStatus metrics={this.monitorStore.data} />
           </Panel>
-          <Panel title={t('RECENT_ACCESS')}>
-            <History />
-          </Panel>
+          {/*<Panel title={t('RECENT_ACCESS')}>*/}
+          {/*  <History />*/}
+          {/*</Panel>*/}
         </>
       </Loading>
     )

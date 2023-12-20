@@ -95,16 +95,12 @@ export default class LResourceStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    // const data = get(result, 'data', [])
+    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
+      total: data.length,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
@@ -127,6 +123,7 @@ export default class LResourceStore extends Base {
       isLoading: false,
     })
   }
+
 
   @action
   async fetchDetail(params) {

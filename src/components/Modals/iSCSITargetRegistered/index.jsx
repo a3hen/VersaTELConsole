@@ -89,12 +89,15 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { stepzeroValue } = this.state
     const { target_data } = this.props
 
-    if (target_data.some(item => item.iqn && item.iqn === stepzeroValue.iqn)) {
-      alert('输入的iqn已存在！')
-      return
-    }
+    // if (target_data.some(item => item.iqn && item.iqn === stepzeroValue.iqn)) {
+    //   alert('输入的iqn已存在！')
+    //   return
+    // }
 
-    this.showStepOne()
+    // this.showStepOne()
+    this.setState({ showStepOne: true }, () => {
+      this.forceUpdate()
+    })
   }
 
   handleNameChange = (e, value) => {
@@ -102,6 +105,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const year = date.getFullYear()
     const month = ("0" + (date.getMonth() + 1)).slice(-2)
     this.setState({ iqn: `iqn.${year}-${month}.com.example:${value}` })
+    set(this.props.formTemplate, 'iqn', this.state.iqn)
   }
 
   // handleIQNChange = (e, value) => {
@@ -163,8 +167,41 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     callback()
   }
 
+  IQNValidator = (rule, value, callback) => {
+    if (!value) {
+      return callback()
+    }
+
+    // const { workspace, cluster, namespace } = this.props
+    const iqn = get(this.props.formTemplate, 'iqn')
+
+    if (this.props.edit && iqn === value) {
+      return callback()
+    }
+    // console.log("value",value)
+    // console.log("this.state.iqn",this.state.iqn)
+    // const isNameExistInTargetData = this.props.target_data.some(
+    //   item => item.iqn === value && item.iqn === this.state.iqn
+    // )
+    const isNameExistInTargetData = this.props.target_data.some(
+      item => item.iqn === value
+    )
+    // console.log("isNameExistInTargetData",isNameExistInTargetData)
+    if (isNameExistInTargetData) {
+      return callback({
+        message: t('IQN exists'),
+        field: rule.field,
+      })
+    }
+    callback()
+  }
+
   handleCancel = () => {
     localStorage.removeItem('iqn')
+    localStorage.removeItem('runningNode')
+    localStorage.removeItem('secondaryNode')
+    localStorage.removeItem('initialNode')
+    localStorage.removeItem('isRunningNodeDisabled')
     this.props.onCancel()
   } // 重构oncancel方法
 
@@ -195,6 +232,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           targetname={this.state.stepzeroValue.targetname}
           iqn={this.state.stepzeroValue.iqn}
           target_data={this.props.target_data}
+          flag={true}
         />
       )
     }
@@ -239,6 +277,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
               pattern: PATTERN_IQN_NAME,
               message: t('IQN格式错误', { message: t('VTEL_IQN_DESC') }),
             },
+            { validator: this.IQNValidator },
           ]}
         >
           <Input

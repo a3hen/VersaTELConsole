@@ -203,9 +203,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       }
     })
 
-    console.log("result",result)
-    console.log("state",this.state)
-
     const newArray = result
       .filter(item =>
         this.state.r_diskful.length === item.diskfulnode.length &&
@@ -220,7 +217,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       }))
 
     console.log("newarray",newArray)
-    console.log("aaaaadata",this.props.data)
 
     return (this.props.data && this.props.data.length > 0)
       ? newArray.filter(item => !this.props.data.some(dataItem => dataItem.storageList.includes(item.value)))

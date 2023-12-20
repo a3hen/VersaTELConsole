@@ -60,18 +60,13 @@ export default class iSCSIMapping1Store extends Base {
       ...params,
     })
 
-
-    const data = get(result, 'data', [])
+    // const data = get(result, 'data', [])
+    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
 
     if (data) {
       this.list.update({
         data: more ? [...this.list.data, ...data] : data,
-        total:
-          result && (result.count ||
-            result.totalItems ||
-            result.total_count ||
-            data.length) ||
-          0,
+        total: data.length,
         ...params,
         limit: Number(params.limit) || 10,
         page: Number(params.page) || 1,

@@ -71,22 +71,51 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       showStepTwo: false,
       showStepZero: false,
       steponeValue: null,
-      isRunningNodeDisabled: false,
-      runningNode: [],
-      secondaryNode: [],
-      initialNode: [],
+      isRunningNodeDisabled: localStorage.getItem('isRunningNodeDisabled')
+        ? JSON.parse(localStorage.getItem('isRunningNodeDisabled'))
+        : false,
+      runningNode: localStorage.getItem('runningNode')
+        ? JSON.parse(localStorage.getItem('runningNode'))
+        : [],
+      secondaryNode: localStorage.getItem('secondaryNode')
+        ? JSON.parse(localStorage.getItem('secondaryNode'))
+        : [],
+      initialNode: localStorage.getItem('initialNode')
+        ? JSON.parse(localStorage.getItem('initialNode'))
+        : [],
     }
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   // 检查runningNode是否有变化
+  //   if (prevState.runningNode !== this.state.runningNode) {
+  //     // 如果runningNode有变化，那么我们需要更新secondaryNode和initialNode
+  //     // 这里你可以根据你的业务逻辑来更新这两个状态
+  //     // 例如，你可以清空这两个状态，让用户重新选择
+  //     this.setState({
+  //       secondaryNode: [],
+  //       initialNode: [],
+  //     })
+  //   }
+  // }
 
   showStepTwo = () => {
     this.setState({ showStepTwo: true })
   }
 
   showStepZero = () => {
+    localStorage.setItem('runningNode', JSON.stringify(this.state.runningNode))
+    localStorage.setItem('secondaryNode', JSON.stringify(this.state.secondaryNode))
+    localStorage.setItem('initialNode', JSON.stringify(this.state.initialNode))
+    localStorage.setItem('isRunningNodeDisabled', JSON.stringify(this.state.isRunningNodeDisabled))
     this.setState({ showStepZero: true })
   }
 
   handleStepTwo = formValues => {
+    localStorage.setItem('runningNode', JSON.stringify(this.state.runningNode))
+    localStorage.setItem('secondaryNode', JSON.stringify(this.state.secondaryNode))
+    localStorage.setItem('initialNode', JSON.stringify(this.state.initialNode))
+    localStorage.setItem('isRunningNodeDisabled', JSON.stringify(this.state.isRunningNodeDisabled))
     this.setState({
       steponeValue: {
         running_node: formValues.running_node,
@@ -104,7 +133,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     }))
     this.setState({
       runningNode,
-      isNodeLessDisabled: value.length === 1
+      isNodeLessDisabled: value.length === 1,
     })
   }
 
@@ -177,9 +206,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   handleCancel = () => {
     localStorage.removeItem('iqn')
+    localStorage.removeItem('runningNode')
+    localStorage.removeItem('secondaryNode')
+    localStorage.removeItem('initialNode')
+    localStorage.removeItem('isRunningNodeDisabled')
     this.props.onCancel()
   } // 重构oncancel方法
-
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
@@ -199,8 +231,12 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         )
     )
     console.log("step1.this.props",this.props)
-    console.log("this.state",this.state)
+    console.log("step1.this.state",this.state)
 
+    // if (this.props.flag) {
+    //   this.fetchResource()
+    //   this.fetchNodes()
+    // }
 
     if (isLoading) {
       return <div>Loading...</div>

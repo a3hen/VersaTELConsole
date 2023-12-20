@@ -17,6 +17,10 @@ module.exports = {
   'Please input VersaSDS Node name': '请输入 VishinStor K3000 统一管理系统节点名称',
   VTEL_NAME_DESC:
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+  VTEL_LVM_DESC:
+    '请输入合规的vg名称：仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+  VTEL_THINLVM_DESC:
+    '请输入合规的thinpool名称：例：vg/thinpool',
   VTEL_IQN_DESC:
     'IQN 命名格式为：iqn.yyyy-mm.reverse.domain.name:identifier。',
   VTEL_IP_DESC:
@@ -131,6 +135,7 @@ module.exports = {
   'Please select Device': '请选择裸设备',
   'Please input name': '请输入名称',
   'Please select Volume name': '请选择用于创建存储池的LVM设备',
+  'Please input Volume name': '请输入用于创建存储池的LVM设备',
   'change_mirrorway_number':'新副本数量',
   'CHOOSE_LINSTOR_STORAGEPOOLS':'选择对应节点的存储池',
   'Snapshot Recovery':'快照恢复',

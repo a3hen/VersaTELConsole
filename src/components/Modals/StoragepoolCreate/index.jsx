@@ -73,6 +73,11 @@ export default class StoragepoolCreateModal extends React.Component {
   state = {
     lvmType: 'LVM',
     selectedNode: null,
+    volumeName: '',
+  }
+
+  handleVolumeNameChange = (value) => {
+    this.setState({ volumeName: value })
   }
 
   handleLvmTypeChange = (value) => {
@@ -159,8 +164,22 @@ export default class StoragepoolCreateModal extends React.Component {
     this.props.onOk(this.props.formTemplate)
   }
 
+  validateVolumeName = (rule, value, callback) => {
+    const lvmType = this.props.formTemplate.type // 获取'LVM Type'的值
+    let pattern = PATTERN_VTEL_NAME // 默认的pattern
+    let message = 'VTEL_LVM_DESC' // 默认的message
 
+    if (lvmType === 'LVM THIN') {
+      pattern = PATTERN_SP_VOL_NAME // 如果'LVM Type'是'LVM THIN'，则使用另一个pattern
+      message = 'VTEL_THINLVM_DESC' // 如果'LVM Type'是'LVM THIN'，则使用另一个message
+    }
 
+    if (!pattern.test(value)) {
+      callback(t('Invalid name', { message: t(message) }))
+    } else {
+      callback()
+    }
+  }
 
   // SPNameValidator = (rule, value, callback) => {
   //   if (!value) {
@@ -224,7 +243,6 @@ export default class StoragepoolCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-
         <Form.Item
           label={t('Name')}
           desc={t('VTEL_NAME_DESC')}
@@ -267,6 +285,7 @@ export default class StoragepoolCreateModal extends React.Component {
             options={lvmType}
             defaultValue="LVM"
             clearable
+            disabled={this.state.volumeName !== ''}
             // onChange={this.handleLvmTypeChange}
           />
         </Form.Item>
@@ -274,21 +293,17 @@ export default class StoragepoolCreateModal extends React.Component {
           label={t('Volume name')}
           desc={t('LVM_VOLUME_NAME_DESC')}
           rules={[
-            { required: true, message: t('Please select Volume name') },
+            { required: true, message: t('Please input Volume name') },
+            { validator: this.validateVolumeName },
           ]}
         >
           <Input
             name="volume"
             maxLength={63}
             placeholder="name"
+            value={this.state.volumeName}
+            onChange={this.handleVolumeNameChange}
           />
-          {/*<Select*/}
-          {/*  name="volume"*/}
-          {/*  options={volumeOptions}*/}
-          {/*  onFetch={this.fetchVgs}*/}
-          {/*  searchable*/}
-          {/*  clearable*/}
-          {/*/>*/}
         </Form.Item>
         {/*<Form.Item*/}
         {/*  label={t('Volume name')}*/}

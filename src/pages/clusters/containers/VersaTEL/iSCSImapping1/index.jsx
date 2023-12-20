@@ -69,7 +69,7 @@ export default class iSCSIMapping1 extends React.Component {
         icon: 'trash',
         text: t('DELETE'),
         action: 'delete',
-        show: true,
+        show: item => parseInt(item.storageNum) < 1,
         onClick: item => {
           trigger('target.delete1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
@@ -99,7 +99,7 @@ export default class iSCSIMapping1 extends React.Component {
         icon: 'pen',
         text: t('UNBIND_STORAGE'),
         action: 'edit',
-        show: true,
+        show: item => parseInt(item.storageNum) !== 0,
         onClick: item => {
           trigger('target.unbind1', {
             iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),

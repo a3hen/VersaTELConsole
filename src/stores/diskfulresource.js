@@ -105,7 +105,8 @@ export default class DiskfulResourceStore extends Base {
     //   ],
     // }
 
-    const allData = get(result, 'data', [])
+    // const allData = get(result, 'data', [])
+    const allData = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
     const data = allData.map(item => {
       item.uniqueID = item.name.concat(' - ', item.node)
       return item
@@ -113,12 +114,7 @@ export default class DiskfulResourceStore extends Base {
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
+      total: data.length,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,

@@ -71,7 +71,6 @@ export default class iSCSIMapping2 extends React.Component {
         action: 'delete',
         show: true,
         onClick: item => {
-          console.log("item",item)
           trigger('mapping.delete2', {
             iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
             // success: getData,
@@ -91,6 +90,8 @@ export default class iSCSIMapping2 extends React.Component {
             iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
             // success: getData,
             resname: item?.resName,
+            hostname: item?.hostName,
+            data: this.props.tableProps.data,
           })
         },
       },

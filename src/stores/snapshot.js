@@ -94,7 +94,7 @@ export default class SnapshotStore extends Base {
     //   ],
     // }
 
-    const data = get(result, 'data', [])
+    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,

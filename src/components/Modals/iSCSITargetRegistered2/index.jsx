@@ -152,6 +152,10 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
 
   handleCancel = () => {
     localStorage.removeItem('iqn')
+    localStorage.removeItem('runningNode')
+    localStorage.removeItem('secondaryNode')
+    localStorage.removeItem('initialNode')
+    localStorage.removeItem('isRunningNodeDisabled')
     this.props.onCancel()
   } // 重构oncancel方法
 
@@ -188,6 +192,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           targetname={this.props.targetname}
           iqn={this.props.iqn}
           target_data={this.props.target_data}
+          flag={true}
         />
       )
     }

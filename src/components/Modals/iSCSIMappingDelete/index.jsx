@@ -20,7 +20,7 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Select } from '@kube-design/components'
+import { Input, Form, Select, Icon } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
@@ -55,7 +55,6 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
   constructor(props) {
     super(props)
 
-
     this.iSCSIMapping2Store = new iSCSIMapping2Store()
 
     this.fetchResource()
@@ -85,7 +84,6 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
     this.props.formTemplate = {
       ...iSCSIMapping2Templates,
     }
-    console.log("this.props.formTemplate",this.props.formTemplate)
     this.props.onOk(this.props.formTemplate)
   }
 
@@ -93,26 +91,51 @@ export default class iSCSIMapping2DeleteModal extends React.Component {
     this.setState({ isLoading: false })
   } // isloading
 
+  handleInputChange = e => {
+    this.setState({ confirm: e.target.value })
+  }
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Delete Map'
 
-    console.log('this.props', this.props)
+    const closeIconStyle = {
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      marginRight: '8px',
+      width: '16px',
+      height: '16px',
+      padding: '0',
+      borderRadius: '50%',
+      boxShadow: '0 4px 8px 0 rgba(202, 38, 33, 0.2)',
+      backgroundColor: '#ca2621',
+    }
 
     return (
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        // icon="database"
+        // icon={<Icon name="database" />}
+        icon={<Icon name="close" type="light" style={closeIconStyle} />}
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
         okText={t('OK')}
+        okButtonType="danger"
         visible={visible}
         isSubmitting={this.state.isLoading} // isloading
+        disableOk={this.state.confirm !== this.props.resName}
       >
-        <p>点击以确认删除此条映射</p>
+        <p style={{ marginBottom: '10px', opacity: 0.7 }}>请输入此映射的存储名称 {this.props.resName} 以确认您了解此操作的风险。</p>
+        <Input
+          name="confirm"
+          value={this.state.confirm}
+          onChange={this.handleInputChange}
+          placeholder={this.props.resName}
+          autoFocus={true}
+        />
       </Modal.Form>
     )
   }

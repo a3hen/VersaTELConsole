@@ -20,7 +20,7 @@ import { get, set } from 'lodash'
 import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
-import { Input, Form, Select } from '@kube-design/components'
+import { Input, Form, Select, Icon } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
@@ -95,23 +95,51 @@ export default class iSCSIMappingDeleteModal extends React.Component {
     this.setState({ isLoading: false })
   } // isloading
 
+  handleInputChange = e => {
+    this.setState({ confirm: e.target.value })
+  }
+
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Delete Initiator'
+
+    const closeIconStyle = {
+      display: 'inline-block',
+      verticalAlign: 'middle',
+      marginRight: '8px',
+      width: '16px',
+      height: '16px',
+      padding: '0',
+      borderRadius: '50%',
+      boxShadow: '0 4px 8px 0 rgba(202, 38, 33, 0.2)',
+      backgroundColor: '#ca2621',
+    }
+
+    console.log("this.props",this.props)
+
     return (
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon={<Icon name="close" type="light" style={closeIconStyle} />}
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
         okText={t('OK')}
+        okButtonType="danger"
         visible={visible}
         isSubmitting={this.state.isLoading} // isloading
+        disableOk={this.state.confirm !== this.props.hostname}
       >
-        <p>点击以确认删除此发起端主机</p>
+        <p style={{ marginBottom: '10px', opacity: 0.7 }}>请输入此主机的名称 {this.props.hostname} 以确认您了解此操作的风险。</p>
+        <Input
+          name="confirm"
+          value={this.state.confirm}
+          onChange={this.handleInputChange}
+          placeholder={this.props.hostname}
+          autoFocus={true}
+        />
       </Modal.Form>
     )
   }
