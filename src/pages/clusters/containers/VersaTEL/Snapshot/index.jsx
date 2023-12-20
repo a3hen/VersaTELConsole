@@ -174,20 +174,40 @@ export default class Snapshot extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const error = tableProps.data[0]?.error
+    const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
+    const match = error?.match(ipPortRegex)
+    const ipPort = match ? match[0] : ''
+
+    const LoadingComponent = () => (
+      <div style={{ textAlign: 'center' }}>
+        <strong style={{ fontSize: '20px' }}>Loading...</strong>
+        <p>无法连接至controller ip：{ipPort}</p>
+      </div>
+    )
+
+    const isLoading = tableProps.data.some(item => item.error)
+
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />
-        <Table
-          {...tableProps}
-          itemActions={this.itemActions}
-          tableActions={this.tableActions}
-          columns={this.getColumns()}
-          rowSelection={undefined}
-          // onCreate={this.type === 'snapshot' ? null : this.showCreate}
-          // isLoading={tableProps.isLoading || isLoadingMonitor}
-          searchType="name"
-          hideSearch={true}
-        />
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <LoadingComponent />
+          </div>
+        ) : (
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            tableActions={this.tableActions}
+            columns={this.getColumns()}
+            rowSelection={undefined}
+            // onCreate={this.type === 'snapshot' ? null : this.showCreate}
+            // isLoading={tableProps.isLoading || isLoadingMonitor}
+            searchType="name"
+            hideSearch={true}
+          />
+        )}
       </ListPage>
     )
   }
