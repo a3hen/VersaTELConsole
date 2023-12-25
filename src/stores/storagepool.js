@@ -91,18 +91,21 @@ export default class StoragepoolStore extends Base {
     //   ],
     // }
 
+    // const allData = get(result, 'data', [])
+    // const data = allData.map(item => {
+    //   item.uniqueID = item.name.concat('-', item.node)
+    //   return item
+    // })
     const allData = get(result, 'data', [])
-    const data = allData.map(item => {
-      item.uniqueID = item.name.concat('-', item.node)
-      return item
-    })
-
-    // const data = result.authentication.map(item => ({
-    //   cluster,
-    //   workspace,
-    //   ...this.mapper(item, devops ? 'devopslinstornodes' : this.module),
-    // }))
-
+    let data
+    if (allData.length === 1 && 'error' in allData[0]) {
+      data = get(result, 'data', []).map(this.mapper)
+    } else {
+      data = allData.map(item => {
+        item.uniqueID = item.name.concat('-', item.node)
+        return item
+      })
+    }
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
       total:

@@ -61,7 +61,8 @@ export default class iSCSIMapping1Store extends Base {
     })
 
     // const data = get(result, 'data', [])
-    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
+    const rawData = get(result, 'data', null)
+    const data = rawData ? rawData.filter(item => !item.name.includes('pvc-')) : null
 
     if (data) {
       this.list.update({

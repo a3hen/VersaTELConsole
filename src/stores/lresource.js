@@ -96,7 +96,14 @@ export default class LResourceStore extends Base {
     // }
 
     // const data = get(result, 'data', [])
-    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
+    const rawData = get(result, 'data', []);
+    let data
+
+    if (rawData.length === 1 && 'error' in rawData[0]) {
+      data = rawData.map(this.mapper)
+    } else {
+      data = rawData.filter(item => !item.name.includes('pvc-'))
+    }
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,

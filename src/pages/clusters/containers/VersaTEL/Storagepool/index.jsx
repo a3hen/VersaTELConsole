@@ -36,6 +36,7 @@ import StoragepoolStore from 'stores/storagepool'
 })
 export default class Storagepool extends React.Component {
   componentDidMount() {
+    this.props.store.fetchStoragepoolTemplates()
     this.interval = setInterval(() => {
       this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)
@@ -173,6 +174,9 @@ export default class Storagepool extends React.Component {
 
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)
+
+    console.log("this.props",this.props)
+    console.log("isloading",isLoading)
 
     return (
       <ListPage {...this.props} noWatch>
