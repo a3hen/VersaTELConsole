@@ -40,6 +40,7 @@ export default class ModalForm extends React.Component {
       onOk,
       cancelText,
       okText,
+      okButtonType,
       isSubmitting,
       bodyClassName,
       formClassName,
@@ -70,7 +71,7 @@ export default class ModalForm extends React.Component {
                 {cancelText || t('CANCEL')}
               </Button>
               <Button
-                type="control"
+                type={okButtonType || 'control'}
                 htmlType="submit"
                 loading={isSubmitting}
                 disabled={disableOk || isSubmitting}
