@@ -96,7 +96,8 @@ export default class LResourceStore extends Base {
     // }
 
     // const data = get(result, 'data', [])
-    const rawData = get(result, 'data', []);
+    const rawData = get(result, 'data', [])
+    console.log("source_resource_data",rawData)
     let data
 
     if (rawData.length === 1 && 'error' in rawData[0]) {
@@ -107,7 +108,12 @@ export default class LResourceStore extends Base {
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total: data.length,
+      total:
+        result.count ||
+        result.totalItems ||
+        result.total_count ||
+        data.length ||
+        0,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,
