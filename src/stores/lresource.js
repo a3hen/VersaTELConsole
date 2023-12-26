@@ -79,7 +79,6 @@ export default class LResourceStore extends Base {
     } else {
       t_data = t_rawData.filter(item => !item.name.includes('pvc-'))
     }
-    console.log("t_data",t_data)
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
