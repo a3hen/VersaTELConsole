@@ -60,45 +60,13 @@ export default class LResourceStore extends Base {
       ...params,
     })
 
-    // const result = {
-    //   code: 0,
-    //   count: 2,
-    //   data: [
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
-    //       "node": "ubuntu",
-    //       "size": "12 KB",
-    //       "status": "Healthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_c",
-    //       "size": "12 KB",
-    //       "status": "Unhealthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_b",
-    //       "size": "12 KB",
-    //       "status": "Synching"
-    //     },
-    //   ],
-    // }
-
+    const newParams = { ...params, limit: 999 }
+    const t_result = await request.get(this.getResourceUrl(), newParams)
     // const data = get(result, 'data', [])
     const rawData = get(result, 'data', [])
-    console.log("source_resource_data",rawData)
+    const t_rawData = get(t_result, 'data', [])
     let data
+    let t_data
 
     if (rawData.length === 1 && 'error' in rawData[0]) {
       data = rawData.map(this.mapper)
@@ -106,9 +74,17 @@ export default class LResourceStore extends Base {
       data = rawData.filter(item => !item.name.includes('pvc-'))
     }
 
+    if (t_rawData.length === 1 && 'error' in t_rawData[0]) {
+      t_data = t_rawData.map(this.mapper)
+    } else {
+      t_data = t_rawData.filter(item => !item.name.includes('pvc-'))
+    }
+    console.log("t_data",t_data)
+
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
       total:
+        t_data.length ||
         result.count ||
         result.totalItems ||
         result.total_count ||
