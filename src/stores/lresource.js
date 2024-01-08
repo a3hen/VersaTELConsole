@@ -59,31 +59,19 @@ export default class LResourceStore extends Base {
     const result = await request.get(this.getResourceUrl(), {
       ...params,
     })
-
-    const newParams = { ...params, limit: 999 }
-    const t_result = await request.get(this.getResourceUrl(), newParams)
     // const data = get(result, 'data', [])
     const rawData = get(result, 'data', [])
-    const t_rawData = get(t_result, 'data', [])
     let data
-    let t_data
 
     if (rawData.length === 1 && 'error' in rawData[0]) {
       data = rawData.map(this.mapper)
     } else {
-      data = rawData.filter(item => !item.name.includes('pvc-'))
-    }
-
-    if (t_rawData.length === 1 && 'error' in t_rawData[0]) {
-      t_data = t_rawData.map(this.mapper)
-    } else {
-      t_data = t_rawData.filter(item => !item.name.includes('pvc-'))
+      data = rawData
     }
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
       total:
-        t_data.length ||
         result.count ||
         result.totalItems ||
         result.total_count ||

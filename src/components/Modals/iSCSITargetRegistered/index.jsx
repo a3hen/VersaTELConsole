@@ -202,6 +202,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     localStorage.removeItem('secondaryNode')
     localStorage.removeItem('initialNode')
     localStorage.removeItem('isRunningNodeDisabled')
+    localStorage.removeItem('vipCount')
     this.props.onCancel()
   } // 重构oncancel方法
 

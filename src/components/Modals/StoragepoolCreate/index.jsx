@@ -24,7 +24,7 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
+import { PATTERN_SP_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -166,7 +166,7 @@ export default class StoragepoolCreateModal extends React.Component {
 
   validateVolumeName = (rule, value, callback) => {
     const lvmType = this.props.formTemplate.type // 获取'LVM Type'的值
-    let pattern = PATTERN_VTEL_NAME // 默认的pattern
+    let pattern = PATTERN_SP_NAME // 默认的pattern
     let message = 'VTEL_LVM_DESC' // 默认的message
 
     if (lvmType === 'LVM THIN') {
@@ -249,7 +249,7 @@ export default class StoragepoolCreateModal extends React.Component {
           rules={[
             { required: true, message: t('Please input Storagepool name') },
             {
-              pattern: PATTERN_VTEL_NAME,
+              pattern: PATTERN_SP_NAME,
               message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
             },
             // { validator: this.SPNameValidator },

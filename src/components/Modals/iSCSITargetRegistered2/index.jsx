@@ -61,7 +61,9 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     this.fetchResource()
 
     this.state = {
-      vipCount: 1,
+      vipCount: localStorage.getItem('vipCount')
+        ? JSON.parse(localStorage.getItem('vipCount'))
+        : 1,
       showStepOne: false,
       isLoading: false, // isloading
     }
@@ -76,6 +78,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   }
 
   showStepOne = () => {
+    localStorage.setItem('vipCount', JSON.stringify(this.state.vipCount))
     this.setState({ showStepOne: true })
   }
 
@@ -156,6 +159,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     localStorage.removeItem('secondaryNode')
     localStorage.removeItem('initialNode')
     localStorage.removeItem('isRunningNodeDisabled')
+    localStorage.removeItem('vipCount')
     this.props.onCancel()
   } // 重构oncancel方法
 

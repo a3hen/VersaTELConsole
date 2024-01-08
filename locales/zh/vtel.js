@@ -18,9 +18,9 @@ module.exports = {
   VTEL_NAME_DESC:
     '仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
   VTEL_LVM_DESC:
-    '请输入合规的vg名称：仅支持字母、数字、中横线以及下划线，且以字母开头，长度必须大于2',
+    '请输入合规的vg名称：仅支持字母、数字、点（.）、破折号（-）、下划线（）或加号（+）',
   VTEL_THINLVM_DESC:
-    '请输入合规的thinpool名称：例：vg/thinpool',
+    '请输入合规的thinpool名称：例：vg/thinpool;vg和thinpool的名称：仅支持字母、数字、点（.）、破折号（-）、下划线（）或加号（+）',
   VTEL_IQN_DESC:
     'IQN 命名格式为：iqn.yyyy-mm.reverse.domain.name:identifier。',
   VTEL_IP_DESC:
@@ -63,7 +63,7 @@ module.exports = {
   'Storagepool name exists': '存储池名已存在',
   'Resource name exists': '资源名已存在',
   'Hostname exists': '主机名已存在',
-  'iqn exists': 'iqn已存在',
+  'IQN exists': 'iqn已存在',
   'Target name exists': 'Target名已存在',
   'Create Resource': '创建资源',
   'Create PV': '创建PV',
