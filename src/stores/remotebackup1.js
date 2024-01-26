@@ -23,15 +23,15 @@ import Base from 'stores/base'
 import List from 'stores/base.list'
 // import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class LResourceStore extends Base {
-  LResourceTemplates = new List()
+export default class iSCSIMapping1Store extends Base {
+  iSCSIMapping1Templates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
+  getiSCSIMapping1Url = () =>
+    `/kapis/versatel.kubesphere.io/v1alpha1/schedule`
 
-  getListUrl = this.getResourceUrl
+  getListUrl = this.getiSCSIMapping1Url
 
-  constructor(module = 'lresources') {
+  constructor(module = 'iSCSImapping1') {
     super(module)
   }
 
@@ -56,45 +56,37 @@ export default class LResourceStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl(), {
+    const result = await request.get(this.getiSCSIMapping1Url(), {
       ...params,
     })
+
     // const data = get(result, 'data', [])
-    const rawData = get(result, 'data', [])
-    let data
+    const rawData = get(result, 'data', null)
+    const data = rawData ? rawData.filter(item => !item.name.includes('pvc-')) : null
 
-    if (rawData === null) {
-      data = []
-    } else if (rawData.length === 1 && 'error' in rawData[0]) {
-      data = rawData.map(this.mapper)
+    if (data) {
+      this.list.update({
+        data: more ? [...this.list.data, ...data] : data,
+        total: data.length,
+        ...params,
+        limit: Number(params.limit) || 10,
+        page: Number(params.page) || 1,
+        isLoading: false,
+        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      })
     } else {
-      data = rawData.length > 0 ? rawData : null
+      this.list.update({ isLoading: false })
     }
-
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
-      ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
-      isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
   }
 
   @action
-  async fetchLResourceTemplates() {
-    this.LResourceTemplates.isLoading = true
+  async fetchLiSCSIMapping1Templates() {
+    this.iSCSIMapping1Templates.isLoading = true
 
     const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
+      `/kapis/versatel.kubesphere.io/v1alpha1/target`
     )
-    this.LResourceTemplates.update({
+    this.iSCSIMapping1Templates.update({
       data: get(result, 'data', []).map(this.mapper),
       // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
@@ -105,12 +97,12 @@ export default class LResourceStore extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-    const result = await request.get(this.getResourceUrl(), {
+    const result = await request.get(this.getiSCSIMapping1Url(), {
       name: params.name,
     })
     const filterData = get(result, 'data', [])
     const data = filterData.filter(item => item.name === params.name)
-    const detail = { ...params, ...data[0], kind: 'Resource' }
+    const detail = { ...params, ...data[0], kind: 'iSCSIMapping1' }
     this.detail = detail
     this.isLoading = false
     return detail

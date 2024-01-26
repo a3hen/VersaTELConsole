@@ -98,7 +98,9 @@ export default class StoragepoolStore extends Base {
     // })
     const allData = get(result, 'data', [])
     let data
-    if (allData.length === 1 && 'error' in allData[0]) {
+    if (allData === null) {
+      data = []
+    } else if (allData.length === 1 && 'error' in allData[0]) {
       data = get(result, 'data', []).map(this.mapper)
     } else {
       data = allData.map(item => {

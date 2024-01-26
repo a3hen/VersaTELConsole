@@ -558,6 +558,8 @@ export const GRAY_RELEASE_CATEGORIES = [
 ]
 
 export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]+[a-zA-Z0-9_-]$/
+export const PATTERN_RB_URL = /^(https?:\/\/)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?(\/.*)?$/
+export const PATTERN_RB_TIME = /^(每小时: 0 \* \* \* \*|每天: 0 0 \* \* \*|每月: 0 0 1 \* \*|每个周一到周五: 0 0 1 \* 1-5|(\*|[0-5]?[0-9]|\*)\s+(\*|1?[0-9]|2[0-3]|\*)\s+(\*|[1-9]|[12][0-9]|3[01]|\*)\s+(\*|[1-9]|1[0-2]|\*)\s+(\*|[0-6]|\*))$/
 export const PATTERN_IQN_NAME = /^iqn\.\d{4}-\d{2}\.(\w+\.)*\w+:[\w-:\\.]+$/
 export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]+[a-z0-9]$/
 export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/

@@ -125,6 +125,7 @@ client:
             - { name: resource, title: Resource }
             - { name: snapshot, title: Snapshot }
             - { name: iSCSImapping, title: iSCSIMapping }
+            - { name: remotebackup, title: RemoteBackup }
 #     - name: backup
 #       title: Backup
 #       icon: snapshot

@@ -70,6 +70,9 @@ import SSnapshot from '../containers/VersaTEL/SSnapshot'
 import iSCSIMapping from '../containers/VersaTEL/iSCSImapping'
 import iSCSIMapping1 from '../containers/VersaTEL/iSCSImapping1'
 import iSCSIMapping2 from '../containers/VersaTEL/iSCSImapping2'
+import RemoteBackup from '../containers/VersaTEL/Remotebackup'
+import RemoteBackup1 from '../containers/VersaTEL/Remotebackup1'
+import RemoteBackup2 from '../containers/VersaTEL/Remotebackup2'
 
 const PATH = '/clusters/:cluster'
 
@@ -143,6 +146,21 @@ export default [
           {
             path: `${PATH}/iSCSImapping2`,
             component: iSCSIMapping2,
+            exact: true,
+          },
+          {
+            path: `${PATH}/remotebackup`,
+            component: RemoteBackup,
+            exact: true,
+          },
+          {
+            path: `${PATH}/remotebackup1`,
+            component: RemoteBackup1,
+            exact: true,
+          },
+          {
+            path: `${PATH}/remotebackup2`,
+            component: RemoteBackup2,
             exact: true,
           },
           {
