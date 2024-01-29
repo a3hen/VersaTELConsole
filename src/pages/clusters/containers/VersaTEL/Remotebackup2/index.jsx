@@ -135,33 +135,33 @@ export default class Remotebackup1 extends React.Component {
     return [
       {
         title: t('name'),
-        dataIndex: 'hostName',
+        dataIndex: 'resName',
         width: '20%',
-        render: hostName => hostName,
+        render: resName => resName,
       },
       {
         title: t('backup_task'),
-        dataIndex: 'hostName',
+        dataIndex: 'scheduleName',
         width: '20%',
-        render: hostName => hostName,
+        render: scheduleName => scheduleName,
       },
       {
         title: t('cluster'),
-        dataIndex: 'hostName',
+        dataIndex: 'remoteName',
         width: '20%',
-        render: hostName => hostName,
+        render: remoteName => remoteName,
       },
       {
         title: t('last_time'),
-        dataIndex: 'hostName',
+        dataIndex: 'lastPlan',
         width: '20%',
-        render: hostName => hostName,
+        render: lastPlan => lastPlan,
       },
       {
         title: t('next_time'),
-        dataIndex: 'hostName',
+        dataIndex: 'nextPlan',
         width: '20%',
-        render: hostName => hostName,
+        render: nextPlan => nextPlan,
       },
     ]
   }
