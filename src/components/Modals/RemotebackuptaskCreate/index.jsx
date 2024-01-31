@@ -108,6 +108,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
 
   handleCreate = RemoteBackup1Templates => {
     this.setState({ isLoading: true }) // isloading
+    console.log("template",this.props.formTemplate)
     set(
       this.props.formTemplate,
       JSON.stringify(RemoteBackup1Templates)
@@ -166,7 +167,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    console.log("this.props",this.props)
+    console.log("task_create.props",this.props)
 
     const data = [
       {
@@ -204,16 +205,16 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
         <Form.Item
           label={t('remote backup task name')}
           desc={t('VTEL_NAME_DESC')}
-          rules={[
-            { required: true, message: t('Please input task name') },
-            {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
-            },
-            { validator: this.NameValidator },
-          ]}
+          // rules={[
+          //   { required: true, message: t('Please input task name') },
+          //   {
+          //     pattern: PATTERN_VTEL_NAME,
+          //     message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
+          //   },
+          //   { validator: this.NameValidator },
+          // ]}
         >
-          <Input name="taskname" maxLength={63} placeholder="任务名称" />
+          <Input name="scheduleName" maxLength={63} placeholder="任务名称" />
         </Form.Item>
         <Form.Item
           label={t('Automatic incremental backup intervals')}
@@ -227,7 +228,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
           ]}
         >
           <Select
-            name="resource"
+            name="incremental"
             options={data}
             searchable
             clearable
@@ -245,7 +246,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
             },
           ]}
         >
-          <Input name="l_snapshot" maxLength={63} placeholder="快照份数" />
+          <Input name="keepLocal" maxLength={63} placeholder="快照份数" />
         </Form.Item>
         <Form.Item
           label={t('remote reserved snapshots')}
@@ -258,7 +259,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
             },
           ]}
         >
-          <Input name="r_snapshot" maxLength={63} placeholder="快照份数" />
+          <Input name="keepRemote" maxLength={63} placeholder="快照份数" />
         </Form.Item>
         <Form.Item
           label={t('failed retries')}
@@ -271,7 +272,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
             },
           ]}
         >
-          <Input name="f_times" maxLength={63} placeholder="重试失败次数" />
+          <Input name="onFailure" maxLength={63} placeholder="重试失败次数" />
         </Form.Item>
       </Modal.Form>
     )

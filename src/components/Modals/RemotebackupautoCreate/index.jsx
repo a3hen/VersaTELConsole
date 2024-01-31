@@ -165,8 +165,6 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    console.log("this.props",this.props)
-
     const title = 'Create automated remote backups'
 
     return (
@@ -187,7 +185,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
           rules={[{ required: true }]}
         >
           <Select
-            name="resource"
+            name="resName"
             options={this.resources}
             searchable
             clearable
@@ -200,7 +198,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
           rules={[{ required: true }]}
         >
           <Select
-            name="cluster"
+            name="remoteName"
             options={this.resources}
             searchable
             clearable
@@ -213,7 +211,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
           rules={[{ required: true }]}
         >
           <Select
-            name="task"
+            name="scheduleName"
             options={this.resources}
             searchable
             clearable

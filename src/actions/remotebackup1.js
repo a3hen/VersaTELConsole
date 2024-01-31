@@ -109,30 +109,27 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          let vipList = [data.vip1]
-          if (data.vip2) vipList.push(data.vip2)
-          data.vipList = vipList
           console.log("data",data)
-          if (!data) {
-            Modal.close(modal)
-            return
-          }
-          request
-            .post(`/kapis/versatel.kubesphere.io/v1alpha1/target`, data)
-            .then(res => {
-              if (Array.isArray(res)) {
-                Notify.error({
-                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-                })
-              } else {
-                Notify.success({ content: `${t('Operation Successfully')}` })
-              }
-              success && success()
-              onLoadingComplete && onLoadingComplete()
-            })
-            .finally(() => {
-              Modal.close(modal)
-            })
+          // if (!data) {
+          //   Modal.close(modal)
+          //   return
+          // }
+          // request
+          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/schedule`, data)
+          //   .then(res => {
+          //     if (Array.isArray(res)) {
+          //       Notify.error({
+          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+          //       })
+          //     } else {
+          //       Notify.success({ content: `${t('Operation Successfully')}` })
+          //     }
+          //     success && success()
+          //     onLoadingComplete && onLoadingComplete()
+          //   })
+          //   .finally(() => {
+          //     Modal.close(modal)
+          //   })
         },
         modal: CreateModal,
         store,

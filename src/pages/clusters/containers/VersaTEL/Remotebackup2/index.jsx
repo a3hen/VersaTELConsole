@@ -72,9 +72,10 @@ export default class Remotebackup1 extends React.Component {
         show: true,
         onClick: item => {
           trigger('rb_auto.delete', {
-            iSCSIMapping2Templates: toJS(store.iSCSIMapping2Templates.data),
+            RemoteBackup2Templates: toJS(store.RemoteBackup2Templates.data),
             // success: getData,
-            hostname_list: item?.hostName,
+            remoteName: item?.remoteName,
+            scheduleName: item?.scheduleName,
             resName: item?.resName,
           })
         },

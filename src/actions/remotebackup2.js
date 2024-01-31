@@ -30,34 +30,15 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log('data', data)
-          if (!data) {
-            Modal.close(modal)
-            return
-          }
-          request
-            .delete(
-              `/kapis/versatel.kubesphere.io/v1alpha1/mapping/${data.resName} `
-            )
-            .then(res => {
-              if (Array.isArray(res)) {
-                Notify.error({
-                  content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
-                })
-              } else {
-                Notify.success({ content: `${t('Deleted Successful')}` })
-              }
-              success && success()
-              onLoadingComplete && onLoadingComplete()
-            })
-            .finally(() => {
-              Modal.close(modal)
-            })
+          // if (!data) {
+          //   Modal.close(modal)
+          //   return
+          // }
           // request
           //   .delete(
-          //     `/kapis/versatel.kubesphere.io/v1alpha1/mapping/${data.resName} `
+          //     `/kapis/versatel.kubesphere.io/v1alpha1/backup/${data.remoteName}/${data.scheduleName} `
           //   )
           //   .then(res => {
-          //     // Modal.close(modal)
           //     if (Array.isArray(res)) {
           //       Notify.error({
           //         content: `${t('Deleted Failed, Reason:')}${res[0].message}`,
@@ -66,8 +47,11 @@ export default {
           //       Notify.success({ content: `${t('Deleted Successful')}` })
           //     }
           //     success && success()
+          //     onLoadingComplete && onLoadingComplete()
           //   })
-          // Modal.close(modal)
+          //   .finally(() => {
+          //     Modal.close(modal)
+          //   })
         },
         modal: DeleteModal,
         store,
@@ -86,26 +70,26 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log('data', data)
-          if (!data) {
-            Modal.close(modal)
-            return
-          }
-          request
-            .post(`/kapis/versatel.kubesphere.io/v1alpha1/registered`, data)
-            .then(res => {
-              if (Array.isArray(res)) {
-                Notify.error({
-                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-                })
-              } else {
-                Notify.success({ content: `${t('Operation Successfully')}` })
-              }
-              success && success()
-              onLoadingComplete && onLoadingComplete()
-            })
-            .finally(() => {
-              Modal.close(modal)
-            })
+          // if (!data) {
+          //   Modal.close(modal)
+          //   return
+          // }
+          // request
+          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/backup`, data)
+          //   .then(res => {
+          //     if (Array.isArray(res)) {
+          //       Notify.error({
+          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+          //       })
+          //     } else {
+          //       Notify.success({ content: `${t('Operation Successfully')}` })
+          //     }
+          //     success && success()
+          //     onLoadingComplete && onLoadingComplete()
+          //   })
+          //   .finally(() => {
+          //     Modal.close(modal)
+          //   })
         },
         modal: CreateModal,
         store,

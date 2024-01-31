@@ -23,15 +23,14 @@ import Base from 'stores/base'
 import List from 'stores/base.list'
 // import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class iSCSIMapping2Store extends Base {
-  iSCSIMapping2Templates = new List()
+export default class RemoteBackup2Store extends Base {
+  RemoteBackup2Templates = new List()
 
-  getiSCSIMapping2Url = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/backup`
+  getRemoteBackup2Url = () => `/kapis/versatel.kubesphere.io/v1alpha1/backup`
 
-  getListUrl = this.getiSCSIMappingUrl
+  getListUrl = this.getRemoteBackup2Url
 
-  constructor(module = 'iSCSImapping2') {
+  constructor(module = 'remotebackup2') {
     super(module)
   }
 
@@ -56,10 +55,9 @@ export default class iSCSIMapping2Store extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getiSCSIMapping2Url(), {
+    const result = await request.get(this.getRemoteBackup2Url(), {
       ...params,
     })
-
 
     const data = get(result, 'data', [])
 
@@ -67,10 +65,11 @@ export default class iSCSIMapping2Store extends Base {
       this.list.update({
         data: more ? [...this.list.data, ...data] : data,
         total:
-          result && (result.count ||
-            result.totalItems ||
-            result.total_count ||
-            data.length) ||
+          (result &&
+            (result.count ||
+              result.totalItems ||
+              result.total_count ||
+              data.length)) ||
           0,
         ...params,
         limit: Number(params.limit) || 10,
@@ -84,13 +83,13 @@ export default class iSCSIMapping2Store extends Base {
   }
 
   @action
-  async fetchLiSCSIMapping2Templates() {
-    this.iSCSIMapping2Templates.isLoading = true
+  async fetchLRemoteBackup2Templates() {
+    this.RemoteBackup2Templates.isLoading = true
 
     const result = await request.get(
       `/kapis/versatel.kubesphere.io/v1alpha1/backup`
     )
-    this.iSCSIMapping2Templates.update({
+    this.RemoteBackup2Templates.update({
       data: get(result, 'data', []).map(this.mapper),
       // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
@@ -101,12 +100,12 @@ export default class iSCSIMapping2Store extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-    const result = await request.get(this.getiSCSIMapping2Url(), {
+    const result = await request.get(this.getRemoteBackup2Url(), {
       name: params.name,
     })
     const filterData = get(result, 'data', [])
     const data = filterData.filter(item => item.name === params.name)
-    const detail = { ...params, ...data[0], kind: 'iSCSIMapping2' }
+    const detail = { ...params, ...data[0], kind: 'RemoteBackup2' }
     this.detail = detail
     this.isLoading = false
     return detail

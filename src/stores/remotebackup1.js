@@ -23,15 +23,15 @@ import Base from 'stores/base'
 import List from 'stores/base.list'
 // import { LIST_DEFAULT_ORDER } from 'utils/constants'
 
-export default class iSCSIMapping1Store extends Base {
-  iSCSIMapping1Templates = new List()
+export default class RemoteBackup1Store extends Base {
+  RemoteBackup1Templates = new List()
 
-  getiSCSIMapping1Url = () =>
+  getRemoteBackup1Url = () =>
     `/kapis/versatel.kubesphere.io/v1alpha1/schedule`
 
-  getListUrl = this.getiSCSIMapping1Url
+  getListUrl = this.getRemoteBackup1Url
 
-  constructor(module = 'iSCSImapping1') {
+  constructor(module = 'remotebackup1') {
     super(module)
   }
 
@@ -56,13 +56,12 @@ export default class iSCSIMapping1Store extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getiSCSIMapping1Url(), {
+    const result = await request.get(this.getRemoteBackup1Url(), {
       ...params,
     })
 
     // const data = get(result, 'data', [])
-    const rawData = get(result, 'data', null)
-    const data = rawData ? rawData.filter(item => !item.name.includes('pvc-')) : null
+    const data = get(result, 'data', null)
 
     if (data) {
       this.list.update({
@@ -80,13 +79,13 @@ export default class iSCSIMapping1Store extends Base {
   }
 
   @action
-  async fetchLiSCSIMapping1Templates() {
-    this.iSCSIMapping1Templates.isLoading = true
+  async fetchLRemoteBackup1Templates() {
+    this.RemoteBackup1Templates.isLoading = true
 
     const result = await request.get(
       `/kapis/versatel.kubesphere.io/v1alpha1/target`
     )
-    this.iSCSIMapping1Templates.update({
+    this.RemoteBackup1Templates.update({
       data: get(result, 'data', []).map(this.mapper),
       // data: get(result, 'data', []),
       total: result.count || result.totalItems || result.total_count || 0,
@@ -97,12 +96,12 @@ export default class iSCSIMapping1Store extends Base {
   @action
   async fetchDetail(params) {
     this.isLoading = true
-    const result = await request.get(this.getiSCSIMapping1Url(), {
+    const result = await request.get(this.getRemoteBackup1Url(), {
       name: params.name,
     })
     const filterData = get(result, 'data', [])
     const data = filterData.filter(item => item.name === params.name)
-    const detail = { ...params, ...data[0], kind: 'iSCSIMapping1' }
+    const detail = { ...params, ...data[0], kind: 'RemoteBackup1' }
     this.detail = detail
     this.isLoading = false
     return detail

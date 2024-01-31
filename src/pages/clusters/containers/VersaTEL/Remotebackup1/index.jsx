@@ -168,7 +168,7 @@ export default class Remotebackup1 extends React.Component {
       },
       {
         title: t('failed_t'),
-        dataIndex: 'onFailure ',
+        dataIndex: 'onFailure',
         width: '20%',
         render: onFailure => onFailure,
       },
@@ -178,13 +178,13 @@ export default class Remotebackup1 extends React.Component {
   showCreate = () =>
     this.props.trigger('rb_task.create', {
       ...this.props.match.params,
-      target_data: this.props.tableProps.data,
+      data: this.props.tableProps.data,
       success: () => this.props.getData,
     })
 
   render() {
     const { bannerProps, tableProps } = this.props
-    console.log("backup1_props",this.props)
+    console.log('backup1_props', this.props)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} />
