@@ -82,6 +82,7 @@ export default class RemoteBackupClusterDeleteModal extends React.Component {
     this.setState({ isLoading: true }) // isloading
     RemoteBackupTemplates.remoteName = this.props.remoteName
     RemoteBackupTemplates.scheduleName = this.props.scheduleName
+    RemoteBackupTemplates.resName = this.props.resName
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',

@@ -29,6 +29,8 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE , PATTERN_IQN_NAME} from 'utils/co
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import RemoteBackupStore from 'stores/remotebackup'
+import RemoteBackup1Store from 'stores/remotebackup1'
+import SnapShotStore from 'stores/snapshot'
 
 @observer
 export default class RemoteBackupClusterCreateModal extends React.Component {
@@ -56,54 +58,59 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
     super(props)
 
     this.RemoteBackupStore = new RemoteBackupStore()
+    this.RemoteBackup1Store = new RemoteBackup1Store()
+    this.SnapShotStore = new SnapShotStore()
 
-    this.fetchResource()
+    this.fetchCluster()
+    this.fetchTResource()
+    this.fetchTask()
 
     this.state = {
       isLoading: false, // isloading
     }
   }
 
-  fetchResource = params => {
+  fetchCluster = params => {
     return this.RemoteBackupStore.fetchList({
       ...params,
     })
   }
-  // get nodes() {
-  //   const allNodes = this.linstornodeStore.list.data.map(node => {
-  //     if(node.storagePoolNum > 1) {
-  //       return ({
-  //         label: node.name,
-  //         value: node.name,
-  //         visual: true,
-  //       })
-  //     }else{
-  //       return ({
-  //         label: node.name,
-  //         value: node.name,
-  //         visual: false,
-  //       })
-  //     }
-  //   })
-  //   const nodes = allNodes.filter(node => node.visual)
-  //   return nodes
-  // }
 
-  get resources() {
+  fetchTask = params => {
+    return this.RemoteBackup1Store.fetchList({
+      ...params,
+    })
+  }
+
+  fetchTResource = params => {
+    return this.SnapShotStore.fetchList({
+      ...params,
+    })
+  }
+
+  get clusters() {
     const resources = this.RemoteBackupStore.list.data.map(node => ({
+      label: node.remoteName,
+      value: node.remoteName,
+    }))
+    return resources
+  }
+
+  get tasks() {
+    const resources = this.RemoteBackup1Store.list.data.map(node => ({
+      label: node.scheduleName,
+      value: node.scheduleName,
+    }))
+    return resources
+  }
+
+  get tresources() {
+    const resources = this.SnapShotStore.list.data.map(node => ({
       label: node.name,
       value: node.name,
     }))
     return resources
   }
-
-  // handleStoragepoolChange = value => {
-  //   const { selectedNodes } = this.state
-  //   const selectedNodesList = value.map(value => value[1])
-  //   this.setState({ selectedNodes: selectedNodesList })
-  //   const newNodes = this.nodes.filter(node => selectedNodes.indexOf(node.value) === -1)
-  //   this.setState({ unselectedNodes: newNodes })
-  // }
 
   handleCreate = RemoteBackupTemplates => {
     this.setState({ isLoading: true }) // isloading
@@ -186,10 +193,10 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
         >
           <Select
             name="resName"
-            options={this.resources}
+            options={this.tresources}
             searchable
             clearable
-            defaultValue="test"
+            defaultValue=""
           />
         </Form.Item>
         <Form.Item
@@ -199,10 +206,10 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
         >
           <Select
             name="remoteName"
-            options={this.resources}
+            options={this.clusters}
             searchable
             clearable
-            defaultValue="test"
+            defaultValue=""
           />
         </Form.Item>
         <Form.Item
@@ -212,10 +219,10 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
         >
           <Select
             name="scheduleName"
-            options={this.resources}
+            options={this.tasks}
             searchable
             clearable
-            defaultValue="test"
+            defaultValue=""
           />
         </Form.Item>
       </Modal.Form>

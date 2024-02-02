@@ -38,7 +38,7 @@ export default {
           }
           request
             .delete(
-              `/kapis/versatel.kubesphere.io/v1alpha1/target/${data.name} `
+              `/kapis/versatel.kubesphere.io/v1alpha1/schedule/${data.schedulename}  `
             )
             .then(res => {
               if (Array.isArray(res)) {
@@ -77,7 +77,7 @@ export default {
             return
           }
           request
-            .post(`/kapis/versatel.kubesphere.io/v1alpha1/storage`, data)
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/modify`, data)
             .then(res => {
               if (Array.isArray(res)) {
                 Notify.error({
@@ -110,26 +110,26 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log("data",data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          // request
-          //   .post(`/kapis/versatel.kubesphere.io/v1alpha1/schedule`, data)
-          //   .then(res => {
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Operation Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Operation Successfully')}` })
-          //     }
-          //     success && success()
-          //     onLoadingComplete && onLoadingComplete()
-          //   })
-          //   .finally(() => {
-          //     Modal.close(modal)
-          //   })
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/schedule`, data)
+            .then(res => {
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+              onLoadingComplete && onLoadingComplete()
+            })
+            .finally(() => {
+              Modal.close(modal)
+            })
         },
         modal: CreateModal,
         store,

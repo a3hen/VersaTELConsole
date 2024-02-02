@@ -72,9 +72,9 @@ export default class Remotebackup1 extends React.Component {
         // show: item => parseInt(item.storageNum) < 1,
         onClick: item => {
           trigger('rb_task.delete', {
-            iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
+            RemoteBackup1Templates: toJS(store.RemoteBackup1Templates.data),
             // success: getData,
-            targetname: item?.name,
+            scheduleName: item?.scheduleName,
           })
         },
       },
@@ -86,9 +86,12 @@ export default class Remotebackup1 extends React.Component {
         // show: item => parseInt(item.storageNum) < 1,
         onClick: item => {
           trigger('rb_task.edit', {
-            iSCSIMapping1Templates: toJS(store.iSCSIMapping1Templates.data),
+            RemoteBackup1Templates: toJS(store.RemoteBackup1Templates.data),
             // success: getData,
-            targetname: item?.name,
+            scheduleName: item?.scheduleName,
+            incremental: item?.incremental,
+            keepLocal: item?.keepLocal,
+            onFailure: item?.onFailure.match(/\d+/g)[0],
           })
         },
       },

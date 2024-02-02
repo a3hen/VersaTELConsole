@@ -80,8 +80,7 @@ export default class RemoteBackup1ClusterDeleteModal extends React.Component {
 
   handleCreate = RemoteBackup1Templates => {
     this.setState({ isLoading: true }) // isloading
-    RemoteBackup1Templates.hostname = this.props.hostname
-    RemoteBackup1Templates.iqn = this.props.iqn
+    RemoteBackup1Templates.schedulename = this.props.scheduleName
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -115,8 +114,6 @@ export default class RemoteBackup1ClusterDeleteModal extends React.Component {
       backgroundColor: '#ca2621',
     }
 
-    console.log("this.props",this.props)
-
     return (
       <Modal.Form
         width={600}
@@ -129,14 +126,14 @@ export default class RemoteBackup1ClusterDeleteModal extends React.Component {
         okButtonType="danger"
         visible={visible}
         isSubmitting={this.state.isLoading} // isloading
-        disableOk={this.state.confirm !== this.props.hostname}
+        disableOk={this.state.confirm !== this.props.scheduleName}
       >
-        <p style={{ marginBottom: '10px', opacity: 0.7 }}>请输入此备份任务的名称 {this.props.hostname} 以确认您了解此操作的风险。</p>
+        <p style={{ marginBottom: '10px', opacity: 0.7 }}>请输入此备份任务的名称 {this.props.scheduleName} 以确认您了解此操作的风险。</p>
         <Input
           name="confirm"
           value={this.state.confirm}
           onChange={this.handleInputChange}
-          placeholder={this.props.hostname}
+          placeholder={this.props.scheduleName}
           autoFocus={true}
         />
       </Modal.Form>
