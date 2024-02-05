@@ -273,7 +273,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
           label={t('failed retries')}
           desc={t('Please enter the number of retries for transfer failures')}
           rules={[
-            { required: false, message: t('Please input number of snapshots') },
+            { required: false, message: t('请输入传输失败重试次数') },
             {
               pattern: NEW_PATTERN_VTEL_SIZE,
               message: t('次数填写错误', { message: t('Please enter the number of retries for transfer failures') }),

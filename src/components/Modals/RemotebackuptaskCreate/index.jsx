@@ -126,38 +126,16 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
     }
 
     // const { workspace, cluster, namespace } = this.props
-    const name = get(this.props.formTemplate, 'hostname')
+    const name = get(this.props.formTemplate, 'scheduleName')
 
     if (this.props.edit && name === value) {
       return callback()
     }
 
-    const isNameExistInTargetData = this.props.host_data.some(item => item.hostName === value)
+    const isNameExistInTargetData = this.props.data.some(item => item.scheduleName === value)
     if (isNameExistInTargetData) {
       return callback({
-        message: t('Hostname exists'),
-        field: rule.field,
-      })
-    }
-    callback()
-  }
-
-  iqnValidator = (rule, value, callback) => {
-    if (!value) {
-      return callback()
-    }
-
-    // const { workspace, cluster, namespace } = this.props
-    const name = get(this.props.formTemplate, 'iqn')
-
-    if (this.props.edit && name === value) {
-      return callback()
-    }
-
-    const isNameExistInTargetData = this.props.host_data.some(item => item.iqn === value)
-    if (isNameExistInTargetData) {
-      return callback({
-        message: t('iqn exists'),
+        message: t('schedulename exists'),
         field: rule.field,
       })
     }
@@ -206,12 +184,12 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
           label={t('remote backup task name')}
           desc={t('VTEL_NAME_DESC')}
           rules={[
-            { required: true, message: t('Please input task name') },
+            { required: true, message: t('请输入任务的名称') },
             {
               pattern: PATTERN_VTEL_NAME,
               message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
             },
-            // { validator: this.NameValidator },
+            { validator: this.NameValidator },
           ]}
         >
           <Input name="scheduleName" maxLength={63} placeholder="任务名称" />
@@ -271,7 +249,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
           label={t('failed retries')}
           desc={t('Please enter the number of retries for transfer failures')}
           rules={[
-            { required: true, message: t('Please input number of snapshots') },
+            { required: true, message: t('请输入传输失败重试次数') },
             {
               pattern: NEW_PATTERN_VTEL_SIZE,
               message: t('次数填写错误', { message: t('Please enter the number of retries for transfer failures') }),

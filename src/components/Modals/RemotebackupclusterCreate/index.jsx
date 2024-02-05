@@ -199,7 +199,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
           label={t('remotecluster id')}
           desc={t('RB_CLUSTER_ID')}
           rules={[
-            { required: true, message: t('Please input cluster id') },
+            { required: true, message: t('请输入集群id') },
             // { validator: this.IdValidator },
           ]}
         >
@@ -209,7 +209,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
           label={t('remotecluster URL')}
           desc={t('VTEL_URL_DESC')}
           rules={[
-            { required: true, message: t('Please input cluster URL') },
+            { required: true, message: t('请输入集群URL') },
             {
               pattern: PATTERN_RB_URL,
               message: t('URL格式错误', { message: t('VTEL_URL_DESC') }),

@@ -158,16 +158,16 @@ export default class Remotebackup1 extends React.Component {
         render: incremental => incremental,
       },
       {
+        title: t('time1_info'),
+        dataIndex: 'full',
+        width: '20%',
+        render: full => full,
+      },
+      {
         title: t('local_snapshot'),
         dataIndex: 'keepLocal',
         width: '20%',
         render: keepLocal => keepLocal,
-      },
-      {
-        title: t('remote_snapshot'),
-        dataIndex: 'keepRemote',
-        width: '20%',
-        render: keepRemote => keepRemote,
       },
       {
         title: t('failed_t'),
