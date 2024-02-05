@@ -265,7 +265,7 @@ module.exports = {
   Remotebackup1_PL: '远程备份',
   REMOTEBACKUP1_DESC: '将数据备份到远程集群可以用于数据恢复，即使本地数据受到损坏或遭到攻击，仍然可以从远程备份中恢复数据。您可以在此页面实现远程备份管理。',
   Remotebackup2_PL: '远程备份',
-  REMOTEBACKUP2_DESC: '将数据备份到远程集群可以用于数据恢复，即使本地数据受到损坏或遭到攻击，仍然可以从远程备份中恢复数据。您可以在此页面实现远程备份管理。远程备份描述',
+  REMOTEBACKUP2_DESC: '将数据备份到远程集群可以用于数据恢复，即使本地数据受到损坏或遭到攻击，仍然可以从远程备份中恢复数据。您可以在此页面实现远程备份管理。',
   REMOTEBACKUP: '远程备份集群',
   REMOTEBACKUP_EMPTY_DESC: '请创建远程备份集群',
   REMOTEBACKUP1: '远程备份任务',
