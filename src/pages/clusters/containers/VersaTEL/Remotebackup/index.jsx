@@ -189,47 +189,13 @@ export default class Remotebackup extends React.Component {
   }
 
   render() {
-    // - default：默认样式的按钮。
-    // - primary：主要操作按钮，通常用于突出显示主操作。
-    // - secondary：次要操作按钮，用于不那么重要的操作。
-    // - danger：危险操作按钮，通常用于删除或危险操作，颜色通常是红色。
-    // - control：控制按钮，可能用于特定的控制操作。
     const { bannerProps, tableProps } = this.props
-    const customActions = [
-      ...(tableProps.actions || []), // 保留已有的操作（如果有）
-      {
-        key: 'create',
-        text: '创建',
-        type: 'control',
-        onClick: () => {
-          this.props.trigger('rb_cluster.create', {
-            ...this.props.match.params,
-            data: this.props.tableProps.data,
-            success: () => this.props.getData,
-          })
-        },
-      },
-      {
-        key: 'newAction',
-        text: '安全验证',
-        type: 'primary',
-        onClick: () => {
-          this.props.trigger('rb_cluster.security', {
-            ...this.props.match.params,
-            data: this.props.tableProps.data,
-            success: () => this.props.getData,
-          })
-        },
-      },
-    ]
 
-    console.log("state",this.state)
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tabs={this.tabs} tips={this.tips} />
         <Table
           {...tableProps}
-          actions={customActions}
           itemActions={this.itemActions}
           tableActions={this.tableActions}
           columns={this.getColumns()}
