@@ -21,14 +21,16 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 import { Input, Form, Select } from '@kube-design/components'
+import { InputPassword } from 'components/Inputs'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_RB_URL , PATTERN_IQN_NAME} from 'utils/constants'
+import { PATTERN_VTEL_NAME, PATTERN_RB_URL , PATTERN_IQN_NAME, PATTERN_PASSWORD } from 'utils/constants'
 
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import RemoteBackupStore from 'stores/remotebackup'
+import styles from "../UserSetting/PasswordSetting/index.scss";
 
 @observer
 export default class RemoteBackupClusterCreateModal extends React.Component {
@@ -145,7 +147,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
 
     console.log("create.props",this.props)
 
-    const title = 'Create Remote Backup Cluster'
+    const title = 'Password'
 
     return (
       <Modal.Form
@@ -160,8 +162,8 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
         isSubmitting={this.state.isLoading} // isloading
       >
         <Form.Item
-          label={t('remotecluster name')}
-          desc={t('VTEL_NAME_DESC')}
+          label={t('password input')}
+          desc={t('input password')}
           rules={[
             { required: true, message: t('Please input cluster name') },
             {
@@ -171,30 +173,27 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
             { validator: this.NameValidator },
           ]}
         >
-          <Input name="remoteName" maxLength={63} placeholder="远程集群名" />
+          <Input name="remoteName" maxLength={63} placeholder="密码" />
         </Form.Item>
         <Form.Item
-          label={t('remotecluster id')}
-          desc={t('RB_CLUSTER_ID')}
+          className={styles.password}
+          label={t('NEW_PASSWORD')}
           rules={[
-            { required: true, message: t('请输入集群id') },
-            // { validator: this.IdValidator },
-          ]}
-        >
-          <Input name="clusterId" maxLength={63} placeholder="远程集群id" />
-        </Form.Item>
-        <Form.Item
-          label={t('remotecluster URL')}
-          desc={t('VTEL_URL_DESC')}
-          rules={[
-            { required: true, message: t('请输入集群URL') },
+            { required: true, message: t('PASSWORD_EMPTY_DESC') },
             {
-              pattern: PATTERN_RB_URL,
-              message: t('URL格式错误', { message: t('VTEL_URL_DESC') }),
+              pattern: PATTERN_PASSWORD,
+              message: t('PASSWORD_DESC'),
             },
           ]}
         >
-          <Input name="url" maxLength={63} placeholder="远程集群URL" />
+          <InputPassword
+            name="password"
+            placeholder=" "
+            autoComplete="new-password"
+            onChange={this.handlePassswordChange}
+            tipClassName={styles.dropdown}
+            withStrength
+          />
         </Form.Item>
       </Modal.Form>
     )

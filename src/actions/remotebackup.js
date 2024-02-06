@@ -22,6 +22,7 @@ import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/RemotebackupclusterCreate'
 import DeleteModal from 'components/Modals/RemotebackupclusterDelete'
 import MbackupModal from 'components/Modals/RemotebackupclusterManualbackup'
+import SecurityModal from 'components/Modals/RemotebackupclusterSec'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -131,6 +132,44 @@ export default {
             })
         },
         modal: CreateModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'rb_cluster.security': {
+    on({ store, cluster, namespace, workspace, success, onLoadingComplete, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log('data', data)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+          request
+            .post(`/kapis/versatel.kubesphere.io/v1alpha1/remote`, data)
+            .then(res => {
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+              onLoadingComplete && onLoadingComplete()
+            })
+            .finally(() => {
+              Modal.close(modal)
+            })
+        },
+        modal: SecurityModal,
         store,
         module,
         cluster,
