@@ -26,6 +26,8 @@ import List from 'stores/base.list'
 export default class RemoteBackupStore extends Base {
   RemoteBackupTemplates = new List()
 
+  hasLoadedOnce = false
+
   getRemoteBackupUrl = () =>
     `/kapis/versatel.kubesphere.io/v1alpha1/remote`
 
@@ -44,7 +46,9 @@ export default class RemoteBackupStore extends Base {
     more,
     ...params
   } = {}) {
-    this.list.isLoading = true
+    if (!this.hasLoadedOnce || !this.list.isLoading) {
+      this.list.isLoading = true
+    }
 
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
@@ -60,61 +64,22 @@ export default class RemoteBackupStore extends Base {
       ...params,
     })
 
-    // const result = {
-    //   code: 0,
-    //   count: 2,
-    //   data: [
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
-    //       "node": "ubuntu",
-    //       "size": "12 KB",
-    //       "status": "Healthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_c",
-    //       "size": "12 KB",
-    //       "status": "Unhealthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_b",
-    //       "size": "12 KB",
-    //       "status": "Synching"
-    //     },
-    //   ],
-    // }
-
     const data = get(result, 'data', [])
 
-    if (data) {
-      this.list.update({
-        data: more ? [...this.list.data, ...data] : data,
-        total:
-          result && (result.count ||
-            result.totalItems ||
-            result.total_count ||
-            data.length) ||
-          0,
-        ...params,
-        limit: Number(params.limit) || 10,
-        page: Number(params.page) || 1,
-        isLoading: false,
-        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-      })
-    } else {
-      this.list.update({ isLoading: false })
-    }
+    // 无论数据是否为null，只要完成了一次加载，就更新hasLoadedOnce状态
+    this.hasLoadedOnce = true
+
+    // 更新列表数据和加载状态
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data || [],
+      total: data ? data.length : 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      // 只有在首次加载或数据非null时，才将isLoading设置为false
+      isLoading: data !== null ? false : this.list.isLoading,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
   }
 
   @action

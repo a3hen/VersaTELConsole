@@ -26,6 +26,8 @@ import List from 'stores/base.list'
 export default class RemoteBackup2Store extends Base {
   RemoteBackup2Templates = new List()
 
+  hasLoadedOnce = false // 新增状态标志，用于跟踪是否至少完成了一次数据加载
+
   getRemoteBackup2Url = () => `/kapis/versatel.kubesphere.io/v1alpha1/backup`
 
   getListUrl = this.getRemoteBackup2Url
@@ -43,7 +45,9 @@ export default class RemoteBackup2Store extends Base {
     more,
     ...params
   } = {}) {
-    this.list.isLoading = true
+    if (!this.hasLoadedOnce || !this.list.isLoading) {
+      this.list.isLoading = true
+    }
 
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
@@ -61,25 +65,20 @@ export default class RemoteBackup2Store extends Base {
 
     const data = get(result, 'data', [])
 
-    if (data) {
-      this.list.update({
-        data: more ? [...this.list.data, ...data] : data,
-        total:
-          (result &&
-            (result.count ||
-              result.totalItems ||
-              result.total_count ||
-              data.length)) ||
-          0,
-        ...params,
-        limit: Number(params.limit) || 10,
-        page: Number(params.page) || 1,
-        isLoading: false,
-        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-      })
-    } else {
-      this.list.update({ isLoading: false })
-    }
+    // 无论数据是否为null，只要完成了一次加载，就更新hasLoadedOnce状态
+    this.hasLoadedOnce = true
+
+    // 更新列表数据和加载状态
+    this.list.update({
+      data: more ? [...this.list.data, ...data] : data || [],
+      total: data ? data.length : 0,
+      ...params,
+      limit: Number(params.limit) || 10,
+      page: Number(params.page) || 1,
+      // 只有在首次加载或数据非null时，才将isLoading设置为false
+      isLoading: data !== null ? false : this.list.isLoading,
+      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+    })
   }
 
   @action
