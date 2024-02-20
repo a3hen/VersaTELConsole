@@ -105,10 +105,16 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
   }
 
   get tresources() {
-    const resources = this.SnapShotStore.list.data.map(node => ({
+    let resources = this.SnapShotStore.list.data.map(node => ({
       label: node.name,
       value: node.name,
     }))
+
+    resources = resources.filter(
+      resource =>
+        !this.props.data.some(dataItem => dataItem.resName === resource.label)
+    )
+
     return resources
   }
 

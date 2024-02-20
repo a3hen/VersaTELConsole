@@ -171,6 +171,7 @@ export default class Remotebackup1 extends React.Component {
     this.props.trigger('rb_auto.create', {
       ...this.props.match.params,
       success: () => this.props.getData,
+      data: this.props.store.list.data,
     })
 
   render() {

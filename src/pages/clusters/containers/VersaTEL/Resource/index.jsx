@@ -37,15 +37,19 @@ import LResourceStore from 'stores/lresource'
 })
 export default class LResource extends React.Component {
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+    })
   }
 
   showAction(record) {
@@ -214,6 +218,8 @@ export default class LResource extends React.Component {
 
     console.log("this.props",this.props)
     console.log("isloading",isLoading)
+    console.log("store,isloading",this.props.store.list.isLoading)
+    console.log("store,silent",this.props.store.list.silent)
 
     return (
       <ListPage {...this.props} noWatch>
