@@ -203,13 +203,18 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       return unique
     },[])
 
+    console.log("resultdiskful",resultDiskful)
+    console.log("resultdiskless",resultDiskless)
+
     const result = resultDiskful.map(item => {
       const disklessItem = resultDiskless.find(i => i.name === item.name)
       return {
         ...item,
-        disklessnode: disklessItem ? disklessItem.disklessnode : []
+        disklessnode: disklessItem ? disklessItem.disklessnode : [],
       }
     })
+
+    console.log("after_newarray",result)
 
     const newArray = result
       .filter(item =>
