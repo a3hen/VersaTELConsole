@@ -141,8 +141,10 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   }
 
   get lresource() {
-    const diskful = this.DiskfulStore.list.data
-    const diskless = this.DisklessStore.list.data
+    const diskful = this.DiskfulStore.list.data || []
+    const diskless = this.DisklessStore.list.data || []
+    console.log("lresource.diskful",diskful)
+    console.log("lresource.diskless",diskless)
 
     const sameNameItemsDiskful = diskful.filter(item1 =>
       diskful.some(item2 => item1.name === item2.name && item1 !== item2)
@@ -162,11 +164,17 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     }, [])
 
     resultDiskful = resultDiskful.reduce((unique, o) => {
-      if(!unique.some(obj => obj.name === o.name && obj.diskfulnode.toString() === o.diskfulnode.toString())) {
+      if (
+        !unique.some(
+          obj =>
+            obj.name === o.name &&
+            obj.diskfulnode.toString() === o.diskfulnode.toString()
+        )
+      ) {
         unique.push(o)
       }
       return unique
-    },[])
+    }, [])
 
     const sameNameItemsDiskless = diskless.filter(item1 =>
       diskless.some(item2 => item1.name === item2.name && item1 !== item2)
@@ -219,7 +227,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
     console.log("newarray",newArray)
 
     return (this.props.data && this.props.data.length > 0)
-      ? newArray.filter(item => !this.props.data.some(dataItem => dataItem.storageList.includes(item.value)))
+      ? newArray.filter(item => !this.props.data.some(dataItem => dataItem.storageList && dataItem.storageList.includes(item.value)))
       : newArray
   }
 
@@ -230,7 +238,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
       JSON.stringify(iSCSIMapping1Templates)
     )
-    console.log("this.props.formTemplate",this.props.formTemplate)
     this.setState({ isLoading: true }) // isloading
     this.props.onOk(this.props.formTemplate)
   }
@@ -242,6 +249,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
     console.log("this.props",this.props)
+    console.log("this.state",this.state)
 
     const title = 'Bind Storage'
 
@@ -253,7 +261,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="resource"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

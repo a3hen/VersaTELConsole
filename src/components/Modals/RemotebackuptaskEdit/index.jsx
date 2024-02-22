@@ -210,7 +210,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="job"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

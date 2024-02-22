@@ -71,7 +71,7 @@ export default class LResource extends React.Component {
         // // success: getData,
         // })
         key: 'diskless',
-        icon: 'trash',
+        icon: 'pen',
         text: t('choose_diskless_node'),
         action: 'delete',
         show: true,
@@ -85,7 +85,7 @@ export default class LResource extends React.Component {
       },
       {
         key: 'mirrorway',
-        icon: 'trash',
+        icon: 'pen',
         text: t('Choose mirrorway numbers'),
         action: 'delete',
         show: true,

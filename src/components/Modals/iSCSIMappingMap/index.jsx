@@ -178,7 +178,7 @@ export default class iSCSIMapping2MapModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="upload"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

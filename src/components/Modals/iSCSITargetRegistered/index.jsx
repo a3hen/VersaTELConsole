@@ -242,7 +242,7 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="target"
         data={formTemplate}
         onCancel={this.handleCancel}
         // onOk={this.handleStepOne}

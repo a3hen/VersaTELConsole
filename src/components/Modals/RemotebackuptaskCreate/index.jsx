@@ -29,7 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_RB_TIME , PATTERN_IQN_NAME} from 'utils/cons
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import RemoteBackup1Store from 'stores/remotebackup1.js'
-import { NEW_PATTERN_VTEL_SIZE, SNAPSHOT_NUMBERS } from "../../../utils/constants";
+import { NEW_PATTERN_VTEL_SIZE, PATTERN_REMOTECLUSTER_NAME, SNAPSHOT_NUMBERS } from "../../../utils/constants";
 
 @observer
 export default class RemoteBackup1ClusterCreateModal extends React.Component {
@@ -172,7 +172,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="job"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
@@ -182,12 +182,14 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
       >
         <Form.Item
           label={t('remote backup task name')}
-          desc={t('VTEL_NAME_DESC')}
+          desc={t(
+            '仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2'
+          )}
           rules={[
-            { required: true, message: t('请输入任务的名称') },
+            { required: true, message: t('请输入任务名称') },
             {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
+              pattern: PATTERN_REMOTECLUSTER_NAME,
+              message: t('名称格式错误', { message: t('仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2') }),
             },
             { validator: this.NameValidator },
           ]}

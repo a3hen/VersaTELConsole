@@ -29,6 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_RB_URL , PATTERN_IQN_NAME} from 'utils/const
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import RemoteBackupStore from 'stores/remotebackup'
+import { PATTERN_REMOTECLUSTER_NAME } from "../../../utils/constants";
 
 @observer
 export default class RemoteBackupClusterCreateModal extends React.Component {
@@ -151,7 +152,7 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="cluster"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
@@ -161,12 +162,14 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
       >
         <Form.Item
           label={t('remotecluster name')}
-          desc={t('VTEL_NAME_DESC')}
+          desc={t(
+            '仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2'
+          )}
           rules={[
             { required: true, message: t('Please input cluster name') },
             {
-              pattern: PATTERN_VTEL_NAME,
-              message: t('名称格式错误', { message: t('VTEL_NAME_DESC') }),
+              pattern: PATTERN_REMOTECLUSTER_NAME,
+              message: t('名称格式错误', { message: t('仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2') }),
             },
             { validator: this.NameValidator },
           ]}

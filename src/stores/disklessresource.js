@@ -89,7 +89,7 @@ export default class DisklessResourceStore extends Base {
     //   ],
     // }
 
-    const allData = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
+    const allData = get(result, 'data', []) || []
     const data = allData.map(item => {
       item.uniqueID = item.name.concat(' - ', item.node)
       return item

@@ -120,7 +120,7 @@ export default class LNodeCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="nodes"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
