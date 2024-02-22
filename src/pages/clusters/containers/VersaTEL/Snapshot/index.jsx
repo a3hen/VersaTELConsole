@@ -155,7 +155,9 @@ export default class Snapshot extends React.Component {
         title: t('Resource'),
         dataIndex: 'name',
         width: '50%',
-        render: name => name,
+        render: name => (
+          <Avatar icon={'resource'} title={name} noLink />
+        ),
       },
       {
         title: t('Snapshot_Numbers'),
@@ -205,7 +207,8 @@ export default class Snapshot extends React.Component {
             // onCreate={this.type === 'snapshot' ? null : this.showCreate}
             // isLoading={tableProps.isLoading || isLoadingMonitor}
             searchType="name"
-            hideSearch={true}
+            placeholder={t('SEARCH_BY_LRESOURCE')}
+            hideSearch={false}
           />
         )}
       </ListPage>

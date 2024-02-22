@@ -55,19 +55,22 @@ export default class Remotebackup extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
-
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
     fetch(`/kapis/versatel.kubesphere.io/v1alpha1/clusterid`)
       .then(response => response.json())
       .then(data => this.setState({ clusterinfo: data }))
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+    })
   }
 
   showAction = record => !record.isFedManaged
@@ -169,7 +172,9 @@ export default class Remotebackup extends React.Component {
         title: t('name'),
         dataIndex: 'remoteName',
         width: '50%',
-        render: remoteName => remoteName,
+        render: remoteName => (
+          <Avatar icon={'cluster'} title={remoteName} noLink />
+        ),
       },
       {
         title: t('URL'),
@@ -207,7 +212,7 @@ export default class Remotebackup extends React.Component {
 
     return (
       <ListPage {...this.props} module="namespaces">
-        <Banner {...bannerProps} tabs={this.tabs} tips={this.tips} />
+        <Banner {...bannerProps} tabs={this.tabs} stips={this.tips} />
         {isLoading ? (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <LoadingComponent />
@@ -219,8 +224,9 @@ export default class Remotebackup extends React.Component {
             tableActions={this.tableActions}
             columns={this.getColumns()}
             rowSelection={undefined}
-            searchType="name"
-            hideSearch={true}
+            searchType="remoteName"
+            placeholder={t('按集群搜索')}
+            hideSearch={false}
           />
         )}
       </ListPage>

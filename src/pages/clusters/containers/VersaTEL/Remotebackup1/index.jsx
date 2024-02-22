@@ -48,15 +48,19 @@ import RemoteBackupStore1 from 'stores/remotebackup1'
 })
 export default class Remotebackup1 extends React.Component {
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+    })
   }
 
   showAction = record => !record.isFedManaged
@@ -149,7 +153,9 @@ export default class Remotebackup1 extends React.Component {
         title: t('name'),
         dataIndex: 'scheduleName',
         width: '20%',
-        render: scheduleName => scheduleName,
+        render: scheduleName => (
+          <Avatar icon={'job'} title={scheduleName} noLink />
+        ),
       },
       {
         title: t('time_info'),
@@ -216,8 +222,9 @@ export default class Remotebackup1 extends React.Component {
             tableActions={this.tableActions}
             columns={this.getColumns()}
             rowSelection={undefined}
-            searchType="name"
-            hideSearch={true}
+            searchType="scheduleName"
+            placeholder={t('按任务搜索')}
+            hideSearch={false}
           />
         )}
       </ListPage>

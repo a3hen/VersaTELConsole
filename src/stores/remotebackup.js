@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import { action } from 'mobx'
+import { get, isEqual } from "lodash";
+import { action, toJS } from "mobx";
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
@@ -44,10 +44,14 @@ export default class RemoteBackupStore extends Base {
     namespace,
     devops,
     more,
+    silent_flag,
+    silent,
     ...params
   } = {}) {
-    if (!this.hasLoadedOnce || !this.list.isLoading) {
+    if (silent_flag === true) {
       this.list.isLoading = true
+    } else {
+      this.list.isLoading = false
     }
 
     // if (!params.sortBy && params.ascending === undefined) {
@@ -64,22 +68,33 @@ export default class RemoteBackupStore extends Base {
       ...params,
     })
 
-    const data = get(result, 'data', [])
+    const rawData = get(result, 'data', [])
+    let data
 
-    // 无论数据是否为null，只要完成了一次加载，就更新hasLoadedOnce状态
-    this.hasLoadedOnce = true
+    if (rawData === null) {
+      data = []
+    } else if (rawData.length === 1 && 'error' in rawData[0]) {
+      data = rawData.map(this.mapper)
+    } else {
+      data = rawData.length > 0 ? rawData : null
+    }
 
-    // 更新列表数据和加载状态
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data || [],
-      total: data ? data.length : 0,
-      ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
-      // 只有在首次加载或数据非null时，才将isLoading设置为false
-      isLoading: data !== null ? false : this.list.isLoading,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
+    // 使用isEqual来比较新旧数据
+    if (!isEqual(toJS(this.list.data), data)) {
+      this.list.update({
+        data: more ? [...this.list.data, ...data] : data,
+        total: result.count || result.totalItems || result.total_count || data.length || 0,
+        ...params,
+        limit: Number(params.limit) || 10,
+        page: Number(params.page) || 1,
+        isLoading: false, // 数据有变化时，更新isLoading状态
+        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      })
+    } else if (silent_flag === true) {
+      this.list.isLoading = false
+    } else {
+      // 如果数据没有变化，且不是静默加载，不更新isLoading状态
+    }
   }
 
   @action

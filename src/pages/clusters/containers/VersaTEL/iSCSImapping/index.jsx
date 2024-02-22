@@ -131,7 +131,9 @@ export default class iSCSIMapping extends React.Component {
         title: t('Hostname'),
         dataIndex: 'hostName',
         width: '50%',
-        render: hostName => hostName,
+        render: hostName => (
+          <Avatar icon={'laptop'} title={hostName} noLink />
+        ),
       },
       {
         title: t('IQN'),
@@ -182,8 +184,9 @@ export default class iSCSIMapping extends React.Component {
             tableActions={this.tableActions}
             columns={this.getColumns()}
             rowSelection={undefined}
-            searchType="name"
-            hideSearch={true}
+            searchType="hostName"
+            placeholder={t('按主机名搜索')}
+            hideSearch={false}
           />
         )}
       </ListPage>

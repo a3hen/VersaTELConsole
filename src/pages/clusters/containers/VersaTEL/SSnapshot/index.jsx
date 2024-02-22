@@ -193,13 +193,17 @@ export default class SSnapshot extends React.Component {
         title: t('Resource'),
         dataIndex: 'resource',
         width: '20%',
-        render: resource => resource,
+        render: resource => (
+          <Avatar icon={'resource'} title={resource} noLink />
+        ),
       },
       {
         title: t('SnapshotName'),
         dataIndex: 'name',
         width: '20%',
-        render: name => name,
+        render: name => (
+          <Avatar icon={'snapshot'} title={name} noLink />
+        ),
       },
       {
         title: t('Node'),
@@ -285,7 +289,8 @@ export default class SSnapshot extends React.Component {
             // onCreate={this.type === 'snapshot' ? null : this.showCreate}
             // isLoading={tableProps.isLoading || isLoadingMonitor}
             searchType="name"
-            hideSearch={true}
+            placeholder={t('按快照搜索')}
+            hideSearch={false}
           />
         )}
       </ListPage>

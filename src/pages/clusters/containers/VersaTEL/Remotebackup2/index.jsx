@@ -138,19 +138,25 @@ export default class Remotebackup1 extends React.Component {
         title: t('name'),
         dataIndex: 'resName',
         width: '20%',
-        render: resName => resName,
+        render: resName => (
+          <Avatar icon={'resource'} title={resName} noLink />
+        ),
       },
       {
         title: t('backup_task'),
         dataIndex: 'scheduleName',
         width: '20%',
-        render: scheduleName => scheduleName,
+        render: scheduleName => (
+          <Avatar icon={'job'} title={scheduleName} noLink />
+        ),
       },
       {
         title: t('cluster'),
         dataIndex: 'remoteName',
         width: '20%',
-        render: remoteName => remoteName,
+        render: remoteName => (
+          <Avatar icon={'cluster'} title={remoteName} noLink />
+        ),
       },
       {
         title: t('last_time'),
@@ -205,8 +211,9 @@ export default class Remotebackup1 extends React.Component {
             tableActions={this.tableActions}
             columns={this.getColumns()}
             rowSelection={undefined}
-            searchType="name"
-            hideSearch={true}
+            searchType="resName"
+            placeholder={t('按名称搜索')}
+            hideSearch={false}
           />
         )}
       </ListPage>

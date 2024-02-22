@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEqual } from "lodash"
-import { action, toJS } from "mobx"
+import { get, isEqual } from 'lodash'
+import { action, toJS } from 'mobx'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
@@ -46,7 +46,6 @@ export default class LResourceStore extends Base {
     silent,
     ...params
   } = {}) {
-    console.log("store.silent_flag",silent_flag)
     if (silent_flag === true) {
       this.list.isLoading = true
     } else {

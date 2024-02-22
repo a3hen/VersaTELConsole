@@ -29,7 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_RB_TIME , PATTERN_IQN_NAME} from 'utils/cons
 // import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
 import RemoteBackup1Store from 'stores/remotebackup1.js'
-import { NEW_PATTERN_VTEL_SIZE } from "../../../utils/constants";
+import { NEW_PATTERN_VTEL_SIZE, SNAPSHOT_NUMBERS } from "../../../utils/constants";
 
 @observer
 export default class RemoteBackup1ClusterCreateModal extends React.Component {
@@ -238,8 +238,8 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
           rules={[
             { required: true, message: t('Please input number of snapshots') },
             {
-              pattern: NEW_PATTERN_VTEL_SIZE,
-              message: t('份数填写错误', { message: t('RB_SP_NUMBER') }),
+              pattern: SNAPSHOT_NUMBERS,
+              message: t('份数填写错误,需大于等于1', { message: t('RB_SP_NUMBER') }),
             },
           ]}
         >

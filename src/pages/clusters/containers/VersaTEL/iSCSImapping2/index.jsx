@@ -48,15 +48,19 @@ import iSCSIMapping2Store from 'stores/iSCSImapping2'
 })
 export default class iSCSIMapping2 extends React.Component {
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+    })
   }
 
   showAction = record => !record.isFedManaged
@@ -151,7 +155,9 @@ export default class iSCSIMapping2 extends React.Component {
         title: t('Storage'),
         dataIndex: 'resName',
         width: '50%',
-        render: resName => resName,
+        render: resName => (
+          <Avatar icon={'upload'} title={resName} noLink />
+        ),
       },
       {
         title: t('Host'),
@@ -195,8 +201,9 @@ export default class iSCSIMapping2 extends React.Component {
           tableActions={this.tableActions}
           columns={this.getColumns()}
           rowSelection={undefined}
-          searchType="name"
-          hideSearch={true}
+          searchType="resName"
+          placeholder={t('按存储搜索')}
+          hideSearch={false}
         />
       </ListPage>
     )
