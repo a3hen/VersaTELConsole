@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get } from 'lodash'
-import { action } from 'mobx'
+import { get, isEqual } from "lodash";
+import { action, toJS } from "mobx";
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
@@ -41,9 +41,15 @@ export default class SnapshotStore extends Base {
     namespace,
     devops,
     more,
+    silent_flag,
+    silent,
     ...params
   } = {}) {
-    this.list.isLoading = true
+    if (silent_flag === true) {
+      this.list.isLoading = true
+    } else {
+      this.list.isLoading = false
+    }
 
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
@@ -59,57 +65,33 @@ export default class SnapshotStore extends Base {
       ...params,
     })
 
-    // const result = {
-    //   code: 0,
-    //   count: 2,
-    //   data: [
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
-    //       "node": "ubuntu",
-    //       "size": "12 KB",
-    //       "status": "Healthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_c",
-    //       "size": "12 KB",
-    //       "status": "Unhealthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_b",
-    //       "size": "12 KB",
-    //       "status": "Synching"
-    //     },
-    //   ],
-    // }
+    const rawData = get(result, 'data', [])
+    let data
 
-    const data = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
+    if (rawData === null) {
+      data = []
+    } else if (rawData.length === 1 && 'error' in rawData[0]) {
+      data = rawData.map(this.mapper)
+    } else {
+      data = rawData.length > 0 ? rawData : null
+    }
 
-    this.list.update({
-      data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
-      ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
-      isLoading: false,
-      ...(this.list.silent ? {} : { selectedRowKeys: [] }),
-    })
+    // 使用isEqual来比较新旧数据
+    if (!isEqual(toJS(this.list.data), data)) {
+      this.list.update({
+        data: more ? [...this.list.data, ...data] : data,
+        total: result.count || result.totalItems || result.total_count || data.length || 0,
+        ...params,
+        limit: Number(params.limit) || 10,
+        page: Number(params.page) || 1,
+        isLoading: false, // 数据有变化时，更新isLoading状态
+        ...(this.list.silent ? {} : { selectedRowKeys: [] }),
+      })
+    } else if (silent_flag === true) {
+      this.list.isLoading = false
+    } else {
+      // 如果数据没有变化，且不是静默加载，不更新isLoading状态
+    }
   }
 
   @action

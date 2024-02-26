@@ -146,9 +146,9 @@ export default {
             Modal.close(modal)
             return
           }
-          // const resourceName = data.name
-          // data.metadata.name = resourceName
-          // delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
+          const resourceName = data.name
+          data.metadata.name = resourceName
+          delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
           delete data.unit
           delete data.number
           console.log("data",data)

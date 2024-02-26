@@ -16,8 +16,8 @@
  * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { get, isEqual } from "lodash";
-import { action, toJS } from "mobx";
+import { get, isEqual } from 'lodash'
+import { action, toJS } from 'mobx'
 
 import Base from 'stores/base'
 import List from 'stores/base.list'
@@ -64,41 +64,6 @@ export default class SnapshotStore extends Base {
     const result = await request.get(this.getSnapshotUrl(), {
       ...params,
     })
-
-    // const result = {
-    //   code: 0,
-    //   count: 2,
-    //   data: [
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_a",
-    //       "node": "ubuntu",
-    //       "size": "12 KB",
-    //       "status": "Healthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_c",
-    //       "size": "12 KB",
-    //       "status": "Unhealthy"
-    //     },
-    //     {
-    //       "deviceName": "/dev/drbd1000",
-    //       "mirrorWay": "1",
-    //       "disklessNode": ["ubuntu"],
-    //       "diskfulNode": ["ubuntu1","ubuntu2"],
-    //       "name": "res_b",
-    //       "size": "12 KB",
-    //       "status": "Synching"
-    //     },
-    //   ],
-    // }
 
     const rawData = get(result, 'data', [])
     let data

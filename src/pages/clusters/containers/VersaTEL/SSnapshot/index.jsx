@@ -64,6 +64,18 @@ export default class SSnapshot extends React.Component {
     ]
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // 检查tableProps.data是否有更新
+    if (nextProps.tableProps.data !== prevState.prevData) {
+      return {
+        items: nextProps.tableProps.data,
+        prevData: nextProps.tableProps.data, // 存储当前props以便下次比较
+      }
+    }
+    // 如果props没有变化，则不更新state
+    return null
+  }
+
   componentDidMount() {
     this.fetchData(true) // Pass true for the initial fetch
     this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches

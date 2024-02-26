@@ -51,6 +51,12 @@ export default {
             })
             .finally(() => {
               Modal.close(modal)
+              localStorage.removeItem('iqn')
+              localStorage.removeItem('runningNode')
+              localStorage.removeItem('secondaryNode')
+              localStorage.removeItem('initialNode')
+              localStorage.removeItem('isRunningNodeDisabled')
+              localStorage.removeItem('vipCount')
             })
           // request
           //   .delete(
