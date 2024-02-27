@@ -183,13 +183,13 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
         <Form.Item
           label={t('remote backup task name')}
           desc={t(
-            '仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2'
+            '仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于等于2'
           )}
           rules={[
             { required: true, message: t('请输入任务名称') },
             {
               pattern: PATTERN_REMOTECLUSTER_NAME,
-              message: t('名称格式错误', { message: t('仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于2') }),
+              message: t('名称格式错误', { message: t('仅支持字母、数字、中横线，且中横线不能在字段的首尾，长度必须大于等于2') }),
             },
             { validator: this.NameValidator },
           ]}

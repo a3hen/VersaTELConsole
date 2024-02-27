@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { get, omit } from 'lodash'
+import { get, omit, isEqual } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -65,15 +65,15 @@ export default class SSnapshot extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    // 检查tableProps.data是否有更新
-    if (nextProps.tableProps.data !== prevState.prevData) {
+    // 使用 lodash 的 isEqual 进行深度比较
+    if (!isEqual(nextProps.tableProps.data, prevState.prevData)) {
       return {
         items: nextProps.tableProps.data,
         prevData: nextProps.tableProps.data, // 存储当前props以便下次比较
-      }
+      };
     }
     // 如果props没有变化，则不更新state
-    return null
+    return null;
   }
 
   componentDidMount() {
@@ -286,6 +286,7 @@ export default class SSnapshot extends React.Component {
     )
 
     const isLoading = tableProps.data.some(item => item.error)
+    console.log("this.state",this.state)
 
     return (
       <ListPage {...this.props} module="namespaces">
