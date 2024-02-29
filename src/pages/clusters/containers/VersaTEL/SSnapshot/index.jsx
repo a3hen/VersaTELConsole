@@ -70,10 +70,10 @@ export default class SSnapshot extends React.Component {
       return {
         items: nextProps.tableProps.data,
         prevData: nextProps.tableProps.data, // 存储当前props以便下次比较
-      };
+      }
     }
     // 如果props没有变化，则不更新state
-    return null;
+    return null
   }
 
   componentDidMount() {

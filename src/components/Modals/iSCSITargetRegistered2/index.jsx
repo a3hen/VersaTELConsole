@@ -147,6 +147,13 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     console.log("dataforonok",dataForOnOk)
 
     this.props.onOk(dataForOnOk)
+
+    localStorage.removeItem('iqn')
+    localStorage.removeItem('runningNode')
+    localStorage.removeItem('secondaryNode')
+    localStorage.removeItem('initialNode')
+    localStorage.removeItem('isRunningNodeDisabled')
+    localStorage.removeItem('vipCount')
   }
 
   onLoadingComplete = () => {
