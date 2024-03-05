@@ -143,8 +143,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
   get lresource() {
     const diskful = this.DiskfulStore.list.data || []
     const diskless = this.DisklessStore.list.data || []
-    console.log("lresource.diskful",diskful)
-    console.log("lresource.diskless",diskless)
 
     const sameNameItemsDiskful = diskful.filter(item1 =>
       diskful.some(item2 => item1.name === item2.name && item1 !== item2)
@@ -203,8 +201,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       return unique
     },[])
 
-    console.log("resultdiskful",resultDiskful)
-    console.log("resultdiskless",resultDiskless)
 
     const result = resultDiskful.map(item => {
       const disklessItem = resultDiskless.find(i => i.name === item.name)
@@ -214,7 +210,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       }
     })
 
-    console.log("after_newarray",result)
 
     const newArray = result
       .filter(item =>
@@ -229,7 +224,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
         value: item.name,
       }))
 
-    console.log("newarray",newArray)
 
     return (this.props.data && this.props.data.length > 0)
       ? newArray.filter(item => !this.props.data.some(dataItem => dataItem.storageList && dataItem.storageList.includes(item.value)))
@@ -253,8 +247,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
-    console.log("this.props",this.props)
-    console.log("this.state",this.state)
 
     const title = 'Bind Storage'
 

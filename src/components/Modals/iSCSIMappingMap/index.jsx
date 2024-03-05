@@ -108,6 +108,9 @@ export default class iSCSIMapping2MapModal extends React.Component {
     if (Array.isArray(this.props.formTemplate.hostname)) {
       this.props.formTemplate.hostname = this.props.formTemplate.hostname.filter(item => item !== 'all')
     }
+    if (this.state.selectedHostnames.length > 0) {
+      set(this.props.formTemplate, 'hostname', this.state.selectedHostnames)
+    }
     this.props.onOk(this.props.formTemplate)
   }
 
@@ -150,8 +153,6 @@ export default class iSCSIMapping2MapModal extends React.Component {
       },
       ...this.hostname,
     ]
-
-    console.log("hostnameOptions",hostnameOptions)
 
     set(this.props.formTemplate, 'hostname', this.state.selectedHostnames)
 

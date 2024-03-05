@@ -69,7 +69,6 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          console.log('data', data)
           if (!data) {
             Modal.close(modal)
             return

@@ -108,7 +108,6 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
 
   handleCreate = RemoteBackup1Templates => {
     this.setState({ isLoading: true }) // isloading
-    console.log("template",this.props.formTemplate)
     set(
       this.props.formTemplate,
       JSON.stringify(RemoteBackup1Templates)
@@ -145,7 +144,6 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    console.log("task_create.props",this.props)
 
     const data = [
       {

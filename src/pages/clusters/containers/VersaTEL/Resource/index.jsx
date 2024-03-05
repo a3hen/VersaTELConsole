@@ -216,10 +216,6 @@ export default class LResource extends React.Component {
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)
 
-    console.log("this.props",this.props)
-    console.log("isloading",isLoading)
-    console.log("store,isloading",this.props.store.list.isLoading)
-    console.log("store,silent",this.props.store.list.silent)
 
     return (
       <ListPage {...this.props} noWatch>

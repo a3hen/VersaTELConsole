@@ -161,7 +161,6 @@ export default class EditAuthorizationModal extends React.Component {
     if (templates.length === 6) {
       templates.splice(4, 2)
     }
-    console.log("templates",templates)
     return (
       <div className={styles.content}>
         <div className={styles.title}>{t('PERMISSION_PL')}</div>

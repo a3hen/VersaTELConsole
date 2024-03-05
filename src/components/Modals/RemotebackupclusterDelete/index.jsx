@@ -114,7 +114,6 @@ export default class RemoteBackupClusterDeleteModal extends React.Component {
       backgroundColor: '#ca2621',
     }
 
-    console.log("delete.props",this.props)
 
     return (
       <Modal.Form

@@ -183,7 +183,6 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
     const r_keepLocal = this.props.keepLocal
     const r_onFailure = this.props.onFailure
 
-    console.log("this.props",this.props)
 
     const data = [
       {

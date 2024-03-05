@@ -31,7 +31,6 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          console.log('data', data)
           if (!data) {
             Modal.close(modal)
             return
@@ -71,7 +70,6 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          console.log('data', data)
           if (!data) {
             Modal.close(modal)
             return
@@ -109,7 +107,6 @@ export default {
       const { module } = store
       const modal = Modal.open({
         onOk: data => {
-          console.log('data', data)
           if (!data) {
             Modal.close(modal)
             return
@@ -152,7 +149,6 @@ export default {
           let vipList = [data.vip1]
           if (data.vip2) vipList.push(data.vip2)
           data.vipList = vipList
-          console.log("data",data)
           if (!data) {
             Modal.close(modal)
             return

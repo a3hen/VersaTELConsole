@@ -214,7 +214,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
     const { showStepOne } = this.state
 
     const { isLoading } = this.state
-    console.log("step0.this.props",this.props)
     // console.log("this.state",this.state)
     set(this.props.formTemplate, 'iqn', this.state.iqn)
 

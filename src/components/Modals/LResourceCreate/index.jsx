@@ -137,8 +137,6 @@ export default class LResourceCreateModal extends React.Component {
       return
     }
     this.props.formTemplate.size = this.state.inputValue + this.state.selectValue
-    console.log("handlecreate_this.props.formTemplate",this.props.formTemplate)
-    console.log("this.state",this.state)
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -188,7 +186,6 @@ export default class LResourceCreateModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
 
     const title = 'Create Resource'
-    console.log("this.props",this.props)
 
     const unitdata = [
       {

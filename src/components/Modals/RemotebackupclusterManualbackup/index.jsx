@@ -183,7 +183,6 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    console.log("manual.props",this.props)
 
     const title = 'Manual Remote Backup'
 

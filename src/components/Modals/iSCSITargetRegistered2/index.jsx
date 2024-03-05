@@ -144,7 +144,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
       return
     }
     this.setState({ isLoading: true }) // isloading
-    console.log("dataforonok",dataForOnOk)
 
     this.props.onOk(dataForOnOk)
 
@@ -187,9 +186,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
         value: '2个连接IP',
       },
     ]
-
-    console.log("step2.this.props",this.props)
-    console.log("this.state",this.state)
 
 
     if (showStepOne) {

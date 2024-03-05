@@ -165,7 +165,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   render() {
     const { visible, onCancel, formTemplate } = this.props
 
-    console.log("this.props",this.props)
 
     const title = 'Initiator Registered'
 

@@ -114,7 +114,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       backgroundColor: '#ca2621',
     }
 
-    console.log("this.props",this.props)
 
     return (
       <Modal.Form

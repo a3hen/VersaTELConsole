@@ -140,8 +140,6 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
     const title = 'UnBind Storage'
 
-    console.log("this.iSCSIMapping1Store.list.data",this.iSCSIMapping1Store.list.data)
-    console.log("this.props",this.props)
 
     if (!this.state.data) {
       return null

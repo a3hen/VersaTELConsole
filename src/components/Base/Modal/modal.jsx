@@ -187,7 +187,6 @@ export default class Modal extends React.Component {
       style.content.width = width
     }
 
-    console.log("modal",okButtonType)
 
     return (
       <ReactModal

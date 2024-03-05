@@ -286,7 +286,6 @@ export default class SSnapshot extends React.Component {
     )
 
     const isLoading = tableProps.data.some(item => item.error)
-    console.log("this.state",this.state)
 
     return (
       <ListPage {...this.props} module="namespaces">

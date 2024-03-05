@@ -231,8 +231,6 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
           obj2 => obj.label === obj2.label && obj.value === obj2.value
         )
     )
-    console.log("step1.this.props",this.props)
-    console.log("step1.this.state",this.state)
 
     // if (this.props.flag) {
     //   this.fetchResource()
