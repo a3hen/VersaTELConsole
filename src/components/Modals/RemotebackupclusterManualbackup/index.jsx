@@ -70,12 +70,14 @@ export default class RemoteBackupClusterCreateModal extends React.Component {
   fetchResource = params => {
     return this.RemoteBackupStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
   fetchTResource = params => {
     return this.SnapShotStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
   // get nodes() {
