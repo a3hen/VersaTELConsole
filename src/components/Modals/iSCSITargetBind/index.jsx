@@ -73,6 +73,7 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
       r_diskful: 0,
       r_diskless: 0,
       isLoading: false, // isloading
+      r_isLoading: false,
     }
   }
 
@@ -103,13 +104,20 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
           r_diskful = [nodeRun]
         }
 
-        this.setState({ data, r_diskless, r_diskful })
+        this.setState({
+          data,
+          r_diskless,
+          r_diskful,
+          // 如果r_diskful不为0，则认为加载已完成
+          isLoading: r_diskful.length === 0 && r_diskless.length === 0,
+        })
       })
   }
 
   fetchResource = params => {
     return this.iSCSIMapping1Store.fetchList({
       ...params,
+      limit: 999,
     })
   }
   fetchdiskless = params => {
@@ -247,8 +255,13 @@ export default class iSCSIMapping1DeleteModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
+    const isLoading = this.state.r_isLoading
 
     const title = 'Bind Storage'
+
+    if (isLoading) {
+      return <div>Loading...</div>
+    }
 
     if (!this.state.data) {
       return null

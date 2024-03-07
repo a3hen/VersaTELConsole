@@ -163,12 +163,14 @@ export default class iSCSIMappingRegisteredModal extends React.Component {
   fetchResource = params => {
     return this.iSCSIMappingStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
   fetchNodes = params => {
     return this.linstornodeStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
