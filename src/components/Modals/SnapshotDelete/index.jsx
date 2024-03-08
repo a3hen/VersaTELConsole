@@ -67,6 +67,7 @@ export default class SnapshotRollbackModal extends React.Component {
   fetchResource = params => {
     return this.SSnapshotStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 

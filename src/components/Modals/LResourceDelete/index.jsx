@@ -75,6 +75,7 @@ export default class LResourceCreateModal extends React.Component {
   fetchStoragepools = params => {
     return this.storagepoolStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 

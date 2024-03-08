@@ -74,12 +74,14 @@ export default class LResourceCreateModal extends React.Component {
   fetchNodes = params => {
     return this.linstornodeStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
   fetchStoragepools = params => {
     return this.storagepoolStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 

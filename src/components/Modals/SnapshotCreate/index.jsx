@@ -68,6 +68,7 @@ export default class SnapshotCreateModal extends React.Component {
   fetchResource = params => {
     return this.LSnapshotStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
   // get nodes() {
