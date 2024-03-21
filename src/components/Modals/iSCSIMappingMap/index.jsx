@@ -98,6 +98,13 @@ export default class iSCSIMapping2MapModal extends React.Component {
   }
 
   handleCreate = iSCSIMapping2Templates => {
+    if (
+      this.state.selectedHostnames.length === 1 &&
+      this.state.selectedHostnames[0] === 'all'
+    ) {
+      alert('请选择至少一个注册主机，除了"全选"。')
+      return
+    }
     this.setState({ isLoading: true }) // isloading
     this.props.formTemplate.resname = this.props.resname
     set(

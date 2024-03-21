@@ -28,6 +28,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { ICON_TYPES } from 'utils/constants'
 import VStatus from 'clusters/components/VtelStatus'
 import LResourceStore from 'stores/lresource'
+import UserStore from 'stores/user'
 
 @withList({
   store: new LResourceStore(),
@@ -36,6 +37,10 @@ import LResourceStore from 'stores/lresource'
   name: 'LResource',
 })
 export default class LResource extends React.Component {
+  state = {
+    userPermissions: null, // 添加一个状态来保存用户权限信息
+  }
+
   componentDidMount() {
     this.fetchData(true) // Pass true for the initial fetch
     this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
@@ -205,6 +210,8 @@ export default class LResource extends React.Component {
     const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
     const match = error?.match(ipPortRegex)
     const ipPort = match ? match[0] : ''
+    console.log('userrrrr: ', globals.user.username)
+    console.log("state",this.state)
 
     const LoadingComponent = () => (
       <div style={{ textAlign: 'center' }}>

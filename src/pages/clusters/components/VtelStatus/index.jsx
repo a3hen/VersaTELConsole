@@ -50,6 +50,9 @@ export default class VStatus extends React.Component {
     if (name === 'Unknow') {
       return 'Unknow'
     }
+    if (name === 'DELETING') {
+      return 'DELETING'
+    }
     return name || 'ERROR'
     // return 'ERROR'
   }
