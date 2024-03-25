@@ -184,11 +184,24 @@ export default class SSnapshot extends React.Component {
   }
 
   get tableActions() {
-    const { tableProps } = this.props
+    const { tableProps, trigger, routing } = this.props
     return {
       ...tableProps.tableActions,
       onFetch: this.handleFetch,
-      selectActions: [],
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('DELETE'),
+          action: 'delete',
+          onClick: () =>
+            trigger('snapshot.batch.delete', {
+              type: 'snapshot',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 

@@ -238,6 +238,7 @@ module.exports = {
   name: '名称',
   Snapshot_PL: '快照',
   SSnapshot_PL: '快照',
+  snapshot_LOW: '快照',
   SNAPSHOT_DESC: '使用 VishinStor K3000 统一管理系统集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力。',
   SSNAPSHOT_DESC: '使用 VishinStor K3000 统一管理系统集群中的快照功能，您可以轻松创建、管理和操作资源的快照，以提供恢复资源和版本控制的能力。',
   SNAPSHOT_RESOURCE: '资源',

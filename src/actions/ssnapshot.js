@@ -22,6 +22,7 @@ import { Modal } from 'components/Base'
 import SRecoveryModal from 'components/Modals/SnapshotRecovery'
 import SRollbackModal from 'components/Modals/SnapshotRollback'
 import SDeleteModal from 'components/Modals/SnapshotDelete'
+import DeleteModal from 'components/Modals/Delete'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -135,4 +136,49 @@ export default {
       })
     },
   },
+  'snapshot.batch.delete': {
+    on({ store, success, rowKey, ...props }) {
+      const { data, selectedRowKeys } = store.list
+      const selectValues = data
+        .filter(item => selectedRowKeys.includes(item[rowKey]))
+        .map(item => {
+          return { name: item.name, namespace: item.namespace, resource: item.resource }
+        })
+
+      const selectNames = selectValues.map(item => item.name)
+
+      const modal = Modal.open({
+        onOk: async () => {
+          const reqs = selectValues.map(selectValue => {
+            const url = `/kapis/versatel.kubesphere.io/v1alpha1/snapshot/${selectValue.name}/${selectValue.resource}`
+            return request
+              .delete(url)
+              .then(response => {
+                return response
+              })
+              .catch(error => ({ error: true, message: error.toString() }))
+          })
+
+          const results = await Promise.all(reqs)
+          results.forEach(res => {
+            if (res.error || res.message !== '快照删除成功') {
+              Notify.error({
+                content: `${t('Deleted Failed, Reason:')}${res.message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('Deleted Successful')}` })
+            }
+          })
+          Modal.close(modal)
+          store.setSelectRowKeys([])
+          success && success()
+        },
+        title: "批量删除快照",
+        resource: selectNames.join(', '),
+        modal: DeleteModal,
+        store,
+        ...props,
+      })
+    },
+  }
 }
