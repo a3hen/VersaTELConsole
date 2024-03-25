@@ -161,7 +161,7 @@ export default {
 
           const results = await Promise.all(reqs)
           results.forEach(res => {
-            if (res.error || res.message !== '快照删除成功') {
+            if (res !== '快照删除成功') {
               Notify.error({
                 content: `${t('Deleted Failed, Reason:')}${res.message}`,
               })
