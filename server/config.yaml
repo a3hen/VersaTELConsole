@@ -95,7 +95,7 @@ client:
     - name: access
       title: ACCESS_CONTROL
       icon: key
-      authKey: users|roles|workspaces
+      authKey: users|roles|workspaces|multitenancy
     - name: apps-manage
       title: APP_STORE_MANAGEMENT
       icon: openpitrix
@@ -275,9 +275,10 @@ client:
   accessNavs:
     - cate: "access"
       items:
-        # - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
+#        - { name: workspaces, title: WORKSPACE_PL, icon: enterprise }
         - { name: accounts, title: USER_PL, icon: human, authKey: users }
         - { name: roles, title: PLATFORM_ROLE_PL, icon: role }
+        - { name: multitenancy, title: PERMISSION_MANAGEMENT_PL, icon: role, authKey: users }
 
   # platform settings navigations
   platformSettingsNavs:

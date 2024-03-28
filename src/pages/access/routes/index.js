@@ -20,6 +20,7 @@ import Layout from '../containers/layout'
 import Accounts from '../containers/Accounts'
 import Roles from '../containers/Roles'
 import Workspaces from '../containers/Workspaces'
+import Multitenancy from '../containers/Multitenancy'
 
 import detail from './detail'
 
@@ -33,6 +34,7 @@ export default [
     routes: [
       { path: `${PATH}/accounts`, component: Accounts, exact: true },
       { path: `${PATH}/roles`, component: Roles, exact: true },
+      { path: `${PATH}/multitenancy`, component: Multitenancy, exact: true },
       { path: `${PATH}/workspaces`, component: Workspaces, exact: true },
     ],
   },

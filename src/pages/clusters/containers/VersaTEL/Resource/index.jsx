@@ -211,6 +211,8 @@ export default class LResource extends React.Component {
     const match = error?.match(ipPortRegex)
     const ipPort = match ? match[0] : ''
     console.log('userrrrr: ', globals.user.username)
+    console.log("rols",globals.user.globalrole)
+    console.log("globals.user",globals.user)
     console.log("state",this.state)
 
     const LoadingComponent = () => (
@@ -222,8 +224,6 @@ export default class LResource extends React.Component {
 
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)
-
-
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />

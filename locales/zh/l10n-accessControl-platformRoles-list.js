@@ -18,6 +18,7 @@
 module.exports = {
   // Banner
   PLATFORM_ROLE_PL: '平台角色',
+  PERMISSION_MANAGEMENT_PL: '权限管理',
   // List
   PLATFORM_ROLE_EMPTY_DESC: '请创建一个平台角色。',
   ROLE_USERS_MANAGER: '管理 CoSAN Manager 平台上的所有用户。',

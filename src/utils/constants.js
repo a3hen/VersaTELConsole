@@ -249,6 +249,7 @@ export const ICON_TYPES = {
   workspaceroles: 'role',
   components: 'components',
   accounts: 'human',
+  multitenancy: 'role',
   workspaces: 'enterprise',
   clusters: 'cluster',
   pods: 'pod',
