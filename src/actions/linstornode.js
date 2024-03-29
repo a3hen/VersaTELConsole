@@ -20,6 +20,7 @@ import { Notify } from '@kube-design/components'
 import { Modal } from 'components/Base'
 
 import CreateModal from 'components/Modals/LNodeCreate'
+import NEditModal from 'components/Modals/LNodeEdit'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -54,6 +55,45 @@ export default {
           Modal.close(modal)
         },
         modal: CreateModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'linstornodes.edit': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log("data",data)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/linstor/node/modifynode`,
+              data
+            )
+            .then(res => {
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Created Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Created Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
+        },
+        modal: NEditModal,
         store,
         module,
         cluster,

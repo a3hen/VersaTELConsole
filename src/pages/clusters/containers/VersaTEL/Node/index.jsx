@@ -54,23 +54,23 @@ export default class Node extends React.Component {
   }
 
   get itemActions() {
-    // const { trigger, store, module, routing } = this.props
+    const { trigger, store, module, routing } = this.props
     return [
-      // {
-      //   key: 'editLNode',
-      //   icon: 'pen',
-      //   text: t('Modify'),
-      //   action: 'edit',
-      //   show: true,
-      //   // show: this.showAction,
-      //   onClick: item =>
-      //     trigger('linstornodes.edit', {
-      //       module,
-      //       detail: item,
-      //       LNodeTemplates: toJS(store.LNodeTemplates.data),
-      //       success: routing.query,
-      //     }),
-      // },
+      {
+        key: 'editLNode',
+        icon: 'pen',
+        text: t('Modify'),
+        action: 'edit',
+        show: true,
+        // show: this.showAction,
+        onClick: item =>
+          trigger('linstornodes.edit', {
+            module,
+            detail: item,
+            LNodeTemplates: toJS(store.LNodeTemplates.data),
+            success: routing.query,
+          }),
+      },
       // {
       //   key: 'delete',
       //   icon: 'trash',
