@@ -214,6 +214,7 @@ export default class LResource extends React.Component {
     console.log("rols",globals.user.globalrole)
     console.log("globals.user",globals.user)
     console.log("state",this.state)
+    console.log("props",this.props)
 
     const LoadingComponent = () => (
       <div style={{ textAlign: 'center' }}>

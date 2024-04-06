@@ -23,139 +23,169 @@ import { Avatar } from 'components/Base'
 import Banner from 'components/Cards/Banner'
 import Table from 'components/Tables/List'
 import withList, { ListPage } from 'components/HOCs/withList'
+// import isEqual from 'react-fast-compare'
 
 import { ICON_TYPES } from 'utils/constants'
 import VStatus from 'clusters/components/VtelStatus'
-import StoragepoolStore from 'stores/storagepool'
+import LResourceStore from 'stores/rolelresource'
 
 @withList({
-  store: new StoragepoolStore(),
-  module: 'storagepools', // 图标类型,utils/constants中定义
-  authKey: 'storagepool',
-  name: 'Storagepool',
+  store: new LResourceStore(),
+  module: 'lresources', // 图标类型,utils/constants中定义
+  authKey: 'lresource',
+  name: 'LResource',
 })
-export default class Storagepool extends React.Component {
+export default class LResource extends React.Component {
+  state = {
+    userPermissions: null, // 添加一个状态来保存用户权限信息
+  }
+
   componentDidMount() {
-    this.props.store.fetchStoragepoolTemplates()
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+      role_flag: true,
+    })
   }
 
   get itemActions() {
-    const { name, trigger, routing } = this.props
+    const { name, trigger, routing, store } = this.props
     return [
       {
-        key: 'delete',
-        icon: 'trash',
-        text: t('Delete'),
-        action: 'delete',
-        show: item => item.resNum < 1,
+        key: 'grant',
+        icon: 'pen',
+        text: t('grant'),
+        action: 'edit',
+        show: true,
         onClick: item => {
-          trigger('storagepools.delete', {
-            detail: item,
-            type: t(name),
-            success: routing.query,
+          trigger('role.resource', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
+            data: item,
+          })
+        },
+      },
+      {
+        key: 'revoke',
+        icon: 'pen',
+        text: t('revoke'),
+        action: 'edit',
+        show: true,
+        onClick: item => {
+          trigger('role.resource', {
+            LResourceTemplates: toJS(store.LResourceTemplates.data),
+            // success: getData,
+            name: item?.name,
           })
         },
       },
     ]
   }
 
+  // get itemActions() {
+  //   const { name, trigger, routing } = this.props
+  //   return [
+  //     {
+  //       key: 'chose diskless node',
+  //       icon: 'trash',
+  //       text: t('chose diskless node'),
+  //       action: 'chose diskless node',
+  //       show: true,
+  //       onClick: item =>
+  //           trigger('chose diskles node', {}),
+  //     },
+  //   ]
+  // }
+
   get tableActions() {
-    const { tableProps } = this.props
+    const { tableProps, trigger, routing } = this.props
     return {
       ...tableProps.tableActions,
-      onCreate: this.showCreate,
-      // getCheckboxProps: record => {
-      //   console.log("record",record)
-      //   return {
-      //     disabled: this.showAction(record),
-      //   }
-      // },
-      selectActions: [],
+      getCheckboxProps: record => ({
+        disabled: false,
+        name: record.name,
+      }),
+      selectActions: [
+        {
+          key: 'grant',
+          type: 'primary',
+          text: t('GRANT'),
+          action: 'edit',
+          onClick: () =>
+            trigger('role.resource', {
+              type: 'LResource',
+              rowKey: 'name',
+              data: this.props.tableProps.selectedRowKeys,
+              success: routing.query,
+            }),
+        },
+        {
+          key: 'revoke',
+          type: 'default',
+          text: t('REVOKE'),
+          action: 'edit',
+          onClick: () =>
+            trigger('role.resource', {
+              type: 'LResource',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 
   getColumns = () => {
     const { module } = this.props
-    // const { getSortOrder, module } = this.props
+    const { cluster } = this.props.match.params
     return [
       {
-        title: t('Storagepool'),
+        title: t('Resource'),
         dataIndex: 'name',
+        width: '25%',
         render: name => (
-          <Avatar icon={ICON_TYPES[module]} title={name} noLink />
+          <Avatar
+            icon={ICON_TYPES[module]}
+            to={`/clusters/${cluster}/resource/${name}`}
+            title={name}
+          />
         ),
       },
       {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        render: (status, record) => {
-          if (record.freeCapacity === '0.00 KiB') {
-            return <VStatus name="warning1" />
-          }
-          return <VStatus name={status} />
-        },
+        render: status => <VStatus name={status} />,
       },
       {
-        title: t('Node'),
-        dataIndex: 'node',
+        title: t('Mirror Way'),
+        dataIndex: 'mirrorWay',
         isHideable: true,
-        render: node => node,
+        render: mirrorWay => mirrorWay,
       },
       {
-        title: t('Resource Num'),
-        dataIndex: 'resNum',
+        title: t('Size'),
+        dataIndex: 'size',
         isHideable: true,
-        render: resNum => resNum,
+        render: size => size,
       },
       {
-        title: t('Driver'),
-        dataIndex: 'driver',
+        title: t('Device Name'),
+        dataIndex: 'deviceName',
         isHideable: true,
-        render: driver => driver,
+        render: deviceName => deviceName,
       },
-      {
-        title: t('Pool Name'),
-        dataIndex: 'poolName',
-        isHideable: true,
-        render: poolName => poolName,
-      },
-      // {
-      //   title: t('Free Size'),
-      //   dataIndex: 'freeCapacity',
-      //   isHideable: true,
-      //   render: freeCapacity => freeCapacity,
-      // },
-      // {
-      //   title: t('Total Size'),
-      //   dataIndex: 'totalCapacity',
-      //   isHideable: true,
-      //   render: totalCapacity => totalCapacity,
-      // },
-      // {
-      //   title: t('Snapshots'),
-      //   dataIndex: 'supportsSnapshots',
-      //   isHideable: true,
-      //   render: supportsSnapshots => supportsSnapshots,
-      // },
     ]
-  }
-
-  showCreate = () => {
-    const { store, trigger, getData } = this.props
-    return trigger('storagepools.create', {
-      StoragepoolTemplates: toJS(store.StoragepoolTemplates.data),
-      success: getData,
-    })
   }
 
   render() {
@@ -164,6 +194,11 @@ export default class Storagepool extends React.Component {
     const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
     const match = error?.match(ipPortRegex)
     const ipPort = match ? match[0] : ''
+    console.log('userrrrr: ', globals.user.username)
+    console.log("rols",globals.user.globalrole)
+    console.log("globals.user",globals.user)
+    console.log("state",this.state)
+    console.log("resource.props",this.props)
 
     const LoadingComponent = () => (
       <div style={{ textAlign: 'center' }}>
@@ -174,11 +209,9 @@ export default class Storagepool extends React.Component {
 
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)
-    console.log("this.props",this.props)
-    console.log("global",globals)
     return (
       <ListPage {...this.props} noWatch>
-        {/*<Banner {...bannerProps} tabs={this.tabs} title={t('Storagepool')} />*/}
+        {/*<Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />*/}
         {isLoading ? (
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             <LoadingComponent />
@@ -190,9 +223,8 @@ export default class Storagepool extends React.Component {
             itemActions={this.itemActions}
             columns={this.getColumns()}
             // searchType="name"
-            placeholder={t('SEARCH_BY_STORAGEPOOL')}
-            // hideSearch={true}
-            rowKey="uniqueID"
+            hideSearch={true}
+            // placeholder={t('SEARCH_BY_LRESOURCE')}
           />
         )}
       </ListPage>

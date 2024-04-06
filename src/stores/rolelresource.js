@@ -61,7 +61,7 @@ export default class LResourceStore extends Base {
       params.page = 1
     }
     params.limit = params.limit || 10
-
+    delete params.name
     const result = await request.get(this.getResourceUrl(), {
       ...params,
     })

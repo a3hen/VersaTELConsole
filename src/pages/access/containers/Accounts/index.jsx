@@ -199,6 +199,7 @@ export default class Accounts extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    console.log("table_actions",this.tableActions)
     return (
       <ListPage {...this.props}>
         <Banner {...bannerProps} tabs={this.tabs} />

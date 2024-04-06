@@ -18,7 +18,6 @@
 
 import AccountDetail from '../containers/Accounts/Detail'
 import RoleDetail from '../containers/Roles/Detail'
-// import MultitenancyDetail from '../containers/Multitenancy/Detail'
 
 const PATH = '/access'
 
@@ -31,8 +30,4 @@ export default [
     path: `${PATH}/roles/:name`,
     component: RoleDetail,
   },
-  // {
-  //   path: `${PATH}/multitenancy/:name`,
-  //   component: MultitenancyDetail,
-  // },
 ]
