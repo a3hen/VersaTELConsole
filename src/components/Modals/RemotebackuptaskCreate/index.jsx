@@ -143,6 +143,7 @@ export default class RemoteBackup1ClusterCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
+    console.log("create_props",this.props)
 
 
     const data = [
