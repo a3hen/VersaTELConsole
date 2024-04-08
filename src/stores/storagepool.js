@@ -25,8 +25,15 @@ import List from 'stores/base.list'
 export default class StoragepoolStore extends Base {
   StoragepoolTemplates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool`
+  getResourceUrl = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
+
 
   getListUrl = this.getResourceUrl
 
@@ -47,6 +54,12 @@ export default class StoragepoolStore extends Base {
     ...params
   } = {}) {
     this.list.isLoading = true
+    const role = globals.user.globalrole
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
+    console.log("mmmmrole",globals.user.globalrole)
 
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
@@ -58,9 +71,7 @@ export default class StoragepoolStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     // const result = {
     //   code: 0,
@@ -128,9 +139,14 @@ export default class StoragepoolStore extends Base {
   async fetchStoragepoolTemplates() {
     this.StoragepoolTemplates.isLoading = true
 
-    const result = await request.get(
-      `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool`
-    )
+    const role = globals.user.globalrole
+    const params = role === 'platform-admin' ? {} : { role: role }
+    const queryString = Object.entries(params)
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    const url = `/kapis/versatel.kubesphere.io/v1alpha1/versasdsstoragepool${queryString ? `?${queryString}` : ''}`
+
+    const result = await request.get(url)
     const allData = get(result, 'data', [])
     const data = allData.map(item => {
       item.uniqueID = item.name.concat('-', item.node)

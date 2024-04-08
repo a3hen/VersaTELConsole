@@ -26,8 +26,14 @@ import { Notify } from '@kube-design/components'
 export default class DisklessResourceStore extends Base {
   DisklessResourceTemplates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
+  getResourceUrl = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
 
   getListUrl = this.getResourceUrl
 
@@ -45,6 +51,11 @@ export default class DisklessResourceStore extends Base {
     ...params
   } = {}) {
     this.list.isLoading = true
+    const role = globals.user.globalrole
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
 
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
@@ -56,9 +67,7 @@ export default class DisklessResourceStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     // const result = {
     //   code: 0,

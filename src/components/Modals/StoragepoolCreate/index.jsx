@@ -24,7 +24,7 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_SP_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
+import { PATTERN_VTEL_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 // import StoragepoolStore from 'stores/storagepool'
@@ -249,7 +249,7 @@ export default class StoragepoolCreateModal extends React.Component {
           rules={[
             { required: true, message: t('Please input Storagepool name') },
             {
-              pattern: PATTERN_SP_NAME,
+              pattern: PATTERN_VTEL_NAME,
               message: t('Invalid name', { message: t('VTEL_NAME_DESC') }),
             },
             // { validator: this.SPNameValidator },

@@ -127,29 +127,29 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log("data",data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          //
-          // request
-          //   .post(
-          //     `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`,
-          //     data
-          //   )
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Created Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Created Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/allocatesp`,
+              data
+            )
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              // success && success()
+            })
+          Modal.close(modal)
         },
         modal: RoleSpAuthorityModal,
         store,
@@ -168,29 +168,29 @@ export default {
       const modal = Modal.open({
         onOk: data => {
           console.log("data",data)
-          // if (!data) {
-          //   Modal.close(modal)
-          //   return
-          // }
-          //
-          // request
-          //   .post(
-          //     `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskless`,
-          //     data
-          //   )
-          //   .then(res => {
-          //     // Modal.close(modal)
-          //
-          //     if (Array.isArray(res)) {
-          //       Notify.error({
-          //         content: `${t('Created Failed, Reason:')}${res[0].message}`,
-          //       })
-          //     } else {
-          //       Notify.success({ content: `${t('Created Successfully')}` })
-          //     }
-          //     success && success()
-          //   })
-          // Modal.close(modal)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          const url =
+            data.operater === 'add'
+              ? `/kapis/versatel.kubesphere.io/v1alpha1/allocateres`
+              : 'www.baidu.com'
+
+          request.post(url, data).then(res => {
+            // Modal.close(modal)
+
+            if (Array.isArray(res)) {
+              Notify.error({
+                content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('Operation Successfully')}` })
+            }
+            success && success()
+          })
+          Modal.close(modal)
         },
         modal: RoleRAuthorityModal,
         store,

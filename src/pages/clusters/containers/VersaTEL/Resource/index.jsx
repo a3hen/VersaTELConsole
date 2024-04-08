@@ -54,6 +54,7 @@ export default class LResource extends React.Component {
     this.props.tableProps.tableActions.onFetch({
       silent: true,
       silent_flag: silent_flag,
+      role: globals.user.globalrole,
     })
   }
 

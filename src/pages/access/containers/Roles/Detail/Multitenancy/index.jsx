@@ -28,6 +28,8 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { ICON_TYPES } from 'utils/constants'
 import VStatus from 'clusters/components/VtelStatus'
 import LResourceStore from 'stores/rolelresource'
+import { Notify } from "@kube-design/components";
+import { data } from "autoprefixer";
 
 @withList({
   store: new LResourceStore(),
@@ -37,12 +39,13 @@ import LResourceStore from 'stores/rolelresource'
 })
 export default class LResource extends React.Component {
   state = {
-    userPermissions: null, // 添加一个状态来保存用户权限信息
+    sp_permission: null,
   }
 
   componentDidMount() {
-    this.fetchData(true) // Pass true for the initial fetch
-    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
+    this.fetchData(true)
+    this.fetchData1()
+    this.interval = setInterval(() => this.fetchData(false), 3000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
@@ -57,35 +60,42 @@ export default class LResource extends React.Component {
     })
   }
 
+  fetchData1 = () => {
+    const r_data = {
+      role: this.props.match.params.name,
+    }
+    request
+      .post(
+        `/kapis/versatel.kubesphere.io/v1alpha1/sppermissions`,
+        r_data
+      )
+      .then(res => {
+        if (Array.isArray(res)) {
+          Notify.error({
+            content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+          })
+        } else {
+          // Notify.success({ content: `${t('Operation Successfully')}` })
+          this.setState({ sp_permission: res.data[0].storagepool })
+        }
+      })
+  }
+
   get itemActions() {
     const { name, trigger, routing, store } = this.props
     return [
       {
         key: 'grant',
         icon: 'pen',
-        text: t('grant'),
+        text: t('grant/revoke'),
         action: 'edit',
         show: true,
         onClick: item => {
           trigger('role.resource', {
             LResourceTemplates: toJS(store.LResourceTemplates.data),
             // success: getData,
-            name: item?.name,
-            data: item,
-          })
-        },
-      },
-      {
-        key: 'revoke',
-        icon: 'pen',
-        text: t('revoke'),
-        action: 'edit',
-        show: true,
-        onClick: item => {
-          trigger('role.resource', {
-            LResourceTemplates: toJS(store.LResourceTemplates.data),
-            // success: getData,
-            name: item?.name,
+            select_role: this.props.match.params.name,
+            data: item.name,
           })
         },
       },
@@ -119,25 +129,14 @@ export default class LResource extends React.Component {
         {
           key: 'grant',
           type: 'primary',
-          text: t('GRANT'),
+          text: t('GRANT/REVOKE'),
           action: 'edit',
           onClick: () =>
             trigger('role.resource', {
               type: 'LResource',
               rowKey: 'name',
               data: this.props.tableProps.selectedRowKeys,
-              success: routing.query,
-            }),
-        },
-        {
-          key: 'revoke',
-          type: 'default',
-          text: t('REVOKE'),
-          action: 'edit',
-          onClick: () =>
-            trigger('role.resource', {
-              type: 'LResource',
-              rowKey: 'name',
+              select_role: this.props.match.params.name,
               success: routing.query,
             }),
         },
@@ -194,11 +193,12 @@ export default class LResource extends React.Component {
     const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
     const match = error?.match(ipPortRegex)
     const ipPort = match ? match[0] : ''
-    console.log('userrrrr: ', globals.user.username)
-    console.log("rols",globals.user.globalrole)
-    console.log("globals.user",globals.user)
-    console.log("state",this.state)
+    // console.log('userrrrr: ', globals.user.username)
+    // console.log("rols",globals.user.globalrole)
+    // console.log("globals.user",globals.user)
+    // console.log("state",this.state)
     console.log("resource.props",this.props)
+    console.log("resource.state",this.state)
 
     const LoadingComponent = () => (
       <div style={{ textAlign: 'center' }}>
@@ -206,6 +206,10 @@ export default class LResource extends React.Component {
         <p>无法连接至controller ip：{ipPort}</p>
       </div>
     )
+
+    if (this.state.sp_permission !== "1") {
+      return <div>此角色没有被分配存储池操作的权限</div>
+    }
 
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)

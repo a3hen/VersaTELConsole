@@ -26,7 +26,14 @@ import List from 'stores/base.list'
 export default class SnapshotStore extends Base {
   SnapshotTemplates = new List()
 
-  getSnapshotUrl = () => `/kapis/versatel.kubesphere.io/v1alpha1/snapshot`
+  getResourceUrl = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/snapshot`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
 
   getListUrl = this.getSnapshotUrl
 
@@ -45,6 +52,11 @@ export default class SnapshotStore extends Base {
     silent,
     ...params
   } = {}) {
+    const role = globals.user.globalrole
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
     if (silent_flag === true) {
       this.list.isLoading = true
     } else {
@@ -61,9 +73,7 @@ export default class SnapshotStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getSnapshotUrl(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     const rawData = get(result, 'data', [])
     let data

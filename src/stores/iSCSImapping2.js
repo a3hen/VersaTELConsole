@@ -26,8 +26,14 @@ import List from 'stores/base.list'
 export default class iSCSIMapping2Store extends Base {
   iSCSIMapping2Templates = new List()
 
-  getiSCSIMapping2Url = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/mapping`
+  getiSCSIMapping2Url = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/mapping`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
 
   getListUrl = this.getiSCSIMappingUrl
 
@@ -46,6 +52,11 @@ export default class iSCSIMapping2Store extends Base {
     silent,
     ...params
   } = {}) {
+    const role = globals.user.globalrole
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
     if (silent_flag === true) {
       this.list.isLoading = true
     } else {
@@ -62,9 +73,7 @@ export default class iSCSIMapping2Store extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getiSCSIMapping2Url(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     const rawData = get(result, 'data', [])
     let data

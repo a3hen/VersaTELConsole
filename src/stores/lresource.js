@@ -26,8 +26,14 @@ import List from 'stores/base.list'
 export default class LResourceStore extends Base {
   LResourceTemplates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
+  getResourceUrl = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
 
   getListUrl = this.getResourceUrl
 
@@ -44,9 +50,13 @@ export default class LResourceStore extends Base {
     more,
     silent_flag,
     silent,
-    role_flag,
+    role,
     ...params
   } = {}) {
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
     if (silent_flag === true) {
       this.list.isLoading = true
     } else {
@@ -55,6 +65,7 @@ export default class LResourceStore extends Base {
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     // }
+    console.log("store_role",role)
 
     if (params.limit === Infinity || params.limit === -1) {
       params.limit = -1
@@ -62,9 +73,7 @@ export default class LResourceStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
     // const data = get(result, 'data', [])
     const rawData = get(result, 'data', [])
     let data

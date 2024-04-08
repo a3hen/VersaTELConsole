@@ -65,7 +65,11 @@ export default class LResourceCreateModal extends React.Component {
   }
 
   handleCreate = LResourceTemplates => {
-    const dataToSubmit = { ...this.props.formTemplate, ...LResourceTemplates }
+    const dataToSubmit = {
+      ...this.props.formTemplate,
+      ...LResourceTemplates,
+      role: this.props.detail.name,
+    }
     // set(
     //   this.props.formTemplate,
     //   // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -113,6 +117,7 @@ export default class LResourceCreateModal extends React.Component {
 
   render() {
     const { visible, onCancel, formTemplate } = this.props
+    console.log("sp_props",this.props)
 
     const title = 'Granting sp permissions'
 
@@ -135,10 +140,10 @@ export default class LResourceCreateModal extends React.Component {
           // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select
-            name="role"
+            name="storagepool"
             options={[
-              { label: '是', value: true },
-              { label: '否', value: false },
+              { label: '是', value: '1' },
+              { label: '否', value: '0' },
             ]}
             searchable={false}
             clearable={false}
