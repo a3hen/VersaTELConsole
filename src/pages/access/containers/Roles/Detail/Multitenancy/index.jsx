@@ -87,7 +87,7 @@ export default class LResource extends React.Component {
       {
         key: 'grant',
         icon: 'pen',
-        text: t('grant/revoke'),
+        text: t('赋权'),
         action: 'edit',
         show: true,
         onClick: item => {
@@ -129,7 +129,7 @@ export default class LResource extends React.Component {
         {
           key: 'grant',
           type: 'primary',
-          text: t('GRANT/REVOKE'),
+          text: t('赋权'),
           action: 'edit',
           onClick: () =>
             trigger('role.resource', {

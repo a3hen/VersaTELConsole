@@ -72,7 +72,7 @@ export default class SnapshotStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
+    const result = await request.get(this.getSnapshotUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     const rawData = get(result, 'data', [])
     let data

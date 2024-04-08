@@ -34,6 +34,7 @@ module.exports = {
   VIEW_DETAILS: '查看详情',
   // Cluster Gateway > Manage > Disable
   DISABLE: '禁用',
+  "GR"
   DISABLE_GATEWAY: '禁用网关',
   DISABLE_GATEWAY_TIP: '您确定禁用网关吗？',
   DISABLE_SUCCESSFUL: '禁用成功。',

@@ -124,7 +124,7 @@ export default class LResourceCreateModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
     console.log("r_proos",this.props)
 
-    const title = 'Granting Resource permissions'
+    const title = '资源赋权'
 
     return (
       <Modal.Form
@@ -151,9 +151,9 @@ export default class LResourceCreateModal extends React.Component {
           </div>
         )}
         <Form.Item
-          label={t('R_PERMISSIONS')}
+          label={t('权限操作')}
           desc={t(
-            'Please choose whether to grant the current role control permissions for resources'
+            '请选择需要对已选择的资源进行的操作'
           )}
           // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
@@ -161,7 +161,7 @@ export default class LResourceCreateModal extends React.Component {
             name="operater"
             options={[
               { label: '赋权', value: "add" },
-              { label: '解权', value: "delete" },
+              // { label: '解权', value: "delete" },
             ]}
             searchable={false}
             clearable={false}

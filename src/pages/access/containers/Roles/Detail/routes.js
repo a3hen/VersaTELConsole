@@ -39,7 +39,7 @@ export default [
   },
   {
     path: `${PATH}/multitenancy`,
-    title: 'resources',
+    title: '资源',
     component: Multitenancy,
     exact: true,
   },

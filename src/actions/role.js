@@ -147,7 +147,7 @@ export default {
               } else {
                 Notify.success({ content: `${t('Operation Successfully')}` })
               }
-              // success && success()
+              success && success()
             })
           Modal.close(modal)
         },

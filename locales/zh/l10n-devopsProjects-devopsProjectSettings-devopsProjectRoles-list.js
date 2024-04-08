@@ -30,7 +30,10 @@ module.exports = {
   // List > Edit Permissions
   // List > Create
   EDIT_PERMISSIONS: '编辑权限',
+  EDIT_SP_AUTHORITY: '编辑存储池权限',
   CREATE_ROLE: '创建角色',
+  grant: '赋权',
+  GRANT: '赋权',
   // List > Create > Edit Permissions
   CATEGORIES: '分类',
   // List > Create > Edit Permissions > Pipeline Management

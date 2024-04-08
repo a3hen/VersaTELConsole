@@ -119,7 +119,7 @@ export default class LResourceCreateModal extends React.Component {
     const { visible, onCancel, formTemplate } = this.props
     console.log("sp_props",this.props)
 
-    const title = 'Granting sp permissions'
+    const title = '存储池赋权'
 
     return (
       <Modal.Form
@@ -133,17 +133,17 @@ export default class LResourceCreateModal extends React.Component {
         visible={visible}
       >
         <Form.Item
-          label={t('SP_PERMISSIONS')}
+          label={t('存储池权限操作')}
           desc={t(
-            'Please choose whether to grant the current role control permissions for all storage pools'
+            '请选择需要对已选择的角色对所有存储池的权限操作'
           )}
           // rules={[{ required: true, message: t('Please select VersaSDS Node') }]}
         >
           <Select
             name="storagepool"
             options={[
-              { label: '是', value: '1' },
-              { label: '否', value: '0' },
+              { label: '赋权', value: '1' },
+              { label: '解权', value: '0' },
             ]}
             searchable={false}
             clearable={false}

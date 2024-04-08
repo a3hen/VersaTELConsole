@@ -73,7 +73,7 @@ export default class iSCSIMapping2Store extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
+    const result = await request.get(this.getiSCSIMapping2Url({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     const rawData = get(result, 'data', [])
     let data
