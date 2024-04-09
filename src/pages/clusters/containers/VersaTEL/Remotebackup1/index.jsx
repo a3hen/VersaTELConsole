@@ -49,6 +49,7 @@ import RemoteBackupStore1 from 'stores/remotebackup1'
 export default class Remotebackup1 extends React.Component {
   componentDidMount() {
     this.fetchData(true) // Pass true for the initial fetch
+    this.fetchData1()
     this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
@@ -61,6 +62,20 @@ export default class Remotebackup1 extends React.Component {
       silent: true,
       silent_flag: silent_flag,
     })
+  }
+
+  fetchData1 = async () => {
+    const url = '/kapis/versatel.kubesphere.io/v1alpha1/schedule?limit=888'
+    try {
+      const response = await fetch(url)
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+      this.setState({ all_data: data.data })
+    } catch (error) {
+      console.error('Fetching data failed:', error)
+    }
   }
 
   showAction = record => !record.isFedManaged
@@ -187,7 +202,7 @@ export default class Remotebackup1 extends React.Component {
   showCreate = () =>
     this.props.trigger('rb_task.create', {
       ...this.props.match.params,
-      data: this.props.tableProps.data,
+      data: this.state.all_data,
       success: () => this.props.getData,
     })
 
@@ -207,6 +222,8 @@ export default class Remotebackup1 extends React.Component {
 
     // 检查store中的数据是否包含error属性
     const isLoading = tableProps.data.some(item => item.error)
+
+    console.log("state",this.state)
 
     return (
       <ListPage {...this.props} module="namespaces">
@@ -231,4 +248,3 @@ export default class Remotebackup1 extends React.Component {
     )
   }
 }
-
