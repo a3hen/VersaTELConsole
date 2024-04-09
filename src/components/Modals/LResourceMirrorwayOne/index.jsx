@@ -110,7 +110,10 @@ export default class LResourceCreateModal extends React.Component {
   }
 
   get storagepools() {
-    const storagepools = this.storagepoolStore.list.data.map(storagepool => ({
+    const storage_data = this.storagepoolStore.list.data.filter(storagepool => {
+      return storagepool.status === "OK" && storagepool.totalCapacity !== "0.00 KiB";
+    })
+    const storagepools = storage_data.map(storagepool => ({
       // label: storagepool.name.concat(' - ', storagepool.node),
       label: storagepool.uniqueID,
       value: [storagepool.name, storagepool.node],
@@ -231,7 +234,7 @@ export default class LResourceCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="resource"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

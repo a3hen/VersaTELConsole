@@ -64,36 +64,36 @@ export default class NodeDetail extends React.Component {
     const { unschedulable } = this.store.detail
 
     return [
-      {
-        key: 'cordon',
-        type: unschedulable ? 'control' : 'danger',
-        text: unschedulable ? t('UNCORDON') : t('CORDON'),
-        action: 'edit',
-        onClick: this.handleCordon,
-      },
-      {
-        key: 'eidtLabel',
-        icon: 'pen',
-        text: t('EDIT_LABELS'),
-        action: 'edit',
-        onClick: () =>
-          this.trigger('node.labels', {
-            title: t('LABEL_PL'),
-            detail: this.store.detail,
-            success: this.fetchData,
-          }),
-      },
-      {
-        key: 'taintManagement',
-        icon: 'wrench',
-        text: t('EDIT_TAINTS'),
-        action: 'edit',
-        onClick: () =>
-          this.trigger('node.taint', {
-            detail: this.store.detail,
-            success: this.fetchData,
-          }),
-      },
+      // {
+      //   key: 'cordon',
+      //   type: unschedulable ? 'control' : 'danger',
+      //   text: unschedulable ? t('UNCORDON') : t('CORDON'),
+      //   action: 'edit',
+      //   onClick: this.handleCordon,
+      // },
+      // {
+      //   key: 'eidtLabel',
+      //   icon: 'pen',
+      //   text: t('EDIT_LABELS'),
+      //   action: 'edit',
+      //   onClick: () =>
+      //     this.trigger('node.labels', {
+      //       title: t('LABEL_PL'),
+      //       detail: this.store.detail,
+      //       success: this.fetchData,
+      //     }),
+      // },
+      // {
+      //   key: 'taintManagement',
+      //   icon: 'wrench',
+      //   text: t('EDIT_TAINTS'),
+      //   action: 'edit',
+      //   onClick: () =>
+      //     this.trigger('node.taint', {
+      //       detail: this.store.detail,
+      //       success: this.fetchData,
+      //     }),
+      // },
     ]
   }
 

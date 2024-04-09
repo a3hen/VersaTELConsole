@@ -26,6 +26,7 @@ import classnames from 'classnames'
 import { ICON_TYPES } from 'utils/constants'
 
 import Tip from './Tip'
+import STip from './sTip'
 import Navs from './Navs'
 import Tabs from './Tabs'
 
@@ -39,6 +40,7 @@ export default class Banner extends React.Component {
     icon: PropTypes.string,
     module: PropTypes.string,
     tips: PropTypes.array,
+    stips: PropTypes.array,
     routes: PropTypes.array,
     tabs: PropTypes.object,
     extra: PropTypes.node,
@@ -46,6 +48,7 @@ export default class Banner extends React.Component {
 
   static defaultProps = {
     tips: [],
+    stips: [],
     tabs: {},
     routes: [],
   }
@@ -95,6 +98,24 @@ export default class Banner extends React.Component {
     )
   }
 
+  rendersTips(stips) {
+    return (
+      <div className={styles.tips}>
+        {stips
+          .filter(tip => !this.hiddenTips.includes(tip.title))
+          .map((tip, index) => (
+            <STip
+              key={index}
+              {...tip}
+              onClose={this.handleClose}
+              onToggle={this.handleToggle}
+              open={tip.title === this.state.openTip}
+            />
+          ))}
+      </div>
+    )
+  }
+
   render() {
     const {
       className,
@@ -103,6 +124,7 @@ export default class Banner extends React.Component {
       icon,
       module,
       tips,
+      stips,
       tabs,
       extra,
       routes,
@@ -134,6 +156,7 @@ export default class Banner extends React.Component {
         {!isEmpty(tabs) && <Tabs tabs={tabs} />}
         {extra}
         {!isEmpty(tips) && this.renderTips(tips)}
+        {!isEmpty(stips) && this.rendersTips(stips)}
       </div>
     )
   }

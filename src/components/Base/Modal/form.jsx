@@ -40,10 +40,12 @@ export default class ModalForm extends React.Component {
       onOk,
       cancelText,
       okText,
+      okButtonType,
       isSubmitting,
       bodyClassName,
       formClassName,
       disableOk,
+      onClose,
       ...rest
     } = this.props
 
@@ -52,6 +54,7 @@ export default class ModalForm extends React.Component {
         {...rest}
         bodyClassName={classnames(styles.formBody, bodyClassName)}
         onCancel={onCancel}
+        onClose={onClose || onCancel}
         hideFooter
       >
         <Form ref={formRef} data={data} onSubmit={onOk}>
@@ -68,7 +71,7 @@ export default class ModalForm extends React.Component {
                 {cancelText || t('CANCEL')}
               </Button>
               <Button
-                type="control"
+                type={okButtonType || 'control'}
                 htmlType="submit"
                 loading={isSubmitting}
                 disabled={disableOk || isSubmitting}

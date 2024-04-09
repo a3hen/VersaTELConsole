@@ -28,6 +28,7 @@ import withList, { ListPage } from 'components/HOCs/withList'
 import { ICON_TYPES } from 'utils/constants'
 import VStatus from 'clusters/components/VtelStatus'
 import LResourceStore from 'stores/lresource'
+import UserStore from 'stores/user'
 
 @withList({
   store: new LResourceStore(),
@@ -36,16 +37,25 @@ import LResourceStore from 'stores/lresource'
   name: 'LResource',
 })
 export default class LResource extends React.Component {
+  state = {
+    userPermissions: null, // 添加一个状态来保存用户权限信息
+  }
+
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 5000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+      role: globals.user.globalrole,
+    })
   }
 
   showAction(record) {
@@ -67,7 +77,7 @@ export default class LResource extends React.Component {
         // // success: getData,
         // })
         key: 'diskless',
-        icon: 'trash',
+        icon: 'pen',
         text: t('choose_diskless_node'),
         action: 'delete',
         show: true,
@@ -81,7 +91,7 @@ export default class LResource extends React.Component {
       },
       {
         key: 'mirrorway',
-        icon: 'trash',
+        icon: 'pen',
         text: t('Choose mirrorway numbers'),
         action: 'delete',
         show: true,
@@ -117,10 +127,10 @@ export default class LResource extends React.Component {
     return {
       ...tableProps.tableActions,
       onCreate: this.showCreate,
-      // getCheckboxProps: record => ({
-      //   disabled: this.showAction(record),
-      //   name: record.name,
-      // }),
+      getCheckboxProps: record => ({
+        disabled: this.showAction(record),
+        name: record.name,
+      }),
       selectActions: [
         {
           key: 'delete',
@@ -197,18 +207,42 @@ export default class LResource extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const error = tableProps.data[0]?.error
+    const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
+    const match = error?.match(ipPortRegex)
+    const ipPort = match ? match[0] : ''
+    console.log('userrrrr: ', globals.user.username)
+    console.log("rols",globals.user.globalrole)
+    console.log("globals.user",globals.user)
+    console.log("state",this.state)
+    console.log("props",this.props)
 
+    const LoadingComponent = () => (
+      <div style={{ textAlign: 'center' }}>
+        <strong style={{ fontSize: '20px' }}>Loading...</strong>
+        <p>无法连接至controller ip：{ipPort}</p>
+      </div>
+    )
+
+    // 检查store中的数据是否包含error属性
+    const isLoading = tableProps.data.some(item => item.error)
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Resource')} />
-        <Table
-          {...tableProps}
-          tableActions={this.tableActions}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          searchType="name"
-          placeholder={t('SEARCH_BY_LRESOURCE')}
-        />
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <LoadingComponent />
+          </div>
+        ) : (
+          <Table
+            {...tableProps}
+            tableActions={this.tableActions}
+            itemActions={this.itemActions}
+            columns={this.getColumns()}
+            searchType="name"
+            placeholder={t('SEARCH_BY_LRESOURCE')}
+          />
+        )}
       </ListPage>
     )
   }

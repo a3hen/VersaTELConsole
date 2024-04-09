@@ -27,10 +27,10 @@ import { Modal } from 'components/Base'
 import { PATTERN_VTEL_NAME, PATTERN_SP_VOL_NAME } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
-import StoragepoolStore from 'stores/storagepool'
-import VGResourceStore from 'stores/vgresource'
-import TPResourceStore from 'stores/tpresource'
-import LResourceStore from 'stores/lresource'
+// import StoragepoolStore from 'stores/storagepool'
+// import VGResourceStore from 'stores/vgresource'
+// import TPResourceStore from 'stores/tpresource'
+// import LResourceStore from 'stores/lresource'
 
 @observer
 export default class StoragepoolCreateModal extends React.Component {
@@ -58,21 +58,26 @@ export default class StoragepoolCreateModal extends React.Component {
     super(props)
 
     this.linstornodeStore = new LNodeStore()
-    this.linstorresourceStore = new LResourceStore()
-    this.tpsStore = new TPResourceStore()
-    this.vgsStore = new VGResourceStore()
-    this.spStore = new StoragepoolStore()
+    // this.linstorresourceStore = new LResourceStore()
+    // this.tpsStore = new TPResourceStore()
+    // this.vgsStore = new VGResourceStore()
+    // this.spStore = new StoragepoolStore()
 
     this.fetchNodes()
-    this.fetchResource()
-    this.fetchVgs()
-    this.fetchTps()
-    this.fetchSps()
+    // this.fetchResource()
+    // this.fetchVgs()
+    // this.fetchTps()
+    // this.fetchSps()
   }
 
   state = {
     lvmType: 'LVM',
     selectedNode: null,
+    volumeName: '',
+  }
+
+  handleVolumeNameChange = (value) => {
+    this.setState({ volumeName: value })
   }
 
   handleLvmTypeChange = (value) => {
@@ -85,31 +90,31 @@ export default class StoragepoolCreateModal extends React.Component {
     })
   }
 
-  fetchResource = params => {
-    return this.linstorresourceStore.fetchList({
-      ...params,
-    })
-  }
+  // fetchResource = params => {
+  //   return this.linstorresourceStore.fetchList({
+  //     ...params,
+  //   })
+  // }
 
-  fetchSps = params => {
-    return this.spStore.fetchList({
-      ...params,
-    })
-  }
-
-  fetchVgs = params => {
-    return this.vgsStore.fetchList({
-      node: this.props.node,
-      ...params,
-    })
-  }
-
-  fetchTps = params => {
-    return this.tpsStore.fetchList({
-      name: this.props.name,
-      ...params,
-    })
-  }
+  // fetchSps = params => {
+  //   return this.spStore.fetchList({
+  //     ...params,
+  //   })
+  // }
+  //
+  // fetchVgs = params => {
+  //   return this.vgsStore.fetchList({
+  //     node: this.props.node,
+  //     ...params,
+  //   })
+  // }
+  //
+  // fetchTps = params => {
+  //   return this.tpsStore.fetchList({
+  //     name: this.props.name,
+  //     ...params,
+  //   })
+  // }
 
   get nodes() {
     const nodes = this.linstornodeStore.list.data.map(node => ({
@@ -119,36 +124,36 @@ export default class StoragepoolCreateModal extends React.Component {
     return nodes
   }
 
-  get vgs() {
-    const spNames = this.sps.map(sp => sp.poolName)
-    const new_list = this.vgsStore.list.data.filter(node => node.node === this.state.selectedNode && !spNames.includes(node.vg));
-    const vgs = new_list.map(node => ({
-      label: node.vg,
-      value: node.vg,
-    }))
-    return vgs
-  }
+  // get vgs() {
+  //   const spNames = this.sps.map(sp => sp.poolName)
+  //   const new_list = this.vgsStore.list.data.filter(node => node.node === this.state.selectedNode && !spNames.includes(node.vg));
+  //   const vgs = new_list.map(node => ({
+  //     label: node.vg,
+  //     value: node.vg,
+  //   }))
+  //   return vgs
+  // }
+  //
+  // get tps() {
+  //   const sppoolname = this.sps.map(sp => sp.poolName)
+  //   const new_list = this.tpsStore.list.data.filter(node => node.node === this.state.selectedNode);
+  //   const tps = new_list.map(node => ({
+  //     label: node.vg + '/' + node.name,
+  //     value: node.vg + '/' + node.name,
+  //     vg: node.vg,
+  //   }))
+  //   const new_tps = tps.filter(tp => !sppoolname.includes(tp.value))
+  //   return new_tps
+  // }
 
-  get tps() {
-    const sppoolname = this.sps.map(sp => sp.poolName)
-    const new_list = this.tpsStore.list.data.filter(node => node.node === this.state.selectedNode);
-    const tps = new_list.map(node => ({
-      label: node.vg + '/' + node.name,
-      value: node.vg + '/' + node.name,
-      vg: node.vg,
-    }))
-    const new_tps = tps.filter(tp => !sppoolname.includes(tp.value))
-    return new_tps
-  }
-
-  get sps() {
-    const new_list = this.spStore.list.data.filter(node => node.node === this.state.selectedNode);
-    const sps = new_list.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
-    return new_list
-  }
+  // get sps() {
+  //   const new_list = this.spStore.list.data.filter(node => node.node === this.state.selectedNode);
+  //   const sps = new_list.map(node => ({
+  //     label: node.name,
+  //     value: node.name,
+  //   }))
+  //   return new_list
+  // }
 
   handleCreate = LNodeTemplates => {
     set(
@@ -159,8 +164,22 @@ export default class StoragepoolCreateModal extends React.Component {
     this.props.onOk(this.props.formTemplate)
   }
 
+  validateVolumeName = (rule, value, callback) => {
+    const lvmType = this.props.formTemplate.type // 获取'LVM Type'的值
+    let pattern = PATTERN_SP_NAME // 默认的pattern
+    let message = 'VTEL_LVM_DESC' // 默认的message
 
+    if (lvmType === 'LVM THIN') {
+      pattern = PATTERN_SP_VOL_NAME // 如果'LVM Type'是'LVM THIN'，则使用另一个pattern
+      message = 'VTEL_THINLVM_DESC' // 如果'LVM Type'是'LVM THIN'，则使用另一个message
+    }
 
+    if (!pattern.test(value)) {
+      callback(t('Invalid name', { message: t(message) }))
+    } else {
+      callback()
+    }
+  }
 
   // SPNameValidator = (rule, value, callback) => {
   //   if (!value) {
@@ -224,7 +243,6 @@ export default class StoragepoolCreateModal extends React.Component {
         okText={t('OK')}
         visible={visible}
       >
-
         <Form.Item
           label={t('Name')}
           desc={t('VTEL_NAME_DESC')}
@@ -267,22 +285,24 @@ export default class StoragepoolCreateModal extends React.Component {
             options={lvmType}
             defaultValue="LVM"
             clearable
-            onChange={this.handleLvmTypeChange}
+            disabled={this.state.volumeName !== ''}
+            // onChange={this.handleLvmTypeChange}
           />
         </Form.Item>
         <Form.Item
           label={t('Volume name')}
           desc={t('LVM_VOLUME_NAME_DESC')}
           rules={[
-            { required: true, message: t('Please select Volume name') },
+            { required: true, message: t('Please input Volume name') },
+            { validator: this.validateVolumeName },
           ]}
         >
-          <Select
+          <Input
             name="volume"
-            options={volumeOptions}
-            onFetch={this.fetchVgs}
-            searchable
-            clearable
+            maxLength={63}
+            placeholder="name"
+            value={this.state.volumeName}
+            onChange={this.handleVolumeNameChange}
           />
         </Form.Item>
         {/*<Form.Item*/}

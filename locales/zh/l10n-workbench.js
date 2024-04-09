@@ -19,8 +19,10 @@ module.exports = {
   // Head
   DASHBOARD_TITLE: '您好 {username}',
   LAST_LOGIN_TIME: '最后登录时间：',
-  USER_DASHBOARD_EMPTY_TITLE: '您不属于任何企业空间',
-  USER_DASHBOARD_EMPTY_DESC: '请联系企业空间管理员邀请您加入企业空间中。',
+  // USER_DASHBOARD_EMPTY_TITLE: '您不属于任何企业空间',
+  USER_DASHBOARD_EMPTY_TITLE: '平台信息',
+  // USER_DASHBOARD_EMPTY_DESC: '请联系企业空间管理员邀请您加入企业空间中。',
+  USER_DASHBOARD_EMPTY_DESC: '版本: 1.1.1',
   // Platform Information
   LAST_UPDATE_TIME: '最后更新时间',
   PLATFORM_VERSION: '平台版本',

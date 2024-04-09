@@ -103,14 +103,30 @@ export default class Roles extends React.Component {
         title: t('NAME'),
         dataIndex: 'name',
         width: '25%',
-        render: (name, record) => (
-          <Avatar
-            icon={ICON_TYPES[module]}
-            to={`/access/roles/${name}`}
-            title={name}
-            desc={record.aliasName}
-          />
-        ),
+        render: (name, record) => {
+          const isPlatformAdmin = globals.user.globalrole === 'platform-admin';
+          if (isPlatformAdmin) {
+            return (
+              <Avatar
+                icon={ICON_TYPES[module]}
+                to={`/access/roles/${name}`}
+                title={name}
+                desc={record.aliasName}
+              />
+            )
+          } else {
+            return (
+              <div style={{ color: '#ccc' }}>
+                <Avatar
+                  icon={ICON_TYPES[module]}
+                  title={name}
+                  desc={record.aliasName}
+                  noLink={true} // 确保不会渲染为链接
+                />
+              </div>
+            )
+          }
+        },
       },
       {
         title: t('DESCRIPTION'),

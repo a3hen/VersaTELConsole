@@ -20,6 +20,7 @@ import { getIndexRoute } from 'utils/router.config'
 
 import AuthorizationList from './AuthorizationList'
 import AuthorizedUsers from './AuthorizedUsers'
+import Multitenancy from './Multitenancy'
 
 const PATH = '/access/roles/:name'
 
@@ -34,6 +35,12 @@ export default [
     path: `${PATH}/users`,
     title: 'AUTHORIZED_USER_PL',
     component: AuthorizedUsers,
+    exact: true,
+  },
+  {
+    path: `${PATH}/multitenancy`,
+    title: '资源',
+    component: Multitenancy,
     exact: true,
   },
   getIndexRoute({ path: PATH, to: `${PATH}/authorizations`, exact: true }),

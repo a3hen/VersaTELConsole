@@ -29,6 +29,7 @@ import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
 import LNodeStore from 'stores/linstornode'
 import StoragepoolStore from 'stores/storagepool'
 import DisklessResourceStore from 'stores/disklessresource'
+import DiskfulResourceStore from 'stores/diskfulresource'
 
 @observer
 export default class LResourceCreateModal extends React.Component {
@@ -57,10 +58,12 @@ export default class LResourceCreateModal extends React.Component {
 
     this.linstornodeStore = new LNodeStore()
     this.storagepoolStore = new StoragepoolStore()
-    this.disklessresourceStore = new DisklessResourceStore()
+    // this.disklessresourceStore = new DisklessResourceStore()
+    this.diskfulresourceStore = new DiskfulResourceStore()
 
     this.fetchNodes()
     this.fetchStoragepools()
+    this.fetchDiskfulresources()
 
     // this.state = {
     //   unselectedNodes: {},
@@ -76,6 +79,12 @@ export default class LResourceCreateModal extends React.Component {
 
   fetchStoragepools = params => {
     return this.storagepoolStore.fetchList({
+      ...params,
+    })
+  }
+
+  fetchDiskfulresources = params => {
+    return this.diskfulresourceStore.fetchList({
       ...params,
     })
   }
@@ -101,10 +110,17 @@ export default class LResourceCreateModal extends React.Component {
   // }
 
   get nodes() {
-    const nodes = this.linstornodeStore.list.data.map(node => ({
-      label: node.name,
-      value: node.name,
-    }))
+    const diskfulNodes = this.diskfulresourceStore.list.data
+      .filter(resource => resource.name === this.props.name)
+      .map(resource => resource.node)
+
+    const nodes = this.linstornodeStore.list.data
+      .filter(node => !diskfulNodes.includes(node.name))
+      .map(node => ({
+        label: node.name,
+        value: node.name,
+      }))
+
     return nodes
   }
 
@@ -181,7 +197,7 @@ export default class LResourceCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="resource"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

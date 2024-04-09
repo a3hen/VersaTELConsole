@@ -87,7 +87,13 @@ export default class DiskfulResource extends React.Component {
       title: t('Conns'),
       dataIndex: 'conn',
       isHideable: true,
-      render: conn => <VStatus name={conn} />,
+      render: (status, record) => {
+        if (record.status === 'Unknow') {
+          return <VStatus name='Unknow' />
+        }
+        return <VStatus name={status} />
+      },
+      // render: conn => <VStatus name={conn} />,
     },
     {
       title: t('Status'),

@@ -149,6 +149,8 @@ export default {
           const resourceName = data.name
           data.metadata.name = resourceName
           delete data.name // 删除创建资源传递对象的name属性，并在metadata中将name属性更改为资源名
+          delete data.unit
+          delete data.number
 
           store.create(data).then(res => {
             // Modal.close(modal)
@@ -214,7 +216,6 @@ export default {
               }
             })
           )
-
           Modal.close(modal)
           // Notify.success({ content: t('DELETE_TIP_SUCCESSFUL') })
           store.setSelectRowKeys([])

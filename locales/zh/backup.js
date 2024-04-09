@@ -1,6 +1,6 @@
 module.exports = {
   Backup: '备份',
-  RESOUECEBACKUP_DESC: '提供可用于备份的 VersaSDS 集群资源，可进行快照备份',
+  RESOUECEBACKUP_DESC: '提供可用于备份的 VishinStor K3000 统一管理系统 集群资源，可进行快照备份',
   Snapshot: '快照',
   'Snapshot Restore': '快照恢复',
   Image: '映像',

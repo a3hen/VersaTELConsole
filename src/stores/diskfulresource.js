@@ -25,8 +25,14 @@ import List from 'stores/base.list'
 export default class DiskfulResourceStore extends Base {
   DiskfulResourceTemplates = new List()
 
-  getResourceUrl = () =>
-    `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful`
+  getResourceUrl = (params = {}) => {
+    const baseUrl = `/kapis/versatel.kubesphere.io/v1alpha1/versasdsresource/diskful`
+    const queryString = Object.entries(params)
+      .filter(([_, value]) => value !== undefined) // 过滤掉值为undefined的参数
+      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&')
+    return `${baseUrl}${queryString ? `?${queryString}` : ''}`
+  }
 
   getListUrl = this.getResourceUrl
 
@@ -45,6 +51,12 @@ export default class DiskfulResourceStore extends Base {
   } = {}) {
     this.list.isLoading = true
 
+    const role = globals.user.globalrole
+    if (!role) {
+      console.log("Role is undefined or empty, skipping fetch.",role)
+      return
+    }
+
     // if (!params.sortBy && params.ascending === undefined) {
     //   params.sortBy = LIST_DEFAULT_ORDER[this.module] || 'createTime'
     // }
@@ -55,9 +67,7 @@ export default class DiskfulResourceStore extends Base {
     }
     params.limit = params.limit || 10
 
-    const result = await request.get(this.getResourceUrl(), {
-      ...params,
-    })
+    const result = await request.get(this.getResourceUrl({ role: role === 'platform-admin' ? undefined : role, ...params }))
 
     // const result = {
     //   code: 0,
@@ -105,7 +115,8 @@ export default class DiskfulResourceStore extends Base {
     //   ],
     // }
 
-    const allData = get(result, 'data', [])
+    // const allData = get(result, 'data', [])
+    const allData = get(result, 'data', []).filter(item => !item.name.includes('pvc-'))
     const data = allData.map(item => {
       item.uniqueID = item.name.concat(' - ', item.node)
       return item
@@ -113,12 +124,7 @@ export default class DiskfulResourceStore extends Base {
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,
-      total:
-        result.count ||
-        result.totalItems ||
-        result.total_count ||
-        data.length ||
-        0,
+      total: data.length,
       ...params,
       limit: Number(params.limit) || 10,
       page: Number(params.page) || 1,

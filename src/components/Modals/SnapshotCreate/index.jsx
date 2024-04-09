@@ -68,6 +68,7 @@ export default class SnapshotCreateModal extends React.Component {
   fetchResource = params => {
     return this.LSnapshotStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
   // get nodes() {
@@ -126,7 +127,7 @@ export default class SnapshotCreateModal extends React.Component {
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="snapshot"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}

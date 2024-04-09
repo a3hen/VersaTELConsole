@@ -112,6 +112,20 @@ export default class RoleDetail extends React.Component {
           success: () => this.routing.push(this.listUrl),
         }),
     },
+    {
+      key: 'editAuthority',
+      icon: 'pen',
+      text: t('EDIT_SP_AUTHORITY'),
+      action: 'edit',
+      type: 'danger',
+      show: true,
+      onClick: () =>
+        this.trigger('role.sp', {
+          type: this.name,
+          detail: toJS(this.store.detail),
+          success: () => this.routing.push(this.listUrl),
+        }),
+    },
   ]
 
   getAttrs = () => {
@@ -135,6 +149,7 @@ export default class RoleDetail extends React.Component {
 
   render() {
     const stores = { detailStore: this.store }
+    console.log("detailstore",stores)
 
     if (this.store.isLoading && !this.store.detail.name) {
       return <Loading className="ks-page-loading" />

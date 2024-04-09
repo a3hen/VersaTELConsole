@@ -112,6 +112,7 @@ module.exports = {
   'half month ago': '半个月前',
   Healthy: '健康',
   healthy: '健康',
+  warning1: '异常',
   Hidden: '隐藏',
   History: '历史记录',
   Hours: '小时',

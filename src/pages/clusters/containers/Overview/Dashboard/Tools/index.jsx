@@ -44,33 +44,34 @@ export default class Tools extends Component {
   render() {
     const { cluster } = this.props
     return (
-      <Panel title={t('Tools')}>
-        <div className={styles.level}>
-          <div
-            className="margin-r12"
-            data-title="KubeCtl"
-            data-url={`/terminal/kubectl/${cluster}`}
-            onClick={this.handleTool}
-          >
-            <Text
-              icon="terminal"
-              title="kubectl"
-              description={t('KUBECTL_DESC')}
-            />
-          </div>
-          <div
-            data-title="KubeConfig"
-            data-url={`/clusters/${cluster}/kubeConfig`}
-            onClick={this.handleTool}
-          >
-            <Text
-              icon="data"
-              title="kubeconfig"
-              description={t('KUBECONFIG_DESC')}
-            />
-          </div>
-        </div>
-      </Panel>
+      <div></div>
+      // <Panel title={t('Tools')}>
+      //   <div className={styles.level}>
+      //     <div
+      //       className="margin-r12"
+      //       data-title="KubeCtl"
+      //       data-url={`/terminal/kubectl/${cluster}`}
+      //       onClick={this.handleTool}
+      //     >
+      //       <Text
+      //         icon="terminal"
+      //         title="kubectl"
+      //         description={t('KUBECTL_DESC')}
+      //       />
+      //     </div>
+      //     <div
+      //       data-title="KubeConfig"
+      //       data-url={`/clusters/${cluster}/kubeConfig`}
+      //       onClick={this.handleTool}
+      //     >
+      //       <Text
+      //         icon="data"
+      //         title="kubeconfig"
+      //         description={t('KUBECONFIG_DESC')}
+      //       />
+      //     </div>
+      //   </div>
+      // </Panel>
     )
   }
 }

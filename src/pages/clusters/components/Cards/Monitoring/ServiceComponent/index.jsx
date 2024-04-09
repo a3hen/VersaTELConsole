@@ -224,14 +224,15 @@ export default class ServiceComponentStatusTab extends React.Component {
     const { isLoading, isRefreshing } = this.schedulerStore
 
     return (
-      <StatusTabs
-        title={t('SERVICE_COMPONENT_MONITORING')}
-        tabOptions={this.getTabOptions()}
-        contentOptions={this.getContentOptions()}
-        loading={isLoading}
-        refreshing={isRefreshing}
-        onFetch={this.fetchData}
-      />
+      <div></div>
+      // <StatusTabs
+      //   title={t('SERVICE_COMPONENT_MONITORING')}
+      //   tabOptions={this.getTabOptions()}
+      //   contentOptions={this.getContentOptions()}
+      //   loading={isLoading}
+      //   refreshing={isRefreshing}
+      //   onFetch={this.fetchData}
+      // />
     )
   }
 }

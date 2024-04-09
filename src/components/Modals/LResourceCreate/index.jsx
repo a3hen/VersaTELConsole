@@ -24,7 +24,7 @@ import { Input, Form, Select } from '@kube-design/components'
 
 import { Modal } from 'components/Base'
 
-import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE } from 'utils/constants'
+import { PATTERN_VTEL_NAME, PATTERN_VTEL_SIZE, NEW_PATTERN_VTEL_SIZE  } from 'utils/constants'
 
 import LNodeStore from 'stores/linstornode'
 import StoragepoolStore from 'stores/storagepool'
@@ -64,17 +64,24 @@ export default class LResourceCreateModal extends React.Component {
     //   unselectedNodes: {},
     //   selectedNodes: [],
     // }
+    this.state = {
+      inputValue: '',
+      selectValue: 'GB',
+    }
+
   }
 
   fetchNodes = params => {
     return this.linstornodeStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
   fetchStoragepools = params => {
     return this.storagepoolStore.fetchList({
       ...params,
+      limit: 999,
     })
   }
 
@@ -107,7 +114,10 @@ export default class LResourceCreateModal extends React.Component {
   }
 
   get storagepools() {
-    const storagepools = this.storagepoolStore.list.data.map(storagepool => ({
+    const storage_data = this.storagepoolStore.list.data.filter(storagepool => {
+      return storagepool.status === "OK" && storagepool.totalCapacity !== "0.00 KiB";
+    })
+    const storagepools = storage_data.map(storagepool => ({
       // label: storagepool.name.concat(' - ', storagepool.node),
       label: storagepool.uniqueID,
       value: [storagepool.name, storagepool.node],
@@ -124,6 +134,11 @@ export default class LResourceCreateModal extends React.Component {
   // }
 
   handleCreate = LResourceTemplates => {
+    if (!this.state.inputValue) {
+      alert('请输入资源的大小！')
+      return
+    }
+    this.props.formTemplate.size = this.state.inputValue + this.state.selectValue
     set(
       this.props.formTemplate,
       // 'metadata.annotations["iam.kubesphere.io/aggregation-roles"]',
@@ -174,11 +189,32 @@ export default class LResourceCreateModal extends React.Component {
 
     const title = 'Create Resource'
 
+    const unitdata = [
+      {
+        label: 'MB',
+        value: 'MB',
+      },
+      {
+        label: 'GB',
+        value: 'GB',
+      },
+      {
+        label: 'TB',
+        value: 'TB',
+      },
+    ]
+
+    set(
+      this.props.formTemplate,
+      'size',
+      this.state.inputValue + this.state.selectValue
+    )
+
     return (
       <Modal.Form
         width={600}
         title={t(title)}
-        icon="database"
+        icon="resource"
         data={formTemplate}
         onCancel={onCancel}
         onOk={this.handleCreate}
@@ -201,16 +237,40 @@ export default class LResourceCreateModal extends React.Component {
         </Form.Item>
         <Form.Item
           label={t('Size')}
-          desc={t('VTEL_SIZE_DESC')}
-          rules={[
-            { required: true, message: t('Please input Resource size') },
-            {
-              pattern: PATTERN_VTEL_SIZE,
-              message: t('Invalid size', { message: t('VTEL_SIZE_DESC') }),
-            },
-          ]}
+          desc={t('NEW_VTEL_SIZE_DESC')}
+          // rules={[{ required: true, message: t('Please input Resource size') }]}
         >
-          <Input name="size" maxLength={63} placeholder="size" />
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Input
+              style={{ width: '355px' }}
+              name="number"
+              maxLength={63}
+              placeholder="size"
+              onChange={e => {
+                const re = /^[0-9\b]+$/
+                if (e.target.value === '' || re.test(e.target.value)) {
+                  this.setState({inputValue: e.target.value})
+                  formTemplate.number = e.target.value // 更新 "size" 字段的值
+                  formTemplate.size = e.target.value + formTemplate.unit // 更新 "Size" 字段的值
+                }
+              }}
+              value={this.state.inputValue}
+            />
+            <Select
+              style={{ width: '100px' }}
+              name="unit"
+              options={unitdata}
+              searchable
+              clearable
+              defaultValue="GB"
+              onChange={value => {
+                this.setState({selectValue: value})
+                formTemplate.unit = value
+                formTemplate.size = this.state.inputValue + value
+              }}
+            />
+          </div>
+          {/*<Input name="size" maxLength={63} placeholder="size" />*/}
         </Form.Item>
         <Form.Item
           label={t('LINSTOR_STORAGEPOOLS')}

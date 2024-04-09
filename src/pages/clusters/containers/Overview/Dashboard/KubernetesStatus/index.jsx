@@ -108,40 +108,41 @@ export default class KubernetesStatus extends Component {
     )
 
     return (
-      <Panel title={t('KUBERNETES_STATUS')}>
-        <Loading spinning={this.schedulerStore.isLoading}>
-          <>
-            <div className={styles.level}>
-              <Text
-                title={`${request_rate} times/s`}
-                description={t('API_REQUESTS_PER_SECOND')}
-              />
-              <Text
-                title={`${request_latencies_total} ms`}
-                description={t('API_REQUEST_LATENCY')}
-              />
-            </div>
-            <div className={styles.level}>
-              <Text
-                title={schedule_attempts_count.scheduled}
-                description={
-                  schedule_attempts_count.scheduled === 1
-                    ? t('SCHEDULING_OPERATION')
-                    : t('SCHEDULING_OPERATIONS')
-                }
-              />
-              <Text
-                title={schedule_attempts_count.error}
-                description={
-                  schedule_attempts_count.error === 1
-                    ? t('SCHEDULING_FAILURE')
-                    : t('SCHEDULING_FAILURES')
-                }
-              />
-            </div>
-          </>
-        </Loading>
-      </Panel>
+      <div></div>
+      // <Panel title={t('KUBERNETES_STATUS')}>
+      //   <Loading spinning={this.schedulerStore.isLoading}>
+      //     <>
+      //       <div className={styles.level}>
+      //         <Text
+      //           title={`${request_rate} times/s`}
+      //           description={t('API_REQUESTS_PER_SECOND')}
+      //         />
+      //         <Text
+      //           title={`${request_latencies_total} ms`}
+      //           description={t('API_REQUEST_LATENCY')}
+      //         />
+      //       </div>
+      //       <div className={styles.level}>
+      //         <Text
+      //           title={schedule_attempts_count.scheduled}
+      //           description={
+      //             schedule_attempts_count.scheduled === 1
+      //               ? t('SCHEDULING_OPERATION')
+      //               : t('SCHEDULING_OPERATIONS')
+      //           }
+      //         />
+      //         <Text
+      //           title={schedule_attempts_count.error}
+      //           description={
+      //             schedule_attempts_count.error === 1
+      //               ? t('SCHEDULING_FAILURE')
+      //               : t('SCHEDULING_FAILURES')
+      //           }
+      //         />
+      //       </div>
+      //     </>
+      //   </Loading>
+      // </Panel>
     )
   }
 }

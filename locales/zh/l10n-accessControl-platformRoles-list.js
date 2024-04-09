@@ -18,11 +18,12 @@
 module.exports = {
   // Banner
   PLATFORM_ROLE_PL: '平台角色',
+  PERMISSION_MANAGEMENT_PL: '权限管理',
   // List
   PLATFORM_ROLE_EMPTY_DESC: '请创建一个平台角色。',
   ROLE_USERS_MANAGER: '管理 CoSAN Manager 平台上的所有用户。',
   ROLE_WORKSPACES_MANAGER: '管理 CoSAN Manager 平台上的所有企业空间。',
-  ROLE_PLATFORM_ADMIN: '管理 CoSAN Manager 平台上的所有资源。',
+  ROLE_PLATFORM_ADMIN: '管理平台上的所有资源。',
   ROLE_PLATFORM_REGULAR: '被邀请加入企业空间之前无法访问任何资源。',
   CREATION_TIME_TCAP: '创建时间',
   // List > Create
@@ -56,5 +57,5 @@ module.exports = {
   // List > Create > Edit Permissions > Platform Settings
   PERMIGROUP_PLATFORM_SETTINGS: '平台设置',
   PERMISSION_PLATFORM_SETTINGS_MANAGEMENT: '平台设置管理',
-  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 CoSAN Manager 平台的设置。'
+  PERMISSION_PLATFORM_SETTINGS_MANAGEMENT_DESC: '查看和编辑 VishinStor K3000 统一管理系统平台的设置。'
 };

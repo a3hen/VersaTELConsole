@@ -65,7 +65,7 @@ export default class AdminDashboard extends React.Component {
           <Panel className={styles.info} title={t('PLATFORM_INFORMATION')}>
             <Text
               // title={version.replace('v', '')}
-              title="1.1.0"
+              title="1.2.0"
               description={t('PLATFORM_VERSION')}
             />
             {globals.app.isMultiCluster ? (
@@ -87,9 +87,9 @@ export default class AdminDashboard extends React.Component {
           <Panel className={styles.status} title={t('PLATFORM_RESOURCES')}>
             <PlatformStatus metrics={this.monitorStore.data} />
           </Panel>
-          <Panel title={t('RECENT_ACCESS')}>
-            <History />
-          </Panel>
+          {/*<Panel title={t('RECENT_ACCESS')}>*/}
+          {/*  <History />*/}
+          {/*</Panel>*/}
         </>
       </Loading>
     )

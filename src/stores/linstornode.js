@@ -112,13 +112,16 @@ export default class LNodeStore extends Base {
     // }
 
     // const data = get(result, 'data', [])
-    const data = get(result, 'data', []).map(this.mapper)
+    let data = get(result, 'data', []).map(this.mapper)
 
     // const data = result.authentication.map(item => ({
     //   cluster,
     //   workspace,
     //   ...this.mapper(item, devops ? 'devopslinstornodes' : this.module),
     // }))
+    if (data === null) {
+      data = []
+    }
 
     this.list.update({
       data: more ? [...this.list.data, ...data] : data,

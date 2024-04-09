@@ -249,6 +249,7 @@ export const ICON_TYPES = {
   workspaceroles: 'role',
   components: 'components',
   accounts: 'human',
+  multitenancy: 'role',
   workspaces: 'enterprise',
   clusters: 'cluster',
   pods: 'pod',
@@ -278,9 +279,17 @@ export const ICON_TYPES = {
   cluster: 'cluster',
   notification: 'loudspeaker',
   notificationhistory: 'record',
-  linstornodes: 'database',
+  linstornodes: 'nodes',
   storagepools: 'database',
-  lresources: 'database',
+  lresources: 'resource',
+  snapshot: 'snapshot',
+  ssnapshot: 'snapshot',
+  iSCSImapping: 'upload',
+  iSCSImapping1: 'upload',
+  iSCSImapping2: 'upload',
+  remotebackup: 'backup',
+  remotebackup1: 'backup',
+  remotebackup2: 'backup',
   resourcebackups: 'snapshot',
   gpu: 'gpu',
   'gpu.limit': 'gpu',
@@ -558,10 +567,16 @@ export const GRAY_RELEASE_CATEGORIES = [
 ]
 
 export const PATTERN_VTEL_NAME = /^[a-zA-Z][a-zA-Z0-9_-]+[a-zA-Z0-9_-]$/
+export const PATTERN_REMOTECLUSTER_NAME = /^(?!-)[a-zA-Z0-9](?:[a-zA-Z0-9]|-(?=[a-zA-Z0-9])){0,}[a-zA-Z0-9]$/
+export const PATTERN_RB_URL = /^(https?:\/\/)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d+)?(\/.*)?$/
+export const PATTERN_RB_TIME = /^(每小时: 0 \* \* \* \*|每天: 0 0 \* \* \*|每月: 0 0 1 \* \*|每个周一到周五: 0 0 \* \* 1-5|((\*|(\*\/[0-5]?[0-9])|([0-5]?[0-9])|([0-5]?[0-9]-[0-5]?[0-9])|([0-5]?[0-9]-[0-5]?[0-9]\/[0-9]+)|([0-5]?[0-9]\/[0-5]?[0-9])|(([0-5]?[0-9],)+[0-5]?[0-9]))\s+(\*|(\*\/[0-9]+)|([01]?[0-9]|2[0-3])|([01]?[0-9]-[01]?[0-9])|([01]?[0-9]-[01]?[0-9]\/[0-9]+)|([01]?[0-9]\/[01]?[0-9])|(([01]?[0-9],)+[01]?[0-9]))\s+(\*|(\*\/[0-9]+)|([12]?[0-9]|3[01])|([12]?[0-9]-[12]?[0-9])|([12]?[0-9]-[12]?[0-9]\/[0-9]+)|([12]?[0-9]\/[12]?[0-9])|(([12]?[0-9],)+[12]?[0-9]))\s+(\*|(\*\/[0-9]+)|([1-9]|1[0-2])|([1-9]-1[0-2])|([1-9]-1[0-2]\/[0-9]+)|([1-9]\/[1-9])|(([1-9],)+1[0-2]))\s+(\*|(\*\/[0-9]+)|([0-6])|([0-6]-[0-6])|([0-6]-[0-6]\/[0-9]+)|([0-6]\/[0-6])|(([0-6],)+[0-6]))))$/
+export const PATTERN_IQN_NAME = /^iqn\.\d{4}-\d{2}\.(\w+\.)*\w+:[\w-:\\.]+$/
 export const PATTERN_NODE_NAME = /^[a-z][a-z0-9-]+[a-z0-9]$/
 export const PATTERN_VTEL_SIZE = /^(\d+\.?\d*)(K|M|G|T|P)?(?:i?B)?$/
-export const PATTERN_SP_VOL_NAME = /^[a-zA-Z][a-zA-Z0-9_/-]+[a-zA-Z0-9]$/
-
+export const NEW_PATTERN_VTEL_SIZE = /^[0-3]$/
+export const SNAPSHOT_NUMBERS = /^[1-9]\d*$/
+export const PATTERN_SP_NAME = /^(?!.*^[.-]$)([a-zA-Z0-9\.\-_+])+$/
+export const PATTERN_SP_VOL_NAME = /^(?!^[.-])([a-zA-Z0-9\.\-_+])+\/([a-zA-Z0-9\.\-_+])+(?<![.-])$/
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/
 export const PATTERN_USER_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/
 export const PATTERN_IMAGE_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/

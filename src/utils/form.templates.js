@@ -785,6 +785,64 @@ const getSSnapshotTemplate = ({ namespace, type, detail }) => ({
   // image: detail.image,
   rules: [],
 })
+const getiSCSIMappingTemplates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+const getiSCSIMapping1Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping1',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+
+const getiSCSIMapping2Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'iSCSIMapping2',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+
+const getRemoteBackupTemplates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'RemoteBackup',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+
+const getRemoteBackup1Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'RemoteBackup1',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
+
+const getRemoteBackup2Templates = ({ namespace, type, detail }) => ({
+  apiVersion: 'storsecu.kubesphere.io/v1alpha1',
+  kind: 'RemoteBackup2',
+  metadata: {
+    namespace,
+    type,
+  },
+  rules: [],
+})
 
 const getCDTemplate = () => ({
   kind: 'Application',
@@ -894,6 +952,12 @@ const FORM_TEMPLATES = {
   tpresources: getTPResourceTemplate,
   snapshot: getSnapshotTemplate,
   ssnapshot: getSSnapshotTemplate,
+  iSCSImapping: getiSCSIMappingTemplates,
+  iSCSImapping1: getiSCSIMapping1Templates,
+  iSCSImapping2: getiSCSIMapping2Templates,
+  remotebackup: getRemoteBackupTemplates,
+  remotebackup1: getRemoteBackup1Templates,
+  remotebackup2: getRemoteBackup2Templates,
   resourcebackups: getResourceBackupTemplate,
   cds: getCDTemplate,
   codeRepos: getCodeRepoTemplate,

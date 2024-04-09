@@ -23,6 +23,8 @@ import { Modal } from 'components/Base'
 import CreateModal from 'components/Modals/RoleCreate'
 import RoleEditModal from 'components/Modals/EditAuthorization'
 import DeleteModal from 'components/Modals/RoleDelete'
+import RoleSpAuthorityModal from 'components/Modals/RoleSpAuthority'
+import RoleRAuthorityModal from 'components/Modals/RoleRAuthority'
 import FORM_TEMPLATES from 'utils/form.templates'
 
 export default {
@@ -115,6 +117,88 @@ export default {
         module: store.module,
         detail,
         store,
+        ...props,
+      })
+    },
+  },
+  'role.sp': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log("data",data)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          request
+            .post(
+              `/kapis/versatel.kubesphere.io/v1alpha1/allocatesp`,
+              data
+            )
+            .then(res => {
+              // Modal.close(modal)
+
+              if (Array.isArray(res)) {
+                Notify.error({
+                  content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+                })
+              } else {
+                Notify.success({ content: `${t('Operation Successfully')}` })
+              }
+              success && success()
+            })
+          Modal.close(modal)
+        },
+        modal: RoleSpAuthorityModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
+        ...props,
+      })
+    },
+  },
+  'role.resource': {
+    on({ store, cluster, namespace, workspace, success, devops, ...props }) {
+      const { module } = store
+      const modal = Modal.open({
+        onOk: data => {
+          console.log("data",data)
+          if (!data) {
+            Modal.close(modal)
+            return
+          }
+
+          const url =
+            data.operater === 'add'
+              ? `/kapis/versatel.kubesphere.io/v1alpha1/allocateres`
+              : 'www.baidu.com'
+
+          request.post(url, data).then(res => {
+            // Modal.close(modal)
+
+            if (Array.isArray(res)) {
+              Notify.error({
+                content: `${t('Operation Failed, Reason:')}${res[0].message}`,
+              })
+            } else {
+              Notify.success({ content: `${t('Operation Successfully')}` })
+            }
+            success && success()
+          })
+          Modal.close(modal)
+        },
+        modal: RoleRAuthorityModal,
+        store,
+        module,
+        cluster,
+        namespace,
+        workspace,
+        formTemplate: FORM_TEMPLATES[module]({ namespace }),
         ...props,
       })
     },

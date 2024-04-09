@@ -264,14 +264,15 @@ class Overview extends React.Component {
     const { isLoading = false } = this.componentMonitoringStore.health
 
     return (
-      <Card className={styles.components} title={t('COMPONENT_STATUS')}>
-        <Loading spinning={isLoading}>
-          <div className={styles.wrapper}>
-            {this.renderServiceComponents()}
-            {this.renderCoreComponents()}
-          </div>
-        </Loading>
-      </Card>
+      <div></div>
+      // <Card className={styles.components} title={t('COMPONENT_STATUS')}>
+      //   <Loading spinning={isLoading}>
+      //     <div className={styles.wrapper}>
+      //       {this.renderServiceComponents()}
+      //       {this.renderCoreComponents()}
+      //     </div>
+      //   </Loading>
+      // </Card>
     )
   }
 

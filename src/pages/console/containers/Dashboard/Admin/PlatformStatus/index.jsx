@@ -44,6 +44,12 @@ export default class PlatformStatus extends Component {
         metric: 'kubesphere_user_count',
       },
       {
+        icon: 'role',
+        name: 'multitenancy',
+        link: '/access/multitenancy',
+        metric: 'kubesphere_multitenancy_count',
+      },
+      {
         icon: 'appcenter',
         name: 'APP_TEMPLATE_SCAP',
         link: '/apps',

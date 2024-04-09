@@ -36,6 +36,7 @@ import StoragepoolStore from 'stores/storagepool'
 })
 export default class Storagepool extends React.Component {
   componentDidMount() {
+    this.props.store.fetchStoragepoolTemplates()
     this.interval = setInterval(() => {
       this.props.tableProps.tableActions.onFetch({ silent: true })
     }, 5000)
@@ -55,12 +56,8 @@ export default class Storagepool extends React.Component {
         icon: 'trash',
         text: t('Delete'),
         action: 'delete',
-        show: true,
+        show: item => item.resNum < 1,
         onClick: item => {
-          if (item.resNum >= 1) {
-            alert('此存储池已有资源存在，无法被删除。')
-            return
-          }
           trigger('storagepools.delete', {
             detail: item,
             type: t(name),
@@ -101,7 +98,12 @@ export default class Storagepool extends React.Component {
         title: t('Status'),
         dataIndex: 'status',
         isHideable: true,
-        render: status => <VStatus name={status} />,
+        render: (status, record) => {
+          if (record.freeCapacity === '0.00 KiB') {
+            return <VStatus name="warning1" />
+          }
+          return <VStatus name={status} />
+        },
       },
       {
         title: t('Node'),
@@ -158,19 +160,43 @@ export default class Storagepool extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const error = tableProps.data[0]?.error
+    const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
+    const match = error?.match(ipPortRegex)
+    const ipPort = match ? match[0] : ''
+
+    const LoadingComponent = () => (
+      <div style={{ textAlign: 'center' }}>
+        <strong style={{ fontSize: '20px' }}>Loading...</strong>
+        <p>无法连接至controller ip：{ipPort}</p>
+      </div>
+    )
+
+    // 检查store中的数据是否包含error属性
+    const isLoading = tableProps.data.some(item => item.error)
+
+    console.log("rols",globals.user.globalrole)
+
+
     return (
       <ListPage {...this.props} noWatch>
         <Banner {...bannerProps} tabs={this.tabs} title={t('Storagepool')} />
-        <Table
-          {...tableProps}
-          tableActions={this.tableActions}
-          itemActions={this.itemActions}
-          columns={this.getColumns()}
-          searchType="name"
-          placeholder={t('SEARCH_BY_STORAGEPOOL')}
-          // hideSearch
-          rowKey="uniqueID"
-        />
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <LoadingComponent />
+          </div>
+        ) : (
+          <Table
+            {...tableProps}
+            tableActions={this.tableActions}
+            itemActions={this.itemActions}
+            columns={this.getColumns()}
+            searchType="name"
+            placeholder={t('SEARCH_BY_STORAGEPOOL')}
+            // hideSearch
+            rowKey="uniqueID"
+          />
+        )}
       </ListPage>
     )
   }

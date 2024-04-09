@@ -73,6 +73,7 @@ export default class DeleteModal extends React.Component {
       isSubmitting,
       deleteCluster,
     } = this.props
+    console.log("props",this.props)
     const typeKey = type || undefined
     const typeKeyLow = type ? `${type}_LOW` : undefined
     const typeKeyPl = type ? `${type}_PL` : undefined

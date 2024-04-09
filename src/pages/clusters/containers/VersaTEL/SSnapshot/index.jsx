@@ -18,7 +18,7 @@
 
 import React from 'react'
 import { toJS } from 'mobx'
-import { get, omit } from 'lodash'
+import { get, omit, isEqual } from 'lodash'
 
 import { Avatar, Status } from 'components/Base'
 import Banner from 'components/Cards/Banner'
@@ -64,16 +64,32 @@ export default class SSnapshot extends React.Component {
     ]
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // 使用 lodash 的 isEqual 进行深度比较
+    if (!isEqual(nextProps.tableProps.data, prevState.prevData)) {
+      return {
+        items: nextProps.tableProps.data,
+        prevData: nextProps.tableProps.data, // 存储当前props以便下次比较
+      }
+    }
+    // 如果props没有变化，则不更新state
+    return null
+  }
+
   componentDidMount() {
-    this.interval = setInterval(() => {
-      this.props.tableProps.tableActions.onFetch({ silent: true })
-    }, 2000)
+    this.fetchData(true) // Pass true for the initial fetch
+    this.interval = setInterval(() => this.fetchData(false), 5000) // Pass false for subsequent fetches
   }
 
   componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval)
-    }
+    clearInterval(this.interval)
+  }
+
+  fetchData = silent_flag => {
+    this.props.tableProps.tableActions.onFetch({
+      silent: true,
+      silent_flag: silent_flag,
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -168,11 +184,24 @@ export default class SSnapshot extends React.Component {
   }
 
   get tableActions() {
-    const { tableProps } = this.props
+    const { tableProps, trigger, routing } = this.props
     return {
       ...tableProps.tableActions,
       onFetch: this.handleFetch,
-      selectActions: [],
+      selectActions: [
+        {
+          key: 'delete',
+          type: 'danger',
+          text: t('DELETE'),
+          action: 'delete',
+          onClick: () =>
+            trigger('snapshot.batch.delete', {
+              type: 'snapshot',
+              rowKey: 'name',
+              success: routing.query,
+            }),
+        },
+      ],
     }
   }
 
@@ -193,13 +222,17 @@ export default class SSnapshot extends React.Component {
         title: t('Resource'),
         dataIndex: 'resource',
         width: '20%',
-        render: resource => resource,
+        render: resource => (
+          <Avatar icon={'resource'} title={resource} noLink />
+        ),
       },
       {
         title: t('SnapshotName'),
         dataIndex: 'name',
         width: '20%',
-        render: name => name,
+        render: name => (
+          <Avatar icon={'snapshot'} title={name} noLink />
+        ),
       },
       {
         title: t('Node'),
@@ -212,9 +245,8 @@ export default class SSnapshot extends React.Component {
         dataIndex: 'time',
         width: '20%',
         render: time => {
-          const formattedTime = new Date(time).toLocaleString('zh-CN', {
-            hour12: false,
-          })
+          const date = new Date(time)
+          const formattedTime = `${date.getUTCFullYear()}/${(date.getUTCMonth() + 1).toString().padStart(2, '0')}/${date.getUTCDate().toString().padStart(2, '0')} ${date.getUTCHours().toString().padStart(2, '0')}:${date.getUTCMinutes().toString().padStart(2, '0')}:${date.getUTCSeconds().toString().padStart(2, '0')}`
           return formattedTime
         },
       },
@@ -235,6 +267,10 @@ export default class SSnapshot extends React.Component {
 
   render() {
     const { bannerProps, tableProps } = this.props
+    const error = tableProps.data[0]?.error
+    const ipPortRegex = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+)/
+    const match = error?.match(ipPortRegex)
+    const ipPort = match ? match[0] : ''
     const sortedData = this.props.tableProps.data.slice().sort((a, b) => {
       if (a.resource < b.resource) {
         return -1
@@ -242,29 +278,50 @@ export default class SSnapshot extends React.Component {
       if (a.resource > b.resource) {
         return 1
       }
-      if (a.time < b.time) {
-        return 1
-      }
-      if (a.time > b.time) {
-        return -1
+      return 0
+    }).sort((a, b) => {
+      if (a.resource === b.resource) {
+        if (a.time < b.time) {
+          return 1
+        }
+        if (a.time > b.time) {
+          return -1
+        }
       }
       return 0
     })
+
+    const LoadingComponent = () => (
+      <div style={{ textAlign: 'center' }}>
+        <strong style={{ fontSize: '20px' }}>Loading...</strong>
+        <p>无法连接至controller ip：{ipPort}</p>
+      </div>
+    )
+
+    const isLoading = tableProps.data.some(item => item.error)
+
     return (
       <ListPage {...this.props} module="namespaces">
         <Banner {...bannerProps} tips={this.tips} tabs={this.tabs} />
-        <Table
-          {...tableProps}
-          itemActions={this.itemActions}
-          tableActions={this.tableActions}
-          columns={this.getColumns()}
-          data={sortedData}
-          rowSelection={false}
-          // onCreate={this.type === 'snapshot' ? null : this.showCreate}
-          // isLoading={tableProps.isLoading || isLoadingMonitor}
-          searchType="name"
-          hideSearch={true}
-        />
+        {isLoading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            <LoadingComponent />
+          </div>
+        ) : (
+          <Table
+            {...tableProps}
+            itemActions={this.itemActions}
+            tableActions={this.tableActions}
+            columns={this.getColumns()}
+            data={sortedData}
+            rowSelection={false}
+            // onCreate={this.type === 'snapshot' ? null : this.showCreate}
+            // isLoading={tableProps.isLoading || isLoadingMonitor}
+            searchType="name"
+            placeholder={t('按快照搜索')}
+            hideSearch={false}
+          />
+        )}
       </ListPage>
     )
   }

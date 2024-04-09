@@ -25,6 +25,14 @@ export default class VStatus extends React.Component {
       return 'Updating'
     }
 
+    if (name === 'Unknow') {
+      return 'Warning'
+    }
+
+    if (name === 'warning1') {
+      return 'Stopped'
+    }
+
     // if (name === 'OFFLINE' || name === 'ERROR'){
     //   return 'Stopped'
     // }
@@ -35,6 +43,15 @@ export default class VStatus extends React.Component {
     const { name = '' } = this.props
     if (name === 'OK' || name === 'SUCCESSFUL') {
       return 'NORMAL'
+    }
+    if (name === 'warning1') {
+      return 'warning1'
+    }
+    if (name === 'Unknow') {
+      return 'Unknow'
+    }
+    if (name === 'DELETING') {
+      return 'DELETING'
     }
     return name || 'ERROR'
     // return 'ERROR'
